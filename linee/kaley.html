@@ -285,14 +285,14 @@ body { background: #0e0a06; color: #e8d8c0; font-family: var(--sans); overflow-x
 }
 .kf-frag__note {
   display: grid;
-  grid-template-columns: 56px 1fr;
+  grid-template-columns: 68px 1fr;
   gap: 8px 16px;
   padding: 9px 0;
   border-bottom: 1px solid rgba(201,169,110,.06);
 }
 .kf-frag__note:last-child { border-bottom: none; }
 .kf-frag__note-l {
-  font-size: 9px;
+  font-size: clamp(9px, 0.7vw, 11px);
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--gold);
@@ -303,7 +303,7 @@ body { background: #0e0a06; color: #e8d8c0; font-family: var(--sans); overflow-x
 .kf-frag__note-v {
   font-family: var(--serif);
   font-style: italic;
-  font-size: 15px;
+  font-size: clamp(15px, 1.2vw, 18px);
   color: rgba(232,216,192,.48);
   line-height: 1.5;
 }
