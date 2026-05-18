@@ -2054,13 +2054,14 @@ document.querySelectorAll('[data-reveal]').forEach(el => revealObs.observe(el));
     });
   }
 
-  let rafId;
-  window.addEventListener('scroll', () => {
-    cancelAnimationFrame(rafId);
-    rafId = requestAnimationFrame(update);
-  }, { passive: true });
+  // Loop continuo: aggiorna ogni frame invece che sugli eventi di
+  // scroll (che su mobile arrivano irregolari e causano gli scatti)
+  function loop() {
+    update();
+    requestAnimationFrame(loop);
+  }
   window.addEventListener('resize', update, { passive: true });
-  update();
+  loop();
 })();
 
 // ── TILES NUMERI · APRI SHEET DI APPROFONDIMENTO ────────────
