@@ -592,24 +592,63 @@
 }
 
 /* Mobile fallback */
+/* Mobile: stesso meccanismo del desktop (pin + scroll orizzontale guidato
+   dallo scroll verticale), con dimensioni ridotte per il telefono */
 @media (max-width: 960px) {
-  .tl-track-outer {
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+  .tl-pin-outer {
+    height: calc(100vh + 5000px);
+    --tl-title-top: clamp(72px, 10vh, 96px);
+    --tl-title-left: clamp(16px, 5vw, 28px);
+    --tl-track-top: clamp(190px, 26vh, 250px);
+    --tl-photo-w: 78vw;
+    --tl-photo-h: clamp(230px, 34vh, 320px);
+    --tl-slide-w: 78vw;
+    --tl-gap: 16px;
   }
-  .tl-track-outer::-webkit-scrollbar { display: none; }
+  .tl-pin-outer .tl-section {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    overflow: hidden;
+  }
+  .tl-pin-outer .tl-section .container {
+    position: absolute;
+    top: var(--tl-title-top);
+    left: var(--tl-title-left);
+    right: var(--tl-title-left);
+    z-index: 2;
+  }
+  .tl-pin-outer h2[data-reveal] {
+    margin-bottom: 0 !important;
+    font-size: clamp(28px, 7vw, 44px) !important;
+    line-height: 1.08 !important;
+    white-space: normal !important;
+  }
+  .tl-track-outer {
+    position: absolute;
+    top: var(--tl-track-top);
+    left: 0; right: 0;
+    overflow: visible;
+  }
   .tl-track {
     display: flex;
-    gap: clamp(16px, 4vw, 28px);
-    padding: 0 clamp(20px, 6vw, 32px) clamp(24px,5vw,40px);
+    gap: var(--tl-gap);
+    padding: 0 clamp(16px, 5vw, 28px);
+    will-change: transform;
     align-items: flex-start;
   }
-  .tl-slide { width: min(76vw, 340px); flex-shrink: 0; }
-  .tl-slide__photo { width: 100%; height: 0; aspect-ratio: 4 / 3; }
-  .tl-slide__text { padding-left: 0; margin-right: 0; padding-bottom: 0; }
-  .tl-slide__line::before { right: 0; }
+  .tl-slide--text { width: var(--tl-slide-w); }
+  .tl-slide__text { padding-bottom: 0; }
+  .tl-slide__desc { font-size: 15px; line-height: 1.5; }
+  .tl-track-outer::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: -200px;
+    width: clamp(50px, 12vw, 110px);
+    background: linear-gradient(90deg, transparent, var(--cream-2) 85%);
+    pointer-events: none;
+    z-index: 2;
+  }
 }
 
 /* ── AZ-BANDS — 3 bande full-bleed (Sez 02) ──────────────── */
@@ -1985,15 +2024,9 @@ document.querySelectorAll('[data-reveal]').forEach(el => revealObs.observe(el));
   const track = document.getElementById('tlTrack');
   if (!outer || !track) return;
 
-  const isMobile = () => window.innerWidth <= 960;
   const slides = Array.from(track.querySelectorAll('.tl-slide'));
 
   function update() {
-    if (isMobile()) {
-      track.style.transform = '';
-      slides.forEach(s => { s.style.filter = ''; });
-      return;
-    }
     const rect = outer.getBoundingClientRect();
     const scrollable = rect.height - window.innerHeight;
     if (scrollable <= 0) return;
