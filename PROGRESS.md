@@ -103,6 +103,48 @@ const BREVO_ENDPOINT = '/api/contact'; // TODO: sostituire con URL reale
 
 ---
 
+# 📅 SESSIONE Maggio 2026 — Deploy GitHub, Cleanup, Revisione UI
+
+## 🌐 Hosting & Deploy — INFRASTRUTTURA ATTUALE
+- Sito online su **Netlify**: https://creative-sunburst-9a3c92.netlify.app
+- Repository GitHub: **github.com/JayThug-The-Coder/erboristica-site** (privato)
+- **Deploy automatico**: ogni `git push` su `main` → Netlify ripubblica da solo. Niente più drag & drop.
+- `netlify.toml` in root: charset UTF-8; cache CSS/JS `max-age=0, must-revalidate` (niente versioni vecchie in cache); cache lunga font/immagini; redirect `/index.html` → `/`
+- Build command vuoto (sito statico)
+
+## 🧹 Pulizia repository
+- File non usati dal sito spostati nel backup **`Desktop/erboristica-site-utilizzo`** (copia completa) e rimossi dalla cartella sito: `uploads/`, PDF e `.docx` in root, video segnaposto 71MB
+- `.gitignore`: ignora `uploads/`, `*.pdf`, `*.docx`, `*.zip`, `.claude/`, `scraps/`
+- Cartella sito da ~200MB → ~54MB
+
+## 🔒 Iubenda
+- `privacy.html` e `cookie-policy.html`: contenuto sostituito con embed Iubenda (ID **85420717**)
+
+## 📱 Fix mobile (post-deploy)
+- Timeline `index.html`: meccanismo pin come desktop anche su mobile (scroll verticale → movimento orizzontale automatico); loop `requestAnimationFrame` per fluidità; niente blur su mobile
+- Footer: `.footer__content` sempre in flusso normale (non `absolute`) → intestazioni colonne non più tagliate; layout centrato sotto 600px
+- Menu hamburger: z-index alzati (topbar 201, menu 200)
+- Ricerca: fix bug listener (`document.querySelectorAll` invece di `el.`), aggiunto `ATH_DATA_JSON` a `data.js`
+- `linee.html`: pannelli testo + foto interlacciati su mobile (`display:contents` + `order`)
+- `laboratorio.html`: atlante 2 colonne su mobile, accordion globo sempre espanso
+
+## 🎨 Revisione UI (lista 20 modifiche utente)
+- Catalogo: Sphea/Kaley/Everby in cima (sia linee sia "Sfoglia per brand")
+- Pagine brand (sphea/kaley/everby/erboristica): **titolo testo → immagine logo** (`immagini/brand-*/logo.png`)
+- Erboristica: banner linee con Skincare Innovation in cima; menu "Scopri per categoria" stile catalogo; effetto hover solo sul pulsante "Scopri"
+- Contatti: orari telefono **8:00–17:00**; font consenso GDPR / "Aggiungi file" / pulsante invia uniformati (display + colore titoletti ink .55)
+- Footer: rimossa voce "Area stampa"
+- Sphea: CTA "Scopri il siero" oro tenue + linea animata; fix zigzag mobile
+- (dettaglio completo nel git log)
+
+## ⚠️ CORREZIONE nota i18n (SUPERA la vecchia nota in "CSS Architecture")
+`applyLang()` in `app.js` ora controlla se il valore `data-it`/`data-en` contiene `<`:
+- se contiene markup → usa `innerHTML` (HTML preservato)
+- altrimenti → `textContent`
+Quindi gli elementi con `data-it`/`data-en` **POSSONO** contenere `<a>`, `<strong>` ecc.
+
+---
+
 # 📅 SESSIONE 12 maggio 2026 — SEO + Infrastruttura + Mobile
 
 ## Aggiunto / creato
@@ -504,8 +546,8 @@ Il documento "Ingredienti Brevettati® — Everby Beauty + Sphea by Athena's" è
 
 ### CSS Architecture
 - `assets/tokens.css` — tutti i token globali + stili topbar/footer iniettati da app.js
-- `assets/app.js` — inietta topbar + footer via `initAthenas(pageKey)`, gestisce i18n con `data-it`/`data-en` usando **textContent** (NON innerHTML)
-- **IMPORTANTE**: elementi con `data-it`/`data-en` NON possono contenere markup HTML (`<strong>` etc.) perché `el.textContent = el.dataset.it` lo distrugge al cambio lingua. Per elementi con markup: rimuovere `data-it`/`data-en` e scrivere solo in italiano.
+- `assets/app.js` — inietta topbar + footer via `initAthenas(pageKey)`, gestisce i18n con `data-it`/`data-en`
+- **i18n (aggiornato)**: `applyLang()` usa `innerHTML` se il valore contiene `<`, altrimenti `textContent`. Gli elementi `data-it`/`data-en` **possono** contenere markup HTML (`<a>`, `<strong>`).
 
 ### Sphea accordion (sphea.html)
 Struttura finale delle tendine:

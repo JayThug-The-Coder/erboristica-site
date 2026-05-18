@@ -149,21 +149,26 @@ Titolo: "ATHENA'S ITALY MANUFACTURER SINCE 1969"
 
 ---
 
-## STATO ATTUALE (Aprile 2026)
+## STATO ATTUALE (Maggio 2026)
+
+### Online
+- Sito pubblicato su **Netlify**: https://creative-sunburst-9a3c92.netlify.app
+- Repo GitHub `JayThug-The-Coder/erboristica-site` con **deploy automatico** ad ogni push
+- Vedi `PROGRESS.md` → sezione "SESSIONE Maggio 2026" per dettaglio deploy/cleanup/UI
 
 ### Completato
-- [x] Design token system (`tokens.css`)
-- [x] `azienda.html` — redesign immersivo (parallax, 3D tilt cards, word reveal, stats, timeline)
-- [x] `brand.html` — Editorial Presence con sticky scroll 4 brand
-- [x] `catalogo.html` — split hero + 10 linee alternanti + filtri
-- [x] `sostenibilita.html` — hero verde + numeri + 3 pilastri + 8 certificazioni + CTA 2030
-- [x] `laboratorio.html` — hero scientifico + numeri R&S + 4 fasi + 4 tecnologie
-- [x] `contatti.html` — hero minimal + 3 contatti + spaccio + mappa placeholder + form
+- [x] Tutte le 15 pagine reali costruite e responsive (desktop + mobile)
+- [x] Pagine brand individuali `linee/erboristica.html`, `everby.html`, `kaley.html`, `sphea.html`
+- [x] Pagina dinamica linea singola `linee/linea.html?id=...`
+- [x] Privacy e Cookie policy via embed Iubenda
+- [x] SEO completa, Schema.org, GA4, cookie banner
+- [x] Infrastruttura deploy (GitHub + Netlify, auto-publish)
 
 ### Da fare
-- [ ] Inserire foto/video reali (tutti i `<!-- SOSTITUIRE -->`)
-- [ ] Pagine brand individuali: `brand/erboristica.html`, `brand/everby.html`, `brand/kaley.html`, `brand/sphea.html`
-- [ ] Pagine linee prodotto: `catalogo/argan.html`, ecc.
+- [ ] Inserire foto/video reali (placeholder `<!-- SOSTITUIRE -->`)
+- [ ] Form contatti: endpoint Brevo reale (vedi action items)
+- [ ] Redirect 301 dai vecchi URL WordPress
+- [ ] Foto Open Graph (`immagini/og/`)
 
 ---
 
