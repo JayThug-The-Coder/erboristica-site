@@ -623,8 +623,18 @@
   transition: opacity .3s;
   margin-top: auto;
   padding-top: 8px;
+  padding-bottom: 6px;
+  position: relative;
+  align-self: flex-start;
+}
+.cert-card__cta::after {
+  content: '';
+  position: absolute; left: 0; bottom: 0;
+  width: 0; height: 1px; background: currentColor;
+  transition: width .3s var(--ease);
 }
 .cert-card:hover .cert-card__cta { opacity: 1; }
+.cert-card:hover .cert-card__cta::after { width: 100%; }
 
 /* ── CERT FULLSCREEN PANEL ─────────────────────────────────── */
 .cert-panel {
