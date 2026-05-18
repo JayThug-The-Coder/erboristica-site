@@ -572,7 +572,6 @@
             <a class="footer__link" href="${r}catalogo.html" data-it="Catalogo prodotti" data-en="Product catalogue">Catalogo prodotti</a>
             <a class="footer__link" href="${r}contatti.html#partner" data-it="Diventa partner" data-en="Become a partner">Diventa partner</a>
             <a class="footer__link" href="${r}contatti.html" data-it="Contatti" data-en="Contact">Contatti</a>
-            <a class="footer__link" href="${r}contatti.html#stampa" data-it="Area stampa" data-en="Press">Area stampa</a>
           </div>
           <div>
             <div class="footer__title" data-i18n="newsletter">Newsletter</div>
