@@ -129,7 +129,10 @@ body { background: #060606; color: #e4ddd4; font-family: var(--sans); overflow-x
   background: #0a0a0a;
 }
 .sp-photos .container { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 2px; }
-@media (max-width: 700px) { .sp-photos .container { grid-template-columns: 1fr; } }
+@media (max-width: 700px) {
+  .sp-photos .container { grid-template-columns: 1fr 1fr; }
+  .sp-photo:first-child { grid-column: 1 / -1; }
+}
 
 .sp-photo {
   aspect-ratio: 4/5;
@@ -175,6 +178,7 @@ body { background: #060606; color: #e4ddd4; font-family: var(--sans); overflow-x
   font-size: 10px; color: #c9a96e; flex-shrink: 0; font-weight: 500;
 }
 .sp-pearl__step-text { font-family: var(--serif); font-size: 17px; line-height: 1.65; color: rgba(228,221,212,.65); padding-top: 4px; }
+.sp-pearl__step-text strong { text-transform: uppercase; letter-spacing: 0.05em; }
 
 /* SVG diagram side */
 .sp-pearl__diagram {
@@ -303,6 +307,7 @@ body { background: #060606; color: #e4ddd4; font-family: var(--sans); overflow-x
   font-family: var(--display); font-weight: 300;
   font-size: clamp(15px,1.6vw,18px); color: #e4ddd4;
   margin-bottom: 10px; line-height: 1.25;
+  text-transform: uppercase; letter-spacing: 0.04em;
 }
 .sp-efficacy-card__text {
   font-family: var(--serif); font-size: 15px; line-height: 1.7;
@@ -348,11 +353,11 @@ body { background: #060606; color: #e4ddd4; font-family: var(--sans); overflow-x
 .sp-b2b__table tr { border-bottom: 1px solid rgba(228,221,212,.06); }
 .sp-b2b__table tr:first-child { border-top: 1px solid rgba(228,221,212,.06); }
 .sp-b2b__table td {
-  padding: 16px 0;
-  font-family: var(--serif); font-size: 14px;
+  padding: 17px 0;
+  font-family: var(--serif); font-size: 17px;
 }
 .sp-b2b__table td:first-child {
-  width: 40%; font-family: var(--sans); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+  width: 40%; font-family: var(--sans); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
   color: rgba(228,221,212,.3); padding-right: 24px;
 }
 .sp-b2b__table td:last-child { color: rgba(228,221,212,.8); }
@@ -451,8 +456,9 @@ body { background: #060606; color: #e4ddd4; font-family: var(--sans); overflow-x
   font-size: clamp(28px,4vw,48px); color: #e4ddd4;
 }
 .sp-results__disclaimer {
-  font-size: 10px; color: rgba(228,221,212,.25); letter-spacing: 0.08em;
-  max-width: 32ch; text-align: right;
+  font-family: var(--sans);
+  font-size: 11px; color: rgba(228,221,212,.3); letter-spacing: 0.04em;
+  line-height: 1.6; max-width: 34ch; text-align: right;
 }
 @media (max-width: 700px) { .sp-results__disclaimer { text-align: left; } }
 
