@@ -9,3 +9,9 @@ desktop.ini
 
 # Netlify
 .netlify/
+
+# Claude Code / file temporanei
+.claude/
+scraps/
+$null
+%USERPROFILE%/
