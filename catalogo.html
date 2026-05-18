@@ -366,18 +366,21 @@
 .line-skin-tag {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 5px;
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(18px, 1.7vw, 24px);
+  font-size: clamp(17px, 1.5vw, 21px);
   letter-spacing: 0;
   text-transform: none;
-  opacity: 1;
+  opacity: .7;
   margin-bottom: 28px;
-  padding-left: 14px;
-  border-left: 2px solid var(--gold);
 }
-.line-skin-tag::before { display: none; }
+.line-skin-tag::before {
+  content: '';
+  width: 8px; height: 1px;
+  background: currentColor;
+  flex-shrink: 0;
+}
 .ls-dark .line-story { opacity: .65; }
 .ls-forest .line-story { opacity: .65; }
 

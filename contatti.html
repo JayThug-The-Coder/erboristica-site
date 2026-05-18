@@ -272,10 +272,10 @@
 .form-file__input { display: none; }
 .form-file__btn {
   display: inline-flex; align-items: center; gap: 8px;
-  font-family: var(--sans); font-size: 11px; letter-spacing: .15em; text-transform: uppercase;
+  font-family: var(--display); font-size: 15px; letter-spacing: 0; text-transform: none;
   padding: 10px 20px; border: 1px solid rgba(0,0,0,.2);
   background: transparent; cursor: pointer; transition: border-color .3s, background .3s;
-  color: var(--ink);
+  color: rgba(26,26,26,.55);
 }
 .form-file__btn:hover { border-color: var(--sage-deep); }
 .form-file__names {
@@ -627,6 +627,7 @@
 
       <div class="form-submit" style="margin-top:16px;">
         <button type="submit" class="btn" id="formSubmitBtn"
+          style="font-family:var(--display); text-transform:none; font-size:15px; letter-spacing:0.02em;"
           data-it="Invia messaggio →" data-en="Send message →">Invia messaggio →</button>
       </div>
     </form>

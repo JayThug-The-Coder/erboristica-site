@@ -456,9 +456,9 @@ body { background: #060606; color: #e4ddd4; font-family: var(--sans); overflow-x
   font-size: clamp(28px,4vw,48px); color: #e4ddd4;
 }
 .sp-results__disclaimer {
-  font-family: var(--sans);
-  font-size: 11px; color: rgba(228,221,212,.3); letter-spacing: 0.04em;
-  line-height: 1.6; max-width: 34ch; text-align: right;
+  font-family: var(--serif);
+  font-size: 14px; color: rgba(228,221,212,.42); letter-spacing: 0;
+  line-height: 1.6; max-width: 38ch; text-align: right;
 }
 @media (max-width: 700px) { .sp-results__disclaimer { text-align: left; } }
 
@@ -1201,8 +1201,6 @@ function renderPage(d, id) {
   const efficacyGrid = document.getElementById('efficacyGrid');
   if (efficacyWrap && efficacyGrid && d.benefits && d.benefits.length) {
     d.benefits.forEach(b => {
-      const card = document.createElement('div');
-      card.className = 'sp-efficacy-card';
       /* Estrai il numero/dato dal titolo, sia in testa che in coda */
       let numStr = '', restStr = b.title;
       const mHead = b.title.match(/^([+\-]?\d[\d,.]*)(\s*[%cm\w°]+)?\s+(.+)$/);
@@ -1214,13 +1212,14 @@ function renderPage(d, id) {
         numStr = mTail[2];
         restStr = mTail[1];
       }
-      const numHtml = numStr
-        ? `<div class="sp-efficacy-card__num">${numStr.trim()}</div><h3 class="sp-efficacy-card__title">${restStr}</h3>`
-        : `<h3 class="sp-efficacy-card__title">${b.title}</h3>`;
-      card.innerHTML = `${numHtml}<p class="sp-efficacy-card__text">${b.text}</p>`;
+      /* mostra solo le caselle con un dato numerico — tutte uniformi */
+      if (!numStr) return;
+      const card = document.createElement('div');
+      card.className = 'sp-efficacy-card';
+      card.innerHTML = `<div class="sp-efficacy-card__num">${numStr.trim()}</div><h3 class="sp-efficacy-card__title">${restStr}</h3><p class="sp-efficacy-card__text">${b.text}</p>`;
       efficacyGrid.appendChild(card);
     });
-    efficacyWrap.style.display = '';
+    if (efficacyGrid.children.length) efficacyWrap.style.display = '';
   }
 
   /* inci */
