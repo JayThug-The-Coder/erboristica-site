@@ -639,6 +639,14 @@
   }
   .tl-slide__text { padding-bottom: 0; }
   .tl-slide__desc { font-size: 15px; line-height: 1.5; }
+  /* Testo timeline allineato a sinistra (semicentrato) e spostato
+     piu a sinistra, cosi si legge prima durante lo scroll */
+  .tl-slide--text .tl-slide__text {
+    text-align: left;
+    margin-left: calc(50% - var(--tl-photo-w) / 2 - 6vw);
+  }
+  .tl-slide--text .tl-slide__header { justify-content: flex-start; }
+  .tl-slide--text .tl-slide__desc { text-align: left; }
   .tl-track-outer::after {
     content: '';
     position: absolute;
