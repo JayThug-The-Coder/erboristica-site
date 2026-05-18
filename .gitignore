@@ -15,3 +15,9 @@ desktop.ini
 scraps/
 $null
 %USERPROFILE%/
+
+# Documenti sorgente — non servono al sito, archiviati in erboristica-site-utilizzo
+uploads/
+*.pdf
+*.docx
+*.zip
