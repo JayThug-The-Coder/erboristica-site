@@ -1,0 +1,614 @@
+﻿<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>I 4 brand — Athena's</title>
+<link rel="preload" href="assets/fonts/fraunces-200-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="stylesheet" href="assets/fonts.css"/>
+<link rel="stylesheet" href="assets/tokens.css"/>
+
+<style>
+
+/* ── HERO ─────────────────────────────────────────────────── */
+.bh {
+  height: 100svh;
+  min-height: 640px;
+  background: #111316;
+  color: var(--cream);
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  overflow: hidden;
+}
+.bh__overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,.38) 0%, transparent 45%, rgba(0,0,0,.6) 100%);
+  pointer-events: none;
+}
+
+/* watermark numerico */
+.bh__watermark {
+  position: absolute;
+  right: -0.05em;
+  bottom: -0.15em;
+  font-family: var(--display);
+  font-size: clamp(200px, 30vw, 500px);
+  font-weight: 300;
+  font-style: italic;
+  color: #fff;
+  opacity: .05;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+}
+
+.bh__content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 clamp(20px,4vw,60px) clamp(50px,7vw,100px);
+}
+
+.bh h1 {
+  font-family: var(--display);
+  font-size: clamp(56px, 10vw, 180px);
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: .88;
+  max-width: 12ch;
+  margin-bottom: clamp(24px,3vw,40px);
+}
+.bh h1 em { font-style: italic; color: var(--gold); }
+
+.bh__lead {
+  font-family: var(--serif);
+  font-size: clamp(17px,1.5vw,22px);
+  line-height: 1.55;
+  max-width: 48ch;
+  opacity: .8;
+}
+
+/* brand dot nav */
+.bh__dots {
+  position: absolute;
+  right: clamp(20px,4vw,60px);
+  bottom: clamp(40px,6vw,80px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 2;
+}
+.bh__dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.45);
+  opacity: 1;
+  cursor: pointer;
+  transition: background .3s, transform .3s;
+}
+.bh__dot.active { background: #fff; transform: scale(1.5); }
+
+/* ── EDITORIAL PRESENCE — STICKY SCROLL ──────────────────── */
+/*
+  Layout: viewport-height sections, sticky side
+  Testo sx fisso / immagine dx cambia al scroll
+  su mobile: stack verticale
+*/
+
+.ep-track {
+  position: relative;
+}
+
+.ep-sticky-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+@media (max-width: 900px) {
+  .ep-sticky-wrap { grid-template-columns: 1fr; }
+}
+
+/* pannello SX — sticky con tutto il testo che scorre */
+.ep-left {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+@media (max-width: 900px) {
+  .ep-left { position: relative; height: auto; }
+}
+
+/* pannello SX e DX — grid gestisce già 1fr 1fr */
+.ep-right { position: relative; }
+
+.ep-slide {
+  height: 160vh;
+  position: relative;
+  overflow: hidden;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.7s var(--ease);
+}
+.ep-slide.is-active { clip-path: inset(0 0% 0 0); }
+.ep-slide:first-child { clip-path: inset(0 0% 0 0); }
+@media (max-width: 900px) {
+  .ep-slide { height: 60vw; min-height: 320px; }
+}
+
+/* placeholder immagine — SOSTITUIRE con <img loading="lazy" decoding="async"> reale per brand */
+/* <!-- SOSTITUIRE: aggiungere <img loading="eager" fetchpriority="high" decoding="async" src="uploads/brand-NOME-hero.jpg" alt="..."> --> */
+.ep-slide__bg {
+  position: absolute;
+  inset: 0;
+  transition: transform 1.2s cubic-bezier(.22,.61,.36,1);
+}
+.ep-slide:hover .ep-slide__bg { transform: scale(1.04); }
+
+.ep-bg--erbo {
+  background:
+    radial-gradient(ellipse 60% 70% at 30% 40%, rgba(201,169,110,.2) 0%, transparent 60%),
+    linear-gradient(155deg, #2d3a2e 0%, #3e4a3a 50%, #5a6b4e 100%);
+}
+.ep-bg--everby {
+  background:
+    radial-gradient(ellipse 50% 60% at 70% 30%, rgba(255,255,255,.3) 0%, transparent 55%),
+    linear-gradient(155deg, #f5e0e6 0%, #e8a8b8 50%, #c878a0 100%);
+}
+.ep-bg--kaley {
+  background:
+    radial-gradient(ellipse 50% 60% at 50% 30%, rgba(255,220,160,.25) 0%, transparent 55%),
+    linear-gradient(155deg, #3a2010 0%, #8a5a3a 50%, #c9a96e 100%);
+}
+.ep-bg--sphea {
+  background:
+    radial-gradient(ellipse 50% 50% at 60% 35%, rgba(201,169,110,.15) 0%, transparent 55%),
+    linear-gradient(155deg, #0a0a0a 0%, #1a1a1a 60%, #2a2a2a 100%);
+}
+
+.ep-slide__overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,.35) 100%);
+}
+
+.ep-slide__label {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 1;
+  padding: 90px 32px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  color: #fff;
+  background: linear-gradient(180deg, rgba(0,0,0,.45) 0%, transparent 100%);
+}
+.ep-bg--everby ~ .ep-slide__label { color: var(--ink); }
+
+.ep-slide__name {
+  font-family: var(--display);
+  font-size: clamp(40px,5vw,80px);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: .92;
+  font-style: italic;
+}
+.ep-slide__tag {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  opacity: .75;
+  margin-top: 8px;
+}
+.ep-slide__arrow {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: .8;
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+  transition: opacity .3s;
+}
+.ep-slide__arrow:hover { opacity: 1; }
+
+/* img dentro photo-slot deve riempire assolutamente il contenitore */
+.ep-slide .photo-slot img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 2;
+}
+
+/* Pannello testo sx — i panel si alternano con IntersectionObserver */
+.ep-panel {
+  opacity: 0;
+  position: absolute;
+  inset: 0;
+  transition: opacity .75s ease-in-out;
+  pointer-events: none;
+}
+.ep-panel__body {
+  position: absolute;
+  bottom: clamp(60px,8vw,100px);
+  left: clamp(24px,4vw,80px);
+  right: clamp(24px,4vw,80px);
+  display: flex;
+  flex-direction: column;
+}
+.ep-panel__body .link-arrow {
+  margin-top: clamp(20px, 2.5vw, 36px);
+}
+.ep-panel.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.ep-panel__title {
+  position: absolute;
+  top: clamp(90px,10vh,130px);
+  left: clamp(24px,4vw,80px);
+  z-index: 4;
+}
+.ep-panel__title img {
+  margin-left: -0.06em;
+}
+.ep-panel__title img {
+  display: block;
+  height: auto;
+  object-fit: contain;
+  object-position: left center;
+}
+/* Tutti i loghi brand a stessa larghezza visiva (~ come Erboristica 361x56) */
+.ep-panel--erbo   .ep-panel__title img { width: clamp(280px, 30vw, 460px); }
+.ep-panel--everby .ep-panel__title img { width: clamp(280px, 30vw, 460px); }
+.ep-panel--kaley  .ep-panel__title img { width: clamp(280px, 30vw, 460px); }
+.ep-panel--sphea  .ep-panel__title img { width: clamp(280px, 30vw, 460px); }
+
+/* Mobile: scale down all brand logos to fit narrow viewports */
+@media (max-width: 720px) {
+  .ep-panel__title { top: clamp(60px, 8vh, 90px); left: clamp(20px, 5vw, 40px); right: clamp(20px, 5vw, 40px); }
+  .ep-panel__title img { width: min(72vw, 320px) !important; }
+}
+
+.ep-panel__n {
+  font-family: var(--display);
+  font-size: clamp(80px,10vw,160px);
+  font-weight: 300;
+  font-style: italic;
+  opacity: .08;
+  line-height: .9;
+  letter-spacing: -0.04em;
+  position: absolute;
+  top: clamp(60px,8vw,120px);
+  left: clamp(24px,4vw,80px);
+  pointer-events: none;
+  user-select: none;
+}
+.ep-panel__brand {
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.ep-panel h2 {
+  font-family: var(--display);
+  font-size: clamp(36px,4vw,60px);
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  line-height: 1.0;
+  margin-bottom: 20px;
+}
+.ep-panel__tag {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(29px,1.4vw,34px);
+  line-height: 1.45;
+  opacity: .7;
+  margin-bottom: 20px;
+}
+.ep-panel p {
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.6;
+  opacity: .75;
+  margin-bottom: 32px;
+}
+.ep-panel__meta {
+  display: flex;
+  gap: 28px;
+  margin-bottom: 32px;
+}
+.ep-panel__meta-item {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: .55;
+}
+.ep-panel__meta-item b {
+  display: block;
+  font-family: var(--display);
+  font-size: clamp(20px,2vw,28px);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  opacity: 1;
+  color: var(--ink);
+  margin-top: 2px;
+}
+
+/* colori brand per panel */
+.ep-panel--erbo   .ep-panel__brand { color: var(--sage-deep); }
+.ep-panel--everby .ep-panel__brand { color: #c878a0; }
+.ep-panel--kaley  .ep-panel__brand { color: #8a5a3a; }
+.ep-panel--sphea  .ep-panel__brand { color: var(--gold); }
+
+/* ── MOBILE: stack testo + immagini in verticale ──────────── */
+@media (max-width: 900px) {
+  .ep-sticky-wrap { display: flex; flex-direction: column; }
+
+  /* ep-left/ep-right spariscono come box: i figli diventano
+     figli diretti del wrapper flex e si interlacciano via order */
+  .ep-left, .ep-right { display: contents; }
+
+  #panel-0 { order: 1; }
+  .ep-slide[data-slide="0"] { order: 2; }
+  #panel-1 { order: 3; }
+  .ep-slide[data-slide="1"] { order: 4; }
+  #panel-2 { order: 5; }
+  .ep-slide[data-slide="2"] { order: 6; }
+  #panel-3 { order: 7; }
+  .ep-slide[data-slide="3"] { order: 8; }
+
+  .ep-panel {
+    position: relative;
+    inset: auto;
+    opacity: 1 !important;
+    pointer-events: auto;
+    padding: clamp(48px,10vw,72px) clamp(24px,6vw,48px) clamp(36px,7vw,56px);
+    border-bottom: 1px solid rgba(26,26,26,.08);
+  }
+  .ep-panel__title {
+    position: static;
+    margin-bottom: 24px;
+  }
+  .ep-panel__title img {
+    width: min(60vw, 240px) !important;
+  }
+  .ep-panel__n { display: none; }
+  .ep-panel__body {
+    position: static;
+  }
+  .ep-panel h2 { font-size: clamp(28px,7vw,42px); }
+  .ep-panel__tag { font-size: clamp(16px,4vw,20px); }
+  .ep-panel p { font-size: 16px; }
+
+  .ep-slide {
+    clip-path: none !important;
+    height: 72vw;
+    min-height: 280px;
+    max-height: 480px;
+  }
+}
+
+</style>
+<meta name="description" content="L'Erboristica, Everby, Kaley e Sphea: il portfolio di cosmetica naturale di Athena's. Quattro brand, una sola filosofia."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://athenas.it/linee.html"/>
+<meta property="og:type" content="website"/>
+<meta property="og:locale" content="it_IT"/>
+<meta property="og:locale:alternate" content="en_GB"/>
+<meta property="og:site_name" content="Athena's"/>
+<meta property="og:url" content="https://athenas.it/linee.html"/>
+<meta property="og:title" content="I 4 brand — Athena's"/>
+<meta property="og:description" content="L'Erboristica, Everby, Kaley e Sphea: il portfolio di cosmetica naturale di Athena's. Quattro brand, una sola filosofia."/>
+<meta property="og:image" content="https://athenas.it/immagini/og/linee.jpg"/>
+<meta property="og:image:alt" content="I 4 brand — Athena's"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="I 4 brand — Athena's"/>
+<meta name="twitter:description" content="L'Erboristica, Everby, Kaley e Sphea: il portfolio di cosmetica naturale di Athena's. Quattro brand, una sola filosofia."/>
+<meta name="twitter:image" content="https://athenas.it/immagini/og/linee.jpg"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://athenas.it/" },
+    { "@type": "ListItem", "position": 2, "name": "Linee", "item": "https://athenas.it/linee.html" }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="bh">
+  <div class="photo-slot photo-slot--fullbleed" data-slot-label="brand-hero.jpg">
+    <!-- SOSTITUIRE: foto atmosferica con i 4 brand Athena's · full-bleed · scura · 3000px+ larghezza -->
+    <svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+    <span class="photo-slot__label">Brand Hero — Quattro linee Athena's</span>
+    <span class="photo-slot__sub">foto · 16:9 · 3000px+</span>
+  </div>
+  <div class="bh__overlay"></div>
+  <div class="bh__watermark" aria-hidden="true">4</div>
+  <div class="bh__content container">
+    <h1>
+      <span data-it="Quattro linee," data-en="Four lines,">Quattro linee,</span><br/>
+      <em data-it="una sola casa" data-en="one single house">una sola casa</em>
+    </h1>
+    <p class="bh__lead">Ogni linea soddisfa un'esigenza e un'estetica mirata:<br>nate,<br>cresciute<br>e prodotte sotto lo stesso tetto</p>
+  </div>
+  <div class="bh__dots" id="brandDots" aria-hidden="true">
+    <div class="bh__dot active" data-idx="0"></div>
+    <div class="bh__dot" data-idx="1"></div>
+    <div class="bh__dot" data-idx="2"></div>
+    <div class="bh__dot" data-idx="3"></div>
+  </div>
+</section>
+
+<!-- EDITORIAL PRESENCE -->
+<div class="ep-track">
+  <div class="ep-sticky-wrap">
+
+    <!-- PANNELLO TESTO SX -->
+    <div class="ep-left" id="epLeft">
+
+      <!-- Sphea -->
+      <div class="ep-panel ep-panel--sphea active" id="panel-0">
+        <div class="ep-panel__title"><img loading="lazy" decoding="async" src="immagini/brand-sphea/logo.png" alt="Sphea"></div>
+        <div class="ep-panel__body">
+          <h2><span data-it="Premium," data-en="Premium,">Premium,</span><br><span data-it="senza compromessi" data-en="no compromise">senza compromessi</span></h2>
+          <div class="ep-panel__tag" data-it="Attivi incapsulati in perle di biopolimeri marini" data-en="Actives encapsulated in marine biopolymer pearls">Attivi incapsulati in perle di biopolimeri marini</div>
+          <p data-it="L'ultimo nato, 2025. Alta gamma. Texture setose, peptidi brevettati Argireline e Uplevity, perle che rilasciano il principio attivo al contatto con la pelle" data-en="Our latest, 2025. Premium. Silky textures, patented Argireline and Uplevity peptides, pearls releasing the active on skin contact">L'ultimo nato, 2025. Alta gamma. Texture setose, peptidi brevettati Argireline e Uplevity, perle che rilasciano il principio attivo al contatto con la pelle</p>
+          <a href="linee/sphea.html" class="link-arrow" data-it="Esplora la linea" data-en="Explore the line">Esplora la linea</a>
+        </div>
+      </div>
+
+      <!-- Everby -->
+      <div class="ep-panel ep-panel--everby" id="panel-1">
+        <div class="ep-panel__title"><img loading="lazy" decoding="async" src="immagini/brand-everby/logo.png" alt="Everby"></div>
+        <div class="ep-panel__body">
+          <h2><span data-it="Clean Beauty," data-en="Clean Beauty,">Clean Beauty,</span><br><span data-it="Italian soul" data-en="Italian soul">Italian soul</span></h2>
+          <div class="ep-panel__tag" data-it="Skincare innovativa con l'anima naturale di Athena's" data-en="Innovative skincare with Athena's natural soul">Skincare innovativa con l'anima naturale di Athena's</div>
+          <p data-it="Lanciato nel 2024. Texture innovative, packaging iconico, prezzi accessibili. La Clean Beauty reinterpretata con la naturalità e la qualità italiana di Athena's" data-en="Launched in 2024. Innovative textures, iconic packaging, accessible prices. Clean Beauty reinterpreted with Athena's Italian naturality and quality">Lanciato nel 2024. Texture innovative, packaging iconico, prezzi accessibili. La Clean Beauty reinterpretata con la naturalità e la qualità italiana di Athena's</p>
+          <a href="linee/everby.html" class="link-arrow" data-it="Esplora la linea" data-en="Explore the line">Esplora la linea</a>
+        </div>
+      </div>
+
+      <!-- Kaley -->
+      <div class="ep-panel ep-panel--kaley" id="panel-2">
+        <div class="ep-panel__title"><img loading="lazy" decoding="async" src="immagini/brand-kaley/logo.png" alt="Kaley"></div>
+        <div class="ep-panel__body">
+          <h2><span data-it="Fragranza," data-en="Fragrance,">Fragranza,</span><br><span data-it="rituale intimo" data-en="intimate ritual">rituale intimo</span></h2>
+          <div class="ep-panel__tag" data-it="Profumi roll-on concentrati in olio, senza alcol" data-en="Concentrated roll-on oil perfumes, alcohol-free">Profumi roll-on concentrati in olio, senza alcol</div>
+          <p data-it="Dal 2022. Sette creazioni olfattive concentrate, durata tutto il giorno, applicazione gentile direttamente sulla pelle. Flaconi da 10 ml da portare sempre con sé" data-en="Since 2022. Seven concentrated olfactory creations, all-day lasting, gentle on skin. 10ml flacons to always carry with you">Dal 2022. Sette creazioni olfattive concentrate, durata tutto il giorno, applicazione gentile direttamente sulla pelle. Flaconi da 10 ml da portare sempre con sé</p>
+          <a href="linee/kaley.html" class="link-arrow" data-it="Esplora la linea" data-en="Explore the line">Esplora la linea</a>
+        </div>
+      </div>
+
+      <!-- l'Erboristica -->
+      <div class="ep-panel ep-panel--erbo" id="panel-3">
+        <div class="ep-panel__title"><img loading="lazy" decoding="async" src="immagini/brand-erboristica/logo.png" alt="l'Erboristica"></div>
+        <div class="ep-panel__body">
+          <h2 data-it="Il pilastro della casa" data-en="The house pillar">Il pilastro della casa</h2>
+          <div class="ep-panel__tag" data-it="Cosmetica naturale per viso, capelli e corpo" data-en="Natural cosmetics for face, hair and body">Cosmetica naturale per viso, capelli e corpo</div>
+          <p data-it="Dal 1969. Dieci linee di trattamento, oltre 250 referenze. 0% derivati petrolchimici, siliconi, coloranti sintetici. 100% attivi di origine naturale, certificati Bioagricert" data-en="Since 1969. Ten treatment lines, over 250 references. 0% petrochemicals, silicones, synthetic dyes. 100% natural-origin actives, Bioagricert certified">Dal 1969. Dieci linee di trattamento, oltre 250 referenze. 0% derivati petrolchimici, siliconi, coloranti sintetici. 100% attivi di origine naturale, certificati Bioagricert</p>
+          <a href="linee/erboristica.html" class="link-arrow" data-it="Esplora la linea" data-en="Explore the line">Esplora la linea</a>
+        </div>
+      </div>
+
+    </div><!-- /ep-left -->
+
+    <!-- IMMAGINI DX — una per brand, altezza 100vh ciascuna -->
+    <div class="ep-right">
+
+      <!-- slide 0 — Sphea -->
+      <div class="ep-slide" data-slide="0" data-href="linee/sphea.html" style="cursor:pointer;">
+        <div class="photo-slot photo-slot--fullbleed" data-slot-label="sphea-lifestyle.jpg">
+          <!-- SOSTITUIRE: foto lifestyle Sphea · scura/premium · verticale · 1200px+ -->
+          <img src="immagini/sphea/lifestyle-01.jpg" alt="Sphea — Athena's" class="cover-img" loading="lazy">
+          <svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          <span class="photo-slot__label">Sphea · Alta gamma 2025</span>
+          <span class="photo-slot__sub">foto · verticale · 1200px+</span>
+        </div>
+        <div class="ep-slide__overlay"></div>
+      </div>
+
+      <!-- slide 1 — Everby -->
+      <div class="ep-slide" data-slide="1" data-href="linee/everby.html" style="cursor:pointer;">
+        <div class="photo-slot photo-slot--fullbleed" data-slot-label="everby-lifestyle.jpg">
+          <!-- SOSTITUIRE: foto lifestyle Everby · teal/iridescente · Gen Z · 1200px+ -->
+          <img src="immagini/everby/lifestyle-nuovo-01.jpg" alt="Everby by Athena's" class="cover-img" loading="lazy">
+          <svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          <span class="photo-slot__label">Everby · Clean Beauty 2024</span>
+          <span class="photo-slot__sub">foto · verticale · 1200px+</span>
+        </div>
+        <div class="ep-slide__overlay"></div>
+      </div>
+
+      <!-- slide 2 — Kaley -->
+      <div class="ep-slide" data-slide="2" data-href="linee/kaley.html" style="cursor:pointer;">
+        <div class="photo-slot photo-slot--fullbleed" data-slot-label="kaley-lifestyle.jpg">
+          <!-- SOSTITUIRE: foto lifestyle Kaley · jewel-tone · editoriale · 1200px+ -->
+          <img src="immagini/kaley/lifestyle-01.jpg" alt="Kaley by Athena's" class="cover-img" loading="lazy">
+          <svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          <span class="photo-slot__label">Kaley · Fragranze 2022</span>
+          <span class="photo-slot__sub">foto · verticale · 1200px+</span>
+        </div>
+        <div class="ep-slide__overlay"></div>
+      </div>
+
+      <!-- slide 3 — l'Erboristica -->
+      <div class="ep-slide" data-slide="3" data-href="linee/erboristica.html" style="cursor:pointer;">
+        <div class="photo-slot photo-slot--fullbleed" data-slot-label="erboristica-hero.jpg">
+          <!-- SOSTITUIRE: foto lifestyle L'Erboristica · botanica/verde · editoriale · 1200px+ -->
+          <img src="immagini/antieta/hero.jpg" alt="l'Erboristica by Athena's" class="cover-img" loading="lazy">
+          <svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          <span class="photo-slot__label">L'Erboristica · Cosmetica naturale</span>
+          <span class="photo-slot__sub">foto · verticale · 1200px+</span>
+        </div>
+        <div class="ep-slide__overlay"></div>
+      </div>
+
+    </div><!-- /ep-right -->
+  </div>
+</div>
+
+<script src="assets/vendor/lenis.min.js" defer></script><script src="assets/data.js"></script>
+<script src="assets/search-data.js" defer></script>
+<script src="assets/app.js?v=6"></script>
+<script>
+initAthenas('brands', { light: true });
+
+// Sincronizza pannello testo con slide visibile
+const slides = document.querySelectorAll('.ep-slide');
+const panels = document.querySelectorAll('.ep-panel');
+const dots   = document.querySelectorAll('.bh__dot');
+
+function activatePanel(idx) {
+  panels.forEach((p, i) => p.classList.toggle('active', i === idx));
+  slides.forEach((s, i) => s.classList.toggle('is-active', i === idx));
+  dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+}
+
+// Scroll-based sync: panel cambia quando la slide supera metà viewport
+let _syncRaf = null;
+function syncPanels() {
+  if (_syncRaf) return;
+  _syncRaf = requestAnimationFrame(() => {
+    _syncRaf = null;
+    const vpH = window.innerHeight;
+    let active = 0;
+    slides.forEach((s, i) => {
+      const rect = s.getBoundingClientRect();
+      if (rect.top < vpH * 0.5) active = i;
+    });
+    activatePanel(active);
+  });
+}
+window.addEventListener('scroll', syncPanels, { passive: true });
+window.addEventListener('resize', syncPanels, { passive: true });
+syncPanels();
+
+// dot click → scroll to slide
+dots.forEach(d => {
+  d.addEventListener('click', () => {
+    const idx = +d.dataset.idx;
+    activatePanel(idx);
+    slides[idx].scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+// slide click → navigate
+slides.forEach(s => {
+  s.addEventListener('click', () => { window.location.href = s.dataset.href; });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1520 @@
+﻿<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Linea — l'Erboristica · Athena's</title>
+<link rel="preload" href="../assets/fonts/fraunces-200-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="stylesheet" href="../assets/fonts.css"/>
+<link rel="stylesheet" href="../assets/tokens.css"/>
+
+<style>
+
+/* ── HERO ─────────────────────────────────────────── */
+.lh {
+  min-height: 100svh;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  overflow: hidden;
+  padding: 180px clamp(20px,4vw,60px) clamp(60px,8vw,100px);
+}
+
+.lh__bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(155deg, #2d3a2e 0%, #3e4a3a 50%, #5a6b4e 100%);
+  transition: background 0s;
+}
+.lh__bg img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.45; }
+
+.lh__noise {
+  position: absolute;
+  inset: 0;
+  opacity: .04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: cover;
+  pointer-events: none;
+}
+
+.lh__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.05) 0%, rgba(0,0,0,.55) 100%);
+}
+
+.lh__watermark {
+  position: absolute;
+  right: -0.04em;
+  bottom: -0.18em;
+  font-family: var(--display);
+  font-size: clamp(180px,28vw,480px);
+  font-weight: 300;
+  font-style: italic;
+  color: #fff;
+  opacity: .05;
+  line-height: 1;
+  pointer-events: none;
+  letter-spacing: -0.04em;
+  user-select: none;
+}
+
+.lh__inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 60px;
+  align-items: end;
+}
+@media (max-width: 900px) { .lh__inner { grid-template-columns: 1fr; } }
+
+.lh__breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.55);
+  margin-bottom: 28px;
+}
+.lh__breadcrumb a { color: inherit; text-decoration: none; }
+.lh__breadcrumb a:hover { color: rgba(255,255,255,.85); }
+
+.lh h1 {
+  font-family: var(--display);
+  font-size: clamp(56px, 9.5vw, 160px);
+  font-weight: 300;
+  letter-spacing: -0.035em;
+  line-height: .88;
+  color: #fff;
+  margin-bottom: 24px;
+}
+.lh h1 em { font-style: italic; color: var(--gold); }
+
+.lh__tagline {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(18px, 1.8vw, 26px);
+  color: rgba(255,255,255,.85);
+  line-height: 1.45;
+  margin-bottom: 32px;
+}
+
+.lh__meta {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.lh__meta-item {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.5);
+}
+.lh__meta-item b {
+  display: block;
+  font-family: var(--display);
+  font-size: clamp(18px, 1.8vw, 26px);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: #fff;
+  opacity: 1;
+  margin-top: 4px;
+}
+
+/* ── HERO RIGHT ───────────────────────────────────── */
+.lh__right {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-bottom: 4px;
+}
+
+.lh__desc {
+  font-family: var(--serif);
+  font-size: clamp(16px, 1.4vw, 19px);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.6;
+  color: rgba(255,255,255,.82);
+  margin-bottom: 32px;
+  max-width: 52ch;
+}
+
+.lh__desc-accent {
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
+  margin-bottom: 20px;
+  opacity: .7;
+}
+
+.lh__benefits {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid rgba(255,255,255,.1);
+}
+.lh__benefits li {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.5);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.lh__benefits li::before {
+  content: '';
+  width: 16px;
+  height: 1px;
+  background: var(--gold);
+  flex-shrink: 0;
+  opacity: .6;
+}
+
+/* ── PRODOTTI ─────────────────────────────────────── */
+.lp {
+  background: var(--cream);
+  padding: clamp(80px,12vw,160px) 0;
+}
+
+.lp__head {
+  margin-bottom: clamp(50px,6vw,80px);
+}
+.lp__head h2 {
+  font-family: var(--display);
+  font-size: clamp(40px,6.5vw,100px);
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  line-height: .95;
+}
+.lp__head h2 em { font-style: italic; color: var(--sage-deep); }
+
+.lp__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px,2vw,24px);
+}
+@media (max-width: 1000px) { .lp__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .lp__grid { grid-template-columns: 1fr; } }
+
+/* ── PRODUCT CARD ─────────────────────────────────── */
+.pc {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+}
+.pc:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(45,58,46,.13);
+}
+
+.pc__visual {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+/* SOSTITUIRE: .pc__visual img { width:100%; height:100%; object-fit:cover; } */
+
+.pc__body {
+  padding: 20px 24px 22px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border-top: 1px solid rgba(0,0,0,.07);
+}
+
+.pc__cat {
+  font-family: var(--sans);
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--sage-deep);
+  opacity: .8;
+  margin-bottom: 2px;
+}
+
+.pc h3 {
+  font-family: var(--display);
+  font-size: clamp(18px, 1.8vw, 24px);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.pc__sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  opacity: .65;
+  line-height: 1.45;
+}
+
+.pc__actives {
+  margin-top: 6px;
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: .3;
+  line-height: 1.6;
+}
+
+/* ── SCHEDA TECNICA MODAL ─────────────────────────── */
+.st-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10,12,10,.75);
+  z-index: 1000;
+  overflow-y: auto;
+  padding: 40px 20px;
+}
+.st-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
+
+.st-modal {
+  background: var(--cream);
+  max-width: 680px;
+  width: 100%;
+  position: relative;
+}
+
+.st-modal__header {
+  padding: 36px 40px 28px;
+  border-bottom: 1px solid rgba(0,0,0,.08);
+}
+.st-modal__brand {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin-bottom: 12px;
+}
+.st-modal__header h2 {
+  font-family: var(--display);
+  font-size: clamp(24px,3vw,36px);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+.st-modal__sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  opacity: .7;
+}
+
+.st-modal__body {
+  padding: 32px 40px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.st-row label {
+  display: block;
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: .4;
+  margin-bottom: 8px;
+}
+
+.st-row p, .st-row span {
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.65;
+  opacity: .85;
+}
+
+.st-actives {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.st-active-tag {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border: 1px solid rgba(0,0,0,.15);
+  opacity: .7;
+}
+
+.st-inci {
+  font-family: var(--sans);
+  font-size: 11px;
+  line-height: 1.7;
+  opacity: .5;
+  letter-spacing: 0.02em;
+}
+
+/* ── INGREDIENTI ACCORDION ────────────────────────────────── */
+.st-ing-row {
+  border-top: 1px solid rgba(0,0,0,.07);
+  cursor: pointer;
+}
+.st-ing-row:last-child { border-bottom: 1px solid rgba(0,0,0,.07); }
+
+.st-ing-row__head {
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  user-select: none;
+}
+.st-ing-row__n {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  opacity: .3;
+}
+.st-ing-row__name-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.st-ing-row__name {
+  font-family: var(--display);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+.st-ing-row__role {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  opacity: .7;
+}
+.st-ing-row__toggle {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 1;
+  color: var(--ink);
+  flex-shrink: 0;
+  transition: background .2s, transform .3s var(--ease);
+  background: transparent;
+}
+.st-ing-row.open .st-ing-row__toggle {
+  background: var(--ink);
+  color: var(--cream);
+  transform: rotate(45deg);
+}
+.st-ing-row--static { cursor: default; }
+.st-ing-row--static .st-ing-row__toggle { opacity: .3; cursor: default; }
+
+.st-ing-row__body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .42s cubic-bezier(.22,.61,.36,1);
+}
+.st-ing-row.open .st-ing-row__body { max-height: 480px; }
+
+.st-ing-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 28px;
+  padding: 4px 0 20px 44px;
+}
+@media (max-width: 600px) { .st-ing-detail { grid-template-columns: 1fr; } }
+
+.st-ing-detail__block label {
+  display: block;
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: .4;
+  margin-bottom: 6px;
+}
+.st-ing-detail__block p {
+  font-family: var(--serif);
+  font-size: 14px;
+  line-height: 1.65;
+  opacity: .8;
+  margin: 0;
+}
+.st-ing-tags {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 4px;
+}
+.st-ing-tag {
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border: 1px solid rgba(0,0,0,.12);
+  color: var(--ink);
+  opacity: .6;
+}
+
+.st-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(0,0,0,.15);
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: var(--ink);
+  transition: background .2s;
+}
+.st-close:hover { background: var(--cream-2); }
+
+.st-modal__footer {
+  padding: 20px 40px;
+  border-top: 1px solid rgba(0,0,0,.08);
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.st-pill {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border: 1px solid rgba(0,0,0,.15);
+  opacity: .6;
+}
+
+/* product mock visual (gradient placeholder) */
+.pm {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+}
+.pm svg { width: 80px; filter: drop-shadow(0 12px 24px rgba(0,0,0,.12)); }
+
+/* ── MINI-CARD ──────────────────────────────────────── */
+.mini-card {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+}
+.mini-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(45,58,46,.12);
+}
+.mini-card__visual {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  background: var(--cream-2);
+}
+.mini-card__visual svg { width: 60%; filter: drop-shadow(0 10px 20px rgba(0,0,0,.1)); }
+.mini-card__body {
+  padding: clamp(16px,2vw,24px);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgba(0,0,0,.07);
+}
+.mini-card__category {
+  font-family: var(--sans);
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--line-accent, var(--sage-deep));
+  opacity: .55;
+  margin-bottom: 8px;
+}
+.mini-card__name {
+  font-family: var(--display);
+  font-size: clamp(18px,1.8vw,24px);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.mini-card__desc {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.5;
+  color: rgba(26,26,26,.5);
+  margin-bottom: 14px;
+}
+.mini-card__actives {
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(26,26,26,.28);
+  line-height: 2.2;
+  border-top: 1px solid rgba(0,0,0,.07);
+  padding-top: 13px;
+  margin-top: 4px;
+}
+.mini-card__format {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: rgba(26,26,26,.35);
+  text-transform: uppercase;
+}
+.mini-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--line-accent, var(--gold-deep));
+  padding-top: 13px;
+  border-top: 1px solid rgba(0,0,0,.07);
+  margin-top: 14px;
+  opacity: .65;
+  transition: gap .2s var(--ease), opacity .2s;
+}
+.mini-card__cta:hover { gap: 12px; opacity: 1; }
+
+</style>
+<meta name="description" content="Dettaglio della linea l'Erboristica selezionata: prodotti, attivi e benefici di cosmetica naturale Athena's."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://athenas.it/linee/linea.html"/>
+<meta property="og:type" content="website"/>
+<meta property="og:locale" content="it_IT"/>
+<meta property="og:locale:alternate" content="en_GB"/>
+<meta property="og:site_name" content="Athena's"/>
+<meta property="og:url" content="https://athenas.it/linee/linea.html"/>
+<meta property="og:title" content="Linea — l'Erboristica · Athena's"/>
+<meta property="og:description" content="Dettaglio della linea l'Erboristica selezionata: prodotti, attivi e benefici di cosmetica naturale Athena's."/>
+<meta property="og:image" content="https://athenas.it/../immagini/og/erboristica.jpg"/>
+<meta property="og:image:alt" content="Linea — l'Erboristica · Athena's"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Linea — l'Erboristica · Athena's"/>
+<meta name="twitter:description" content="Dettaglio della linea l'Erboristica selezionata: prodotti, attivi e benefici di cosmetica naturale Athena's."/>
+<meta name="twitter:image" content="https://athenas.it/../immagini/og/erboristica.jpg"/>
+</head>
+<body>
+
+<!-- HERO (popolato via JS) -->
+<section class="lh" id="lineHero">
+  <div class="lh__bg" id="heroBg"></div>
+  <!-- SOSTITUIRE: <img loading="eager" fetchpriority="high" decoding="async" src="uploads/linea-NOME-hero.jpg" alt=""> nel div#heroBg -->
+  <div class="lh__noise"></div>
+  <div class="lh__overlay"></div>
+  <div class="lh__watermark" id="heroWatermark" aria-hidden="true"></div>
+  <div class="lh__inner">
+    <div data-reveal>
+      <div class="lh__breadcrumb">
+        <a href="../linee/erboristica.html">l'Erboristica</a>
+        <span>—</span>
+        <span id="heroLineShort"></span>
+      </div>
+      <h1 id="heroTitle"></h1>
+      <div class="lh__tagline" id="heroTagline"></div>
+      <div class="lh__meta" id="heroMeta"></div>
+    </div>
+    <div class="lh__right" data-reveal style="--d:120ms;">
+      <span class="lh__desc-accent"></span>
+      <p class="lh__desc" id="heroDesc"></p>
+      <ul class="lh__benefits" id="heroBenefits"></ul>
+    </div>
+  </div>
+</section>
+
+<!-- PRODOTTI -->
+<section class="lp">
+  <div class="container">
+    <div class="lp__head">
+      <div style="display:flex; gap:16px; align-items:center; margin-bottom:28px;">
+        <span class="num">— 01</span>
+        <div class="eyebrow" data-it="Prodotti della linea" data-en="Line products">Prodotti della linea</div>
+      </div>
+      <h2 data-reveal>
+        <span data-it="Scopri i " data-en="Discover the ">Scopri i </span>
+        <em id="prodCountLabel">prodotti</em>
+      </h2>
+    </div>
+    <div class="lp__grid" id="prodGrid"></div>
+  </div>
+</section>
+
+<!-- SCHEDA TECNICA MODAL -->
+<div class="st-overlay" id="stOverlay" role="dialog" aria-modal="true" aria-labelledby="stTitle">
+  <div class="st-modal">
+    <button class="st-close" id="stClose" aria-label="Chiudi">✕</button>
+    <div class="st-modal__header">
+      <div class="st-modal__brand" id="stBrand"></div>
+      <h2 id="stTitle"></h2>
+      <div class="st-modal__sub" id="stSub"></div>
+    </div>
+    <div class="st-modal__body">
+      <div class="st-row">
+        <label data-it="Descrizione" data-en="Description">Descrizione</label>
+        <p id="stDesc"></p>
+      </div>
+      <div class="st-row">
+        <label data-it="Principi Attivi" data-en="Active Ingredients">Principi Attivi</label>
+        <div id="stActives"></div>
+      </div>
+      <div class="st-row">
+        <label data-it="Uso" data-en="Use">Uso</label>
+        <p id="stUse"></p>
+      </div>
+      <div class="st-row">
+        <label>INCI</label>
+        <div class="st-inci" id="stInci"></div>
+      </div>
+    </div>
+    <div class="st-modal__footer" id="stFooter"></div>
+  </div>
+</div>
+
+<script src="../assets/vendor/lenis.min.js" defer></script><script src="../assets/data.js"></script>
+<script src="../assets/data-inline.js"></script>
+<script src="../assets/datastore.js"></script>
+<script src="../assets/search-data.js" defer></script>
+<script src="../assets/app.js?v=6"></script>
+<script>
+  /* Adapter master JSON → formato compatibile data.js (PRODUCTS legacy) */
+  function adaptJsonProductForLinea(p) {
+    const firstSentence = (txt) => {
+      if (!txt) return '';
+      const m = txt.match(/^.+?[.!?](?:\s|$)/);
+      return m ? m[0].trim() : txt;
+    };
+    return {
+      id: p.id,
+      line: p.line,
+      brand: p.brand,
+      code: p.sku,
+      size: p.format || p.size || '',
+      category: p.subtitle_it || '',
+      url: p.url || '',
+      inci: p.inci,
+      certifications: p.certifications || [],
+      images: p.images,
+      it: { name: p.name_it || '', sub: p.subtitle_it || '', desc: firstSentence(p.description_it), use: p.usage_it || '', actives: p.actives_main || [] },
+      en: { name: p.name_en || p.name_it || '', sub: p.subtitle_en || p.subtitle_it || '', desc: firstSentence(p.description_en || p.description_it), use: p.usage_en || p.usage_it || '', actives: p.actives_main || [] }
+    };
+  }
+
+  /* Sostituisce i prodotti legacy con quelli del master JSON — il docx è la fonte canonica.
+   * Per ogni linea che ha prodotti master, rimuove i legacy della stessa linea e usa solo i master.
+   * Le linee senza prodotti master conservano i loro legacy. */
+  function mergeMasterProducts() {
+    if (!window.ATH_DATA || !window.ATH_DATA.allProducts) return;
+    const master = ATH_DATA.allProducts() || [];
+    if (!master.length) return;
+
+    // Linee che hanno prodotti master
+    const masterLines = new Set(master.map(p => p.line));
+
+    window.PRODUCTS = window.PRODUCTS || [];
+    // Rimuove dai legacy i prodotti delle linee coperte dal master
+    window.PRODUCTS = window.PRODUCTS.filter(p => !masterLines.has(p.line));
+    // Aggiunge tutti i master
+    master.forEach(mp => {
+      window.PRODUCTS.push(adaptJsonProductForLinea(mp));
+    });
+  }
+
+  initAthenas('brands');
+  document.querySelector('.topbar').classList.add('topbar--light');
+
+  // Leggi parametro ?id=
+  const params = new URLSearchParams(location.search);
+  const lineId = params.get('id') || 'argan';
+
+  // Aspetta data.json poi fa merge dei prodotti master nel PRODUCTS legacy
+  ATH_DATA.ready(() => { mergeMasterProducts(); initLineaPage(); });
+
+  function initLineaPage() {
+  const line = LINES.find(l => l.id === lineId && l.brand === 'erboristica');
+
+  if (!line) {
+    document.title = 'Linea non trovata';
+    document.getElementById('lineHero').innerHTML = '<div style="color:#fff;padding:200px 40px;text-align:center;"><h1 style="font-family:var(--display);font-size:60px;">Linea non trovata</h1><p><a href="erboristica.html" style="color:var(--gold);">← Torna a L\'Erboristica</a></p></div>';
+  } else {
+    // Aggiorna titolo pagina
+    document.title = line.name + ' — L\'Erboristica · Athena\'s';
+
+    // Palette BG hero
+    const palettes = {
+      amber:      'linear-gradient(155deg, #3a2010 0%, #6a3a20 50%, #c9a96e 100%)',
+      sage:       'linear-gradient(155deg, #2d3a2e 0%, #3e4a3a 50%, #5a6b4e 100%)',
+      'sage-deep':'linear-gradient(155deg, #1e2a1f 0%, #2d3a2e 50%, #4a5e42 100%)',
+      rose:       'linear-gradient(155deg, #4a2030 0%, #8a3a55 50%, #c878a0 100%)',
+      ocean:      'linear-gradient(155deg, #0a2030 0%, #1a4055 50%, #2a7090 100%)',
+      forest:     'linear-gradient(155deg, #1a2a1a 0%, #2d3a2e 50%, #3e5a3a 100%)',
+      clay:       'linear-gradient(155deg, #3a2820 0%, #6a4a3a 50%, #a07060 100%)',
+      gold:       'linear-gradient(155deg, #2a1e0a 0%, #5a3e1a 50%, #c9a96e 100%)',
+      ink:        'linear-gradient(155deg, #0a0a0f 0%, #1a1a2a 50%, #2a2a3a 100%)',
+    };
+    const bg = palettes[line.palette] || palettes['sage'];
+    const heroBg = document.getElementById('heroBg');
+    heroBg.style.background = bg;
+
+    const HERO_IMGS = {
+      argan:      '../immagini/argan/hero.jpg',
+      cocco:      '../immagini/cocco/hero.jpg',
+      mandorle:   '../immagini/mandorle/hero.jpg',
+      antieta:    '../immagini/antieta/hero.jpg',
+      purysens:   '../immagini/purysens/hero.jpg',
+      nutra:      '../immagini/nutra/hero.jpg',
+      estratti:   '../immagini/estratti/cover.jpg',
+      uomo:       '../immagini/uomo/hero.jpg',
+      innovation: '../immagini/pearls/hero.jpg',
+    };
+    const heroImgUrl = HERO_IMGS[lineId];
+    if (heroImgUrl) {
+      const img = document.createElement('img');
+      img.src = heroImgUrl;
+      img.alt = line.name;
+      heroBg.appendChild(img);
+    }
+
+    // Watermark (numero linea)
+    const lineIdx = LINES.filter(l => l.brand === 'erboristica').indexOf(line) + 1;
+    document.getElementById('heroWatermark').textContent = String(lineIdx).padStart(2, '0');
+
+    // Testi hero
+    const lang = () => (typeof ATH !== 'undefined' ? ATH.lang : 'it');
+    const fill = () => {
+      const l = lang();
+      document.getElementById('heroLineShort').textContent = line.shortName;
+      document.getElementById('heroTitle').innerHTML = line.name.replace(/([\w'']+)(?=\s|$)/g, (w, i) => i === 0 ? w : `<em>${w}</em>`);
+      document.getElementById('heroTitle').innerHTML = `<span>${line.name.split(' ').slice(0,-1).join(' ')} </span><em>${line.name.split(' ').slice(-1)[0]}</em>`;
+      document.getElementById('heroTagline').textContent = line[l].tagline;
+
+      // Hero description + benefits
+      const heroText = line[l].hero || line[l].tagline;
+      document.getElementById('heroDesc').textContent = heroText;
+
+      const bList = document.getElementById('heroBenefits');
+      bList.innerHTML = '';
+      const benefitsRaw = line[l].benefits || '';
+      const benefitsArr = Array.isArray(benefitsRaw) ? benefitsRaw : [benefitsRaw];
+      benefitsArr.slice(0, 4).forEach(b => {
+        if (!b) return;
+        const li = document.createElement('li');
+        li.textContent = b;
+        bList.appendChild(li);
+      });
+
+      // Meta
+      const meta = document.getElementById('heroMeta');
+      meta.innerHTML = '';
+      const metaItems = [
+        { label: l === 'it' ? 'Pelle' : 'Skin', val: line[l].skin || '—' },
+        { label: l === 'it' ? 'Linea' : 'Line', val: `L.${String(lineIdx).padStart(2,'0')}` },
+        { label: l === 'it' ? 'Prodotti' : 'Products', val: PRODUCTS.filter(p => p.line === lineId).length + '+' },
+      ];
+      metaItems.forEach(m => {
+        meta.innerHTML += `<div class="lh__meta-item">${m.label}<b>${m.val}</b></div>`;
+      });
+    };
+    fill();
+    document.addEventListener('lang-change', fill);
+
+    // Prodotti
+    const products = PRODUCTS.filter(p => p.line === lineId);
+    const countEl = document.getElementById('prodCountLabel');
+    countEl.textContent = products.length + (lang() === 'it' ? ' prodotti' : ' products');
+
+    const shapeFor = cat => /Siero|Serum|Olio viso|Face Oil/i.test(cat) ? 'pipette' : /Scrub|Esfolia|Peeling/i.test(cat) ? 'jar' : /Mousse|Doccia|Shower|Detergente|Shampoo/i.test(cat) ? 'bottle' : /Crema|Trattamento|Cream|Balsamo|Burro|Butter/i.test(cat) ? 'jar' : 'bottle';
+
+    const grid = document.getElementById('prodGrid');
+    /* aggiorna la griglia con mini-card (no prezzi, no SKU visibili) */
+    grid.className = 'lp__grid';
+    const PALETTE_ACCENT = {
+      argan:      '#9a7f4a',
+      antieta:    '#9a7f4a',
+      illumia:    '#9a7f4a',
+      cocco:      '#4a8fa0',
+      purysens:   '#5a88a0',
+      innovation: '#7a6a9a',
+      mandorle:   '#b8727a',
+      nutra:      '#8a5a4a',
+      estratti:   '#5a6b4e',
+      uomo:       '#3a5a8a',
+    };
+    grid.style.setProperty('--line-accent', PALETTE_ACCENT[line.palette] || '#5a6b4e');
+
+    const CARD_IMGS = {
+      antieta:    ['../immagini/antieta/detail-01.jpg','../immagini/antieta/detail-02.jpg','../immagini/antieta/flatlay-01.jpg','../immagini/antieta/flatlay-02.jpg','../immagini/antieta/flatlay-03.jpg','../immagini/antieta/packaging-01.jpg','../immagini/antieta/inuse-01.jpg','../immagini/antieta/inuse-02.jpg'],
+      argan:      ['../immagini/argan/flatlay-01.jpg','../immagini/argan/flatlay-02.jpg','../immagini/argan/inuse-01.jpg','../immagini/argan/inuse-02.jpg','../immagini/argan/inuse-03.jpg','../immagini/argan/packaging-01.jpg','../immagini/argan/packaging-02.jpg'],
+      cocco:      ['../immagini/cocco/detail-01.jpg','../immagini/cocco/detail-02.jpg','../immagini/cocco/flatlay-01.jpg','../immagini/cocco/flatlay-02.jpg','../immagini/cocco/inuse-01.jpg','../immagini/cocco/inuse-02.jpg','../immagini/cocco/inuse-03.jpg'],
+      mandorle:   ['../immagini/mandorle/flatlay-01.jpg'],
+      uomo:       ['../immagini/uomo/detail-01.jpg','../immagini/uomo/detail-02.jpg','../immagini/uomo/flatlay-01.jpg','../immagini/uomo/flatlay-02.jpg','../immagini/uomo/flatlay-03.jpg','../immagini/uomo/inuse-01.jpg','../immagini/uomo/inuse-02.jpg','../immagini/uomo/inuse-03.jpg','../immagini/uomo/packaging-01.jpg','../immagini/uomo/packaging-02.jpg'],
+      innovation: ['../immagini/pearls/detail-01.jpg','../immagini/pearls/detail-02.jpg','../immagini/pearls/inuse-01.jpg','../immagini/pearls/inuse-02.jpg','../immagini/pearls/inuse-03.jpg','../immagini/pearls/packaging-01.jpg'],
+    };
+
+    const toTitleCase = s => s.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+
+    const firstSent = txt => {
+      if (!txt) return '';
+      const m = txt.match(/^.+?[.!?](?:\s|$)/);
+      return m ? m[0].trim() : txt;
+    };
+
+    const DESC_SHORT = {
+      /* ── ANTIETÀ GLOBALE ── */
+      'antieta-contorno-occhi':                    'Contorno occhi rimpolpante che riduce visibilmente rughe e gonfiore.',
+      'antieta-crema-viso-giorno':                 'Crema giorno anti-age con peptidi biomimetici per una pelle più giovane.',
+      'antieta-detergente-struccante':             'Detergente struccante delicato che purifica e prepara la pelle ai trattamenti.',
+      'antieta-fiale-concentrato-rimpolpante':     'Fiale concentrate ad azione rimpolpante per un effetto lifting immediato.',
+      'antieta-siero-viso-acido-ialuronico':       'Siero all\'acido ialuronico multilivello per un\'idratazione profonda e duratura.',
+      'antieta-siero-viso-collagene-vegetale':     'Siero al collagene vegetale che restituisce elasticità e compattezza alla pelle.',
+      'antieta-trattamento-viso':                  'Trattamento viso intensivo anti-rughe con rosa selvatica e peptidi naturali.',
+      /* ── ARGAN ── */
+      'argan-crema-corpo-idratante':               'Crema corpo all\'argan biologico per nutrire e ammorbidire la pelle in profondità.',
+      'argan-esfoliante-viso':                     'Esfoliante viso delicato con micro-granuli per una pelle luminosa e levigata.',
+      'argan-mousse-doccia':                       'Mousse doccia all\'olio di argan per una pelle morbida e vellutata dopo ogni lavaggio.',
+      'argan-olio-corpo-argan':                    'Olio corpo puro all\'argan per una pelle nutrita, luminosa e perfettamente idratata.',
+      'argan-sapone-vegetale-allolio-di-argan':    'Sapone vegetale all\'olio di argan per detergere senza seccare la pelle.',
+      'argan-trattamento-intensivo-riparatore-viso': 'Trattamento viso riparatore all\'argan per rigenerare la pelle secca e stressata.',
+      /* ── COCCO & MONOÏ ── */
+      'cocco-crema-corpo-cocco':                   'Crema corpo al cocco per una pelle morbidissima con un\'irresistibile profumazione esotica.',
+      'cocco-maschera-capelli-olio-di-cocco-e-monoi': 'Maschera capelli al cocco e monoï per un\'idratazione intensa e lucentezza estrema.',
+      'cocco-mousse-doccia-cocco':                 'Mousse doccia al cocco per una doccia avvolgente dal profumo tropicale irresistibile.',
+      'cocco-olio-corpo-e-capelli-cocco-e-monoi':  'Olio multifunzione corpo e capelli al cocco e monoï per una cura totale e luminosa.',
+      'cocco-olio-secco-illuminante':              'Olio secco illuminante a rapido assorbimento per una pelle radiosa e vellutata.',
+      'cocco-scrub-corpo-cocco-e-monoi':           'Scrub corpo al cocco e monoï che elimina le impurità e ammorbidisce la pelle.',
+      'cocco-shampoo-cocco':                       'Shampoo al cocco per capelli morbidi, idratati e profumati di esotismo tropicale.',
+      'cocco-spray-cocco-e-aloe-vera':             'Spray cocco e aloe vera per rinfrescare e idratare pelle e capelli in ogni momento.',
+      /* ── ESTRATTI BOTANICI ── */
+      'estratti-bagno-doccia-tè-verde':            'Bagno doccia al tè verde per una pulizia rinfrescante e ricca di antiossidanti.',
+      'estratti-burro-di-karité-vitamina-e':       'Burro di karité puro con vitamina E per nutrire e proteggere la pelle secca.',
+      'estratti-crema-corpo-rosa-essenziale':      'Crema corpo alla rosa per una pelle morbida, idratata e dal profumo floreale.',
+      'estratti-crema-mani-e-unghie-allolio-di-cotone': 'Crema mani all\'olio di cotone che nutre, ammorbidisce e protegge mani e unghie.',
+      'estratti-doccia-schiuma-camelia-japonica':  'Doccia schiuma alla camelia japonica per una pelle setosa e purificata.',
+      'estratti-doccia-schiuma-patchouli-e-neroli': 'Doccia schiuma al patchouli e neroli per una doccia dai profumi caldi e sensuali.',
+      'estratti-maschera-per-capelli-semi-di-lino-e-karité': 'Maschera capelli ai semi di lino e karité per riparare e nutrire in profondità.',
+      'estratti-mousse-doccia-bergamotto-e-abete-bianco': 'Mousse doccia al bergamotto e abete bianco per una doccia fresca e invigorente.',
+      'estratti-olio-corpo-rosa-essenziale':       'Olio corpo alla rosa essenziale per nutrimento profondo e un profumo floreale duraturo.',
+      'estratti-sapone-vegetale-al-burro-di-karité': 'Sapone al burro di karité che detergere con delicatezza nutriendo la pelle secca.',
+      'estratti-sapone-vegetale-allamido-di-riso': 'Sapone all\'amido di riso per una detersione delicata dalla schiuma setosa.',
+      'estratti-sapone-vegetale-allolio-di-oliva': 'Sapone all\'olio di oliva biologico per una pulizia naturale che rispetta la pelle.',
+      'estratti-sapone-vegetale-di-marsiglia':     'Sapone di Marsiglia tradizionale a base vegetale per una pulizia pura e naturale.',
+      'estratti-sapone-vegetale-monoi-di-tahiti':  'Sapone vegetale al monoï di Tahiti per una pelle profumata ed esotica.',
+      'estratti-shampoo-purificante-betulla-e-menta-piperita': 'Shampoo purificante alla betulla e menta per capelli freschi e cuoio capelluto equilibrato.',
+      'estratti-shampoo-riparatore-semi-di-lino-e-karité': 'Shampoo riparatore ai semi di lino per capelli forti, morbidi e luminosi.',
+      /* ── ILLUMIÀ ── */
+      'illumia-crema-viso-antimacchie':            'Crema viso antimacchie con niacinamide e vitamina C per una pelle uniformata.',
+      'illumia-siero-viso-antimacchie':            'Siero illuminante con estratto di liquirizia che riduce visibilmente le macchie.',
+      /* ── MANDORLE DOLCI ── */
+      'mandorle-crema-fluida-corpo-mandorle-dolci': 'Crema fluida corpo alle mandorle dolci per un\'idratazione leggera e setosa.',
+      'mandorle-crema-mani-e-unghie-mandorle-dolci': 'Crema mani alle mandorle dolci per mani morbide, nutrite e protette tutto il giorno.',
+      'mandorle-crema-viso-prime-rughe':           'Crema viso alle mandorle dolci per prevenire le prime rughe con delicatezza.',
+      'mandorle-mousse-doccia-mandorle-dolci':     'Mousse doccia alle mandorle dolci per una pelle morbida e delicatamente profumata.',
+      'mandorle-olio-mandorle-dolci-100-naturale': 'Olio di mandorle dolci 100% naturale per nutrire pelle e capelli con semplicità.',
+      'mandorle-sapone-vegetale-allolio-di-mandorle': 'Sapone vegetale all\'olio di mandorle per una detersione nutriente e rispettosa.',
+      /* ── NUTRA REPAIR ── */
+      'nutra-crema-corpo-oro-di-baobab':           'Crema corpo al baobab e karité per riparare e nutrire intensamente la pelle secca.',
+      'nutra-crema-viso-oro-di-baobab':            'Crema viso al baobab con ceramidi vegetali per una pelle riparata e compatta.',
+      'nutra-olio-corpo-nutra-repair':             'Olio corpo riparatore al baobab per nutrire in profondità le pelli più secche.',
+      'nutra-olio-viso-nutra-repair':              'Olio viso nutriente con burro di karité per rigenerare la pelle durante la notte.',
+      /* ── PURYSENS ── */
+      'purysens-crema-viso-purificante':           'Crema viso ipoallergenica senza profumo per le pelli sensibili e reattive.',
+      'purysens-emulsione-detergente-viso':        'Emulsione detergente delicatissima, testata dermato, ideale per pelli intolleranti.',
+      'purysens-maschera-viso-allargilla-rosa-purysens': 'Maschera all\'argilla rosa per purificare dolcemente senza irritare le pelli sensibili.',
+      /* ── UOMO ── */
+      'uomo-balsamo-dopobarba-uomo':               'Balsamo dopobarba lenitivo che calma e idrata la pelle dopo la rasatura.',
+      'uomo-balsamo-dopobarba-uomo-active':        'Balsamo dopobarba Active con estratti rinfrescanti per una pelle tonica e rivitalizzata.',
+      'uomo-contorno-occhi-uomo-anti-età':         'Contorno occhi anti-età uomo che riduce le occhiaie e le piccole rughe espressive.',
+      'uomo-crema-viso-idratante-antirughe-uomo':  'Crema viso idratante antirughe formulata per la pelle maschile più esigente.',
+      'uomo-crema-viso-uomo-active':               'Crema viso Active ad azione rinfrescante e rivitalizzante per l\'uomo in movimento.',
+      'uomo-deodorante-spray-uomo':                'Deodorante spray a lunga durata con ingredienti naturali per una freschezza sicura.',
+      'uomo-eau-de-toilette-uomo':                 'Eau de Toilette dalla fragranza fresca e legnosa, ideale per l\'uomo contemporaneo.',
+      'uomo-fluido-idratante-viso-e-barba-uomo':   'Fluido idratante multifunzione per viso e barba con assorbimento rapido e leggero.',
+      'uomo-olio-da-barba-uomo':                   'Olio da barba nutriente che ammorbidisce la barba e prepara la pelle alla rasatura.',
+      'uomo-sapone-vegetale-uomo':                 'Sapone vegetale uomo con estratti botanici per una pulizia profonda e naturale.',
+      'uomo-shampoo-doccia-uomo':                  'Shampoo doccia 2 in 1 con fragranza maschile per una routine pratica e completa.',
+      'uomo-shampoo-doccia-uomo-active':           'Shampoo doccia Active rinfrescante per dopo lo sport, con sensazione di energia.',
+      'uomo-siero-viso-uomo':                      'Siero viso uomo ad azione anti-età per una pelle visibilmente più giovane e compatta.',
+      /* ── SKINCARE INNOVATION (legacy data.js) ── */
+      'inn-pearls-q10':  'Siero con perle di Q10 a rilascio progressivo per un\'energia cellulare rinnovata.',
+      'inn-pearls-c':    'Siero con perle di vitamina C liposomiale per un viso luminoso e uniformato.',
+      'inn-pearls-niac': 'Siero con perle di niacinamide per pori ridotti e una pelle visibilmente più compatta.',
+      'inn-min-1':       'Spray bifasico ai minerali marini per riequilibrare e illuminare la pelle in un gesto.',
+      'inn-kit':         'Kit Doppia Detersione K-beauty per una pulizia profonda e una pelle perfettamente levigata.',
+    };
+
+    function buildMiniCards() {
+      const l = lang();
+      grid.innerHTML = '';
+      const cardImgs = CARD_IMGS[lineId] || [];
+      products.forEach((p, i) => {
+        const shape = shapeFor(p.category);
+        const locData = p[l] || p.it;
+        const subFull = locData.sub || '';
+        const descFull = locData.desc || subFull;
+        const activeChips = (locData.actives || []).slice(0, 3)
+          .map(a => a.split('—')[0].split('(')[0].trim())
+          .filter(Boolean);
+        const ctaHref = p.url || `https://www.erboristica.com/${line.slug || line.id || ''}`;
+        const ctaLabel = l === 'en' ? 'Buy on erboristica.com →' : 'Acquista su erboristica.com →';
+        const cardImg = cardImgs.length ? cardImgs[i % cardImgs.length] : null;
+
+        const article = document.createElement('article');
+        article.className = 'mini-card';
+        article.setAttribute('data-sku', p.code || '');
+        article.setAttribute('data-reveal', '');
+        article.style.setProperty('--d', (i * 40) + 'ms');
+        article.setAttribute('data-product-id', p.id);
+
+        article.innerHTML = `
+          <div class="mini-card__visual">
+            ${cardImg
+              ? `<img loading="lazy" decoding="async" src="${cardImg}" alt="${locData.name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">`
+              : `<div class="pm">${productMock(line.palette, '', shape)}</div>`
+            }
+          </div>
+          <div class="mini-card__body">
+            <div class="mini-card__category">${line.shortName}</div>
+            <h3 class="mini-card__name">${toTitleCase(locData.name)}</h3>
+            <p class="mini-card__desc">${DESC_SHORT[p.id] || firstSent(descFull)}</p>
+            <div class="mini-card__actives">${activeChips.join(' · ')}</div>
+            <a class="mini-card__cta" href="${ctaHref}" target="_blank" rel="noopener" data-it="Acquista su erboristica.com &rarr;" data-en="Buy on erboristica.com &rarr;">${ctaLabel}</a>
+          </div>`;
+
+        grid.appendChild(article);
+      });
+    }
+
+    buildMiniCards();
+    initReveal();
+
+    // Aggiorna al cambio lingua
+    document.addEventListener('lang-change', () => {
+      countEl.textContent = products.length + (lang() === 'it' ? ' prodotti' : ' products');
+      buildMiniCards();
+      initReveal();
+    });
+  }
+  } /* end initLineaPage() */
+
+  // ── ACTIVES LIBRARY ─────────────────────────────────
+  const ACTIVES_LIB = {
+    'acido-ialuronico': {
+      name: 'Acido Ialuronico',
+      role: 'Idratante · Volumizzante',
+      origine: 'Biotecnologico — prodotto per fermentazione batterica da Streptococcus equi. Identico all\'acido ialuronico endogeno.',
+      meccanismo: 'Glicosaminoglicano igroscopico: lega fino a 1.000 volte il suo peso in acqua. A basso peso molecolare penetra negli strati profondi, ad alto peso molecolare forma un film idratante in superficie.',
+      efficacia: 'Studio clinico (n=34): riduzione profondità rughe del 27% in 4 settimane con acido ialuronico a doppio peso molecolare. Aumento dell\'idratazione cutanea del 43%.',
+      tags: ['Idratante', 'Filler naturale', 'Anti-rughe', 'Rimpolpante']
+    },
+    'collagene-vegetale': {
+      name: 'Collagene Vegetale Idrolizzato',
+      role: 'Rassodante · Rimpolpante',
+      origine: 'Derivato dall\'idrolisi di proteine vegetali (grano, avena, soia). Idrolizzato per ottenere peptidi di basso PM capaci di penetrare la barriera cutanea.',
+      meccanismo: 'I peptidi collagene-simili si legano ai recettori fibroblastici, stimolando la sintesi di collagene endogeno tipo I e III. Effetto tensore meccanico immediato per deposizione proteica superficiale.',
+      efficacia: 'Riduzione della lassità cutanea del 19% in 8 settimane (valutazione cutometrica). Effetto lifting visibile entro 30 minuti dall\'applicazione.',
+      tags: ['Rassodante', 'Anti-età', 'Lifting', 'Stimolante cellulare']
+    },
+    'collagene-marino': {
+      name: 'Collagene Marino Idrolizzato',
+      role: 'Rimpolpante · Ristrutturante',
+      origine: 'Estratto da squame o pelle di pesce (Gadus morhua, tilapia) mediante idrolisi enzimatica controllata. PM < 5 kDa per massima biodisponibilità cutanea.',
+      meccanismo: 'Peptidi marini ricchi in Gly-Pro-Hyp (sequenza collagene-specifica). Attivano i fibroblasti dermici aumentando la produzione di collagene e acido ialuronico endogeni. Azione antiossidante verso i radicali liberi.',
+      efficacia: 'Meta-analisi di 11 studi RCT: assunzione e applicazione topica riducono le rughe del 23% e aumentano l\'elasticità del 22% in 12 settimane.',
+      tags: ['Rimpolpante', 'Anti-rughe', 'Ristrutturante', 'Bioidentico']
+    },
+    'vitamina-c': {
+      name: 'Vitamina C (Ascorbyl Glucoside)',
+      role: 'Antiossidante · Schiarente',
+      origine: 'Forma stabile della vitamina C: l\'ascorbil glucoside viene idrolizzato dalle α-glucosidasi cutanee rilasciando acido ascorbico puro nel derma. Stabile a pH neutro e alla luce.',
+      meccanismo: 'Inibitore competitivo della tirosinasi (IC50 ~0,1 mM), blocca la sintesi di melanina. Cofattore essenziale per l\'idrossilasi delle prolil- e lisil-residui nel collagene. Potente donatore di elettroni contro O₂⁻ e •OH.',
+      efficacia: 'Riduzione dell\'indice di melanina dell\'8% in 4 settimane a concentrazione 2%. Aumento della sintesi di collagene tipo I del 33% su coltura di fibroblasti dermici umani.',
+      tags: ['Antiossidante', 'Schiarente', 'Anti-età', 'Luminosità']
+    },
+    'vitamina-e': {
+      name: 'Vitamina E (Tocopheryl Acetate)',
+      role: 'Antiossidante · Nutriente',
+      origine: 'Tocoferolo acetato di origine vegetale (olio di girasole, germe di grano). La forma acetatica è stabile in formula; la pelle la converte in tocoferolo libero via esterasi cutanee.',
+      meccanismo: 'Principale antiossidante liposolubile della membrana cellulare: interrompe la perossidazione lipidica catturando il radicale perossilico (ROO•). Sinergia potenziante con Vitamina C che rigenera il tocoferolo ossidato.',
+      efficacia: 'Riduzione dell\'eritema UV-indotto del 34% con applicazione topica 2 ore pre-esposizione. Diminuzione del TEWL del 14% su pelle secca in 6 settimane.',
+      tags: ['Antiossidante', 'Foto-protettivo', 'Emolliente', 'Barriera']
+    },
+    'retinolo': {
+      name: 'Retinolo (Retinyl Palmitate)',
+      role: 'Rinnovamento cellulare · Anti-età',
+      origine: 'Estere stabile del retinolo con acido palmitico. La pelle libera il retinolo per idrolisi, che viene poi ossidato a retinaldeide e acido retinoico (forma bioattiva).',
+      meccanismo: 'Si lega ai recettori RAR/RXR nucleari, attivando geni target: upregula la sintesi di procollagene I/III, downregula le MMP-1 e MMP-3 (collagenasi). Accelera il turnover cheratinocitario (effetto rinnovante).',
+      efficacia: 'Riduzione delle rughe fini del 36% in 12 settimane (studio randomizzato, n=53). Aumento dello spessore dell\'epidermide del 14% in 6 mesi.',
+      tags: ['Anti-età', 'Rinnovamento', 'Anti-rughe', 'Collagene']
+    },
+    'peptidi': {
+      name: 'Peptidi Biomimetici',
+      role: 'Stimolante cellulare · Lifting',
+      origine: 'Sintetici (Palmitoyl Tripeptide-1, Palmitoyl Tetrapeptide-7, Argireline®). Il gruppo palmitoil aumenta la lipofilicità facilitando la penetrazione nella barriera cornea.',
+      meccanismo: 'Tripeptide-1 (Gly-His-Lys) attiva i recettori fibroblastici → sintesi collagene I/IV, fibronectina, laminina. Tetrapeptide-7 (Gly-Gln-Pro-Arg) riduce IL-6 e TNF-α (anti-infiammatorio). Argireline mima il frammento N-terminale di SNAP-25, riducendo la contrazione muscolare.',
+      efficacia: 'Matrixyl 3000 (Tript+Tetrap): riduzione rughe profonde del 44% in 2 mesi (misura 3D, n=28). Argireline: riduzione mimica del 17% in 4 settimane.',
+      tags: ['Lifting', 'Anti-rughe', 'Stimolante', 'Biomimetico']
+    },
+    'caffeina': {
+      name: 'Caffeina',
+      role: 'Drenante · Decongestionante',
+      origine: 'Alcaloide xantinico di origine vegetale (Coffea arabica, Camellia sinensis, Theobroma cacao). Attività biologica ben documentata sia per via topica che sistemica.',
+      meccanismo: 'Inibitore della fosfodiesterasi: blocca la degradazione del cAMP, attivando la lipasi ormono-sensibile → lipolisi degli adipociti. Vasocostrizione locale per antagonismo ai recettori adenosinici A1/A2 → riduzione gonfiore. Penetrazione veloce nel follicolo pilosebaceo.',
+      efficacia: 'Riduzione del perimetro coscia del 1,9 cm in 4 settimane (studio clinico caffeina 3%). Diminuzione delle borse perioculari del 22% in 6 settimane (punteggio dermatologo).',
+      tags: ['Drenante', 'Anti-cellulite', 'Decongestionante', 'Stimolante']
+    },
+    'niacinamide': {
+      name: 'Niacinamide (Vitamina B3)',
+      role: 'Uniformante · Regolatore sebo',
+      origine: 'Forma ammidica della vitamina B3 (acido nicotinico). Prodotta per via sintetica o da fonti vegetali. Stabile in formule acquose a pH 4–7.',
+      meccanismo: '1) Inibisce il trasferimento di melanosomi dai melanociti ai cheratinociti → effetto depigmentante. 2) Stimola la sintesi di ceramidi e acidi grassi liberi → rinforzo barriera. 3) Downregola citochine pro-infiammatorie (IL-8, PGE2). 4) Inibisce la lipasi batterica → riduzione del sebo ossidato.',
+      efficacia: 'Riduzione macchie del 35–68% in 8 settimane (niacinamide 5%). Riduzione pori del 16% in 4 settimane. Diminuzione sebum output del 24% a 4 settimane (n=50).',
+      tags: ['Uniformante', 'Anti-macchia', 'Pori', 'Sebo-regolatore']
+    },
+    'aloe-vera': {
+      name: 'Aloe Vera (Aloe Barbadensis)',
+      role: 'Idratante · Lenitiva',
+      origine: 'Gel estratto dalle foglie di Aloe barbadensis miller. Contiene polisaccaridi (acemannano), aminoacidi, enzimi (bradichinase, catalase), antrachinoni, vitamine A/C/E.',
+      meccanismo: 'L\'acemannano forma un film occlusivo che riduce il TEWL. Inibisce la bradichinina (mediatore del dolore/eritema). Galatturonan polisaccaridico stimola la proliferazione dei fibroblasti. Attività antimicrobica contro S. aureus, E. coli, C. albicans.',
+      efficacia: 'Riduzione della xerosi del 32% in 2 settimane (punteggio IGA). Accelerazione della guarigione da ustioni di I grado del 9 giorni vs. sulfadiazina argentica (meta-analisi Cochrane).',
+      tags: ['Lenitiva', 'Idratante', 'Cicatrizzante', 'Anti-eritema']
+    },
+    'bisabololo': {
+      name: 'Bisabololo (α-Bisabololo)',
+      role: 'Anti-infiammatorio · Lenitivo',
+      origine: 'Terpene monocyclico estratto dalla camomilla (Matricaria chamomilla) o da fonti sintetiche ((-)-α-bisabololo). La versione naturale è la forma levogira biologicamente attiva.',
+      meccanismo: 'Inibisce la cicloossigenasi-2 (COX-2) riducendo la sintesi di prostaglandine pro-infiammatorie. Chelante degli ioni Fe³⁺/Cu²⁺ → inibizione della via di Fenton (radicali •OH). Aumenta la penetrazione cutanea di altri principi attivi (effetto penetration enhancer).',
+      efficacia: 'Riduzione dell\'eritema da SDS del 28% rispetto al controllo in 24h (studio patch test). Effetto sinergico con Vitamina E: riduzione della perossidazione lipidica del 45% in vitro.',
+      tags: ['Anti-infiammatorio', 'Lenitivo', 'Penetration enhancer', 'Calming']
+    },
+    'olio-argan': {
+      name: 'Olio di Argan (Argania spinosa)',
+      role: 'Nutriente · Antiossidante',
+      origine: 'Olio estratto a freddo dai noccioli del frutto dell\'argan (Argania spinosa), coltivazioni biologiche certificate in Marocco. Il processo di estrazione a freddo preserva tutti i componenti bioattivi.',
+      meccanismo: 'Ricco in acidi grassi insaturi (oleico 43–49%, linoleico 29–36%) che si integrano nei lipidi intercornari riparando la barriera cutanea. Tocoferoli (γ-tocoferolo > α-tocoferolo) con potente azione antiossidante. Scualene (fino al 0,5%) → emolliente e antiossidante lipidico. Steroli vegetali (β-sitosterolo, schottenol) con azione anti-infiammatoria.',
+      efficacia: 'Riduzione del TEWL del 26% in 4 settimane (cheratoderma palmo-plantare). Miglioramento dell\'elasticità cutanea del 9,5% in 60 giorni (cutometria, menopausa).',
+      tags: ['Nutriente', 'Riparatore barriera', 'Antiossidante', 'Omega-6']
+    },
+    'olio-cocco': {
+      name: 'Olio di Cocco (Cocos nucifera)',
+      role: 'Idratante · Protettivo',
+      origine: 'Olio vergine estratto dalla polpa essiccata (copra) del cocco maturo. Composto principalmente da acidi grassi saturi a media catena (MCFA) con spiccata affinità proteica.',
+      meccanismo: 'L\'acido laurico (48–52%) si integra nei lipidi intercellulari dello strato corneo. Attività antimicrobica: l\'acido laurico distrugge la membrana di batteri gram-positivi e funghi (compreso P. acnes). Riduce il TEWL per effetto occlusivo.',
+      efficacia: 'Non inferiore all\'olio minerale nel ridurre la gravità della dermatite atopica pediatrica (SCORAD: -68,23% vs -38,13% per olio minerale, studio RCT Manila 2014).',
+      tags: ['Idratante', 'Antimicrobico', 'Protettivo', 'Capelli']
+    },
+    'olio-monoi': {
+      name: 'Olio di Monoï di Tahiti DOP',
+      role: 'Illuminante · Elasticizzante',
+      origine: 'Ottenuto dalla macerazione dei fiori di Gardenia Tahitensis (Tiare) in olio di cocco raffinato. La DOP garantisce l\'origine tahitiana autentica e il processo artigianale tradizionale (macerazione minima 10 giorni).',
+      meccanismo: 'Il complesso olio di cocco + componenti floreali (acido benzoico, linalolo, terpeni) forma un film protettivo elasticizzante sulla pelle e sul capello. I terpeni floreali (geraniol, linalool) hanno azione antiossidante e anti-irritante.',
+      efficacia: 'Riduzione del TEWL del 31% e aumento lucentezza capello del 23% rispetto al non trattato (studio tribologico su fibra capillare).',
+      tags: ['Illuminante', 'Elasticizzante', 'Profumato', 'DOP Tahiti']
+    },
+    'olio-mandorle': {
+      name: 'Olio di Mandorle Dolci (Prunus amygdalus)',
+      role: 'Emolliente · Lenitivo',
+      origine: 'Estratto a freddo dal seme di Prunus amygdalus dulcis. Leggero, inodore, con elevatissima tollerabilità anche su pelli sensibili e pediatriche.',
+      meccanismo: 'Acido oleico (64–82%) e linoleico (7–30%) mimano i lipidi intercorneocitari → effetto emolliente profondo. Vitamina E (tocoferoli) con azione antiossidante. β-sitosterolo anti-infiammatorio. Proteine (peptidi) con azione idratante e lenitiva.',
+      efficacia: 'Riduzione del prurito del 34% e della xerosi del 41% in bambini con dermatite atopica lieve-moderata in 4 settimane (studio RCT, n=56).',
+      tags: ['Emolliente', 'Lenitivo', 'Pediatrico', 'Pelle sensibile']
+    },
+    'ceramidi': {
+      name: 'Ceramidi Vegetali',
+      role: 'Barriera cutanea · Anti-TEWL',
+      origine: 'Ceramide NP e AP da fonte vegetale (grano, riso, konjac). Strutturalmente identiche alle ceramidi cutanee umane (componenti principali della lamella cornea, 50% in peso).',
+      meccanismo: 'Si incorporano spontaneamente nelle strutture lamellari dello strato corneo riparando i "difetti di barriera". Riducono il TEWL limitando la diffusione paracellulare dell\'acqua. Modulano il differenziamento cheratinocitario upregulando la filaggrina.',
+      efficacia: 'Riduzione del TEWL del 15–30% in soggetti con pelle secca in 4 settimane. Efficacia comparabile al colesterolo nella riparazione delle lamelle intercorneocitarie (studio liposomale in vitro).',
+      tags: ['Barriera', 'Anti-TEWL', 'Pelle secca', 'Riparatore']
+    },
+    'zinco-pca': {
+      name: 'Zinco PCA',
+      role: 'Sebo-regolatore · Anti-batterico',
+      origine: 'Sale dello zinco con l\'acido pirrolidonico carbossilico (PCA), umettante naturale della pelle. Lo zinco ionico è il principio biologicamente attivo.',
+      meccanismo: 'Inibisce la 5α-reduttasi cutanea → riduzione del diidrotestosterone locale → minore stimolazione sebacea. Attività antibatterica verso C. acnes per destabilizzazione della membrana batterica. Il PCA è umettante (componente del NMF) e contribuisce all\'equilibrio del pH sebaceo.',
+      efficacia: 'Riduzione del sebum output del 31% in 4 settimane (sebumetria, n=35). Diminuzione del conteggio P. acnes del 68% in biofilm in vitro (zinco PCA 0,3%).',
+      tags: ['Sebo-regolatore', 'Anti-acne', 'Anti-batterico', 'Pori']
+    },
+    'bakuchiol': {
+      name: 'Bakuchiol',
+      role: 'Alternativa al retinolo · Rinnovante',
+      origine: 'Meroterpene fenolico estratto dai semi di Psoralea corylifolia (bakuchi). Molecola 100% vegetale con profilo di sicurezza superiore al retinolo su pelli sensibili.',
+      meccanismo: 'Nonostante la struttura chimica diversa, attiva gli stessi geni del retinolo: upregula i recettori RAR e RXR stimolando la produzione di collagene I/III/IV, fibronectina, elastina. Senza l\'irritazione da acido retinoico (non causa "retinizzazione").',
+      efficacia: 'Studio clinico comparativo (n=44, 12 settimane): bakuchiol 0,5% vs retinolo 0,5% — efficacia equivalente su rughe (-19,7% vs -20,1%) con significativamente minore irritazione, desquamazione e bruciore.',
+      tags: ['Rinnovante', 'Anti-rughe', 'Naturale', 'Pelle sensibile']
+    },
+    'isoflavoni-soia': {
+      name: 'Isoflavoni di Soia',
+      role: 'Fitoestrogeno · Sebo-regolatore',
+      origine: 'Polifenoli estratti da Glycine max (genisteina, daidzeina, gliciteina). Struttura molecolare simile agli estrogeni endogeni → azione sui recettori ERβ cutanei.',
+      meccanismo: 'Si legano preferenzialmente ai recettori ERβ (prevalenti nella cute) → modulazione dell\'espressione genica verso meno infiammazione, più barriera e migliore idratazione. Inibizione della 5α-reduttasi tipo 1 → riduzione sebo. Antiossidante: chelano ioni metallici e inibiscono la lipossigenasi.',
+      efficacia: 'Riduzione delle rughe del 14% in 24 settimane su pelle perimenopausale. Diminuzione del sebo del 18% in 8 settimane (isoflavoni estratto 0,1%).',
+      tags: ['Sebo-regolatore', 'Antiossidante', 'Fitoestrogeno', 'Fotoprotettivo']
+    },
+    'olio-baobab': {
+      name: 'Olio di Baobab (Adansonia digitata)',
+      role: 'Rigenerante · Nutriente profondo',
+      origine: 'Olio biologico equosolidale estratto a freddo dai semi del baobab africano (Adansonia digitata). Fonte naturale di vitamine B2, C, calcio, ferro, zinco, manganese e aminoacidi essenziali.',
+      meccanismo: 'Composizione unica: palmitoleico (C16:1), linoleico (C18:2), linolenico (C18:3) in proporzione ottimale. Penetra rapidamente per le dimensioni molecolari ridotte. Vitamina C endogena (900 mg/100g nella polpa) → sintesi collagene. Omega-3 e Omega-6 in rapporto 1:2 → riduzione dell\'infiammazione cutanea.',
+      efficacia: 'Riduzione della desquamazione del 43% e aumento dell\'idratazione dell\'epidermide del 52% in 4 settimane su pelle molto secca (n=30).',
+      tags: ['Rigenerante', 'Nutriente', 'Omega-3 e 6', 'Pelle secca']
+    },
+    'cellule-staminali-leontopodium': {
+      name: 'Cellule Staminali Leontopodium',
+      role: 'Anti-età · Protezione UV',
+      origine: 'Estratto biotecnologico da cellule staminali di Leontopodium alpinum (Stella Alpina) coltivate in vitro. La pianta produce leontopodic acid e bisdesmetilossiquercetina per sopravvivere alle radiazioni UV alpine.',
+      meccanismo: 'L\'estratto (PhytoCellTec™ Leontopodium) protegge le cellule staminali epiteliali dall\'apoptosi UV-indotta. Stimola l\'espressione di p63 (marcatore staminale) nei cheratinociti. Riduce il danno ossidativo nelle mitocondrie cellulari.',
+      efficacia: 'Riduzione della profondità delle rughe del 15% in 4 settimane (profilometria ottica). Aumento della vitalità delle cellule staminali epidermiche del 63% dopo irradiazione UVB in vitro.',
+      tags: ['Anti-UV', 'Anti-età', 'Staminale', 'Rigenerante']
+    },
+    'luminescine': {
+      name: 'Luminescine® (Verbascum thapsus)',
+      role: 'Schiarente · Fotoluminescente',
+      origine: 'Estratto brevettato (Silab®) da fiori di Verbascum thapsus (verbasco/tasso barbasso) coltivato biologicamente in Francia. COSMOS ORGANIC certificato.',
+      meccanismo: 'Contiene glicoiridoidi e saponosidi con proprietà fotoluminescenti: assorbono le radiazioni UV e le riemettono come luce visibile (effetto "illuminatore da dentro"). Inibisce la tirosinasi e la melanogenesi a livello post-recettoriale (CRTC1/MITF). Riduce il trasferimento dei melanosomi.',
+      efficacia: 'Riduzione del 24% dell\'indice di melanina in 56 giorni (n=25, cutometria). Luminosità percepita aumentata del 31% in 4 settimane (self-assessment panelisti).',
+      tags: ['Schiarente', 'Fotoluminescente', 'Anti-macchia', 'COSMOS']
+    },
+    'butylresorcinol': {
+      name: '4-Butylresorcinol',
+      role: 'Depigmentante · Anti-macchia',
+      origine: 'Derivato sintetico del resorcinolo, sviluppato specificamente come depigmentante di nuova generazione. Struttura fenolica ottimizzata per l\'inibizione della tirosinasi.',
+      meccanismo: 'Doppio meccanismo: 1) inibisce la tirosinasi (TYR) con IC50 ~0,5 µM — molto più potente dell\'arbutina (IC50 ~40 µM). 2) inibisce la TYRP-1 e TYRP-2, bloccando la melanogenesi in due step distinti della cascata biosintetica.',
+      efficacia: 'Riduzione delle macchie da iperpigmentazione del 41% in 8 settimane a concentrazione 0,1% (studio randomizzato vs. hydroquinone 4%). Confronto favorevole con idrochinone senza i rischi di rebound depigmentazione.',
+      tags: ['Depigmentante', 'Anti-macchia', 'Tirosinasi', 'Alta efficacia']
+    },
+    'karite': {
+      name: 'Burro di Karité (Butyrospermum parkii)',
+      role: 'Nutriente · Rigenerante',
+      origine: 'Grasso estratto dai semi di Vitellaria paradoxa (precedentemente Butyrospermum parkii), albero del Sahel africano. Ricco di insaponificabili (7–11%) con attività biologiche uniche.',
+      meccanismo: 'Acido stearico (43–48%) e oleico (43–55%) con elevatissima tollerabilità cutanea. Insaponificabili (triterpeni: α-amyrine, lupeolo, β-amyrine) → anti-infiammatori via inibizione 5-lipossigenasi. Stimolazione della sintesi di collagene. Ceramidi naturali e fitosteroli.',
+      efficacia: 'Riduzione TEWL del 48% in 4 settimane su pelle secca cronica. Efficacia anti-infiammatoria comparabile all\'idrocortisone topico 0,5% su eritema da SDS (studio in vitro/vivo combinato).',
+      tags: ['Nutriente', 'Rigenerante', 'Anti-infiammatorio', 'Barriera']
+    },
+    'pantenolo': {
+      name: 'Pantenolo (Pro-Vitamina B5)',
+      role: 'Idratante · Lenitivo',
+      origine: 'Alcol della D-acido pantotenico. In formula come D-pantenolo o DL-pantenolo. La cute converte enzimaticamente il pantenolo in acido pantotenico (vitamina B5), cofattore del Coenzima A.',
+      meccanismo: 'Umettante: attira le molecole d\'acqua per interazione H-bond (capacità igroscopica ~5 g H₂O / g pantenolo). Stimola la proliferazione dei fibroblasti e la sintesi di fibronectina. Accelera la riepitrizzazione. Riduce il prurito inibendo la sensibilizzazione dei nocicettori cutanei.',
+      efficacia: 'Riduzione del TEWL del 8% e della xerosi del 21% in 4 settimane (pantenolo 5%). Accelerazione della riepitrizzazione del 42% su modello ex vivo di wound healing.',
+      tags: ['Idratante', 'Lenitivo', 'Cicatrizzante', 'B5']
+    },
+    'estratto-te-verde': {
+      name: 'Estratto di Tè Verde (Camellia sinensis)',
+      role: 'Antiossidante · Anti-infiammatorio',
+      origine: 'Estratto standardizzato in EGCG (epigallocatechina gallato) da foglie non fermentate di Camellia sinensis. L\'EGCG costituisce il 60–65% delle catechine totali.',
+      meccanismo: 'L\'EGCG inibisce le MMP-9 (metalloproteinasi che degradano il collagene dermico). Downregola NF-κB riducendo la produzione di citochine pro-infiammatorie. Assorbe UV-B (280–320 nm) con attività fotoprotettiva. Chelante degli ioni Fe²⁺ e Cu²⁺.',
+      efficacia: 'Riduzione dell\'eritema da UV-B del 27% con applicazione topica prima dell\'esposizione (EGCG 1%). Riduzione dell\'espressione di MMP-9 del 62% in cheratinociti umani irradiati (studio in vitro).',
+      tags: ['Antiossidante', 'Anti-UV', 'Anti-infiammatorio', 'MMP-inibitore']
+    },
+    'olio-jojoba': {
+      name: 'Olio di Jojoba (Simmondsia chinensis)',
+      role: 'Bilanciante del sebo · Emolliente',
+      origine: 'Cera liquida (non olio tecnico) estratta dai semi di Simmondsia chinensis. Composta al 97% da esteri cerosi a catena lunga — struttura unica nel regno vegetale.',
+      meccanismo: 'La struttura estere cerosa è identica al sebo cutaneo: viene riconosciuta come "propria" dai seboreguolatori cutanei → effetto bilanciante del sebo non comedogenico. Stabilissima all\'ossidazione (nessun acido grasso libero da ossidare). Azione emolliente senza effetto grasso per bassa viscosità.',
+      efficacia: 'Non comedogenica (0/5 comedogenicità in vitro). Riduzione del sebo del 12% in 4 settimane su pelle mista. Ottima tollerabilità su pelle con acne (studio patch test, n=40).',
+      tags: ['Bilanciante', 'Emolliente', 'Non comedogenico', 'Sebo']
+    },
+    'allantoina': {
+      name: 'Allantoina',
+      role: 'Lenitiva · Cheratoplastica',
+      origine: 'Metabolita dell\'acido urico presente naturalmente in Symphytum officinale (consolida). Prodotta commercialmente per via sintetica (ossidazione dell\'acido urico con acido perclorico) per garantire purezza e stabilità.',
+      meccanismo: 'Azione cheratolitica/cheratoplastica: a basse concentrazioni stimola la proliferazione cellulare (cheratoplastica); ad alte concentrazioni scioglie le proteine dello strato corneo (cheratolitica). Antagonizza le prostaglandine pro-infiammatorie. Forma complessi con proteine irritanti neutralizzandole.',
+      efficacia: 'Accelerazione della guarigione cutanea del 39% rispetto al controllo in modello di wound healing (allantoina 2%). Riduzione dell\'irritazione da SDS del 26% (concentrazione 0,5%).',
+      tags: ['Lenitiva', 'Cicatrizzante', 'Rinnovante', 'Tollerabilità']
+    },
+    'bamboo': {
+      name: 'Estratto di Bambù (Bambusa vulgaris)',
+      role: 'Rinforzante · Minerale',
+      origine: 'Estratto dall\'internodo del bambù (Bambusa vulgaris). Ricco in silice vegetale (fino al 70% del contenuto secco), flavonoidi e aminoacidi.',
+      meccanismo: 'La silice organica biodisponibile (orthosilicic acid) è cofattore essenziale per la prolil-idrossilasi → sintesi di idrossiprolina nel collagene. Stimola la proliferazione dei fibroblasti. Effetto tensore meccanico immediato per deposizione silicea superficiale.',
+      efficacia: 'Aumento della produzione di collagene del 18% in coltura di fibroblasti dermici (estratto di bambù 0,5%). Riduzione delle rughe del 12% in 6 settimane su pelle maschile (n=28).',
+      tags: ['Rinforzante', 'Silicio', 'Collagene', 'Anti-età']
+    },
+    'tea-tree': {
+      name: 'Tea Tree Oil (Melaleuca alternifolia)',
+      role: 'Antibatterico · Purificante',
+      origine: 'Olio essenziale estratto per distillazione in corrente di vapore dalle foglie di Melaleuca alternifolia, nativa dell\'Australia. Standardizzato in terpinen-4-olo (> 30–35%) secondo ISO 4730.',
+      meccanismo: 'Il terpinen-4-olo altera la permeabilità di membrana dei batteri gram-positivi e gram-negativi → fuga di contenuto citoplasmatico. Attività contro C. acnes (MIC 0,25%), S. aureus MRSA (MIC 0,12%), funghi (Candida). Inibisce il rilascio di mediatori infiammatori dai monociti stimolati da LPS.',
+      efficacia: 'Tea Tree Oil 5% equivalente a benzoyl peroxide 5% su acne vulgaris (studio RCT n=124, 3 mesi) con minore irritazione cutanea. Riduzione del conteggio di lesioni acneiche del 44%.',
+      tags: ['Antibatterico', 'Antifungino', 'Purificante', 'Anti-acne']
+    },
+    'camomilla': {
+      name: 'Estratto di Camomilla (Matricaria chamomilla)',
+      role: 'Lenitivo · Anti-eritema',
+      origine: 'Estratto idroalcolico o idroalcolico/glicerolico dai capolini di Matricaria chamomilla (camomilla tedesca). Standardizzato in apigenina e α-bisabololo.',
+      meccanismo: 'Apigenina: inibitore della COX-2 e LOX-5 → riduzione PGE2 e leucotrieni. Α-bisabololo: anti-infiammatorio e penetration enhancer. Camazulene (nei derivati distillati): antiossidante e anti-istaminico. Glicosidi flavonoidi: chelanti degli ioni metallici pro-ossidanti.',
+      efficacia: 'Riduzione dell\'eritema e del prurito del 60% vs placebo in dermatite allergica da contatto (crema camomilla 2%, n=20). Efficacia paragonabile all\'idrocortisone 0,25% su eczema cronico lieve.',
+      tags: ['Lenitiva', 'Anti-eritema', 'Anti-prurito', 'Camomilla']
+    },
+    'rosa': {
+      name: 'Estratto di Rosa (Rosa damascena)',
+      role: 'Antiossidante · Idratante',
+      origine: 'Estratto dai petali di Rosa damascena Mill., coltivata principalmente in Bulgaria e Marocco. Contiene olio essenziale (citronellolo, geraniolo, nerol) e polifenoli (quercetina, kaempferolo, antocianine).',
+      meccanismo: 'Olio essenziale: azione antinfiammatoria per inibizione dell\'elastasi neutrofila. Polifenoli: potenti antiossidanti (ORAC ~22.000 µmol TE/g estratto secco). Galloyl glucosidi: inibitori della MMP-1 e MMP-2. Azione umettante per il contenuto in zuccheri e acidi organici.',
+      efficacia: 'Riduzione del TEWL dell\'11% e aumento dell\'idratazione del 25% in 4 settimane (estratto petali 2%). Attività antiossidante in vitro 10× superiore alla vitamina E (test DPPH).',
+      tags: ['Antiossidante', 'Idratante', 'Sensoriale', 'Anti-età']
+    },
+    'iperico': {
+      name: 'Estratto di Iperico (Hypericum perforatum)',
+      role: 'Lenitivo · Riparatore',
+      origine: 'Macerato oleoso o estratto idroalcolico di Hypericum perforatum. Ricco in ipericina, iperforina, flavonoidi (quercetina, rutina), procianidine e tannini.',
+      meccanismo: 'Ipericina: antiossidante fotosensibilizzante (uso topico solo formulazioni stabili alla luce). Iperforina: anti-infiammatoria e antibatterica per inibizione della ricaptazione di serotonina/dopamina nelle cellule cutanee. Flavonoidi: inibizione COX-2/LOX-5 e NF-κB.',
+      efficacia: 'Riduzione della sintomatologia di psoriasi lieve del 22% in 4 settimane (estratto standardizzato). Effetto lenitivo equivalente all\'idrocortisone 1% su dermatite atopica lieve (studio randomizzato n=21).',
+      tags: ['Lenitivo', 'Riparatore', 'Anti-infiammatorio', 'Eczema']
+    },
+  };
+
+  // Mappa: testo attivo (minuscolo, normalizzato) → chiave libreria
+  const ING_KEY_MAP = {
+    'acido ialuronico': 'acido-ialuronico',
+    'hyaluronic acid': 'acido-ialuronico',
+    'sodium hyaluronate': 'acido-ialuronico',
+    'ha multimolecolare': 'acido-ialuronico',
+    'collagene vegetale': 'collagene-vegetale',
+    'plant collagen': 'collagene-vegetale',
+    'hydrolyzed vegetable collagen': 'collagene-vegetale',
+    'collagene marino': 'collagene-marino',
+    'hydrolyzed marine collagen': 'collagene-marino',
+    'marine collagen': 'collagene-marino',
+    'vitamina c': 'vitamina-c',
+    'vitamin c': 'vitamina-c',
+    'ascorbyl glucoside': 'vitamina-c',
+    'ascorbic acid': 'vitamina-c',
+    'vitamina e': 'vitamina-e',
+    'vitamin e': 'vitamina-e',
+    'tocopheryl acetate': 'vitamina-e',
+    'tocopherol': 'vitamina-e',
+    'retinolo': 'retinolo',
+    'retinol': 'retinolo',
+    'retinyl palmitate': 'retinolo',
+    'peptidi': 'peptidi',
+    'peptide': 'peptidi',
+    'peptides': 'peptidi',
+    'palmitoyl tripeptide': 'peptidi',
+    'palmitoyl tetrapeptide': 'peptidi',
+    'peptidi vegetali': 'peptidi',
+    'plant peptides': 'peptidi',
+    'biomimetic peptides': 'peptidi',
+    'caffeina': 'caffeina',
+    'caffeine': 'caffeina',
+    'niacinamide': 'niacinamide',
+    'vitamina b3': 'niacinamide',
+    'aloe vera': 'aloe-vera',
+    'aloe': 'aloe-vera',
+    'aloe barbadensis': 'aloe-vera',
+    'bisabololo': 'bisabololo',
+    'bisabolol': 'bisabololo',
+    'olio di argan': 'olio-argan',
+    'argan oil': 'olio-argan',
+    'argania spinosa': 'olio-argan',
+    'olio di cocco': 'olio-cocco',
+    'coconut oil': 'olio-cocco',
+    'cocos nucifera': 'olio-cocco',
+    'olio di mono': 'olio-monoi',
+    'mono': 'olio-monoi',
+    'gardenia tahitensis': 'olio-monoi',
+    'olio di mandorle': 'olio-mandorle',
+    'sweet almond': 'olio-mandorle',
+    'prunus amygdalus': 'olio-mandorle',
+    'ceramidi': 'ceramidi',
+    'ceramide': 'ceramidi',
+    'zinco pca': 'zinco-pca',
+    'zinc pca': 'zinco-pca',
+    'bakuchiol': 'bakuchiol',
+    'isoflavoni di soia': 'isoflavoni-soia',
+    'soy isoflavones': 'isoflavoni-soia',
+    'isoflavoni': 'isoflavoni-soia',
+    'olio di baobab': 'olio-baobab',
+    'baobab oil': 'olio-baobab',
+    'adansonia': 'olio-baobab',
+    'cellule staminali': 'cellule-staminali-leontopodium',
+    'stem cells': 'cellule-staminali-leontopodium',
+    'leontopodium': 'cellule-staminali-leontopodium',
+    'stella alpina': 'cellule-staminali-leontopodium',
+    'luminescine': 'luminescine',
+    'verbascum': 'luminescine',
+    '4-butylresorcinol': 'butylresorcinol',
+    'butylresorcinol': 'butylresorcinol',
+    'karit': 'karite',
+    'shea': 'karite',
+    'butyrospermum': 'karite',
+    'burro di karit': 'karite',
+    'pantenolo': 'pantenolo',
+    'panthenol': 'pantenolo',
+    'tè verde': 'estratto-te-verde',
+    'te verde': 'estratto-te-verde',
+    'green tea': 'estratto-te-verde',
+    'camellia sinensis': 'estratto-te-verde',
+    'jojoba': 'olio-jojoba',
+    'simmondsia': 'olio-jojoba',
+    'allantoina': 'allantoina',
+    'allantoin': 'allantoina',
+    'bambù': 'bamboo',
+    'bambu': 'bamboo',
+    'bamboo': 'bamboo',
+    'bambusa': 'bamboo',
+    'tea tree': 'tea-tree',
+    'melaleuca': 'tea-tree',
+    'camomilla': 'camomilla',
+    'chamomile': 'camomilla',
+    'matricaria': 'camomilla',
+    'rosa': 'rosa',
+    'rose': 'rosa',
+    'rosa damascena': 'rosa',
+    'iperico': 'iperico',
+    'hypericum': 'iperico',
+    'st. john': 'iperico',
+  };
+
+  function findLibKey(activeText) {
+    const lower = activeText.toLowerCase();
+    for (const [k, v] of Object.entries(ING_KEY_MAP)) {
+      if (lower.includes(k)) return v;
+    }
+    return null;
+  }
+
+  function buildActivesAccordion(actives, container) {
+    container.innerHTML = '';
+    actives.forEach((activeStr, i) => {
+      const parts = activeStr.split('—');
+      const rawName = parts[0].trim();
+      const role = parts[1] ? parts[1].trim() : '';
+      const key = findLibKey(rawName);
+      const data = key ? ACTIVES_LIB[key] : null;
+
+      const row = document.createElement('div');
+      row.className = 'st-ing-row' + (data ? '' : ' st-ing-row--static');
+
+      row.innerHTML = `
+        <div class="st-ing-row__head">
+          <div class="st-ing-row__n">${String(i + 1).padStart(2, '0')}</div>
+          <div class="st-ing-row__name-wrap">
+            <div class="st-ing-row__name">${data ? data.name : rawName}</div>
+            ${(data ? data.role : role) ? `<div class="st-ing-row__role">${data ? data.role : role}</div>` : ''}
+          </div>
+          <div class="st-ing-row__toggle">${data ? '+' : '—'}</div>
+        </div>
+        ${data ? `
+        <div class="st-ing-row__body">
+          <div class="st-ing-detail">
+            <div class="st-ing-detail__block">
+              <label>Origine</label>
+              <p>${data.origine}</p>
+            </div>
+            <div class="st-ing-detail__block">
+              <label>Meccanismo d'azione</label>
+              <p>${data.meccanismo}</p>
+            </div>
+            <div class="st-ing-detail__block" style="grid-column: 1 / -1;">
+              <label>Evidenza clinica</label>
+              <p>${data.efficacia}</p>
+            </div>
+            <div class="st-ing-tags">
+              ${data.tags.map(t => `<span class="st-ing-tag">${t}</span>`).join('')}
+            </div>
+          </div>
+        </div>` : ''}
+      `;
+
+      if (data) {
+        row.querySelector('.st-ing-row__head').addEventListener('click', () => {
+          const isOpen = row.classList.contains('open');
+          container.querySelectorAll('.st-ing-row.open').forEach(r => r.classList.remove('open'));
+          if (!isOpen) row.classList.add('open');
+        });
+      }
+
+      container.appendChild(row);
+    });
+  }
+
+  // ── MODAL SCHEDA TECNICA ────────────────────────────
+  const overlay = document.getElementById('stOverlay');
+  const stClose = document.getElementById('stClose');
+
+  function openSheet(p) {
+    const l = typeof ATH !== 'undefined' ? ATH.lang : 'it';
+    document.getElementById('stBrand').textContent = 'L\'Erboristica · ' + (line ? line.shortName : '');
+    document.getElementById('stTitle').textContent = p[l].name;
+    document.getElementById('stSub').textContent = p[l].sub || '';
+    document.getElementById('stDesc').textContent = p[l].desc || '';
+    document.getElementById('stUse').textContent = p[l].use || '';
+    document.getElementById('stInci').textContent = p.inci || '—';
+
+    buildActivesAccordion(p[l].actives || [], document.getElementById('stActives'));
+
+    const footer = document.getElementById('stFooter');
+    footer.innerHTML = `
+      <span class="st-pill">${p.code || p.id.toUpperCase()}</span>
+      <span class="st-pill">${p.size}</span>
+      <span class="st-pill">${p.category}</span>
+    `;
+
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSheet() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  stClose.addEventListener('click', closeSheet);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeSheet(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSheet(); });
+</script>
+</body>
+</html>

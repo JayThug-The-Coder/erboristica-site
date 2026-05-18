@@ -1,0 +1,1685 @@
+﻿<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sostenibilità — Athena's</title>
+<link rel="preload" href="assets/fonts/fraunces-200-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="stylesheet" href="assets/fonts.css"/>
+<link rel="stylesheet" href="assets/tokens.css"/>
+
+<style>
+
+/* ── HERO ─────────────────────────────────────────────────── */
+.sh {
+  height: 100svh;
+  min-height: 640px;
+  background: var(--forest);
+  color: var(--cream);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+.sh__bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 30%, rgba(90,107,78,.5) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 70% at 20% 80%, rgba(45,58,46,.8) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 40% at 50% 50%, rgba(201,169,110,.08) 0%, transparent 70%),
+    linear-gradient(170deg, #1a2a1a 0%, #2d3a2e 50%, #0a1a0a 100%);
+  animation: eco-breathe 14s ease-in-out infinite alternate;
+}
+@keyframes eco-breathe {
+  from { filter: brightness(1) saturate(1); }
+  to   { filter: brightness(1.08) saturate(1.12); }
+}
+
+/* griglia sottile di sfondo */
+.sh__grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+}
+
+.sh__mark {
+  position: absolute;
+  right: -0.04em;
+  top: -0.08em;
+  font-family: var(--display);
+  font-size: clamp(200px,28vw,520px);
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(255,255,255,.035);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.sh__overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.25) 0%, transparent 35%, rgba(0,0,0,.55) 100%);
+}
+
+/* particelle botaniche */
+.sh__particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: rgba(201,169,110,.5);
+  pointer-events: none;
+}
+@keyframes eco-particle {
+  0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+  15%  { opacity: 1; }
+  85%  { opacity: .6; }
+  100% { transform: translateY(-220px) translateX(var(--dx, 20px)) scale(.4); opacity: 0; }
+}
+
+/* SVG foglia decorativa */
+.sh__leaf {
+  position: absolute;
+  right: clamp(40px,8vw,120px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: clamp(200px,30vw,480px);
+  opacity: .12;
+  pointer-events: none;
+}
+
+.sh__content {
+  position: relative; z-index: 2;
+  width: 100%;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 clamp(20px,4vw,60px) clamp(50px,7vw,100px);
+}
+
+.sh h1 {
+  font-family: var(--display);
+  font-size: clamp(56px,10vw,180px);
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: .88;
+  margin-bottom: clamp(24px,3vw,40px);
+  max-width: 14ch;
+}
+.sh h1 em { font-style: italic; color: var(--gold); }
+
+.sh__lead {
+  font-family: var(--serif);
+  font-size: clamp(17px,1.5vw,22px);
+  line-height: 1.55;
+  max-width: 48ch;
+  opacity: .8;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: clamp(24px,4vw,40px);
+  right: clamp(20px,4vw,60px);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  opacity: .4;
+  color: #fff;
+  font-family: var(--sans);
+}
+.scroll-hint__line {
+  width: 1px; height: 48px;
+  background: rgba(255,255,255,.25);
+  position: relative; overflow: hidden;
+}
+.scroll-hint__line::after {
+  content: '';
+  position: absolute; top: -100%; left: 0;
+  width: 100%; height: 100%;
+  background: #fff;
+  animation: scroll-line 2s ease-in-out infinite;
+}
+@keyframes scroll-line {
+  0%   { top: -100%; opacity: 1; }
+  100% { top: 100%;  opacity: 0; }
+}
+
+/* ── STATEMENT ────────────────────────────────────────────── */
+.eco-statement {
+  background: #0a0f0a;
+  padding: clamp(70px,9vw,130px) 0;
+  overflow: hidden;
+  position: relative;
+}
+.eco-statement__inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 clamp(20px,4vw,60px);
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: clamp(40px,6vw,100px);
+  align-items: center;
+}
+@media (max-width: 768px) { .eco-statement__inner { grid-template-columns: 1fr; gap: 24px; } }
+.eco-statement__label {
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: .7;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+@media (max-width: 768px) { .eco-statement__label { writing-mode: horizontal-tb; transform: none; } }
+.eco-statement blockquote {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: clamp(26px,3.5vw,58px);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--cream);
+  margin: 0;
+}
+.eco-statement blockquote em { color: var(--gold); font-style: normal; }
+.eco-statement blockquote cite {
+  display: block;
+  font-family: var(--sans);
+  font-style: normal;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: .4;
+  margin-top: 28px;
+}
+
+/* ── NUMERI IMPATTO ───────────────────────────────────────── */
+.impact-section {
+  background: var(--forest);
+  padding: clamp(40px,5vw,72px) 0 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.impact-header {
+  padding: 0 clamp(20px,4vw,60px);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: clamp(24px,3vw,44px);
+}
+
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 0;
+}
+@media (max-width: 900px) { .impact-grid { grid-template-columns: repeat(2,1fr); } }
+
+.impact-item {
+  background: rgba(45,58,46,.6);
+  padding: clamp(36px,4vw,64px) clamp(24px,3vw,48px) clamp(32px,4vw,56px);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .8s var(--ease), transform .8s var(--ease), background .3s;
+  transition-delay: var(--d, 0ms);
+}
+.impact-item.is-visible { opacity: 1; transform: none; }
+.impact-item:hover { background: rgba(90,107,78,.35); }
+
+/* ghost watermark */
+.impact-item__ghost {
+  position: absolute;
+  right: -0.1em;
+  bottom: -0.15em;
+  font-family: var(--display);
+  font-size: clamp(80px,10vw,160px);
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(255,255,255,.04);
+  line-height: 1;
+  pointer-events: none;
+  letter-spacing: -0.05em;
+}
+
+.impact-line {
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
+  opacity: .5;
+  margin-bottom: 20px;
+}
+
+.impact-n {
+  font-family: var(--display);
+  font-size: clamp(52px,7vw,100px);
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: .9;
+  color: var(--cream);
+  font-style: italic;
+  position: relative; z-index: 1;
+}
+.impact-n sup {
+  font-size: .45em;
+  vertical-align: top;
+  margin-top: .15em;
+  display: inline-block;
+  color: var(--gold);
+}
+
+.impact-unit {
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: .7;
+  margin-top: 10px;
+  position: relative; z-index: 1;
+}
+.impact-label {
+  font-family: var(--serif);
+  font-size: clamp(18px, 1.5vw, 20px);
+  line-height: 1.6;
+  color: rgba(243,238,228,.65);
+  margin-top: 14px;
+  font-style: italic;
+  position: relative; z-index: 1;
+}
+
+/* ── PILASTRI ─────────────────────────────────────────────── */
+.pillar-section-header {
+  background: var(--ink);
+  color: var(--cream);
+  padding: clamp(80px,10vw,130px) 0 0;
+}
+.pillar-section-header .container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 clamp(20px,4vw,60px);
+}
+
+.pillar-sec-title {
+  font-family: var(--display);
+  font-size: clamp(42px,7vw,120px);
+  line-height: .92;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  max-width: 16ch;
+  padding-bottom: clamp(60px,8vw,100px);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.pillar-sec-title em { font-style: italic; color: var(--gold); }
+
+/* singolo pilastro */
+.pillar-block {
+  background: var(--ink);
+  color: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+.pillar-block--alt { background: #0e1510; }
+
+.pillar-block__inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: clamp(60px,8vw,120px) clamp(20px,4vw,60px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px,6vw,100px);
+  align-items: center;
+}
+@media (max-width: 900px) {
+  .pillar-block__inner { grid-template-columns: 1fr; gap: 40px; }
+  .pillar-block--alt .pillar-block__visual { order: -1; }
+}
+
+.pillar-block__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.pillar-block__index {
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: .7;
+  margin-bottom: 24px;
+}
+
+.pillar-block__title {
+  font-family: var(--display);
+  font-size: clamp(32px,4vw,64px);
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  line-height: 1.0;
+  margin-bottom: 24px;
+}
+.pillar-block__title em { font-style: italic; color: var(--gold); }
+
+.pillar-block__body {
+  font-family: var(--serif);
+  font-size: clamp(16px,1.3vw,19px);
+  line-height: 1.65;
+  opacity: .75;
+  margin-bottom: 32px;
+}
+
+/* zero display — pilastro 02 */
+.pillar-zero {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px,3vw,44px);
+  margin-bottom: 32px;
+  padding: clamp(20px,2.5vw,36px) 0;
+  border-top: 1px solid rgba(255,255,255,.07);
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.pillar-zero__num {
+  font-family: var(--display);
+  font-size: clamp(72px,10vw,140px);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--cream);
+  flex-shrink: 0;
+}
+.pillar-zero__num span {
+  font-size: .45em;
+  vertical-align: super;
+  color: var(--gold);
+}
+.pillar-zero__divider {
+  width: 1px;
+  height: clamp(60px,8vw,100px);
+  background: rgba(255,255,255,.12);
+  flex-shrink: 0;
+}
+.pillar-zero__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.pillar-zero__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--sans);
+  font-size: clamp(10px,1vw,12px);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cream);
+  opacity: .55;
+}
+.pillar-zero__item::before {
+  content: '';
+  width: 16px;
+  height: 1px;
+  background: var(--gold);
+  opacity: .6;
+  flex-shrink: 0;
+}
+
+.pillar-block__facts {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+.pillar-block__fact {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  gap: 20px;
+}
+.pillar-block__fact-label {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: .45;
+}
+.pillar-block__fact-val {
+  font-family: var(--display);
+  font-size: 18px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--cream);
+  text-align: right;
+}
+
+/* visual side */
+.pillar-block__visual {
+  position: relative;
+  aspect-ratio: 4/5;
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+/* SOSTITUIRE con foto per ogni pilastro */
+.pillar-block__photo-hint {
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: .2;
+  color: var(--cream);
+}
+
+.pillar-block__svg-deco {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* ghost number su visual */
+.pillar-block__visual-n {
+  position: absolute;
+  bottom: -0.1em;
+  right: -0.05em;
+  font-family: var(--display);
+  font-size: clamp(100px,14vw,220px);
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(255,255,255,.04);
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* reveal */
+.pillar-block__text,
+.pillar-block__visual {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .9s var(--ease), transform .9s var(--ease);
+}
+.pillar-block__visual { transition-delay: 100ms; }
+.pillar-block__text.is-visible,
+.pillar-block__visual.is-visible { opacity: 1; transform: none; }
+
+/* ── CERTIFICAZIONI ───────────────────────────────────────── */
+.certs-section {
+  background: var(--cream-2);
+  padding: clamp(80px,10vw,140px) 0;
+}
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(10px,1.4vw,18px);
+}
+.certs-grid .cert-card--big {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+@media (max-width: 900px) {
+  .certs-grid { grid-template-columns: repeat(2, 1fr); }
+  .certs-grid .cert-card--big { grid-column: span 2; grid-row: span 1; }
+}
+@media (max-width: 660px) {
+  .certs-grid { grid-template-columns: 1fr; }
+  .certs-grid .cert-card--big { grid-column: span 1; }
+}
+
+.cert-card {
+  padding: clamp(20px,2.5vw,32px);
+  border: 1px solid rgba(201,169,110,.15);
+  background: var(--cream);
+  display: flex; flex-direction: column; gap: 10px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity .6s var(--ease), transform .4s var(--ease), border-color .4s var(--ease);
+  transition-delay: var(--d, 0ms);
+  cursor: pointer;
+}
+.cert-card.is-visible { opacity: 1; transform: none; }
+.cert-card:hover {
+  border-color: rgba(201,169,110,.6);
+  transform: translateY(-3px);
+}
+.cert-card--big { gap: 14px; }
+
+.cert-card__logo {
+  width: 120px; height: 120px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 24px;
+  overflow: hidden;
+}
+@media (max-width: 660px) { .cert-card__logo { width: 80px; height: 80px; } }
+.cert-card__logo img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  transition: transform .4s var(--ease);
+}
+.cert-card:hover .cert-card__logo img { transform: scale(1.05); }
+.cert-card__logo:not(:has(img)) {
+  background: rgba(201,169,110,.06);
+  border: 1px dashed rgba(201,169,110,.3);
+  border-radius: 50%;
+}
+.cert-card__logo:not(:has(img))::before {
+  content: 'LOGO\Aente cert.';
+  white-space: pre; text-align: center;
+  font-family: var(--sans); font-size: 11px; letter-spacing: 0.25em;
+  color: rgba(201,169,110,.5);
+  line-height: 1.7;
+}
+
+.cert-card__icon { width: 24px; height: 24px; flex-shrink: 0; }
+.cert-card__name {
+  font-family: var(--display);
+  font-size: clamp(17px,1.8vw,24px);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin: 0;
+}
+.cert-card--big .cert-card__name { font-size: clamp(22px,2.8vw,38px); }
+.cert-card__badge {
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: .5;
+}
+.cert-card__tagline {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.6;
+  opacity: .75;
+  margin: 0;
+  flex: 1;
+}
+.cert-card--big .cert-card__tagline { font-size: 18px; }
+.cert-card__cta {
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: .55;
+  transition: opacity .3s;
+  margin-top: auto;
+  padding-top: 8px;
+}
+.cert-card:hover .cert-card__cta { opacity: 1; }
+
+/* ── CERT FULLSCREEN PANEL ─────────────────────────────────── */
+.cert-panel {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: flex;
+  pointer-events: none;
+  visibility: hidden;
+}
+.cert-panel.open {
+  pointer-events: auto;
+  visibility: visible;
+}
+.cert-panel__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10,12,10,.6);
+  opacity: 0;
+  transition: opacity .45s var(--ease);
+}
+.cert-panel.open .cert-panel__backdrop { opacity: 1; }
+.cert-panel__sheet {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: min(680px, 100vw);
+  background: var(--cream);
+  transform: translateX(100%);
+  transition: transform .5s cubic-bezier(.22,.61,.36,1);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+.cert-panel.open .cert-panel__sheet { transform: none; }
+.cert-panel__close {
+  position: absolute;
+  top: 20px; right: 28px; z-index: 3;
+  display: flex;
+  justify-content: flex-end;
+}
+.cert-panel__close button {
+  width: 44px; height: 44px;
+  border: 1px solid rgba(255,255,255,.45);
+  background: rgba(0,0,0,.25);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s, border-color .2s;
+}
+.cert-panel__close button:hover { background: rgba(0,0,0,.45); border-color: rgba(255,255,255,.7); }
+.cert-panel__hero {
+  height: 280px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.cert-panel__hero-bg { position: absolute; inset: 0; }
+.cert-panel__hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(10,12,10,.6) 100%);
+}
+.cert-panel__hero-label {
+  position: absolute;
+  bottom: 28px; left: 36px;
+  font-family: var(--display);
+  font-size: clamp(36px,5vw,64px);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: .9;
+  color: #fff;
+}
+.cert-panel__hero-label em { font-style: italic; color: var(--gold); }
+.cert-panel__body { padding: 36px 36px 60px; flex: 1; }
+.cert-panel__badge {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border: 1px solid rgba(0,0,0,.15);
+  opacity: .6;
+  margin-bottom: 24px;
+}
+.cert-panel__title {
+  font-family: var(--display);
+  font-size: clamp(28px,3.5vw,44px);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin-bottom: 20px;
+}
+.cert-panel__lead {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(18px, 1.5vw, 21px);
+  line-height: 1.65;
+  opacity: .8;
+  margin-bottom: 28px;
+  max-width: 78ch;
+}
+.cert-panel__desc {
+  font-family: var(--serif);
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.7;
+  opacity: .75;
+  margin-bottom: 32px;
+  max-width: 78ch;
+}
+.cert-panel__facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 32px;
+  padding: 28px;
+  background: var(--cream-2);
+}
+.cert-panel__fact label {
+  display: block;
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: .45;
+  margin-bottom: 6px;
+}
+.cert-panel__fact span {
+  font-family: var(--display);
+  font-size: clamp(16px,1.5vw,20px);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+}
+.cert-panel__quote {
+  border-left: 3px solid var(--gold);
+  padding-left: 20px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(18px, 1.5vw, 21px);
+  line-height: 1.65;
+  opacity: .8;
+  max-width: 78ch;
+}
+
+.cert-dialog__story {
+  margin: 28px 0;
+  padding: 24px 28px;
+  background: rgba(45,58,46,.06);
+  border-left: 3px solid var(--sage);
+}
+.cert-dialog__story-title {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--sage-deep);
+  margin-bottom: 14px;
+}
+.cert-dialog__story-body {
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.7;
+  opacity: .72;
+  margin-bottom: 16px;
+}
+.cert-dialog__story-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: .08em;
+  opacity: .5;
+}
+.cert-dialog__story-meta a {
+  color: var(--gold-deep);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ── CANVAS PARTICELLE ────────────────────────────────────── */
+.eco-canvas {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  z-index: 1; pointer-events: none;
+  display: block;
+}
+
+/* ── CERT CARD 3D TILT ────────────────────────────────────── */
+.cert-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* ── REGEN SVG draw-on-scroll ─────────────────────────────── */
+.regen-svg-wrap {
+  position: absolute;
+  right: clamp(20px, 6vw, 80px);
+  top: 50%; transform: translateY(-50%);
+  width: clamp(180px, 22vw, 320px);
+  height: clamp(180px, 22vw, 320px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: .22;
+}
+.regen-svg-wrap svg { width: 100%; height: 100%; }
+
+/* ── CTA ──────────────────────────────────────────────────── */
+.eco-cta {
+  background: var(--forest);
+  color: var(--cream);
+  padding: clamp(40px,5vw,72px) 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.eco-cta::before {
+  content: '1969';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--display);
+  font-size: clamp(120px,20vw,380px);
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(255,255,255,.04);
+  white-space: nowrap;
+  pointer-events: none;
+}
+.eco-cta h2 {
+  font-family: var(--display);
+  font-size: clamp(36px,5vw,80px);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  max-width: 18ch;
+  margin: 0 auto clamp(24px,3vw,40px);
+}
+.eco-cta h2 em { font-style: italic; color: var(--gold); }
+.eco-cta p {
+  font-family: var(--serif);
+  font-size: clamp(17px,1.5vw,22px);
+  line-height: 1.5;
+  opacity: .75;
+  max-width: 44ch;
+  margin: 0 auto clamp(36px,4vw,56px);
+  font-style: italic;
+}
+
+</style>
+<meta name="description" content="Energia rinnovabile, scelte etiche, formule vegan. L'impegno Athena's per una cosmetica responsabile."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://athenas.it/sostenibilita.html"/>
+<meta property="og:type" content="website"/>
+<meta property="og:locale" content="it_IT"/>
+<meta property="og:locale:alternate" content="en_GB"/>
+<meta property="og:site_name" content="Athena's"/>
+<meta property="og:url" content="https://athenas.it/sostenibilita.html"/>
+<meta property="og:title" content="Sostenibilità — Athena's"/>
+<meta property="og:description" content="Energia rinnovabile, scelte etiche, formule vegan. L'impegno Athena's per una cosmetica responsabile."/>
+<meta property="og:image" content="https://athenas.it/immagini/og/sostenibilita.jpg"/>
+<meta property="og:image:alt" content="Sostenibilità — Athena's"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Sostenibilità — Athena's"/>
+<meta name="twitter:description" content="Energia rinnovabile, scelte etiche, formule vegan. L'impegno Athena's per una cosmetica responsabile."/>
+<meta name="twitter:image" content="https://athenas.it/immagini/og/sostenibilita.jpg"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://athenas.it/" },
+    { "@type": "ListItem", "position": 2, "name": "Sostenibilità", "item": "https://athenas.it/sostenibilita.html" }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="sh" data-mood-fallback="dark">
+  <div class="photo-slot photo-slot--video-overlay photo-slot--fullbleed" style="z-index:0;pointer-events:none;" data-slot-label="FOTO AEREA impianto fotovoltaico · alternativa: foto natura/pianta da ORGANIZZATO">
+    <span class="photo-slot__label" style="pointer-events:none;">Foto Aerea · Fotovoltaico</span>
+  </div>
+  <div class="sh__bg">
+    <!-- SOSTITUIRE OPZIONALE: foto aerea stabilimento Pianoro con pannelli fotovoltaici visibili · 16:9 · giorno chiaro · 3000px+ · sostituirebbe il gradient CSS verde dell'hero. Da reperire (drone shooting). -->
+  </div>
+  <div class="sh__grid"></div>
+  <div class="sh__mark" aria-hidden="true">eco.</div>
+
+
+  <div class="sh__overlay"></div>
+  <div class="sh__content container">
+    <div class="eyebrow" style="color:rgba(201,169,110,.6); margin-bottom:28px; font-size:9px; letter-spacing:0.32em; text-transform:uppercase; display:inline-flex; align-items:center; gap:14px;"><span style="display:inline-block; width:28px; height:1px; background:rgba(201,169,110,.4); flex-shrink:0;"></span><span data-it="Sostenibilità" data-en="Sustainability">Sostenibilità</span></div>
+    <h1>
+      <span data-it="La terra" data-en="The earth">La terra</span><br/>
+      <em data-it="prima di tutto." data-en="above all.">prima di tutto.</em>
+    </h1>
+    <p class="sh__lead" data-it="Non è una scelta di marketing. È il motivo per cui siamo nati. Ogni formula che produciamo rispetta la pianta, il suolo e chi verrà dopo di noi." data-en="This is not a marketing choice. It's the reason we were born. Every formula we produce respects the plant, the soil and those who will come after us.">Non è una scelta di marketing. È il motivo per cui siamo nati. Ogni formula che produciamo rispetta la pianta, il suolo e chi verrà dopo di noi.</p>
+  </div>
+  <div class="scroll-hint" aria-hidden="true">
+    <div class="scroll-hint__line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- NUMERI IMPATTO -->
+<section class="impact-section">
+  <div class="impact-header">
+    <span class="num" style="color:rgba(201,169,110,.6);">— 01</span>
+    <div class="eyebrow" style="color:rgba(243,238,228,.4);" data-it="Il nostro impatto" data-en="Our impact">Il nostro impatto</div>
+  </div>
+  <div class="impact-grid">
+    <div class="impact-item" style="--d:0ms;">
+      <div class="impact-item__ghost" aria-hidden="true">80</div>
+      <div class="impact-line"></div>
+      <div class="impact-n">80<sup>%</sup></div>
+      <div class="impact-unit" data-it="energia solare" data-en="solar energy">energia solare</div>
+      <div class="impact-label" data-it="autoprodotta dal nostro impianto fotovoltaico dal 2014" data-en="self-generated by our photovoltaic system since 2014">autoprodotta dal nostro impianto fotovoltaico dal 2014</div>
+    </div>
+    <div class="impact-item" style="--d:80ms;">
+      <div class="impact-item__ghost" aria-hidden="true">95</div>
+      <div class="impact-line"></div>
+      <div class="impact-n">95<sup>%</sup></div>
+      <div class="impact-unit" data-it="Plant Based" data-en="Plant Based">Plant Based</div>
+      <div class="impact-label" data-it="certificato Bioagricert su ogni formula che produciamo" data-en="Bioagricert certified on every formula we produce">certificato Bioagricert su ogni formula che produciamo</div>
+    </div>
+    <div class="impact-item" style="--d:160ms;">
+      <div class="impact-item__ghost" aria-hidden="true">0</div>
+      <div class="impact-line"></div>
+      <div class="impact-n">0<sup>%</sup></div>
+      <div class="impact-unit" data-it="compromessi" data-en="compromises">compromessi</div>
+      <div class="impact-label" data-it="Lista di rifiuti, non di omissioni — petrolio, siliconi, coloranti sintetici fuori da sempre" data-en="A list of refusals, not omissions — petroleum, silicones, synthetic dyes have never been in">Lista di rifiuti, non di omissioni — petrolio, siliconi, coloranti sintetici fuori da sempre</div>
+    </div>
+    <div class="impact-item" style="--d:240ms;">
+      <div class="impact-item__ghost" aria-hidden="true">8</div>
+      <div class="impact-line"></div>
+      <div class="impact-n">8</div>
+      <div class="impact-unit" data-it="audit indipendenti" data-en="independent audits">audit indipendenti</div>
+      <div class="impact-label" data-it="annui da enti terzi — ogni formula, ogni processo, ogni claim verificato" data-en="annual third-party — every formula, every process, every claim verified">annui da enti terzi — ogni formula, ogni processo, ogni claim verificato</div>
+    </div>
+  </div>
+</section>
+
+<!-- PILASTRI — header -->
+<div class="pillar-section-header">
+  <div class="container">
+    <div style="display:flex; gap:16px; align-items:center; margin-bottom: clamp(32px,4vw,56px);">
+      <span class="num" style="color:rgba(201,169,110,.6);">— 02</span>
+      <div class="eyebrow" style="color:rgba(201,169,110,.6);" data-it="I pilastri" data-en="Our pillars">I pilastri</div>
+    </div>
+    <h2 class="pillar-sec-title" data-reveal>
+      <em data-it="Tre impegni," data-en="Three commitments,">Tre impegni,</em><br/>
+      <span data-it="nessun compromesso." data-en="no compromise.">nessun compromesso.</span>
+    </h2>
+  </div>
+</div>
+
+<!-- PILASTRO 01 — Energia rinnovabile -->
+<div class="pillar-block">
+  <div class="pillar-block__inner">
+    <div class="pillar-block__text">
+      <div class="pillar-block__index">— Pilastro 01</div>
+      <h3 class="pillar-block__title">
+        <span data-it="Energia " data-en="Renewable ">Energia </span><em data-it="rinnovabile." data-en="energy.">rinnovabile.</em>
+      </h3>
+      <p class="pillar-block__body" data-it="Il nostro stabilimento di Pianoro è coperto da pannelli fotovoltaici che producono oltre l'80% dell'energia necessaria alla produzione. Il restante proviene da fonti certificate rinnovabili. Una scelta fatta più di dieci anni fa, quando non era ancora una tendenza." data-en="Our Pianoro facility is covered by photovoltaic panels producing over 80% of the energy needed for production. The remainder comes from certified renewable sources. A choice made over ten years ago, when it wasn't yet a trend.">Il nostro stabilimento di Pianoro è coperto da pannelli fotovoltaici che producono oltre l'80% dell'energia necessaria alla produzione. Il restante proviene da fonti certificate rinnovabili. Una scelta fatta più di dieci anni fa, quando non era ancora una tendenza.</p>
+      <div class="pillar-block__facts">
+        <div class="pillar-block__fact">
+          <span class="pillar-block__fact-label" data-it="Copertura fotovoltaica" data-en="Photovoltaic coverage">Copertura fotovoltaica</span>
+          <span class="pillar-block__fact-val">80%+</span>
+        </div>
+        <div class="pillar-block__fact">
+          <span class="pillar-block__fact-label" data-it="Resto da fonti" data-en="Rest from sources">Resto da fonti</span>
+          <span class="pillar-block__fact-val" data-it="Rinnovabili certificate" data-en="Certified renewables">Rinnovabili certificate</span>
+        </div>
+        <div class="pillar-block__fact">
+          <span class="pillar-block__fact-label" data-it="Stabilimento" data-en="Facility">Stabilimento</span>
+          <span class="pillar-block__fact-val">Pianoro, Bologna</span>
+        </div>
+      </div>
+    </div>
+    <div class="pillar-block__visual">
+      <div class="photo-slot photo-slot--4x5">
+        <!-- SOSTITUIRE: foto pannelli fotovoltaici tetto stabilimento · 4:3 · luce diretta · 1600px+ · da reperire -->
+        <svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        <span class="photo-slot__label">Pannelli fotovoltaici — tetto stabilimento Pianoro</span>
+      </div>
+      <div class="pillar-block__visual-n" aria-hidden="true">01</div>
+      <div class="pillar-block__svg-deco">
+        <svg width="220" height="220" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="opacity:.18;">
+          <!-- sole stilizzato -->
+          <circle cx="110" cy="110" r="40" stroke="rgba(201,169,110,1)" stroke-width="1.5"/>
+          <circle cx="110" cy="110" r="28" stroke="rgba(201,169,110,1)" stroke-width="1" stroke-dasharray="4 4"/>
+          <!-- raggi -->
+          <line x1="110" y1="55" x2="110" y2="42" stroke="rgba(201,169,110,1)" stroke-width="1.5"/>
+          <line x1="110" y1="165" x2="110" y2="178" stroke="rgba(201,169,110,1)" stroke-width="1.5"/>
+          <line x1="55" y1="110" x2="42" y2="110" stroke="rgba(201,169,110,1)" stroke-width="1.5"/>
+          <line x1="165" y1="110" x2="178" y2="110" stroke="rgba(201,169,110,1)" stroke-width="1.5"/>
+          <line x1="69" y1="69" x2="59" y2="59" stroke="rgba(201,169,110,1)" stroke-width="1.5"/>
+          <line x1="151" y1="151" x2="161" y2="161" stroke="rgba(201,169,110,1)" stroke-width="1.5"/>
+          <line x1="151" y1="69" x2="161" y2="59" stroke="rgba(201,169,110,1)" stroke-width="1.5"/>
+          <line x1="69" y1="151" x2="59" y2="161" stroke="rgba(201,169,110,1)" stroke-width="1.5"/>
+          <!-- pannelli solari sotto -->
+          <rect x="50" y="155" width="30" height="20" rx="1" stroke="rgba(201,169,110,.7)" stroke-width="1" fill="none"/>
+          <rect x="85" y="155" width="30" height="20" rx="1" stroke="rgba(201,169,110,.7)" stroke-width="1" fill="none"/>
+          <rect x="120" y="155" width="30" height="20" rx="1" stroke="rgba(201,169,110,.7)" stroke-width="1" fill="none"/>
+          <line x1="65" y1="155" x2="65" y2="175" stroke="rgba(201,169,110,.4)" stroke-width=".5"/>
+          <line x1="100" y1="155" x2="100" y2="175" stroke="rgba(201,169,110,.4)" stroke-width=".5"/>
+          <line x1="135" y1="155" x2="135" y2="175" stroke="rgba(201,169,110,.4)" stroke-width=".5"/>
+          <line x1="50" y1="165" x2="80" y2="165" stroke="rgba(201,169,110,.4)" stroke-width=".5"/>
+          <line x1="85" y1="165" x2="115" y2="165" stroke="rgba(201,169,110,.4)" stroke-width=".5"/>
+          <line x1="120" y1="165" x2="150" y2="165" stroke="rgba(201,169,110,.4)" stroke-width=".5"/>
+        </svg>
+      </div>
+      <span class="pillar-block__photo-hint" data-it="Impianto fotovoltaico" data-en="Photovoltaic system">Impianto fotovoltaico</span>
+    </div>
+  </div>
+</div>
+
+<!-- PILASTRO 02 — Ingredienti rispettosi -->
+<div class="pillar-block pillar-block--alt">
+  <div class="pillar-block__inner" style="direction:rtl;">
+    <div class="pillar-block__text" style="direction:ltr;">
+      <div class="pillar-block__index">— Pilastro 02</div>
+      <h3 class="pillar-block__title">
+        <span data-it="Ingredienti " data-en="Respectful ">Ingredienti </span><em data-it="rispettosi." data-en="ingredients.">rispettosi.</em>
+      </h3>
+      <div class="pillar-zero">
+        <div class="pillar-zero__num">0<span>%</span></div>
+        <div class="pillar-zero__divider"></div>
+        <div class="pillar-zero__list">
+          <div class="pillar-zero__item" data-it="Petrolchimici" data-en="Petrochemicals">Petrolchimici</div>
+          <div class="pillar-zero__item" data-it="Siliconi" data-en="Silicones">Siliconi</div>
+          <div class="pillar-zero__item" data-it="Microplastiche" data-en="Microplastics">Microplastiche</div>
+          <div class="pillar-zero__item" data-it="Coloranti sintetici" data-en="Synthetic dyes">Coloranti sintetici</div>
+        </div>
+      </div>
+      <p class="pillar-block__body" data-it="Una lista di rifiuti più che di scelte. Sul cosa non entra in formula non discutiamo da sempre." data-en="A list of refusals more than choices. What does not go into formula has never been up for discussion.">Una lista di rifiuti più che di scelte. Sul cosa non entra in formula non discutiamo da sempre.</p>
+      <div class="pillar-block__facts">
+        <div class="pillar-block__fact">
+          <span class="pillar-block__fact-label" data-it="Ingredienti naturali" data-en="Natural ingredients">Ingredienti naturali</span>
+          <span class="pillar-block__fact-val">95%+</span>
+        </div>
+        <div class="pillar-block__fact">
+          <span class="pillar-block__fact-label" data-it="Petrolchimici, siliconi" data-en="Petrochemicals, silicones">Petrolchimici, siliconi</span>
+          <span class="pillar-block__fact-val">0%</span>
+        </div>
+        <div class="pillar-block__fact">
+          <span class="pillar-block__fact-label" data-it="Fornitori certificati" data-en="Certified suppliers">Fornitori certificati</span>
+          <span class="pillar-block__fact-val" data-it="100% tracciati" data-en="100% traced">100% tracciati</span>
+        </div>
+      </div>
+    </div>
+    <div class="pillar-block__visual" style="direction:ltr;">
+      <div class="photo-slot photo-slot--4x5">
+        <!-- SOSTITUIRE: foto materie prime botaniche su tavolo · 4:3 · 1600px+ · da reperire shooting laboratorio -->
+        <svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        <span class="photo-slot__label">Materie prime botaniche — shooting laboratorio</span>
+      </div>
+      <div class="pillar-block__visual-n" aria-hidden="true">02</div>
+      <div class="pillar-block__svg-deco">
+        <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="opacity:.18;">
+          <!-- foglia botanica -->
+          <path d="M100 180 C100 180 30 130 30 80 C30 40 65 20 100 20 C135 20 170 40 170 80 C170 130 100 180 100 180Z" stroke="rgba(138,154,123,1)" stroke-width="1.5" fill="none"/>
+          <path d="M100 20 L100 180" stroke="rgba(138,154,123,1)" stroke-width="1"/>
+          <path d="M100 65 Q140 80 155 110" stroke="rgba(138,154,123,.7)" stroke-width="1" fill="none"/>
+          <path d="M100 90 Q135 100 145 128" stroke="rgba(138,154,123,.6)" stroke-width="1" fill="none"/>
+          <path d="M100 115 Q128 122 132 145" stroke="rgba(138,154,123,.5)" stroke-width="1" fill="none"/>
+          <path d="M100 65 Q60 80 45 110" stroke="rgba(138,154,123,.7)" stroke-width="1" fill="none"/>
+          <path d="M100 90 Q65 100 55 128" stroke="rgba(138,154,123,.6)" stroke-width="1" fill="none"/>
+          <path d="M100 115 Q72 122 68 145" stroke="rgba(138,154,123,.5)" stroke-width="1" fill="none"/>
+          <!-- piccoli cerchi ingrediente -->
+          <circle cx="155" cy="110" r="5" stroke="rgba(201,169,110,.8)" stroke-width="1" fill="none"/>
+          <circle cx="45" cy="110" r="5" stroke="rgba(201,169,110,.8)" stroke-width="1" fill="none"/>
+          <circle cx="100" cy="20" r="5" stroke="rgba(201,169,110,.8)" stroke-width="1" fill="none"/>
+        </svg>
+      </div>
+      <span class="pillar-block__photo-hint" data-it="Materie prime botaniche" data-en="Botanical raw materials">Materie prime botaniche</span>
+    </div>
+  </div>
+</div>
+
+<!-- PILASTRO 03 — Packaging consapevole -->
+<div class="pillar-block">
+  <div class="pillar-block__inner">
+    <div class="pillar-block__text">
+      <div class="pillar-block__index">— Pilastro 03</div>
+      <h3 class="pillar-block__title">
+        <span data-it="Packaging " data-en="Conscious ">Packaging </span><em data-it="consapevole." data-en="packaging.">consapevole.</em>
+      </h3>
+      <p class="pillar-block__body" data-it="Transizione progressiva verso imballaggi in materiale riciclato e riciclabile. Riduzione del peso di flaconi e astucci. Eliminazione di over-wrapping non necessario. La bellezza non ha bisogno di sprechi: ogni grammo di plastica in meno è una scelta deliberata." data-en="Progressive transition to recycled and recyclable packaging materials. Reduction of bottle and box weight. Elimination of unnecessary over-wrapping. Beauty doesn't need waste: every gram less of plastic is a deliberate choice.">Transizione progressiva verso imballaggi in materiale riciclato e riciclabile. Riduzione del peso di flaconi e astucci. Eliminazione di over-wrapping non necessario. La bellezza non ha bisogno di sprechi: ogni grammo di plastica in meno è una scelta deliberata.</p>
+      <div class="pillar-block__facts">
+        <div class="pillar-block__fact">
+          <span class="pillar-block__fact-label" data-it="Target packaging riciclato" data-en="Recycled packaging target">Target packaging riciclato</span>
+          <span class="pillar-block__fact-val" data-it="In transizione" data-en="In transition">In transizione</span>
+        </div>
+        <div class="pillar-block__fact">
+          <span class="pillar-block__fact-label" data-it="Over-wrapping" data-en="Over-wrapping">Over-wrapping</span>
+          <span class="pillar-block__fact-val" data-it="Eliminato dove possibile" data-en="Eliminated where possible">Eliminato dove possibile</span>
+        </div>
+        <div class="pillar-block__fact">
+          <span class="pillar-block__fact-label" data-it="Approccio" data-en="Approach">Approccio</span>
+          <span class="pillar-block__fact-val" data-it="Riduzione graduale certificata" data-en="Gradual certified reduction">Riduzione graduale certificata</span>
+        </div>
+      </div>
+    </div>
+    <div class="pillar-block__visual">
+      <div class="photo-slot photo-slot--4x5">
+        <!-- SOSTITUIRE: foto packaging riciclato/riciclabile (flaconi vuoti, cartoni) · 4:3 · 1600px+ · da reperire -->
+        <svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        <span class="photo-slot__label">Packaging riciclato — flaconi vuoti e cartoni</span>
+      </div>
+      <div class="pillar-block__visual-n" aria-hidden="true">03</div>
+      <div class="pillar-block__svg-deco">
+        <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="opacity:.18;">
+          <!-- frecce ciclo riciclaggio stilizzate -->
+          <circle cx="100" cy="100" r="65" stroke="rgba(201,169,110,.3)" stroke-width="1" stroke-dasharray="6 4"/>
+          <!-- freccia 1 top-right -->
+          <path d="M100 35 A65 65 0 0 1 165 100" stroke="rgba(201,169,110,1)" stroke-width="1.5" fill="none"/>
+          <polygon points="165,100 158,88 172,90" fill="rgba(201,169,110,1)"/>
+          <!-- freccia 2 bottom -->
+          <path d="M165 100 A65 65 0 0 1 35 100" stroke="rgba(201,169,110,1)" stroke-width="1.5" fill="none"/>
+          <polygon points="35,100 42,112 28,110" fill="rgba(201,169,110,1)"/>
+          <!-- freccia 3 top-left -->
+          <path d="M35 100 A65 65 0 0 1 100 35" stroke="rgba(201,169,110,1)" stroke-width="1.5" fill="none"/>
+          <polygon points="100,35 88,42 90,28" fill="rgba(201,169,110,1)"/>
+          <!-- flacone al centro -->
+          <rect x="86" y="78" width="28" height="42" rx="4" stroke="rgba(255,255,255,.5)" stroke-width="1" fill="none"/>
+          <rect x="90" y="70" width="20" height="10" rx="2" stroke="rgba(255,255,255,.4)" stroke-width="1" fill="none"/>
+        </svg>
+      </div>
+      <span class="pillar-block__photo-hint" data-it="Packaging sostenibile" data-en="Sustainable packaging">Packaging sostenibile</span>
+    </div>
+  </div>
+</div>
+
+<!-- CERTIFICAZIONI -->
+<section class="certs-section" id="certs">
+  <div class="container">
+    <div style="display:flex; gap:16px; align-items:center; margin-bottom:0;">
+      <span class="num">— 03</span>
+      <div class="eyebrow" data-it="— 03 / Le nostre certificazioni" data-en="— 03 / Our certifications">— 03 / Le nostre certificazioni</div>
+    </div>
+    <h2 style="font-family:var(--display); font-size:clamp(30px,4vw,68px); font-weight:200; letter-spacing:-0.04em; line-height:.95; max-width:22ch; margin: 16px 0 clamp(12px,1.5vw,18px);" data-reveal>
+      <span data-it="Sette firme indipendenti " data-en="Seven independent signatures ">Sette firme indipendenti </span><em style="font-style:italic; color:var(--gold);" data-it="su ogni nostra formula." data-en="on every formula.">su ogni nostra formula.</em>
+    </h2>
+    <p style="font-family:var(--serif); font-size:clamp(18px,1.5vw,22px); line-height:1.65; opacity:.75; max-width:64ch; margin: 0 0 clamp(40px,5vw,60px);" data-it="Clicca su ogni certificazione per leggere cosa significa concretamente per i nostri prodotti e la nostra produzione." data-en="Click on each certification to read what it concretely means for our products and production.">Clicca su ogni certificazione per leggere cosa significa concretamente per i nostri prodotti e la nostra produzione.</p>
+    <div class="certs-grid" id="certsGrid"></div>
+  </div>
+</section>
+
+<!-- CERTIFICATION FULLSCREEN PANEL -->
+<div class="cert-panel" id="certPanel" role="dialog" aria-modal="true">
+  <div class="cert-panel__backdrop" id="certBackdrop"></div>
+  <div class="cert-panel__sheet" data-lenis-prevent>
+    <div class="cert-panel__close"><button id="certClose" aria-label="Chiudi">&#x2715;</button></div>
+    <div class="cert-panel__hero">
+      <div class="cert-panel__hero-bg" id="cpHeroBg"></div>
+      <div class="cert-panel__hero-overlay"></div>
+      <div class="cert-panel__hero-label" id="cpHeroLabel"></div>
+    </div>
+    <div class="cert-panel__body">
+      <div class="cert-panel__badge" id="cpBadge"></div>
+      <div class="cert-panel__title" id="cpTitle"></div>
+      <div class="cert-panel__lead" id="cpLead"></div>
+      <div id="cpStory"></div>
+      <div class="cert-panel__desc" id="cpDesc"></div>
+      <div class="cert-panel__facts" id="cpFacts"></div>
+      <div class="cert-panel__quote" id="cpQuote"></div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="eco-cta">
+  <div class="container" style="position:relative; z-index:1;">
+    <h2 data-reveal>
+      <span data-it="La stessa fabbrica. " data-en="The same factory. ">La stessa fabbrica. </span><em data-it="Da quando siamo nati." data-en="Since we were born.">Da quando siamo nati.</em>
+    </h2>
+    <p data-reveal data-it="Cinquantacinque anni nello stesso posto, con le stesse persone, con gli stessi valori. La continuità è la nostra forma di sostenibilità più antica." data-en="Fifty-five years in the same place, with the same people, with the same values. Continuity is our oldest form of sustainability.">Cinquantacinque anni nello stesso posto, con le stesse persone, con gli stessi valori. La continuità è la nostra forma di sostenibilità più antica.</p>
+    <a href="index.html" class="link-arrow" data-reveal style="color:var(--cream);text-decoration:none;" data-it="Scopri la nostra storia" data-en="Discover our story">Scopri la nostra storia</a>
+  </div>
+</section>
+
+<script src="assets/vendor/lenis.min.js" defer></script><script src="assets/data.js"></script>
+<script src="assets/search-data.js" defer></script>
+<script src="assets/app.js?v=6"></script>
+<script>
+initAthenas('eco');
+document.querySelector('.topbar').classList.add('topbar--light');
+
+// particelle hero
+(function() {
+  const sh = document.querySelector('.sh');
+  for (let i = 0; i < 28; i++) {
+    const p = document.createElement('div');
+    p.className = 'sh__particle';
+    const size = 2 + Math.random() * 3;
+    p.style.cssText = `
+      left: ${10 + Math.random() * 80}%;
+      top: ${20 + Math.random() * 70}%;
+      width: ${size}px; height: ${size}px;
+      --dx: ${(Math.random() - .5) * 60}px;
+      animation: eco-particle ${6 + Math.random() * 10}s ease-in-out ${Math.random() * 8}s infinite;
+      opacity: 0;
+    `;
+    sh.appendChild(p);
+  }
+})();
+
+// IntersectionObserver
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll(
+  '.impact-item, .pillar-block__text, .pillar-block__visual, [data-reveal]'
+).forEach(el => obs.observe(el));
+
+// ── DATI CERTIFICAZIONI (allineate al documento ufficiale) ─
+const CERTS = [
+  {
+    id: 'bioagricert',
+    name: 'Plant Based',
+    badge: 'Bioagricert',
+    tagline: 'La certificazione di terza parte sulla naturalità delle formule',
+    lead: 'Bioagricert (www.bioagricert.org) è l\'ente certificatore terzo che rilascia la certificazione "Plant Based": garantisce che le nostre formule siano costituite prevalentemente da ingredienti vegetali e altre sostanze naturali, escluse materie prime di origine animale.',
+    desc: 'È l\'unica certificazione di terza parte presente sui nostri prodotti L\'Erboristica con ente certificatore esplicitamente dichiarato in etichetta. Bioagricert verifica la composizione di ogni formula sia in fase di formulazione che attraverso audit periodici sullo stabilimento. La certificazione "Plant Based" è esposta su 70 dei 87 prodotti L\'Erboristica e copre integralmente anche la linea EVERBY.',
+    facts: [
+      { label: 'Ente certificatore', val: 'Bioagricert' },
+      { label: 'Tipo', val: 'Terza parte indipendente' },
+      { label: 'Esposizione prodotti', val: '70/87 L\'Erboristica' },
+      { label: 'Linee coperte', val: 'L\'Erboristica + EVERBY' },
+    ],
+    quote: '"Plant Based non è uno slogan: è una certificazione documentata, audit-driven, esposta su ogni etichetta che la riporta."',
+    bg: 'linear-gradient(155deg, #2d3a2e 0%, #3e4a3a 50%, #5a6b4e 100%)',
+  },
+  {
+    id: 'vegan',
+    name: 'Vegan',
+    badge: 'Etica Animale',
+    tagline: 'Per ogni prodotto che riporta il logo, nessun ingrediente animale.',
+    lead: 'Athena\'s, in linea con il Regolamento Europeo, si oppone alla sperimentazione sugli animali. Il logo Vegan viene apposto sui prodotti che non contengono materie prime di origine animale, né ottenute attraverso lo sfruttamento di animali.',
+    desc: 'Il claim Vegan è prodotto-per-prodotto, non aziendale: solo i prodotti che riportano esplicitamente il logo sono vegani certificati. Sui 87 prodotti L\'Erboristica esposti su erboristica.com, 64 espongono il logo Vegan; le linee EVERBY (10 prodotti) sono certificate Vegan in modo completo, anche dove il badge non è ancora visibile sulla scheda online.',
+    facts: [
+      { label: 'Riferimento', val: 'Regolamento UE' },
+      { label: 'Esposizione', val: '64/87 L\'Erboristica' },
+      { label: 'Linea EVERBY', val: 'Vegan completo' },
+      { label: 'Verifica', val: 'Per singolo prodotto' },
+    ],
+    quote: '"Mettere il logo Vegan dove serve davvero — non ovunque, non come moda — è la nostra forma di rispetto per chi lo cerca."',
+    bg: 'linear-gradient(155deg, #1a3010 0%, #2a5020 50%, #4a8040 100%)',
+  },
+  {
+    id: 'dermatologico',
+    name: 'Dermatologicamente Testato',
+    badge: 'Università di Ferrara',
+    tagline: 'In collaborazione col Dipartimento di Cosmetologia.',
+    lead: 'Athena\'s collabora con il Dipartimento di Cosmetologia dell\'Università di Ferrara per la realizzazione di studi di valutazione di efficacia, tollerabilità cutanea e oculare, e controllo microbiologico dei prodotti.',
+    desc: 'I test sono condotti da dermatologi e ricercatori universitari su panel controllati. Il protocollo include misurazioni strumentali e valutazioni cliniche in condizioni standardizzate. Sui 87 prodotti L\'Erboristica esposti, 75 (86%) riportano il claim "dermatologicamente testato"; i prodotti che non lo riportano sono prevalentemente i profumi roll-on Kaley e alcuni saponi vegetali.',
+    facts: [
+      { label: 'Partner', val: 'Università di Ferrara' },
+      { label: 'Dipartimento', val: 'Cosmetologia' },
+      { label: 'Ambito', val: 'Efficacia + tollerabilità' },
+      { label: 'Esposizione prodotti', val: '75/87 L\'Erboristica' },
+    ],
+    quote: '"Affidare i test a un\'università significa accettare che i risultati siano pubblici, replicabili, e indipendenti dalla nostra opinione."',
+    bg: 'linear-gradient(155deg, #1a1a2a 0%, #2a2a4a 50%, #4a4a7a 100%)',
+  },
+  {
+    id: 'energia-solare',
+    name: 'Energia Solare',
+    badge: 'Impianto Fotovoltaico',
+    tagline: 'Oltre l\'80% del fabbisogno produttivo dal nostro fotovoltaico.',
+    lead: 'Lo stabilimento Athena\'s di Pianoro (BO) si autoalimenta con energia pulita per oltre l\'80% della propria produzione, grazie all\'impianto fotovoltaico installato sui tetti dello stabilimento.',
+    desc: 'È la certificazione più capillare a livello prodotto: 81 dei 87 prodotti L\'Erboristica (93%) riportano l\'icona "Energia Solare" sulla scheda erboristica.com. La copertura include l\'intera linea EVERBY, Kaley e Sphea — perché l\'impianto alimenta uno stabilimento unico, condiviso da tutti i nostri brand.',
+    facts: [
+      { label: 'Copertura energetica', val: '> 80%' },
+      { label: 'Stabilimento', val: 'Pianoro (BO)' },
+      { label: 'Esposizione prodotti', val: '81/87 L\'Erboristica' },
+      { label: 'Linee coperte', val: 'Tutti i brand Athena\'s' },
+    ],
+    quote: '"Il sole sopra Pianoro alimenta ogni flacone che lascia la fabbrica. Non è un dettaglio: è oltre l\'80% del nostro consumo."',
+    bg: 'linear-gradient(155deg, #2a1e10 0%, #4a3a20 50%, #d4a83a 100%)',
+  },
+  {
+    id: 'metalli-pesanti',
+    name: 'Test Nichel · Cromo · Cobalto',
+    badge: 'Allergeni da contatto',
+    tagline: 'Formulati per ridurre al minimo il rischio di allergie da contatto.',
+    lead: 'Tutti i prodotti della linea "L\'Erboristica di Athena\'s dal 1969" sono testati per Nichel, Cromo e Cobalto — i tre metalli pesanti più comunemente responsabili di reazioni allergiche da contatto cutaneo.',
+    desc: 'I test misurano la presenza residua di tracce di metalli derivanti da materie prime, attrezzature di produzione o packaging primario. La soglia di tolleranza adottata da Athena\'s è inferiore ai limiti regolatori europei. Sui 87 prodotti L\'Erboristica esposti, 67 (77%) riportano il claim "test metalli pesanti"; il claim si applica integralmente anche a EVERBY.',
+    facts: [
+      { label: 'Metalli testati', val: 'Nichel · Cromo · Cobalto' },
+      { label: 'Soglia interna', val: '< limiti EU' },
+      { label: 'Linee coperte', val: 'L\'Erboristica + EVERBY' },
+      { label: 'Esposizione prodotti', val: '67/87 L\'Erboristica' },
+    ],
+    quote: '"Per chi ha la pelle reattiva ai metalli, ogni dettaglio conta. I nostri test arrivano dove la regolamentazione non chiede di arrivare."',
+    bg: 'linear-gradient(155deg, #3a0a0a 0%, #6a1a1a 50%, #a03030 100%)',
+  },
+  {
+    id: 'opimm',
+    name: 'OPIMM',
+    badge: 'Lavoro Inclusivo',
+    tagline: 'Confezionamento svolto con persone con disabilità.',
+    lead: 'Una parte significativa delle attività di confezionamento Athena\'s è svolta dal centro di lavoro protetto OPIMM (www.opimm.it), un\'organizzazione bolognese che da decenni promuove l\'inclusione lavorativa di persone con disabilità.',
+    story: {
+      it: 'Una parte significativa delle attività di confezionamento secondario di Athena\'s è svolta dal centro di lavoro protetto OPIMM, con sede a Bologna. La collaborazione coinvolge persone con disabilità in un percorso di inclusione professionale concreta. Non è una scelta simbolica: è una parte strutturale del nostro processo produttivo.',
+      en: 'A significant part of Athena\'s secondary packaging activities is carried out by OPIMM, a Bologna-based protected work centre. The collaboration involves people with disabilities in a path of concrete professional inclusion. It is not a symbolic choice: it is a structural part of our production process.',
+      ref: 'opimm.it', refHref: 'https://opimm.it', scope: 'Confezionamento secondario',
+    },
+    desc: 'Non è una certificazione di prodotto né un marchio commerciale: è una scelta etica e sociale che riteniamo importante dichiarare. Il rapporto con OPIMM è continuativo da molti anni e copre fasi del confezionamento secondario di linee selezionate. È citata nelle pagine istituzionali di entrambi i siti (athenas.it e erboristica.com) come parte del nostro impegno sull\'etica della filiera.',
+    facts: [
+      { label: 'Tipo', val: 'Scelta etica · sociale' },
+      { label: 'Partner', val: 'OPIMM (Bologna)' },
+      { label: 'Ambito', val: 'Confezionamento secondario' },
+      { label: 'Continuità', val: 'Pluriennale' },
+    ],
+    quote: '"OPIMM non è un fornitore: è una comunità con cui lavoriamo da anni. La scelta più importante, sull\'etichetta, è il nome di chi ha messo le mani su quel prodotto."',
+    bg: 'linear-gradient(155deg, #1a2a1e 0%, #2a4a3a 50%, #4a7050 100%)',
+  },
+  {
+    id: 'madeinitaly',
+    name: '100% Made in Italy',
+    badge: 'Produzione Italiana',
+    tagline: 'Tutto in Italia, sotto lo stesso tetto.',
+    lead: 'Il claim 100% Made in Italy per Athena\'s significa che ogni fase — ricerca, formulazione, produzione, riempimento, etichettatura e confezionamento primario — avviene sotto lo stesso tetto, nello stabilimento di Via del Lavoro 32, a Pianoro (BO), in Emilia-Romagna.',
+    desc: 'Il modello produttivo verticalmente integrato di Athena\'s è una rarità nel cosmetico moderno: non utilizziamo produttori conto terzi per i nostri brand. Ogni prodotto viene ideato nel laboratorio R&S, formulato dai nostri chimici, prodotto nei nostri impianti e confezionato dalle nostre linee. Lavoriamo anche per private label, ma sempre nello stesso stabilimento e con gli stessi standard.',
+    facts: [
+      { label: 'Stabilimento', val: 'Via del Lavoro 32, Pianoro (BO)' },
+      { label: 'Fondato', val: '1969' },
+      { label: 'Modello', val: '100% verticalmente integrato' },
+      { label: 'Brand prodotti', val: 'L\'Erboristica · EVERBY · Kaley · Sphea' },
+    ],
+    quote: '"Fare tutto in Italia, nello stesso posto da sempre, non è nostalgia: è la scelta più coerente con chi siamo e cosa vogliamo continuare a essere."',
+    bg: 'linear-gradient(155deg, #2a1a0a 0%, #4a3a1a 50%, #8a7040 100%)',
+  },
+];
+
+const CERT_ICONS = {
+  bioagricert: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>`,
+  vegan: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M7 9l5 7 5-7"/></svg>`,
+  dermatologico: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>`,
+  'energia-solare': `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>`,
+  'metalli-pesanti': `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><circle cx="19" cy="6" r="2"/><circle cx="5" cy="6" r="2"/><circle cx="12" cy="20" r="2"/><path d="M14.12 10.12L17.5 7.5M9.88 10.12L6.5 7.5M12 15v3"/></svg>`,
+  opimm: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="8.5" r="1.5"/><path d="M8.5 17.5c0-2 1.6-3.5 3.5-3.5s3.5 1.5 3.5 3.5"/></svg>`,
+  madeinitaly: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="1"/><line x1="9" y1="5" x2="9" y2="19"/><line x1="15" y1="5" x2="15" y2="19"/></svg>`,
+};
+const CERT_BADGES_IT = {
+  bioagricert: 'Bioagricert · Terza parte',
+  vegan: 'Etica animale · Per prodotto',
+  dermatologico: 'Università di Ferrara · Clinico',
+  'energia-solare': 'Fotovoltaico · >80% consumo',
+  'metalli-pesanti': 'Nichel · Cromo · Cobalto',
+  opimm: 'Lavoro inclusivo · Bologna',
+  madeinitaly: 'Produzione italiana · 100%',
+};
+const CERT_BADGES_EN = {
+  bioagricert: 'Bioagricert · Third party',
+  vegan: 'Animal ethics · Per product',
+  dermatologico: 'University of Ferrara · Clinical',
+  'energia-solare': 'Solar power · >80% consumption',
+  'metalli-pesanti': 'Nickel · Chromium · Cobalt',
+  opimm: 'Inclusive work · Bologna',
+  madeinitaly: 'Italian production · 100%',
+};
+const CERT_NAMES_EN = {
+  dermatologico: 'Dermatologically Tested',
+  'energia-solare': 'Solar Energy',
+  'metalli-pesanti': 'Heavy Metal Test',
+};
+const CERT_TAGLINES_EN = {
+  bioagricert: 'Third-party certification of formula naturalness.',
+  vegan: 'For every product bearing the logo, no animal ingredients.',
+  dermatologico: 'In collaboration with the Department of Cosmetology.',
+  'energia-solare': 'Over 80% of production energy from our solar plant.',
+  'metalli-pesanti': 'Formulated to minimise the risk of contact allergies.',
+  opimm: 'Packaging carried out by workers with disabilities.',
+  madeinitaly: 'Everything in Italy, under one roof.',
+};
+
+const CERT_LOGOS = {
+  bioagricert: 'immagini/sostenibilita/logos/bioagricert.png',
+  vegan: 'immagini/sostenibilita/logos/vegan.png',
+  dermatologico: 'immagini/sostenibilita/logos/dermatologicamente-testato.png',
+  'energia-solare': 'immagini/sostenibilita/logos/energia-solare.png',
+  'metalli-pesanti': 'immagini/sostenibilita/logos/test-metalli.png',
+  opimm: 'immagini/sostenibilita/logos/opimm.png',
+  madeinitaly: 'immagini/sostenibilita/logos/made-in-italy.png',
+};
+
+const certsGrid = document.getElementById('certsGrid');
+const certObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); certObs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+
+function renderCertsGrid() {
+  const lang = (typeof ATH !== 'undefined') ? ATH.lang : 'it';
+  certsGrid.innerHTML = '';
+  CERTS.forEach((c, i) => {
+    const isBig = i === 0;
+    const card = document.createElement('article');
+    card.className = 'cert-card' + (isBig ? ' cert-card--big' : '');
+    card.setAttribute('data-cert', c.id || '');
+    if (c.id) card.id = c.id;
+    card.style.setProperty('--d', (i * 60) + 'ms');
+    const name = lang === 'en' ? (CERT_NAMES_EN[c.id] || c.name) : c.name;
+    const tagline = lang === 'en' ? (CERT_TAGLINES_EN[c.id] || c.tagline) : c.tagline;
+    const badge = lang === 'en' ? (CERT_BADGES_EN[c.id] || c.badge) : (CERT_BADGES_IT[c.id] || c.badge);
+    const cta = lang === 'en' ? '→ Learn more' : '→ Approfondisci';
+    card.innerHTML = `
+      <div class="cert-card__logo">
+        <!-- SOSTITUIRE: logo ufficiale ente certificatore (PNG trasparente o SVG, 200x200px) — disponibile in immagini/sostenibilita/logos/ quando caricato -->
+      </div>
+      <div class="cert-card__icon">${CERT_ICONS[c.id] || ''}</div>
+      <h3 class="cert-card__name">${name}</h3>
+      <span class="cert-card__badge">${badge}</span>
+      <p class="cert-card__tagline">${tagline}</p>
+      <span class="cert-card__cta">${cta}</span>
+    `;
+    card.addEventListener('click', () => openCert(c));
+    certsGrid.appendChild(card);
+    certObs.observe(card);
+  });
+}
+renderCertsGrid();
+document.addEventListener('lang-change', renderCertsGrid);
+
+const certPanel = document.getElementById('certPanel');
+document.getElementById('certClose').addEventListener('click', closeCert);
+document.getElementById('certBackdrop').addEventListener('click', closeCert);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCert(); });
+
+function openCert(c) {
+  if (window.lenis) window.lenis.stop();
+  document.getElementById('cpHeroBg').style.background = c.bg;
+  document.getElementById('cpHeroLabel').textContent = c.name;
+  document.getElementById('cpBadge').textContent = c.badge;
+  document.getElementById('cpTitle').textContent = c.tagline;
+  document.getElementById('cpLead').textContent = c.lead;
+  document.getElementById('cpDesc').textContent = c.desc;
+  document.getElementById('cpQuote').textContent = c.quote;
+  const facts = document.getElementById('cpFacts');
+  facts.innerHTML = c.facts.map(f => `<div class="cert-panel__fact"><label>${f.label}</label><span>${f.val}</span></div>`).join('');
+  const storyEl = document.getElementById('cpStory');
+  if (c.story) {
+    const isEn = typeof ATH !== 'undefined' && ATH.lang === 'en';
+    const titleIt = 'La storia della collaborazione', titleEn = 'The story of the collaboration';
+    storyEl.innerHTML = `<div class="cert-dialog__story">
+      <div class="cert-dialog__story-title">${isEn ? titleEn : titleIt}</div>
+      <p class="cert-dialog__story-body">${isEn ? c.story.en : c.story.it}</p>
+      <div class="cert-dialog__story-meta">
+        <span>${isEn ? 'Reference' : 'Riferimento'} · <a href="${c.story.refHref}" target="_blank" rel="noopener">${c.story.ref}</a></span>
+        <span>${isEn ? 'Scope' : 'Ambito'} · ${c.story.scope}</span>
+      </div>
+    </div>`;
+  } else {
+    storyEl.innerHTML = '';
+  }
+  certPanel.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCert() {
+  certPanel.classList.remove('open');
+  document.body.style.overflow = '';
+  if (window.lenis) window.lenis.start();
+}
+
+// ── CANVAS PARTICELLE BOTANICHE HERO ──────────────────────────────
+(function() {
+  const sh = document.querySelector('.sh');
+  if (!sh) return;
+  const canvas = document.createElement('canvas');
+  canvas.className = 'eco-canvas';
+  sh.insertBefore(canvas, sh.querySelector('.sh__grid'));
+  const ctx = canvas.getContext('2d');
+  const mouse = { x: null, y: null };
+  const COLORS = [
+    [138,154,123], [201,169,110], [255,255,255]
+  ];
+  let particles = [], rafId, W, H;
+
+  function resize() {
+    W = canvas.width = sh.offsetWidth;
+    H = canvas.height = sh.offsetHeight;
+  }
+  window.addEventListener('resize', resize, { passive: true });
+  resize();
+
+  function Particle() { this.reset(true); }
+  Particle.prototype.reset = function(init) {
+    this.x = Math.random() * W;
+    this.y = init ? Math.random() * H : H + 5;
+    this.vx = (Math.random() - .5) * .28;
+    this.vy = -(Math.random() * .25 + .08);
+    this.r  = .6 + Math.random() * 1.6;
+    this.c  = COLORS[Math.floor(Math.random() * COLORS.length)];
+    this.a  = .15 + Math.random() * .35;
+    this.life = 0;
+    this.maxLife = 250 + Math.random() * 350;
+  };
+  Particle.prototype.update = function() {
+    this.life++;
+    if (this.life > this.maxLife || this.y < -10) { this.reset(false); return; }
+    if (mouse.x !== null) {
+      const dx = this.x - mouse.x, dy = this.y - mouse.y;
+      const d = Math.sqrt(dx*dx + dy*dy);
+      if (d < 110) {
+        const f = (110 - d) / 110 * .45;
+        this.vx += dx/d * f;
+        this.vy += dy/d * f;
+      }
+    }
+    this.vx *= .97; this.vy *= .97;
+    this.x += this.vx; this.y += this.vy;
+    if (this.x < 0) this.x = W; if (this.x > W) this.x = 0;
+  };
+  Particle.prototype.draw = function() {
+    const fade = Math.min(this.life/50, 1, (this.maxLife-this.life)/50);
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.r, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(${this.c[0]},${this.c[1]},${this.c[2]},${this.a*fade})`;
+    ctx.fill();
+  };
+
+  const N = Math.min(Math.floor(W*H/11000), 90);
+  for (let i=0; i<N; i++) { particles.push(new Particle()); }
+
+  function drawLines() {
+    const D = 95;
+    for (let a=0; a<particles.length; a++) {
+      for (let b=a+1; b<particles.length; b++) {
+        const dx = particles[a].x-particles[b].x, dy = particles[a].y-particles[b].y;
+        const d = Math.sqrt(dx*dx+dy*dy);
+        if (d < D) {
+          ctx.beginPath();
+          ctx.moveTo(particles[a].x, particles[a].y);
+          ctx.lineTo(particles[b].x, particles[b].y);
+          ctx.strokeStyle = `rgba(201,169,110,${(1-d/D)*.055})`;
+          ctx.lineWidth = .4; ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0,0,W,H);
+    drawLines();
+    particles.forEach(p => { p.update(); p.draw(); });
+    rafId = requestAnimationFrame(animate);
+  }
+
+  const visObs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) { animate(); }
+    else { cancelAnimationFrame(rafId); }
+  });
+  visObs.observe(sh);
+
+  sh.addEventListener('mousemove', e => {
+    const rect = sh.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  }, { passive: true });
+  sh.addEventListener('mouseleave', () => { mouse.x = mouse.y = null; });
+})();
+
+// ── CONTATORI ANIMATI NUMERI IMPATTO ──────────────────────────────
+(function() {
+  function countUp(el, target, duration) {
+    const start = performance.now();
+    function step(now) {
+      const t = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - t, 3);
+      const val = Math.round(ease * target);
+      for (const node of el.childNodes) {
+        if (node.nodeType === 3 && node.textContent.trim() !== '') {
+          node.textContent = val;
+          break;
+        }
+      }
+      if (t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  const cntObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const raw = parseInt(el.textContent.trim());
+      if (!isNaN(raw) && raw > 1) countUp(el, raw, 6500);
+      cntObs.unobserve(el);
+    });
+  }, { threshold: .6 });
+
+  document.querySelectorAll('.impact-n').forEach(el => cntObs.observe(el));
+})();
+
+// ── SVG RIGENERATIVO DRAW-ON-SCROLL ───────────────────────────────
+(function() {
+  const wrap = document.getElementById('regenWrap');
+  if (!wrap) return;
+  const circle = document.getElementById('regenCircle');
+  const arc1   = document.getElementById('regenArc1');
+  const arc2   = document.getElementById('regenArc2');
+  const arc3   = document.getElementById('regenArc3');
+  const stem   = document.getElementById('regenStem');
+  const leafL  = document.getElementById('regenLeafL');
+  const leafR  = document.getElementById('regenLeafR');
+
+  const seq = [
+    { el: circle, len: 879.6, delay: 0,    dur: .4 },
+    { el: arc1,   len: 220,   delay: .35,  dur: .22 },
+    { el: arc2,   len: 220,   delay: .52,  dur: .22 },
+    { el: arc3,   len: 220,   delay: .69,  dur: .22 },
+    { el: stem,   len: 60,    delay: .86,  dur: .1  },
+    { el: leafL,  len: 50,    delay: .92,  dur: .08 },
+    { el: leafR,  len: 50,    delay: .96,  dur: .08 },
+  ];
+
+  let drawn = false;
+  const regenObs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting && !drawn) {
+      drawn = true;
+      seq.forEach(s => {
+        s.el.style.transition = `stroke-dashoffset ${s.dur}s cubic-bezier(.22,.61,.36,1) ${s.delay}s`;
+        s.el.style.strokeDashoffset = '0';
+      });
+    }
+  }, { threshold: .3 });
+  regenObs.observe(wrap);
+})();
+
+// ── CERT CARD 3D TILT ─────────────────────────────────────────────
+(function() {
+  document.querySelectorAll('.cert-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top  + rect.height / 2;
+      const rx = ((e.clientY - cy) / (rect.height / 2)) * -5;
+      const ry = ((e.clientX - cx) / (rect.width  / 2)) *  5;
+      card.style.transform = `perspective(700px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.02)`;
+    }, { passive: true });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+})();
+</script>
+</body>
+</html>

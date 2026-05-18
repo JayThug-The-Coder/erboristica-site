@@ -1,0 +1,2267 @@
+﻿<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Athena's — Manifattura di cosmetica naturale dal 1969</title>
+<link rel="preload" href="assets/fonts/fraunces-200-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="stylesheet" href="assets/fonts.css"/>
+<link rel="stylesheet" href="assets/tokens.css"/>
+
+<style>
+
+/* ── HERO CINEMATICO ─────────────────────────────────────── */
+.pg-hero {
+  position: relative;
+  height: 100svh;
+  min-height: 640px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  color: #fff;
+}
+
+/* Sfondo CSS animato — SOSTITUIRE con <video> quando disponibile */
+/* <!-- SOSTITUIRE: aggiungere <video autoplay muted loop playsinline> con src del video botanico --> */
+.pg-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 70% 70% at 80% 20%, rgba(201,169,110,.18) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 80% at 15% 80%, rgba(90,107,78,.3) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 50% 50%, rgba(45,58,46,.4) 0%, transparent 70%),
+    linear-gradient(155deg, #1a1f1a 0%, #2d3a2e 45%, #1a1a1a 100%);
+  animation: hero-breathe 12s ease-in-out infinite alternate;
+}
+@keyframes hero-breathe {
+  from { filter: brightness(1) saturate(1); }
+  to   { filter: brightness(1.06) saturate(1.1); }
+}
+
+/* Particella botanica animata (foglia/fiore astratto) */
+.pg-hero__particle {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+.pg-hero__particle::before,
+.pg-hero__particle::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  opacity: .06;
+  animation: float-particle 20s ease-in-out infinite;
+}
+.pg-hero__particle::before {
+  width: 600px; height: 600px;
+  top: -100px; right: -100px;
+  background: radial-gradient(circle, rgba(201,169,110,1), transparent 70%);
+  animation-duration: 24s;
+}
+.pg-hero__particle::after {
+  width: 400px; height: 400px;
+  bottom: 0; left: 10%;
+  background: radial-gradient(circle, rgba(90,107,78,1), transparent 70%);
+  opacity: .1;
+  animation-duration: 18s;
+  animation-delay: -8s;
+}
+@keyframes float-particle {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -20px) scale(1.05); }
+  66% { transform: translate(-20px, 10px) scale(.97); }
+}
+
+/* Overlay gradiente scuro in basso */
+.pg-hero__overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg,
+    rgba(0,0,0,.25) 0%,
+    transparent 25%,
+    transparent 55%,
+    rgba(0,0,0,.6) 100%);
+}
+
+/* Parallax wrapper — JS sposta translateY */
+.pg-hero__parallax {
+  position: absolute;
+  inset: -20%;
+  z-index: 0;
+  will-change: transform;
+}
+
+.pg-hero__content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 60px) clamp(50px, 7vw, 100px);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  column-gap: clamp(40px, 6vw, 100px);
+  row-gap: clamp(28px, 3vw, 44px);
+  align-items: end;
+}
+.pg-hero__main {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+  min-width: 0;
+}
+.pg-hero__year-stack {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  align-self: end;
+  text-align: right;
+  margin-bottom: clamp(20px, 2vw, 40px);
+}
+@media (max-width: 760px) {
+  .pg-hero__content { grid-template-columns: 1fr; }
+  .pg-hero__year-stack { grid-column: 1; grid-row: auto; text-align: left; margin-bottom: 24px; }
+  .pg-hero__main { grid-column: 1; grid-row: auto; }
+}
+
+.pg-hero__year {
+  font-family: var(--display);
+  font-size: clamp(40px, 4.5vw, 72px);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-style: italic;
+  color: var(--gold);
+  opacity: .85;
+}
+.pg-hero__year-label {
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  opacity: .5;
+  margin-top: 6px;
+  font-family: var(--sans);
+}
+
+.pg-hero h1 {
+  font-family: var(--display);
+  font-size: clamp(56px, 10vw, 180px);
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: .92;
+  max-width: 14ch;
+  margin: 0 0 clamp(20px, 2vw, 32px);
+}
+.pg-hero h1 em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.pg-hero__lead {
+  font-family: var(--serif);
+  font-size: clamp(17px,1.5vw,22px);
+  line-height: 1.55;
+  max-width: 48ch;
+  opacity: .8;
+}
+
+/* Scroll indicator */
+.scroll-hint {
+  position: absolute;
+  bottom: clamp(24px, 4vw, 40px);
+  right: clamp(20px, 4vw, 60px);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  opacity: .5;
+  font-family: var(--sans);
+  color: #fff;
+}
+.scroll-hint__line {
+  width: 1px;
+  height: 48px;
+  background: rgba(255,255,255,.4);
+  position: relative;
+  overflow: hidden;
+}
+.scroll-hint__line::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  animation: scroll-line 2s ease-in-out infinite;
+}
+@keyframes scroll-line {
+  0% { top: -100%; opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+/* Variante scroll-hint per sfondi chiari (timeline) — in alto a destra */
+.scroll-hint--top {
+  top: clamp(24px, 4vw, 40px);
+  bottom: auto;
+  color: var(--ink);
+  opacity: .55;
+}
+.scroll-hint--top .scroll-hint__line {
+  background: rgba(26,26,26,.25);
+}
+.scroll-hint--top .scroll-hint__line::after {
+  background: var(--ink);
+}
+
+/* ── SEZIONE VALORI (dark) ───────────────────────────────── */
+.sec { padding: clamp(80px, 12vw, 160px) 0; }
+.sec-dark { background: var(--forest); color: var(--cream); }
+.sec-ink  { background: var(--ink); color: var(--cream); padding-bottom: 0; }
+
+.sec-label {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: clamp(48px, 6vw, 96px);
+}
+
+/* Value zigzag */
+.ve-zigzag {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(48px, 5vw, 72px);
+  margin: 0 calc(-1 * clamp(20px, 4vw, 60px));
+  background: rgba(255,255,255,.03);
+}
+
+.ve-zz {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.ve-zz:nth-child(even) { direction: rtl; }
+.ve-zz:nth-child(even) > * { direction: ltr; }
+
+.ve-zz__visual {
+  position: relative;
+  overflow: hidden;
+  background: #111;
+  min-height: 60vh;
+}
+.ve-zz__visual img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+.ve-zz__visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transition: transform 1s var(--ease);
+}
+.ve-zz:nth-child(1) .ve-zz__visual::before { background: radial-gradient(ellipse at 30% 40%, #5a6b4e 0%, #2d3a2e 55%, #111 100%); }
+.ve-zz:nth-child(2) .ve-zz__visual::before { background: radial-gradient(ellipse at 70% 50%, #c9a96e 0%, #6a4e2a 50%, #111 100%); }
+.ve-zz:nth-child(3) .ve-zz__visual::before { background: radial-gradient(ellipse at 40% 60%, #8a9a7b 0%, #3e4a3a 55%, #111 100%); }
+.ve-zz:hover .ve-zz__visual::before { transform: scale(1.04); }
+
+.ve-zz__ph-tag {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 12px 16px;
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.3);
+  background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, transparent 100%);
+}
+
+.ve-zz__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  padding: clamp(40px, 5vw, 80px) clamp(28px, 4vw, 64px);
+  background: rgba(255,255,255,.03);
+}
+
+.ve-zz__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: .75;
+}
+.ve-zz__eyebrow::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--gold);
+  opacity: .6;
+  flex-shrink: 0;
+}
+
+.ve-zz__head {
+  font-family: var(--display);
+  font-size: clamp(28px, 3vw, 52px);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.ve-zz__head em { color: var(--gold); font-style: italic; }
+
+.ve-zz__body {
+  font-family: var(--serif);
+  font-size: 20px;
+  line-height: 1.72;
+  opacity: .72;
+}
+
+@media (max-width: 900px) {
+  .ve-zigzag { margin: 0; }
+  .ve-zz { grid-template-columns: 1fr; min-height: auto; }
+  .ve-zz:nth-child(even) { direction: ltr; }
+  .ve-zz__visual { aspect-ratio: 4/3; min-height: 0; }
+}
+
+/* ════════════════════════════════════════════════════════════
+   TIMELINE — riscritto da zero
+   Layout deterministico:
+   1. Sezione 100svh sticky con posizionamento absolute interno
+   2. Titolo H2 in alto (y: --tl-title-top)
+   3. Track-outer in zona centrale (y: --tl-track-top)
+   4. Sotto la track: spazio crema garantito fino al fondo
+   ════════════════════════════════════════════════════════════ */
+
+.tl-section { background: var(--cream-2); }
+.tl-pin-outer { position: relative; }
+
+@media (min-width: 961px) {
+  .tl-pin-outer {
+    /* Pin region — scroll moderato */
+    height: calc(100vh + 8000px);
+    --tl-title-top: clamp(50px, 6vh, 80px);
+    --tl-title-left: clamp(12px, 1.5vw, 32px);
+    --tl-track-top: clamp(480px, 56vh, 680px);
+    --tl-photo-w: clamp(720px, 64svh, 1060px);
+    --tl-photo-h: clamp(520px, 62svh, 800px);
+    --tl-slide-w: clamp(720px, 64svh, 1060px);
+    --tl-gap: 0px;
+  }
+
+  .tl-pin-outer .tl-section {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    overflow: hidden;
+  }
+
+  /* Titolo in alto, posizionato absolute */
+  .tl-pin-outer .tl-section .container {
+    position: absolute;
+    top: var(--tl-title-top);
+    left: var(--tl-title-left);
+    right: var(--tl-title-left);
+    z-index: 2;
+  }
+  .tl-pin-outer .sec-label {
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    margin-bottom: clamp(10px, 1.2vw, 16px);
+  }
+  .tl-pin-outer h2[data-reveal] {
+    margin-bottom: 0 !important;
+    font-size: clamp(42px, 6.2vw, 96px) !important;
+    line-height: 1 !important;
+  }
+
+  /* Track-outer — zona dedicata alle foto/timeline */
+  .tl-track-outer {
+    position: absolute;
+    top: var(--tl-track-top);
+    left: 0;
+    right: 0;
+    overflow: visible;
+  }
+
+  /* Track orizzontale */
+  .tl-track {
+    display: flex;
+    gap: var(--tl-gap);
+    padding: 0 clamp(20px, 3.5vw, 48px);
+    will-change: transform;
+    align-items: flex-start;
+  }
+}
+
+/* Slide (un singolo capitolo della timeline) */
+.tl-slide {
+  flex-shrink: 0;
+  width: var(--tl-slide-w);
+  will-change: filter;
+}
+
+/* Foto allineata a sinistra */
+.tl-slide__photo {
+  width: var(--tl-photo-w);
+  height: var(--tl-photo-h);
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(135deg, rgba(90,107,78,.22) 0%, rgba(201,169,110,.18) 100%);
+}
+.tl-slide__photo::after {
+  content: '';
+  position: absolute; inset: 0;
+  box-shadow: inset 0 0 clamp(8px,1vw,14px) clamp(2px,0.4vw,5px) var(--cream-2);
+  pointer-events: none;
+  z-index: 1;
+}
+.tl-slide__photo img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+
+/* Linea continua tra le slide con dot al centro foto */
+.tl-slide__line {
+  position: relative;
+  height: 24px;
+  margin-top: clamp(14px, 1.6vw, 22px);
+}
+.tl-slide__line::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: calc(-1 * var(--tl-gap));
+  top: 50%;
+  height: 1px;
+  background: rgba(26,26,26,.18);
+}
+.tl-slide__dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--gold-deep);
+  border: 2px solid var(--cream-2);
+  outline: 1px solid var(--gold-deep);
+  position: absolute;
+  left: calc(var(--tl-photo-w) / 2);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+}
+
+/* Testo sotto la linea — allineato col bordo sinistro foto */
+.tl-slide__text {
+  padding-top: clamp(16px, 1.6vw, 26px);
+  padding-left: clamp(16px, 2vw, 40px);
+  padding-right: 0;
+  padding-bottom: clamp(180px, 22vh, 280px);
+  margin-right: calc(-1 * var(--tl-gap));
+}
+
+/* Anno + titolo affiancati */
+.tl-slide__header {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(12px, 1.5vw, 22px);
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  margin-bottom: clamp(8px, 1vw, 14px);
+}
+.tl-slide__year {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: clamp(24px, 3.2vw, 48px);
+  font-weight: 300;
+  color: var(--gold-deep);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.tl-slide__title {
+  font-family: var(--display);
+  font-size: clamp(20px, 2.3vw, 34px);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: var(--ink);
+}
+.tl-slide__title em { font-style: italic; color: var(--sage-deep); }
+
+/* Descrizione */
+.tl-slide__desc {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 20px;
+  color: rgba(26,26,26,.6);
+  line-height: 1.55;
+  max-width: var(--tl-photo-w);
+}
+
+/* Sfumatura crema sul lato destro per fondere le slide successive */
+@media (min-width: 961px) {
+  .tl-track-outer::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: -200px;
+    width: clamp(120px, 16vw, 280px);
+    background: linear-gradient(90deg, transparent, var(--cream-2) 80%);
+    pointer-events: none;
+    z-index: 2;
+  }
+}
+
+/* Slide solo testo: slot stretto per avvicinare le foto, testo e dot centrati */
+.tl-slide--text {
+  width: clamp(80px, 10svh, 160px);
+}
+.tl-slide--text .tl-slide__photo {
+  visibility: hidden;
+  width: 100%;
+}
+.tl-slide--text .tl-slide__photo::after {
+  display: none;
+}
+.tl-slide--text .tl-slide__text {
+  width: var(--tl-photo-w);
+  max-width: var(--tl-photo-w);
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: calc(50% - var(--tl-photo-w) / 2);
+  margin-right: 0;
+  text-align: center;
+}
+.tl-slide--text .tl-slide__header {
+  justify-content: center;
+}
+.tl-slide--text .tl-slide__desc {
+  max-width: 100%;
+  text-align: center;
+}
+.tl-slide:not(.tl-slide--text) .tl-slide__dot {
+  display: none;
+}
+.tl-slide--text .tl-slide__dot {
+  left: 50%;
+}
+
+/* Slide con logo brand (Everby, Sphea…) */
+.tl-slide__photo--logo {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(28px, 4vh, 52px) clamp(40px, 5vw, 70px);
+  box-sizing: border-box;
+}
+.tl-slide__photo--logo img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* Override per viewport molto stretti in altezza */
+@media (min-width: 961px) and (max-height: 900px) {
+  .tl-pin-outer {
+    --tl-title-top: clamp(40px, 5vh, 70px);
+    --tl-track-top: clamp(210px, 26vh, 280px);
+    --tl-photo-h: clamp(220px, 30svh, 300px);
+    --tl-photo-w: clamp(520px, 52svh, 720px);
+    --tl-slide-w: clamp(520px, 52svh, 720px);
+    --tl-gap: 28px;
+  }
+  .tl-pin-outer .tl-slide__text {
+    padding-top: clamp(10px, 1vw, 18px);
+    padding-bottom: clamp(20px, 3vh, 50px);
+  }
+  .tl-pin-outer h2[data-reveal] {
+    font-size: clamp(36px, 5.5vw, 80px) !important;
+  }
+}
+
+/* Mobile fallback */
+@media (max-width: 960px) {
+  .tl-track-outer {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .tl-track-outer::-webkit-scrollbar { display: none; }
+  .tl-track { padding-bottom: clamp(24px,5vw,40px); }
+  .tl-slide { width: min(76vw, 340px); }
+  .tl-slide__photo { width: 100%; height: 0; aspect-ratio: 4 / 3; }
+  .tl-slide__text { padding-left: 0; margin-right: 0; }
+  .tl-slide__line::before { right: 0; }
+}
+
+/* ── AZ-BANDS — 3 bande full-bleed (Sez 02) ──────────────── */
+.az-band {
+  position: relative;
+  height: 70svh; min-height: 480px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+.az-band__bg {
+  position: absolute;
+  inset: -20%;
+  background-size: cover; background-position: center;
+  will-change: transform;
+}
+@media (max-width: 860px) {
+  .az-band__bg { inset: 0; transform: none !important; }
+}
+.az-band__overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(0deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.12) 55%, transparent 100%);
+}
+.az-band__content {
+  position: relative; z-index: 1;
+  width: 100%;
+  padding: 0 clamp(24px, 5vw, 80px) clamp(44px, 6vw, 64px);
+  color: #fff;
+}
+.az-band--right .az-band__content { text-align: right; }
+.az-band--center .az-band__content { text-align: center; }
+.az-band__eyebrow {
+  font-family: var(--sans);
+  font-size: 9px; font-weight: 500;
+  letter-spacing: .28em; text-transform: uppercase;
+  opacity: .42; margin-bottom: 14px;
+}
+.az-band__title {
+  font-family: var(--display);
+  font-size: clamp(38px, 5.5vw, 82px);
+  font-weight: 200; line-height: .95;
+  letter-spacing: -0.03em;
+  margin-bottom: 22px;
+}
+.az-band__title em { font-style: italic; color: var(--gold); }
+.az-band__body {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 20px;
+  line-height: 1.65;
+  opacity: .72;
+  max-width: 52ch;
+}
+.az-band--right .az-band__body { margin-left: auto; }
+.az-band--center .az-band__body { margin: 0 auto; }
+.az-band--01 .az-band__bg {
+  background-color: #2d3a2e;
+  background-image: linear-gradient(145deg, #1a2a1c 0%, #2d3a2e 40%, #4a5a3e 80%, #3a4a30 100%);
+}
+.az-band--02 .az-band__bg {
+  background-color: #1a1a16;
+  background-image: linear-gradient(155deg, #0a0a08 0%, #1a1a12 40%, #2a2a1e 70%, #1e1e14 100%);
+}
+.az-band--03 .az-band__bg {
+  background-color: #2a2218;
+  background-image: linear-gradient(135deg, #1a1610 0%, #2a2018 40%, #3a3020 70%, #2a2418 100%);
+}
+
+/* ── NUMERI · TILES CLICCABILI (Sez 02) ──────────────────── */
+.stats-tiles {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(16px, 2vw, 24px);
+}
+@media (max-width: 900px) {
+  .stats-tiles { grid-template-columns: repeat(2, 1fr); }
+}
+.stats-tile {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.1);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+  color: inherit;
+  transition: transform .4s var(--ease), border-color .4s var(--ease);
+}
+.stats-tile:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold);
+}
+.stats-tile__visual {
+  position: absolute; inset: 0;
+}
+.stats-tile__visual::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  filter: grayscale(.4) brightness(.55);
+  transition: transform 1.2s var(--ease), filter .5s var(--ease);
+}
+.stats-tile:hover .stats-tile__visual::before {
+  transform: scale(1.06);
+  filter: grayscale(.1) brightness(.8);
+}
+.stats-tile__visual--01::before { background: radial-gradient(ellipse at 40% 40%, #c9a96e 0%, #2a1f10 60%, #0a0a0a 100%); }
+.stats-tile__visual--02::before { background: radial-gradient(ellipse at 60% 60%, #f0c878 0%, #6a4818 60%, #0a0a0a 100%); }
+.stats-tile__visual--03::before { background: radial-gradient(ellipse at 50% 30%, #5a6b4e 0%, #1f2a18 60%, #0a0a0a 100%); }
+.stats-tile__visual--04::before { background: radial-gradient(ellipse at 30% 70%, #8a9a7b 0%, #2d3a2e 60%, #0a0a0a 100%); }
+.stats-tile__overlay {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: clamp(20px, 2.5vw, 32px);
+  z-index: 1;
+  background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,.65) 100%);
+  text-align: left;
+}
+.stats-tile__big {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: clamp(48px, 5.5vw, 84px);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.stats-tile__sm {
+  font-size: 11px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.7);
+  font-family: var(--sans);
+}
+.stats-tile::after {
+  content: "→";
+  position: absolute;
+  top: clamp(16px, 2vw, 24px);
+  right: clamp(16px, 2vw, 24px);
+  width: 36px; height: 36px;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+  color: rgba(255,255,255,.7);
+  z-index: 2;
+  transition: background .3s, color .3s, border-color .3s;
+}
+.stats-tile:hover::after {
+  background: var(--gold);
+  color: var(--ink);
+  border-color: var(--gold);
+}
+
+/* Modal sheet */
+.stats-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: none;
+  align-items: stretch;
+  justify-content: flex-end;
+}
+.stats-sheet.open { display: flex; }
+.stats-sheet__backdrop {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,.6);
+  backdrop-filter: blur(8px);
+  animation: ssFadeIn .3s ease;
+}
+@keyframes ssFadeIn { from { opacity: 0; } to { opacity: 1; } }
+.stats-sheet__panel {
+  position: relative;
+  width: min(640px, 100%);
+  background: var(--ink);
+  color: var(--cream);
+  overflow-y: auto;
+  border-left: 1px solid rgba(201,169,110,.2);
+  animation: ssSlideIn .4s var(--ease);
+  padding: clamp(80px, 8vw, 120px) clamp(32px, 5vw, 64px) clamp(40px, 5vw, 64px);
+}
+@keyframes ssSlideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+.stats-sheet__close {
+  position: absolute;
+  top: clamp(24px, 3vw, 36px);
+  right: clamp(24px, 3vw, 36px);
+  width: 44px; height: 44px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.18);
+  color: rgba(255,255,255,.6);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  font-family: var(--display);
+  transition: background .25s, color .25s, border-color .25s;
+}
+.stats-sheet__close:hover {
+  background: rgba(201,169,110,.15);
+  color: var(--gold);
+  border-color: var(--gold);
+}
+.stats-sheet__visual {
+  aspect-ratio: 16 / 10;
+  margin-bottom: clamp(28px, 3vw, 40px);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.08);
+}
+.stats-sheet__visual::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+}
+.stats-sheet__num-big {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: clamp(72px, 10vw, 130px);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.stats-sheet__eyebrow {
+  font-size: 10px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.5);
+  margin-bottom: 12px;
+}
+.stats-sheet__title {
+  font-family: var(--display);
+  font-size: clamp(28px, 3vw, 44px);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin: 0 0 24px;
+}
+.stats-sheet__title em { font-style: italic; color: var(--gold); }
+.stats-sheet__lead {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(17px, 1.5vw, 22px);
+  line-height: 1.5;
+  color: rgba(255,255,255,.78);
+  margin: 0 0 28px;
+}
+.stats-sheet__body {
+  font-family: var(--serif);
+  font-size: 20px;
+  line-height: 1.75;
+  color: rgba(255,255,255,.65);
+}
+.stats-sheet__body p { margin: 0 0 18px; }
+.stats-sheet__facts {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  padding: 24px;
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.06);
+}
+.stats-sheet__fact-k {
+  font-size: 9px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+  margin-bottom: 4px;
+}
+.stats-sheet__fact-v {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--gold);
+}
+
+/* ── QUOTE · LAYOUT 2 COLONNE ────────────────────────────── */
+.quote-section .container {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: clamp(40px, 6vw, 100px);
+  align-items: center;
+}
+@media (max-width: 880px) {
+  .quote-section .container { grid-template-columns: 1fr; }
+}
+.quote-photo {
+  position: relative;
+  aspect-ratio: 1;
+  max-width: 260px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.1);
+  justify-self: center;
+}
+.quote-photo::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(155deg, #1a1f15 0%, #2d3a2e 35%, #4a5a3e 70%, #6a7a52 100%);
+  filter: grayscale(.2);
+  transition: transform 1.5s var(--ease);
+}
+.quote-photo:hover::before { transform: scale(1.04); }
+.quote-photo__cap {
+  position: absolute; left: 16px; bottom: 14px;
+  font-size: 9px; letter-spacing: .25em; text-transform: uppercase;
+  color: rgba(255,255,255,.6);
+  z-index: 1;
+}
+
+/* ── QUOTE CINEMATICA ────────────────────────────────────── */
+.quote-section {
+  padding: clamp(20px, 2.4vw, 36px) 0;
+  background:
+    radial-gradient(ellipse 60% 70% at 80% 40%, rgba(201,169,110,.12) 0%, transparent 60%),
+    linear-gradient(150deg, #1e2a1e 0%, #2d3a2e 40%, #1a2420 100%);
+  color: var(--cream);
+  position: relative;
+  overflow: hidden;
+  transition: opacity 0.6s var(--ease);
+  border-top: clamp(28px, 3.5vw, 52px) solid var(--cream-2);
+  border-bottom: clamp(28px, 3.5vw, 52px) solid var(--cream-2);
+}
+.quote-section[data-scroll-state="exiting"] { opacity: 0.25; }
+.quote-section ~ .footer { margin-top: 0; padding-top: clamp(48px, 5vw, 80px); }
+.quote-section::before {
+  content: '"';
+  position: absolute;
+  top: -0.25em;
+  left: -0.04em;
+  font-family: var(--display);
+  font-size: clamp(160px, 22vw, 380px);
+  font-weight: 300;
+  color: var(--gold);
+  opacity: .07;
+  line-height: 1;
+  pointer-events: none;
+  font-style: italic;
+}
+
+.quote-words {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(24px, 2.8vw, 40px);
+  font-weight: 300;
+  letter-spacing: -0.005em;
+  line-height: 1.35;
+  max-width: 28ch;
+  color: rgba(243, 238, 228, 0.92);
+}
+.quote-words .w {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity .5s var(--ease), transform .5s var(--ease);
+}
+.quote-words .w.italic {
+  font-family: var(--display);
+  font-style: italic;
+  color: var(--gold);
+}
+.quote-section cite {
+  display: block;
+  margin-top: clamp(20px, 2.5vw, 32px);
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-style: normal;
+  opacity: .45;
+}
+
+/* ── 4 PILASTRI · Editorial section ─────────────────────── */
+.pillars4-section {
+  background: var(--ink);
+  overflow: hidden;
+  padding-bottom: clamp(80px, 10vw, 140px);
+}
+
+.pillars4__title {
+  font-family: var(--display);
+  font-size: clamp(42px, 7vw, 110px);
+  line-height: .95;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  max-width: 16ch;
+  margin: 0 0 28px;
+  color: #fff;
+}
+.pillars4__title em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.pillars4__intro {
+  font-family: var(--serif);
+  font-size: clamp(16px, 1.4vw, 19px);
+  line-height: 1.55;
+  font-style: italic;
+  color: rgba(255,255,255,.55);
+  max-width: 60ch;
+  margin: 0 0 clamp(48px, 6vw, 80px);
+}
+
+.pillars4__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.08);
+}
+@media (max-width: 880px) {
+  .pillars4__grid { grid-template-columns: 1fr; }
+}
+
+.pillar4 {
+  background: var(--ink);
+  display: grid;
+  grid-template-columns: 1fr;
+  position: relative;
+  transition: background .5s var(--ease);
+  overflow: hidden;
+}
+.pillar4:hover { background: #16140e; }
+
+.pillar4__index {
+  position: absolute;
+  top: clamp(28px, 3vw, 44px);
+  right: clamp(28px, 3vw, 44px);
+  font-family: var(--display);
+  font-style: italic;
+  font-size: clamp(56px, 7vw, 110px);
+  font-weight: 300;
+  color: var(--gold);
+  opacity: .14;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  transition: opacity .4s var(--ease), transform .5s var(--ease);
+  pointer-events: none;
+}
+.pillar4:hover .pillar4__index {
+  opacity: .28;
+  transform: translateX(-6px);
+}
+
+.pillar4__visual {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  display: flex;
+  align-items: flex-end;
+  padding: clamp(16px, 2vw, 24px);
+}
+.pillar4__visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(.4) brightness(.7);
+  transition: transform 1s var(--ease), filter .6s var(--ease);
+}
+.pillar4:hover .pillar4__visual::before {
+  transform: scale(1.04);
+  filter: grayscale(.2) brightness(.85);
+}
+.pillar4__visual--family::before {
+  background: linear-gradient(155deg, #1a1408 0%, #2a1f10 35%, #4a3a20 70%, #6a5230 100%);
+}
+.pillar4__visual--science::before {
+  background: linear-gradient(155deg, #0a1418 0%, #142028 35%, #1f3340 70%, #2a4a55 100%);
+}
+.pillar4__visual--opimm::before {
+  background: linear-gradient(155deg, #1a1a14 0%, #2a2a20 35%, #3a3a2e 70%, #5a6b4e 100%);
+}
+.pillar4__visual--earth::before {
+  background: linear-gradient(155deg, #0e1812 0%, #16241a 35%, #243a2a 70%, #3a5a3a 100%);
+}
+.pillar4__visual-label {
+  position: relative;
+  font-size: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.55);
+  background: rgba(0,0,0,.35);
+  backdrop-filter: blur(4px);
+  padding: 6px 12px;
+  border: 1px solid rgba(255,255,255,.12);
+}
+
+.pillar4__body {
+  padding: clamp(32px, 4vw, 56px) clamp(28px, 3vw, 48px);
+  position: relative;
+  z-index: 1;
+}
+
+.pillar4__eyebrow {
+  font-size: 10px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: .75;
+  margin-bottom: 16px;
+}
+
+.pillar4__name {
+  font-family: var(--display);
+  font-size: clamp(28px, 2.8vw, 42px);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: #fff;
+  margin: 0 0 20px;
+}
+
+.pillar4__desc {
+  font-family: var(--serif);
+  font-size: 20px;
+  line-height: 1.65;
+  color: rgba(255,255,255,.62);
+  max-width: 52ch;
+  margin: 0 0 28px;
+}
+
+.pillar4__link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--sans); font-size: 11px;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--gold); text-decoration: none;
+  opacity: .7; transition: opacity .25s var(--ease), gap .3s var(--ease);
+}
+.pillar4__link:hover { opacity: 1; gap: 14px; }
+.pillar4--portal .pillar4__body {
+  padding: clamp(48px, 6vw, 72px) clamp(28px, 3vw, 48px) clamp(44px, 5vw, 60px);
+  display: flex; flex-direction: column; justify-content: flex-end; min-height: 360px;
+}
+.pillar4--portal:hover { background: #161410; }
+
+.pillar4__meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+.pillar4__meta > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.pillar4__meta-k {
+  font-size: 9px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+}
+.pillar4__meta-v {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 17px;
+  color: rgba(255,255,255,.85);
+  letter-spacing: -0.01em;
+}
+.fam-card {
+  aspect-ratio: 3/4;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+  will-change: transform;
+  transition: transform .1s linear, box-shadow .4s var(--ease);
+}
+.fam-card:hover {
+  box-shadow: 0 40px 80px -20px rgba(0,0,0,.25);
+}
+
+/* shine layer */
+.fam-card::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(
+    circle at calc(var(--mx, 50%) * 1%) calc(var(--my, 50%) * 1%),
+    rgba(255,255,255,.18) 0%,
+    transparent 55%
+  );
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .3s;
+}
+.fam-card:hover::after { opacity: 1; }
+
+.fam-card__img {
+  position: absolute; inset: 0;
+  transition: transform 1s var(--ease);
+}
+.fam-card:hover .fam-card__img { transform: scale(1.04); }
+
+.fam-card__img--1 {
+  background:
+    radial-gradient(ellipse at 40% 30%, rgba(201,169,110,.25) 0%, transparent 55%),
+    linear-gradient(145deg, #3e4a3a 0%, #1a1a1a 100%);
+}
+.fam-card__img--2 {
+  background:
+    radial-gradient(ellipse at 60% 25%, rgba(255,255,255,.15) 0%, transparent 55%),
+    linear-gradient(145deg, #5a6b4e 0%, #2a3428 100%);
+}
+.fam-card__img--3 {
+  background:
+    radial-gradient(ellipse at 50% 35%, rgba(201,169,110,.3) 0%, transparent 55%),
+    linear-gradient(145deg, #c9a96e 0%, #7a5a30 100%);
+}
+
+/* overlay gradiente testo */
+.fam-card__overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,.72) 100%);
+  z-index: 1;
+  transition: opacity .4s;
+}
+.fam-card:hover .fam-card__overlay { opacity: .9; }
+
+.fam-card__body {
+  position: absolute; inset: 0;
+  padding: clamp(20px, 2vw, 32px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: #fff;
+  z-index: 2;
+}
+.fam-card__name {
+  font-family: var(--display);
+  font-size: clamp(22px, 2vw, 30px);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  transform: translateY(4px);
+  transition: transform .4s var(--ease);
+}
+.fam-card:hover .fam-card__name { transform: translateY(0); }
+
+.fam-card__role {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0;
+  margin-top: 6px;
+  transform: translateY(8px);
+  transition: opacity .4s var(--ease), transform .4s var(--ease);
+  transition-delay: .05s;
+}
+.fam-card:hover .fam-card__role { opacity: .65; transform: translateY(0); }
+
+/* ── SEZIONE NUMERI / CERTIFICAZIONI ─────────────────────── */
+.stats-section {
+  background: var(--ink);
+  color: var(--cream);
+  padding: clamp(80px, 10vw, 140px) 0;
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(20px, 3vw, 48px);
+  border-top: 1px solid rgba(255,255,255,.1);
+  padding-top: clamp(40px, 5vw, 64px);
+}
+@media (max-width: 900px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.stat-item {
+  padding: 0;
+}
+.stat-n {
+  font-family: var(--display);
+  font-size: clamp(48px, 6vw, 96px);
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: .9;
+  color: var(--gold);
+  font-style: italic;
+}
+.stat-label {
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-top: 10px;
+  font-style: italic;
+}
+
+/* ── PREFERS-REDUCED-MOTION ─────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .pg-hero__bg,
+  .pg-hero__particle::before,
+  .pg-hero__particle::after,
+  .scroll-hint__line::after {
+    animation: none;
+  }
+  [data-reveal],
+  .tl-e-img-inner,
+  .quote-words .w,
+  .fam-card,
+  .value-card {
+    transition: none;
+  }
+}
+
+/* ── BANDA 03 — layout flex + griglia visuals ─────────────── */
+.az-band--03-inner {
+  display: flex; align-items: center; justify-content: space-between; gap: 32px;
+}
+.az-band-3__visuals {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  width: 240px; flex-shrink: 0;
+}
+.az-band-3__visuals .photo-slot { width: 116px; height: 116px; }
+@media (max-width: 900px) { .az-band-3__visuals { display: none; } }
+
+/* ── SEZIONE TEAM — marquee archivio ──────────────────────── */
+.az-team__archive {
+  overflow: hidden; margin: clamp(32px,4vw,52px) 0;
+  position: relative;
+}
+.az-team__archive::before, .az-team__archive::after {
+  content: ''; position: absolute; top: 0; bottom: 0; z-index: 2; width: 80px; pointer-events: none;
+}
+.az-team__archive::before { left: 0; background: linear-gradient(to right, var(--cream), transparent); }
+.az-team__archive::after  { right: 0; background: linear-gradient(to left, var(--cream), transparent); }
+.az-team__archive-track {
+  display: flex; gap: 8px;
+  width: max-content;
+  animation: archive-scroll 60s linear infinite;
+}
+.az-team__archive-track .photo-slot { width: 180px; flex-shrink: 0; }
+@keyframes archive-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) { .az-team__archive-track { animation-play-state: paused; } }
+
+/* ── BANNER CONTO TERZI ─────────────────────────────────────── */
+.az-terzisti {
+  position: relative;
+  padding: clamp(80px,11vw,140px) 0;
+  overflow: hidden;
+  color: var(--cream);
+}
+.az-terzisti__bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 70% at 80% 40%, rgba(201,169,110,.12) 0%, transparent 60%),
+    linear-gradient(150deg, #1e2a1e 0%, #2d3a2e 40%, #1a2420 100%);
+}
+.az-terzisti__bg img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; opacity: 0.15;
+}
+.az-terzisti__overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(14,20,14,.6) 0%, rgba(14,20,14,.15) 60%, transparent 100%);
+}
+.az-terzisti__inner {
+  position: relative; z-index: 1;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: clamp(48px,7vw,100px);
+  align-items: center;
+}
+@media (max-width: 860px) { .az-terzisti__inner { grid-template-columns: 1fr; } }
+
+.az-terzisti__eyebrow {
+  font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold); opacity: .6; margin-bottom: 20px;
+}
+.az-terzisti__h2 {
+  font-family: var(--display);
+  font-size: clamp(40px,6vw,88px);
+  font-weight: 300; letter-spacing: -0.035em; line-height: .93;
+  color: var(--cream); margin-bottom: 24px;
+}
+.az-terzisti__h2 em { font-style: italic; color: var(--gold); }
+.az-terzisti__desc {
+  font-family: var(--serif); font-style: italic;
+  font-size: 20px;
+  color: rgba(243,238,228,.55);
+  line-height: 1.65; max-width: 72ch; margin-bottom: 32px;
+}
+.az-terzisti__pills {
+  display: flex; flex-direction: column;
+  gap: 1px; background: rgba(255,255,255,.07);
+}
+.az-terzisti__pill {
+  background: rgba(14,20,14,.5);
+  padding: clamp(18px,2.5vw,28px) clamp(20px,3vw,36px);
+  display: flex; flex-direction: column; gap: 6px;
+  transition: background .3s var(--ease);
+}
+.az-terzisti__pill:hover { background: rgba(201,169,110,.08); }
+.az-terzisti__pill-n {
+  font-family: var(--display); font-style: italic;
+  font-size: clamp(22px,2.2vw,30px); font-weight: 300;
+  color: var(--gold); line-height: 1; letter-spacing: -0.02em;
+}
+.az-terzisti__pill-l {
+  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(243,238,228,.35);
+}
+
+</style>
+<meta name="description" content="Manifattura italiana di cosmetica naturale dal 1969. Famiglia, ricerca formulativa, formule vegan. 4 brand, sede a Pianoro (BO)."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://athenas.it/"/>
+<meta property="og:type" content="website"/>
+<meta property="og:locale" content="it_IT"/>
+<meta property="og:locale:alternate" content="en_GB"/>
+<meta property="og:site_name" content="Athena's"/>
+<meta property="og:url" content="https://athenas.it/"/>
+<meta property="og:title" content="Athena's — Manifattura di cosmetica naturale dal 1969"/>
+<meta property="og:description" content="Manifattura italiana di cosmetica naturale dal 1969. Famiglia, ricerca formulativa, formule vegan. 4 brand, sede a Pianoro (BO)."/>
+<meta property="og:image" content="https://athenas.it/immagini/og/azienda.jpg"/>
+<meta property="og:image:alt" content="Athena's — Manifattura di cosmetica naturale dal 1969"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Athena's — Manifattura di cosmetica naturale dal 1969"/>
+<meta name="twitter:description" content="Manifattura italiana di cosmetica naturale dal 1969. Famiglia, ricerca formulativa, formule vegan. 4 brand, sede a Pianoro (BO)."/>
+<meta name="twitter:image" content="https://athenas.it/immagini/og/azienda.jpg"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["Organization", "LocalBusiness", "Manufacturer"],
+      "@id": "https://athenas.it/#organization",
+      "name": "Athena's s.r.l.",
+      "legalName": "Athena's s.r.l.",
+      "alternateName": ["Athena's", "Athenas"],
+      "url": "https://athenas.it/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://athenas.it/immagini/logo.png",
+        "width": 600,
+        "height": 200
+      },
+      "image": "https://athenas.it/immagini/og/azienda.jpg",
+      "description": "Manifattura italiana di cosmetica naturale dal 1969. Quattro brand (l'Erboristica, Everby, Kaley, Sphea), formule vegan, produzione interna a Pianoro.",
+      "slogan": "Cosmetica naturale italiana dal 1969",
+      "foundingDate": "1969",
+      "founders": [
+        { "@type": "Person", "name": "Antonio Venturino" },
+        { "@type": "Person", "name": "Luisa Sanguettoli" }
+      ],
+      "vatID": "IT01457020392",
+      "taxID": "01457020392",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Via del Lavoro 32",
+        "postalCode": "40065",
+        "addressLocality": "Pianoro",
+        "addressRegion": "BO",
+        "addressCountry": "IT"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 44.3853,
+        "longitude": 11.3308
+      },
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+39-051-0925111",
+          "contactType": "customer service",
+          "email": "info@athenas.it",
+          "areaServed": ["IT", "EU"],
+          "availableLanguage": ["Italian", "English"]
+        },
+        {
+          "@type": "ContactPoint",
+          "contactType": "sales",
+          "email": "info@athenas.it",
+          "areaServed": ["IT", "EU"],
+          "availableLanguage": ["Italian", "English"]
+        }
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "description": "Spaccio aziendale aperto al pubblico",
+          "dayOfWeek": "Friday",
+          "opens": "12:00",
+          "closes": "18:00"
+        }
+      ],
+      "brand": [
+        { "@type": "Brand", "name": "l'Erboristica", "url": "https://athenas.it/linee/erboristica.html" },
+        { "@type": "Brand", "name": "Everby", "url": "https://athenas.it/linee/everby.html" },
+        { "@type": "Brand", "name": "Kaley", "url": "https://athenas.it/linee/kaley.html" },
+        { "@type": "Brand", "name": "Sphea", "url": "https://athenas.it/linee/sphea.html" }
+      ],
+      "areaServed": [
+        { "@type": "Country", "name": "Italy" },
+        { "@type": "Place", "name": "European Union" }
+      ],
+      "knowsAbout": [
+        "Cosmetica naturale",
+        "Manifattura conto terzi",
+        "Skincare",
+        "Formulazione cosmetica",
+        "Cosmetica vegan"
+      ],
+      "sameAs": [
+        "https://www.instagram.com/athenasitaly/",
+        "https://www.facebook.com/athenasofficial/",
+        "https://www.linkedin.com/company/athena's-srl/"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://athenas.it/#website",
+      "url": "https://athenas.it/",
+      "name": "Athena's",
+      "description": "Sito ufficiale Athena's s.r.l.",
+      "publisher": { "@id": "https://athenas.it/#organization" },
+      "inLanguage": ["it-IT", "en-GB"]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://athenas.it/#webpage",
+      "url": "https://athenas.it/",
+      "name": "Athena's — Manifattura di cosmetica naturale dal 1969",
+      "isPartOf": { "@id": "https://athenas.it/#website" },
+      "about": { "@id": "https://athenas.it/#organization" },
+      "inLanguage": "it-IT",
+      "primaryImageOfPage": "https://athenas.it/immagini/og/azienda.jpg"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- ── HERO ─────────────────────────────────────────────── -->
+<section class="pg-hero" id="hero">
+  <div class="photo-slot photo-slot--video-overlay photo-slot--fullbleed" style="z-index:0;pointer-events:none;" data-slot-label="VIDEO HERO stabilimento Athena's · 16:9 · loop muted · alternativa: foto macro materie prime da ORGANIZZATO">
+    <span class="photo-slot__label" style="pointer-events:none;">Video Hero · Stabilimento</span>
+  </div>
+  <div class="pg-hero__parallax" id="heroParallax">
+    <div class="photo-slot photo-slot--video-overlay photo-slot--fullbleed" data-slot-label="hero-video.mp4">
+      <!-- SOSTITUIRE: aggiungere qui un <video autoplay muted loop playsinline class="bg-video"> con il file 'immagini/azienda/hero-video.mp4' quando sarà caricato. Suggerito: video stabilimento/laboratorio Athena's, 16:9, 15-25 secondi, no audio. File da copiare manualmente in immagini/azienda/ — il file CUORE DI ATHENA'S - LABORATORIO.mp4 è in C:\Users\jagio\Desktop\ATHENAS_FOTO_TEMP\ATHENAS_SITE_2026\azienda\hero_video\ -->
+      <svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      <span class="photo-slot__label">Video hero botanico</span>
+      <span class="photo-slot__sub">video mp4 · 16:9 · 15-25s</span>
+    </div>
+    <div class="pg-hero__bg"></div>
+    <div class="pg-hero__particle"></div>
+  </div>
+  <div class="pg-hero__overlay"></div>
+
+  <div class="pg-hero__content container">
+    <div class="pg-hero__main">
+      <h1>
+        <span data-it="Una storia" data-en="An Italian">Una storia</span><br/>
+        <em data-it="italiana." data-en="story.">italiana.</em>
+      </h1>
+      <p class="pg-hero__lead" data-it="Oltre cinquantacinque anni di passione per la cosmetica naturale. Tre generazioni, una sola fabbrica, tra Bologna e l'Appennino." data-en="Over fifty-five years of passion for natural cosmetics. Three generations, one factory, between Bologna and the Apennines.">Oltre cinquantacinque anni di passione per la cosmetica naturale. Tre generazioni, una sola fabbrica, tra Bologna e l'Appennino.</p>
+    </div>
+    <div class="pg-hero__year-stack">
+      <div class="pg-hero__year">1969</div>
+      <div class="pg-hero__year-label" data-it="Anno di fondazione" data-en="Founded">Anno di fondazione</div>
+    </div>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true">
+    <div class="scroll-hint__line"></div>
+    <span data-it="Scroll" data-en="Scroll">Scroll</span>
+  </div>
+</section>
+
+<!-- ── VALORI ────────────────────────────────────────────── -->
+<section class="sec sec-ink">
+  <div class="container">
+    <div class="sec-label">
+      <span class="num" style="color: var(--gold); opacity:1;">— 01</span>
+      <div class="eyebrow" style="color: var(--gold);" data-it="I nostri valori" data-en="Our values">I nostri valori</div>
+    </div>
+    <h2 style="font-family: var(--display); font-size: clamp(40px, 7vw, 110px); line-height: .95; font-weight: 300; letter-spacing: -0.03em; max-width: 18ch; margin-bottom: clamp(32px, 4vw, 56px);" data-reveal>
+      <span data-it="Produrre cosmetica " data-en="Making cosmetics ">Produrre cosmetica </span><em style="font-style:italic; color: var(--gold);" data-it="come un tempo," data-en="the old way,">come un tempo,</em>
+      <br/><span data-it="con gli strumenti di " data-en="with the tools of ">con gli strumenti di </span><em style="font-style:italic;" data-it="oggi." data-en="today.">oggi.</em>
+    </h2>
+    <div class="ve-zigzag">
+      <div class="ve-zz" data-reveal-repeat>
+        <div class="ve-zz__visual">
+          <img src="immagini/azienda/lifestyle-01.jpg" alt="Ingredienti naturali — Athena's" class="cover-img" loading="lazy">
+          <span class="ve-zz__ph-tag" data-it="Foto · Ingredienti naturali" data-en="Photo · Natural ingredients">Foto · Ingredienti naturali</span>
+        </div>
+        <div class="ve-zz__text">
+          <div class="ve-zz__eyebrow" data-it="01 · Natura" data-en="01 · Nature">01 · Natura</div>
+          <h3 class="ve-zz__head"><span data-it="95%+ naturale," data-en="95%+ natural,">95%+ naturale,</span><br/><em data-it="sempre." data-en="always.">sempre.</em></h3>
+          <p class="ve-zz__body" data-it="La naturalità non è il claim finale. È il punto di partenza da cui ogni formula viene scritta — e il filtro con cui ogni materia prima viene rifiutata. Plant Based certificato Bioagricert." data-en="Naturalness is not the final claim. It is the starting point from which every formula is written — and the filter by which every raw material is rejected. Bioagricert Plant Based certified.">La naturalità non è il claim finale. È il punto di partenza da cui ogni formula viene scritta — e il filtro con cui ogni materia prima viene rifiutata. Plant Based certificato Bioagricert.</p>
+        </div>
+      </div>
+      <div class="ve-zz" data-reveal-repeat>
+        <div class="ve-zz__visual">
+          <img src="immagini/azienda/lifestyle-02.jpg" alt="Laboratorio R&amp;S — Athena's" class="cover-img" loading="lazy">
+          <span class="ve-zz__ph-tag" data-it="Foto · Laboratorio R&amp;S" data-en="Photo · R&amp;D Lab">Foto · Laboratorio R&amp;S</span>
+        </div>
+        <div class="ve-zz__text">
+          <div class="ve-zz__eyebrow" data-it="02 · Ricerca" data-en="02 · Research">02 · Ricerca</div>
+          <h3 class="ve-zz__head"><span data-it="La scienza al servizio" data-en="Science in service">La scienza al servizio</span><br/><em data-it="della pianta." data-en="of the plant.">della pianta.</em></h3>
+          <p class="ve-zz__body" data-it="Il nostro laboratorio R&S lavora ogni giorno per estrarre, stabilizzare, concentrare ciò che la natura produce. Peptidi biomimetici, biofermentazione, estratti brevettati: tecnologie al servizio degli ingredienti, non il contrario." data-en="Our R&D lab works every day to extract, stabilize and concentrate what nature produces. Biomimetic peptides, biofermentation, patented extracts: technology in service of ingredients, not the other way around.">Il nostro laboratorio R&amp;S lavora ogni giorno per estrarre, stabilizzare, concentrare ciò che la natura produce. Peptidi biomimetici, biofermentazione, estratti brevettati: tecnologie al servizio degli ingredienti, non il contrario.</p>
+        </div>
+      </div>
+      <div class="ve-zz" data-reveal-repeat>
+        <div class="ve-zz__visual">
+          <img src="immagini/azienda/lifestyle-03.jpg" alt="Fabbrica Pianoro — Athena's" class="cover-img" loading="lazy">
+          <span class="ve-zz__ph-tag" data-it="Foto · Fabbrica, Pianoro 1969" data-en="Photo · Factory, Pianoro 1969">Foto · Fabbrica, Pianoro 1969</span>
+        </div>
+        <div class="ve-zz__text">
+          <div class="ve-zz__eyebrow" data-it="03 · Famiglia" data-en="03 · Family">03 · Famiglia</div>
+          <h3 class="ve-zz__head"><span data-it="Tre generazioni," data-en="Three generations,">Tre generazioni,</span><br/><em data-it="una sola fabbrica." data-en="one factory.">una sola fabbrica.</em></h3>
+          <p class="ve-zz__body" data-it="Produciamo a Pianoro, nella stessa fabbrica in cui tutto è cominciato. Abbiamo scelto di non delocalizzare mai: il controllo sul ciclo, la conoscenza del gesto, il legame col territorio non si compra." data-en="We produce in Pianoro, in the same factory where it all began. We chose never to delocalize: cycle control, craft knowledge, territorial ties cannot be bought.">Produciamo a Pianoro, nella stessa fabbrica in cui tutto è cominciato. Abbiamo scelto di non delocalizzare mai: il controllo sul ciclo, la conoscenza del gesto, il legame col territorio non si compra.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── TERRITORIO ─────────────────────────────────────────── -->
+<section class="az-bands">
+
+  <div class="az-band az-band--01 az-band--left" data-mood-fallback="dark">
+    <div class="az-band__bg" data-az-band="1">
+      <div class="photo-slot photo-slot--fullbleed" data-slot-label="panorama-appennini.jpg">
+        <!-- SOSTITUIRE: foto panorama Appennini tosco-emiliani · 16:9 · alba o tramonto · 3000px+ larghezza · da reperire o stock photo -->
+        <svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        <span class="photo-slot__label">Panorama Appennini</span>
+        <span class="photo-slot__sub">foto · 16:9 · 3000px+</span>
+      </div>
+    </div>
+    <div class="az-band__overlay"></div>
+    <div class="az-band__content" data-reveal>
+      <div class="az-band__eyebrow">— 02 / Territorio · Dove siamo nati</div>
+      <h2 class="az-band__title">Tra Toscana<br><em>ed Emilia.</em></h2>
+      <p class="az-band__body">Pianoro è un comune di pedemontana, a quaranta minuti da Bologna, dove l'Appennino diventa pianura. Antonio Venturino scelse questo posto perché era vicino alle materie prime, lontano dai distretti, esattamente dove la cosmetica naturale non si faceva ancora.</p>
+    </div>
+  </div>
+
+  <div class="az-band az-band--02 az-band--right" data-mood-fallback="dark">
+    <div class="az-band__bg" data-az-band="2">
+      <div class="photo-slot photo-slot--fullbleed" data-slot-label="stabilimento-esterno.jpg">
+        <!-- SOSTITUIRE: foto esterno stabilimento Athena's, vista frontale o aerea · 16:9 · giorno · 3000px+ larghezza · da nuovo shooting -->
+        <svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        <span class="photo-slot__label">Stabilimento esterno</span>
+        <span class="photo-slot__sub">foto · 16:9 · 3000px+</span>
+      </div>
+    </div>
+    <div class="az-band__overlay"></div>
+    <div class="az-band__content" data-reveal style="--d:60ms">
+      <div class="az-band__eyebrow">Pianoro</div>
+      <h2 class="az-band__title">Quaranta minuti<br><em>da Bologna.</em></h2>
+      <p class="az-band__body">Lo stabilimento di Via del Lavoro 32 è lo stesso di sempre. Non abbiamo costruito un nuovo capannone per sembrare più grandi — abbiamo ristrutturato quello che c'era, installato il fotovoltaico sul tetto, e continuato a fare le cose nello stesso modo.</p>
+    </div>
+  </div>
+
+  <div class="az-band az-band--03 az-band--center" data-mood-fallback="dark">
+    <div class="az-band__bg" data-az-band="3">
+      <div class="photo-slot photo-slot--fullbleed" data-slot-label="interno-laboratorio.jpg">
+        <!-- SOSTITUIRE: foto interno laboratorio o squadra al lavoro · 16:9 · luce naturale · 3000px+ larghezza · da nuovo shooting -->
+        <svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        <span class="photo-slot__label">Interno laboratorio</span>
+        <span class="photo-slot__sub">foto · 16:9 · 3000px+</span>
+      </div>
+    </div>
+    <div class="az-band__overlay"></div>
+    <div class="az-band__content az-band--03-inner" data-reveal style="--d:120ms">
+      <div>
+        <div class="az-band__eyebrow">Dentro</div>
+        <h2 class="az-band__title">Una cucina,<br><em>non una fabbrica.</em></h2>
+        <p class="az-band__body">Ottanta persone che lavorano ogni giorno nello stesso laboratorio dove Venturino mescolava le prime formule. I macchinari sono cambiati; il principio — capire cosa metti sulla pelle — è rimasto identico nel tempo.</p>
+      </div>
+      <div class="az-band-3__visuals">
+        <div class="photo-slot photo-slot--dark photo-slot--1x1" data-slot-label="DETTAGLIO banco lavoro"><svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg><span class="photo-slot__label">Banco lavoro</span></div>
+        <div class="photo-slot photo-slot--dark photo-slot--1x1" data-slot-label="MACRO formula in becher"><svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg><span class="photo-slot__label">Formula in becher</span></div>
+        <div class="photo-slot photo-slot--dark photo-slot--1x1" data-slot-label="DETTAGLIO strumenti lab"><svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg><span class="photo-slot__label">Strumenti lab</span></div>
+        <div class="photo-slot photo-slot--dark photo-slot--1x1" data-slot-label="SQUADRA in laboratorio"><svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg><span class="photo-slot__label">Squadra lab</span></div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ── TIMELINE ───────────────────────────────────────────── -->
+<div class="tl-pin-outer" id="tl-outer">
+<section class="sec tl-section">
+  <div class="scroll-hint scroll-hint--top" aria-hidden="true">
+    <div class="scroll-hint__line"></div>
+    <span data-it="Scroll" data-en="Scroll">Scroll</span>
+  </div>
+  <div class="container">
+    <div class="sec-label">
+      <span class="num">— 03</span>
+      <div class="eyebrow" data-it="La nostra storia" data-en="Our story">La nostra storia</div>
+    </div>
+    <h2 style="font-family: var(--display); font-size: clamp(32px, 4.2vw, 72px); line-height: 1; font-weight: 200; letter-spacing: -0.03em; white-space: nowrap;" data-reveal>
+      <span data-it="Dal 1969." data-en="Since 1969.">Dal 1969.</span> <em style="font-style: italic; color: var(--sage-deep);" data-it="La stessa fabbrica." data-en="The same factory.">La stessa fabbrica.</em>
+    </h2>
+  </div>
+
+  <div class="tl-track-outer">
+    <div class="tl-track" id="tlTrack">
+
+      <div class="tl-slide">
+        <div class="tl-slide__photo">
+          <!-- SOSTITUIRE: <img src="immagini/azienda/storia-1969.jpg" alt="Athena's 1969 · Pianoro" loading="lazy"> -->
+        </div>
+        <div class="tl-slide__line"><div class="tl-slide__dot"></div></div>
+      </div>
+
+      <div class="tl-slide tl-slide--text">
+        <div class="tl-slide__photo"></div>
+        <div class="tl-slide__line"><div class="tl-slide__dot"></div></div>
+        <div class="tl-slide__text">
+          <div class="tl-slide__header">
+            <div class="tl-slide__year">1969</div>
+            <div class="tl-slide__title">Le <em>origini</em></div>
+          </div>
+          <p class="tl-slide__desc" data-it="Antonio Venturino e Luisa Sanguettoli fondano Athena's a Pianoro, Bologna. Saponi artistici scolpiti, bagni schiuma, sali profumati: la cosmetica come oggetto d'autore, prima ancora che come funzione." data-en="Antonio Venturino and Luisa Sanguettoli found Athena's in Pianoro, near Bologna. Hand-carved artistic soaps, bath foams, scented salts: cosmetics as a piece of craft, before it became a function.">Antonio Venturino e Luisa Sanguettoli fondano Athena's a Pianoro, Bologna. Saponi artistici scolpiti, bagni schiuma, sali profumati: la cosmetica come oggetto d'autore, prima ancora che come funzione.</p>
+        </div>
+      </div>
+
+      <div class="tl-slide">
+        <div class="tl-slide__photo">
+          <!-- SOSTITUIRE: <img src="immagini/azienda/storia-gifting.jpg" alt="Gifting · Athena's anni '70-'90" loading="lazy"> -->
+        </div>
+        <div class="tl-slide__line"><div class="tl-slide__dot"></div></div>
+      </div>
+
+      <div class="tl-slide tl-slide--text">
+        <div class="tl-slide__photo"></div>
+        <div class="tl-slide__line"><div class="tl-slide__dot"></div></div>
+        <div class="tl-slide__text">
+          <div class="tl-slide__header">
+            <div class="tl-slide__year">'70–'90</div>
+            <div class="tl-slide__title">L'arte del <em>gifting</em></div>
+          </div>
+          <p class="tl-slide__desc" data-it="Anni di crescita attorno al regalo cosmetico: bottiglie decorative, ceramiche, set bagno coordinati, saponi stampati. Il packaging diventa parte dell'identità — un linguaggio estetico riconoscibile." data-en="Years of growth around cosmetic gifting: decorative bottles, ceramics, coordinated bath sets, stamped soaps. Packaging becomes part of the identity — a recognisable aesthetic language.">Anni di crescita attorno al regalo cosmetico: bottiglie decorative, ceramiche, set bagno coordinati, saponi stampati. Il packaging diventa parte dell'identità — un linguaggio estetico riconoscibile.</p>
+        </div>
+      </div>
+
+      <div class="tl-slide">
+        <div class="tl-slide__photo">
+          <!-- SOSTITUIRE: <img src="immagini/azienda/storia-seconda-gen.jpg" alt="Seconda generazione · Athena's anni '90" loading="lazy"> -->
+        </div>
+        <div class="tl-slide__line"><div class="tl-slide__dot"></div></div>
+      </div>
+
+      <div class="tl-slide tl-slide--text">
+        <div class="tl-slide__photo"></div>
+        <div class="tl-slide__line"><div class="tl-slide__dot"></div></div>
+        <div class="tl-slide__text">
+          <div class="tl-slide__header">
+            <div class="tl-slide__year">'90</div>
+            <div class="tl-slide__title">La seconda <em>generazione</em></div>
+          </div>
+          <p class="tl-slide__desc" data-it="Alessandro e Gloria Venturino entrano in azienda. La fabbrica di famiglia diventa un progetto condiviso: stessa identità, nuova energia. La vocazione naturale si consolida come scelta strategica." data-en="Alessandro and Gloria Venturino join the company. The family factory becomes a shared project: same identity, new energy. The natural vocation becomes a strategic choice.">Alessandro e Gloria Venturino entrano in azienda. La fabbrica di famiglia diventa un progetto condiviso: stessa identità, nuova energia. La vocazione naturale si consolida come scelta strategica.</p>
+        </div>
+      </div>
+
+      <div class="tl-slide">
+        <div class="tl-slide__photo">
+          <!-- SOSTITUIRE: <img src="immagini/azienda/storia-2000.jpg" alt="Svolta trattante · Athena's 2000" loading="lazy"> -->
+        </div>
+        <div class="tl-slide__line"><div class="tl-slide__dot"></div></div>
+      </div>
+
+      <div class="tl-slide tl-slide--text">
+        <div class="tl-slide__photo"></div>
+        <div class="tl-slide__line"><div class="tl-slide__dot"></div></div>
+        <div class="tl-slide__text">
+          <div class="tl-slide__header">
+            <div class="tl-slide__year">2000</div>
+            <div class="tl-slide__title">Cosmetica <em>trattante</em></div>
+          </div>
+          <p class="tl-slide__desc" data-it="Athena's investe nel laboratorio interno e nella ricerca formulativa. Nascono le prime emulsioni corpo e il viso strutturato. Le formule, da sempre vegan, lo restano per scelta — non come trend." data-en="Athena's invests in its in-house lab and formulation research. The first body emulsions and structured facial lines are born. Formulas have always been vegan — by choice, not as a trend.">Athena's investe nel laboratorio interno e nella ricerca formulativa. Nascono le prime emulsioni corpo e il viso strutturato. Le formule, da sempre vegan, lo restano per scelta — non come trend.</p>
+        </div>
+      </div>
+
+      <div class="tl-slide">
+        <div class="tl-slide__photo">
+          <!-- SOSTITUIRE: <img src="immagini/azienda/storia-2003.jpg" alt="Botanica · Athena's 2003" loading="lazy"> -->
+        </div>
+        <div class="tl-slide__line"><div class="tl-slide__dot"></div></div>
+      </div>
+
+      <div class="tl-slide tl-slide--text">
+        <div class="tl-slide__photo"></div>
+        <div class="tl-slide__line"><div class="tl-slide__dot"></div></div>
+        <div class="tl-slide__text">
+          <div class="tl-slide__header">
+            <div class="tl-slide__year">2003</div>
+            <div class="tl-slide__title">Cosmetica <em>botanica</em></div>
+          </div>
+          <p class="tl-slide__desc" data-it="Linea corpo con ingredienti vegetali sofisticati: cardamomo, ginkgo biloba, passiflora. Una proposta naturale e contemporanea, anni prima che il mercato la chiedesse." data-en="Body line with refined botanical ingredients: cardamom, ginkgo biloba, passionflower. A natural and contemporary proposition, years before the market asked for it.">Linea corpo con ingredienti vegetali sofisticati: cardamomo, ginkgo biloba, passiflora. Una proposta naturale e contemporanea, anni prima che il mercato la chiedesse.</p>
+        </div>
+      </div>
+
+      <div class="tl-slide">
+        <div class="tl-slide__photo">
+          <!-- SOSTITUIRE: <img src="immagini/azienda/storia-erboristica.jpg" alt="Nasce l'Erboristica · 2010" loading="lazy"> -->
+        </div>
+        <div class="tl-slide__line"><div class="tl-slide__dot"></div></div>
+      </div>
+
+      <div class="tl-slide tl-slide--text">
+        <div class="tl-slide__photo"></div>
+        <div class="tl-slide__line"><div class="tl-slide__dot"></div></div>
+        <div class="tl-slide__text">
+          <div class="tl-slide__header">
+            <div class="tl-slide__year">2010</div>
+            <div class="tl-slide__title">Nasce <em>l'Erboristica</em></div>
+          </div>
+          <p class="tl-slide__desc" data-it="Il primo brand di casa Athena's: cosmetica naturale senza derivati petrolchimici, siliconi, parabeni e coloranti sintetici. L'olio di argan diventa l'ingrediente bandiera." data-en="The first Athena's house brand: natural cosmetics free from petrochemical derivatives, silicones, parabens and synthetic dyes. Argan oil becomes the flagship ingredient.">Il primo brand di casa Athena's: cosmetica naturale senza derivati petrolchimici, siliconi, parabeni e coloranti sintetici. L'olio di argan diventa l'ingrediente bandiera.</p>
+        </div>
+      </div>
+
+      <div class="tl-slide">
+        <div class="tl-slide__photo">
+          <!-- SOSTITUIRE: <img src="immagini/azienda/storia-kaley.jpg" alt="Nasce Kaley · 2022" loading="lazy"> -->
+        </div>
+        <div class="tl-slide__line"><div class="tl-slide__dot"></div></div>
+      </div>
+
+      <div class="tl-slide tl-slide--text">
+        <div class="tl-slide__photo"></div>
+        <div class="tl-slide__line"><div class="tl-slide__dot"></div></div>
+        <div class="tl-slide__text">
+          <div class="tl-slide__header">
+            <div class="tl-slide__year">2022</div>
+            <div class="tl-slide__title">Nasce <em>Kaley</em></div>
+          </div>
+          <p class="tl-slide__desc" data-it="Espansione nel segmento fragranze: profumi roll-on in olio concentrato, senza alcol. Sette espressioni olfattive in flaconi da 10 ml da tasca." data-en="Expansion into fragrance: concentrated oil roll-on perfumes, alcohol-free. Seven olfactory expressions in 10ml pocket flacons.">Espansione nel segmento fragranze: profumi roll-on in olio concentrato, senza alcol. Sette espressioni olfattive in flaconi da 10 ml da tasca.</p>
+        </div>
+      </div>
+
+      <div class="tl-slide">
+        <div class="tl-slide__photo tl-slide__photo--logo">
+          <img src="immagini/brand-everby/logo.png" alt="Everby" loading="lazy" class="tl-logo-img tl-logo-img--everby">
+        </div>
+        <div class="tl-slide__line"><div class="tl-slide__dot"></div></div>
+      </div>
+
+      <div class="tl-slide tl-slide--text">
+        <div class="tl-slide__photo"></div>
+        <div class="tl-slide__line"><div class="tl-slide__dot"></div></div>
+        <div class="tl-slide__text">
+          <div class="tl-slide__header">
+            <div class="tl-slide__year">2024</div>
+            <div class="tl-slide__title">Nasce <em>Everby</em></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-slide">
+        <div class="tl-slide__photo tl-slide__photo--logo">
+          <img src="immagini/brand-sphea/logo.png" alt="Sphea" loading="lazy" class="tl-logo-img tl-logo-img--sphea">
+        </div>
+        <div class="tl-slide__line"><div class="tl-slide__dot"></div></div>
+      </div>
+
+      <div class="tl-slide tl-slide--text">
+        <div class="tl-slide__photo"></div>
+        <div class="tl-slide__line"><div class="tl-slide__dot"></div></div>
+        <div class="tl-slide__text">
+          <div class="tl-slide__header">
+            <div class="tl-slide__year">2025</div>
+            <div class="tl-slide__title">Nasce <em>Sphea</em></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+</div><!-- /tl-pin-outer -->
+
+<!-- ── QUOTE ──────────────────────────────────────────────── -->
+<!-- ── BANNER CONTO TERZI ─────────────────────────────────── -->
+<section class="az-terzisti">
+  <div class="az-terzisti__bg"></div>
+  <div class="az-terzisti__overlay"></div>
+  <div class="container az-terzisti__inner">
+    <div class="az-terzisti__text" data-reveal>
+      <div class="az-terzisti__eyebrow" data-it="Conto Terzi · Contract Manufacturing" data-en="Contract Manufacturing · OEM">Conto Terzi · Contract Manufacturing</div>
+      <h2 class="az-terzisti__h2">
+        <span data-it="Il vostro prodotto," data-en="Your product,">Il vostro prodotto,</span><br>
+        <em data-it="la nostra formula." data-en="our formula.">la nostra formula.</em>
+      </h2>
+      <p class="az-terzisti__desc" data-it="Produciamo cosmetica naturale certificata per brand, farmacie ed erboristerie che vogliono una linea propria. Formula, produzione, packaging e dossier regolatorio: tutto sotto un unico tetto a Pianoro, dal 1969." data-en="We produce certified natural cosmetics for brands, pharmacies and herbalists who want their own line. Formula, production, packaging and regulatory dossier: all under one roof in Pianoro, since 1969.">Produciamo cosmetica naturale certificata per brand, farmacie ed erboristerie che vogliono una linea propria. Formula, produzione, packaging e dossier regolatorio: tutto sotto un unico tetto a Pianoro, dal 1969.</p>
+      <a class="az-terzisti__cta link-arrow" href="terzisti.html" style="color:var(--gold);text-decoration:none;" data-it="Scopri il servizio conto terzi" data-en="Discover our contract manufacturing">Scopri il servizio conto terzi</a>
+    </div>
+    <div class="az-terzisti__pills" data-reveal style="--d:120ms">
+      <div class="az-terzisti__pill">
+        <span class="az-terzisti__pill-n">ISO 22716</span>
+        <span class="az-terzisti__pill-l" data-it="Certificazione GMP" data-en="GMP Certification">Certificazione GMP</span>
+      </div>
+      <div class="az-terzisti__pill">
+        <span class="az-terzisti__pill-n">COSMOS</span>
+        <span class="az-terzisti__pill-l" data-it="Cosmetica bio certificata" data-en="Certified organic cosmetics">Cosmetica bio certificata</span>
+      </div>
+      <div class="az-terzisti__pill">
+        <span class="az-terzisti__pill-n">0%</span>
+        <span class="az-terzisti__pill-l" data-it="Petrolchimici &amp; siliconi" data-en="Petrochemicals &amp; silicones">Petrolchimici &amp; siliconi</span>
+      </div>
+      <div class="az-terzisti__pill">
+        <span class="az-terzisti__pill-n">MOQ</span>
+        <span class="az-terzisti__pill-l" data-it="Flessibile · su richiesta" data-en="Flexible · on request">Flessibile · su richiesta</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="quote-section" id="quoteSection">
+  <div class="container">
+    <div class="quote-words" id="quoteWords" data-reveal>
+      <span data-it="Athena's rimane un'impresa di famiglia," data-en="Athena's remains a family business,">Athena's rimane un'impresa di famiglia,</span><br>
+      <span data-it="ma con un grande valore aggiunto:" data-en="with one great added value:">ma con un grande valore aggiunto:</span>
+      <br><br>
+      <span class="italic" data-it="il suo team." data-en="its team.">il suo team.</span>
+    </div>
+    <div class="quote-photo" data-reveal style="--d:200ms" aria-hidden="true">
+      <div class="photo-slot photo-slot--fullbleed" data-slot-label="team.webp">
+        <!-- SOSTITUIRE: <img loading="eager" fetchpriority="high" decoding="async" src="immagini/azienda/team.webp" ...> al posto del gradient placeholder -->
+        <svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        <span class="photo-slot__label">Team Pianoro</span>
+        <span class="photo-slot__sub">foto · 1:1</span>
+      </div>
+      <span class="quote-photo__cap" data-it="Team · Pianoro" data-en="Team · Pianoro">Team · Pianoro</span>
+    </div>
+  </div>
+</section>
+
+
+<script src="assets/vendor/lenis.min.js" defer></script><script src="assets/data.js"></script>
+<script src="assets/search-data.js" defer></script>
+<script src="assets/app.js?v=6"></script>
+<script>
+
+// ── INIZIALIZZAZIONE ────────────────────────────────────────
+initAthenas('company', { light: true });
+
+// ── SCROLL REVEAL ───────────────────────────────────────────
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('is-visible');
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('[data-reveal]').forEach(el => revealObs.observe(el));
+
+// ── TIMELINE SCROLL-SLIDE ─────────────────────────────────────
+(function() {
+  const outer = document.getElementById('tl-outer');
+  const track = document.getElementById('tlTrack');
+  if (!outer || !track) return;
+
+  const isMobile = () => window.innerWidth <= 960;
+  const slides = Array.from(track.querySelectorAll('.tl-slide'));
+
+  function update() {
+    if (isMobile()) {
+      track.style.transform = '';
+      slides.forEach(s => { s.style.filter = ''; });
+      return;
+    }
+    const rect = outer.getBoundingClientRect();
+    const scrollable = rect.height - window.innerHeight;
+    if (scrollable <= 0) return;
+    const raw = -rect.top / scrollable;
+    const startDelay = 0.18;
+    const endHold = 0.10;
+    const progress = Math.max(0, Math.min(1, (raw - startDelay) / (1 - startDelay - endHold)));
+    const maxTravel = Math.max(0, track.scrollWidth - window.innerWidth);
+    const translateX = -progress * maxTravel;
+    track.style.transform = 'translateX(' + translateX + 'px)';
+    const vw = window.innerWidth;
+    slides.forEach(slide => {
+      const entry = (vw - slide.offsetLeft - translateX) / slide.offsetWidth;
+      const blurPx = entry < 0.85 ? Math.max(0, (1 - Math.max(0, entry) / 0.85) * 6) : 0;
+      slide.style.filter = blurPx > 0.2 ? 'blur(' + blurPx.toFixed(1) + 'px)' : '';
+    });
+  }
+
+  let rafId;
+  window.addEventListener('scroll', () => {
+    cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(update);
+  }, { passive: true });
+  window.addEventListener('resize', update, { passive: true });
+  update();
+})();
+
+// ── TILES NUMERI · APRI SHEET DI APPROFONDIMENTO ────────────
+(function() {
+  const sheet = document.getElementById('statsSheet');
+  if (!sheet) return;
+
+  const STATS_DATA = {
+    origine: {
+      eyebrow: 'Il momento zero',
+      num: '1969',
+      title: 'La prima formula <em>scritta a mano.</em>',
+      lead: "1969: Antonio Venturino scrive le prime formule a Pianoro e decide che i prodotti Athena's non conterranno mai petrolchimici.",
+      body: `<p>Quando Antonio Venturino avviò Athena's nel 1969, la cosmetica naturale in Italia non era un mercato — era quasi un'idea stravagante. Lui la trasformò in un mestiere.</p>
+             <p>Le prime formule erano scritte a mano in quaderni che esistono ancora. Olio di mandorle dolci, calendula, camomilla, lavanda: ingredienti che si compravano al mercato delle erbe di Bologna e si lavoravano nello stesso stabilimento dove produciamo ancora oggi.</p>
+             <p>Tre generazioni dopo, i quaderni sono diventati dossier certificati. Gli ingredienti vengono da cinque continenti e sei paesi. Il principio è rimasto esattamente quello: capire cosa si mette sulla pelle.</p>`,
+      facts: [
+        { k: 'Fondatore', v: 'Antonio Venturino' },
+        { k: 'Sede', v: 'Via del Lavoro 32, Pianoro (BO)' },
+        { k: 'Generazione', v: 'Seconda · Alessandro & Gloria' },
+        { k: 'Modello', v: '100% verticalmente integrato' },
+      ],
+      visualBg: 'radial-gradient(ellipse at 40% 40%, #c9a96e 0%, #2a1f10 60%, #0a0a0a 100%)',
+    },
+    solare: {
+      eyebrow: 'Energia pulita',
+      num: '80%',
+      title: 'Il <em>sole</em> sopra Pianoro.',
+      lead: "Il fotovoltaico sul tetto copre oltre l'80% del fabbisogno energetico produttivo. Non è un claim di marketing — è un valore in kilowattora al mese.",
+      body: `<p>Sui tetti dello stabilimento di Via del Lavoro 32 è installato un impianto fotovoltaico dimensionato sulla produzione. Ogni mattina, prima che il reparto di riempimento si avvii, i pannelli sono già attivi.</p>
+             <p>La copertura supera l'80% del fabbisogno annuo. I mesi con picco solare, come maggio e agosto, arrivano vicino al 100%. Il simbolo "Energia Solare" è riportato sull'etichetta di 81 dei 87 prodotti l'Erboristica.</p>
+             <p>L'impianto alimenta uno stabilimento unico: l'energia rinnovabile copre quindi tutte le linee, l'Erboristica, Everby, Kaley e Sphea, senza distinzione di brand.</p>`,
+      facts: [
+        { k: 'Copertura', v: '> 80% del fabbisogno' },
+        { k: 'Prodotti etichettati', v: '81/87 l\'Erboristica' },
+        { k: 'Linee coperte', v: 'Tutti i brand Athena\'s' },
+        { k: 'Tipo', v: 'Fotovoltaico proprietario' },
+      ],
+      visualBg: 'radial-gradient(ellipse at 60% 60%, #f0c878 0%, #6a4818 60%, #0a0a0a 100%)',
+    },
+    madeinitaly: {
+      eyebrow: 'Niente subappalti',
+      num: '100%',
+      title: 'Tutto sotto <em>un solo tetto.</em>',
+      lead: "Formulazione, produzione, riempimento, etichettatura, confezionamento: ogni fase avviene a Pianoro. Non delokalizziamo da cinquantacinque anni.",
+      body: `<p>Il modello produttivo di Athena's è verticalmente integrato fin dal 1969. Il laboratorio R&S, la produzione, il riempimento e il confezionamento secondario (curato con OPIMM) avvengono tutti nello stesso stabilimento.</p>
+             <p>Non abbiamo mai scelto di delocalizzare per abbassare i costi. Il motivo non è romantico — è tecnico: il controllo sulla formula, sulle materie prime e sul processo richiede prossimità. Un conto terzista a 800 km non può garantire le stesse tolleranze.</p>
+             <p>100% Made in Italy non è un'etichetta: è il numero esatto di prodotti che escono dallo stabilimento di Via del Lavoro 32.</p>`,
+      facts: [
+        { k: 'Sede produzione', v: 'Pianoro (BO) dal 1969' },
+        { k: 'Fasi interne', v: 'R&S · produzione · riempimento · conf.' },
+        { k: 'Partner confezionamento', v: 'OPIMM Bologna' },
+        { k: 'Certificazione', v: 'Made in Italy · ISO 22716 GMP' },
+      ],
+      visualBg: 'radial-gradient(ellipse at 50% 30%, #5a6b4e 0%, #1f2a18 60%, #0a0a0a 100%)',
+    },
+    continenti: {
+      eyebrow: 'Filiera globale',
+      num: '6',
+      title: 'Sei paesi, <em>una sola formula.</em>',
+      lead: "Olio di argan dal Marocco, monoï dalla Polinesia, karité dal Burkina Faso, ectoin dalla Germania, calendula dall'India, mandorle dalla Spagna. Sei paesi, un dossier per ciascuno.",
+      body: `<p>Ogni ingrediente che entra nello stabilimento di Pianoro ha un dossier completo: origine geografica esatta, metodo di estrazione, certificazione del fornitore, profilo tossicologico e compatibilità con il nostro standard clean.</p>
+             <p>La selezione è globale perché la botanica lo è. Non esistono surrogati italiani per il monoï di Tahiti o per l'ectoin tedesco. Esiste però un controllo rigoroso su ogni singolo lotto in arrivo.</p>
+             <p>I fornitori attivi coprono Europa, Africa, Asia, Oceania e Pacifico. Ogni nuovo ingrediente richiede un periodo di qualificazione prima di entrare in formula. I quaderni di Antonio Venturino del 1969 avevano due ingredienti per pagina — oggi il processo è lo stesso, con cinquanta volte le variabili.</p>`,
+      facts: [
+        { k: 'Paesi principali', v: 'Marocco · Burkina Faso · India · Tahiti' },
+        { k: 'Standard qualifica', v: 'Dossier completo per ogni lotto' },
+        { k: 'Certificazione', v: 'Plant Based · Bioagricert' },
+        { k: 'Esclusi', v: 'Petrolchimici · siliconi · coloranti sint.' },
+      ],
+      visualBg: 'radial-gradient(ellipse at 30% 70%, #8a9a7b 0%, #2d3a2e 60%, #0a0a0a 100%)',
+    },
+  };
+
+  function open(key) {
+    const d = STATS_DATA[key];
+    if (!d) return;
+    document.getElementById('statsSheetVisual').style.background = d.visualBg;
+    document.getElementById('statsSheetNum').textContent = d.num;
+    document.getElementById('statsSheetEyebrow').textContent = d.eyebrow;
+    document.getElementById('statsSheetTitle').innerHTML = d.title;
+    document.getElementById('statsSheetLead').textContent = d.lead;
+    document.getElementById('statsSheetBody').innerHTML = d.body;
+    document.getElementById('statsSheetFacts').innerHTML = d.facts.map(f =>
+      `<div><div class="stats-sheet__fact-k">${f.k}</div><div class="stats-sheet__fact-v">${f.v}</div></div>`
+    ).join('');
+    sheet.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    sheet.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.stats-tile').forEach(t => {
+    t.addEventListener('click', () => open(t.dataset.tile));
+  });
+  sheet.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', close));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && sheet.classList.contains('open')) close(); });
+})();
+
+// ── AZ-BANDS PARALLAX ───────────────────────────────────────
+(function() {
+  const bgs = document.querySelectorAll('[data-az-band]');
+  if (!bgs.length) return;
+  let mobile = window.innerWidth <= 860;
+  let rafId = null;
+  function update() {
+    rafId = null;
+    if (mobile) return;
+    bgs.forEach(bg => {
+      const rect = bg.parentElement.getBoundingClientRect();
+      const relCenter = rect.top + rect.height / 2 - window.innerHeight / 2;
+      bg.style.transform = 'translateY(' + (relCenter * 0.1) + 'px)';
+    });
+  }
+  window.addEventListener('scroll', () => { if (!rafId) rafId = requestAnimationFrame(update); }, { passive: true });
+  window.addEventListener('resize', () => { mobile = window.innerWidth <= 860; update(); }, { passive: true });
+  update();
+})();
+
+// ── PARALLAX HERO ───────────────────────────────────────────
+const parallaxEl = document.getElementById('heroParallax');
+let ticking = false;
+
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    requestAnimationFrame(() => {
+      const y = window.scrollY;
+      parallaxEl.style.transform = `translateY(${y * 0.35}px)`;
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
+
+// ── 3D TILT — VALUE CARDS ───────────────────────────────────
+document.querySelectorAll('.value-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = e.clientX - r.left;
+    const y = e.clientY - r.top;
+    const cx = r.width  / 2;
+    const cy = r.height / 2;
+    const rotX = ((y - cy) / cy) * -8;
+    const rotY = ((x - cx) / cx) *  8;
+    card.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+    card.style.setProperty('--mx', (x / r.width  * 100).toFixed(1));
+    card.style.setProperty('--my', (y / r.height * 100).toFixed(1));
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg)';
+  });
+});
+
+// ── 3D TILT + SHINE — FAM CARDS ────────────────────────────
+document.querySelectorAll('.fam-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = e.clientX - r.left;
+    const y = e.clientY - r.top;
+    const cx = r.width  / 2;
+    const cy = r.height / 2;
+    const rotX = ((y - cy) / cy) * -10;
+    const rotY = ((x - cx) / cx) *  10;
+    card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+    card.style.setProperty('--mx', (x / r.width  * 100).toFixed(1));
+    card.style.setProperty('--my', (y / r.height * 100).toFixed(1));
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+  });
+});
+
+// ── WORD-BY-WORD REVEAL — QUOTE ─────────────────────────────
+(function () {
+  const container = document.getElementById('quoteWords');
+  if (!container) return;
+
+  // Divide il testo in parole preservando gli span .italic
+  const rawHtml = container.innerHTML;
+  const temp = document.createElement('div');
+  temp.innerHTML = rawHtml;
+
+  function wrapWords(node) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      const words = node.textContent.split(/(\s+)/);
+      const frag = document.createDocumentFragment();
+      words.forEach(tok => {
+        if (/\S/.test(tok)) {
+          const s = document.createElement('span');
+          s.className = 'w';
+          s.textContent = tok;
+          frag.appendChild(s);
+        } else if (tok) {
+          frag.appendChild(document.createTextNode(tok));
+        }
+      });
+      node.replaceWith(frag);
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      if (node.classList.contains('italic')) {
+        node.classList.add('w');
+      } else {
+        Array.from(node.childNodes).forEach(wrapWords);
+      }
+    }
+  }
+
+  Array.from(temp.childNodes).forEach(wrapWords);
+  container.innerHTML = '';
+  container.appendChild(temp);
+
+  const words = container.querySelectorAll('.w');
+
+  const qObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        words.forEach((w, i) => {
+          setTimeout(() => {
+            w.style.opacity = '1';
+            w.style.transform = 'translateY(0)';
+          }, i * 55);
+        });
+        qObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  qObs.observe(container);
+})();
+
+// ── VANISH ON SCROLL — citazione finale ─────────────────────
+(function() {
+  const qs = document.getElementById('quoteSection');
+  if (!qs) return;
+  const vanishObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.intersectionRatio < 0.3 && e.boundingClientRect.top < 0) {
+        qs.setAttribute('data-scroll-state', 'exiting');
+      } else {
+        qs.removeAttribute('data-scroll-state');
+      }
+    });
+  }, { threshold: [0, 0.3, 1] });
+  vanishObs.observe(qs);
+})();
+
+</script>
+</body>
+</html>

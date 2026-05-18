@@ -1,0 +1,2333 @@
+﻿<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Laboratorio R&S — Athena's</title>
+<link rel="preload" href="assets/fonts/fraunces-200-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="stylesheet" href="assets/fonts.css"/>
+<link rel="stylesheet" href="assets/tokens.css"/>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--cream); color: var(--ink); font-family: var(--sans); overflow-x: hidden; }
+
+/* ══════════════════════════════════════════════════════════
+   HERO
+══════════════════════════════════════════════════════════ */
+.lh {
+  min-height: 100svh;
+  background: #0a0a0a;
+  color: var(--cream);
+  position: relative; overflow: clip;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+@media (max-width: 900px) { .lh { grid-template-columns: 1fr; } }
+
+.lh__bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 70% at 80% 30%, rgba(90,107,78,.12) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 50% at 15% 75%, rgba(201,169,110,.08) 0%, transparent 60%),
+    linear-gradient(170deg, #050505 0%, #0f0f0f 60%, #080808 100%);
+}
+
+/* particle field */
+.lh__particles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.lh__particle {
+  position: absolute; border-radius: 50%;
+  background: rgba(201,169,110,.35);
+  animation: particle-drift linear infinite;
+}
+@keyframes particle-drift {
+  0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateY(-120vh) translateX(30px) scale(.5); opacity: 0; }
+}
+
+/* contenuto left */
+.lh__left {
+  position: relative; z-index: 3;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: clamp(100px,12vh,160px) clamp(28px,5vw,80px) clamp(60px,8vw,100px);
+}
+
+.lh__eyebrow {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 9px; letter-spacing: 0.32em; text-transform: uppercase;
+  color: rgba(201,169,110,.6); margin-bottom: 24px;
+}
+.lh__eyebrow::before { content: ''; width: 28px; height: 1px; background: rgba(201,169,110,.4); }
+
+.lh h1 {
+  font-family: var(--display);
+  font-size: clamp(56px,10vw,180px);
+  font-weight: 200; letter-spacing: -0.04em; line-height: .88;
+  color: #e8e0d4; margin-bottom: clamp(24px,3vw,40px);
+}
+.lh h1 em { font-style: italic; color: var(--gold); }
+
+.lh__lead {
+  font-family: var(--serif);
+  font-size: clamp(17px,1.5vw,22px);
+  line-height: 1.55; max-width: 48ch;
+  color: rgba(232,224,212,.55);
+  margin-bottom: 40px;
+}
+
+.lh__specbar {
+  display: flex; gap: 32px; flex-wrap: wrap;
+  padding-top: 28px; border-top: 1px solid rgba(201,169,110,.12);
+}
+.lh__spec { display: flex; flex-direction: column; gap: 4px; }
+.lh__spec-n {
+  font-family: var(--display); font-style: italic;
+  font-size: clamp(22px,3vw,36px); font-weight: 200;
+  color: var(--gold); line-height: 1;
+}
+.lh__spec-l {
+  font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(232,224,212,.3);
+}
+
+/* visual right — SVG molecolare */
+.lh__right {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+@media (max-width: 900px) { .lh__right { display: none; } }
+
+.lh__diagram {
+  width: clamp(320px,45vw,600px);
+  height: clamp(320px,45vw,600px);
+  position: relative;
+}
+.lh__diagram svg { width: 100%; height: 100%; }
+
+/* watermark background text */
+.lh__wm {
+  position: absolute; bottom: -0.08em; left: 0; right: 0;
+  font-family: var(--display); font-size: clamp(120px,22vw,320px);
+  font-weight: 200; color: rgba(255,255,255,.025);
+  letter-spacing: -0.05em; line-height: 1;
+  pointer-events: none; white-space: nowrap; overflow: hidden;
+}
+
+/* scroll hint */
+.scroll-hint {
+  position: absolute; bottom: clamp(24px,4vw,40px); right: clamp(20px,4vw,60px);
+  z-index: 4; display: flex; flex-direction: column; align-items: center; gap: 10px;
+  font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+  opacity: .35; color: #fff;
+}
+.scroll-hint__line { width: 1px; height: 48px; background: rgba(255,255,255,.3); position: relative; overflow: hidden; }
+.scroll-hint__line::after { content: ''; position: absolute; top: -100%; left: 0; width: 100%; height: 100%; background: #fff; animation: scroll-line 2s ease-in-out infinite; }
+@keyframes scroll-line { 0% { top:-100%; } 100% { top:100%; opacity:0; } }
+
+
+
+/* ══════════════════════════════════════════════════════════
+   PROCESSO — alternating full-width phases
+══════════════════════════════════════════════════════════ */
+.lab-phase {
+  min-height: 70vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative; overflow: hidden;
+}
+.lab-phase:nth-child(even) { direction: rtl; }
+.lab-phase:nth-child(even) > * { direction: ltr; }
+@media (max-width: 900px) {
+  .lab-phase, .lab-phase:nth-child(even) { grid-template-columns: 1fr; direction: ltr; min-height: auto; }
+}
+
+.lab-phase__text {
+  background: var(--ink); color: var(--cream);
+  display: flex; flex-direction: column; justify-content: center;
+  padding: clamp(60px,8vw,120px) clamp(32px,6vw,96px);
+  position: relative; overflow: hidden;
+}
+.lab-phase__wm {
+  position: absolute; top: -0.1em; right: -0.05em;
+  font-family: var(--display); font-weight: 200;
+  font-size: clamp(160px,25vw,340px); letter-spacing: -0.06em;
+  color: rgba(255,255,255,.03); pointer-events: none; line-height: 1;
+}
+.lab-phase__n {
+  font-family: var(--display); font-style: italic; font-size: 13px;
+  color: var(--gold); opacity: .6; margin-bottom: 20px;
+  letter-spacing: 0.06em;
+}
+.lab-phase h2 {
+  font-family: var(--display); font-weight: 200;
+  font-size: clamp(32px,4.5vw,64px); letter-spacing: -0.03em;
+  line-height: 1.05; color: #e8e0d4; margin-bottom: 20px;
+}
+.lab-phase h2 em { font-style: italic; color: var(--gold); }
+.lab-phase__body {
+  font-family: var(--serif); font-size: clamp(18px,1.6vw,21px);
+  line-height: 1.75; color: rgba(232,224,212,.55);
+  max-width: 62ch; margin-bottom: 28px;
+}
+.lab-phase__details {
+  display: flex; flex-direction: column; gap: 14px;
+}
+.lab-phase__detail {
+  display: flex; align-items: baseline; gap: 14px;
+  font-family: var(--serif); font-style: italic;
+  font-size: 19px; color: rgba(232,224,212,.55);
+  letter-spacing: 0;
+}
+.lab-phase__detail::before {
+  content: ''; width: 20px; height: 1px;
+  background: rgba(201,169,110,.3); flex-shrink: 0;
+}
+
+/* visual side */
+.lab-phase__visual {
+  background: #111;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; min-height: 340px; overflow: hidden;
+}
+.lab-phase__visual .photo-slot { position: absolute; inset: 0; aspect-ratio: unset; }
+.lab-phase__photo-ph {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  border: 1px dashed rgba(201,169,110,.1);
+}
+.lab-phase__photo-ph span {
+  font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(201,169,110,.2); text-align: center; padding: 0 20px;
+}
+.lab-phase__svg { position: relative; z-index: 1; }
+.lab-phase__visual img { position: absolute; inset: 0; }
+
+/* ── PARTNER LABS (fase 04 — full-width row) ─────────────── */
+.lab-phase__partners {
+  grid-column: 1 / -1;
+  background: var(--ink);
+  border-top: 1px solid rgba(201,169,110,.14);
+  padding: clamp(48px,6vw,80px) clamp(40px,6vw,80px);
+}
+
+.lab-phase__partners-eyebrow {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: .55;
+  margin-bottom: 16px;
+}
+
+.lab-phase__partners h3 {
+  font-family: var(--display);
+  font-weight: 200;
+  font-size: clamp(26px,3vw,44px);
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  color: #e8e0d4;
+  margin-bottom: 14px;
+}
+.lab-phase__partners h3 em { font-style: italic; color: var(--gold); }
+
+.lab-phase__partners-intro {
+  font-family: var(--serif);
+  font-size: clamp(17px,1.5vw,20px);
+  line-height: 1.75;
+  color: rgba(232,224,212,.55);
+  max-width: 78ch;
+  margin-bottom: clamp(36px,4vw,56px);
+}
+
+.lab-phase__partner-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: clamp(14px,2vw,24px);
+}
+@media (max-width: 860px) {
+  .lab-phase__partner-grid { grid-template-columns: 1fr; }
+}
+
+.lab-partner-card {
+  border: 1px solid rgba(255,255,255,.07);
+  padding: clamp(22px,2.5vw,32px);
+  display: flex;
+  flex-direction: column;
+  background: rgba(255,255,255,.02);
+  transition: border-color .3s var(--ease), background .3s var(--ease);
+}
+.lab-partner-card:hover {
+  border-color: rgba(201,169,110,.28);
+  background: rgba(201,169,110,.04);
+}
+
+.lab-partner__eyebrow {
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(232,224,212,.32);
+  margin-bottom: 10px;
+}
+
+.lab-partner__divider {
+  width: 18px;
+  height: 1px;
+  background: var(--gold);
+  opacity: .55;
+  margin-bottom: 14px;
+  flex-shrink: 0;
+}
+
+.lab-partner-card h4 {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(19px,1.8vw,26px);
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  color: #e8e0d4;
+  margin-bottom: 4px;
+}
+
+.lab-partner__sub {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(232,224,212,.28);
+  margin-bottom: 18px;
+}
+
+.lab-partner__body {
+  font-family: var(--serif);
+  font-size: clamp(14px,1.2vw,16px);
+  line-height: 1.75;
+  color: rgba(232,224,212,.55);
+  flex: 1;
+  margin-bottom: 20px;
+}
+
+.lab-partner__meta {
+  border-top: 1px solid rgba(255,255,255,.06);
+  padding-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lab-partner__meta-row {
+  font-family: var(--serif);
+  font-size: clamp(14px,1.2vw,16px);
+  letter-spacing: 0;
+  line-height: 1.75;
+  color: rgba(232,224,212,.55);
+}
+.lab-partner__meta-row strong {
+  font-family: var(--serif);
+  font-style: normal;
+  font-weight: 700;
+  color: rgba(201,169,110,.85);
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   MATERIALI — origine ingredienti
+══════════════════════════════════════════════════════════ */
+.lab-origin {
+  background: var(--ink); color: var(--cream);
+  padding: clamp(80px,10vw,140px) 0;
+  border-top: 1px solid rgba(255,255,255,.04);
+}
+.lab-origin__header {
+  display: flex; align-items: baseline; gap: 24px; margin-bottom: clamp(48px,6vw,80px); flex-wrap: wrap;
+}
+.lab-origin__title {
+  font-family: var(--display); font-weight: 200;
+  font-size: clamp(32px,5vw,72px); letter-spacing: -0.04em; line-height: .9;
+}
+.lab-origin__title em { font-style: italic; color: var(--gold); }
+
+.lab-origin__globe-layout {
+  display: grid; grid-template-columns: 3fr 2fr;
+  gap: clamp(32px,5vw,64px); align-items: start;
+}
+@media (max-width: 860px) { .lab-origin__globe-layout { grid-template-columns: 1fr; } }
+
+.lab-origin__globe-col {
+  position: relative; aspect-ratio: 1;
+  max-width: 580px; width: 100%; margin: 0 auto;
+}
+.lab-origin__globe-col canvas {
+  display: block; width: 100%; height: 100%;
+  border-radius: 50%; cursor: grab; touch-action: none;
+  opacity: 0; transition: opacity 1.4s ease;
+}
+.lab-origin__globe-col canvas:active { cursor: grabbing; }
+
+/* ── Pin sul globo (CSS Anchor Positioning di cobe v2) ─────────── */
+.lab-origin__pin {
+  position: absolute;
+  padding: 5px 10px 6px;
+  background: rgba(15,15,15,.88);
+  border: 1px solid rgba(201,169,110,.18);
+  border-radius: 2px;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 2;
+  transition: opacity .6s, filter .6s;
+}
+.lab-origin__pin .pin-name {
+  font-family: var(--sans);
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: #e8e0d4;
+  line-height: 1.1;
+}
+.lab-origin__pin .pin-place {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 11px;
+  color: var(--gold);
+  line-height: 1.2;
+  margin-top: 2px;
+}
+.lab-origin__pin .pin-arrow {
+  position: absolute;
+  border: 5px solid transparent;
+}
+.lab-origin__pin[data-side="top"] {
+  bottom: anchor(top); left: anchor(center);
+  translate: -50% 0; margin-bottom: 14px; text-align: center;
+}
+.lab-origin__pin[data-side="top"] .pin-arrow {
+  top: 100%; left: 50%; transform: translate3d(-50%,-1px,0);
+  border-top-color: rgba(15,15,15,.88);
+}
+.lab-origin__pin[data-side="bottom"] {
+  top: anchor(bottom); left: anchor(center);
+  translate: -50% 0; margin-top: 14px; text-align: center;
+}
+.lab-origin__pin[data-side="bottom"] .pin-arrow {
+  bottom: 100%; left: 50%; transform: translate3d(-50%,1px,0);
+  border-bottom-color: rgba(15,15,15,.88);
+}
+.lab-origin__pin[data-side="left"] {
+  right: anchor(left); top: anchor(center);
+  translate: 0 -50%; margin-right: 14px; text-align: right;
+}
+.lab-origin__pin[data-side="left"] .pin-arrow {
+  left: 100%; top: 50%; transform: translate3d(-1px,-50%,0);
+  border-left-color: rgba(15,15,15,.88);
+}
+.lab-origin__pin[data-side="right"] {
+  left: anchor(right); top: anchor(center);
+  translate: 0 -50%; margin-left: 14px; text-align: left;
+}
+.lab-origin__pin[data-side="right"] .pin-arrow {
+  right: 100%; top: 50%; transform: translate3d(1px,-50%,0);
+  border-right-color: rgba(15,15,15,.88);
+}
+.lab-origin__pin.is-hq {
+  background: var(--gold); border-color: var(--gold); padding: 6px 12px 7px;
+}
+.lab-origin__pin.is-hq .pin-name { font-size: 10px; letter-spacing: .26em; color: var(--ink); }
+.lab-origin__pin.is-hq .pin-place { font-style: italic; color: rgba(0,0,0,.5); font-size: 10px; font-family: var(--serif); }
+.lab-origin__pin.is-hq[data-side="right"] .pin-arrow { border-right-color: var(--gold); }
+.lab-origin__pin.is-hq[data-side="left"]  .pin-arrow { border-left-color: var(--gold); }
+.lab-origin__pin.is-hq[data-side="top"]   .pin-arrow { border-top-color: var(--gold); }
+.lab-origin__pin.is-hq[data-side="bottom"] .pin-arrow { border-bottom-color: var(--gold); }
+
+/* hide non-HQ pins in 'all' mode unless explicitly hovered */
+.lab-origin__col.filter-all .lab-origin__pin:not(.is-hq):not(.pin-hovered) {
+  opacity: 0 !important;
+  filter: none !important;
+  pointer-events: none;
+}
+
+/* Mobile: hide all globe pins (CSS anchor() not supported on Safari/mobile) */
+@media (max-width: 860px) {
+  .lab-origin__pin { display: none !important; }
+  .lab-origin__panel { position: static; max-height: none; min-height: 0; margin-top: 32px; }
+  /* Accordion sempre espanso: tutti i nomi dei luoghi visibili senza tap */
+  .lop-continent__rows { max-height: none !important; }
+  .lop-continent__chev { display: none; }
+  .lop-continent__head { cursor: default; }
+  .lop-accordion { overflow: visible; }
+}
+
+/* ── Panel destra ──────────────────────────────────────── */
+.lab-origin__panel {
+  display: flex; flex-direction: column;
+  max-height: 640px; min-height: 400px;
+  position: sticky; top: 80px;
+}
+
+/* Toolbar */
+.lop-toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 10px; padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255,255,255,.06); margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.lop-counter {
+  font-family: var(--sans); font-size: 9px; letter-spacing: .18em;
+  text-transform: uppercase; color: rgba(232,224,212,.3); white-space: nowrap;
+}
+.lop-chips { display: flex; gap: 5px; flex-wrap: wrap; }
+.lop-chip {
+  font-family: var(--sans); font-size: 8.5px; font-weight: 500;
+  letter-spacing: .12em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 40px;
+  border: 1px solid rgba(255,255,255,.1); background: transparent;
+  color: rgba(232,224,212,.35); cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.lop-chip.active, .lop-chip:hover {
+  background: rgba(201,169,110,.12); border-color: rgba(201,169,110,.38); color: var(--gold);
+}
+
+/* Accordion */
+.lop-accordion {
+  flex: 1; overflow-y: auto;
+  scrollbar-width: thin; scrollbar-color: rgba(201,169,110,.15) transparent;
+}
+.lop-accordion::-webkit-scrollbar { width: 3px; }
+.lop-accordion::-webkit-scrollbar-thumb { background: rgba(201,169,110,.15); border-radius: 2px; }
+
+.lop-continent { border-bottom: 1px solid rgba(255,255,255,.04); }
+.lop-continent[data-hidden] { display: none; }
+
+.lop-continent__head {
+  display: flex; align-items: center; gap: 8px;
+  padding: 11px 4px; cursor: pointer; user-select: none;
+  transition: opacity .15s;
+}
+.lop-continent__head:hover { opacity: .65; }
+.lop-continent__name {
+  font-family: var(--sans); font-size: 8.5px; font-weight: 500;
+  letter-spacing: .18em; text-transform: uppercase; color: rgba(232,224,212,.4); flex: 1;
+}
+.lop-continent__count {
+  font-family: var(--serif); font-style: italic; font-size: 11px; color: rgba(201,169,110,.45);
+}
+.lop-continent__chev {
+  font-size: 9px; color: rgba(232,224,212,.25);
+  transition: transform .25s var(--ease);
+}
+.lop-continent.open .lop-continent__chev { transform: rotate(180deg); }
+.lop-continent__rows { overflow: hidden; max-height: 0; transition: max-height .35s var(--ease); }
+.lop-continent.open .lop-continent__rows { max-height: 800px; }
+
+/* Ingredient rows */
+.lop-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 4px 8px 12px; border-radius: 3px;
+  cursor: pointer; transition: background .12s; margin-bottom: 1px;
+}
+.lop-row:hover, .lop-row.is-active { background: rgba(255,255,255,.04); }
+.lop-row[data-hidden] { display: none; }
+.lop-row__dot {
+  width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+  transition: transform .2s;
+}
+.lop-row:hover .lop-row__dot, .lop-row.is-active .lop-row__dot { transform: scale(1.7); }
+.lop-row__text { flex: 1; min-width: 0; }
+.lop-row__name {
+  font-family: var(--display); font-weight: 200; font-style: italic;
+  font-size: clamp(13px,1.15vw,16px); color: #e8e0d4;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.lop-row__place {
+  font-family: var(--sans); font-size: 8.5px; letter-spacing: .09em;
+  text-transform: uppercase; color: rgba(232,224,212,.24); margin-top: 1px;
+}
+.lop-row__brand {
+  font-family: var(--sans); font-size: 7.5px; letter-spacing: .1em;
+  text-transform: uppercase; color: rgba(232,224,212,.35); white-space: nowrap;
+}
+
+/* Panel footer */
+.lop-footer {
+  padding-top: 12px; border-top: 1px solid rgba(255,255,255,.05); margin-top: 10px;
+}
+.lop-footer a {
+  font-family: var(--sans); font-size: 8.5px; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--gold); text-decoration: none;
+  opacity: .55; transition: opacity .15s;
+}
+.lop-footer a:hover { opacity: 1; }
+
+/* ── Detail side panel ─────────────────────────────────── */
+.lab-origin__detail {
+  position: fixed; top: 0; right: 0;
+  width: min(420px, 92vw); height: 100%;
+  background: #111; border-left: 1px solid rgba(201,169,110,.1);
+  z-index: 200; transform: translateX(110%);
+  transition: transform .4s var(--ease);
+  overflow-y: auto; padding: 52px 36px 64px;
+  scrollbar-width: thin; scrollbar-color: rgba(201,169,110,.1) transparent;
+}
+.lab-origin__detail.is-open { transform: translateX(0); }
+@media (max-width: 680px) {
+  .lab-origin__detail {
+    top: auto; right: 0; bottom: 0; width: 100%; height: 72vh;
+    border-left: none; border-top: 1px solid rgba(201,169,110,.1);
+    transform: translateY(110%); padding: 32px 24px 48px;
+  }
+  .lab-origin__detail.is-open { transform: translateY(0); }
+}
+.lab-origin__detail-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,.55);
+  z-index: 199; opacity: 0; pointer-events: none; transition: opacity .3s;
+}
+.lab-origin__detail-overlay.is-open { opacity: 1; pointer-events: all; }
+
+.lod-close {
+  position: absolute; top: 18px; right: 18px;
+  width: 30px; height: 30px; background: transparent;
+  border: 1px solid rgba(255,255,255,.1); border-radius: 50%;
+  color: rgba(232,224,212,.45); font-size: 14px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color .15s, color .15s;
+}
+.lod-close:hover { border-color: var(--gold); color: var(--gold); }
+.lod-eyebrow {
+  font-family: var(--sans); font-size: 8.5px; letter-spacing: .22em;
+  text-transform: uppercase; color: rgba(232,224,212,.28); margin-bottom: 14px;
+}
+.lod-name {
+  font-family: var(--display); font-weight: 200; font-style: italic;
+  font-size: clamp(26px,3.5vw,44px); letter-spacing: -0.03em;
+  color: #e8e0d4; line-height: .95; margin-bottom: 8px;
+}
+.lod-place {
+  font-family: var(--serif); font-style: italic;
+  font-size: 14px; color: var(--gold); margin-bottom: 16px;
+}
+.lod-brand-tag {
+  display: inline-block; font-family: var(--sans);
+  font-size: 8px; letter-spacing: .18em; text-transform: uppercase;
+  padding: 3px 10px; border: 1px solid rgba(201,169,110,.28);
+  border-radius: 40px; color: var(--gold); margin-bottom: 24px;
+}
+.lod-divider { height: 1px; background: rgba(255,255,255,.06); margin: 18px 0; }
+.lod-label {
+  font-family: var(--sans); font-size: 8px; letter-spacing: .2em;
+  text-transform: uppercase; color: rgba(232,224,212,.22); margin-bottom: 10px;
+}
+.lod-desc {
+  font-family: var(--serif); font-size: clamp(13px,1.2vw,15px);
+  line-height: 1.8; color: rgba(232,224,212,.6); margin-bottom: 18px;
+}
+.lod-botanical {
+  font-family: var(--serif); font-style: italic;
+  font-size: 12px; color: rgba(201,169,110,.5);
+}
+
+/* ══════════════════════════════════════════════════════════
+   GMP — qualità e certificazione
+══════════════════════════════════════════════════════════ */
+.lab-gmp {
+  background: var(--cream);
+  padding: clamp(32px,4vw,64px) 0 clamp(48px,6vw,90px);
+  border-top: 1px solid rgba(0,0,0,.06);
+}
+.lab-gmp ~ .footer,
+.lab-cta ~ .footer,
+.lab-cta + #footer .footer {
+  margin-top: clamp(40px, 5vw, 80px) !important;
+}
+.lab-gmp__grid > div:nth-child(2) {
+  padding-top: clamp(80px, 9vw, 140px);
+}
+.lab-gmp__grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: clamp(48px,7vw,100px); align-items: start;
+}
+@media (max-width: 900px) { .lab-gmp__grid { grid-template-columns: 1fr; } }
+
+.lab-gmp__label {
+  font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--sage-deep); opacity: .5; margin-bottom: 16px; display: block;
+}
+.lab-gmp h2 {
+  font-family: var(--display); font-weight: 200;
+  font-size: clamp(28px,4vw,56px); letter-spacing: -0.03em; line-height: 1.05;
+  margin-bottom: 20px;
+}
+.lab-gmp h2 em { font-style: italic; color: var(--sage-deep); }
+.lab-gmp p {
+  font-family: var(--serif); font-size: clamp(18px,1.6vw,21px);
+  line-height: 1.75; color: rgba(0,0,0,.55); margin-bottom: 0; max-width: 62ch;
+}
+.lab-gmp__certs {
+  display: flex; flex-direction: column; gap: 1px;
+}
+.lab-gmp__cert {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 20px; background: var(--cream-2); gap: 16px;
+}
+.lab-gmp__cert-name {
+  font-family: var(--display); font-size: clamp(16px,1.8vw,22px); font-weight: 200; color: var(--ink);
+}
+.lab-gmp__cert-scope {
+  font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--sage-deep); opacity: .5; white-space: nowrap;
+}
+
+/* ══════════════════════════════════════════════════════════
+   CTA
+══════════════════════════════════════════════════════════ */
+.lab-cta {
+  background: var(--ink); color: var(--cream);
+  padding: clamp(36px,4.5vw,64px) 0;
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,.04);
+}
+.lab-cta h2 {
+  font-family: var(--display); font-weight: 200; font-style: italic;
+  font-size: clamp(32px,5vw,72px); letter-spacing: -0.03em;
+  color: #e8e0d4; margin-bottom: 16px;
+}
+.lab-cta h2 em { color: var(--gold); }
+.lab-cta p {
+  font-family: var(--serif); font-size: clamp(20px,1.7vw,24px); color: rgba(232,224,212,.55);
+  margin-bottom: clamp(36px,4vw,52px);
+}
+.lab-cta__btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.lab-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  text-decoration: none; padding: 17px 34px; transition: all .25s;
+}
+.lab-btn--gold { background: var(--gold); color: var(--ink); font-weight: 600; }
+.lab-btn--gold:hover { background: #d4b47a; transform: translateY(-2px); }
+.lab-btn--ghost { background: transparent; color: rgba(232,224,212,.4); border: 1px solid rgba(201,169,110,.18); }
+.lab-btn--ghost:hover { color: #e8e0d4; border-color: rgba(201,169,110,.45); transform: translateY(-2px); }
+
+/* ══════════════════════════════════════════════════════════
+   REVEAL
+══════════════════════════════════════════════════════════ */
+[data-reveal] {
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 1.1s cubic-bezier(.16,1,.3,1), transform 1.1s cubic-bezier(.16,1,.3,1);
+  transition-delay: var(--d, 0ms);
+}
+[data-reveal].is-visible { opacity: 1; transform: none; }
+
+/* ── LAB ATLAS ───────────────────────────────────────────────────── */
+.lab-atlas { background: var(--ink); color: var(--cream); padding: clamp(80px,10vw,140px) 0; }
+.lab-atlas__header { max-width: var(--max-w); margin: 0 auto; padding: 0 clamp(20px,4vw,60px); margin-bottom: clamp(40px,5vw,64px); }
+.lab-atlas__title { font-family: var(--display); font-size: clamp(40px,5.5vw,88px); font-weight: 300; letter-spacing: -0.03em; line-height: .95; margin-bottom: 16px; }
+.lab-atlas__title em { font-style: italic; color: var(--gold); }
+.lab-atlas__sub { font-family: var(--sans); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; opacity: .45; }
+
+/* Toolbar filtri */
+.lab-atlas__toolbar { max-width: var(--max-w); margin: 0 auto; padding: 0 clamp(20px,4vw,60px); margin-bottom: clamp(32px,4vw,52px); display: flex; flex-direction: column; gap: 10px; }
+.la-filter-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.la-filter-label { font-family: var(--sans); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; opacity: .35; min-width: 60px; }
+.la-chip { font-family: var(--sans); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; padding: 6px 14px; border-radius: 100px; border: 1px solid rgba(201,169,110,.3); background: transparent; color: var(--cream); cursor: pointer; opacity: .6; transition: all .25s ease; white-space: nowrap; }
+.la-chip:hover { opacity: 1; border-color: var(--gold); }
+.la-chip.is-active { background: var(--gold); border-color: var(--gold); color: var(--ink); opacity: 1; }
+
+/* Griglia card */
+.lab-atlas__grid { max-width: var(--max-w); margin: 0 auto; padding: 0 clamp(20px,4vw,60px); display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+@media (max-width: 900px) { .lab-atlas__grid { grid-template-columns: repeat(2, 1fr); } }
+
+.la-card { background: rgba(255,255,255,.03); border: 1px solid rgba(201,169,110,.1); padding: 28px 24px 22px; cursor: pointer; transition: border-color .25s ease, transform .25s ease, background .25s ease; display: flex; flex-direction: column; gap: 10px; }
+.la-card:hover { border-color: var(--gold); transform: translateY(-2px); background: rgba(255,255,255,.06); }
+.la-card.is-hidden { display: none; }
+.la-card__visual { width: 100%; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; margin-bottom: 4px; }
+.la-card__visual svg { width: 55%; opacity: .55; }
+.la-card__name { font-family: var(--display); font-size: 18px; font-weight: 300; letter-spacing: -0.01em; line-height: 1.1; }
+.la-card__latin { font-family: var(--serif); font-style: italic; font-size: 12px; opacity: .55; line-height: 1.3; }
+.la-card__meta { font-family: var(--sans); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; opacity: .45; margin-top: auto; }
+
+/* Side panel */
+.lab-atlas__panel { position: fixed; top: 0; right: -520px; width: 480px; max-width: 100vw; height: 100vh; background: #0e0e0e; color: var(--cream); border-left: 1px solid rgba(201,169,110,.25); z-index: 200; overflow-y: auto; padding: 40px 36px; transition: right .4s cubic-bezier(.22,.61,.36,1); display: flex; flex-direction: column; gap: 0; }
+.lab-atlas__panel.is-open { right: 0; }
+@media (max-width: 600px) { .lab-atlas__panel { width: 100vw; top: auto; bottom: -100vh; right: 0; height: 90vh; border-left: none; border-top: 1px solid rgba(201,169,110,.25); transition: bottom .4s cubic-bezier(.22,.61,.36,1); border-radius: 16px 16px 0 0; } .lab-atlas__panel.is-open { bottom: 0; right: 0; } }
+.lab-atlas__overlay { position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 199; opacity: 0; pointer-events: none; transition: opacity .3s ease; }
+.lab-atlas__overlay.is-visible { opacity: 1; pointer-events: all; }
+.la-panel__close { position: absolute; top: 20px; right: 20px; background: none; border: none; color: var(--cream); font-size: 22px; cursor: pointer; opacity: .5; transition: opacity .2s; line-height: 1; padding: 4px 8px; }
+.la-panel__close:hover { opacity: 1; }
+.la-panel__title { font-family: var(--display); font-size: clamp(28px,3.5vw,44px); font-weight: 300; letter-spacing: -0.02em; line-height: 1; margin-top: 8px; margin-bottom: 4px; }
+.la-panel__latin { font-family: var(--serif); font-style: italic; font-size: 14px; opacity: .5; margin-bottom: 28px; }
+.la-panel__section { margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,.07); }
+.la-panel__section:last-child { border-bottom: none; }
+.la-panel__section-title { font-family: var(--sans); font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; opacity: .4; margin-bottom: 10px; }
+.la-panel__text { font-family: var(--serif); font-size: 15px; line-height: 1.7; opacity: .75; }
+.la-panel__chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.la-panel__chip { font-family: var(--sans); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; padding: 4px 12px; border-radius: 100px; border: 1px solid rgba(201,169,110,.35); opacity: .7; }
+.la-panel__links { display: flex; flex-direction: column; gap: 6px; }
+.la-panel__link { font-family: var(--serif); font-size: 14px; opacity: .65; color: var(--gold); text-decoration: none; transition: opacity .2s; }
+.la-panel__link:hover { opacity: 1; }
+.la-panel__patent { background: rgba(201,169,110,.08); border: 1px solid rgba(201,169,110,.2); padding: 14px 16px; }
+.la-panel__patent-title { font-family: var(--sans); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); opacity: .8; margin-bottom: 6px; }
+.la-panel__patent-text { font-family: var(--serif); font-size: 13px; line-height: 1.6; opacity: .65; }
+
+/* "Scopri di più" expand */
+.la-card--collapsed { display: none; }
+.lab-atlas__more { max-width: var(--max-w); margin: 0 auto; padding: clamp(24px,3vw,40px) clamp(20px,4vw,60px) 0; display: flex; align-items: center; gap: 20px; }
+.lab-atlas__more-btn { font-family: var(--sans); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cream); background: transparent; border: 1px solid rgba(201,169,110,.35); padding: 10px 24px; cursor: pointer; opacity: .7; transition: opacity .25s, border-color .25s; border-radius: 100px; }
+.lab-atlas__more-btn:hover { opacity: 1; border-color: var(--gold); }
+.lab-atlas__more-count { font-family: var(--sans); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; opacity: .35; }
+
+.lab-atlas__detail-extended {
+  font-family: var(--serif);
+  font-size: clamp(13px,1vw,15px);
+  line-height: 1.75;
+  opacity: .6;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+
+/* ── GMP cert-grid ────────────────────────────────────────── */
+.lab-gmp__cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+.lab-gmp__cert-item { display: flex; align-items: center; gap: 10px; font-family: var(--sans); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; opacity: .7; }
+.lab-gmp__cert-item svg { opacity: .6; flex-shrink: 0; }
+.lab-gmp__cert-link { font-family: var(--sans); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); text-decoration: none; display: inline-block; margin-top: 8px; }
+.lab-gmp__cert-link:hover { opacity: .7; }
+</style>
+<meta name="description" content="Il laboratorio Athena's a Pianoro: ricerca formulativa, innovazione biotech, attivi cosmetici di nuova generazione."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://athenas.it/laboratorio.html"/>
+<meta property="og:type" content="website"/>
+<meta property="og:locale" content="it_IT"/>
+<meta property="og:locale:alternate" content="en_GB"/>
+<meta property="og:site_name" content="Athena's"/>
+<meta property="og:url" content="https://athenas.it/laboratorio.html"/>
+<meta property="og:title" content="Laboratorio R&S — Athena's"/>
+<meta property="og:description" content="Il laboratorio Athena's a Pianoro: ricerca formulativa, innovazione biotech, attivi cosmetici di nuova generazione."/>
+<meta property="og:image" content="https://athenas.it/immagini/og/laboratorio.jpg"/>
+<meta property="og:image:alt" content="Laboratorio R&S — Athena's"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Laboratorio R&S — Athena's"/>
+<meta name="twitter:description" content="Il laboratorio Athena's a Pianoro: ricerca formulativa, innovazione biotech, attivi cosmetici di nuova generazione."/>
+<meta name="twitter:image" content="https://athenas.it/immagini/og/laboratorio.jpg"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://athenas.it/" },
+    { "@type": "ListItem", "position": 2, "name": "Laboratorio", "item": "https://athenas.it/laboratorio.html" }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div id="topbar"></div>
+
+<!-- ════════════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════════════ -->
+<section class="lh" data-mood-fallback="dark">
+  <div class="photo-slot photo-slot--video-overlay photo-slot--fullbleed" style="z-index:0;pointer-events:none;" data-slot-label="VIDEO HERO LAB · oppure macro pipette · alternativa: foto banco lavoro da LOW (1) 2">
+    <span class="photo-slot__label" style="pointer-events:none;">Video Hero · Lab</span>
+  </div>
+<!-- SOSTITUIRE OPZIONALE: aggiungere video autoplay muted loop di sfondo (laboratorio, banco lavoro, pipette macro) per dare profondità al hero. File da copiare in immagini/laboratorio/hero-video.mp4 quando disponibile. Per ora il diagramma SVG resta da solo. -->
+  <div class="lh__bg"></div>
+  <div class="lh__particles" id="particles" aria-hidden="true"></div>
+  <div class="lh__wm" aria-hidden="true">LAB</div>
+
+  <!-- left: copy -->
+  <div class="lh__left">
+    <div class="lh__eyebrow" data-it="Laboratorio R&amp;S · Pianoro (BO)" data-en="R&amp;D Laboratory · Pianoro (BO)">Laboratorio R&amp;S · Pianoro (BO)</div>
+    <h1>
+      <span data-it="Dove nasce" data-en="Where every">Dove nasce</span><br>
+      <em data-it="ogni formula." data-en="formula is born.">ogni formula.</em>
+    </h1>
+    <p class="lh__lead" data-it="Dal 1969, la stessa fabbrica. Lo stesso rigore. 12 formulatori, 4 chimici, 250+ referenze prodotte. Il laboratorio R&S di Athena's è dove la scienza incontra la pianta — e non scende a compromessi." data-en="Since 1969, the same factory. The same rigour. 12 formulators, 4 chemists, 250+ references produced. Athena's R&D lab is where science meets the plant — without compromise.">Dal 1969, la stessa fabbrica. Lo stesso rigore. 12 formulatori, 4 chimici, 250+ referenze prodotte. Il laboratorio R&S di Athena's è dove la scienza incontra la pianta — e non scende a compromessi.</p>
+    <div class="lh__specbar">
+      <div class="lh__spec">
+        <span class="lh__spec-n">55+</span>
+        <span class="lh__spec-l" data-it="anni di know-how" data-en="years know-how">anni di know-how</span>
+      </div>
+      <div class="lh__spec">
+        <span class="lh__spec-n">16</span>
+        <span class="lh__spec-l" data-it="persone in R&amp;S" data-en="R&amp;D team members">persone in R&amp;S</span>
+      </div>
+      <div class="lh__spec">
+        <span class="lh__spec-n">250+</span>
+        <span class="lh__spec-l" data-it="referenze attive" data-en="active references">referenze attive</span>
+      </div>
+      <div class="lh__spec">
+        <span class="lh__spec-n">4</span>
+        <span class="lh__spec-l" data-it="brand sviluppati" data-en="brands developed">brand sviluppati</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- right: SVG molecular diagram -->
+  <div class="lh__right">
+    <div class="lh__diagram">
+      <svg viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <!-- outer rings -->
+        <circle cx="250" cy="250" r="230" stroke="rgba(201,169,110,.06)" stroke-width="1"/>
+        <circle cx="250" cy="250" r="195" stroke="rgba(201,169,110,.09)" stroke-width="1" stroke-dasharray="4 6"/>
+        <circle cx="250" cy="250" r="155" stroke="rgba(201,169,110,.12)" stroke-width="1"/>
+        <circle cx="250" cy="250" r="110" stroke="rgba(201,169,110,.18)" stroke-width="1.5" stroke-dasharray="2 4"/>
+        <circle cx="250" cy="250" r="68"  stroke="rgba(201,169,110,.25)" stroke-width="1.5"/>
+
+        <!-- core -->
+        <circle cx="250" cy="250" r="32"
+          fill="url(#lcore)"
+          filter="url(#lglow)"/>
+        <defs>
+          <radialGradient id="lcore" cx="35%" cy="35%">
+            <stop offset="0%" stop-color="rgba(201,169,110,.9)"/>
+            <stop offset="60%" stop-color="rgba(120,90,40,.6)"/>
+            <stop offset="100%" stop-color="rgba(20,20,20,.95)"/>
+          </radialGradient>
+          <filter id="lglow"><feGaussianBlur stdDeviation="3"/></filter>
+        </defs>
+        <text x="250" y="245" text-anchor="middle" font-family="Fraunces,serif" font-size="9" fill="rgba(201,169,110,.7)" font-style="italic">formula</text>
+        <text x="250" y="258" text-anchor="middle" font-family="sans-serif" font-size="5" fill="rgba(201,169,110,.4)" letter-spacing="2">ACTIVE</text>
+
+        <!-- satellite nodes: 6 around ring 155 -->
+        <circle cx="250" cy="95"  r="14" fill="rgba(201,169,110,.12)" stroke="rgba(201,169,110,.3)" stroke-width="1"/>
+        <circle cx="384" cy="173" r="10" fill="rgba(201,169,110,.10)" stroke="rgba(201,169,110,.25)" stroke-width="1"/>
+        <circle cx="384" cy="327" r="16" fill="rgba(201,169,110,.14)" stroke="rgba(201,169,110,.3)" stroke-width="1"/>
+        <circle cx="250" cy="405" r="11" fill="rgba(201,169,110,.1)"  stroke="rgba(201,169,110,.22)" stroke-width="1"/>
+        <circle cx="116" cy="327" r="13" fill="rgba(201,169,110,.12)" stroke="rgba(201,169,110,.28)" stroke-width="1"/>
+        <circle cx="116" cy="173" r="9"  fill="rgba(201,169,110,.09)" stroke="rgba(201,169,110,.2)"  stroke-width="1"/>
+
+        <!-- connector lines -->
+        <line x1="250" y1="218" x2="250" y2="109" stroke="rgba(201,169,110,.15)" stroke-width="1" stroke-dasharray="3 4"/>
+        <line x1="272" y1="226" x2="376" y2="179" stroke="rgba(201,169,110,.12)" stroke-width="1" stroke-dasharray="3 4"/>
+        <line x1="272" y1="274" x2="370" y2="321" stroke="rgba(201,169,110,.15)" stroke-width="1" stroke-dasharray="3 4"/>
+        <line x1="250" y1="282" x2="250" y2="394" stroke="rgba(201,169,110,.12)" stroke-width="1" stroke-dasharray="3 4"/>
+        <line x1="228" y1="274" x2="130" y2="321" stroke="rgba(201,169,110,.15)" stroke-width="1" stroke-dasharray="3 4"/>
+        <line x1="228" y1="226" x2="124" y2="179" stroke="rgba(201,169,110,.12)" stroke-width="1" stroke-dasharray="3 4"/>
+
+        <!-- satellite labels -->
+        <text x="250" y="92"  text-anchor="middle" font-family="sans-serif" font-size="5.5" fill="rgba(201,169,110,.5)" letter-spacing="1">PEPTIDI</text>
+        <text x="388" y="170" text-anchor="start"  font-family="sans-serif" font-size="5.5" fill="rgba(201,169,110,.5)" letter-spacing="1">BIOPOLIM.</text>
+        <text x="388" y="324" text-anchor="start"  font-family="sans-serif" font-size="5.5" fill="rgba(201,169,110,.5)" letter-spacing="1">ESTRATTI</text>
+        <text x="250" y="424" text-anchor="middle" font-family="sans-serif" font-size="5.5" fill="rgba(201,169,110,.5)" letter-spacing="1">FERMENT.</text>
+        <text x="112" y="340" text-anchor="end"    font-family="sans-serif" font-size="5.5" fill="rgba(201,169,110,.5)" letter-spacing="1">OLI PURI</text>
+        <text x="112" y="170" text-anchor="end"    font-family="sans-serif" font-size="5.5" fill="rgba(201,169,110,.5)" letter-spacing="1">ATTIVI</text>
+
+        <!-- slow rotating outer dashed ring animation -->
+        <circle cx="250" cy="250" r="230" stroke="rgba(201,169,110,.04)" stroke-width="1" stroke-dasharray="12 20"
+          style="transform-origin:250px 250px; animation: lab-rot 40s linear infinite;"/>
+        <circle cx="250" cy="250" r="155" stroke="rgba(90,107,78,.08)" stroke-width="1" stroke-dasharray="5 10"
+          style="transform-origin:250px 250px; animation: lab-rot 25s linear infinite reverse;"/>
+        <style>
+          @keyframes lab-rot { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        </style>
+      </svg>
+    </div>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true">
+    <div class="scroll-hint__line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+
+
+<!-- ════════════════════════════════════════════════════════
+     PROCESSO — 4 FASI alternating
+════════════════════════════════════════════════════════ -->
+<section style="background:var(--ink)">
+  <div class="container" style="padding-top:clamp(60px,8vw,100px); padding-bottom:clamp(40px,6vw,72px);">
+    <div style="display:flex;align-items:center;gap:16px;" data-reveal>
+      <span style="font-size:9px;letter-spacing:0.28em;text-transform:uppercase;color:rgba(201,169,110,.45)">01 · Dal concept al prodotto</span>
+    </div>
+    <h2 style="font-family:var(--display);font-size:clamp(32px,5vw,72px);font-weight:200;letter-spacing:-0.04em;line-height:1;color:#e8e0d4;margin-top:12px;" data-reveal>
+      <span data-it="Quattro fasi, " data-en="Four phases, ">Quattro fasi, </span><em data-it="sotto lo stesso tetto." data-en="under one roof." style="font-style:italic;color:var(--gold)">sotto lo stesso tetto.</em>
+    </h2>
+  </div>
+</section>
+
+<!-- Fase 01 -->
+<div class="lab-phase" data-reveal-repeat>
+  <div class="lab-phase__text">
+    <div class="lab-phase__wm" aria-hidden="true">01</div>
+    <div class="lab-phase__n">— Fase 01</div>
+    <h2>Selezione<br><em>materie prime.</em></h2>
+    <p class="lab-phase__body" data-it="Nessun ingrediente entra in laboratorio senza un dossier completo: origine geografica, metodo di estrazione, certificazione del fornitore, profilo tossicologico, compatibilità con il nostro standard clean." data-en="No ingredient enters the lab without a full dossier: geographic origin, extraction method, supplier certification, toxicological profile, compatibility with our clean standard.">Nessun ingrediente entra in laboratorio senza un dossier completo: origine geografica, metodo di estrazione, certificazione del fornitore, profilo tossicologico, compatibilità con il nostro standard clean.</p>
+    <div class="lab-phase__details">
+      <div class="lab-phase__detail" data-it="Valutazione origine e tracciabilità di ogni materia prima" data-en="Origin and traceability assessment of every raw material">Valutazione origine e tracciabilità di ogni materia prima</div>
+      <div class="lab-phase__detail" data-it="0% petrolchimici, siliconi, coloranti sintetici — non negoziabile" data-en="0% petrochemicals, silicones, synthetic dyes — non-negotiable">0% petrolchimici, siliconi, coloranti sintetici — non negoziabile</div>
+      <div class="lab-phase__detail" data-it="Preferenza per ingredienti biologici certificati Bioagricert e materie prime fair trade" data-en="Preference for Bioagricert-certified organic ingredients and fair trade raw materials">Preferenza per ingredienti biologici certificati Bioagricert e materie prime fair trade</div>
+    </div>
+  </div>
+  <div class="lab-phase__visual">
+    <!-- SOSTITUIRE: foto selezione materie prime, ingredienti botanici su tavolo laboratorio -->
+    <img src="../immagini/laboratorio/texture-01.jpg" alt="Laboratorio R&amp;S — Athena's" class="cover-img" loading="lazy">
+    <div class="lab-phase__svg">
+      <svg width="160" height="160" viewBox="0 0 160 160" fill="none" aria-hidden="true">
+        <circle cx="80" cy="80" r="70" stroke="rgba(201,169,110,.1)" stroke-width="1" stroke-dasharray="4 6"/>
+        <circle cx="80" cy="80" r="50" stroke="rgba(201,169,110,.15)" stroke-width="1"/>
+        <circle cx="80" cy="80" r="28" fill="rgba(201,169,110,.06)" stroke="rgba(201,169,110,.25)" stroke-width="1"/>
+        <text x="80" y="77" text-anchor="middle" font-family="Fraunces,serif" font-size="8" fill="rgba(201,169,110,.5)" font-style="italic">selezione</text>
+        <text x="80" y="88" text-anchor="middle" font-family="sans-serif" font-size="5" fill="rgba(201,169,110,.3)" letter-spacing="2">SCREENING</text>
+        <circle cx="80" cy="10" r="6" fill="rgba(90,107,78,.3)"/>
+        <circle cx="150" cy="80" r="5" fill="rgba(90,107,78,.2)"/>
+        <circle cx="80" cy="150" r="7" fill="rgba(90,107,78,.25)"/>
+        <circle cx="10" cy="80" r="4" fill="rgba(90,107,78,.2)"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- Fase 02 -->
+<div class="lab-phase" data-reveal-repeat>
+  <div class="lab-phase__text">
+    <div class="lab-phase__wm" aria-hidden="true">02</div>
+    <div class="lab-phase__n">— Fase 02</div>
+    <h2>Formulazione<br><em>&amp; test.</em></h2>
+    <p class="lab-phase__body" data-it="Decine di batch di laboratorio per trovare la formula definitiva. Test di stabilità accelerata a temperature estreme, compatibilità packaging (HDPE, vetro, PET), profilo organolettico, pH ottimale. La formula è bloccata solo quando ogni parametro rientra nelle specifiche." data-en="Dozens of lab batches to find the definitive formula. Accelerated stability tests at extreme temperatures, packaging compatibility (HDPE, glass, PET), organoleptic profile, optimal pH. The formula is locked only when every parameter meets specifications.">Decine di batch di laboratorio per trovare la formula definitiva. Test di stabilità accelerata a temperature estreme, compatibilità packaging, profilo organolettico, pH ottimale. La formula è bloccata solo quando ogni parametro rientra nelle specifiche.</p>
+    <div class="lab-phase__details">
+      <div class="lab-phase__detail" data-it="Stabilità a 4°C, 25°C, 40°C e 50°C · cicli di congela/scongela" data-en="Stability at 4°C, 25°C, 40°C and 50°C · freeze/thaw cycles">Stabilità a 4°C, 25°C, 40°C e 50°C · cicli congela/scongela</div>
+      <div class="lab-phase__detail" data-it="Compatibilità materiali di confezionamento · migrazione" data-en="Packaging material compatibility · migration">Compatibilità materiali di confezionamento · migrazione</div>
+      <div class="lab-phase__detail" data-it="pH, viscosità, aspetto visivo, odore — ogni lotto documentato" data-en="pH, viscosity, visual appearance, odour — every batch documented">pH, viscosità, aspetto, odore — ogni lotto documentato</div>
+    </div>
+  </div>
+  <div class="lab-phase__visual">
+    <!-- SOSTITUIRE: poster="immagini/laboratorio/reel-creazione-crema-poster.jpg" quando disponibile -->
+    <video class="bg-video" autoplay muted loop playsinline preload="metadata">
+      <source src="immagini/laboratorio/reel-creazione-crema.mp4" type="video/mp4">
+    </video>
+    <div class="lab-phase__svg">
+      <svg width="160" height="160" viewBox="0 0 160 160" fill="none" aria-hidden="true">
+        <!-- beaker shape -->
+        <path d="M55 30 L55 90 L30 140 L130 140 L105 90 L105 30 Z" stroke="rgba(201,169,110,.2)" stroke-width="1.5" fill="rgba(201,169,110,.04)"/>
+        <path d="M30 140 L130 140 L105 90 L55 90 Z" fill="rgba(201,169,110,.08)"/>
+        <line x1="55" y1="30" x2="105" y2="30" stroke="rgba(201,169,110,.3)" stroke-width="1.5"/>
+        <circle cx="73" cy="115" r="4" fill="rgba(201,169,110,.4)"/>
+        <circle cx="87" cy="108" r="3" fill="rgba(90,107,78,.4)"/>
+        <circle cx="79" cy="122" r="2.5" fill="rgba(201,169,110,.3)"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- Fase 03 -->
+<div class="lab-phase" data-reveal-repeat>
+  <div class="lab-phase__text">
+    <div class="lab-phase__wm" aria-hidden="true">03</div>
+    <div class="lab-phase__n">— Fase 03</div>
+    <h2>Validazione<br><em>clinica.</em></h2>
+    <p class="lab-phase__body" data-it="Ogni claim sul packaging è supportato da dati reali. Test dermatologici su panelist volontari, test strumentali (cutometro, tewameter, corneometro), panel test percettivi. Se il dato non lo supporta, il claim non va in etichetta." data-en="Every packaging claim is supported by real data. Dermatological tests on volunteer panellists, instrumental tests (cutometer, tewameter, corneometer), perceptual panel tests. If the data doesn't support it, the claim doesn't go on the label.">Ogni claim sul packaging è supportato da dati reali. Test dermatologici su panelist volontari, test strumentali, panel test percettivi. Se il dato non lo supporta, il claim non va in etichetta.</p>
+    <div class="lab-phase__details">
+      <div class="lab-phase__detail" data-it="Patch test su 20+ volontari · test di tollerabilità cutanea" data-en="Patch test on 20+ volunteers · skin tolerability testing">Patch test su 20+ volontari · test di tollerabilità cutanea</div>
+      <div class="lab-phase__detail" data-it="Cutometro (elasticità), Tewameter (barriera), Corneometro (idratazione)" data-en="Cutometer (elasticity), Tewameter (barrier), Corneometer (hydration)">Cutometro, Tewameter, Corneometro</div>
+      <div class="lab-phase__detail" data-it="Test efficacia in use su 4–8 settimane · claim certificati" data-en="In-use efficacy tests over 4–8 weeks · certified claims">Test in use su 4–8 settimane · claim certificati</div>
+    </div>
+  </div>
+  <div class="lab-phase__visual">
+    <!-- SOSTITUIRE: foto test strumentale su pelle, cutometro -->
+    <div class="photo-slot photo-slot--4x5" data-slot-label="fase-03-test-clinico">
+      <svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      <span class="photo-slot__label">Test clinico strumentale</span>
+      <span class="photo-slot__sub">4:5 · 1600 × 2000 px</span>
+    </div>
+    <div class="lab-phase__svg">
+      <svg width="160" height="160" viewBox="0 0 160 160" fill="none" aria-hidden="true">
+        <rect x="40" y="50" width="80" height="80" rx="4" stroke="rgba(201,169,110,.2)" stroke-width="1.5" fill="rgba(201,169,110,.03)"/>
+        <polyline points="55,110 70,80 85,95 100,65 115,75" stroke="rgba(201,169,110,.5)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="100" cy="65" r="4" fill="rgba(201,169,110,.6)"/>
+        <line x1="40" y1="110" x2="120" y2="110" stroke="rgba(201,169,110,.15)" stroke-width="1"/>
+        <line x1="40" y1="50"  x2="40"  y2="130" stroke="rgba(201,169,110,.15)" stroke-width="1"/>
+        <text x="80" y="148" text-anchor="middle" font-family="sans-serif" font-size="6" fill="rgba(201,169,110,.3)" letter-spacing="1">EFFICACY DATA</text>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- Fase 04 -->
+<div class="lab-phase" data-reveal-repeat>
+  <div class="lab-phase__text">
+    <div class="lab-phase__wm" aria-hidden="true">04</div>
+    <div class="lab-phase__n">— Fase 04</div>
+    <h2>Produzione<br><em>&amp; controllo qualità.</em></h2>
+    <p class="lab-phase__body" data-it="La produzione avviene interamente nello stabilimento di Pianoro, a pochi metri dal laboratorio che ha sviluppato la formula. Controllo qualità in process e su prodotto finito: ogni lotto è tracciato, campionato e conservato per 36 mesi in archivio." data-en="Production takes place entirely in the Pianoro facility, metres from the lab that developed the formula. In-process and finished product quality control: every batch is traced, sampled and stored for 36 months in archive.">La produzione avviene interamente nello stabilimento di Pianoro, a pochi metri dal laboratorio. Controllo qualità in process e su prodotto finito: ogni lotto è tracciato e campionato per 36 mesi.</p>
+    <div class="lab-phase__details">
+      <div class="lab-phase__detail" data-it="Riempimento automatizzato senza contatto con operatori o ambiente esterno" data-en="Automated filling with no contact with operators or external environment">Riempimento automatizzato · linee dedicate per formato</div>
+      <div class="lab-phase__detail" data-it="Campione di retention per ogni lotto · archivio 36 mesi" data-en="Retention sample for every batch · 36-month archive">Campione retention per ogni lotto · 36 mesi</div>
+      <div class="lab-phase__detail" data-it="Controllo microbiologico in collaborazione col Dipartimento di Cosmetologia, Università di Ferrara" data-en="Microbiological control in collaboration with University of Ferrara, Department of Cosmetology">Controllo microbiologico · Università di Ferrara</div>
+    </div>
+  </div>
+  <div class="lab-phase__visual">
+    <!-- SOSTITUIRE: foto linea di produzione, riempimento, confezionamento -->
+    <div class="photo-slot photo-slot--4x5" data-slot-label="fase-04-produzione">
+      <svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      <span class="photo-slot__label">Linea di produzione</span>
+      <span class="photo-slot__sub">4:5 · 1600 × 2000 px</span>
+    </div>
+    <div class="lab-phase__svg">
+      <svg width="160" height="160" viewBox="0 0 160 160" fill="none" aria-hidden="true">
+        <!-- bottle + check -->
+        <rect x="60" y="28" width="40" height="100" rx="8" stroke="rgba(201,169,110,.2)" stroke-width="1.5" fill="rgba(201,169,110,.04)"/>
+        <rect x="68" y="20" width="24" height="12" rx="2" fill="rgba(201,169,110,.15)"/>
+        <path d="M72 82 L78 90 L90 72" stroke="rgba(90,107,78,.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <text x="80" y="148" text-anchor="middle" font-family="sans-serif" font-size="6" fill="rgba(201,169,110,.3)" letter-spacing="1">QC PASSED</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Partner labs — riga full-width, grid-column 1/-1 -->
+  <div class="lab-phase__partners" id="partner-laboratori">
+    <div class="lab-phase__partners-eyebrow" data-it="Tre laboratori partner, tre validazioni esterne" data-en="Three partner labs, three external validations">Tre laboratori partner, tre validazioni esterne</div>
+    <h3>La rete di <em>controllo</em> indipendente.</h3>
+    <p class="lab-phase__partners-intro"
+      data-it="Athena's non si valida da sola. Ogni claim sul packaging dei nostri prodotti è confermato da un laboratorio esterno specializzato — uno per ambito di test. È una scelta di trasparenza: i nostri partner non lavorano per noi, lavorano sui nostri prodotti."
+      data-en="Athena's does not validate itself. Every claim on our product packaging is confirmed by a specialised external laboratory — one per testing area. It is a choice of transparency: our partners do not work for us, they work on our products.">Athena's non si valida da sola. Ogni claim sul packaging dei nostri prodotti è confermato da un laboratorio esterno specializzato — uno per ambito di test. È una scelta di trasparenza: i nostri partner non lavorano per noi, lavorano sui nostri prodotti.</p>
+
+    <div class="lab-phase__partner-grid">
+
+      <!-- Card 01 — Università di Ferrara -->
+      <div class="lab-partner-card">
+        <div class="lab-partner__eyebrow" data-it="Tollerabilità cutanea e oculare" data-en="Skin and ocular tolerability">Tollerabilità cutanea e oculare</div>
+        <div class="lab-partner__divider" aria-hidden="true"></div>
+        <h4>Università di Ferrara</h4>
+        <div class="lab-partner__sub" data-it="Dipartimento di Cosmetologia" data-en="Department of Cosmetology">Dipartimento di Cosmetologia</div>
+        <p class="lab-partner__body"
+          data-it="Esegue il challenge test (validazione del sistema conservante), il patch test dermatologico e il patch test oftalmologico. Tutti i test sono in vivo, su un panel di 20 persone, eseguiti da un dermatologo e un oculista. Sono i test che ci permettono di dichiarare la non irritabilità cutanea e oculare dei prodotti."
+          data-en="Performs the challenge test (preservative system validation), the dermatological patch test and the ophthalmological patch test. All tests are in vivo, on a panel of 20 people, carried out by a dermatologist and an ophthalmologist. These are the tests that allow us to declare skin and ocular non-irritability of the products.">Esegue il challenge test (validazione del sistema conservante), il patch test dermatologico e il patch test oftalmologico. Tutti i test sono in vivo, su un panel di 20 persone, eseguiti da un dermatologo e un oculista. Sono i test che ci permettono di dichiarare la non irritabilità cutanea e oculare dei prodotti.</p>
+        <div class="lab-partner__meta">
+          <div class="lab-partner__meta-row"><strong data-it="Sede" data-en="Location">Sede</strong> · Ferrara, Italia</div>
+          <div class="lab-partner__meta-row"><strong data-it="Modalità" data-en="Method">Modalità</strong> · <span data-it="In vivo, panel 20" data-en="In vivo, panel of 20">In vivo, panel 20</span></div>
+          <div class="lab-partner__meta-row"><strong>Output</strong> · <span data-it="Claim non irritante + validazione conservante" data-en="Non-irritant claim + preservative validation">Claim non irritante + validazione conservante</span></div>
+          <div class="lab-partner__meta-row"><strong>Sito</strong> · <a href="https://www.unife.it/centri/cosmetologia/it/chi-siamo/centro-di-cosmetologia" target="_blank" rel="noopener" style="color:var(--gold); text-decoration:none;">cosmetologia.unife.it</a></div>
+        </div>
+      </div>
+
+      <!-- Card 02 — Complife -->
+      <div class="lab-partner-card">
+        <div class="lab-partner__eyebrow" data-it="Microbiologia di lotto" data-en="Batch microbiology">Microbiologia di lotto</div>
+        <div class="lab-partner__divider" aria-hidden="true"></div>
+        <h4>Complife</h4>
+        <div class="lab-partner__sub" data-it="Laboratorio accreditato terzo" data-en="Accredited third-party laboratory">Laboratorio accreditato terzo</div>
+        <p class="lab-partner__body"
+          data-it="Esegue la valutazione microbiologica su ogni lotto prodotto. Garantisce che le formule rispettino i parametri microbiologici previsti dalla normativa cosmetica europea, lotto per lotto, prima del rilascio sul mercato."
+          data-en="Performs microbiological evaluation on every produced batch. Guarantees that formulas meet the microbiological parameters required by European cosmetic regulations, batch by batch, before market release.">Esegue la valutazione microbiologica su ogni lotto prodotto. Garantisce che le formule rispettino i parametri microbiologici previsti dalla normativa cosmetica europea, lotto per lotto, prima del rilascio sul mercato.</p>
+        <div class="lab-partner__meta">
+          <div class="lab-partner__meta-row"><strong data-it="Sede" data-en="Location">Sede</strong> · Italia</div>
+          <div class="lab-partner__meta-row"><strong data-it="Modalità" data-en="Method">Modalità</strong> · <span data-it="Per ogni batch" data-en="Per batch">Per ogni batch</span></div>
+          <div class="lab-partner__meta-row"><strong>Output</strong> · <span data-it="Conformità microbiologica" data-en="Microbiological compliance">Conformità microbiologica</span></div>
+          <div class="lab-partner__meta-row"><strong>Sito</strong> · <a href="https://www.complifegroup.com/" target="_blank" rel="noopener" style="color:var(--gold); text-decoration:none;">complifegroup.com</a></div>
+        </div>
+      </div>
+
+      <!-- Card 03 — Gelt International -->
+      <div class="lab-partner-card">
+        <div class="lab-partner__eyebrow" data-it="Sicurezza chimica" data-en="Chemical safety">Sicurezza chimica</div>
+        <div class="lab-partner__divider" aria-hidden="true"></div>
+        <h4 data-it="Gelt International" data-en="Gelt International">Gelt International</h4>
+        <div class="lab-partner__sub" data-it="Laboratorio accreditato · ricerca metalli pesanti" data-en="Accredited laboratory · heavy metals testing">Laboratorio accreditato · ricerca metalli pesanti</div>
+        <p class="lab-partner__body"
+          data-it="Gelt International è il nostro partner per la ricerca dei metalli pesanti — Nichel, Cromo, Cobalto. Laboratorio accreditato terzo che valida la sicurezza chimica dei nostri prodotti: i risultati sono alla base del claim Test Metalli esposto in etichetta, a garanzia di chi ha pelle sensibile ai metalli."
+          data-en="Gelt International is our partner for heavy metals testing — Nickel, Chromium, Cobalt. An accredited third-party laboratory that validates the chemical safety of our products: results underpin the Metals Test claim displayed on our labels, protecting consumers with metal-sensitive skin.">Gelt International è il nostro partner per la ricerca dei metalli pesanti — Nichel, Cromo, Cobalto. Laboratorio accreditato terzo che valida la sicurezza chimica dei nostri prodotti: i risultati sono alla base del claim Test Metalli esposto in etichetta, a garanzia di chi ha pelle sensibile ai metalli.</p>
+        <div class="lab-partner__meta">
+          <div class="lab-partner__meta-row"><strong data-it="Modalità" data-en="Method">Modalità</strong> · <span data-it="Su tutti i prodotti" data-en="On all products">Su tutti i prodotti</span></div>
+          <div class="lab-partner__meta-row"><strong>Output</strong> · <span data-it="Claim Test Metalli" data-en="Metals Test claim">Claim Test Metalli</span></div>
+          <div class="lab-partner__meta-row"><strong>Sito</strong> · <a href="https://www.geltinternational.it" target="_blank" rel="noopener" style="color:var(--gold); text-decoration:none;">geltinternational.it</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ─────────────────────── ATLANTE MATERIE PRIME ─────────── -->
+<!-- SOSTITUIRE OPZIONALE: per i 10-15 ingredienti più rappresentativi (Argan, Cocco, Karité, Mandorle, Calendula, Camomilla, Lavanda, Tè verde, Aloe vera, Caffè, Stella Alpina) le illustrazioni SVG possono essere sostituite con foto macro della materia prima · 1:1 · 600x600px · sfondo neutro · da reperire shooting dedicato o stock photo botanica. Per i peptidi brevettati e biopolimeri, lasciare le illustrazioni SVG (sono molecole, non hanno foto). -->
+<section class="lab-atlas">
+  <div class="lab-atlas__header" data-reveal>
+    <div style="display:flex; gap:16px; align-items:center; margin-bottom:clamp(24px,3vw,36px);">
+      <span class="num">— 02</span>
+      <div class="eyebrow" data-it="Vocabolario delle formule" data-en="Formula vocabulary">Vocabolario delle formule</div>
+    </div>
+    <h2 class="lab-atlas__title">
+      <span data-it="L'&#8202;" data-en="The ">L'&#8202;</span><em data-it="atlante" data-en="atlas">atlante</em><br/>
+      <span data-it="delle formule." data-en="of formulas.">delle formule.</span>
+    </h2>
+    <p class="lab-atlas__sub" data-it="38 materie prime · 10 brevetti · 6 categorie tecnologiche" data-en="38 raw materials · 10 patents · 6 technology categories">38 materie prime · 10 brevetti · 6 categorie tecnologiche</p>
+  </div>
+
+  <div class="lab-atlas__toolbar" data-reveal style="--d:80ms">
+    <div class="la-filter-row">
+      <span class="la-filter-label" data-it="Tipo" data-en="Type">Tipo</span>
+      <button class="la-chip is-active" data-filter-type="all" data-it="Tutte" data-en="All">Tutte</button>
+      <button class="la-chip" data-filter-type="olio" data-it="Oli vegetali" data-en="Vegetable oils">Oli vegetali</button>
+      <button class="la-chip" data-filter-type="estratto" data-it="Estratti botanici" data-en="Botanical extracts">Estratti botanici</button>
+      <button class="la-chip" data-filter-type="peptide" data-it="Peptidi brevettati" data-en="Patented peptides">Peptidi brevettati</button>
+      <button class="la-chip" data-filter-type="marino" data-it="Alghe &amp; marini" data-en="Algae &amp; marine">Alghe &amp; marini</button>
+      <button class="la-chip" data-filter-type="biofermentato" data-it="Biofermentati" data-en="Biofermented">Biofermentati</button>
+      <button class="la-chip" data-filter-type="vitamina" data-it="Vitamine &amp; funzionali" data-en="Vitamins &amp; functional">Vitamine &amp; funzionali</button>
+    </div>
+    <div class="la-filter-row">
+      <span class="la-filter-label" data-it="Funzione" data-en="Function">Funzione</span>
+      <button class="la-chip is-active" data-filter-func="all" data-it="Tutte" data-en="All">Tutte</button>
+      <button class="la-chip" data-filter-func="anti-age" data-it="Anti-age" data-en="Anti-age">Anti-age</button>
+      <button class="la-chip" data-filter-func="idratante" data-it="Idratanti" data-en="Hydrating">Idratanti</button>
+      <button class="la-chip" data-filter-func="lenitivo" data-it="Lenitivi" data-en="Soothing">Lenitivi</button>
+      <button class="la-chip" data-filter-func="schiarente" data-it="Schiarenti" data-en="Brightening">Schiarenti</button>
+      <button class="la-chip" data-filter-func="antiossidante" data-it="Antiossidanti" data-en="Antioxidants">Antiossidanti</button>
+      <button class="la-chip" data-filter-func="rassodante" data-it="Rassodanti" data-en="Firming">Rassodanti</button>
+    </div>
+  </div>
+
+  <div class="lab-atlas__grid" id="atlasGrid">
+    <!-- Le 38 card vengono iniettate via JS -->
+  </div>
+  <div class="lab-atlas__more" id="atlasMore" style="display:none;">
+    <button class="lab-atlas__more-btn" id="atlasMoreBtn" data-it="Scopri di più" data-en="Show more">Scopri di più</button>
+    <span class="lab-atlas__more-count" id="atlasMoreCount"></span>
+  </div>
+</section>
+
+<!-- Overlay + Side panel -->
+<div class="lab-atlas__overlay" id="atlasOverlay"></div>
+<div class="lab-atlas__panel" id="atlasPanel" data-lenis-prevent>
+  <button class="la-panel__close" id="atlasPanelClose" aria-label="Chiudi">×</button>
+  <div id="atlasPanelContent"></div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     ORIGINE INGREDIENTI
+════════════════════════════════════════════════════════ -->
+<section class="lab-origin">
+  <div class="container">
+    <div class="lab-origin__header" data-reveal>
+      <h2 class="lab-origin__title">
+        Dove cerchiamo<br><em>gli ingredienti.</em>
+      </h2>
+    </div>
+    <div class="lab-origin__globe-layout" data-reveal>
+      <div class="lab-origin__globe-col">
+        <canvas id="labGlobe"></canvas>
+      </div>
+      <div class="lab-origin__panel">
+        <div class="lop-toolbar">
+          <span class="lop-counter" id="lopCounter">15 origini · 14 ingredienti</span>
+          <div class="lop-chips">
+            <button class="lop-chip active" data-brand="all" data-it="Tutti" data-en="All">Tutti</button>
+            <button class="lop-chip" data-brand="erboristica">l'Erboristica</button>
+            <button class="lop-chip" data-brand="everby">Everby</button>
+            <button class="lop-chip" data-brand="kaley">Kaley</button>
+            <button class="lop-chip" data-brand="sphea">Sphea</button>
+          </div>
+        </div>
+        <div class="lop-accordion" id="lopAccordion">
+          <div class="lop-continent open" data-continent="europa">
+            <div class="lop-continent__head">
+              <span class="lop-continent__name" data-it="Mediterraneo &amp; Europa" data-en="Mediterranean &amp; Europe">Mediterraneo &amp; Europa</span>
+              <span class="lop-continent__count">6</span>
+              <span class="lop-continent__chev">▾</span>
+            </div>
+            <div class="lop-continent__rows" id="rows-europa"></div>
+          </div>
+          <div class="lop-continent" data-continent="africa">
+            <div class="lop-continent__head">
+              <span class="lop-continent__name" data-it="Africa" data-en="Africa">Africa</span>
+              <span class="lop-continent__count">2</span>
+              <span class="lop-continent__chev">▾</span>
+            </div>
+            <div class="lop-continent__rows" id="rows-africa"></div>
+          </div>
+          <div class="lop-continent" data-continent="asia">
+            <div class="lop-continent__head">
+              <span class="lop-continent__name" data-it="Asia" data-en="Asia">Asia</span>
+              <span class="lop-continent__count">4</span>
+              <span class="lop-continent__chev">▾</span>
+            </div>
+            <div class="lop-continent__rows" id="rows-asia"></div>
+          </div>
+          <div class="lop-continent" data-continent="pacifico">
+            <div class="lop-continent__head">
+              <span class="lop-continent__name" data-it="Pacifico" data-en="Pacific">Pacifico</span>
+              <span class="lop-continent__count">1</span>
+              <span class="lop-continent__chev">▾</span>
+            </div>
+            <div class="lop-continent__rows" id="rows-pacifico"></div>
+          </div>
+          <div class="lop-continent" data-continent="oceani">
+            <div class="lop-continent__head">
+              <span class="lop-continent__name" data-it="Oceani &amp; coste" data-en="Oceans &amp; coasts">Oceani &amp; coste</span>
+              <span class="lop-continent__count">2</span>
+              <span class="lop-continent__chev">▾</span>
+            </div>
+            <div class="lop-continent__rows" id="rows-oceani"></div>
+          </div>
+        </div>
+        <div class="lop-footer">
+          <a href="sostenibilita.html" data-it="Filiera etica e sostenibilità →" data-en="Ethical supply chain &amp; sustainability →">Filiera etica e sostenibilità →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="lab-origin__detail-overlay" id="labDetailOverlay"></div>
+<div class="lab-origin__detail" id="labDetail" role="dialog" aria-modal="true" data-lenis-prevent>
+  <button class="lod-close" id="lodClose" aria-label="Chiudi">✕</button>
+  <div class="lod-eyebrow" id="lodEyebrow"></div>
+  <h3 class="lod-name" id="lodName"></h3>
+  <div class="lod-place" id="lodPlace"></div>
+  <span class="lod-brand-tag" id="lodBrand"></span>
+  <div class="lod-divider"></div>
+  <div class="lod-label" data-it="Origine &amp; impiego" data-en="Origin &amp; use">Origine &amp; impiego</div>
+  <p class="lod-desc" id="lodDesc"></p>
+  <div class="lod-botanical" id="lodBotanical"></div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     GMP + CERTIFICAZIONI
+════════════════════════════════════════════════════════ -->
+<section class="lab-gmp">
+  <div class="container">
+    <div class="lab-gmp__grid">
+      <div data-reveal>
+        <span class="lab-gmp__label" data-it="Qualità e conformità" data-en="Quality and compliance">Qualità e conformità</span>
+        <h2 data-it="Una sola fabbrica" data-en="One factory">Una sola fabbrica <em data-it="tracciata lotto per lotto." data-en="tracked lot by lot.">tracciata lotto per lotto.</em></h2>
+        <p data-it="Lo stabilimento di Pianoro produce esclusivamente nelle proprie strutture, con processi ecologici e controllo completo della filiera. Il delicato processo di riempimento è interamente automatizzato. Ogni lotto è tracciato, ogni non conformità gestita con CAPA formalizzato." data-en="The Pianoro facility produces exclusively in its own structures, with ecological processes and full supply-chain control. The delicate filling process is entirely automated. Every batch is traced, every non-conformance is managed with a formalised CAPA system.">Lo stabilimento di Pianoro produce esclusivamente nelle proprie strutture, con processi ecologici e controllo completo della filiera. Il delicato processo di riempimento è interamente automatizzato. Ogni lotto è tracciato, ogni non conformità gestita con CAPA formalizzato.</p>
+      </div>
+      <div data-reveal style="--d:120ms">
+        <div class="lab-gmp__cert-grid">
+          <div class="lab-gmp__cert-item">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24"><circle cx="16" cy="16" r="13"/><polyline points="9,16 14,21 23,11"/></svg>
+            <span>Plant Based</span>
+          </div>
+          <div class="lab-gmp__cert-item">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24"><circle cx="16" cy="16" r="13"/><polyline points="9,16 14,21 23,11"/></svg>
+            <span>Vegan OK</span>
+          </div>
+          <div class="lab-gmp__cert-item">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24"><circle cx="16" cy="16" r="13"/><polyline points="9,16 14,21 23,11"/></svg>
+            <span>ISO 22716 GMP</span>
+          </div>
+          <div class="lab-gmp__cert-item">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24"><circle cx="16" cy="16" r="13"/><polyline points="9,16 14,21 23,11"/></svg>
+            <span>ISO 14001</span>
+          </div>
+          <a href="sostenibilita.html#certs" class="lab-gmp__cert-link" data-it="Approfondisci certificazioni →" data-en="Explore certifications →">Approfondisci certificazioni →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     CTA
+════════════════════════════════════════════════════════ -->
+<section class="lab-cta">
+  <div class="container">
+    <h2 data-reveal>
+      <em data-it="Vuoi vedere" data-en="Want to see">Vuoi vedere</em>
+      <span data-it=" il laboratorio?" data-en=" the laboratory?"> il laboratorio?</span>
+    </h2>
+    <p data-reveal data-it="Visite su appuntamento per buyer e distributori selezionati." data-en="Visits by appointment for selected buyers and distributors.">Visite su appuntamento per buyer e distributori selezionati.</p>
+    <div class="lab-cta__btns" data-reveal>
+      <a class="lab-btn lab-btn--gold" href="contatti.html" data-it="Richiedi visita" data-en="Request a visit">Richiedi visita</a>
+      <a class="lab-btn lab-btn--ghost" href="linee.html" data-it="Scopri i brand" data-en="Discover the brands">Scopri i brand</a>
+    </div>
+  </div>
+</section>
+
+<div id="footer"></div>
+
+<script src="assets/vendor/lenis.min.js" defer></script><script src="assets/data.js"></script>
+<script src="assets/search-data.js" defer></script>
+<script src="assets/app.js?v=6"></script>
+<script>
+initAthenas('lab');
+document.querySelector('.topbar').classList.add('topbar--light');
+
+// ── PARTICLES ────────────────────────────────────────────────────
+const container = document.getElementById('particles');
+for (let i = 0; i < 22; i++) {
+  const p = document.createElement('div');
+  p.className = 'lh__particle';
+  const size = Math.random() * 3 + 1.5;
+  const dur  = Math.random() * 18 + 12;
+  const left = Math.random() * 100;
+  const delay = Math.random() * -dur;
+  p.style.cssText = `
+    width:${size}px; height:${size}px;
+    left:${left}%; bottom:-${size}px;
+    animation-duration:${dur}s;
+    animation-delay:${delay}s;
+    opacity: ${Math.random() * 0.4 + 0.1};
+  `;
+  container.appendChild(p);
+}
+
+
+// ── GLOBE ────────────────────────────────────────────────────────
+(async function() {
+  const canvas = document.getElementById('labGlobe');
+  if (!canvas) return;
+  const { default: createGlobe } = await import('https://cdn.jsdelivr.net/npm/cobe@2.0.1/+esm');
+
+  const THETA = 0.25;
+  const SPEED = 0.003;
+
+  const HQ = { location: [44.35, 11.33], id: 'pianoro', label: "Athena's", place: 'Pianoro · Italia', side: 'right' };
+
+  const BRAND_COLORS = {
+    erboristica: [0.78, 0.66, 0.43],
+    everby:      [0.91, 0.67, 0.72],
+    kaley:       [0.36, 0.74, 0.70],
+    sphea:       [0.80, 0.78, 0.76],
+  };
+  const BRAND_HEX = {
+    erboristica: '#c9a96e',
+    everby:      '#e8a8b8',
+    kaley:       '#5bbcbb',
+    sphea:       '#cdcaca',
+  };
+  function brandLabel(b) {
+    return b === 'erboristica' ? "l'Erboristica" : b.charAt(0).toUpperCase() + b.slice(1);
+  }
+
+  const MARKERS = [
+    { location: [40.42,  -3.70], id: 'mandorle',     continent: 'europa',   brand: 'erboristica', label: 'Mandorle',        place: 'Spagna',         side: 'left',
+      nameIt: 'Olio di Mandorle Dolci', placeIt: 'Spagna · Prunus dulcis',
+      descIt: 'Spremitura a freddo di mandorle biologiche spagnole. Acido oleico 65–75%, tocoferoli naturali. Base emolliente della linea Mandorle Dolci.', botanical: 'Prunus dulcis' },
+    { location: [43.84,   5.33], id: 'lavanda',      continent: 'europa',   brand: 'erboristica', label: 'Lavanda',         place: 'Provenza',        side: 'bottom',
+      nameIt: 'Lavanda bio', placeIt: 'Provenza, Francia · Lavandula angustifolia',
+      descIt: 'Olio essenziale di lavanda biologica da Alta Provenza. Calmante, lenitivo, antibatterico. Linea Estratti Botanici.', botanical: 'Lavandula angustifolia' },
+    { location: [47.60,  -2.50], id: 'luminescine',  continent: 'europa',   brand: 'everby',      label: 'Luminescine®',    place: 'Bretagna',        side: 'left',
+      nameIt: 'Luminescine®', placeIt: 'Bretagna, Francia · Silab R&D',
+      descIt: 'Estratto brevettato di fiori di Verbascum thapsus. Fotoluminescente naturale certificato COSMOS ORGANIC. Attivo esclusivo Everby Yes I Glow.', botanical: 'Verbascum thapsus' },
+    { location: [51.18,   6.89], id: 'ectoin',       continent: 'europa',   brand: 'sphea',       label: 'Ectoin®',         place: 'Germania',        side: 'right',
+      nameIt: 'Ectoin® natural', placeIt: 'Renania, Germania · bitop AG',
+      descIt: 'Molecola di stress batterica prodotta da Halomonas elongata (batteri alofili). Forma uno strato idro-protettivo attorno alle cellule cutanee. Anti-pollution. Sphea Anti Pollution Face Serum.', botanical: 'Halomonas elongata' },
+    { location: [56.00,   3.50], id: 'biopolimeri',  continent: 'europa',   brand: 'sphea',       label: 'Biopolimeri',     place: 'Mare del Nord',   side: 'top',
+      nameIt: 'Biopolimeri Marini', placeIt: 'Mare del Nord · Alghe marine',
+      descIt: 'Laminaria, carragenina, agar — base della Pearl Technology proprietaria di Sphea. Microsfere biodegradabili che incapsulano il principio attivo e lo rilasciano per pressione meccanica.', botanical: 'Laminaria / Chondrus crispus' },
+    { location: [43.66,   6.92], id: 'essenze',      continent: 'europa',   brand: 'kaley',       label: 'Essenze',         place: 'Grasse',          side: 'right',
+      nameIt: 'Essenze naturali', placeIt: 'Grasse, Francia · capitale del profumo',
+      descIt: 'Materie prime aromatiche naturali da Grasse, capitale mondiale della profumeria. Base olfattiva dei roll-on Kaley: accordi concentrati senza alcol su olio vettore.', botanical: '' },
+    { location: [31.79,  -7.09], id: 'argan',        continent: 'africa',   brand: 'erboristica', label: 'Argan',           place: 'Marocco',         side: 'bottom',
+      nameIt: 'Olio di Argan', placeIt: 'Marocco · Argania spinosa',
+      descIt: 'Estratto a freddo dalla noce di argan, cooperativa femminile certificata Fairtrade. Massimo contenuto di tocoferoli e acido oleico. Cuore della linea Argan.', botanical: 'Argania spinosa' },
+    { location: [12.37,  -1.52], id: 'karite',       continent: 'africa',   brand: 'erboristica', label: 'Karité',          place: 'Burkina Faso',    side: 'bottom',
+      nameIt: 'Burro di Karité', placeIt: 'Burkina Faso · Vitellaria paradoxa',
+      descIt: 'Spremitura a freddo dalla noce di karité. Frazione insaponificabile ricca di triterpeni con azione anti-infiammatoria documentata. Ingrediente chiave di Nutra Repair.', botanical: 'Vitellaria paradoxa' },
+    { location: [27.98,  86.92], id: 'rosaselvatica', continent: 'asia',    brand: 'erboristica', label: 'Rosa selvatica',  place: 'Himalaya',        side: 'right',
+      nameIt: 'Rosa Selvatica', placeIt: 'Nepal · Rosa canina',
+      descIt: 'Olio rosehip di Rosa canina himalayana. Ricco in acido trans-retinoico naturale (vitamina A), omega-3 e omega-6. Rigenerante cellulare per la linea Antietà Globale.', botanical: 'Rosa canina' },
+    { location: [20.59,  78.96], id: 'calendula',    continent: 'asia',     brand: 'erboristica', label: 'Calendula',       place: 'India',           side: 'right',
+      nameIt: 'Calendula bio', placeIt: 'India · Calendula officinalis',
+      descIt: 'Fiori di calendula biologica, macerazione in olio di girasole. Proprietà lenitive e cicatrizzanti per la linea Estratti Botanici. Testata su pelli sensibili e bambini.', botanical: 'Calendula officinalis' },
+    { location: [35.68, 139.69], id: 'hyaluronique', continent: 'asia',     brand: 'erboristica', label: 'Acido Ialuronico', place: 'Giappone',       side: 'right',
+      nameIt: 'Acido Ialuronico multi-molecolare', placeIt: 'Giappone · fermentazione biotecnologica',
+      descIt: 'Tre pesi molecolari differenti: azione idratante superficiale, mediodermale e profonda in un\'unica formulazione. Ingrediente distintivo dell\'Antietà Globale.', botanical: 'Sodium Hyaluronate (biotech)' },
+    { location: [37.57, 126.98], id: 'niacinamide',  continent: 'asia',     brand: 'erboristica', label: 'Niacinamide',     place: 'Corea',           side: 'top',
+      nameIt: 'Niacinamide + Vitamina C', placeIt: 'Corea del Sud · biotecnologia',
+      descIt: 'Niacinamide (vitamina B3) e vitamina C liposomiale: duo illuminante e uniformante. Tecnologia coreana di incapsulamento lipidico per massima biodisponibilità. Linea Illumià.', botanical: '' },
+    { location: [-17.68,-149.41], id: 'monoi',       continent: 'pacifico', brand: 'erboristica', label: 'Monoï',           place: 'Polinesia',       side: 'bottom',
+      nameIt: 'Monoï de Tahiti AOC', placeIt: 'Polinesia Francese · Cocos nucifera',
+      descIt: 'AOC — unico olio cosmetico al mondo con denominazione di origine controllata. Macerazione di fiori di tiaré in olio di cocco per almeno 10 giorni. Linea Cocco & Monoï.', botanical: 'Cocos nucifera + Gardenia taitensis' },
+    { location: [-18.77,  46.87], id: 'baobab',      continent: 'oceani',   brand: 'erboristica', label: 'Baobab',          place: 'Madagascar',      side: 'right',
+      nameIt: 'Olio di Baobab', placeIt: 'Madagascar · Adansonia digitata',
+      descIt: 'Olio di semi di baobab estratto a freddo. Proporzione eccezionale di omega-9, 6 e 3. Penetrazione rapida, effetto seta immediato. Ingrediente chiave di Nutra Repair.', botanical: 'Adansonia digitata' },
+    { location: [32.30,  -64.79], id: 'actigym',     continent: 'oceani',   brand: 'sphea',       label: 'Actigym®',        place: 'Bermuda',         side: 'left',
+      nameIt: 'Actigym®', placeIt: 'Bermuda · acque profonde · BIOINTEC',
+      descIt: 'EPS prodotto da Bacillus sp. isolato dalle acque profonde delle Bermuda (BIOINTEC). Attiva il metabolismo muscolare cutaneo migliorando tono e compattezza. Sphea Sculpt & Firm Body Serum.', botanical: 'Bacillus sp. (deep sea)' },
+  ];
+
+  const col = canvas.parentElement;
+  col.classList.add('filter-all');
+  const pinEls = {};
+  function buildPin(m, isHQ) {
+    const el = document.createElement('div');
+    el.className = 'lab-origin__pin' + (isHQ ? ' is-hq' : '');
+    el.dataset.side = m.side;
+    el.style.positionAnchor = `--cobe-${m.id}`;
+    el.style.opacity = `var(--cobe-visible-${m.id}, 0)`;
+    el.style.filter  = `blur(calc((1 - var(--cobe-visible-${m.id}, 0)) * 6px))`;
+    el.innerHTML = `<div class="pin-name">${m.label}</div><div class="pin-place">${m.place}</div><span class="pin-arrow"></span>`;
+    col.appendChild(el);
+    if (!isHQ) pinEls[m.id] = el;
+  }
+  [HQ, ...MARKERS].forEach(m => buildPin(m, m.id === 'pianoro'));
+
+  let globe = null;
+  let activeArcId = null;
+  let currentFilter = 'all';
+
+  const cfg = {
+    devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2),
+    width: 0, height: 0,
+    phi: 0, theta: THETA,
+    dark: 0, diffuse: 1.5, mapSamples: 16000, mapBrightness: 6,
+    baseColor:    [0.95, 0.93, 0.89],
+    markerColor:  [0.55, 0.40, 0.20],
+    glowColor:    [0.95, 0.93, 0.89],
+    markerElevation: 0.01,
+    arcColor:     [0.79, 0.66, 0.43],
+    arcWidth:     0.6, arcHeight: 0.35, arcOpacity: 0.75,
+    markers: buildCobeMarkers('all', null),
+    arcs: filterArcs('all'),
+  };
+
+  function buildCobeMarkers(brandFilter, hoverId) {
+    return [
+      { location: HQ.location, size: 0.08, id: HQ.id, color: [0.85, 0.70, 0.40] },
+      ...MARKERS
+        .filter(m => brandFilter === 'all' || m.brand === brandFilter)
+        .map(m => ({
+          location: m.location,
+          size: m.id === hoverId ? 0.065 : 0.048,
+          id: m.id,
+          color: BRAND_COLORS[m.brand],
+        })),
+    ];
+  }
+
+  function filterArcs(brandFilter) {
+    const pool = brandFilter === 'all' ? MARKERS : MARKERS.filter(m => m.brand === brandFilter);
+    return pool.map(m => ({ from: m.location, to: HQ.location }));
+  }
+
+  function setHoverArc(markerId) {
+    activeArcId = markerId;
+    Object.values(pinEls).forEach(el => el.classList.remove('pin-hovered'));
+    if (markerId && pinEls[markerId]) pinEls[markerId].classList.add('pin-hovered');
+    cfg.markers = buildCobeMarkers(currentFilter, markerId);
+    if (markerId) {
+      const base = filterArcs(currentFilter);
+      const hoverArc = { from: MARKERS.find(m => m.id === markerId).location, to: HQ.location };
+      cfg.arcs = base.some(a => a.from === hoverArc.from) ? base : [...base, hoverArc];
+    } else {
+      cfg.arcs = filterArcs(currentFilter);
+    }
+    if (globe) globe.update({ ...cfg, phi: phi + offset.phi + drag.phi, theta: THETA + offset.theta + drag.theta });
+  }
+
+  let phi = 0.6;
+  const drag   = { phi: 0, theta: 0 };
+  const offset = { phi: 0, theta: 0 };
+  const vel    = { phi: 0, theta: 0 };
+  let active = false, startX = 0, startY = 0, lastX = 0, lastY = 0, lastT = 0, paused = false;
+
+  function init() {
+    const w = canvas.offsetWidth;
+    if (!w || globe) return;
+    cfg.width = w; cfg.height = w; cfg.phi = 0.6;
+    globe = createGlobe(canvas, cfg);
+    function animate() {
+      if (!paused) {
+        phi += SPEED;
+        if (Math.abs(vel.phi) > 0.0001 || Math.abs(vel.theta) > 0.0001) {
+          offset.phi += vel.phi; offset.theta += vel.theta;
+          vel.phi *= 0.95; vel.theta *= 0.95;
+        }
+        const tMin = -0.4, tMax = 0.4;
+        if (offset.theta < tMin) offset.theta += (tMin - offset.theta) * 0.1;
+        else if (offset.theta > tMax) offset.theta += (tMax - offset.theta) * 0.1;
+      }
+      globe.update({ ...cfg, phi: phi + offset.phi + drag.phi, theta: THETA + offset.theta + drag.theta });
+      requestAnimationFrame(animate);
+    }
+    animate();
+    setTimeout(() => { canvas.style.opacity = '1'; });
+  }
+
+  if (canvas.offsetWidth > 0) { init(); }
+  else {
+    const ro = new ResizeObserver(e => { if (e[0]?.contentRect.width > 0) { ro.disconnect(); init(); } });
+    ro.observe(canvas);
+  }
+
+  canvas.addEventListener('pointerdown', e => {
+    active = true; startX = lastX = e.clientX; startY = lastY = e.clientY;
+    lastT = Date.now(); canvas.setPointerCapture(e.pointerId);
+    canvas.style.cursor = 'grabbing'; paused = true; vel.phi = vel.theta = 0;
+  });
+  window.addEventListener('pointermove', e => {
+    if (!active) return;
+    const now = Date.now(), dt = Math.max(now - lastT, 1), maxV = 0.15;
+    vel.phi   = Math.max(-maxV, Math.min(maxV, ((e.clientX - lastX) / dt) * 0.3));
+    vel.theta = Math.max(-maxV, Math.min(maxV, ((e.clientY - lastY) / dt) * 0.08));
+    drag.phi = (e.clientX - startX) / 250; drag.theta = (e.clientY - startY) / 800;
+    lastX = e.clientX; lastY = e.clientY; lastT = now;
+  }, { passive: true });
+  window.addEventListener('pointerup', () => {
+    if (!active) return;
+    offset.phi += drag.phi; offset.theta += drag.theta;
+    drag.phi = drag.theta = 0; active = false;
+    canvas.style.cursor = 'grab'; paused = false;
+  }, { passive: true });
+
+  // ── Accordion rows ────────────────────────────────────────
+  MARKERS.forEach(m => {
+    const row = document.createElement('div');
+    row.className = 'lop-row';
+    row.dataset.id = m.id; row.dataset.brand = m.brand;
+    row.innerHTML = `
+      <div class="lop-row__dot" style="background:${BRAND_HEX[m.brand]}"></div>
+      <div class="lop-row__text">
+        <div class="lop-row__name">${m.nameIt}</div>
+        <div class="lop-row__place">${m.placeIt}</div>
+      </div>
+      <span class="lop-row__brand">${brandLabel(m.brand)}</span>
+    `;
+    const container = document.getElementById('rows-' + m.continent);
+    if (container) container.appendChild(row);
+    row.addEventListener('mouseenter', () => setHoverArc(m.id));
+    row.addEventListener('mouseleave', () => setHoverArc(null));
+    row.addEventListener('click', () => openDetail(m));
+  });
+
+  // Continent accordion (one open at a time)
+  document.querySelectorAll('.lop-continent__head').forEach(head => {
+    head.addEventListener('click', () => {
+      const cont = head.parentElement;
+      const wasOpen = cont.classList.contains('open');
+      document.querySelectorAll('.lop-continent.open').forEach(c => c.classList.remove('open'));
+      if (!wasOpen) cont.classList.add('open');
+    });
+  });
+
+  // Brand filter chips
+  document.querySelectorAll('.lop-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('.lop-chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      const brand = chip.dataset.brand;
+      currentFilter = brand;
+
+      // Panel: show/hide rows
+      document.querySelectorAll('.lop-row').forEach(row => {
+        if (brand === 'all' || row.dataset.brand === brand) delete row.dataset.hidden;
+        else row.dataset.hidden = '1';
+      });
+      // Show/hide continents that have visible rows
+      document.querySelectorAll('.lop-continent').forEach(cont => {
+        const id = cont.dataset.continent;
+        const hasVisible = MARKERS.some(m => m.continent === id && (brand === 'all' || m.brand === brand));
+        if (hasVisible) delete cont.dataset.hidden;
+        else cont.dataset.hidden = '1';
+      });
+      const counter = document.getElementById('lopCounter');
+      if (counter) {
+        if (brand === 'all') {
+          counter.textContent = '15 origini · 14 ingredienti';
+        } else {
+          const count = MARKERS.filter(m => m.brand === brand).length;
+          counter.textContent = count + (count === 1 ? ' origine · ' : ' origini · ') + brandLabel(brand);
+        }
+      }
+
+      // Globe: show only this brand's markers, with arcs to HQ
+      if (brand === 'all') col.classList.add('filter-all');
+      else col.classList.remove('filter-all');
+      cfg.markers = buildCobeMarkers(brand, null);
+      cfg.arcs    = filterArcs(brand);
+      if (globe) globe.update({ ...cfg, phi: phi + offset.phi + drag.phi, theta: THETA + offset.theta + drag.theta });
+    });
+  });
+
+  // ── Detail panel ──────────────────────────────────────────
+  const detail   = document.getElementById('labDetail');
+  const overlay  = document.getElementById('labDetailOverlay');
+  const btnClose = document.getElementById('lodClose');
+
+  function openDetail(m) {
+    document.getElementById('lodEyebrow').textContent = m.placeIt;
+    document.getElementById('lodName').textContent    = m.nameIt;
+    document.getElementById('lodPlace').textContent   = m.place;
+    document.getElementById('lodBrand').textContent   = brandLabel(m.brand);
+    document.getElementById('lodDesc').textContent    = m.descIt;
+    const bot = document.getElementById('lodBotanical');
+    bot.textContent = m.botanical || '';
+    bot.style.display = m.botanical ? '' : 'none';
+    detail.classList.add('is-open');
+    overlay.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDetail() {
+    detail.classList.remove('is-open');
+    overlay.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+  if (btnClose) btnClose.addEventListener('click', closeDetail);
+  if (overlay)  overlay.addEventListener('click', closeDetail);
+})();
+
+// ── SCROLL REVEAL (bidirezionale, re-trigger) ─────────────────────
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('is-visible');
+    else e.target.classList.remove('is-visible');
+  });
+}, { threshold: 0.07 });
+document.querySelectorAll('[data-reveal]').forEach(el => obs.observe(el));
+</script>
+
+<script>
+// ── ATLANTE MATERIE PRIME ─────────────────────────────────────
+const ATLAS_DATA = [
+  // OLI VEGETALI
+  { id:'argan-oil', type:'olio', nameIt:'Argan', nameEn:'Argan', latin:'Argania spinosa kernel oil',
+    origin:'Marocco (regioni occidentali)', originEn:'Morocco (western regions)',
+    compounds:'Acidi grassi insaturi (oleico 47%, linoleico 36%), tocoferoli, fitosteroli',
+    compoundsEn:'Unsaturated fatty acids (oleic 47%, linoleic 36%), tocopherols, phytosterols',
+    funcs:['antiossidante','nutriente','riparatore'], funcsEn:['antioxidant','nourishing','repairing'],
+    filterType:'olio', filterFunc:['anti-age','antiossidante'],
+    linesIt:'Linea Argan, Antietà, Uomo, Mineral Infusions', linesEn:'Argan line, Anti-age, Men, Mineral Infusions',
+    note:'Cooperativa femminile Fairtrade', noteEn:'Fairtrade women\'s cooperative', svgType:'seed',
+    extended: {
+      it: 'L\'Argania spinosa è endemica della regione marocchina del Souss-Massa; le sue noci vengono tradizionalmente lavorate a mano da cooperative femminili certificate Fairtrade — tra cui l\'Arganicoop di Tiznit. L\'olio si ottiene per spremitura meccanica a freddo del mandorlo essiccato, senza solventi: questo conserva il pieno profilo dei tocoferoli (vitamina E, fino a 620 mg/kg) e dei fitosteroli scavengol-type. Sulla cute, l\'acido oleico (C18:1) rafforza la barriera lipidica intercorneocitaria, mentre l\'acido linoleico (C18:2) ripristina il film idrolipidico alterato da xerosi o danni solari. Il contenuto di squalene (fino a 0,5%) potenzia la biodisponibilità degli attivi in formula. Athena\'s utilizza esclusivamente olio certificato biologico Bioagricert, tracciato dal frantoio alla fase di filling.',
+      en: 'Argania spinosa is endemic to Morocco\'s Souss-Massa region; its nuts are traditionally hand-processed by Fairtrade-certified women\'s cooperatives — including Arganicoop of Tiznit. The oil is cold-pressed mechanically from the dried kernel, solvent-free: this preserves the full tocopherol profile (vitamin E, up to 620 mg/kg) and scavenol-type phytosterols. On the skin, oleic acid (C18:1) reinforces the intercorneocyte lipid barrier, while linoleic acid (C18:2) restores the hydrolipidic film disrupted by xerosis or UV damage. The squalene content (up to 0.5%) enhances the bioavailability of other actives in the formula. Athena\'s uses only Bioagricert-certified organic oil, traced from the mill to the filling stage.'
+    } },
+
+  { id:'cocco-oil', type:'olio', nameIt:'Cocco', nameEn:'Coconut', latin:'Cocos nucifera oil',
+    origin:'Polinesia / India', originEn:'Polynesia / India',
+    compounds:'Acidi grassi saturi a catena media, vitamina E',
+    compoundsEn:'Medium-chain saturated fatty acids, vitamin E',
+    funcs:['idratante','emolliente','profumante'], funcsEn:['hydrating','emollient','fragrancing'],
+    filterType:'olio', filterFunc:['idratante'],
+    linesIt:'Linea Cocco/Monoï, Estratti Botanici, Everby', linesEn:'Coconut/Monoï line, Botanical Extracts, Everby',
+    note:'', noteEn:'', svgType:'leaf',
+    extended: {
+      it: 'La palma da cocco (Cocos nucifera) viene coltivata in India meridionale e in Polinesia; per la linea Cocco & Monoï utilizziamo olio vergine non raffinato, ottenuto da polpa essiccata (copra) mediante spremitura a freddo. Il profilo lipidico è dominato da acidi grassi a catena media (C8–C12): laurico 48%, miristico 17%, caprilico/caprico 15%. Questi acidi penetrano rapidamente nello strato corneo fornendo occlusività immediata e riducendo la TEWL (perdita trans-epidermica di acqua). La struttura trigliceridica satura rende l\'olio stabile all\'ossidazione senza antiossidanti aggiuntivi, un vantaggio in formulazione clean. In Athena\'s viene impiegato sia come base emolliente che come vettore per le essenze della linea Cocco & Monoï.',
+      en: 'The coconut palm (Cocos nucifera) is cultivated in southern India and Polynesia; for the Coconut & Monoï line we use unrefined virgin oil, cold-pressed from dried pulp (copra). The lipid profile is dominated by medium-chain fatty acids (C8–C12): lauric 48%, myristic 17%, caprylic/capric 15%. These fatty acids penetrate the stratum corneum rapidly, providing immediate occlusivity and reducing TEWL (trans-epidermal water loss). The saturated triglyceride structure makes the oil oxidation-stable without added antioxidants — an advantage in clean formulation. At Athena\'s it is used both as an emollient base and as the carrier for the Coconut & Monoï fragrance line.'
+    } },
+
+  { id:'monoi-oil', type:'olio', nameIt:'Monoï di Tahiti', nameEn:'Monoi de Tahiti', latin:'Cocos nucifera + Gardenia tahitensis',
+    origin:'Tahiti, Polinesia francese', originEn:'Tahiti, French Polynesia',
+    compounds:'Olio di cocco macerato con fiori di Tiaré',
+    compoundsEn:'Coconut oil macerated with Tiaré flowers',
+    funcs:['idratante','profumante','lenitivo'], funcsEn:['hydrating','fragrancing','soothing'],
+    filterType:'olio', filterFunc:['idratante','lenitivo'],
+    linesIt:'Linea Cocco/Monoï', linesEn:'Coconut/Monoï line',
+    note:'AOC – unica denominazione d\'origine cosmetica al mondo', noteEn:'AOC – world\'s only cosmetic denomination of origin', svgType:'flower',
+    extended: {
+      it: 'Il Monoï de Tahiti detiene l\'unica AOC (Appellation d\'Origine Contrôlée) al mondo nel settore cosmetico, istituita nel 1992 dal governo della Polinesia francese. La produzione è regolamentata: olio di cocco vergine di Polinesia macerato con fiori freschi di Gardenia taitensis (tiaré) per almeno dieci giorni consecutivi. I fiori devono essere raccolti a mano in boccio chiuso e l\'intera lavorazione deve avvenire nelle isole. La macerazione trasferisce nell\'olio i principi attivi del tiaré — glucosidi terpenici, acido benzoico e composti fenolici — che conferiscono la caratteristica nota olfattiva e proprietà lenitive. Athena\'s importa il Monoï AOC direttamente da produttori certificati polinesiani, garantendo l\'autenticità dell\'ingrediente in etichetta.',
+      en: 'Monoï de Tahiti holds the world\'s only cosmetic AOC (Appellation d\'Origine Contrôlée), established in 1992 by the French Polynesian government. Production is strictly regulated: virgin Polynesian coconut oil macerated with fresh Gardenia taitensis (tiaré) flowers for at least ten consecutive days. Flowers must be hand-harvested in closed bud and all processing must occur on the islands. Maceration transfers tiaré actives into the oil — terpenic glucosides, benzoic acid and phenolic compounds — which confer the characteristic fragrance and soothing properties. Athena\'s imports AOC Monoï directly from certified Polynesian producers, guaranteeing ingredient authenticity on-label.'
+    } },
+
+  { id:'mandorle-oil', type:'olio', nameIt:'Mandorle dolci', nameEn:'Sweet Almonds', latin:'Prunus amygdalus dulcis oil',
+    origin:'Spagna', originEn:'Spain',
+    compounds:'Acido oleico 65–75%, tocoferoli naturali',
+    compoundsEn:'Oleic acid 65–75%, natural tocopherols',
+    funcs:['emolliente','nutriente','lenitivo'], funcsEn:['emollient','nourishing','soothing'],
+    filterType:'olio', filterFunc:['idratante','lenitivo'],
+    linesIt:'Linea Mandorle Dolci, Estratti Botanici, Uomo', linesEn:'Sweet Almonds, Botanical Extracts, Men',
+    note:'', noteEn:'', svgType:'seed',
+    extended: {
+      it: 'La mandorla dolce (Prunus amygdalus dulcis) coltivata in Spagna, principalmente in Andalusia e Valencia, produce un olio a spremitura a freddo con un profilo lipidico tra i più skin-compatibili: acido oleico 65–75% e linoleico 20–28%. L\'elevato contenuto di acido oleico potenzia la diffusione transcutanea degli attivi in formulazione, rendendolo un eccellente carrier. I tocoferoli naturali (alfa e gamma-tocoferolo, fino a 470 mg/kg) svolgono doppia funzione: proteggono l\'olio dall\'ossidazione in fase di stoccaggio e, applicati sulla pelle, contrastano i radicali liberi indotti dalla perossidazione lipidica. La linea Mandorle Dolci di Athena\'s lo utilizza come fase grassa principale in creme, latti e balsami, abbinandolo a una delicata profumazione di fiori di mandorlo.',
+      en: 'The sweet almond (Prunus amygdalus dulcis) cultivated in Spain, primarily in Andalusia and Valencia, yields a cold-pressed oil with one of the most skin-compatible lipid profiles: oleic acid 65–75% and linoleic 20–28%. The high oleic acid content enhances the transcutaneous diffusion of formulation actives, making it an excellent carrier. Natural tocopherols (alpha and gamma-tocopherol, up to 470 mg/kg) serve a dual role: protecting the oil from oxidation during storage and, applied to skin, scavenging free radicals generated by lipid peroxidation. Athena\'s Sweet Almonds line uses it as the primary fat phase in creams, milks and balms, paired with a delicate almond blossom fragrance.'
+    } },
+
+  { id:'karite-oil', type:'olio', nameIt:'Karité', nameEn:'Shea butter', latin:'Vitellaria paradoxa',
+    origin:'Africa subsahariana (Burkina Faso)', originEn:'Sub-Saharan Africa (Burkina Faso)',
+    compounds:'Triterpeni, vitamine A/E/F, frazione insaponificabile',
+    compoundsEn:'Triterpenes, vitamins A/E/F, unsaponifiable fraction',
+    funcs:['riparatore','anti-infiammatorio','nutriente'], funcsEn:['repairing','anti-inflammatory','nourishing'],
+    filterType:'olio', filterFunc:['idratante','lenitivo'],
+    linesIt:'Linea Argan, Estratti Botanici, Uomo, Everby, Nutra Repair', linesEn:'Argan, Botanical Extracts, Men, Everby, Nutra Repair',
+    note:'', noteEn:'', svgType:'seed',
+    extended: {
+      it: 'Il burro di karité si ricava dalla noce di Vitellaria paradoxa, albero del Sahel che cresce spontaneo in Burkina Faso e Mali. La lavorazione artigianale tradizionale avviene per bollitura e battitura manuale; noi utilizziamo esclusivamente la variante a spremitura a freddo, che preserva la preziosa frazione insaponificabile (5–17%), composta da triterpeni (lupeolo, alfa-amirina) con documentata attività anti-infiammatoria per inibizione della via COX-2. Le vitamine A (beta-carotene) ed E (tocoferoli) contribuiscono alla protezione ossidativa del film idrolipidico. Sulla cute la consistenza semisolida del burro — determinata dall\'elevata percentuale di acido stearico (35–40%) — garantisce un\'occlusività duratura senza effetto untoso. In Nutra Repair è la matrice lipidica principale, abbinata a ceramidi vegetali per il ripristino della barriera cutanea.',
+      en: 'Shea butter is extracted from the nut of Vitellaria paradoxa, a Sahel tree that grows wild in Burkina Faso and Mali. Traditional artisanal processing involves boiling and manual kneading; we use exclusively cold-pressed shea, which preserves the valuable unsaponifiable fraction (5–17%), composed of triterpenes (lupeol, alpha-amyrin) with documented anti-inflammatory activity through COX-2 pathway inhibition. Vitamins A (beta-carotene) and E (tocopherols) contribute oxidative protection of the hydrolipidic film. On the skin, the semi-solid consistency of the butter — determined by the high stearic acid content (35–40%) — ensures lasting occlusivity without a greasy feel. In Nutra Repair it is the primary lipid matrix, combined with plant ceramides for skin barrier restoration.'
+    } },
+
+  { id:'baobab-oil', type:'olio', nameIt:'Baobab', nameEn:'Baobab', latin:'Adansonia digitata seed oil',
+    origin:'Africa equosolidale', originEn:'Fair-trade Africa',
+    compounds:'Vitamine B/C, calcio, ferro, zinco, omega 3–6',
+    compoundsEn:'Vitamins B/C, calcium, iron, zinc, omega 3–6',
+    funcs:['antiossidante','riparatore','idratante'], funcsEn:['antioxidant','repairing','hydrating'],
+    filterType:'olio', filterFunc:['anti-age','antiossidante','idratante'],
+    linesIt:'Linea Nutra Repair', linesEn:'Nutra Repair line',
+    note:'', noteEn:'', svgType:'seed',
+    extended: {
+      it: 'Il baobab (Adansonia digitata) è uno dei più longevi alberi del Madagascar e dell\'Africa orientale; i suoi semi vengono pressati a freddo da cooperative locali certificate equosolidali. L\'olio presenta una composizione trigliceridica rara: omega-9 (acido oleico, 36%), omega-6 (acido linoleico, 33%) e omega-3 (acido alfa-linolenico, 26%) in proporzione bilanciata, superiore a quella di quasi ogni altro olio vegetale. Questo equilibrio omega determina un profilo bifunzionale: omega-9 mantiene la plasticità della membrana cheratinocitaria, mentre omega-6 e omega-3 modulano le citochine pro-infiammatorie (IL-1α, TNF-α) a livello epidermico. La texture ultra-dry consente penetrazione rapida senza residuo occlusivo. In Nutra Repair, Athena\'s lo combina con burro di karité e ceramidi per un effetto sinergia sul ripristino della barriera.',
+      en: 'Baobab (Adansonia digitata) is one of the most long-lived trees of Madagascar and East Africa; its seeds are cold-pressed by Fairtrade-certified local cooperatives. The oil has a rare triglyceride composition: omega-9 (oleic acid, 36%), omega-6 (linoleic acid, 33%) and omega-3 (alpha-linolenic acid, 26%) in a balanced ratio, superior to almost any other vegetable oil. This omega balance determines a bifunctional profile: omega-9 maintains the plasticity of the keratinocyte membrane, while omega-6 and omega-3 modulate pro-inflammatory cytokines (IL-1α, TNF-α) at the epidermal level. The ultra-dry texture allows rapid penetration without occlusive residue. In Nutra Repair, Athena\'s combines it with shea butter and ceramides for a synergistic barrier-restoration effect.'
+    } },
+
+  { id:'jojoba-oil', type:'olio', nameIt:'Jojoba', nameEn:'Jojoba', latin:'Simmondsia chinensis seed oil',
+    origin:'Deserti semiaridi', originEn:'Semi-arid deserts',
+    compounds:'Cera liquida bio-mimetica al sebo',
+    compoundsEn:'Liquid wax bio-mimetic to sebum',
+    funcs:['idratante','equilibrante','non-comedogena'], funcsEn:['hydrating','balancing','non-comedogenic'],
+    filterType:'olio', filterFunc:['idratante'],
+    linesIt:'Antietà, Estratti Botanici', linesEn:'Anti-age, Botanical Extracts',
+    note:'', noteEn:'', svgType:'seed',
+    extended: {
+      it: 'Tecnicamente un estere ceroso e non un olio trigliceridico, il jojoba (Simmondsia chinensis) è il liquido ceroso più simile al sebo umano esistente in natura: la sua struttura a esteri di alcoli e acidi grassi a catena lunga (C20–C24) lo rende praticamente non comedogeno e resistente all\'irrancidimento per anni senza antiossidanti. Il meccanismo d\'azione sulla pelle è doppio: forma un film coesivo sullo strato corneo che riduce la TEWL senza occludere il poro, e interagisce con le ceramidi endogene stabilizzando la struttura lamellare della barriera cutanea. In formulazione emulsionata regola anche la fase di emulsificazione, agendo come co-emulsionante stabile. Athena\'s lo impiega nelle formule Antietà e Estratti Botanici come emolliente di finitura a bassa residualità.',
+      en: 'Technically a waxy ester rather than a triglyceride oil, jojoba (Simmondsia chinensis) is the closest substance to human sebum found in nature: its structure of long-chain fatty alcohol and fatty acid esters (C20–C24) makes it virtually non-comedogenic and oxidation-resistant for years without antioxidants. Its mechanism on skin is twofold: it forms a cohesive film on the stratum corneum reducing TEWL without clogging pores, and interacts with endogenous ceramides to stabilise the lamellar structure of the skin barrier. In emulsion formulas it also acts as a stable co-emulsifier. Athena\'s uses it in Anti-age and Botanical Extract formulas as a low-residue finishing emollient.'
+    } },
+
+  { id:'rosa-canina', type:'olio', nameIt:'Rosa canina', nameEn:'Rosehip', latin:'Rosa canina fruit extract',
+    origin:'Italia, Bulgaria', originEn:'Italy, Bulgaria',
+    compounds:'Vitamina C, acidi grassi essenziali, beta-carotene',
+    compoundsEn:'Vitamin C, essential fatty acids, beta-carotene',
+    funcs:['antiossidante','anti-age','illuminante'], funcsEn:['antioxidant','anti-age','brightening'],
+    filterType:'olio', filterFunc:['anti-age','antiossidante','schiarente'],
+    linesIt:'Linea Antietà', linesEn:'Anti-age line',
+    note:'', noteEn:'', svgType:'flower',
+    extended: {
+      it: 'L\'olio di Rosa canina (rosehip) si ricava dai semi dell\'achene del cinorrodo, raccolti in autunno in Bulgaria e Italia centro-meridionale. La pressatura a freddo conserva l\'alto contenuto di acido trans-retinoico naturale, che esercita un\'azione simile al retinolo: stimola il turnover cheratinocitario, riduce l\'iperpigmentazione e aumenta la produzione di collagene di tipo I. L\'elevata percentuale di acido linoleico (38–44%) e linolenico (31–39%) potenzia la rigenerazione della barriera. Athena\'s utilizza olio tracciato con analisi HPLC per verificare il contenuto di carotenoidi e garantire costanza di performance lotto su lotto nella linea Antietà Globale.',
+      en: 'Rosehip oil (Rosa canina) is extracted from the achene seeds of the hip, harvested in autumn in Bulgaria and central-southern Italy. Cold pressing preserves the high natural trans-retinoic acid content, which exerts an action similar to retinol: stimulating keratinocyte turnover, reducing hyperpigmentation and increasing type-I collagen synthesis. The high percentage of linoleic (38–44%) and linolenic acid (31–39%) enhances barrier regeneration. Athena\'s uses batch-tracked oil with HPLC analysis to verify carotenoid content and guarantee performance consistency in the Antietà Globale line.'
+    } },
+
+  { id:'lampone-oil', type:'olio', nameIt:'Lampone', nameEn:'Raspberry', latin:'Rubus idaeus seed oil',
+    origin:'Europa settentrionale', originEn:'Northern Europe',
+    compounds:'Acidi grassi essenziali, polifenoli, ellagitannini',
+    compoundsEn:'Essential fatty acids, polyphenols, ellagitannins',
+    funcs:['antiossidante','anti-age','protettivo'], funcsEn:['antioxidant','anti-age','protective'],
+    filterType:'olio', filterFunc:['anti-age','antiossidante'],
+    linesIt:'Sphea Slim Silhouette', linesEn:'Sphea Slim Silhouette',
+    note:'', noteEn:'', svgType:'leaf',
+    extended: {
+      it: 'L\'olio di semi di lampone (Rubus idaeus) si ottiene per spremitura a freddo dai semi estratti durante la lavorazione del frutto in Europa settentrionale (Finlandia, Polonia). Il profilo lipidico è eccezionalmente ricco in acido alfa-linolenico omega-3 (25–33%) e acido linoleico omega-6 (48–54%), entrambi essenziali per il rinnovo delle ceramidi della barriera cutanea. Contiene ellagitannini — precursori dell\'acido ellagico — con documentata capacità di inibire la tirosinasi, l\'enzima responsabile della melanogenesi, conferendo azione schiarente adatta a formule anti-macchia. Il tocoferolo alfa naturale (fino a 1500 mg/kg) lo rende uno degli oli più antiossidanti. Athena\'s lo impiega nella formula Sphea Slim Silhouette come attivo antiossidante nel trattamento corpo.',
+      en: 'Raspberry seed oil (Rubus idaeus) is cold-pressed from seeds extracted during fruit processing in Northern Europe (Finland, Poland). The lipid profile is exceptionally rich in omega-3 alpha-linolenic acid (25–33%) and omega-6 linoleic acid (48–54%), both essential for renewing skin barrier ceramides. It contains ellagitannins — precursors of ellagic acid — with documented ability to inhibit tyrosinase, the enzyme responsible for melanogenesis, conferring brightening action suited to anti-spot formulas. Natural alpha-tocopherol (up to 1500 mg/kg) makes it one of the most antioxidant oils available. Athena\'s uses it in Sphea Slim Silhouette as an antioxidant active in the body treatment formula.'
+    } },
+
+  { id:'macadamia-oil', type:'olio', nameIt:'Macadamia', nameEn:'Macadamia', latin:'Macadamia ternifolia seed oil',
+    origin:'Australia / Sudafrica', originEn:'Australia / South Africa',
+    compounds:'Acido palmitoleico, ricco in lipidi',
+    compoundsEn:'Palmitoleic acid, lipid-rich',
+    funcs:['emolliente','idratante','anti-aging'], funcsEn:['emollient','hydrating','anti-aging'],
+    filterType:'olio', filterFunc:['idratante','anti-age'],
+    linesIt:'Everby', linesEn:'Everby',
+    note:'', noteEn:'', svgType:'seed',
+    extended: {
+      it: 'L\'olio di semi di Macadamia ternifolia, ottenuto per pressatura a freddo da noci coltivate in Australia e Sudafrica, è il più ricco in acido palmitoleico (omega-7, C16:1) tra tutti gli oli vegetali commerciali: 16–23%, una concentrazione normalmente presente solo nel sebo umano giovane. Con l\'età la produzione endogena di acido palmitoleico diminuisce significativamente; l\'applicazione topica compensa questo calo, migliorando la coesione degli strati lipidici intercorneocitari. Il profilo include anche acido oleico 53–60%, che conferisce alta affinità con la membrana cellulare. La texture secca e la rapida assorbibilità lo rendono adatto alle formule waterless di Everby, dove sostituisce emulsionanti pesanti mantenendo la sensorialità del prodotto.',
+      en: 'Macadamia ternifolia seed oil, cold-pressed from nuts grown in Australia and South Africa, is the richest commercially available vegetable oil in palmitoleic acid (omega-7, C16:1): 16–23%, a concentration normally found only in young human sebum. With age, endogenous palmitoleic acid production declines significantly; topical application compensates for this reduction, improving the cohesion of intercorneocyte lipid layers. The profile also includes oleic acid 53–60%, conferring high affinity with the cell membrane. Its dry texture and rapid absorption make it suitable for Everby\'s waterless formulas, where it replaces heavy emulsifiers while maintaining product sensoriality.'
+    } },
+
+  // ESTRATTI BOTANICI
+  { id:'calendula', type:'estratto', nameIt:'Calendula', nameEn:'Calendula', latin:'Calendula officinalis flower extract',
+    origin:'Mediterraneo', originEn:'Mediterranean',
+    compounds:'Flavonoidi, saponine, carotenoidi',
+    compoundsEn:'Flavonoids, saponins, carotenoids',
+    funcs:['lenitivo','cicatrizzante','anti-irritazione'], funcsEn:['soothing','healing','anti-irritation'],
+    filterType:'estratto', filterFunc:['lenitivo'],
+    linesIt:'Estratti Botanici, Purysens', linesEn:'Botanical Extracts, Purysens',
+    note:'', noteEn:'', svgType:'flower',
+    extended: {
+      it: 'I fiori di Calendula officinalis vengono macerati a freddo in olio di girasole biologico per 4–6 settimane in rapporto 1:5 (droga:olio). La macerazione trasferisce nell\'olio i flavonoidi (isorhamnetina, quercetina), i carotenoidi (beta-carotene, luteina) e le saponine triterpeniche (oleanolside). Il meccanismo lenitivo è multifattoriale: i flavonoidi inibiscono la 5-lipossigenasi riducendo la sintesi di leucotrieni pro-infiammatori, mentre le saponine accelerano la proliferazione dei fibroblasti e la sintesi di collagene. La calendula è certificata biologica Bioagricert e viene utilizzata in Athena\'s per le formule Estratti Botanici e Purysens, destinate a pelli sensibili e intolleranti. Testata con patch test su bambini.',
+      en: 'Calendula officinalis flowers are cold-macerated in organic sunflower oil for 4–6 weeks at a 1:5 ratio (herb:oil). Maceration transfers flavonoids (isorhamnetin, quercetin), carotenoids (beta-carotene, lutein) and triterpene saponins (oleanolside) into the oil. The soothing mechanism is multifactorial: flavonoids inhibit 5-lipoxygenase, reducing synthesis of pro-inflammatory leukotrienes, while saponins accelerate fibroblast proliferation and collagen synthesis. Calendula is Bioagricert certified organic and is used at Athena\'s in Botanical Extracts and Purysens formulas, targeted at sensitive and intolerant skin. Patch-tested on children.'
+    } },
+
+  { id:'camomilla', type:'estratto', nameIt:'Camomilla', nameEn:'Chamomile', latin:'Matricaria chamomilla flower extract',
+    origin:'Europa centrale', originEn:'Central Europe',
+    compounds:'Bisabololo, camazulene',
+    compoundsEn:'Bisabolol, chamazulene',
+    funcs:['lenitivo','anti-arrossamento','calmante'], funcsEn:['soothing','anti-redness','calming'],
+    filterType:'estratto', filterFunc:['lenitivo'],
+    linesIt:'Estratti Botanici, Purysens', linesEn:'Botanical Extracts, Purysens',
+    note:'', noteEn:'', svgType:'flower',
+    extended: {
+      it: 'La Matricaria chamomilla (camomilla tedesca) è distillata in vapore per ottenere l\'olio essenziale, da cui si ricava l\'estratto idroalcolico standardizzato. I due principi attivi chiave sono il bisabololo alfa, efficace anti-irritante in vitro per inibizione della degranulazione dei mastociti, e il camazulene, il sesquiterpene blu che si forma durante la distillazione per trasformazione della matricina: possiede documentata attività anti-infiammatoria per inibizione reversibile della COX-1. Athena\'s standardizza l\'estratto in bisabololo >0,5% per garantire efficacia costante nelle formule Purysens (hypoallergenico, parfum-free) e Estratti Botanici, entrambe testate dermatologicamente all\'Università di Ferrara.',
+      en: 'Matricaria chamomilla (German chamomile) is steam-distilled to obtain the essential oil, from which the standardised hydroalcoholic extract is derived. The two key actives are alpha-bisabolol, an effective anti-irritant in vitro through inhibition of mast cell degranulation, and chamazulene, the blue sesquiterpene formed during distillation from the transformation of matricine: it has documented anti-inflammatory activity through reversible inhibition of COX-1. Athena\'s standardises the extract at bisabolol >0.5% to guarantee consistent efficacy in Purysens (hypoallergenic, parfum-free) and Botanical Extract formulas, both dermatologically tested at the University of Ferrara.'
+    } },
+
+  { id:'rosmarino', type:'estratto', nameIt:'Rosmarino', nameEn:'Rosemary', latin:'Rosmarinus officinalis leaf extract',
+    origin:'Mediterraneo', originEn:'Mediterranean',
+    compounds:'Acido rosmarinico, carnosolo',
+    compoundsEn:'Rosmarinic acid, carnosol',
+    funcs:['antiossidante','tonico','stimolante'], funcsEn:['antioxidant','toning','stimulating'],
+    filterType:'estratto', filterFunc:['antiossidante'],
+    linesIt:'Estratti Botanici, Mineral Infusions', linesEn:'Botanical Extracts, Mineral Infusions',
+    note:'', noteEn:'', svgType:'leaf',
+    extended: {
+      it: 'Il rosmarino (Salvia rosmarinus) coltivato nel Mediterraneo produce un estratto fogliare ricco in acido rosmarinico e diterpeni fenolici (carnosolo, acido carnosico). L\'acido rosmarinico è uno dei fenoli più potenti misurati con l\'indice ORAC: neutralizza i radicali perossili a concentrazioni inferiori all\'acido ascorbico. In cosmetica svolge duplice funzione: antiossidante sugli attivi di formula (protegge gli acidi grassi polinsaturi dall\'ossidazione, sostituendo BHT/BHA sintetici) e tonico sul microcircolo cutaneo per stimolazione adrenergica locale. Athena\'s lo impiega nella linea Estratti Botanici e nei bifasici Mineral Infusions come antiossidante di fase grassa, conforme ai requisiti COSMOS.',
+      en: 'Rosemary (Salvia rosmarinus) grown in the Mediterranean produces a leaf extract rich in rosmarinic acid and phenolic diterpenes (carnosol, carnosic acid). Rosmarinic acid is one of the most potent phenols measured by the ORAC index: it scavenges peroxyl radicals at concentrations lower than ascorbic acid. In cosmetics it serves a dual function: antioxidant on formulation actives (protecting polyunsaturated fatty acids from oxidation, replacing synthetic BHT/BHA) and tonic on cutaneous microcirculation through local adrenergic stimulation. Athena\'s uses it in Botanical Extracts and Mineral Infusions biphasics as a fat-phase antioxidant, COSMOS-compliant.'
+    } },
+
+  { id:'lavanda', type:'estratto', nameIt:'Lavanda', nameEn:'Lavender', latin:'Lavandula angustifolia',
+    origin:'Provenza, Francia', originEn:'Provence, France',
+    compounds:'Linalolo, acetato di linalile',
+    compoundsEn:'Linalool, linalyl acetate',
+    funcs:['lenitivo','riequilibrante','aromatico'], funcsEn:['soothing','rebalancing','aromatic'],
+    filterType:'estratto', filterFunc:['lenitivo'],
+    linesIt:'Estratti Botanici', linesEn:'Botanical Extracts',
+    note:'', noteEn:'', svgType:'flower',
+    extended: {
+      it: 'La Lavandula angustifolia dell\'Alta Provenza viene distillata in vapore a bassa pressione appena dopo la raccolta per massimizzare il contenuto di acetato di linalile (35–55%) e linalolo (25–40%). Il linalolo modula i recettori TRPV3 (canali ionici termosensibili della cute), abbassando la risposta pro-infiammatoria dell\'epidermide, e mostra attività ansiolitica documentata per interazione con i recettori GABA-A. L\'acetato di linalile ha proprietà antimicrobiche su Staphylococcus epidermidis, batterio coinvolto nelle acneidi. Athena\'s acquista esclusivamente olio certificato biologico Bioagricert da distillerie provenzali a filiera controllata per la linea Estratti Botanici.',
+      en: 'Lavandula angustifolia from Haute-Provence is steam-distilled at low pressure immediately after harvest to maximise linalyl acetate (35–55%) and linalool (25–40%) content. Linalool modulates TRPV3 receptors (thermosensitive ionic channels in the skin), lowering the pro-inflammatory epidermal response, and shows documented anxiolytic activity through interaction with GABA-A receptors. Linalyl acetate has antimicrobial properties against Staphylococcus epidermidis, a bacterium involved in acneic conditions. Athena\'s purchases exclusively Bioagricert-certified organic oil from Provençal distilleries with controlled supply chains for the Botanical Extracts line.'
+    } },
+
+  { id:'te-verde', type:'estratto', nameIt:'Tè verde', nameEn:'Green tea', latin:'Camellia sinensis leaf extract',
+    origin:'Asia', originEn:'Asia',
+    compounds:'Catechine (EGCG), polifenoli',
+    compoundsEn:'Catechins (EGCG), polyphenols',
+    funcs:['antiossidante','antinfiammatorio','detox'], funcsEn:['antioxidant','anti-inflammatory','detox'],
+    filterType:'estratto', filterFunc:['antiossidante'],
+    linesIt:'Uomo, Purysens, Everby', linesEn:'Men, Purysens, Everby',
+    note:'', noteEn:'', svgType:'leaf',
+    extended: {
+      it: 'L\'estratto di Camellia sinensis foglie non fermentate (tè verde) è standardizzato in catechine totali ≥80%, di cui il 50–60% è rappresentato dall\'EGCG (Epigallocatechina-3-gallato), il polifenolo più studiato in ambito cosmetico-dermatologico. L\'EGCG inibisce la matrice metalloproteinasi MMP-1 (collagenasi) indotta dai raggi UV, riducendo il foto-invecchiamento. Possiede inoltre potente attività anti-seborreoica per inibizione della 5α-reduttasi di tipo I, meccanismo di interesse nella formulazione per la pelle grassa e per la linea Uomo. Il profilo antiossidante (ORAC >3000 μmol TE/g) lo rende un ingrediente di rinforzo nella fase acquosa di emulsioni O/W complesse.',
+      en: 'The extract of Camellia sinensis unfermented leaves (green tea) is standardised to total catechins ≥80%, of which 50–60% is EGCG (Epigallocatechin-3-gallate), the most studied polyphenol in cosmetic-dermatological research. EGCG inhibits UV-induced matrix metalloproteinase MMP-1 (collagenase), reducing photo-ageing. It also has potent anti-seborrhoeic activity through inhibition of type-I 5α-reductase, a mechanism of interest for oily skin formulations and the Men\'s line. Its antioxidant profile (ORAC >3000 μmol TE/g) makes it a reinforcing ingredient in the aqueous phase of complex O/W emulsions.'
+    } },
+
+  { id:'centella', type:'estratto', nameIt:'Centella asiatica', nameEn:'Centella asiatica', latin:'Centella asiatica leaf extract',
+    origin:'Asia tropicale', originEn:'Tropical Asia',
+    compounds:'Asiaticoside, acido madecassico',
+    compoundsEn:'Asiaticoside, madecassic acid',
+    funcs:['cicatrizzante','lenitivo','riparatore'], funcsEn:['healing','soothing','repairing'],
+    filterType:'estratto', filterFunc:['lenitivo'],
+    linesIt:'Everby Cica Cloud', linesEn:'Everby Cica Cloud',
+    note:'', noteEn:'', svgType:'leaf',
+    extended: {
+      it: 'La Centella asiatica (gotu kola) è da millenni impiegata nella medicina ayurvedica e tradizionale coreana per la guarigione delle ferite cutanee. L\'estratto titolato TECA (Total Triterpenic Centella Asiatica) contiene asiaticoside, acido asiatico e acido madecassico in rapporto standardizzato. L\'asiaticoside stimola la sintesi di collagene di tipo I e III nei fibroblasti umani tramite up-regulation del gene COL1A1. L\'acido madecassico inibisce la formazione dei radicali liberi (ROS) generati dalla degranulazione dei neutrofili, riducendo il rossore post-aggressione cutanea. Nella formula Everby Cica Cloud è abbinato a Centella fermentata per aumentarne la biodisponibilità dermale, in linea con la K-beauty science che utilizza la fermentazione per abbassare il peso molecolare degli estratti botanici.',
+      en: 'Centella asiatica (gotu kola) has been used for millennia in Ayurvedic and traditional Korean medicine for cutaneous wound healing. Its titrated TECA extract (Total Triterpenic Centella Asiatica) contains asiaticoside, asiatic acid and madecassic acid in a standardised ratio. Asiaticoside stimulates type-I and type-III collagen synthesis in human fibroblasts via up-regulation of the COL1A1 gene. Madecassic acid inhibits free radical (ROS) formation generated by neutrophil degranulation, reducing post-aggression skin redness. In Everby Cica Cloud it is paired with fermented Centella to increase dermal bioavailability, in line with K-beauty science that uses fermentation to lower the molecular weight of botanical extracts.'
+    } },
+
+  { id:'stella-alpina', type:'estratto', nameIt:'Stella Alpina', nameEn:'Edelweiss', latin:'Leontopodium alpinum callus culture extract',
+    origin:'Alpi italiane', originEn:'Italian Alps',
+    compounds:'Cellule staminali vegetali, leontopodic acid',
+    compoundsEn:'Vegetal stem cells, leontopodic acid',
+    funcs:['anti-age','rigenerante','protettivo'], funcsEn:['anti-age','regenerating','protective'],
+    filterType:'estratto', filterFunc:['anti-age','antiossidante'],
+    linesIt:'Linea Antietà', linesEn:'Anti-age line',
+    note:'', noteEn:'', svgType:'crystal',
+    extended: {
+      it: 'La stella alpina (Leontopodium alpinum) sopravvive agli ambienti ad altissima irradiazione UV delle Alpi sviluppando una concentrazione elevatissima di antiossidanti. La raccolta in natura è vietata dalla Convenzione CITES; Athena\'s utilizza esclusivamente estratto da coltura callosa in vitro, tecnologia che produce cellule vegetali attive senza impatto sull\'habitat alpino. L\'acido leontopodico, identificato per la prima volta in questa specie, è il più potente inibitore degli enzimi MMP-1 e MMP-9 (metalloproteinasi della matrice) tra i principi attivi cosmetici di origine naturale, con un\'inibizione documentata superiore al 60% a 0,01%. In Antietà Globale è abbinato ai peptidi biomimetici per sinergia sul rimodellamento del derma.',
+      en: 'Edelweiss (Leontopodium alpinum) survives the high-UV environments of the Alps by developing extremely high concentrations of antioxidants. Wild harvesting is banned under the CITES Convention; Athena\'s uses exclusively in vitro callus culture extract, a technology that produces active plant cells without impact on the alpine habitat. Leontopodic acid, first identified in this species, is the most potent inhibitor of MMP-1 and MMP-9 enzymes (matrix metalloproteinases) among cosmetic actives of natural origin, with documented inhibition above 60% at 0.01%. In Antietà Globale it is combined with biomimetic peptides for synergistic action on dermal remodelling.'
+    } },
+
+  { id:'aloe-vera', type:'estratto', nameIt:'Aloe vera', nameEn:'Aloe vera', latin:'Aloe barbadensis leaf juice',
+    origin:'Regioni tropicali', originEn:'Tropical regions',
+    compounds:'Polisaccaridi, mucopolisaccaridi, vitamine',
+    compoundsEn:'Polysaccharides, mucopolysaccharides, vitamins',
+    funcs:['idratante','lenitivo','riparatore'], funcsEn:['hydrating','soothing','repairing'],
+    filterType:'estratto', filterFunc:['idratante','lenitivo'],
+    linesIt:'Diffusa in tutte le linee', linesEn:'Present across all lines',
+    note:'', noteEn:'', svgType:'leaf',
+    extended: {
+      it: 'Il gel di Aloe barbadensis è ottenuto dalla spremitura del mesofillo fogliare fresco, poi filtrato e stabilizzato. Il componente bioattivo principale è l\'acemannano, un polisaccaride (β-1,4-mannano acetilato) con doppia funzione: idratazione a effetto film-forming sullo strato corneo e modulazione dell\'immunità innata della cute tramite stimolazione dei macrofagi dermici (via toll-like receptor TLR-4). L\'enzima bradichinasi presente nell\'aloe inibisce la cascata infiammatoria riducendo la produzione di prostaglandine. Athena\'s acquista succo di aloe concentrato a 200:1 da coltivazioni senza lattice residuo (decolorizzato), certificato IASC, e lo diluisce in ogni linea come base idratante di fondo.',
+      en: 'Aloe barbadensis gel is obtained from fresh leaf mesophyll pressing, then filtered and stabilised. The main bioactive component is acemannan, a polysaccharide (acetylated β-1,4-mannan) with a dual function: film-forming hydration on the stratum corneum and modulation of innate skin immunity through stimulation of dermal macrophages (via toll-like receptor TLR-4). The bradykinase enzyme present in aloe inhibits the inflammatory cascade by reducing prostaglandin production. Athena\'s purchases 200:1 concentrated aloe juice from latex-free (decolourised) cultivation, IASC certified, and dilutes it across every line as a foundational hydrating base.'
+    } },
+
+  { id:'caffe', type:'estratto', nameIt:'Caffè', nameEn:'Coffee', latin:'Coffea arabica seed extract',
+    origin:'Africa, America latina', originEn:'Africa, Latin America',
+    compounds:'Caffeina, polifenoli',
+    compoundsEn:'Caffeine, polyphenols',
+    funcs:['stimolante','drenante','antiossidante'], funcsEn:['stimulating','draining','antioxidant'],
+    filterType:'estratto', filterFunc:['antiossidante','rassodante'],
+    linesIt:'Everby, Sphea Slim Silhouette', linesEn:'Everby, Sphea Slim Silhouette',
+    note:'', noteEn:'', svgType:'seed',
+    extended: {
+      it: 'L\'estratto di semi di Coffea arabica contiene caffeina (1,3,7-trimetilxantina) a concentrazioni del 2–4% nel secco, acido clorogenico (fino al 12%) e trigonellina. La caffeina topica esercita un\'azione lipolitica documentata: inibisce la fosfodiesterasi cAMP nei pre-adipociti sottocutanei, potenziando la lipolisi e riducendo il volume delle cellule adipose nell\'ipodermide. L\'acido clorogenico è un potente antiossidante (ORAC >2500 μmol TE/g) che neutralizza i ROS generati dallo stress ossidativo ambientale. Per uso cosmetico nel trattamento corpo, la caffeina ha efficacia clinicamente dimostrata sulla riduzione del gonfiore e dell\'aspetto a buccia d\'arancia se applicata con massaggio drenante. Athena\'s lo impiega in Sphea Slim Silhouette abbinato all\'EPS marino Nocturshape®.',
+      en: 'Coffea arabica seed extract contains caffeine (1,3,7-trimethylxanthine) at 2–4% dry weight, chlorogenic acid (up to 12%) and trigonelline. Topical caffeine exerts documented lipolytic action: it inhibits cAMP phosphodiesterase in subcutaneous pre-adipocytes, enhancing lipolysis and reducing adipocyte cell volume in the hypodermis. Chlorogenic acid is a potent antioxidant (ORAC >2500 μmol TE/g) that scavenges ROS generated by environmental oxidative stress. For cosmetic body use, caffeine has clinically demonstrated efficacy in reducing puffiness and the orange-peel appearance when applied with draining massage. Athena\'s uses it in Sphea Slim Silhouette paired with the marine EPS Nocturshape®.'
+    } },
+
+  { id:'bakuchiol', type:'estratto', nameIt:'Bakuchiol', nameEn:'Bakuchiol', latin:'Psoralea corylifolia',
+    origin:'India', originEn:'India',
+    compounds:'Meroterpenfenolo, alternativa naturale al retinolo',
+    compoundsEn:'Meroterpenphenol, natural retinol alternative',
+    funcs:['anti-age','rigenerante'], funcsEn:['anti-age','regenerating'],
+    filterType:'estratto', filterFunc:['anti-age'],
+    linesIt:'Antietà, Purysens, Uomo', linesEn:'Anti-age, Purysens, Men',
+    note:'', noteEn:'', svgType:'seed',
+    extended: {
+      it: 'Il bakuchiol è un meroterpenfenolo isolato dai semi di Psoralea corylifolia, pianta medicinale del sistema Ayurveda. A differenza del retinolo, non appartiene alla famiglia dei retinoidi ma attiva gli stessi recettori retinoici (RAR-α, RAR-β, RAR-γ) con meccanismo funzionalmente equivalente: stimola la produzione di procollagene di tipo I e III, riduce l\'espressione delle MMP e potenzia il turnover keratinocitario. In un trial clinico pubblicato su BJD (2019, n=44, 12 settimane), il bakuchiol 0,5% ha mostrato risultati equivalenti al retinolo 0,5% sulla riduzione delle rughe, con significativamente meno irritazione. Questo lo rende la scelta di Athena\'s per le formule Purysens (pelli sensibili) e Uomo, dove il retinolo tradizionale sarebbe controindicato.',
+      en: 'Bakuchiol is a meroterpenphenol isolated from the seeds of Psoralea corylifolia, a medicinal plant in the Ayurvedic system. Unlike retinol, it does not belong to the retinoid family but activates the same retinoic receptors (RAR-α, RAR-β, RAR-γ) with a functionally equivalent mechanism: it stimulates type-I and type-III procollagen production, reduces MMP expression, and enhances keratinocyte turnover. In a clinical trial published in BJD (2019, n=44, 12 weeks), bakuchiol 0.5% showed equivalent results to retinol 0.5% in wrinkle reduction, with significantly less irritation. This makes it Athena\'s choice for Purysens (sensitive skin) and Men formulas, where traditional retinol would be contraindicated.'
+    } },
+
+  { id:'ginkgo', type:'estratto', nameIt:'Ginkgo Biloba', nameEn:'Ginkgo Biloba', latin:'Ginkgo biloba leaf extract',
+    origin:'Asia orientale', originEn:'East Asia',
+    compounds:'Flavonoidi, terpenoidi',
+    compoundsEn:'Flavonoids, terpenoids',
+    funcs:['antiossidante','stimolante microcircolo'], funcsEn:['antioxidant','microcirculation stimulating'],
+    filterType:'estratto', filterFunc:['antiossidante'],
+    linesIt:'Uomo', linesEn:'Men',
+    note:'', noteEn:'', svgType:'leaf',
+    extended: {
+      it: 'Il Ginkgo biloba è l\'unica specie sopravvissuta del proprio ordine filogenetico (Ginkgoales), rimasta invariata da 250 milioni di anni. L\'estratto secco titolato in flavonoidi ≥24% e terpenoidi ≥6% (standard EGb 761) contiene ginkgoflavonoidi (quercetin-3-rutinoside, kaempferolo), bilobalide e ginkgolidi A, B, C. Il meccanismo cosmetico è duplice: i flavonoidi neutralizzano i ROS con efficienza superiore all\'acido ascorbico, mentre i ginkgolidi inibiscono il PAF (Platelet Activating Factor) migliorando la microcircolazione capillare del cuoio capelluto e della cute. In Athena\'s è ingrediente della linea Uomo, dove supporta la microcircolazione cutanea e l\'efficacia dei dopobarba.',
+      en: 'Ginkgo biloba is the sole surviving species of its phylogenetic order (Ginkgoales), unchanged for 250 million years. The dry extract standardised to flavonoids ≥24% and terpenoids ≥6% (EGb 761 standard) contains ginkgoflavonoids (quercetin-3-rutinoside, kaempferol), bilobalide and ginkgolides A, B, C. The cosmetic mechanism is dual: flavonoids scavenge ROS more efficiently than ascorbic acid, while ginkgolides inhibit PAF (Platelet Activating Factor) improving capillary microcirculation in the scalp and skin. At Athena\'s it is an ingredient in the Men\'s line, supporting cutaneous microcirculation and the efficacy of aftershave products.'
+    } },
+
+  { id:'helichrysum', type:'estratto', nameIt:'Helichrysum italicum', nameEn:'Italian everlasting', latin:'Helichrysum italicum extract',
+    origin:'Italia mediterranea', originEn:'Mediterranean Italy',
+    compounds:'Olio essenziale, neril acetato',
+    compoundsEn:'Essential oil, neryl acetate',
+    funcs:['anti-età','cicatrizzante','antiossidante'], funcsEn:['anti-age','healing','antioxidant'],
+    filterType:'estratto', filterFunc:['anti-age','antiossidante'],
+    linesIt:'Mineral Infusions', linesEn:'Mineral Infusions',
+    note:'', noteEn:'', svgType:'flower',
+    extended: {
+      it: 'L\'Helichrysum italicum (elicriso, immortelle) è un arbusto della macchia mediterranea italiana, distillato in vapore per ricavarne l\'olio essenziale ricco in nerolo e acetato di nerile (30–50%). Il nome "immortelle" deriva dalla capacità di non appassire post-raccolta: sopravvivenza legata ad alti livelli di flavonoidi (arenarina, isocoreopsina) e diterpenoidi acetofenolici. L\'estratto esercita una marcata attività anti-fibroblastica: riduce la produzione di fibronectina e favorisce il rimodellamento cicatriziale. I flavonoidi sopprimono NF-κB, riducendo l\'infiammazione cronica di basso grado associata al foto-invecchiamento. Nei bifasici Mineral Infusions di Athena\'s è l\'attivo principale della fase oleosolubile, emulsionato per uso quotidiano.',
+      en: 'Helichrysum italicum (curry plant, immortelle) is a shrub of the Italian Mediterranean scrubland, steam-distilled to yield an essential oil rich in nerol and neryl acetate (30–50%). The name "immortelle" derives from its ability not to wilt after harvesting — a survival trait linked to high levels of flavonoids (arenarine, isocoreopsis) and acetophenolic diterpenoids. The extract exerts marked anti-fibroblastic activity: it reduces fibronectin production and promotes scar remodelling. Its flavonoids suppress NF-κB, reducing the chronic low-grade inflammation associated with photo-ageing. In Athena\'s Mineral Infusions biphasics it is the main active in the oleophilic phase, emulsified for daily use.'
+    } },
+
+  // PEPTIDI & MOLECOLE BREVETTATE
+  { id:'uplevity', type:'peptide', nameIt:'Uplevity® E-Lift Peptide', nameEn:'Uplevity® E-Lift Peptide', latin:'Tetrapeptide-1',
+    origin:'Lubrizol / Lipotec', originEn:'Lubrizol / Lipotec',
+    compounds:'Tetrapeptide-1 con azione tensore meccanica',
+    compoundsEn:'Tetrapeptide-1 with mechanical tensing action',
+    funcs:['lifting','rassodante','anti-rughe'], funcsEn:['lifting','firming','anti-wrinkle'],
+    filterType:'peptide', filterFunc:['anti-age','rassodante'],
+    linesIt:'Sphea Radiant Up-Lift, Eyelift Perfector', linesEn:'Sphea Radiant Up-Lift, Eyelift Perfector',
+    patent:'WO2018071640A1, attivo fino al 2030', patentEn:'WO2018071640A1, active until 2030', svgType:'crystal',
+    extended: {
+      it: 'Uplevity® è un Tetrapeptide-1 (Gly-His-Lys-His) sviluppato da Lubrizol/Lipotec con meccanismo tensore biomeccanico: mima la sequenza di riconoscimento dei fibroblasti sulle fibre di elastina, promuovendo la sintesi di fibrillina-1 e tropoelastina. A differenza dei peptidi segnale classici, non agisce solo sulla sintesi di collagene ma sulla rete elastica profonda del derma. Studi clinici del produttore (n=20, 56 giorni, 3%) mostrano riduzione delle rughe del canto dell\'occhio del 22% e aumento della densità dermica del 18% misurata con ecografo 20 MHz. Protetto dal brevetto WO2018071640A1. Athena\'s lo utilizza nella Pearl Technology di Sphea: incapsulato nelle microsfere di biopolimero marino, si libera per pressione meccanica massimizzando la biodisponibilità dermica.',
+      en: 'Uplevity® is a Tetrapeptide-1 (Gly-His-Lys-His) by Lubrizol/Lipotec with a biomechanical tensing mechanism: it mimics the fibroblast recognition sequence on elastin fibres, promoting fibrilllin-1 and tropoelastin synthesis. Unlike classic signal peptides, it acts not only on collagen synthesis but on the deep elastic network of the dermis. Manufacturer clinical studies (n=20, 56 days, 3%) show 22% reduction of crow\'s feet wrinkles and 18% increase in dermal density measured with 20 MHz ultrasound. Protected by patent WO2018071640A1. Athena\'s uses it in Sphea\'s Pearl Technology: encapsulated in marine biopolymer microspheres, released by mechanical pressure to maximise dermal bioavailability.'
+    } },
+
+  { id:'argireline', type:'peptide', nameIt:'Argireline® Amplified', nameEn:'Argireline® Amplified', latin:'Acetyl Hexapeptide-8',
+    origin:'Lubrizol / Lipotec', originEn:'Lubrizol / Lipotec',
+    compounds:'Acetyl Hexapeptide-8 seconda generazione, inibitore del complesso SNARE',
+    compoundsEn:'Acetyl Hexapeptide-8 second generation, SNARE complex inhibitor',
+    funcs:['botox-like','distensione rughe','anti-age'], funcsEn:['botox-like','wrinkle relaxing','anti-age'],
+    filterType:'peptide', filterFunc:['anti-age'],
+    linesIt:'Sphea Eyelift Perfector, Everby Pump & Plump', linesEn:'Sphea Eyelift Perfector, Everby Pump & Plump',
+    patent:'US7015192B1, US9079048B2, attivo fino al 2030', patentEn:'US7015192B1, US9079048B2, active until 2030', svgType:'crystal',
+    extended: {
+      it: 'Argireline® Amplified è la seconda generazione dell\'Acetyl Hexapeptide-8. Il meccanismo è "botox-like" non iniettivo: il peptide compete per il sito di legame della SNAP-25, proteina del complesso SNARE responsabile del rilascio di acetilcolina all\'interfaccia nervo-muscolo. Riducendo parzialmente la contrazione muscolare facciale ripetuta, si attenuano le rughe dinamiche. A differenza della tossina botulinica, l\'azione è reversibile e dose-dipendente (efficace dal 5–10% in formula). Brevettato con US7015192B1 e US9079048B2. In Sphea Eyelift Perfector è veicolato nella Pearl Technology per massima concentrazione localizzata nella zona perioculare.',
+      en: 'Argireline® Amplified is the second-generation Acetyl Hexapeptide-8. The mechanism is non-injectable "botox-like": the peptide competes for the binding site of SNAP-25, a SNARE complex protein responsible for acetylcholine release at the nerve-muscle interface. By partially reducing repeated facial muscle contraction, dynamic wrinkles are attenuated. Unlike botulinum toxin, the action is reversible and concentration-dependent (effective from 5–10% in formula). Patented US7015192B1 and US9079048B2. In Sphea Eyelift Perfector it is delivered via Pearl Technology for maximum localised concentration in the periocular area.'
+    } },
+
+  { id:'pumpcoll', type:'peptide', nameIt:'Pumpcoll®', nameEn:'Pumpcoll®', latin:'Hydrolyzed Cucurbita pepo seed extract',
+    origin:'Phenbiox, Italia – COSMOS certificato', originEn:'Phenbiox, Italy – COSMOS certified',
+    compounds:'Da upcycling agricolo, azione pro-collagene',
+    compoundsEn:'From agricultural upcycling, pro-collagen action',
+    funcs:['rassodante','tonificante','pro-collagene'], funcsEn:['firming','toning','pro-collagen'],
+    filterType:'peptide', filterFunc:['rassodante'],
+    linesIt:'Everby', linesEn:'Everby',
+    note:'Da economia circolare', noteEn:'From circular economy', svgType:'crystal',
+    extended: {
+      it: 'Pumpcoll® è un idrolizzato proteico da semi di Cucurbita pepo (zucca) sviluppato da Phenbiox (Italia), ottenuto interamente da sottoprodotti dell\'industria alimentare — economia circolare applicata alla cosmetica. Il profilo aminoacidico è ricco in prolina, glicina e idrossiprolina, i precursori strutturali del collagene di tipo I: applicati topicamente, i peptidi penetrano nei cheratinociti stimolando la sintesi di procollagene tramite up-regulation di TGF-β1. Certificato COSMOS da Ecocert, garantisce conformità alle linee guida di sostenibilità della formula Everby. Studi in vitro del produttore mostrano +31% di sintesi di collagene di tipo I a 1% dopo 72h di incubazione su fibroblasti dermici primari umani.',
+      en: 'Pumpcoll® is a protein hydrolysate from Cucurbita pepo (pumpkin) seeds developed by Phenbiox (Italy), obtained entirely from food industry by-products — circular economy applied to cosmetics. The amino acid profile is rich in proline, glycine and hydroxyproline, the structural precursors of type-I collagen: applied topically, the peptides penetrate keratinocytes stimulating procollagen synthesis via up-regulation of TGF-β1. COSMOS certified by Ecocert, guaranteeing compliance with Everby\'s sustainability formula guidelines. Manufacturer in vitro studies show +31% type-I collagen synthesis at 1% after 72h incubation on primary human dermal fibroblasts.'
+    } },
+
+  { id:'capixyl', type:'peptide', nameIt:'Capixyl®', nameEn:'Capixyl®', latin:'Acetyl Tetrapeptide-3 + Biochanin A',
+    origin:'Lucas Meyer / Clariant', originEn:'Lucas Meyer / Clariant',
+    compounds:'Peptide + isoflavone, sinergia anti-caduta',
+    compoundsEn:'Peptide + isoflavone, anti-loss synergy',
+    funcs:['anti-caduta','rinforzante follicolo'], funcsEn:['anti-loss','follicle strengthening'],
+    filterType:'peptide', filterFunc:['rassodante'],
+    linesIt:'Everby (linea capelli)', linesEn:'Everby (hair line)',
+    patent:'Attivo fino al 2035', patentEn:'Active until 2035', svgType:'crystal',
+    extended: {
+      it: 'Capixyl® è un complesso brevettato (Lucas Meyer/Clariant) che combina Acetyl Tetrapeptide-3 con biochanina A, isoflavone estratto dal trifoglio rosso. Il meccanismo anti-caduta è duale: l\'Acetyl Tetrapeptide-3 stimola la sintesi di laminina-5 nella zona di giunzione follicolare dermale, potenziando l\'ancoraggio del follicolo al derma; la biochanina A inibisce la 5α-reduttasi di tipo II, l\'enzima che converte il testosterone in diidrotestosterone (DHT), il principale responsabile della miniaturizzazione follicolare nell\'alopecia androgenetica. Studi clinici (n=40, 4 mesi) mostrano riduzione della caduta del 46% rispetto al placebo. Athena\'s lo impiega nella linea capelli Everby per un target che anticipa il problema caduta.',
+      en: 'Capixyl® is a patented complex (Lucas Meyer/Clariant) combining Acetyl Tetrapeptide-3 with biochanin A, an isoflavone from red clover. The anti-hair-loss mechanism is dual: Acetyl Tetrapeptide-3 stimulates laminin-5 synthesis at the dermal follicular junction zone, enhancing follicle anchoring to the dermis; biochanin A inhibits type-II 5α-reductase, the enzyme converting testosterone into dihydrotestosterone (DHT), the main driver of follicular miniaturisation in androgenic alopecia. Clinical studies (n=40, 4 months) show 46% reduction in hair loss versus placebo. Athena\'s uses it in Everby\'s hair line targeting consumers who proactively address hair loss.'
+    } },
+
+  { id:'maxi-lip', type:'peptide', nameIt:'MAXI-LIP® Peptide', nameEn:'MAXI-LIP® Peptide', latin:'Palmitoyl Tripeptide-1',
+    origin:'Sederma / Croda', originEn:'Sederma / Croda',
+    compounds:'Palmitoyl Tripeptide-1, stimolazione collagene labbra',
+    compoundsEn:'Palmitoyl Tripeptide-1, lip collagen stimulation',
+    funcs:['volumizzante labbra','pro-collagene'], funcsEn:['lip volumising','pro-collagen'],
+    filterType:'peptide', filterFunc:['rassodante','anti-age'],
+    linesIt:'Everby Pump & Plump', linesEn:'Everby Pump & Plump',
+    patent:'', patentEn:'', svgType:'crystal',
+    extended: {
+      it: 'MAXI-LIP® è un Palmitoyl Tripeptide-1 (Pal-GHK) sviluppato da Sederma/Croda, palmitoilazione del peptide segnale GHK (Glicina-Istidina-Lisina). La palmitoilazione aumenta la lipofilicità del peptide di circa 100x, consentendogli di attraversare lo strato corneo e raggiungere i fibroblasti del derma labbrale. Il GHK è un peptide endogeno di crescita tissutale che up-regola i geni COL1A1, COL3A1 e COL7A1 (collagene di tipo I, III, VII) e attiva la via Wnt del rinnovamento cellulare. Studi clinici Sederma su volontari (n=30, 28 giorni, 3%) mostrano aumento del volume labiale del 40% misurato con fotogrammetria 3D. In Everby Pump & Plump è abbinato ad Argireline® per l\'effetto "lip filler topico".',
+      en: 'MAXI-LIP® is a Palmitoyl Tripeptide-1 (Pal-GHK) by Sederma/Croda, the palmitoylation of signal peptide GHK (Glycine-Histidine-Lysine). Palmitoylation increases peptide lipophilicity approximately 100x, enabling it to traverse the stratum corneum and reach fibroblasts of the labial dermis. GHK is an endogenous tissue growth peptide that up-regulates COL1A1, COL3A1 and COL7A1 genes (type-I, III, VII collagen) and activates the Wnt pathway of cellular renewal. Sederma clinical studies on volunteers (n=30, 28 days, 3%) show 40% lip volume increase measured by 3D photogrammetry. In Everby Pump & Plump it is combined with Argireline® for the "topical lip filler" effect.'
+    } },
+
+  { id:'luminescine', type:'peptide', nameIt:'Luminescine®', nameEn:'Luminescine®', latin:'Verbascum thapsus extract (patented)',
+    origin:'Silab, Bordeaux – COSMOS ORGANIC', originEn:'Silab, Bordeaux – COSMOS ORGANIC',
+    compounds:'Fotoluminescenza naturale, polisaccaridi luminescenti',
+    compoundsEn:'Natural photoluminescence, luminescent polysaccharides',
+    funcs:['illuminante','pro-radianza','fotoluminescente'], funcsEn:['brightening','pro-radiance','photoluminescent'],
+    filterType:'peptide', filterFunc:['schiarente'],
+    linesIt:'Skincare Innovation, Illumià, Everby', linesEn:'Skincare Innovation, Illumià, Everby',
+    patent:'Brevetto attivo', patentEn:'Active patent', svgType:'crystal',
+    extended: {
+      it: 'Luminescine® è un estratto brevettato di fiori di Verbascum thapsus (tasso barbasso) sviluppato da Silab (Bordeaux), certificato COSMOS ORGANIC. Il principio attivo è un polisaccaride fotoluminescente naturale capace di assorbire la luce UV (λ = 330–380 nm) e riemetterla nel visibile (λ = 440–480 nm), creando un effetto di luminosità intrinseca della cute misurabile con spettrofotometria. A differenza degli illuminanti fisici (mica, silice), l\'effetto non è puramente ottico: il polisaccaride stimola anche la sintesi di laminina-332 epidermale, proteina strutturale che migliora la coesione dei corneociti. In Everby Yes I Glow è l\'ingrediente distintivo del lancio del brand, con claim "natural glow" verificato strumentalmente.',
+      en: 'Luminescine® is a patented extract of Verbascum thapsus (mullein) flowers by Silab (Bordeaux), COSMOS ORGANIC certified. The active is a natural photoluminescent polysaccharide capable of absorbing UV light (λ = 330–380 nm) and re-emitting it in the visible spectrum (λ = 440–480 nm), creating a measurable intrinsic skin luminosity effect. Unlike physical illuminants (mica, silica), the effect is not purely optical: the polysaccharide also stimulates synthesis of epidermal laminin-332, a structural protein improving corneocyte cohesion. In Everby Yes I Glow it is the brand launch hero ingredient, with an instrumentally verified "natural glow" claim.'
+    } },
+
+  { id:'actigym', type:'marino', nameIt:'Actigym®', nameEn:'Actigym®', latin:'Exopolysaccharide from Bacillus sp.',
+    origin:'BIOINTEC, Isole Bermuda', originEn:'BIOINTEC, Bermuda Islands',
+    compounds:'Esoopolisaccaride marino, mimetismo actina muscolare',
+    compoundsEn:'Marine exopolysaccharide, muscle actin mimicry',
+    funcs:['tonificante muscolare','rassodante','body shaping'], funcsEn:['muscle toning','firming','body shaping'],
+    filterType:'marino', filterFunc:['rassodante'],
+    linesIt:'Sphea Sculpt & Firm', linesEn:'Sphea Sculpt & Firm',
+    patent:'Brevetto attivo', patentEn:'Active patent', svgType:'crystal',
+    extended: {
+      it: 'Actigym® è un esopolisaccaride (EPS) isolato da Bacillus sp., ceppo estratto dalle acque profonde salate delle Isole Bermuda da BIOINTEC. Il batterio produce l\'EPS come meccanismo di risposta allo stress osmotico estremo; la molecola mima strutturalmente le proteine del citoscheletro di actina. Applicato sulla cute, l\'EPS si integra nella membrana dei miofibroblasti del pannicolo adiposo, attivando la contrazione miofibrillare e aumentando il tono muscolare sottocutaneo (+26% a 8 settimane, dati BIOINTEC, n=20). In Sphea Sculpt & Firm Body Serum è veicolato nella Pearl Technology: le microsfere di biopolimero si sciolgono con il calore e la pressione del massaggio, rilasciando l\'EPS attivato direttamente sullo strato muscolare.',
+      en: 'Actigym® is an exopolysaccharide (EPS) isolated from Bacillus sp., a strain extracted from the deep salty waters of the Bermuda Islands by BIOINTEC. The bacterium produces EPS as a response to extreme osmotic stress; the molecule structurally mimics actin cytoskeleton proteins. Applied to the skin, the EPS integrates into the myofibroblast membrane of the adipose panniculus, activating myofibrillar contraction and increasing subcutaneous muscle tone (+26% at 8 weeks, BIOINTEC data, n=20). In Sphea Sculpt & Firm Body Serum it is delivered via Pearl Technology: biopolymer microspheres dissolve with the heat and pressure of massage, releasing the activated EPS directly onto the muscle layer.'
+    } },
+
+  { id:'nocturshape', type:'marino', nameIt:'Nocturshape®', nameEn:'Nocturshape®', latin:'EPS marino da Acaltis citrea',
+    origin:'Lubrizol/Lipotec – Laguna Fuente de Piedra, Málaga', originEn:'Lubrizol/Lipotec – Fuente de Piedra lagoon, Málaga',
+    compounds:'Esoopolisaccaride marino, lipolisi notturna',
+    compoundsEn:'Marine exopolysaccharide, nocturnal lipolysis',
+    funcs:['lipolisi notturna','drenante','anticellulite'], funcsEn:['nocturnal lipolysis','draining','anti-cellulite'],
+    filterType:'marino', filterFunc:['rassodante'],
+    linesIt:'Sphea Slim Silhouette', linesEn:'Sphea Slim Silhouette',
+    patent:'SCC Award 2013', patentEn:'SCC Award 2013', svgType:'crystal',
+    extended: {
+      it: 'Nocturshape® è un EPS prodotto da Acaltis citrea, microalghe alofite isolate dalla laguna ipersalina di Fuente de Piedra (Málaga), sito Ramsar di protezione internazionale. Il meccanismo è sincronizzato con il ritmo circadiano cutaneo: le cellule adipose dell\'ipodermide hanno un picco di lipolisi notturna regolato dall\'oscillatore circadiano BMAL1/CLOCK. L\'EPS amplifica questo segnale attivando la lipasi ormono-sensibile (HSL) nelle ore notturne, aumentando la degradazione dei trigliceridi intracellulari. Premio SCC Award 2013. In Sphea Slim Silhouette Body Serum (da applicare la sera) è abbinato alla caffeina per azione complementare: caffeina inibisce la PDE-cAMP (lipolisi diurna), Nocturshape® potenzia l\'HSL notturna.',
+      en: 'Nocturshape® is an EPS produced by Acaltis citrea, halophytic microalgae isolated from the hypersaline lagoon of Fuente de Piedra (Málaga), a Ramsar site of international protection. The mechanism is synchronised with the cutaneous circadian rhythm: hypodermis adipose cells have a peak of nocturnal lipolysis regulated by the BMAL1/CLOCK circadian oscillator. The EPS amplifies this signal by activating hormone-sensitive lipase (HSL) during night hours, increasing intracellular triglyceride degradation. SCC Award 2013. In Sphea Slim Silhouette Body Serum (for evening application) it is combined with caffeine for complementary action: caffeine inhibits PDE-cAMP (diurnal lipolysis), Nocturshape® enhances nocturnal HSL.'
+    } },
+
+  // BIOFERMENTATI & BIOTECH
+  { id:'ectoin', type:'biofermentato', nameIt:'Ectoin® natural', nameEn:'Ectoin® natural', latin:'Ectoin (Halomonas elongata)',
+    origin:'bitop AG, Germania', originEn:'bitop AG, Germany',
+    compounds:'Aminoacido extremolita, stabilizzatore biomolecolare',
+    compoundsEn:'Extremolyte amino acid, biomolecular stabiliser',
+    funcs:['anti-pollution','idratante','anti-blue light'], funcsEn:['anti-pollution','hydrating','anti-blue light'],
+    filterType:'biofermentato', filterFunc:['idratante'],
+    linesIt:'Sphea Anti Pollution, Everby No Cry Zone', linesEn:'Sphea Anti Pollution, Everby No Cry Zone',
+    patent:'15+ brevetti', patentEn:'15+ patents', svgType:'crystal',
+    extended: {
+      it: 'L\'ectoina è un aminoacido ciclico prodotto da Halomonas elongata, batterio alofilo estremo che sopravvive in ambienti a salinità superiore al 10%. Funge da "extremolita": stabilizza le strutture tridimensionali di proteine, membrane cellulari e DNA cellulare contro stress osmotici, UV e temperatura. Sulla cute, forma un "solvation shell" — uno strato idro-protettivo di molecole d\'acqua attorno alle strutture cellulari — che riduce l\'entrata di particolato fine (PM2.5) nelle cellule epidermiche e inibisce la cascata pro-infiammatoria TRPV1-mediata. Il processo industriale di bitop AG è per fermentazione batterica continua con recupero al 98% dall\'esportazione osmotica. Ectoina natural è certificata con 15+ brevetti attivi.',
+      en: 'Ectoin is a cyclic amino acid produced by Halomonas elongata, an extreme halophilic bacterium surviving in environments with salinity above 10%. It acts as an "extremolyte": stabilising the three-dimensional structures of proteins, cell membranes and cellular DNA against osmotic stress, UV and temperature. On the skin, it forms a "solvation shell" — a hydro-protective layer of water molecules around cellular structures — reducing the entry of fine particulate (PM2.5) into epidermal cells and inhibiting the TRPV1-mediated pro-inflammatory cascade. bitop AG\'s industrial process uses continuous bacterial fermentation with 98% recovery from osmotic export. Ectoin natural is covered by 15+ active patents.'
+    } },
+
+  { id:'acqua-riso', type:'biofermentato', nameIt:'Acqua di Riso fermentata', nameEn:'Fermented Rice Water', latin:'Oryza sativa + Saccharomyces cerevisiae',
+    origin:'Asia orientale (tradizione secolare)', originEn:'East Asia (centuries-old tradition)',
+    compounds:'Aminoacidi, vitamine B, GABA fermentato',
+    compoundsEn:'Amino acids, B vitamins, fermented GABA',
+    funcs:['rinforza barriera','glass skin','idratante'], funcsEn:['barrier strengthening','glass skin','hydrating'],
+    filterType:'biofermentato', filterFunc:['idratante'],
+    linesIt:'Everby Milky Rice', linesEn:'Everby Milky Rice',
+    note:'', noteEn:'', svgType:'seed',
+    extended: {
+      it: 'L\'acqua di riso fermentata ha una storia documentata di uso cosmetico in Giappone (geishe di Kyoto, periodo Heian) e in Corea. La fermentazione con Saccharomyces cerevisiae riduce il peso molecolare dei polisaccaridi del riso da 150–200 kDa a 5–15 kDa, aumentando drasticamente la penetrazione trans-cutanea. Il processo genera inoltre GABA fermentato, il neurotrasmettitore inibitorio che topicamente rilassa i micro-movimenti muscolari del viso con meccanismo simile all\'Argireline. I ceramidi di riso (ceramide 2) rafforzano la struttura lamellare della barriera cutanea. Athena\'s utilizza acqua di riso biofermentata con titolazione standardizzata in inositolo e acido ferulico per la formula Everby Milky Rice, indicatore di fermentazione ottimale.',
+      en: 'Fermented rice water has a documented history of cosmetic use in Japan (Kyoto geishas, Heian period) and Korea. Fermentation with Saccharomyces cerevisiae reduces the molecular weight of rice polysaccharides from 150–200 kDa to 5–15 kDa, drastically increasing trans-cutaneous penetration. The process also generates fermented GABA, the inhibitory neurotransmitter that topically relaxes micro-facial muscle movements with a mechanism similar to Argireline. Rice ceramides (ceramide 2) strengthen the lamellar structure of the skin barrier. Athena\'s uses biofermented rice water with standardised titration in inositol and ferulic acid for Everby Milky Rice, an indicator of optimal fermentation.'
+    } },
+
+  { id:'ha-vegetale', type:'biofermentato', nameIt:'Acido Ialuronico vegetale', nameEn:'Vegetal Hyaluronic Acid', latin:'Tremella fuciformis extract',
+    origin:'Giappone', originEn:'Japan',
+    compounds:'Polisaccaride bio-mimetico, peso molecolare variable',
+    compoundsEn:'Bio-mimetic polysaccharide, variable molecular weight',
+    funcs:['idratante profondo','filler naturale'], funcsEn:['deep hydration','natural filler'],
+    filterType:'biofermentato', filterFunc:['idratante'],
+    linesIt:'Antietà, Mineral Infusions', linesEn:'Anti-age, Mineral Infusions',
+    note:'', noteEn:'', svgType:'crystal',
+    extended: {
+      it: 'L\'estratto di Tremella fuciformis (fungo della neve cinese) è il "acido ialuronico vegetale" per eccellenza: i suoi polisaccaridi (beta-glucano solubile, FP-1) hanno una capacità di ritenzione idrica superiore del 400–500% rispetto all\'acido ialuronico sodico convenzionale. A peso molecolare nativo elevato (>1 MDa), forma un film idratante superficiale (effetto "glass skin"); a peso ridotto penetra il derma superficiale attivando i recettori CD44 dei fibroblasti, stimolando la sintesi di HA endogeno. Questa doppia azione è analoga all\'acido ialuronico multi-molecolare di sintesi, ma con origine naturale e biodegradabilità superiore. Athena\'s lo impiega nelle formule Antietà e Mineral Infusions come alternativa vegana premium all\'HA biofermentato convenzionale.',
+      en: 'Tremella fuciformis extract (silver ear mushroom) is the quintessential "vegetal hyaluronic acid": its polysaccharides (soluble beta-glucan, FP-1) have 400–500% higher water retention capacity than conventional sodium hyaluronate. At high native molecular weight (>1 MDa), it forms a superficial hydrating film (glass skin effect); at reduced weight it penetrates the superficial dermis activating CD44 receptors on fibroblasts, stimulating endogenous HA synthesis. This dual action is analogous to multi-molecular weight synthetic HA, but with natural origin and superior biodegradability. Athena\'s uses it in Anti-age and Mineral Infusions formulas as a premium vegan alternative to conventional biofermented HA.'
+    } },
+
+  // VITAMINE & FUNZIONALI
+  { id:'niacinamide', type:'vitamina', nameIt:'Niacinamide', nameEn:'Niacinamide', latin:'Niacinamide (Vitamin B3)',
+    origin:'Sintesi', originEn:'Synthesis',
+    compounds:'Vitamina B3 multifunzione, precursore NAD+',
+    compoundsEn:'Multifunctional vitamin B3, NAD+ precursor',
+    funcs:['uniformante','idratante','anti-pori','schiarente'], funcsEn:['evening','hydrating','pore-reducing','brightening'],
+    filterType:'vitamina', filterFunc:['schiarente','idratante'],
+    linesIt:'Diffusa in quasi tutte le linee', linesEn:'Present in almost all lines',
+    note:'', noteEn:'', svgType:'crystal',
+    extended: {
+      it: 'La niacinamide (vitamina B3) è uno degli attivi multifunzione più documentati in cosmesi: precursore intracellulare di NAD+ e NADP+, cofattori essenziali per oltre 400 reazioni enzimatiche cutanee. Il meccanismo schiarente è specifico: a livello cheratinocitario inibisce il trasferimento di melanosomi dai melanociti verso i cheratinociti sopprimendo l\'interazione Myosin-Va/Rab27a, riducendo l\'iperpigmentazione senza inibire la melanogenesi (nessun rischio di depigmentazione indesiderata). Riduce i pori visibili regolando la produzione di cheratina a livello follicolare e potenzia la sintesi di ceramidi e acidi grassi liberi della barriera cutanea. Athena\'s impiega niacinamide al 5% nella linea Illumià e come attivo di supporto nelle linee Antietà, Purysens, Uomo e Everby.',
+      en: 'Niacinamide (vitamin B3) is one of the most documented multifunctional actives in cosmetics: an intracellular precursor of NAD+ and NADP+, essential cofactors for over 400 cutaneous enzymatic reactions. The brightening mechanism is specific: at the keratinocyte level it inhibits melanosome transfer from melanocytes to keratinocytes by suppressing the Myosin-Va/Rab27a interaction, reducing hyperpigmentation without inhibiting melanogenesis (no risk of unwanted depigmentation). It reduces visible pores by regulating keratin production at the follicular level and enhances synthesis of ceramides and free fatty acids of the skin barrier. Athena\'s uses niacinamide at 5% in the Illumià line and as a supporting active in Anti-age, Purysens, Men and Everby lines.'
+    } },
+
+  { id:'coenzima-q10', type:'vitamina', nameIt:'Coenzima Q10', nameEn:'Coenzyme Q10', latin:'Ubiquinone',
+    origin:'Biosintesi / Sintesi', originEn:'Biosynthesis / Synthesis',
+    compounds:'Antiossidante mitocondriale, coenzima energetico',
+    compoundsEn:'Mitochondrial antioxidant, energy coenzyme',
+    funcs:['anti-age','booster energetico'], funcsEn:['anti-age','energy booster'],
+    filterType:'vitamina', filterFunc:['anti-age','antiossidante'],
+    linesIt:'Sphea Anti Pollution, Slim Silhouette', linesEn:'Sphea Anti Pollution, Slim Silhouette',
+    note:'', noteEn:'', svgType:'crystal',
+    extended: {
+      it: 'L\'ubiquinone (CoQ10) è un benzochinone liposolubile presente nella catena di trasporto degli elettroni dei mitocondri. La produzione endogena di CoQ10 cutaneo diminuisce del 50% tra i 20 e i 50 anni, parallelamente alla riduzione della sintesi di collagene. Topicamente, il CoQ10 penetra nel doppio strato fosfolipidico della membrana cellulare e viene ridotto dalla NQO1 alla forma attiva ubichinolo, che neutralizza i ROS a livello mitocondriale prima che raggiungano il nucleo e danneggino il DNA. La molecola è lipofila: per ottimizzare la biodisponibilità dermica, Athena\'s la incapsula nel sistema Pearl Technology di Sphea, aumentando la concentrazione di picco al sito target rispetto alla formulazione emulsione classica.',
+      en: 'Ubiquinone (CoQ10) is a lipid-soluble benzoquinone present in the mitochondrial electron transport chain. Endogenous cutaneous CoQ10 production decreases by 50% between the ages of 20 and 50, paralleling the reduction in collagen synthesis. Topically, CoQ10 penetrates the phospholipid bilayer of the cell membrane and is reduced by NQO1 to its active form ubiquinol, which scavenges ROS at the mitochondrial level before they reach the nucleus and damage DNA. The molecule is lipophilic: to optimise dermal bioavailability, Athena\'s encapsulates it in Sphea\'s Pearl Technology system, increasing peak concentration at the target site compared to classic emulsion formulation.'
+    } },
+
+  { id:'vitamina-c', type:'vitamina', nameIt:'Vitamina C liposomiale', nameEn:'Liposomal Vitamin C', latin:'Ascorbic acid (liposomal form)',
+    origin:'Sintesi', originEn:'Synthesis',
+    compounds:'10% concentrazione, +3x biodisponibilità liposomiale',
+    compoundsEn:'10% concentration, +3x liposomal bioavailability',
+    funcs:['anti-age','schiarente','pro-collagene'], funcsEn:['anti-age','brightening','pro-collagen'],
+    filterType:'vitamina', filterFunc:['anti-age','schiarente'],
+    linesIt:'Sphea Radiant Up-Lift, Illumià, Everby', linesEn:'Sphea Radiant Up-Lift, Illumià, Everby',
+    note:'', noteEn:'', svgType:'crystal',
+    extended: {
+      it: 'L\'acido ascorbico (vitamina C) è il cofattore essenziale delle prolil- e lisil-idrossilasi, gli enzimi che idrossilano i residui di prolina e lisina del procollagene per stabilizzare la tripla elica del collagene maturo. A concentrazioni ≥10% topiche, aumenta la sintesi di collagene di tipo I e III fino a 8 volte e inibisce la melanogenesi riducendo il Cu2+ nel sito catalitico della tirosinasi. Il problema storico è l\'instabilità ossidativa (degrada rapidamente a dehydroascorbic acid inattivo). Athena\'s risolve questo limite con la forma liposomiale: l\'acido ascorbico è incapsulato in liposomi di lecitina di soia che lo proteggono dall\'ossidazione durante lo stoccaggio e aumentano la penetrazione intradermica di 3x rispetto alla forma libera.',
+      en: 'Ascorbic acid (vitamin C) is the essential cofactor of prolyl- and lysyl-hydroxylases, the enzymes that hydroxylate proline and lysine residues of procollagen to stabilise the triple helix of mature collagen. At topical concentrations ≥10%, it increases type-I and type-III collagen synthesis up to 8-fold and inhibits melanogenesis by reducing Cu2+ at the catalytic site of tyrosinase. The long-standing challenge is oxidative instability (rapid degradation to inactive dehydroascorbic acid). Athena\'s addresses this with the liposomal form: ascorbic acid is encapsulated in soy lecithin liposomes protecting it from oxidation during storage and increasing intradermal penetration 3x versus the free form.'
+    } },
+
+  { id:'resveratrolo', type:'vitamina', nameIt:'Resveratrolo', nameEn:'Resveratrol', latin:'Vitis vinifera (resveratrol)',
+    origin:'Vite / Sintesi', originEn:'Grape / Synthesis',
+    compounds:'Polifenolo della longevità, stilbenoide',
+    compoundsEn:'Longevity polyphenol, stilbenoid',
+    funcs:['anti-age','antiossidante','anti-glicazione'], funcsEn:['anti-age','antioxidant','anti-glycation'],
+    filterType:'vitamina', filterFunc:['anti-age','antiossidante'],
+    linesIt:'Sphea Eyelift Perfector', linesEn:'Sphea Eyelift Perfector',
+    note:'', noteEn:'', svgType:'crystal',
+    extended: {
+      it: 'Il resveratrolo è uno stilbenoide polifenolico prodotto dalla vite (Vitis vinifera) come fitoalessina in risposta all\'attacco fungino. È il ligando naturale delle sirtuine (SIRT1), le deacetilasi NAD+-dipendenti implicate nei meccanismi di longevità cellulare. In cosmetica, SIRT1 attivata dal resveratrolo deacetila l\'istone H3K9, silenziando i geni dell\'infiammazione cronica e della senescenza cellulare (via p53/p21). Ha documentata attività anti-glicazione: inibisce la formazione degli AGEs (Advanced Glycation End-products), i cross-link tra glucosio e proteine strutturali del derma (collagene, elastina) che provocano rigidità tissutale e giallinamento. Per l\'alta instabilità ossidativa, Athena\'s utilizza resveratrolo microincapsulato in Sphea Eyelift Perfector.',
+      en: 'Resveratrol is a polyphenolic stilbenoid produced by the grapevine (Vitis vinifera) as a phytoalexin in response to fungal attack. It is the natural ligand of sirtuins (SIRT1), NAD+-dependent deacetylases implicated in cellular longevity mechanisms. In cosmetics, SIRT1 activated by resveratrol deacetylates histone H3K9, silencing chronic inflammation and cellular senescence genes (via p53/p21). It has documented anti-glycation activity: it inhibits the formation of AGEs (Advanced Glycation End-products), cross-links between glucose and structural dermal proteins (collagen, elastin) causing tissue stiffness and skin yellowing. Due to high oxidative instability, Athena\'s uses microencapsulated resveratrol in Sphea Eyelift Perfector.'
+    } },
+
+  { id:'acido-ialuronico', type:'vitamina', nameIt:'Acido Ialuronico', nameEn:'Hyaluronic Acid', latin:'Sodium hyaluronate (multi-weight)',
+    origin:'Biofermentazione batterica', originEn:'Bacterial biofermentation',
+    compounds:'Vari pesi molecolari: LMW/HMW, azione multi-livello',
+    compoundsEn:'Various molecular weights: LMW/HMW, multi-layer action',
+    funcs:['idratante multi-livello','filler topico','anti-rughe'], funcsEn:['multi-level hydration','topical filler','anti-wrinkle'],
+    filterType:'vitamina', filterFunc:['idratante','anti-age'],
+    linesIt:'Antietà, Sphea, Everby, Uomo', linesEn:'Anti-age, Sphea, Everby, Men',
+    note:'', noteEn:'', svgType:'crystal',
+    extended: {
+      it: 'L\'acido ialuronico (HA) è un glicosaminoglicano lineare prodotto per biofermentazione batterica da Streptococcus equi in bioreattori controllati, senza componenti animali. La differenza di peso molecolare ha effetti radicalmente diversi sulla cute: l\'HA ad alto peso molecolare (HMW, >1 MDa) forma un film visco-elastico superficiale che riduce la TEWL; l\'HA a medio peso (100–500 kDa) penetra il corion dell\'epidermide; l\'HA a basso peso (LMW, <50 kDa) raggiunge il derma superficiale attivando CD44 e stimolando la produzione di HA endogeno nei fibroblasti. Athena\'s utilizza un blend tricomponente dei tre pesi molecolari nella linea Antietà Globale, la prima a cui è associato il claim "idratazione a tre livelli" supportato da misurazioni corneometriche.',
+      en: 'Hyaluronic acid (HA) is a linear glycosaminoglycan produced by bacterial biofermentation from Streptococcus equi in controlled bioreactors, without animal components. Differences in molecular weight have radically different effects on skin: high-molecular-weight HA (HMW, >1 MDa) forms a superficial viscoelastic film reducing TEWL; medium-weight HA (100–500 kDa) penetrates the epidermal chorion; low-molecular-weight HA (LMW, <50 kDa) reaches the superficial dermis activating CD44 and stimulating endogenous HA production in fibroblasts. Athena\'s uses a three-component blend of the three molecular weights in the Antietà Globale line, the first to carry a "three-level hydration" claim supported by corneometric measurements.'
+    } }
+];
+
+// SVG per tipo
+function svgFor(t) {
+  if (t === 'flower') return `<svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="8" fill="rgba(201,169,110,.5)"/><ellipse cx="40" cy="22" rx="5" ry="10" fill="rgba(201,169,110,.3)"/><ellipse cx="40" cy="58" rx="5" ry="10" fill="rgba(201,169,110,.3)"/><ellipse cx="22" cy="40" rx="10" ry="5" fill="rgba(201,169,110,.3)"/><ellipse cx="58" cy="40" rx="10" ry="5" fill="rgba(201,169,110,.3)"/><ellipse cx="28" cy="28" rx="5" ry="10" transform="rotate(-45 28 28)" fill="rgba(201,169,110,.2)"/><ellipse cx="52" cy="52" rx="5" ry="10" transform="rotate(-45 52 52)" fill="rgba(201,169,110,.2)"/><ellipse cx="52" cy="28" rx="5" ry="10" transform="rotate(45 52 28)" fill="rgba(201,169,110,.2)"/><ellipse cx="28" cy="52" rx="5" ry="10" transform="rotate(45 28 52)" fill="rgba(201,169,110,.2)"/></svg>`;
+  if (t === 'leaf') return `<svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M40 10 C60 10 70 25 70 40 C70 60 55 72 40 72 C40 72 38 55 30 44 C22 33 15 30 15 30 C15 30 20 10 40 10Z" fill="rgba(201,169,110,.25)" stroke="rgba(201,169,110,.5)" stroke-width="1"/><path d="M40 72 L40 30" stroke="rgba(201,169,110,.4)" stroke-width="1"/><path d="M40 45 Q55 38 65 32" stroke="rgba(201,169,110,.25)" stroke-width="0.8"/><path d="M40 55 Q50 50 58 46" stroke="rgba(201,169,110,.25)" stroke-width="0.8"/></svg>`;
+  if (t === 'seed') return `<svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="40" cy="40" rx="18" ry="26" fill="rgba(201,169,110,.2)" stroke="rgba(201,169,110,.5)" stroke-width="1"/><ellipse cx="40" cy="40" rx="10" ry="16" fill="rgba(201,169,110,.15)"/><path d="M40 14 L40 66" stroke="rgba(201,169,110,.35)" stroke-width="0.8"/></svg>`;
+  // crystal default
+  return `<svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="40,8 62,24 62,56 40,72 18,56 18,24" fill="rgba(201,169,110,.1)" stroke="rgba(201,169,110,.5)" stroke-width="1"/><polygon points="40,20 54,30 54,50 40,60 26,50 26,30" fill="rgba(201,169,110,.08)"/><line x1="40" y1="8" x2="40" y2="72" stroke="rgba(201,169,110,.2)" stroke-width="0.6"/><line x1="18" y1="24" x2="62" y2="56" stroke="rgba(201,169,110,.2)" stroke-width="0.6"/><line x1="62" y1="24" x2="18" y2="56" stroke="rgba(201,169,110,.2)" stroke-width="0.6"/></svg>`;
+}
+
+const ATLAS_INITIAL = window.innerWidth <= 900 ? 4 : 8;
+let atlasExpanded = false;
+
+function renderAtlasGrid(filterType, filterFunc) {
+  const grid = document.getElementById('atlasGrid');
+  const moreWrap = document.getElementById('atlasMore');
+  const moreBtn = document.getElementById('atlasMoreBtn');
+  const moreCount = document.getElementById('atlasMoreCount');
+  if (!grid) return;
+  const lang = (typeof ATH !== 'undefined') ? ATH.lang : 'it';
+  const isFiltered = filterType !== 'all' || filterFunc !== 'all';
+  grid.innerHTML = '';
+  let visibleIndex = 0;
+  ATLAS_DATA.forEach(ing => {
+    const matchType = filterType === 'all' || ing.filterType === filterType;
+    const matchFunc = filterFunc === 'all' || (ing.filterFunc && ing.filterFunc.includes(filterFunc));
+    if (!matchType || !matchFunc) return;
+    const card = document.createElement('div');
+    const isExtra = !isFiltered && !atlasExpanded && visibleIndex >= ATLAS_INITIAL;
+    card.className = 'la-card' + (isExtra ? ' la-card--collapsed' : '');
+    card.dataset.id = ing.id;
+    card.innerHTML = `
+      <div class="la-card__visual">${svgFor(ing.svgType)}</div>
+      <div class="la-card__name">${lang === 'en' ? ing.nameEn : ing.nameIt}</div>
+      <div class="la-card__latin">${ing.latin}</div>
+      <div class="la-card__meta">${lang === 'en' ? ing.filterType : ing.type} · ${lang === 'en' ? (ing.originEn || ing.origin) : ing.origin}</div>
+    `;
+    card.addEventListener('click', () => openPanel(ing.id));
+    grid.appendChild(card);
+    visibleIndex++;
+  });
+  const hidden = !isFiltered && !atlasExpanded && visibleIndex > ATLAS_INITIAL ? visibleIndex - ATLAS_INITIAL : 0;
+  if (hidden > 0) {
+    moreWrap.style.display = 'flex';
+    moreBtn.textContent = lang === 'en' ? 'Show more' : 'Scopri di più';
+    moreCount.textContent = `+${hidden} ${lang === 'en' ? 'ingredients' : 'ingredienti'}`;
+  } else {
+    moreWrap.style.display = 'none';
+  }
+}
+
+// Panel
+function openPanel(id) {
+  const ing = ATLAS_DATA.find(x => x.id === id);
+  if (!ing) return;
+  const lang = (typeof ATH !== 'undefined') ? ATH.lang : 'it';
+  const content = document.getElementById('atlasPanelContent');
+  const funcsIt = Array.isArray(ing.funcs) ? ing.funcs : [];
+  const funcsEn = Array.isArray(ing.funcsEn) ? ing.funcsEn : [];
+  const funcs = lang === 'en' ? funcsEn : funcsIt;
+  content.innerHTML = `
+    <div class="la-panel__title">${lang === 'en' ? ing.nameEn : ing.nameIt}</div>
+    <div class="la-panel__latin">${ing.latin}</div>
+    <div class="la-panel__section">
+      <div class="la-panel__section-title">${lang === 'en' ? 'Botany / Technical' : 'Botanica / Tecnica'}</div>
+      <p class="la-panel__text">${lang === 'en' ? (ing.compoundsEn || ing.compounds) : ing.compounds}</p>
+    </div>
+    <div class="la-panel__section">
+      <div class="la-panel__section-title">${lang === 'en' ? 'Origin' : 'Origine'}</div>
+      <p class="la-panel__text">${lang === 'en' ? (ing.originEn || ing.origin) : ing.origin}${(ing.note || ing.noteEn) ? '<br><em style="opacity:.55;font-size:13px;">' + (lang === 'en' ? (ing.noteEn || ing.note) : (ing.note || ing.noteEn)) + '</em>' : ''}</p>
+    </div>
+    <div class="la-panel__section">
+      <div class="la-panel__section-title">${lang === 'en' ? 'Functions' : 'Funzioni'}</div>
+      <div class="la-panel__chips">${funcs.map(f => `<span class="la-panel__chip">${f}</span>`).join('')}</div>
+    </div>
+    <div class="la-panel__section">
+      <div class="la-panel__section-title">${lang === 'en' ? 'Where we use it' : 'Dove lo usiamo'}</div>
+      <p class="la-panel__text">${lang === 'en' ? (ing.linesEn || ing.linesIt) : ing.linesIt}</p>
+    </div>
+    ${(ing.patent || ing.patentEn) ? `<div class="la-panel__section la-panel__patent"><div class="la-panel__patent-title">${lang === 'en' ? 'Patent' : 'Brevetto'}</div><p class="la-panel__patent-text">${lang === 'en' ? (ing.patentEn || ing.patent) : (ing.patent || ing.patentEn)}</p></div>` : ''}
+    ${ing.extended ? `<div class="la-panel__section"><div class="la-panel__section-title">${lang === 'en' ? 'In depth' : 'Approfondimento'}</div><p class="lab-atlas__detail-extended">${lang === 'en' ? ing.extended.en : ing.extended.it}</p></div>` : ''}
+  `;
+  document.getElementById('atlasPanel').classList.add('is-open');
+  document.getElementById('atlasOverlay').classList.add('is-visible');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePanel() {
+  document.getElementById('atlasPanel').classList.remove('is-open');
+  document.getElementById('atlasOverlay').classList.remove('is-visible');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('atlasPanelClose').addEventListener('click', closePanel);
+document.getElementById('atlasOverlay').addEventListener('click', closePanel);
+
+// Filtri
+let activeType = 'all', activeFunc = 'all';
+document.querySelectorAll('[data-filter-type]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('[data-filter-type]').forEach(b => b.classList.remove('is-active'));
+    btn.classList.add('is-active');
+    activeType = btn.dataset.filterType;
+    renderAtlasGrid(activeType, activeFunc);
+  });
+});
+document.querySelectorAll('[data-filter-func]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('[data-filter-func]').forEach(b => b.classList.remove('is-active'));
+    btn.classList.add('is-active');
+    activeFunc = btn.dataset.filterFunc;
+    renderAtlasGrid(activeType, activeFunc);
+  });
+});
+
+document.getElementById('atlasMoreBtn').addEventListener('click', () => {
+  atlasExpanded = true;
+  document.getElementById('atlasMore').style.display = 'none';
+  document.querySelectorAll('.la-card--collapsed').forEach(c => c.classList.remove('la-card--collapsed'));
+});
+
+// Init + lang change
+renderAtlasGrid('all', 'all');
+document.addEventListener('lang-change', () => renderAtlasGrid(activeType, activeFunc));
+</script>
+
+<script>
+(function () {
+  function equalizeFaseHeights() {
+    var phases = Array.from(document.querySelectorAll('.lab-phase'));
+    if (!phases.length) return;
+    phases.forEach(function (p) {
+      var t = p.querySelector('.lab-phase__text');
+      var v = p.querySelector('.lab-phase__visual');
+      if (t) t.style.height = '';
+      if (v) v.style.minHeight = '';
+    });
+    var ref = phases[0].querySelector('.lab-phase__text');
+    if (!ref) return;
+    var h = ref.offsetHeight;
+    phases.forEach(function (p) {
+      var t = p.querySelector('.lab-phase__text');
+      var v = p.querySelector('.lab-phase__visual');
+      if (t) t.style.height = h + 'px';
+      if (v) v.style.minHeight = h + 'px';
+    });
+  }
+  document.addEventListener('DOMContentLoaded', equalizeFaseHeights);
+  var _resizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(_resizeTimer);
+    _resizeTimer = setTimeout(equalizeFaseHeights, 150);
+  });
+})();
+</script>
+</body>
+</html>

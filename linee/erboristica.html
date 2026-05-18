@@ -1,0 +1,448 @@
+﻿<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>l'Erboristica — Athena's</title>
+<link rel="preload" href="../assets/fonts/fraunces-200-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="stylesheet" href="../assets/fonts.css"/>
+<link rel="stylesheet" href="../assets/tokens.css"/>
+
+<style>
+  .eh { min-height: 100vh; padding: 160px clamp(20px,4vw,60px) 100px; background: linear-gradient(160deg, #3e4a3a 0%, #2d3a2e 55%, #202e21 100%); color: var(--cream); display:flex; align-items:flex-end; position:relative; overflow:hidden; }
+  .eh::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse 55% 65% at 28% 45%, rgba(201,169,110,.15), transparent 65%); }
+  .eh__inner { max-width: var(--max-w); margin: 0 auto; width:100%; position:relative; z-index:1; }
+  .eh h1 { font-family: var(--display); font-size: clamp(64px, 11vw, 190px); font-weight: 300; letter-spacing: -0.03em; line-height: .88; margin-bottom: 28px; }
+  .eh h1 em { font-style: italic; color: var(--gold); }
+  .eh h1 span { font-family: var(--serif); font-style: normal; }
+  .eh__eyebrow { font-family: var(--sans); font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); opacity: .7; margin-bottom: 36px; }
+  .eh .tag { font-family: var(--serif); font-style: italic; font-size: clamp(15px, 1.4vw, 18px); margin-bottom: 20px; opacity: .75; max-width: 44ch; line-height: 1.5; }
+  .eh .desc { font-family: var(--serif); font-size: clamp(14px,1.2vw,16px); line-height: 1.75; opacity: .55; margin-bottom: 48px; max-width: 52ch; }
+  .eh__strip { display: flex; gap: 32px; align-items: center; flex-wrap: wrap; padding-top: 28px; border-top: 1px solid rgba(255,255,255,.1); }
+  .eh__strip-item { display: flex; flex-direction: column; gap: 5px; }
+  .eh__strip-n { font-family: var(--display); font-style: italic; font-size: clamp(22px,2.5vw,30px); font-weight: 300; color: var(--gold); line-height: 1; }
+  .eh__strip-l { font-family: var(--sans); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,.35); }
+  .eh__strip-sep { width: 1px; height: 32px; background: rgba(255,255,255,.12); }
+
+  .el { background: var(--cream); padding: clamp(80px, 12vw, 160px) 0; }
+  .el-head { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: clamp(60px, 8vw, 100px); }
+  @media (max-width: 900px) { .el-head { grid-template-columns: 1fr; } }
+  .el-head h2 { font-family: var(--display); font-size: clamp(40px, 6.5vw, 100px); line-height: .95; font-weight: 300; letter-spacing: -0.025em; }
+  .el-head h2 em { font-style: italic; color: var(--sage-deep); }
+
+  /* --- Accordion catalog nav --- */
+  .ecn { background: var(--cream); padding: clamp(48px,6vw,80px) 0; border-bottom: 1px solid rgba(0,0,0,.07); }
+  .ecn__accordion { border-top: 1px solid rgba(0,0,0,.09); }
+  .ecn__acc-item { border-bottom: 1px solid rgba(0,0,0,.09); }
+  .ecn__trigger {
+    display: flex; align-items: center; justify-content: space-between;
+    width: 100%; padding: 18px 0; cursor: pointer;
+    background: none; border: none; text-align: left;
+  }
+  .ecn__trigger-label {
+    font-family: var(--display); font-size: clamp(18px,1.9vw,26px);
+    font-weight: 300; letter-spacing: -0.01em; color: var(--ink); line-height: 1;
+  }
+  .ecn__trigger-icon {
+    width: 20px; height: 20px; position: relative; flex-shrink: 0; margin-left: 16px;
+  }
+  .ecn__trigger-icon::before, .ecn__trigger-icon::after {
+    content: ''; position: absolute; background: var(--ink);
+    transition: transform .32s var(--ease), opacity .2s;
+  }
+  .ecn__trigger-icon::before { width: 11px; height: 1px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+  .ecn__trigger-icon::after  { width: 1px; height: 11px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+  .ecn__acc-item.is-open .ecn__trigger-icon::after { transform: translate(-50%,-50%) rotate(90deg); opacity: 0; }
+  .ecn__acc-item.is-open .ecn__trigger-label { color: var(--gold-deep); }
+  .ecn__body { max-height: 0; overflow: hidden; opacity: 0; transition: max-height .42s cubic-bezier(.22,.61,.36,1), opacity .28s ease; }
+  .ecn__acc-item.is-open .ecn__body { max-height: 600px; opacity: 1; }
+  .ecn__links { list-style: none; padding-bottom: 14px; }
+  .ecn__link {
+    font-family: var(--serif); font-size: clamp(14px,1.1vw,16px);
+    color: var(--ink); text-decoration: none; opacity: .6;
+    display: block; padding: 6px 0;
+    border-bottom: 1px solid rgba(0,0,0,.04);
+    transition: opacity .2s var(--ease), padding-left .2s var(--ease), color .2s var(--ease);
+    line-height: 1.3;
+  }
+  .ecn__links li:last-child .ecn__link { border-bottom: none; }
+  .ecn__link:hover { opacity: 1; color: var(--gold-deep); padding-left: 8px; }
+
+  /* --- Banner list --- */
+  .el-list {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(28px, 4vw, 48px);
+  }
+
+  .el-banner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: clamp(280px, 36vw, 460px);
+    text-decoration: none;
+    color: var(--ink);
+    overflow: hidden;
+  }
+  @media (max-width: 700px) {
+    .el-banner { grid-template-columns: 1fr; height: auto; }
+    .el-banner__photo { aspect-ratio: 4/3; }
+  }
+  .el-banner--reverse .el-banner__photo { order: 2; }
+  .el-banner--reverse .el-banner__text  { order: 1; }
+
+  .el-banner__photo {
+    position: relative;
+    overflow: hidden;
+  }
+  .el-banner__photo img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s var(--ease);
+  }
+  .el-banner:hover .el-banner__photo img { transform: scale(1.04); }
+  .el-banner__photo-ph {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--ph-bg, #1a1a18);
+  }
+
+  .el-banner__text {
+    background: var(--cream-2);
+    display: flex; flex-direction: column; justify-content: center;
+    padding: clamp(32px, 5vw, 72px);
+    border: 1px solid rgba(0,0,0,.06);
+    border-left: none;
+  }
+  .el-banner--reverse .el-banner__text { border-left: 1px solid rgba(0,0,0,.06); border-right: none; }
+
+  .el-banner__n {
+    font-family: var(--sans); font-size: 9px; font-weight: 500;
+    letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--gold-deep); opacity: .75; margin-bottom: 16px;
+  }
+  .el-banner__name {
+    font-family: var(--display);
+    font-size: clamp(28px, 3.5vw, 54px);
+    font-weight: 300; letter-spacing: -0.025em; line-height: .95;
+    margin-bottom: 12px;
+  }
+  .el-banner__desc {
+    font-family: var(--serif);
+    font-size: clamp(14px, 1.25vw, 17px);
+    line-height: 1.65; opacity: .62;
+    margin-bottom: 14px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .el-banner__tag {
+    font-family: var(--sans);
+    font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; opacity: .5;
+    white-space: nowrap; margin-bottom: 24px;
+  }
+  .el-banner__meta {
+    display: flex; align-items: center; gap: 20px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(0,0,0,.08);
+  }
+  .el-banner__count {
+    font-family: var(--sans); font-size: 9px;
+    letter-spacing: 0.2em; text-transform: uppercase; opacity: .45;
+  }
+  .el-banner__cta {
+    font-family: var(--sans); font-size: 9px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold-deep); margin-left: auto;
+    transition: letter-spacing .25s var(--ease);
+  }
+  .el-banner:hover .el-banner__cta { letter-spacing: 0.28em; }
+
+  /* kept for potential reuse elsewhere — not rendered */
+  .el-card__count {
+    font-family: var(--sans); font-size: 8px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    opacity: .45; margin-top: 3px;
+  }
+</style>
+<meta name="description" content="Il brand storico di Athena's: cosmetica naturale per viso, corpo e capelli. 10 linee, 250+ referenze, formule vegan."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://athenas.it/linee/erboristica.html"/>
+<meta property="og:type" content="website"/>
+<meta property="og:locale" content="it_IT"/>
+<meta property="og:locale:alternate" content="en_GB"/>
+<meta property="og:site_name" content="Athena's"/>
+<meta property="og:url" content="https://athenas.it/linee/erboristica.html"/>
+<meta property="og:title" content="l'Erboristica — Athena's"/>
+<meta property="og:description" content="Il brand storico di Athena's: cosmetica naturale per viso, corpo e capelli. 10 linee, 250+ referenze, formule vegan."/>
+<meta property="og:image" content="https://athenas.it/../immagini/og/erboristica.jpg"/>
+<meta property="og:image:alt" content="l'Erboristica — Athena's"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="l'Erboristica — Athena's"/>
+<meta name="twitter:description" content="Il brand storico di Athena's: cosmetica naturale per viso, corpo e capelli. 10 linee, 250+ referenze, formule vegan."/>
+<meta name="twitter:image" content="https://athenas.it/../immagini/og/erboristica.jpg"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://athenas.it/" },
+    { "@type": "ListItem", "position": 2, "name": "Linee", "item": "https://athenas.it/linee.html" },
+    { "@type": "ListItem", "position": 3, "name": "l'Erboristica", "item": "https://athenas.it/linee/erboristica.html" }
+  ]
+}
+</script>
+</head>
+<body>
+
+<section class="eh">
+  <img loading="eager" fetchpriority="high" decoding="async" src="../immagini/antieta/hero.jpg" alt="l'Erboristica — Athena's cosmetica naturale" class="bg-video" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.3;z-index:0;">
+  <div class="eh__inner">
+    <div data-reveal>
+      <div class="eh__eyebrow" data-it="— 01 / Athena's Portfolio" data-en="— 01 / Athena's Portfolio">— 01 / Athena's Portfolio</div>
+      <h1><span data-it="l'" data-en="l'">l'</span><em>Erboristica</em></h1>
+      <div class="tag" data-it="Cosmetica naturale per viso, capelli e corpo." data-en="Natural cosmetics for face, hair and body.">Cosmetica naturale per viso, capelli e corpo.</div>
+      <p class="desc" data-it="0% petrolchimici, siliconi, coloranti sintetici. Dieci linee di trattamento sviluppate nel nostro laboratorio R&S a Pianoro, dal 1969." data-en="0% petrochemicals, silicones, synthetic dyes. Ten treatment lines developed in our R&D lab in Pianoro, since 1969.">0% petrolchimici, siliconi, coloranti sintetici. Dieci linee di trattamento sviluppate nel nostro laboratorio R&S a Pianoro, dal 1969.</p>
+      <div class="eh__strip">
+        <div class="eh__strip-item">
+          <div class="eh__strip-n">10</div>
+          <div class="eh__strip-l" data-it="Linee di trattamento" data-en="Treatment lines">Linee di trattamento</div>
+        </div>
+        <div class="eh__strip-sep"></div>
+        <div class="eh__strip-item">
+          <div class="eh__strip-n">0%</div>
+          <div class="eh__strip-l" data-it="Petrolchimici &amp; siliconi" data-en="Petrochemicals &amp; silicones">Petrolchimici &amp; siliconi</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FILOSOFIA / ARCHIVIO — sezione 02 (da implementare) -->
+<section style="padding: clamp(48px,6vw,80px) clamp(20px,4vw,60px); background: var(--cream-2);">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div style="font-family:var(--sans); font-size:9px; letter-spacing:0.2em; text-transform:uppercase; opacity:.45; margin-bottom:clamp(20px,3vw,32px);">— 02 · Archivio</div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px;">
+      <div class="photo-slot photo-slot--cream photo-slot--1x1" data-slot-label="Etichetta vintage anni '70 · 1:1 · b/n o seppia · 600x600px">
+        <svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        <span class="photo-slot__label">Etichetta vintage anni '70</span>
+        <span class="photo-slot__sub">archivio aziendale</span>
+      </div>
+      <div class="photo-slot photo-slot--cream photo-slot--1x1" data-slot-label="Prima formula scritta a mano · 1:1 · b/n o seppia · 600x600px">
+        <svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        <span class="photo-slot__label">Prima formula scritta a mano</span>
+        <span class="photo-slot__sub">archivio aziendale</span>
+      </div>
+      <div class="photo-slot photo-slot--cream photo-slot--1x1" data-slot-label="Ritratto Antonio Venturino o stabilimento originale 1969 · 1:1 · b/n o seppia · 600x600px">
+        <svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        <span class="photo-slot__label">Ritratto fondatore o stabilimento 1969</span>
+        <span class="photo-slot__sub">archivio aziendale</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATALOGO NAV -->
+<section class="ecn">
+  <div class="container">
+    <div style="display:flex; gap:16px; align-items:center; margin-bottom: clamp(24px,3vw,36px);">
+      <span class="num">— 02</span>
+      <div class="eyebrow" data-it="Scopri per categoria" data-en="Shop by category">Scopri per categoria</div>
+    </div>
+    <div class="ecn__accordion">
+
+      <div class="ecn__acc-item">
+        <button class="ecn__trigger" aria-expanded="false">
+          <span class="ecn__trigger-label" data-it="Viso" data-en="Face">Viso</span>
+          <span class="ecn__trigger-icon"></span>
+        </button>
+        <div class="ecn__body">
+          <ul class="ecn__links">
+            <li><a class="ecn__link" href="linea.html?id=antieta" data-it="Antietà Globale" data-en="Global Anti-Age">Antietà Globale</a></li>
+            <li><a class="ecn__link" href="linea.html?id=illumia" data-it="Illuminante & Anti-macchie" data-en="Brightening & Anti-spots">Illuminante & Anti-macchie</a></li>
+            <li><a class="ecn__link" href="linea.html?id=purysens" data-it="Pelle sensibile" data-en="Sensitive skin">Pelle sensibile</a></li>
+            <li><a class="ecn__link" href="linea.html?id=innovation" data-it="Skincare Innovation" data-en="Skincare Innovation">Skincare Innovation</a></li>
+            <li><a class="ecn__link" href="linea.html?id=argan" data-it="Argan — Viso" data-en="Argan — Face">Argan — Viso</a></li>
+            <li><a class="ecn__link" href="linea.html?id=mandorle" data-it="Mandorle Dolci" data-en="Sweet Almonds">Mandorle Dolci</a></li>
+            <li><a class="ecn__link" href="linea.html?id=estratti" data-it="Estratti Botanici" data-en="Botanical Extracts">Estratti Botanici</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ecn__acc-item">
+        <button class="ecn__trigger" aria-expanded="false">
+          <span class="ecn__trigger-label" data-it="Capelli" data-en="Hair">Capelli</span>
+          <span class="ecn__trigger-icon"></span>
+        </button>
+        <div class="ecn__body">
+          <ul class="ecn__links">
+            <li><a class="ecn__link" href="linea.html?id=argan" data-it="Argan — Capelli" data-en="Argan — Hair">Argan — Capelli</a></li>
+            <li><a class="ecn__link" href="linea.html?id=cocco" data-it="Cocco & Monoï" data-en="Coconut & Monoï">Cocco & Monoï</a></li>
+            <li><a class="ecn__link" href="linea.html?id=estratti" data-it="Estratti Botanici" data-en="Botanical Extracts">Estratti Botanici</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ecn__acc-item">
+        <button class="ecn__trigger" aria-expanded="false">
+          <span class="ecn__trigger-label" data-it="Corpo" data-en="Body">Corpo</span>
+          <span class="ecn__trigger-icon"></span>
+        </button>
+        <div class="ecn__body">
+          <ul class="ecn__links">
+            <li><a class="ecn__link" href="linea.html?id=argan" data-it="Argan — Corpo" data-en="Argan — Body">Argan — Corpo</a></li>
+            <li><a class="ecn__link" href="linea.html?id=cocco" data-it="Cocco & Monoï" data-en="Coconut & Monoï">Cocco & Monoï</a></li>
+            <li><a class="ecn__link" href="linea.html?id=mandorle" data-it="Mandorle Dolci" data-en="Sweet Almonds">Mandorle Dolci</a></li>
+            <li><a class="ecn__link" href="linea.html?id=nutra" data-it="Nutra Repair" data-en="Nutra Repair">Nutra Repair</a></li>
+            <li><a class="ecn__link" href="linea.html?id=estratti" data-it="Estratti Botanici" data-en="Botanical Extracts">Estratti Botanici</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ecn__acc-item">
+        <button class="ecn__trigger" aria-expanded="false">
+          <span class="ecn__trigger-label" data-it="Esigenze" data-en="Concerns">Esigenze</span>
+          <span class="ecn__trigger-icon"></span>
+        </button>
+        <div class="ecn__body">
+          <ul class="ecn__links">
+            <li><a class="ecn__link" href="linea.html?id=antieta" data-it="Anti-età & Rassodante" data-en="Anti-ageing & Firming">Anti-età & Rassodante</a></li>
+            <li><a class="ecn__link" href="linea.html?id=argan" data-it="Idratazione profonda" data-en="Deep hydration">Idratazione profonda</a></li>
+            <li><a class="ecn__link" href="linea.html?id=illumia" data-it="Luminosità uniforme" data-en="Even radiance">Luminosità uniforme</a></li>
+            <li><a class="ecn__link" href="linea.html?id=purysens" data-it="Pelle sensibile & reattiva" data-en="Sensitive & reactive skin">Pelle sensibile & reattiva</a></li>
+            <li><a class="ecn__link" href="linea.html?id=nutra" data-it="Riparazione barriera" data-en="Barrier repair">Riparazione barriera</a></li>
+            <li><a class="ecn__link" href="linea.html?id=uomo" data-it="Cura maschile" data-en="Men's care">Cura maschile</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="el">
+  <div class="container">
+    <div class="el-head">
+      <div>
+        <div style="display:flex; gap:16px; align-items:center; margin-bottom: 32px;"><span class="num">— 03</span><div class="eyebrow" data-it="Dieci linee" data-en="Ten lines">Dieci linee</div></div>
+        <h2 data-reveal><span data-it="Un " data-en="A ">Un </span><em data-it="giardino" data-en="garden">giardino</em><br/><span data-it="di " data-en="of ">di </span><span data-it="trattamenti." data-en="treatments.">trattamenti.</span></h2>
+      </div>
+      <div>
+        <p class="lead" data-it="Ogni linea nasce attorno a un ingrediente cardine: un estratto botanico, un oleolito, un principio funzionale. Dalla routine quotidiana al trattamento intensivo." data-en="Each line is built around a key ingredient: a botanical extract, an oleolite, a functional principle. From daily routine to intensive treatment.">Ogni linea nasce attorno a un ingrediente cardine: un estratto botanico, un oleolito, un principio funzionale. Dalla routine quotidiana al trattamento intensivo.</p>
+      </div>
+    </div>
+    <div class="el-list" id="lines-grid"></div>
+  </div>
+</section>
+
+<script src="../assets/vendor/lenis.min.js" defer></script><script src="../assets/data.js"></script>
+<script src="../assets/search-data.js" defer></script>
+<script src="../assets/app.js?v=6"></script>
+<script>
+  // Override nav paths for subfolder
+  window.renderTopbar = (function(orig) {
+    return function(k) {
+      orig(k);
+      document.querySelectorAll('.topbar a').forEach(a => {
+        const href = a.getAttribute('href');
+        if (href && !href.startsWith('http') && !href.startsWith('#') && !href.startsWith('../')) a.setAttribute('href', '../' + href);
+      });
+    };
+  })(window.renderTopbar);
+  window.renderFooter = (function(orig) {
+    return function() {
+      orig();
+      document.querySelectorAll('.footer a').forEach(a => {
+        const href = a.getAttribute('href');
+        if (href && !href.startsWith('http') && !href.startsWith('#') && !href.startsWith('../') && href !== '#') a.setAttribute('href', href.startsWith('linee/') ? '../' + href : (a.closest('.footer') ? '../' + href : href));
+      });
+    };
+  })(window.renderFooter);
+  initAthenas('brands');
+  document.querySelector('.topbar').classList.add('topbar--light');
+
+  const LINE_COUNTS = {
+    argan:      { it: '9 prodotti',   en: '9 products'   },
+    cocco:      { it: '7 prodotti',   en: '7 products'   },
+    mandorle:   { it: '6 prodotti',   en: '6 products'   },
+    antieta:    { it: '8 prodotti',   en: '8 products'   },
+    illumia:    { it: '2 prodotti',   en: '2 products'   },
+    purysens:   { it: '4 prodotti',   en: '4 products'   },
+    nutra:      { it: '4 prodotti',   en: '4 products'   },
+    estratti:   { it: '25 prodotti',  en: '25 products'  },
+    uomo:       { it: '12 prodotti',  en: '12 products'  },
+    innovation: { it: '12+ prodotti', en: '12+ products' },
+  };
+
+  const LINE_IMGS = {
+    argan:      '../immagini/argan/hero.jpg',
+    cocco:      '../immagini/cocco/hero.jpg',
+    mandorle:   '../immagini/mandorle/hero.jpg',
+    antieta:    '../immagini/antieta/hero.jpg',
+    illumia:    null,
+    purysens:   '../immagini/purysens/hero.jpg',
+    nutra:      '../immagini/nutra/hero.jpg',
+    estratti:   '../immagini/estratti/cover.jpg',
+    uomo:       '../immagini/uomo/hero.jpg',
+    innovation: '../immagini/pearls/hero.jpg',
+  };
+
+  const lines = LINES.filter(l => l.brand === 'erboristica');
+  const g = document.getElementById('lines-grid');
+  const render = () => {
+    g.innerHTML = '';
+    lines.forEach((l, i) => {
+      const el = document.createElement('a');
+      el.className = 'el-banner' + (i % 2 !== 0 ? ' el-banner--reverse' : '');
+      el.href = `linea.html?id=${l.id}`;
+      const lang = ATH.lang;
+      const ld = l[lang];
+      const count = LINE_COUNTS[l.id]?.[lang] || '';
+      const imgUrl = LINE_IMGS[l.id];
+      const phBg = l.id === 'illumia'
+        ? 'linear-gradient(135deg,#c9a96e,#9a7f4a)'
+        : 'linear-gradient(135deg,#1a1a18,#1a1f2e)';
+      const photoInner = imgUrl
+        ? `<img src="${imgUrl}" alt="${l.name}" loading="lazy">`
+        : `<div class="el-banner__photo-ph" style="--ph-bg:${phBg}"></div>`;
+      el.innerHTML = `
+        <div class="el-banner__photo">${photoInner}</div>
+        <div class="el-banner__text">
+          <div class="el-banner__n">L.${String(i+1).padStart(2,'0')} / ${l.shortName.toUpperCase()}</div>
+          <div class="el-banner__name">${l.name}</div>
+          <div class="el-banner__desc">${ld.benefits}</div>
+          <div class="el-banner__tag">${ld.tagline}</div>
+          <div class="el-banner__meta">
+            <div class="el-banner__count">${count}</div>
+            <div class="el-banner__cta">Scopri &rarr;</div>
+          </div>
+        </div>
+      `;
+      g.appendChild(el);
+    });
+    initReveal();
+  };
+  render();
+
+  document.addEventListener('lang-change', () => { render(); });
+
+  // Accordion
+  document.querySelectorAll('.ecn__trigger').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.ecn__acc-item');
+      const isOpen = item.classList.contains('is-open');
+      document.querySelectorAll('.ecn__acc-item.is-open').forEach(el => {
+        el.classList.remove('is-open');
+        el.querySelector('.ecn__trigger').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+</script>
+</body>
+</html>

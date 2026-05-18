@@ -1,0 +1,806 @@
+﻿<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Contatti — Athena's</title>
+<link rel="preload" href="assets/fonts/fraunces-200-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="stylesheet" href="assets/fonts.css"/>
+<link rel="stylesheet" href="assets/tokens.css"/>
+
+<style>
+
+/* ── HERO — minimal editoriale, crema ───────────────────── */
+.coh {
+  height: 100svh;
+  min-height: 640px;
+  background: var(--cream);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+.coh__mark {
+  position: absolute;
+  right: -0.04em;
+  bottom: -0.12em;
+  font-family: var(--display);
+  font-size: clamp(160px,24vw,420px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--ink);
+  opacity: .04;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.coh__lines {
+  position: absolute;
+  top: 0; right: 0;
+  width: 40%;
+  height: 100%;
+  overflow: hidden;
+}
+@media (max-width: 900px) { .coh__lines { display: none; } }
+
+.coh__lines::before,
+.coh__lines::after {
+  content: '';
+  position: absolute;
+  background: rgba(0,0,0,.06);
+}
+.coh__lines::before { top: 0; bottom: 0; left: 20%; width: 1px; }
+.coh__lines::after  { top: 0; bottom: 0; left: 50%; width: 1px; }
+
+.coh__content {
+  position: relative; z-index: 1;
+  width: 100%;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 clamp(20px,4vw,60px) clamp(50px,7vw,100px);
+}
+
+.coh h1 {
+  font-family: var(--display);
+  font-size: clamp(56px,10vw,180px);
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: .88;
+  max-width: 12ch;
+  margin-bottom: clamp(24px,3vw,40px);
+}
+.coh h1 em { font-style: italic; color: var(--sage-deep); }
+
+.coh__lead {
+  font-family: var(--serif);
+  font-size: clamp(17px,1.5vw,22px);
+  line-height: 1.55;
+  max-width: 48ch;
+  opacity: .8;
+}
+
+/* ── LOCATION BANNER — foto + gradiente ─────────────────── */
+.loc-banner {
+  position: relative;
+  color: var(--cream);
+  padding: clamp(36px,4vw,56px) 0;
+  overflow: hidden;
+}
+.loc-banner__bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, #0c1009 0%, #192015 45%, #0d120a 100%);
+}
+/* SOSTITUIRE: aggiungere <img src="immagini/…" alt="" class="loc-banner__photo" loading="lazy"> dentro .loc-banner__bg */
+.loc-banner__photo {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: .4;
+}
+.loc-banner__overlay {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(105deg, rgba(8,12,8,.96) 0%, rgba(8,12,8,.82) 40%, rgba(8,12,8,.48) 68%, rgba(8,12,8,.22) 100%),
+    linear-gradient(180deg, rgba(8,12,8,.28) 0%, transparent 18%, transparent 82%, rgba(8,12,8,.42) 100%);
+}
+.loc-banner__inner { position: relative; z-index: 1; }
+
+.loc-banner__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(48px,7vw,120px);
+  align-items: start;
+  margin-top: clamp(48px,6vw,80px);
+}
+@media (max-width: 900px) { .loc-banner__grid { grid-template-columns: 1fr; } }
+
+.loc-contacts { display: flex; flex-direction: column; }
+
+.loc-block {
+  padding: clamp(20px,2.5vw,30px) 0;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .7s var(--ease), transform .7s var(--ease);
+  transition-delay: var(--d, 0ms);
+}
+.loc-block:first-child { padding-top: 0; }
+.loc-block.is-visible { opacity: 1; transform: none; }
+
+.loc-block__type {
+  font-size: 10px; letter-spacing: .28em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 10px; font-family: var(--sans);
+}
+.loc-block__value {
+  font-family: var(--display); font-size: clamp(17px,1.8vw,25px);
+  font-weight: 300; letter-spacing: -0.01em; line-height: 1.3; margin-bottom: 5px;
+}
+.loc-block__value a {
+  color: inherit;
+  border-bottom: 1px solid rgba(255,255,255,.18);
+  transition: border-color .3s;
+}
+.loc-block__value a:hover { border-color: var(--gold); }
+.loc-block__note { font-family: var(--serif); font-style: italic; font-size: 14px; opacity: .5; line-height: 1.5; }
+
+.loc-map { display: flex; flex-direction: column; }
+.loc-map__place {
+  font-family: var(--display);
+  font-size: clamp(24px,3vw,44px);
+  font-weight: 300; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 20px;
+  opacity: 0; transform: translateY(18px);
+  transition: opacity .7s var(--ease), transform .7s var(--ease);
+}
+.loc-map__place.is-visible { opacity: 1; transform: none; }
+.loc-map__place em { font-style: italic; color: var(--gold); }
+.loc-map__embed {
+  width: 100%; min-height: 360px; position: relative; overflow: hidden;
+  border: 1px solid rgba(255,255,255,.1);
+}
+.loc-map__embed iframe {
+  width: 100%; height: 100%; min-height: 360px;
+  display: block; border: 0;
+  filter: grayscale(.2) brightness(.85);
+  transition: filter .4s var(--ease);
+}
+.loc-map__embed:hover iframe { filter: grayscale(0) brightness(1); }
+@media (max-width: 860px) { .loc-map__embed, .loc-map__embed iframe { min-height: 260px; } }
+.loc-map__caption {
+  margin-top: 10px; font-family: var(--sans); font-size: 11px;
+  letter-spacing: .2em; text-transform: uppercase; opacity: .45;
+}
+
+/* ── FORM SECTION ─────────────────────────────────────────── */
+.form-section {
+  background: var(--cream);
+  padding: clamp(64px,8vw,100px) 0 clamp(40px,5vw,64px);
+}
+
+.contact-form {
+  max-width: 680px;
+}
+
+/* ── TAB BAR ─────────────────────────────────────────────── */
+.form-tabs {
+  display: flex;
+  border-bottom: 1px solid rgba(0,0,0,.12);
+  margin-top: clamp(40px,5vw,64px);
+  margin-bottom: clamp(28px,3vw,44px);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  gap: 0;
+}
+.form-tabs::-webkit-scrollbar { display: none; }
+
+.form-tab {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 10px 18px 12px;
+  cursor: pointer;
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,.38);
+  white-space: nowrap;
+  transition: color .2s, border-color .2s;
+  margin-bottom: -1px;
+  flex-shrink: 0;
+}
+.form-tab:hover { color: var(--ink); }
+.form-tab.active {
+  color: var(--ink);
+  border-bottom-color: var(--sage-deep);
+}
+
+/* ── FIELDSETS ───────────────────────────────────────────── */
+.form-fieldset { display: none; }
+.form-fieldset.active { display: block; }
+
+/* ── SHARED FORM FIELD STYLES ────────────────────────────── */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+
+.form-field { margin-bottom: 24px; }
+.form-field label {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  opacity: .55;
+  font-family: var(--sans);
+}
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid rgba(0,0,0,.2);
+  background: transparent;
+  font-family: var(--serif);
+  font-size: 18px;
+  font-style: italic;
+  color: var(--ink);
+  padding: 10px 0;
+  outline: none;
+  transition: border-color .3s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.form-field input[type="date"] {
+  font-style: normal;
+  font-size: 16px;
+}
+.form-field input:focus,
+.form-field textarea:focus { border-color: var(--sage-deep); }
+.form-field textarea { resize: vertical; min-height: 180px; line-height: 1.6; }
+
+/* ── FILE ATTACHMENT ─────────────────────────────────────── */
+.form-file { margin-bottom: 24px; }
+.form-file__label {
+  display: block; font-size: 10px; letter-spacing: .22em; text-transform: uppercase;
+  margin-bottom: 10px; opacity: .55; font-family: var(--sans);
+}
+.form-file__input { display: none; }
+.form-file__btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--sans); font-size: 11px; letter-spacing: .15em; text-transform: uppercase;
+  padding: 10px 20px; border: 1px solid rgba(0,0,0,.2);
+  background: transparent; cursor: pointer; transition: border-color .3s, background .3s;
+  color: var(--ink);
+}
+.form-file__btn:hover { border-color: var(--sage-deep); }
+.form-file__names {
+  margin-top: 8px; font-family: var(--serif); font-style: italic; font-size: 13px; opacity: .6; line-height: 1.5;
+}
+
+.form-submit { margin-top: 8px; }
+
+/* ── PERSONA DESIGNATA ───────────────────────────────────── */
+.persons-section {
+  max-width: 680px;
+  margin-top: clamp(36px,4vw,52px);
+  padding-top: clamp(28px,3vw,40px);
+  border-top: 1px solid rgba(0,0,0,.1);
+}
+
+.persons-label {
+  font-size: 10px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--sage-deep);
+  opacity: .75;
+  font-family: var(--sans);
+  margin-bottom: clamp(24px,3vw,40px);
+}
+
+.persons-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: clamp(20px,3vw,40px);
+}
+@media (max-width: 680px) {
+  .persons-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+
+.person-block {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .65s var(--ease), transform .65s var(--ease);
+  transition-delay: var(--d, 0ms);
+}
+.person-block.is-visible { opacity: 1; transform: none; }
+
+.person-block__photo {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  margin-bottom: 16px;
+  overflow: hidden;
+  position: relative;
+}
+/* SOSTITUIRE: aggiungere <img loading="lazy" decoding="async"> con foto reale della persona */
+.person-block__photo--it {
+  background: radial-gradient(ellipse at 40% 30%, #5a6b4e 0%, #2d3a2e 100%);
+}
+.person-block__photo--eu {
+  background: radial-gradient(ellipse at 60% 40%, #c9a96e 0%, #6a4e2a 100%);
+}
+.person-block__photo--world {
+  background: radial-gradient(ellipse at 50% 60%, #8a9a7b 0%, #3e4a3a 100%);
+}
+
+.person-block__area {
+  font-size: 9px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--sage-deep);
+  margin-bottom: 5px;
+  font-family: var(--sans);
+}
+.person-block__name {
+  font-family: var(--display);
+  font-size: clamp(17px,1.5vw,21px);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+.person-block__role {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 13px;
+  opacity: .55;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+.person-block__email {
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: .02em;
+  color: var(--sage-deep);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color .2s;
+  word-break: break-all;
+}
+.person-block__email:hover { color: var(--gold-deep); }
+
+</style>
+<meta name="description" content="Contatta Athena's: sede produttiva Pianoro (BO), spaccio aziendale settimanale, richieste conto terzi."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://athenas.it/contatti.html"/>
+<meta property="og:type" content="website"/>
+<meta property="og:locale" content="it_IT"/>
+<meta property="og:locale:alternate" content="en_GB"/>
+<meta property="og:site_name" content="Athena's"/>
+<meta property="og:url" content="https://athenas.it/contatti.html"/>
+<meta property="og:title" content="Contatti — Athena's"/>
+<meta property="og:description" content="Contatta Athena's: sede produttiva Pianoro (BO), spaccio aziendale settimanale, richieste conto terzi."/>
+<meta property="og:image" content="https://athenas.it/immagini/og/contatti.jpg"/>
+<meta property="og:image:alt" content="Contatti — Athena's"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Contatti — Athena's"/>
+<meta name="twitter:description" content="Contatta Athena's: sede produttiva Pianoro (BO), spaccio aziendale settimanale, richieste conto terzi."/>
+<meta name="twitter:image" content="https://athenas.it/immagini/og/contatti.jpg"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://athenas.it/" },
+    { "@type": "ListItem", "position": 2, "name": "Contatti", "item": "https://athenas.it/contatti.html" }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="coh">
+  <div class="coh__mark" aria-hidden="true">hello.</div>
+  <div class="coh__lines" aria-hidden="true"></div>
+  <div class="coh__content container">
+    <div class="eyebrow" style="margin-bottom:28px;" data-it="Contatti" data-en="Contact">Contatti</div>
+    <h1>
+      <span data-it="Parliamo" data-en="Let's">Parliamo</span><br/>
+      <em data-it="insieme." data-en="talk.">insieme.</em>
+    </h1>
+    <p class="coh__lead" data-it="Che tu sia un rivenditore, un distributore o semplicemente curioso: siamo qui. Risposta garantita entro 48 ore." data-en="Whether you're a retailer, distributor or simply curious: we're here. Response guaranteed within 48 hours.">Che tu sia un rivenditore, un distributore o semplicemente curioso: siamo qui. Risposta garantita entro 48 ore.</p>
+  </div>
+</section>
+
+<!-- DOVE TROVARCI + DOVE SIAMO -->
+<section class="loc-banner">
+  <div class="loc-banner__bg">
+    <!-- SOSTITUIRE: <img src="immagini/azienda/lifestyle-01.jpg" alt="" class="loc-banner__photo" loading="lazy"> -->
+  </div>
+  <div class="loc-banner__overlay"></div>
+  <div class="loc-banner__inner container">
+    <div style="display:flex; gap:16px; align-items:center;">
+      <span class="num" style="color:var(--gold);opacity:1;">— 01</span>
+      <div class="eyebrow" style="color:var(--gold);" data-it="Dove trovarci" data-en="Where to find us">Dove trovarci</div>
+    </div>
+    <div class="loc-banner__grid">
+
+      <div class="loc-contacts">
+        <div class="loc-block" style="--d:0ms;">
+          <div class="loc-block__type" data-it="Indirizzo" data-en="Address">Indirizzo</div>
+          <div class="loc-block__value" data-it="Via del Lavoro 32" data-en="Via del Lavoro 32">Via del Lavoro 32</div>
+          <div class="loc-block__note" data-it="40065 Pianoro (BO), Italia" data-en="40065 Pianoro (BO), Italy">40065 Pianoro (BO), Italia</div>
+        </div>
+        <div class="loc-block" style="--d:100ms;">
+          <div class="loc-block__type" data-it="Email" data-en="Email">Email</div>
+          <div class="loc-block__value"><a href="mailto:info@athenas.it">info@athenas.it</a></div>
+          <div class="loc-block__note" data-it="Risposta entro 48 ore lavorative" data-en="Response within 48 business hours">Risposta entro 48 ore lavorative</div>
+        </div>
+        <div class="loc-block" style="--d:200ms;">
+          <div class="loc-block__type" data-it="Telefono" data-en="Phone">Telefono</div>
+          <div class="loc-block__value"><a href="tel:+390510925111">+39 051 09 25 111</a></div>
+          <div class="loc-block__note" data-it="Lun–Ven, 9:00–17:30" data-en="Mon–Fri, 9:00–17:30">Lun–Ven, 9:00–17:30</div>
+        </div>
+      </div>
+
+      <div class="loc-map">
+        <div class="eyebrow" style="color:rgba(201,169,110,.65); margin-bottom:clamp(16px,2.5vw,28px);" data-it="Dove siamo" data-en="Where we are">Dove siamo</div>
+        <div class="loc-map__place" data-reveal>
+          <span data-it="Pianoro," data-en="Pianoro,">Pianoro,</span><br/>
+          <em data-it="Bologna, Italia." data-en="Bologna, Italy.">Bologna, Italia.</em>
+        </div>
+        <div class="loc-map__embed">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2839.234!2d11.345592!3d44.3930387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132b2a7ed7e79a8f%3A0x1472311783040866!2sVia%20del%20Lavoro%2C%2032%2C%2040065%20Pianoro%20BO!5e0!3m2!1sit!2sit!4v1715000000000!5m2!1sit!2sit"
+            width="100%"
+            height="100%"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Sede Athena's — Pianoro (BO)">
+          </iframe>
+        </div>
+        <p class="loc-map__caption" data-it="Pianoro (BO) · Bologna, Italia" data-en="Pianoro (BO) · Bologna, Italy">Pianoro (BO) · Bologna, Italia</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-section">
+  <div class="container">
+    <div style="display:flex; gap:16px; align-items:center; margin-bottom:0;">
+      <span class="num">— 02</span>
+      <div class="eyebrow" data-it="Scrivici" data-en="Write to us">Scrivici</div>
+    </div>
+    <h2 style="font-family:var(--display); font-size:clamp(36px,5vw,80px); line-height:.95; font-weight:300; letter-spacing:-0.03em; max-width:16ch; margin-bottom:0;" data-reveal>
+      <span data-it="Inizia una " data-en="Start a ">Inizia una </span><em style="font-style:italic; color:var(--sage-deep);" data-it="conversazione." data-en="conversation.">conversazione.</em>
+    </h2>
+
+    <form class="contact-form" id="contactForm" data-reveal>
+
+      <!-- CAMPI COMUNI: Nome + Email -->
+      <div class="form-row" style="margin-top:clamp(32px,4vw,52px);">
+        <div class="form-field">
+          <label for="comune-nome" data-it="Nome" data-en="Name">Nome</label>
+          <input type="text" id="comune-nome" name="nome" autocomplete="given-name"/>
+        </div>
+        <div class="form-field">
+          <label for="comune-email" data-it="La tua email" data-en="Your email">La tua email</label>
+          <input type="email" id="comune-email" name="email" autocomplete="email"/>
+        </div>
+      </div>
+
+      <!-- OGGETTO -->
+      <div class="form-field">
+        <label for="comune-oggetto" data-it="Oggetto" data-en="Subject">Oggetto</label>
+        <input type="text" id="comune-oggetto" name="oggetto"/>
+      </div>
+
+      <!-- TAB BAR — categoria -->
+      <div class="form-tabs" role="tablist">
+        <button type="button" class="form-tab active" role="tab" aria-selected="true" data-tab="rivenditore"
+          data-it="Rivenditore" data-en="Retailer">Rivenditore</button>
+        <button type="button" class="form-tab" role="tab" aria-selected="false" data-tab="internazionale"
+          data-it="Distribuzione internazionale" data-en="International distribution">Distribuzione internazionale</button>
+        <button type="button" class="form-tab" role="tab" aria-selected="false" data-tab="pertrezie"
+          data-it="Private label" data-en="Private label">Private label</button>
+        <button type="button" class="form-tab" role="tab" aria-selected="false" data-tab="press"
+          data-it="Press &amp; media" data-en="Press &amp; media">Press &amp; media</button>
+        <button type="button" class="form-tab" role="tab" aria-selected="false" data-tab="privato"
+          data-it="Cliente privato" data-en="Private customer">Cliente privato</button>
+        <button type="button" class="form-tab" role="tab" aria-selected="false" data-tab="altro"
+          data-it="Altro" data-en="Other">Altro</button>
+      </div>
+
+      <!-- FIELDSET: rivenditore -->
+      <div class="form-fieldset active" data-fieldset="rivenditore">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="riv-azienda" data-it="Azienda" data-en="Company">Azienda</label>
+            <input type="text" id="riv-azienda" name="azienda" autocomplete="organization"/>
+          </div>
+          <div class="form-field">
+            <label for="riv-pdv" data-it="N. punti vendita" data-en="No. of retail locations">N. punti vendita</label>
+            <input type="number" id="riv-pdv" name="punti_vendita" min="1"/>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="riv-citta" data-it="Città" data-en="City">Città</label>
+          <input type="text" id="riv-citta" name="citta" autocomplete="address-level2"/>
+        </div>
+      </div>
+
+      <!-- FIELDSET: internazionale -->
+      <div class="form-fieldset" data-fieldset="internazionale">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="int-paese" data-it="Paese" data-en="Country">Paese</label>
+            <input type="text" id="int-paese" name="paese"/>
+          </div>
+          <div class="form-field">
+            <label for="int-volumi" data-it="Volumi attesi" data-en="Expected volumes">Volumi attesi</label>
+            <input type="text" id="int-volumi" name="volumi"/>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="int-target" data-it="Paesi target" data-en="Target countries">Paesi target</label>
+          <input type="text" id="int-target" name="paesi_target"/>
+        </div>
+      </div>
+
+      <!-- FIELDSET: per terzi -->
+      <div class="form-fieldset" data-fieldset="pertrezie">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="pt-tipo" data-it="Tipo prodotto" data-en="Product type">Tipo prodotto</label>
+            <input type="text" id="pt-tipo" name="tipo_prodotto"/>
+          </div>
+          <div class="form-field">
+            <label for="pt-moq" data-it="MOQ stimato" data-en="Estimated MOQ">MOQ stimato</label>
+            <input type="text" id="pt-moq" name="moq"/>
+          </div>
+        </div>
+      </div>
+
+      <!-- FIELDSET: press -->
+      <div class="form-fieldset" data-fieldset="press">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="pr-testata" data-it="Testata" data-en="Publication">Testata</label>
+            <input type="text" id="pr-testata" name="testata"/>
+          </div>
+          <div class="form-field">
+            <label for="pr-deadline" data-it="Deadline" data-en="Deadline">Deadline</label>
+            <input type="date" id="pr-deadline" name="deadline"/>
+          </div>
+        </div>
+      </div>
+
+      <!-- FIELDSET: privato (vuoto — solo campi comuni) -->
+      <div class="form-fieldset" data-fieldset="privato"></div>
+
+      <!-- FIELDSET: altro (vuoto) -->
+      <div class="form-fieldset" data-fieldset="altro"></div>
+
+      <!-- MESSAGGIO -->
+      <div class="form-field" style="margin-top:8px;">
+        <label for="comune-messaggio" data-it="Messaggio" data-en="Message">Messaggio</label>
+        <textarea id="comune-messaggio" name="messaggio" rows="6" style="min-height:180px;"></textarea>
+      </div>
+
+      <!-- ALLEGATI -->
+      <div class="form-file">
+        <div class="form-file__label" data-it="Allegati" data-en="Attachments">Allegati</div>
+        <input type="file" id="form-allegati" name="allegati" multiple class="form-file__input"/>
+        <label for="form-allegati" class="form-file__btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l8.57-8.57A4 4 0 0118 9.21l-8.57 8.57a2 2 0 01-2.83-2.83l8.49-8.48"/></svg>
+          <span data-it="Aggiungi file" data-en="Attach files">Aggiungi file</span>
+        </label>
+        <div class="form-file__names" id="fileNames"></div>
+      </div>
+
+      <!-- Honeypot anti-spam (invisibile agli umani, riempito dai bot) -->
+      <div style="position:absolute; left:-9999px; height:0; overflow:hidden;" aria-hidden="true">
+        <label>Lascia vuoto questo campo<input type="text" name="website" tabindex="-1" autocomplete="off"/></label>
+      </div>
+
+      <!-- Consenso GDPR -->
+      <div class="form-gdpr" style="margin-top:18px; display:flex; gap:10px; align-items:flex-start; font-family:var(--sans); font-size:13px; line-height:1.5;">
+        <input type="checkbox" id="form-gdpr" name="gdpr_consent" required style="margin-top:3px; flex-shrink:0;"/>
+        <label for="form-gdpr" style="cursor:pointer;" data-it="Ho letto la <a href='privacy.html' target='_blank' style='color:var(--gold-deep);text-decoration:underline;'>Privacy Policy</a> e acconsento al trattamento dei miei dati personali per rispondere alla mia richiesta (art. 13 GDPR)." data-en="I have read the <a href='privacy.html' target='_blank' style='color:var(--gold-deep);text-decoration:underline;'>Privacy Policy</a> and consent to the processing of my personal data to respond to my request (art. 13 GDPR).">
+          Ho letto la <a href='privacy.html' target='_blank' style='color:var(--gold-deep);text-decoration:underline;'>Privacy Policy</a> e acconsento al trattamento dei miei dati personali per rispondere alla mia richiesta (art. 13 GDPR).
+        </label>
+      </div>
+
+      <!-- Stato submit (success/error) -->
+      <div id="formStatus" style="margin-top:14px; font-family:var(--sans); font-size:14px; line-height:1.5; min-height:1.5em;"></div>
+
+      <div class="form-submit" style="margin-top:16px;">
+        <button type="submit" class="btn" id="formSubmitBtn"
+          data-it="Invia messaggio →" data-en="Send message →">Invia messaggio →</button>
+      </div>
+    </form>
+
+    <!-- PERSONA DESIGNATA -->
+    <div class="persons-section">
+      <div class="persons-label" data-it="Persona designata" data-en="Designated contact">Persona designata</div>
+      <div class="persons-grid">
+
+        <div class="person-block" style="--d:0ms;">
+          <!-- SOSTITUIRE: <img loading="eager" fetchpriority="high" decoding="async" src="foto-commerciale-italia.jpg" alt="Commerciale Italia"> -->
+          <div class="person-block__photo person-block__photo--it" aria-hidden="true"></div>
+          <div class="person-block__area" data-it="Italia" data-en="Italy">Italia</div>
+          <div class="person-block__name">Commerciale Italia</div>
+          <div class="person-block__role" data-it="Vendite & rivenditori nazionali" data-en="Sales & national retail">Vendite & rivenditori nazionali</div>
+          <a class="person-block__email" href="mailto:commerciale@athenas.it">commerciale@athenas.it</a>
+        </div>
+
+        <div class="person-block" style="--d:100ms;">
+          <!-- SOSTITUIRE: <img loading="lazy" decoding="async" src="foto-export-eu.jpg" alt="Export Manager EU"> -->
+          <div class="person-block__photo person-block__photo--eu" aria-hidden="true"></div>
+          <div class="person-block__area" data-it="Export EU" data-en="Export EU">Export EU</div>
+          <div class="person-block__name">Export Manager EU</div>
+          <div class="person-block__role" data-it="Distribuzione Europa" data-en="European distribution">Distribuzione Europa</div>
+          <a class="person-block__email" href="mailto:export.eu@athenas.it">export.eu@athenas.it</a>
+        </div>
+
+        <div class="person-block" style="--d:200ms;">
+          <!-- SOSTITUIRE: <img loading="lazy" decoding="async" src="foto-export-world.jpg" alt="Export Manager World"> -->
+          <div class="person-block__photo person-block__photo--world" aria-hidden="true"></div>
+          <div class="person-block__area" data-it="Export World" data-en="Export World">Export World</div>
+          <div class="person-block__name">Export Manager World</div>
+          <div class="person-block__role" data-it="Distribuzione internazionale" data-en="International distribution">Distribuzione internazionale</div>
+          <a class="person-block__email" href="mailto:export@athenas.it">export@athenas.it</a>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script src="assets/vendor/lenis.min.js" defer></script><script src="assets/data.js"></script>
+<script src="assets/search-data.js" defer></script>
+<script src="assets/app.js?v=6"></script>
+<script>
+initAthenas('contact');
+
+// ── SCROLL REVEAL ────────────────────────────────────────────
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll('.loc-block, .person-block, [data-reveal]').forEach(el => obs.observe(el));
+
+// ── FILE INPUT LABEL ─────────────────────────────────────────
+document.getElementById('form-allegati').addEventListener('change', function() {
+  const names = Array.from(this.files).map(f => f.name).join(', ');
+  document.getElementById('fileNames').textContent = names || '';
+});
+
+// ── TAB SWITCHING ────────────────────────────────────────────
+(function() {
+  const tabs = document.querySelectorAll('.form-tab');
+  const fieldsets = document.querySelectorAll('.form-fieldset');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+      tabs.forEach(t => {
+        t.classList.toggle('active', t === tab);
+        t.setAttribute('aria-selected', t === tab ? 'true' : 'false');
+      });
+      fieldsets.forEach(fs => {
+        fs.classList.toggle('active', fs.dataset.fieldset === target);
+      });
+    });
+  });
+})();
+
+// ── FORM SUBMIT ──────────────────────────────────────────────
+// Endpoint server-side che inoltra a Brevo via SMTP (DA CONFIGURARE)
+// Quando il tecnico avrà l'API key Brevo, sostituire BREVO_ENDPOINT
+// con l'URL reale (es. '/api/contact' o endpoint Brevo diretto).
+const BREVO_ENDPOINT = '/api/contact'; // TODO: sostituire dopo go-live
+
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const isEn = typeof ATH !== 'undefined' && ATH.lang === 'en';
+  const status = document.getElementById('formStatus');
+  const btn = document.getElementById('formSubmitBtn');
+  const originalBtnText = btn.textContent;
+
+  // Honeypot — se compilato è un bot
+  const honeypot = this.elements['website'];
+  if (honeypot && honeypot.value) {
+    status.textContent = '';
+    return; // silent reject
+  }
+
+  // GDPR check
+  const gdpr = document.getElementById('form-gdpr');
+  if (!gdpr.checked) {
+    status.style.color = '#c0392b';
+    status.textContent = isEn ? '⚠ You must accept the privacy policy to send the message.' : '⚠ Devi accettare la privacy policy per inviare il messaggio.';
+    return;
+  }
+
+  const nome     = document.getElementById('comune-nome').value.trim();
+  const email    = document.getElementById('comune-email').value.trim();
+  const oggetto  = document.getElementById('comune-oggetto').value.trim();
+  const msg      = document.getElementById('comune-messaggio').value.trim();
+
+  if (!nome || !email || !msg) {
+    status.style.color = '#c0392b';
+    status.textContent = isEn ? '⚠ Please fill in name, email and message.' : '⚠ Compila nome, email e messaggio.';
+    return;
+  }
+
+  const activeTab = document.querySelector('.form-tab.active');
+  const categoria = activeTab ? activeTab.textContent.trim() : '';
+  const activeFs  = document.querySelector('.form-fieldset.active');
+  const extras = {};
+  if (activeFs) {
+    activeFs.querySelectorAll('input, textarea').forEach(inp => {
+      if (!inp.value.trim()) return;
+      extras[inp.name] = inp.value.trim();
+    });
+  }
+
+  const payload = {
+    nome, email, oggetto, messaggio: msg, categoria, extras,
+    lang: isEn ? 'en' : 'it',
+    userAgent: navigator.userAgent.slice(0, 200),
+    submittedAt: new Date().toISOString()
+  };
+
+  btn.disabled = true;
+  btn.textContent = isEn ? 'Sending…' : 'Invio in corso…';
+  status.style.color = 'rgba(26,26,26,.6)';
+  status.textContent = '';
+
+  // Try POST to backend endpoint; on failure fall back to mailto
+  let sent = false;
+  try {
+    const r = await fetch(BREVO_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    if (r.ok) sent = true;
+  } catch (err) { /* network error → fallback */ }
+
+  if (sent) {
+    status.style.color = '#2d7a3a';
+    status.textContent = isEn ? '✓ Message sent. We will reply soon to ' + email + '.' : '✓ Messaggio inviato. Ti risponderemo presto su ' + email + '.';
+    e.target.reset();
+    btn.textContent = isEn ? 'Sent ✓' : 'Inviato ✓';
+  } else {
+    // Fallback: open mailto with prefilled subject/body
+    const subject = oggetto || (isEn ? '[' + categoria + '] — Contact request' : '[' + categoria + '] — Richiesta contatto');
+    let body = '';
+    if (nome)     body += (isEn ? 'Name' : 'Nome') + ': ' + nome + '\n';
+    if (email)    body += 'Email: ' + email + '\n';
+    if (categoria) body += (isEn ? 'Category' : 'Categoria') + ': ' + categoria + '\n';
+    Object.entries(extras).forEach(([k,v]) => { body += k + ': ' + v + '\n'; });
+    if (msg) body += '\n' + msg;
+    window.location.href = 'mailto:info@athenas.it?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    status.style.color = 'rgba(26,26,26,.6)';
+    status.textContent = isEn ? 'Opening your email client…' : 'Apertura client email…';
+    btn.textContent = originalBtnText;
+    btn.disabled = false;
+  }
+});
+</script>
+</body>
+</html>

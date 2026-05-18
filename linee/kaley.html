@@ -1,0 +1,756 @@
+﻿<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kaley — Athena's</title>
+<link rel="preload" href="../assets/fonts/fraunces-200-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="stylesheet" href="../assets/fonts.css"/>
+<link rel="stylesheet" href="../assets/tokens.css"/>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #0e0a06; color: #e8d8c0; font-family: var(--sans); overflow-x: hidden; }
+.container { max-width: 1320px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 60px); }
+
+/* ── HERO ─────────────────────────────────────────────────── */
+.kh {
+  min-height: 100svh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 clamp(20px, 4vw, 60px) clamp(48px, 7vw, 80px);
+  overflow: hidden;
+}
+
+.kh__bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 75% 30%, rgba(201,169,110,.18) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 50% at 20% 70%, rgba(90,42,10,.6) 0%, transparent 55%),
+    linear-gradient(170deg, #0e0a06 0%, #1a0f06 40%, #2a1608 70%, #0e0a06 100%);
+}
+.kh__photo-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background:
+    linear-gradient(100deg, rgba(8,4,2,.92) 0%, rgba(8,4,2,.72) 38%, rgba(8,4,2,.25) 62%, transparent 80%),
+    linear-gradient(180deg, rgba(8,4,2,.35) 0%, transparent 30%, transparent 65%, rgba(8,4,2,.55) 100%);
+}
+
+
+.kh__content {
+  position: relative;
+  z-index: 2;
+  max-width: 56ch;
+}
+
+.kh__eyebrow {
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: .6;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.kh__eyebrow::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--gold);
+  opacity: .5;
+}
+
+.kh h1 {
+  font-family: var(--display);
+  font-size: clamp(88px, 18vw, 260px);
+  font-weight: 200;
+  letter-spacing: -0.025em;
+  line-height: .88;
+  font-style: italic;
+  color: #e8d8c0;
+  margin-bottom: clamp(20px, 3vw, 36px);
+}
+.kh h1 em { color: var(--gold); }
+
+.kh__tag {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(18px, 2vw, 26px);
+  color: rgba(232,216,192,.6);
+  margin-bottom: 24px;
+  line-height: 1.4;
+}
+
+.kh__meta {
+  display: flex;
+  gap: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(201,169,110,.15);
+}
+.kh__meta-item { }
+.kh__meta-label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(232,216,192,.3);
+  margin-bottom: 4px;
+}
+.kh__meta-val {
+  font-family: var(--serif);
+  font-size: 15px;
+  color: rgba(232,216,192,.7);
+}
+
+/* ── INTRO — storia profumo ────────────────────────────────── */
+.ki-intro {
+  background: #0e0a06;
+  padding: clamp(80px, 11vw, 140px) 0;
+  border-top: 1px solid rgba(201,169,110,.08);
+}
+.ki-intro__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: clamp(48px, 7vw, 100px);
+  align-items: center;
+}
+@media (max-width: 860px) { .ki-intro__grid { grid-template-columns: 1fr; } }
+
+.ki-intro__eyebrow {
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: .5;
+  margin-bottom: 20px;
+}
+.ki-intro h2 {
+  font-family: var(--display);
+  font-size: clamp(36px, 5vw, 72px);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.0;
+  margin-bottom: 28px;
+  color: #e8d8c0;
+}
+.ki-intro h2 em { font-style: italic; color: var(--gold); }
+.ki-intro p {
+  font-family: var(--serif);
+  font-size: clamp(17px, 1.4vw, 19px);
+  line-height: 1.75;
+  color: rgba(232,216,192,.6);
+  max-width: 48ch;
+}
+
+/* foto placeholder — destra intro */
+.ki-photo-space {
+  position: relative;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(201,169,110,.1);
+}
+/* SOSTITUIRE: .ki-photo-space img { width:100%; height:100%; object-fit:cover; } */
+.ki-photo-ph {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  background: linear-gradient(155deg, rgba(201,169,110,.12) 0%, rgba(14,10,6,1) 100%);
+}
+.ki-photo-ph__tag {
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(232,216,192,.3);
+  padding: 16px 20px;
+  display: block;
+}
+
+/* ── FRAGRANZE ZIGZAG ──────────────────────────────────────── */
+.kf-frags-header {
+  background: #080603;
+  padding: clamp(80px, 11vw, 140px) 0 clamp(56px, 7vw, 80px);
+  border-top: 1px solid rgba(201,169,110,.08);
+}
+.kf-heading {
+  font-family: var(--display);
+  font-size: clamp(44px, 7vw, 100px);
+  font-weight: 200;
+  letter-spacing: -0.04em;
+  line-height: .9;
+  color: #e8d8c0;
+}
+.kf-heading em { font-style: italic; color: var(--gold); }
+
+.kf-frags { background: #080603; }
+.kf-frag {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 76vh;
+  border-top: 1px solid rgba(201,169,110,.07);
+}
+@media (max-width: 768px) {
+  .kf-frag { grid-template-columns: 1fr; min-height: auto; }
+}
+.kf-frag--even .kf-frag__photo { order: 2; }
+.kf-frag--even .kf-frag__text  { order: 1; }
+@media (max-width: 768px) {
+  .kf-frag--even .kf-frag__photo,
+  .kf-frag--even .kf-frag__text { order: unset; }
+}
+
+.kf-frag__photo {
+  position: relative;
+  overflow: hidden;
+  min-height: 400px;
+}
+.kf-frag__photo-inner {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* SOSTITUIRE: img reale con position:absolute inset:0 object-fit:cover */
+.kf-frag__ph-label {
+  position: absolute;
+  bottom: 20px;
+  left: 24px;
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(232,216,192,.25);
+}
+
+.kf-frag__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(48px, 6vw, 96px) clamp(36px, 5.5vw, 84px);
+  background: #080603;
+}
+.kf-frag__num {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--gold);
+  opacity: .4;
+  margin-bottom: 22px;
+  letter-spacing: 0.08em;
+}
+.kf-frag__name {
+  font-family: var(--display);
+  font-size: clamp(38px, 5.5vw, 78px);
+  font-weight: 200;
+  font-style: italic;
+  letter-spacing: -0.025em;
+  line-height: .92;
+  color: #e8d8c0;
+  margin-bottom: 22px;
+}
+.kf-frag__phrase {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(16px, 1.5vw, 19px);
+  color: rgba(232,216,192,.48);
+  line-height: 1.55;
+  margin-bottom: 16px;
+  max-width: 38ch;
+}
+.kf-frag__family {
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: .6;
+  margin-bottom: 36px;
+}
+.kf-frag__notes {
+  display: flex;
+  flex-direction: column;
+  padding-top: 24px;
+  border-top: 1px solid rgba(201,169,110,.1);
+  margin-bottom: 36px;
+}
+.kf-frag__note {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 8px 16px;
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(201,169,110,.06);
+}
+.kf-frag__note:last-child { border-bottom: none; }
+.kf-frag__note-l {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: .42;
+  padding-top: 2px;
+  white-space: nowrap;
+}
+.kf-frag__note-v {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  color: rgba(232,216,192,.48);
+  line-height: 1.5;
+}
+.kf-frag__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 26px;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(201,169,110,.65);
+  text-decoration: none;
+  border: 1px solid rgba(201,169,110,.22);
+  align-self: flex-start;
+  transition: color .25s, border-color .25s, background .25s;
+}
+.kf-frag__cta:hover { color: #c9a96e; border-color: rgba(201,169,110,.5); background: rgba(201,169,110,.05); }
+.kf-frag__cta::after { content: '→'; font-size: 14px; }
+
+/* ── FORMATO + FILOSOFIA ────────────────────────────────────── */
+.kf-format {
+  background: #0e0a06;
+  padding: clamp(80px, 11vw, 140px) 0;
+  border-top: 1px solid rgba(201,169,110,.08);
+}
+.kf-format__grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: clamp(48px, 7vw, 100px);
+  align-items: center;
+}
+@media (max-width: 860px) { .kf-format__grid { grid-template-columns: 1fr; } }
+
+.kf-format__headline {
+  font-family: var(--display);
+  font-size: clamp(32px, 4.5vw, 64px);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: #e8d8c0;
+  margin-bottom: 28px;
+}
+.kf-format__headline em { font-style: italic; color: var(--gold); }
+.kf-format__text {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.8;
+  color: rgba(232,216,192,.55);
+  max-width: 46ch;
+}
+
+.kf-format__pills {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.kf-format__pill {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 24px;
+  background: rgba(255,255,255,.03);
+  gap: 20px;
+}
+.kf-format__pill-label {
+  font-family: var(--serif);
+  font-size: 16px;
+  color: rgba(232,216,192,.6);
+}
+.kf-format__pill-val {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: .55;
+}
+
+/* ── B2B CTA ──────────────────────────────────────────────── */
+.kf-cta {
+  background: #080603;
+  padding: clamp(80px, 11vw, 140px) 0;
+  text-align: center;
+  border-top: 1px solid rgba(201,169,110,.08);
+}
+.kf-cta h2 {
+  font-family: var(--display);
+  font-size: clamp(36px, 5vw, 72px);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  color: #e8d8c0;
+  margin-bottom: 12px;
+}
+.kf-cta h2 em { font-style: italic; color: var(--gold); }
+.kf-cta p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 17px;
+  color: rgba(232,216,192,.35);
+  margin-bottom: clamp(32px, 4vw, 48px);
+}
+.kf-cta__btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.kf-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 17px 34px;
+  transition: background .3s, color .3s, transform .2s;
+}
+.kf-btn--gold { background: var(--gold); color: #0e0a06; }
+.kf-btn--gold:hover { background: #d4b47a; transform: translateY(-2px); }
+.kf-btn--ghost { background: transparent; color: rgba(232,216,192,.5); border: 1px solid rgba(201,169,110,.2); }
+.kf-btn--ghost:hover { color: #e8d8c0; border-color: rgba(201,169,110,.5); transform: translateY(-2px); }
+
+/* reveal */
+[data-reveal] { opacity: 0; transform: translateY(22px); transition: opacity .75s var(--ease), transform .75s var(--ease); }
+[data-reveal].is-visible { opacity: 1; transform: none; }
+[data-reveal][style*="--d:100ms"] { transition-delay: 100ms; }
+[data-reveal][style*="--d:150ms"] { transition-delay: 150ms; }
+[data-reveal][style*="--d:200ms"] { transition-delay: 200ms; }
+[data-reveal][style*="--d:300ms"] { transition-delay: 300ms; }
+</style>
+<meta name="description" content="Profumi roll-on in olio concentrato, senza alcol. Sette espressioni olfattive in flaconi da tasca."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://athenas.it/linee/kaley.html"/>
+<meta property="og:type" content="website"/>
+<meta property="og:locale" content="it_IT"/>
+<meta property="og:locale:alternate" content="en_GB"/>
+<meta property="og:site_name" content="Athena's"/>
+<meta property="og:url" content="https://athenas.it/linee/kaley.html"/>
+<meta property="og:title" content="Kaley — Athena's"/>
+<meta property="og:description" content="Profumi roll-on in olio concentrato, senza alcol. Sette espressioni olfattive in flaconi da tasca."/>
+<meta property="og:image" content="https://athenas.it/../immagini/og/kaley.jpg"/>
+<meta property="og:image:alt" content="Kaley — Athena's"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Kaley — Athena's"/>
+<meta name="twitter:description" content="Profumi roll-on in olio concentrato, senza alcol. Sette espressioni olfattive in flaconi da tasca."/>
+<meta name="twitter:image" content="https://athenas.it/../immagini/og/kaley.jpg"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://athenas.it/" },
+    { "@type": "ListItem", "position": 2, "name": "Linee", "item": "https://athenas.it/linee.html" },
+    { "@type": "ListItem", "position": 3, "name": "Kaley", "item": "https://athenas.it/linee/kaley.html" }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div id="topbar"></div>
+
+<!-- ── HERO ──────────────────────────────────────────────── -->
+<section class="kh" data-mood-fallback="dark">
+  <div class="kh__bg">
+    <img class="bg-video" src="../immagini/kaley/collection.jpg" alt="Kaley fragranze roll-on" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;">
+    <div class="kh__photo-overlay"></div>
+  </div>
+
+  <div class="kh__content" data-reveal>
+    <div class="kh__eyebrow">03 · Athena's Portfolio · Fragranza</div>
+    <h1><em>Kaley</em></h1>
+    <p class="kh__tag" data-it="Profumo intimo. Non esibito." data-en="Intimate fragrance. Unassuming.">Profumo intimo. Non esibito.</p>
+    <div class="kh__meta">
+      <div class="kh__meta-item">
+        <div class="kh__meta-label" data-it="Lancio" data-en="Launch">Lancio</div>
+        <div class="kh__meta-val">2022</div>
+      </div>
+      <div class="kh__meta-item">
+        <div class="kh__meta-label" data-it="Fragranze" data-en="Fragrances">Fragranze</div>
+        <div class="kh__meta-val">07</div>
+      </div>
+      <div class="kh__meta-item">
+        <div class="kh__meta-label" data-it="Formato" data-en="Format">Formato</div>
+        <div class="kh__meta-val">10 ml · Roll-on</div>
+      </div>
+      <div class="kh__meta-item">
+        <div class="kh__meta-label" data-it="Base" data-en="Base">Base</div>
+        <div class="kh__meta-val" data-it="Olio concentrato · 0% alcol" data-en="Concentrated oil · 0% alcohol">Olio concentrato · 0% alcol</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── INTRO ─────────────────────────────────────────────── -->
+<section class="ki-intro">
+  <div class="container">
+    <div class="ki-intro__grid">
+      <div data-reveal>
+        <div class="ki-intro__eyebrow" data-it="La filosofia" data-en="The philosophy">La filosofia</div>
+        <h2>
+          <span data-it="Un profumo che appartiene " data-en="A fragrance that belongs ">Un profumo che appartiene </span><em data-it="solo a te." data-en="only to you.">solo a te.</em>
+        </h2>
+        <p data-it="Kaley nasce dall'idea che il profumo sia un gesto intimo, non una dichiarazione. Roll-on in olio puro concentrato, senza alcol: non si diffonde nell'aria, accarezza la pelle. Le fragranze si fondono con il calore naturale del corpo, diventando uniche per chi le indossa. Durata tutto il giorno, applicazione silenziosa, formula gentile anche sulla pelle più sensibile." data-en="Kaley was born from the idea that fragrance is an intimate gesture, not a statement. Pure concentrated oil roll-on, alcohol-free: it doesn't diffuse into the air, it caresses the skin. The fragrances merge with the body's natural warmth, becoming unique for each wearer. All-day lasting, silent application, gentle formula even on the most sensitive skin.">Kaley nasce dall'idea che il profumo sia un gesto intimo, non una dichiarazione. Roll-on in olio puro concentrato, senza alcol: non si diffonde nell'aria, accarezza la pelle. Le fragranze si fondono con il calore naturale del corpo, diventando uniche per chi le indossa. Durata tutto il giorno, applicazione silenziosa, formula gentile anche sulla pelle più sensibile.</p>
+      </div>
+      <div class="ki-photo-space" data-reveal style="--d:150ms">
+        <img src="../immagini/kaley/lifestyle-01.jpg" alt="Kaley fragranze roll-on — lifestyle" class="cover-img" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── LE 7 FRAGRANZE ─────────────────────────────────────── -->
+<section class="kf-frags-header">
+  <div class="container">
+    <h2 class="kf-heading" data-reveal>
+      <span data-it="Sette " data-en="Seven ">Sette </span><em data-it="firme olfattive." data-en="olfactory signatures.">firme olfattive.</em>
+    </h2>
+  </div>
+</section>
+
+<div class="kf-frags">
+
+  <!-- 01 Crystal Rouge — foto sinistra -->
+  <article class="kf-frag">
+    <div class="kf-frag__photo">
+      <div class="kf-frag__photo-inner" style="background: linear-gradient(145deg, #3a0e10 0%, #6b1a1c 40%, #2a0608 100%);">
+        <img src="../immagini/kaley/crystal_rouge/flatlay.jpg" alt="Crystal Rouge — Kaley profumo roll-on" class="cover-img" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      </div>
+      <span class="kf-frag__ph-label">Foto · Crystal Rouge</span>
+    </div>
+    <div class="kf-frag__text" data-reveal>
+      <div class="kf-frag__num">01</div>
+      <div class="kf-frag__name">Crystal Rouge</div>
+      <p class="kf-frag__phrase" data-it="Seduzione a filo di seta." data-en="Seduction drawn in silk.">Seduzione a filo di seta.</p>
+      <div class="kf-frag__family">Ambrata · Speziata</div>
+      <div class="kf-frag__notes">
+        <div class="kf-frag__note"><div class="kf-frag__note-l">Testa</div><div class="kf-frag__note-v">Zafferano · Bergamotto</div></div>
+        <div class="kf-frag__note"><div class="kf-frag__note-l">Cuore</div><div class="kf-frag__note-v">Gelsomino · Ambra grigia · Amberwood</div></div>
+        <div class="kf-frag__note"><div class="kf-frag__note-l">Fondo</div><div class="kf-frag__note-v">Resina abete · Cedro · Muschio bianco</div></div>
+      </div>
+      <a class="kf-frag__cta" href="https://www.erboristica.com/kaley/profumo-roll-on-crystal-rouge/" target="_blank" rel="noopener" data-it="Acquista su erboristica.com" data-en="Buy on erboristica.com">Acquista su erboristica.com</a>
+    </div>
+  </article>
+
+  <!-- 02 Dark Sea — foto destra -->
+  <article class="kf-frag kf-frag--even">
+    <div class="kf-frag__photo">
+      <div class="kf-frag__photo-inner" style="background: linear-gradient(145deg, #050e18 0%, #0f2035 45%, #071422 100%);">
+        <img src="../immagini/kaley/dark_sea/flatlay.jpg" alt="Dark Sea — Kaley profumo roll-on" class="cover-img" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      </div>
+      <span class="kf-frag__ph-label">Foto · Dark Sea</span>
+    </div>
+    <div class="kf-frag__text" data-reveal>
+      <div class="kf-frag__num">02</div>
+      <div class="kf-frag__name">Dark Sea</div>
+      <p class="kf-frag__phrase" data-it="Salmastro e profondi segreti." data-en="Salt air and deep secrets.">Salmastro e profondi segreti.</p>
+      <div class="kf-frag__family">Acquatica · Marina</div>
+      <div class="kf-frag__notes">
+        <div class="kf-frag__note"><div class="kf-frag__note-l">Testa</div><div class="kf-frag__note-v">Accordo marino · Limone · Ananas</div></div>
+        <div class="kf-frag__note"><div class="kf-frag__note-l">Cuore</div><div class="kf-frag__note-v">Rosa · Mughetto · Ambra</div></div>
+        <div class="kf-frag__note"><div class="kf-frag__note-l">Fondo</div><div class="kf-frag__note-v">Sandalo · Cedro · Muschio</div></div>
+      </div>
+      <a class="kf-frag__cta" href="https://www.erboristica.com/kaley/profumo-roll-on-dark-sea/" target="_blank" rel="noopener" data-it="Acquista su erboristica.com" data-en="Buy on erboristica.com">Acquista su erboristica.com</a>
+    </div>
+  </article>
+
+  <!-- 03 Golden Hour — foto sinistra -->
+  <article class="kf-frag">
+    <div class="kf-frag__photo">
+      <div class="kf-frag__photo-inner" style="background: linear-gradient(145deg, #2a1a04 0%, #5a3a10 45%, #3a2208 100%);">
+        <img src="../immagini/kaley/golden_hour/flatlay.jpg" alt="Golden Hour — Kaley profumo roll-on" class="cover-img" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      </div>
+      <span class="kf-frag__ph-label">Foto · Golden Hour</span>
+    </div>
+    <div class="kf-frag__text" data-reveal>
+      <div class="kf-frag__num">03</div>
+      <div class="kf-frag__name">Golden Hour</div>
+      <p class="kf-frag__phrase" data-it="L'ora dorata che non vuoi smettere." data-en="The golden hour you never want to end.">L'ora dorata che non vuoi smettere.</p>
+      <div class="kf-frag__family">Luminosa · Calda</div>
+      <div class="kf-frag__notes">
+        <div class="kf-frag__note"><div class="kf-frag__note-l">Testa</div><div class="kf-frag__note-v">Bergamotto · Arancio · Mandarino</div></div>
+        <div class="kf-frag__note"><div class="kf-frag__note-l">Cuore</div><div class="kf-frag__note-v">Violetta · Mughetto · Vaniglia</div></div>
+        <div class="kf-frag__note"><div class="kf-frag__note-l">Fondo</div><div class="kf-frag__note-v">Caramello · Cashmere · Sandalo · Ambra</div></div>
+      </div>
+      <a class="kf-frag__cta" href="https://www.erboristica.com/kaley/profumo-roll-on-golden-hour/" target="_blank" rel="noopener" data-it="Acquista su erboristica.com" data-en="Buy on erboristica.com">Acquista su erboristica.com</a>
+    </div>
+  </article>
+
+  <!-- 04 Moka Rose — foto destra -->
+  <article class="kf-frag kf-frag--even">
+    <div class="kf-frag__photo">
+      <div class="kf-frag__photo-inner" style="background: linear-gradient(145deg, #180810 0%, #2e1220 45%, #140608 100%);">
+        <img src="../immagini/kaley/moka_rose/flatlay.jpg" alt="Moka Rose — Kaley profumo roll-on" class="cover-img" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      </div>
+      <span class="kf-frag__ph-label">Foto · Moka Rose</span>
+    </div>
+    <div class="kf-frag__text" data-reveal>
+      <div class="kf-frag__num">04</div>
+      <div class="kf-frag__name">Moka Rose</div>
+      <p class="kf-frag__phrase" data-it="Un caffè tra petali di rosa." data-en="A coffee among rose petals.">Un caffè tra petali di rosa.</p>
+      <div class="kf-frag__family">Floreale · Gourmand</div>
+      <div class="kf-frag__notes">
+        <div class="kf-frag__note"><div class="kf-frag__note-l">Testa</div><div class="kf-frag__note-v">Fiori bianchi · Caffè · Rosa</div></div>
+        <div class="kf-frag__note"><div class="kf-frag__note-l">Cuore</div><div class="kf-frag__note-v">Rosa bulgara · Nocciola tostata</div></div>
+        <div class="kf-frag__note"><div class="kf-frag__note-l">Fondo</div><div class="kf-frag__note-v">Vaniglia · Muschio bianco · Legno cashmere</div></div>
+      </div>
+      <a class="kf-frag__cta" href="https://www.erboristica.com/kaley/profumo-roll-on-moka-rose/" target="_blank" rel="noopener" data-it="Acquista su erboristica.com" data-en="Buy on erboristica.com">Acquista su erboristica.com</a>
+    </div>
+  </article>
+
+  <!-- 05 Monty Tonka — foto sinistra -->
+  <article class="kf-frag">
+    <div class="kf-frag__photo">
+      <div class="kf-frag__photo-inner" style="background: linear-gradient(145deg, #0a0804 0%, #1e1408 45%, #100c04 100%);">
+        <img src="../immagini/kaley/monty_tonka/inuse.jpg" alt="Monty Tonka — Kaley profumo roll-on" class="cover-img" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      </div>
+      <span class="kf-frag__ph-label">Foto · Monty Tonka</span>
+    </div>
+    <div class="kf-frag__text" data-reveal>
+      <div class="kf-frag__num">05</div>
+      <div class="kf-frag__name">Monty Tonka</div>
+      <p class="kf-frag__phrase" data-it="Spezie antiche, pelle calda." data-en="Ancient spices, warm skin.">Spezie antiche, pelle calda.</p>
+      <div class="kf-frag__family">Orientale · Ambrata</div>
+      <div class="kf-frag__notes">
+        <div class="kf-frag__note"><div class="kf-frag__note-l">Testa</div><div class="kf-frag__note-v">Bergamotto · Zafferano · Canna da zucchero</div></div>
+        <div class="kf-frag__note"><div class="kf-frag__note-l">Cuore</div><div class="kf-frag__note-v">Oud · Rosa bulgara · Ambra</div></div>
+        <div class="kf-frag__note"><div class="kf-frag__note-l">Fondo</div><div class="kf-frag__note-v">Fava tonka · Muschio · Vaniglia</div></div>
+      </div>
+      <a class="kf-frag__cta" href="https://www.erboristica.com/kaley/profumo-roll-on-monty-tonka/" target="_blank" rel="noopener" data-it="Acquista su erboristica.com" data-en="Buy on erboristica.com">Acquista su erboristica.com</a>
+    </div>
+  </article>
+
+  <!-- 06 Spring Symphony — foto destra -->
+  <article class="kf-frag kf-frag--even">
+    <div class="kf-frag__photo">
+      <div class="kf-frag__photo-inner" style="background: linear-gradient(145deg, #0a140a 0%, #162414 45%, #0e1a0c 100%);">
+        <div class="photo-slot photo-slot--1x1" data-slot-label="Spring Symphony packshot">
+          <!-- SOSTITUIRE: foto packshot fragranza Spring Symphony · 1:1 · file disponibili in C:\Users\jagio\Desktop\ATHENAS_FOTO_TEMP\ORGANIZZATO\06_KALEY\[nome_fragranza]\ — copiare manualmente: Crystal Rouge → crystal_rouge/ · Dark Sea → dark_sea/ · Golden Hour → (non in cartella organizzata) · Moka Rose → (vedi cover-moka.jpg) · Monty Tonka → monty_tonka/ · Spring Symphony → (da pescare) · Sweet Whisper → sweet_whisper/ -->
+          <svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          <span class="photo-slot__label">Spring Symphony</span>
+          <span class="photo-slot__sub">1:1 · 600x600px</span>
+        </div>
+      </div>
+      <span class="kf-frag__ph-label">Foto · Spring Symphony</span>
+    </div>
+    <div class="kf-frag__text" data-reveal>
+      <div class="kf-frag__num">06</div>
+      <div class="kf-frag__name">Spring Symphony</div>
+      <p class="kf-frag__phrase" data-it="Il primo mattino di aprile." data-en="The first morning of April.">Il primo mattino di aprile.</p>
+      <div class="kf-frag__family">Floreale · Verde</div>
+      <div class="kf-frag__notes">
+        <div class="kf-frag__note"><div class="kf-frag__note-l">Testa</div><div class="kf-frag__note-v">Peonia · Bergamotto · Foglia verde</div></div>
+        <div class="kf-frag__note"><div class="kf-frag__note-l">Cuore</div><div class="kf-frag__note-v">Gelsomino · Rosa · Mughetto</div></div>
+        <div class="kf-frag__note"><div class="kf-frag__note-l">Fondo</div><div class="kf-frag__note-v">Muschio bianco · Cedro · Ambra</div></div>
+      </div>
+      <a class="kf-frag__cta" href="https://www.erboristica.com/kaley/profumo-roll-on-spring-symphony/" target="_blank" rel="noopener" data-it="Acquista su erboristica.com" data-en="Buy on erboristica.com">Acquista su erboristica.com</a>
+    </div>
+  </article>
+
+  <!-- 07 Sweet Whisper — foto sinistra -->
+  <article class="kf-frag">
+    <div class="kf-frag__photo">
+      <div class="kf-frag__photo-inner" style="background: linear-gradient(145deg, #120814 0%, #221030 45%, #0e0810 100%);">
+        <img src="../immagini/kaley/sweet_whisper/flatlay.jpg" alt="Sweet Whisper — Kaley profumo roll-on" class="cover-img" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      </div>
+      <span class="kf-frag__ph-label">Foto · Sweet Whisper</span>
+    </div>
+    <div class="kf-frag__text" data-reveal>
+      <div class="kf-frag__num">07</div>
+      <div class="kf-frag__name">Sweet Whisper</div>
+      <p class="kf-frag__phrase" data-it="Dolcezza che non urla." data-en="Sweetness that doesn't shout.">Dolcezza che non urla.</p>
+      <div class="kf-frag__family">Dolce · Vellutata</div>
+      <div class="kf-frag__notes">
+        <div class="kf-frag__note"><div class="kf-frag__note-l">Testa</div><div class="kf-frag__note-v">Fiori d'arancio · Iris · Pera</div></div>
+        <div class="kf-frag__note"><div class="kf-frag__note-l">Cuore</div><div class="kf-frag__note-v">Heliotrope · Rosa · Peonia</div></div>
+        <div class="kf-frag__note"><div class="kf-frag__note-l">Fondo</div><div class="kf-frag__note-v">Ambra rosa · Vaniglia bourbon · Muschio · Benzoino</div></div>
+      </div>
+      <a class="kf-frag__cta" href="https://www.erboristica.com/kaley/profumo-roll-on-sweet-whisper/" target="_blank" rel="noopener" data-it="Acquista su erboristica.com" data-en="Buy on erboristica.com">Acquista su erboristica.com</a>
+    </div>
+  </article>
+
+</div>
+
+<!-- ── FORMATO + CARATTERISTICHE ─────────────────────────── -->
+<section class="kf-format">
+  <div class="container">
+    <div class="kf-format__grid">
+      <div data-reveal>
+        <h2 class="kf-format__headline">
+          <span data-it="Olio puro " data-en="Pure oil ">Olio puro </span><em data-it="concentrato." data-en="concentrated.">concentrato.</em><br>
+          <span data-it="Zero alcol." data-en="Zero alcohol.">Zero alcol.</span>
+        </h2>
+        <p class="kf-format__text" data-it="La formula di Kaley è a base di olio anziché alcol: più delicata, più persistente, più personale. L'olio non evapora nell'aria — resta sulla pelle, si scalda con il corpo, si fonde con la chimica personale di chi lo indossa. Un'esperienza olfattiva che diventa davvero intima." data-en="Kaley's formula uses oil instead of alcohol: gentler, more persistent, more personal. Oil doesn't evaporate into the air — it stays on the skin, warms with the body, merges with the wearer's personal chemistry. An olfactory experience that becomes truly intimate.">La formula di Kaley è a base di olio anziché alcol: più delicata, più persistente, più personale. L'olio non evapora nell'aria — resta sulla pelle, si scalda con il corpo, si fonde con la chimica personale di chi lo indossa. Un'esperienza olfattiva che diventa davvero intima.</p>
+      </div>
+      <div class="kf-format__pills" data-reveal style="--d:150ms">
+        <div class="kf-format__pill">
+          <span class="kf-format__pill-label" data-it="0% Alcol" data-en="0% Alcohol">0% Alcol</span>
+          <span class="kf-format__pill-val" data-it="Formula olio puro" data-en="Pure oil formula">Formula olio puro</span>
+        </div>
+        <div class="kf-format__pill">
+          <span class="kf-format__pill-label" data-it="Formato 10 ml — Tascabile" data-en="10 ml — Pocket size">Formato 10 ml — Tascabile</span>
+          <span class="kf-format__pill-val" data-it="Roll-on applicator" data-en="Roll-on applicator">Roll-on applicator</span>
+        </div>
+        <div class="kf-format__pill">
+          <span class="kf-format__pill-label" data-it="Persistenza tutto il giorno" data-en="All-day lasting">Persistenza tutto il giorno</span>
+          <span class="kf-format__pill-val" data-it="Termica — corpo-calda" data-en="Thermal — body-warm">Termica — corpo-calda</span>
+        </div>
+        <div class="kf-format__pill">
+          <span class="kf-format__pill-label" data-it="Energia Solare · Made in Italy" data-en="Solar Energy · Made in Italy">Energia Solare · Made in Italy</span>
+          <span class="kf-format__pill-val">Certificato</span>
+        </div>
+        <div class="kf-format__pill">
+          <span class="kf-format__pill-label" data-it="MOQ su richiesta" data-en="MOQ on request">MOQ su richiesta</span>
+          <span class="kf-format__pill-val" data-it="Listino B2B" data-en="B2B pricing">Listino B2B</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── B2B CTA ────────────────────────────────────────────── -->
+<section class="kf-cta">
+  <div class="container">
+    <h2>
+      <span data-it="Inserisci " data-en="Include ">Inserisci </span><em data-it="Kaley" data-en="Kaley">Kaley</em><br>
+      <span data-it="nel tuo assortimento." data-en="in your assortment.">nel tuo assortimento.</span>
+    </h2>
+    <p data-it="Campioni disponibili · Listino riservato · Supporto display" data-en="Samples available · Reserved price list · Display support">Campioni disponibili · Listino riservato · Supporto display</p>
+    <div class="kf-cta__btns">
+      <a class="kf-btn kf-btn--gold" href="../contatti.html" data-it="Richiedi campioni" data-en="Request samples">Richiedi campioni</a>
+      <a class="kf-btn kf-btn--ghost" href="../contatti.html" data-it="Scarica catalogo" data-en="Download catalogue">Scarica catalogo</a>
+    </div>
+  </div>
+</section>
+
+<div id="footer"></div>
+
+<script src="../assets/vendor/lenis.min.js" defer></script><script src="../assets/data.js"></script>
+<script src="../assets/search-data.js" defer></script>
+<script src="../assets/app.js?v=6"></script>
+<script>
+initAthenas('brands');
+document.querySelector('.topbar').classList.add('topbar--light');
+
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('[data-reveal]').forEach(el => obs.observe(el));
+
+document.title = "Kaley — Athena's";
+</script>
+</body>
+</html>

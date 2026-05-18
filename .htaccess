@@ -1,0 +1,89 @@
+# ═══════════════════════════════════════════════════════════════
+# Athena's — Apache config (Siteground compatible)
+# ═══════════════════════════════════════════════════════════════
+
+# Default home: index.html
+DirectoryIndex index.html
+
+# Custom 404 page
+ErrorDocument 404 /404.html
+
+# ────────────────────────────────────────────────────────────────
+# Force HTTPS (only if SSL is enabled)
+# ────────────────────────────────────────────────────────────────
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# ────────────────────────────────────────────────────────────────
+# Security headers
+# ────────────────────────────────────────────────────────────────
+<IfModule mod_headers.c>
+  # Force HTTPS for 1 year + subdomains
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+  # Prevent clickjacking
+  Header always set X-Frame-Options "SAMEORIGIN"
+
+  # MIME-type sniffing protection
+  Header always set X-Content-Type-Options "nosniff"
+
+  # Referrer policy: send only origin to cross-origin
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Limit browser features (no camera, mic, geo by default)
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+
+  # CSP — start permissive, tighten later. Allow Google Fonts + inline styles.
+  # NOTE: once GA / banner / Brevo aggiunti, va riconfigurato
+  Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net; connect-src 'self' https://api.brevo.com https://www.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.facebook.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'"
+</IfModule>
+
+# ────────────────────────────────────────────────────────────────
+# Gzip compression
+# ────────────────────────────────────────────────────────────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json application/xml image/svg+xml font/woff font/woff2
+</IfModule>
+
+# ────────────────────────────────────────────────────────────────
+# Cache headers
+# ────────────────────────────────────────────────────────────────
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # HTML — short cache (so updates land fast)
+  ExpiresByType text/html "access plus 1 hour"
+
+  # CSS / JS — 1 month (versioned via filename if possible)
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+
+  # Images / Fonts — 1 year
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/avif "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType font/woff "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+
+  # JSON / XML — short
+  ExpiresByType application/json "access plus 1 hour"
+  ExpiresByType application/xml "access plus 1 hour"
+</IfModule>
+
+# ────────────────────────────────────────────────────────────────
+# Disable directory listing
+# ────────────────────────────────────────────────────────────────
+Options -Indexes
+
+# ────────────────────────────────────────────────────────────────
+# Block sensitive files
+# ────────────────────────────────────────────────────────────────
+<FilesMatch "^(\.htaccess|\.git|\.env|\.DS_Store|CLAUDE\.md|PROGRESS\.md|AUDIT-.*\.md|README\.md|.*\.docx|.*\.zip)$">
+  Require all denied
+</FilesMatch>

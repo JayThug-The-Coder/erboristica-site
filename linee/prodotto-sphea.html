@@ -1,0 +1,1275 @@
+﻿<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sphea — Scheda prodotto · Athena's</title>
+<link rel="preload" href="../assets/fonts/fraunces-200-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="stylesheet" href="../assets/fonts.css"/>
+<link rel="stylesheet" href="../assets/tokens.css"/>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #060606; color: #e4ddd4; font-family: var(--sans); overflow-x: hidden; }
+.container { max-width: 1320px; margin: 0 auto; padding: 0 clamp(20px,4vw,60px); }
+
+/* ── BREADCRUMB ─────────────────────────────────────────────── */
+.sp-breadcrumb {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 28px; position: relative; z-index: 1;
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+}
+.sp-breadcrumb a { color: rgba(201,169,110,.4); text-decoration: none; transition: color .2s; }
+.sp-breadcrumb a:hover { color: #c9a96e; }
+.sp-breadcrumb__sep { color: rgba(201,169,110,.2); font-size: 11px; }
+.sp-breadcrumb__current { color: rgba(228,221,212,.5); }
+
+/* ── HERO ─────────────────────────────────────────────────── */
+.sp-hero {
+  min-height: 100svh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+@media (max-width: 860px) { .sp-hero { grid-template-columns: 1fr; min-height: auto; } }
+
+.sp-hero__visual {
+  position: relative;
+  min-height: 55vmin;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.sp-hero__bg { position: absolute; inset: 0; }
+.sp-hero__photo-placeholder {
+  position: absolute; inset: 0; z-index: 1;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  border: 1px dashed rgba(201,169,110,.15);
+}
+.sp-hero__photo-placeholder span {
+  font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(201,169,110,.25); text-align: center; padding: 0 20px;
+}
+.sp-hero__mock { position: relative; z-index: 2; animation: mock-float 6s ease-in-out infinite; }
+@keyframes mock-float {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-18px); }
+}
+.sp-hero__mock svg { width: min(140px,35vw); filter: drop-shadow(0 24px 48px rgba(201,169,110,.3)); }
+
+/* pearl orbs in hero visual */
+.sp-hero__orb {
+  position: absolute; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle at 35% 35%, rgba(201,169,110,.55) 0%, rgba(120,90,40,.3) 55%, transparent 75%);
+  animation: pearl-drift linear infinite;
+}
+@keyframes pearl-drift {
+  0%   { transform: translateY(0) scale(1); }
+  50%  { transform: translateY(-10px) scale(1.04); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+.sp-hero__info {
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: clamp(80px,10vh,140px) clamp(32px,5vw,80px) clamp(48px,7vw,80px);
+  position: relative; z-index: 2;
+}
+.sp-hero__bg-text {
+  position: absolute; bottom: -0.1em; left: 0; right: 0;
+  font-family: var(--display); font-size: clamp(80px,14vw,200px);
+  font-weight: 200; color: rgba(201,169,110,.04); white-space: nowrap;
+  overflow: hidden; pointer-events: none; z-index: 0; line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.sp-eyebrow {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 20px; position: relative; z-index: 1;
+}
+.sp-eyebrow__brand {
+  font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: #c9a96e;
+}
+.sp-eyebrow__sep { width: 32px; height: 1px; background: rgba(201,169,110,.3); }
+.sp-eyebrow__cat {
+  font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(228,221,212,.4);
+}
+
+.sp-hero__name {
+  font-family: var(--display); font-weight: 200; font-style: italic;
+  font-size: clamp(32px,5.5vw,72px); line-height: 1.05;
+  color: #e4ddd4; margin-bottom: 16px; position: relative; z-index: 1;
+}
+.sp-hero__claim {
+  font-family: var(--serif); font-size: clamp(17px,1.4vw,19px); line-height: 1.75;
+  color: rgba(228,221,212,.6); max-width: 44ch; margin-bottom: 28px;
+  position: relative; z-index: 1;
+}
+
+.sp-hero__cosmoprof {
+  display: inline-flex; align-items: center; gap: 10px;
+  border: 1px solid rgba(201,169,110,.35); border-radius: 4px;
+  padding: 8px 16px; margin-bottom: 28px;
+  font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: #c9a96e;
+  position: relative; z-index: 1; width: fit-content;
+}
+.sp-hero__cosmoprof svg { width: 14px; height: 14px; fill: #c9a96e; flex-shrink: 0; }
+
+.sp-specs {
+  display: flex; flex-wrap: wrap; gap: 20px 32px;
+  position: relative; z-index: 1;
+}
+.sp-spec { display: flex; flex-direction: column; gap: 3px; }
+.sp-spec__label {
+  font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(228,221,212,.35);
+}
+.sp-spec__val { font-family: var(--serif); font-size: 17px; color: #c9a96e; }
+
+/* ── PHOTOS ────────────────────────────────────────────────── */
+.sp-photos {
+  padding: clamp(60px,8vw,100px) 0;
+  background: #0a0a0a;
+}
+.sp-photos .container { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 2px; }
+@media (max-width: 700px) { .sp-photos .container { grid-template-columns: 1fr; } }
+
+.sp-photo {
+  aspect-ratio: 4/5;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px dashed rgba(201,169,110,.12); position: relative; overflow: hidden;
+}
+.sp-photo:first-child { aspect-ratio: 3/4; }
+.sp-photo span {
+  font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(201,169,110,.2); text-align: center; padding: 0 20px;
+}
+
+/* ── PEARL TECH ───────────────────────────────────────────── */
+.sp-pearl {
+  padding: clamp(80px,10vw,120px) 0;
+  background: #060606;
+}
+.sp-pearl .container {
+  display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px,6vw,100px);
+  align-items: start;
+}
+@media (max-width: 860px) { .sp-pearl .container { grid-template-columns: 1fr; } }
+
+.sp-pearl__label {
+  font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(201,169,110,.5); margin-bottom: 16px; display: block;
+}
+.sp-pearl__title {
+  font-family: var(--display); font-weight: 200; font-style: italic;
+  font-size: clamp(28px,4vw,52px); line-height: 1.1; color: #e4ddd4; margin-bottom: 20px;
+}
+.sp-pearl__desc {
+  font-family: var(--serif); font-size: 17px; line-height: 1.75; color: rgba(228,221,212,.6); margin-bottom: 32px;
+}
+.sp-pearl__steps { display: flex; flex-direction: column; gap: 16px; }
+.sp-pearl__step {
+  display: flex; gap: 16px; align-items: flex-start;
+}
+.sp-pearl__step-n {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 1px solid rgba(201,169,110,.3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; color: #c9a96e; flex-shrink: 0; font-weight: 500;
+}
+.sp-pearl__step-text { font-family: var(--serif); font-size: 17px; line-height: 1.65; color: rgba(228,221,212,.65); padding-top: 4px; }
+
+/* SVG diagram side */
+.sp-pearl__diagram {
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.sp-pearl__diagram svg { width: 100%; max-width: 400px; }
+
+/* ── ACTIVES ───────────────────────────────────────────────── */
+.sp-actives {
+  padding: clamp(80px,10vw,120px) 0;
+  background: #080808;
+}
+.sp-actives__header {
+  display: flex; align-items: baseline; gap: 24px; margin-bottom: 48px;
+}
+.sp-actives__title {
+  font-family: var(--display); font-weight: 200; font-style: italic;
+  font-size: clamp(28px,4vw,48px); color: #e4ddd4;
+}
+.sp-actives__sub {
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(201,169,110,.4);
+}
+
+.sp-active-row {
+  border-top: 1px solid rgba(228,221,212,.06);
+  cursor: pointer;
+  transition: background .2s;
+}
+.sp-active-row:last-child { border-bottom: 1px solid rgba(228,221,212,.06); }
+.sp-active-row:hover { background: rgba(201,169,110,.03); }
+
+.sp-active-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 24px 0; gap: 20px;
+}
+.sp-active-head__left { display: flex; align-items: center; gap: 20px; }
+.sp-active-head__n {
+  font-family: var(--display); font-size: clamp(32px,4vw,52px);
+  font-weight: 200; color: rgba(201,169,110,.15);
+  min-width: 2ch; line-height: 1;
+}
+.sp-active-head__name {
+  font-family: var(--serif); font-size: clamp(16px,2.2vw,24px);
+  font-weight: 400; color: #e4ddd4;
+}
+.sp-active-head__tag {
+  font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(201,169,110,.5); display: block; margin-top: 4px;
+}
+.sp-active-head__arrow {
+  width: 28px; height: 28px; border: 1px solid rgba(201,169,110,.2); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: transform .3s, border-color .2s;
+  color: rgba(201,169,110,.6); font-size: 12px;
+}
+.sp-active-row.open .sp-active-head__arrow { transform: rotate(45deg); border-color: rgba(201,169,110,.5); }
+
+.sp-active-body {
+  display: none; padding: 0 0 36px clamp(52px,6vw,90px);
+}
+.sp-active-row.open .sp-active-body { display: block; }
+
+.sp-active-body__grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px 48px;
+  margin-bottom: 28px;
+}
+@media (max-width: 700px) { .sp-active-body__grid { grid-template-columns: 1fr; } }
+
+.sp-active-body__section-label {
+  font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(201,169,110,.4); margin-bottom: 10px; display: block;
+}
+.sp-active-body__text {
+  font-family: var(--serif); font-size: 16px; line-height: 1.7; color: rgba(228,221,212,.65);
+}
+.sp-active-body__claims {
+  display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px;
+}
+.sp-active-body__claim {
+  border: 1px solid rgba(201,169,110,.2); border-radius: 100px;
+  padding: 6px 16px;
+  font-size: 11px; color: #c9a96e; white-space: nowrap;
+}
+
+/* ── PEARL EFFICACY STRIP (benefit visivi integrati) ──────── */
+.sp-pearl__efficacy {
+  margin-top: clamp(48px,6vw,80px);
+  padding-top: clamp(36px,4vw,56px);
+  border-top: 1px solid rgba(201,169,110,.1);
+  grid-column: 1 / -1;
+}
+.sp-pearl__efficacy-label {
+  font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(201,169,110,.4); margin-bottom: clamp(28px,3vw,40px); display: block;
+}
+.sp-pearl__efficacy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1px;
+}
+.sp-efficacy-card {
+  padding: clamp(24px,3vw,36px) clamp(20px,2.5vw,32px);
+  border-left: 1px solid rgba(201,169,110,.07);
+  position: relative;
+  transition: background .25s;
+}
+.sp-efficacy-card:first-child { border-left: 0; }
+.sp-efficacy-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(to right, rgba(201,169,110,.4), transparent);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .35s var(--ease);
+}
+.sp-efficacy-card:hover { background: rgba(201,169,110,.03); }
+.sp-efficacy-card:hover::before { transform: scaleX(1); }
+.sp-efficacy-card__num {
+  font-family: var(--display); font-weight: 200;
+  font-size: clamp(36px,5vw,64px); line-height: 1;
+  color: #c9a96e; letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+.sp-efficacy-card__title {
+  font-family: var(--display); font-weight: 300;
+  font-size: clamp(15px,1.6vw,18px); color: #e4ddd4;
+  margin-bottom: 10px; line-height: 1.25;
+}
+.sp-efficacy-card__text {
+  font-family: var(--serif); font-size: 15px; line-height: 1.7;
+  color: rgba(228,221,212,.45);
+}
+@media (max-width: 700px) {
+  .sp-pearl__efficacy-grid { grid-template-columns: 1fr 1fr; }
+  .sp-efficacy-card:nth-child(odd) { border-left: 0; }
+}
+
+/* ── FORMULA / INCI ───────────────────────────────────────── */
+.sp-formula {
+  padding: clamp(40px,5vw,64px) 0;
+  background: #040404;
+  border-top: 1px solid rgba(201,169,110,.08);
+}
+.sp-inci-toggle {
+  background: none; border: 1px solid rgba(201,169,110,.2); border-radius: 4px;
+  padding: 10px 20px; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(201,169,110,.5); cursor: pointer; transition: all .2s;
+}
+.sp-inci-toggle:hover { color: #c9a96e; border-color: rgba(201,169,110,.4); }
+.sp-inci-body {
+  display: none; margin-top: 20px;
+  font-family: var(--serif); font-size: 14px; line-height: 1.95; color: rgba(228,221,212,.35);
+}
+
+/* ── B2B TABLE ────────────────────────────────────────────── */
+.sp-b2b {
+  padding: clamp(80px,10vw,120px) 0;
+  background: #0a0a0a;
+  border-top: 1px solid rgba(201,169,110,.08);
+}
+.sp-b2b__label {
+  font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(201,169,110,.4); margin-bottom: 12px; display: block;
+}
+.sp-b2b__title {
+  font-family: var(--display); font-weight: 200; font-style: italic;
+  font-size: clamp(26px,3.5vw,44px); color: #e4ddd4; margin-bottom: 40px;
+}
+.sp-b2b__table { width: 100%; border-collapse: collapse; }
+.sp-b2b__table tr { border-bottom: 1px solid rgba(228,221,212,.06); }
+.sp-b2b__table tr:first-child { border-top: 1px solid rgba(228,221,212,.06); }
+.sp-b2b__table td {
+  padding: 16px 0;
+  font-family: var(--serif); font-size: 14px;
+}
+.sp-b2b__table td:first-child {
+  width: 40%; font-family: var(--sans); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(228,221,212,.3); padding-right: 24px;
+}
+.sp-b2b__table td:last-child { color: rgba(228,221,212,.8); }
+.sp-b2b__cta {
+  display: flex; gap: 16px; margin-top: 40px; flex-wrap: wrap;
+}
+.sp-b2b__btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 28px; border-radius: 4px;
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  text-decoration: none; transition: all .2s; cursor: pointer; border: none;
+}
+.sp-b2b__btn--gold { background: #c9a96e; color: #060606; font-weight: 600; }
+.sp-b2b__btn--gold:hover { background: #d4b87c; }
+.sp-b2b__btn--ghost { background: transparent; border: 1px solid rgba(201,169,110,.3); color: rgba(201,169,110,.7); }
+.sp-b2b__btn--ghost:hover { border-color: #c9a96e; color: #c9a96e; }
+
+/* ── COSMOPROF BADGE ──────────────────────────────────────── */
+.sp-cosmoprof-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid #c9a96e; border-radius: 4px;
+  padding: 6px 14px; background: rgba(201,169,110,.08);
+  font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #c9a96e;
+}
+
+/* ── LIFESTYLE EDITORIAL BAND ──────────────────────────── */
+.sp-lifestyle {
+  position: relative;
+  min-height: 68vh;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  border-top: 1px solid rgba(201,169,110,.04);
+}
+.sp-lifestyle__photo {
+  position: absolute; inset: 0;
+  background: #08090e;
+  transition: transform 1.4s cubic-bezier(.22,.61,.36,1);
+  /* SOSTITUIRE: background-image: url('../uploads/sphea-slides/slide-XX.jpg'); background-size: cover; background-position: center; */
+}
+.sp-lifestyle:hover .sp-lifestyle__photo { transform: scale(1.03); }
+.sp-lifestyle__photo-hint {
+  position: absolute; inset: 0; z-index: 1;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px dashed rgba(201,169,110,.08);
+}
+.sp-lifestyle__photo-hint span {
+  font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(201,169,110,.15); text-align: center; line-height: 2;
+}
+.sp-lifestyle__overlay {
+  position: absolute; inset: 0; z-index: 2;
+  background: linear-gradient(to top, rgba(6,6,6,.95) 0%, rgba(6,6,6,.25) 60%, transparent 100%);
+}
+.sp-lifestyle__content {
+  position: relative; z-index: 3;
+  padding: clamp(48px,8vw,100px) clamp(20px,4vw,60px);
+  max-width: 1320px; margin: 0 auto; width: 100%;
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; flex-wrap: wrap;
+}
+.sp-lifestyle__quote {
+  font-family: var(--display); font-weight: 200; font-style: italic;
+  font-size: clamp(26px,4.5vw,62px); line-height: 1.1;
+  color: #e4ddd4; max-width: 22ch;
+  letter-spacing: -0.02em;
+}
+.sp-lifestyle__quote em { color: var(--gold); font-style: italic; }
+.sp-lifestyle__meta {
+  display: flex; flex-direction: column; gap: 8px;
+  padding-left: 24px; border-left: 1px solid rgba(201,169,110,.15);
+  min-width: 160px;
+}
+.sp-lifestyle__meta-line {
+  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(228,221,212,.35); line-height: 1.8;
+}
+.sp-lifestyle__meta-line strong { color: rgba(228,221,212,.6); font-weight: 400; }
+@media (max-width: 700px) { .sp-lifestyle__meta { display: none; } }
+
+/* ── CLINICAL RESULTS ──────────────────────────────────── */
+.sp-results {
+  padding: clamp(80px,10vw,120px) 0;
+  background: #050508;
+  border-top: 1px solid rgba(201,169,110,.04);
+}
+.sp-results__header {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 24px;
+  margin-bottom: 56px; flex-wrap: wrap;
+}
+.sp-results__label {
+  font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(201,169,110,.4); margin-bottom: 10px; display: block;
+}
+.sp-results__title {
+  font-family: var(--display); font-weight: 200; font-style: italic;
+  font-size: clamp(28px,4vw,48px); color: #e4ddd4;
+}
+.sp-results__disclaimer {
+  font-size: 10px; color: rgba(228,221,212,.25); letter-spacing: 0.08em;
+  max-width: 32ch; text-align: right;
+}
+@media (max-width: 700px) { .sp-results__disclaimer { text-align: left; } }
+
+.sp-results__panels {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+}
+@media (max-width: 700px) { .sp-results__panels { grid-template-columns: 1fr; } }
+
+.sp-result-panel {
+  position: relative; background: #080810;
+  overflow: hidden;
+}
+.sp-result-panel__photo {
+  aspect-ratio: 4/5;
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px dashed rgba(201,169,110,.1);
+  /* SOSTITUIRE: aggiungere background-image + background-size: cover */
+}
+.sp-result-panel__photo-hint {
+  font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(201,169,110,.18); text-align: center; padding: 0 20px; line-height: 2;
+}
+.sp-result-panel__badge {
+  position: absolute; top: 20px; left: 20px;
+  background: rgba(6,6,6,.85); border: 1px solid rgba(201,169,110,.25);
+  padding: 6px 14px; border-radius: 3px;
+  font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: #c9a96e;
+}
+.sp-result-panel__info {
+  padding: 28px 24px 32px;
+  border-top: 1px solid rgba(201,169,110,.06);
+}
+.sp-result-panel__tag {
+  font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(201,169,110,.4); margin-bottom: 12px; display: block;
+}
+.sp-result-panel__stat {
+  font-family: var(--display); font-weight: 200;
+  font-size: clamp(36px,5vw,60px); color: #c9a96e; line-height: 1; margin-bottom: 6px;
+}
+.sp-result-panel__desc {
+  font-family: var(--serif); font-size: 16px; line-height: 1.7;
+  color: rgba(228,221,212,.55);
+}
+.sp-result-panel__source {
+  margin-top: 12px; font-size: 9px; letter-spacing: 0.12em;
+  color: rgba(228,221,212,.2); text-transform: uppercase;
+}
+
+/* ── RELATED — film strip ─────────────────────────────── */
+.sp-related {
+  padding: clamp(60px,8vw,100px) 0 0;
+  background: #060606;
+  border-top: 1px solid rgba(201,169,110,.08);
+  overflow: hidden;
+}
+.sp-related__head {
+  padding: 0 clamp(20px,4vw,60px) clamp(32px,4vw,48px);
+  display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+}
+.sp-related__label {
+  font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(201,169,110,.3); margin-bottom: 10px; display: block;
+}
+.sp-related__title {
+  font-family: var(--display); font-weight: 200; font-style: italic;
+  font-size: clamp(22px,3vw,38px); color: rgba(228,221,212,.7);
+}
+.sp-related__strip {
+  display: flex; overflow-x: auto; gap: 2px;
+  scrollbar-width: none; -ms-overflow-style: none;
+  padding-bottom: 2px;
+  scroll-snap-type: x mandatory;
+}
+.sp-related__strip::-webkit-scrollbar { display: none; }
+.sp-rcard {
+  flex: 0 0 clamp(220px,28vw,340px);
+  background: rgba(201,169,110,.03); border: 1px solid rgba(201,169,110,.07);
+  text-decoration: none; display: block;
+  transition: background .2s, border-color .2s;
+  scroll-snap-align: start;
+}
+.sp-rcard:hover { background: rgba(201,169,110,.07); border-color: rgba(201,169,110,.2); }
+.sp-rcard__visual {
+  aspect-ratio: 3/4;
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  border-bottom: 1px solid rgba(201,169,110,.07);
+  /* placeholder bg */
+  background: #0a0a12;
+}
+.sp-rcard__visual-hint {
+  font-size: 8px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(201,169,110,.15); text-align: center; padding: 0 16px;
+}
+.sp-rcard__body { padding: 24px 20px 28px; }
+.sp-rcard__cat { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(201,169,110,.4); margin-bottom: 8px; }
+.sp-rcard__name { font-family: var(--serif); font-size: 18px; color: #e4ddd4; line-height: 1.3; margin-bottom: 8px; }
+.sp-rcard__active { font-size: 11px; color: rgba(201,169,110,.6); }
+</style>
+<meta name="description" content="Scheda prodotto Sphea: composizione, attivi, modalità d'uso e benefici."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://athenas.it/linee/prodotto-sphea.html"/>
+<meta property="og:type" content="website"/>
+<meta property="og:locale" content="it_IT"/>
+<meta property="og:locale:alternate" content="en_GB"/>
+<meta property="og:site_name" content="Athena's"/>
+<meta property="og:url" content="https://athenas.it/linee/prodotto-sphea.html"/>
+<meta property="og:title" content="Sphea — Scheda prodotto · Athena's"/>
+<meta property="og:description" content="Scheda prodotto Sphea: composizione, attivi, modalità d'uso e benefici."/>
+<meta property="og:image" content="https://athenas.it/../immagini/og/sphea.jpg"/>
+<meta property="og:image:alt" content="Sphea — Scheda prodotto · Athena's"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Sphea — Scheda prodotto · Athena's"/>
+<meta name="twitter:description" content="Scheda prodotto Sphea: composizione, attivi, modalità d'uso e benefici."/>
+<meta name="twitter:image" content="https://athenas.it/../immagini/og/sphea.jpg"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://athenas.it/" },
+    { "@type": "ListItem", "position": 2, "name": "Linee", "item": "https://athenas.it/linee.html" },
+    { "@type": "ListItem", "position": 3, "name": "Sphea", "item": "https://athenas.it/linee/sphea.html" },
+    { "@type": "ListItem", "position": 4, "name": "Scheda prodotto", "item": "https://athenas.it/linee/prodotto-sphea.html" }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- ────────────────────────────── HERO ─────────────────────────────────── -->
+<section class="sp-hero" id="hero">
+  <!-- visual left -->
+  <div class="sp-hero__visual" id="heroVisual">
+    <div class="sp-hero__bg" id="heroBg"></div>
+    <div class="sp-hero__photo-placeholder">
+      <!-- SOSTITUIRE: foto prodotto principale su sfondo coerente con il siero -->
+      <span>Fotografia prodotto<br>60 × 90 cm · RAW</span>
+    </div>
+  </div>
+  <!-- info right -->
+  <div class="sp-hero__info">
+    <div class="sp-hero__bg-text" id="heroBgText">SPHEA</div>
+    <nav class="sp-breadcrumb">
+      <a href="../linee.html">Linee</a>
+      <span class="sp-breadcrumb__sep">›</span>
+      <a href="sphea.html">Sphea</a>
+      <span class="sp-breadcrumb__sep">›</span>
+      <span class="sp-breadcrumb__current" id="bcProduct">—</span>
+    </nav>
+    <div class="sp-eyebrow">
+      <span class="sp-eyebrow__brand">Sphea</span>
+      <span class="sp-eyebrow__sep"></span>
+      <span class="sp-eyebrow__cat" id="eyebrowCat">Siero</span>
+    </div>
+    <h1 class="sp-hero__name" id="heroName">Loading…</h1>
+    <p class="sp-hero__claim" id="heroClaim"></p>
+    <div id="cosmoprofBadge" style="display:none; margin-bottom:28px;">
+      <span class="sp-cosmoprof-badge">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+        Finalista Cosmoprof Awards 2026
+      </span>
+    </div>
+    <div class="sp-specs">
+      <div class="sp-spec">
+        <span class="sp-spec__label">Formato</span>
+        <span class="sp-spec__val" id="specFormat">—</span>
+      </div>
+      <div class="sp-spec">
+        <span class="sp-spec__label">Tecnologia</span>
+        <span class="sp-spec__val">Pearl Biopolymer</span>
+      </div>
+      <div class="sp-spec">
+        <span class="sp-spec__label">Zona</span>
+        <span class="sp-spec__val" id="specZone">—</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────── PHOTOS ────────────────────────────────── -->
+<section class="sp-photos">
+  <div class="container">
+    <div class="sp-photo"><!-- SOSTITUIRE: shot editoriale ambientato --><span>Editoriale · 1200×1600</span></div>
+    <div class="sp-photo"><!-- SOSTITUIRE: texture / macro ingrediente --><span>Macro · 800×1000</span></div>
+    <div class="sp-photo"><!-- SOSTITUIRE: gesto applicazione --><span>Gesto · 800×1000</span></div>
+  </div>
+</section>
+
+<!-- ──────────────────── LIFESTYLE EDITORIAL ───────────────────────────── -->
+<section class="sp-lifestyle" data-reveal>
+  <div class="sp-lifestyle__photo">
+    <!-- SOSTITUIRE: background-image: url('../uploads/sphea-slides/slide-XX.jpg'); background-size: cover; background-position: center; -->
+    <!-- Suggerito: slide editoriale ambientata, donna che applica il siero, luce morbida laterale -->
+  </div>
+  <div class="sp-lifestyle__photo-hint">
+    <span data-it="Foto lifestyle — applicazione siero" data-en="Lifestyle photo — serum application">FOTO LIFESTYLE<br>applicazione prodotto · formato verticale</span>
+  </div>
+  <div class="sp-lifestyle__overlay"></div>
+  <div class="sp-lifestyle__content">
+    <p class="sp-lifestyle__quote" id="lifestyleQuote" data-it="La pelle che <em>respira</em> di nuovo" data-en="Skin that <em>breathes</em> again">La pelle che <em>respira</em> di nuovo</p>
+    <div class="sp-lifestyle__meta" id="lifestyleMeta">
+      <div class="sp-lifestyle__meta-line"><strong data-it="Doppio beneficio" data-en="Double benefit">Doppio beneficio</strong></div>
+      <div class="sp-lifestyle__meta-line" data-it="Serum + perle in un solo gesto" data-en="Serum + pearls in a single gesture">Serum + perle in un solo gesto</div>
+      <div class="sp-lifestyle__meta-line" data-it="Tecnologia esclusiva Sphea" data-en="Exclusive Sphea technology">Tecnologia esclusiva Sphea</div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────── PEARL TECH ──────────────────────────────── -->
+<section class="sp-pearl">
+  <div class="container">
+    <div>
+      <span class="sp-pearl__label">Tecnologia esclusiva Sphea</span>
+      <h2 class="sp-pearl__title">Pearl Biopolymer<br>Delivery System</h2>
+      <p class="sp-pearl__desc">Le perle di biopolimeri marini incapsulano il principio attivo in uno strato protettivo naturale. A contatto con la pelle, la pressione del massaggio rompe la capsula e rilascia l'attivo puro, fresco, intatto — con biodisponibilità massima e zero degradazione ossidativa.</p>
+      <div class="sp-pearl__steps">
+        <div class="sp-pearl__step">
+          <div class="sp-pearl__step-n">1</div>
+          <p class="sp-pearl__step-text"><strong style="color:#c9a96e">Incapsulamento</strong> — L'attivo viene inserito nella perla durante la produzione, a temperatura controllata e senza solventi.</p>
+        </div>
+        <div class="sp-pearl__step">
+          <div class="sp-pearl__step-n">2</div>
+          <p class="sp-pearl__step-text"><strong style="color:#c9a96e">Protezione fino all'uso</strong> — La capsula di biopolimero marino mantiene l'attivo stabile per tutta la shelf life del prodotto.</p>
+        </div>
+        <div class="sp-pearl__step">
+          <div class="sp-pearl__step-n">3</div>
+          <p class="sp-pearl__step-text"><strong style="color:#c9a96e">Rilascio per pressione</strong> — Il massaggio rompe la perla e libera istantaneamente l'attivo sulla cute, nella concentrazione ottimale.</p>
+        </div>
+        <div class="sp-pearl__step">
+          <div class="sp-pearl__step-n">4</div>
+          <p class="sp-pearl__step-text"><strong style="color:#c9a96e">Assorbimento immediato</strong> — L'attivo libero penetra lo strato corneo senza la barriera della capsulazione, con efficacia superiore agli emulsionati tradizionali.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sp-pearl__diagram">
+      <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- outer ring -->
+        <circle cx="200" cy="200" r="175" stroke="rgba(201,169,110,.08)" stroke-width="1"/>
+        <circle cx="200" cy="200" r="130" stroke="rgba(201,169,110,.12)" stroke-width="1"/>
+        <circle cx="200" cy="200" r="80"  stroke="rgba(201,169,110,.2)"  stroke-width="1.5"/>
+        <!-- core pearl -->
+        <circle cx="200" cy="200" r="48"
+          fill="url(#pg1)"
+          filter="url(#blur1)"/>
+        <defs>
+          <radialGradient id="pg1" cx="35%" cy="35%">
+            <stop offset="0%" stop-color="#d4b87c" stop-opacity=".8"/>
+            <stop offset="60%" stop-color="#7a5830" stop-opacity=".5"/>
+            <stop offset="100%" stop-color="#1a1208" stop-opacity=".9"/>
+          </radialGradient>
+          <filter id="blur1"><feGaussianBlur stdDeviation="2"/></filter>
+        </defs>
+        <!-- orbiting small pearls -->
+        <circle cx="200" cy="68"  r="10" fill="url(#pg1)" opacity=".7"/>
+        <circle cx="316" cy="148" r="7"  fill="url(#pg1)" opacity=".6"/>
+        <circle cx="316" cy="252" r="12" fill="url(#pg1)" opacity=".8"/>
+        <circle cx="200" cy="332" r="8"  fill="url(#pg1)" opacity=".6"/>
+        <circle cx="84"  cy="252" r="10" fill="url(#pg1)" opacity=".7"/>
+        <circle cx="84"  cy="148" r="6"  fill="url(#pg1)" opacity=".5"/>
+        <!-- lines -->
+        <line x1="200" y1="152" x2="200" y2="78"  stroke="rgba(201,169,110,.2)" stroke-width="1" stroke-dasharray="3 4"/>
+        <line x1="241" y1="168" x2="308" y2="151" stroke="rgba(201,169,110,.2)" stroke-width="1" stroke-dasharray="3 4"/>
+        <line x1="241" y1="233" x2="307" y2="250" stroke="rgba(201,169,110,.2)" stroke-width="1" stroke-dasharray="3 4"/>
+        <line x1="200" y1="248" x2="200" y2="322" stroke="rgba(201,169,110,.2)" stroke-width="1" stroke-dasharray="3 4"/>
+        <line x1="159" y1="233" x2="93"  y2="250" stroke="rgba(201,169,110,.2)" stroke-width="1" stroke-dasharray="3 4"/>
+        <line x1="159" y1="168" x2="93"  y2="151" stroke="rgba(201,169,110,.2)" stroke-width="1" stroke-dasharray="3 4"/>
+        <!-- center label -->
+        <text x="200" y="195" text-anchor="middle" fill="rgba(201,169,110,.6)" font-size="9" font-family="Inter" letter-spacing="2">ATTIVO</text>
+        <text x="200" y="210" text-anchor="middle" fill="rgba(201,169,110,.4)" font-size="8" font-family="Inter" letter-spacing="1">PURO</text>
+      </svg>
+    </div>
+    <div class="sp-pearl__efficacy" id="pearlEfficacy" style="display:none">
+      <span class="sp-pearl__efficacy-label" data-it="Efficacia clinica documentata" data-en="Documented clinical efficacy">Efficacia clinica documentata</span>
+      <div class="sp-pearl__efficacy-grid" id="efficacyGrid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ────────────────────────── ACTIVES ───────────────────────────────── -->
+<section class="sp-actives" id="activesSection">
+  <div class="container">
+    <div class="sp-actives__header">
+      <h2 class="sp-actives__title" id="activesTitle">Attivi</h2>
+      <span class="sp-actives__sub" id="activesCount"></span>
+    </div>
+    <div id="activesContainer"></div>
+  </div>
+</section>
+
+<!-- ─────────────────────── CLINICAL RESULTS ────────────────────────────── -->
+<section class="sp-results" data-reveal>
+  <div class="container">
+    <div class="sp-results__header">
+      <div>
+        <span class="sp-results__label" data-it="Studi clinici" data-en="Clinical studies">Studi clinici</span>
+        <h2 class="sp-results__title" data-it="I risultati parlano" data-en="Results speak">I risultati parlano</h2>
+      </div>
+      <p class="sp-results__disclaimer" data-it="Studi in vivo e in vitro condotti dal fornitore degli ingredienti brevettati." data-en="In vivo and in vitro studies conducted by the supplier of patented ingredients.">Studi in vivo e in vitro condotti dal fornitore degli ingredienti brevettati.</p>
+    </div>
+    <div class="sp-results__panels">
+      <!-- Panel 1: prima/dopo clinico -->
+      <div class="sp-result-panel">
+        <div class="sp-result-panel__photo">
+          <!-- SOSTITUIRE: foto before/after clinica — suggerita slide 05/07/09/11/13 a seconda del prodotto -->
+          <span class="sp-result-panel__photo-hint" data-it="Before / After — foto clinica" data-en="Before / After — clinical photo">BEFORE / AFTER<br>foto clinica · 800×1000</span>
+          <div class="sp-result-panel__badge" data-it="Prima" data-en="Before">Prima</div>
+        </div>
+        <div class="sp-result-panel__info">
+          <span class="sp-result-panel__tag" data-it="Baseline — T0" data-en="Baseline — T0">Baseline — T0</span>
+          <div class="sp-result-panel__stat" id="resultStat1">—</div>
+          <p class="sp-result-panel__desc" id="resultDesc1" data-it="Condizione cutanea al momento T0, prima del trattamento." data-en="Skin condition at T0, before treatment.">Condizione cutanea al momento T0, prima del trattamento.</p>
+          <p class="sp-result-panel__source" data-it="Fonte: studio in vivo — fornitore brevetto" data-en="Source: in vivo study — patent supplier">Fonte: studio in vivo — fornitore brevetto</p>
+        </div>
+      </div>
+      <!-- Panel 2: dopo clinico con risultato -->
+      <div class="sp-result-panel">
+        <div class="sp-result-panel__photo">
+          <!-- SOSTITUIRE: foto after clinica — stesso soggetto, stesso angolo -->
+          <span class="sp-result-panel__photo-hint" data-it="After — risultato misurabile" data-en="After — measurable result">AFTER<br>risultato misurabile · 800×1000</span>
+          <div class="sp-result-panel__badge" data-it="Dopo 4 settimane" data-en="After 4 weeks">Dopo 4 settimane</div>
+        </div>
+        <div class="sp-result-panel__info">
+          <span class="sp-result-panel__tag" data-it="Risultato — T28" data-en="Result — T28">Risultato — T28</span>
+          <div class="sp-result-panel__stat" id="resultStat2">—</div>
+          <p class="sp-result-panel__desc" id="resultDesc2" data-it="Miglioramento misurabile documentato nello studio clinico." data-en="Measurable improvement documented in the clinical study.">Miglioramento misurabile documentato nello studio clinico.</p>
+          <p class="sp-result-panel__source" data-it="Fonte: studio in vivo — fornitore brevetto" data-en="Source: in vivo study — patent supplier">Fonte: studio in vivo — fornitore brevetto</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ────────────────────────── FORMULA / INCI ────────────────────────── -->
+<section class="sp-formula">
+  <div class="container">
+    <button class="sp-inci-toggle" id="inciToggle" data-it="Composizione INCI completa +" data-en="Full INCI composition +">Composizione INCI completa +</button>
+    <div class="sp-inci-body" id="inciBody"></div>
+  </div>
+</section>
+
+<!-- ─────────────────────────── B2B TABLE ────────────────────────────── -->
+<section class="sp-b2b">
+  <div class="container">
+    <span class="sp-b2b__label" data-it="Informazioni commerciali" data-en="Commercial information">Informazioni commerciali</span>
+    <h2 class="sp-b2b__title" data-it="Scheda B2B" data-en="B2B Dossier">Scheda B2B</h2>
+    <table class="sp-b2b__table" id="b2bTable"></table>
+    <div class="sp-b2b__cta">
+      <a href="../contatti.html?subject=sphea-samples" class="sp-b2b__btn sp-b2b__btn--gold" data-it="Richiedi campioni &rarr;" data-en="Request samples &rarr;">Richiedi campioni &rarr;</a>
+      <a href="mailto:info@athenas.it" class="sp-b2b__btn sp-b2b__btn--ghost" data-it="Contatta l'area commerciale" data-en="Contact the sales team">Contatta l'area commerciale</a>
+    </div>
+    <p style="margin-top:24px; font-family:var(--serif); font-size:13px; color:rgba(228,221,212,.3); letter-spacing:0.04em;" data-it="Sphea &egrave; anche disponibile su Amazon (rivenditore autorizzato)." data-en="Sphea is also available on Amazon (authorized retailer).">Sphea &egrave; anche disponibile su Amazon (rivenditore autorizzato).</p>
+  </div>
+</section>
+
+<!-- ─────────────────────────── RELATED ──────────────────────────────── -->
+<section class="sp-related" data-reveal>
+  <div class="sp-related__head">
+    <div>
+      <span class="sp-related__label" data-it="Gamma Sphea" data-en="Sphea range">Gamma Sphea</span>
+      <h2 class="sp-related__title" data-it="Gli altri sieri" data-en="The other serums">Gli altri sieri</h2>
+    </div>
+  </div>
+  <div class="sp-related__strip" id="relatedGrid"></div>
+</section>
+
+<script src="../assets/vendor/lenis.min.js" defer></script><script src="../assets/data.js"></script>
+<script src="../assets/search-data.js" defer></script>
+<script src="../assets/app.js?v=6"></script>
+<script>
+/* ═══════════════════════════════════════════════════════════
+   SPHEA DATA
+═══════════════════════════════════════════════════════════ */
+const SPHEA_DATA = {
+
+  'anti-pollution': {
+    name: 'Anti Pollution Face Serum',
+    cat: 'Siero Viso · Anti-inquinamento',
+    claim: 'Scudo biologico contro smog, polveri sottili e stress ossidativo. La pelle respira di nuovo.',
+    format: '30 ml',
+    zone: 'Viso · Collo',
+    cosmoprof: false,
+    heroBg: 'linear-gradient(145deg, #0a0806 0%, #141008 50%, #0a0806 100%)',
+    heroGlow: 'radial-gradient(ellipse at 30% 50%, rgba(201,169,110,.12) 0%, transparent 60%)',
+    bottleColor: '#2a2010',
+    actives: ['ectoin'],
+    benefits: [
+      { icon: '◎', title: '-48% danno da smog', text: 'Testato in vitro: riduzione del 48% dei danni cellulari da particolato PM2.5 in 5 giorni di trattamento continuativo.' },
+      { icon: '◉', title: '100% protezione UV cellulare', text: 'Ectoin forma un film biologico che assorbe le radiazioni UV prima che raggiungano il DNA cellulare.' },
+      { icon: '◈', title: '+30% idratazione', text: 'Aumento misurabile dell\'idratazione cutanea dalla prima settimana grazie all\'effetto igroscopico dell\'Ectoin.' },
+      { icon: '○', title: 'Effetto barriera 24h', text: 'Un unico gesto mattutino crea uno scudo anti-stress che dura l\'intera giornata, anche in ambienti urbani ad alto traffico.' },
+    ],
+    steps: [
+      { title: 'Detergere', text: 'Pulire accuratamente il viso con detergente delicato. La pelle pulita massimizza la penetrazione dell\'Ectoin.' },
+      { title: 'Applicare', text: 'Distribuire 2-3 gocce sul viso e sul collo con movimenti circolari ascendenti.' },
+      { title: 'Massaggiare', text: 'Il calore delle dita rompe le perle di biopolimero. Sentirà un leggero cambiamento di texture: è l\'attivo che si libera.' },
+      { title: 'Completare', text: 'Applicare la crema idratante sopra, se necessario. Il siero Sphea si integra perfettamente in qualsiasi routine.' },
+    ],
+    formulaPills: ['Ectoin', 'Coenzima Q10 (Ubiquinone)', 'Niacinamide', '0% parabeni', '0% siliconi', '0% petrolchimici'],
+    inci: 'Aqua [Water], Betaine, Glycerin, Ectoin, Ubiquinone, Niacinamide, Chondrus crispus powder, Agar, Mica, Gellan gum, Citric acid, Tetrasodium glutamate diacetate, Parfum [Fragrance], Tromethamine, Synthetic fluorphlogopite, Butylene glycol, Polyacrylate crosspolymer-6, PEG-40 hydrogenated castor oil, 1,2-Hexanediol, Ethylhexylglycerin, Acrylates/C10-30 alkyl acrylate crosspolymer, Phenoxyethanol, CI 77891 [Titanium dioxide], CI 77289 [Chromium hydroxide green], CI 77007 [Ultramarines].',
+    b2b: [
+      ['Brand', 'Sphea by Athena\'s s.r.l.'],
+      ['Produttore', 'Athena\'s s.r.l. — Via del Lavoro 32, Pianoro (BO)'],
+      ['Formato', '30 ml'],
+      ['Codice prodotto', '<em class="missing">[da verificare]</em>'],
+      ['Tecnologia', 'Pearl Biopolymer Delivery System'],
+      ['Attivi principali', 'Ectoin · Coenzima Q10 · Niacinamide'],
+      ['Certificazioni', '<em class="missing">Made in Italy — altre certificazioni in attesa di verifica</em>'],
+      ['Lancio', '2025'],
+      ['MOQ', 'Su richiesta'],
+    ],
+  },
+
+  'radiant-up-lift': {
+    name: 'Radiant Up-Lift',
+    cat: 'Siero Viso · Lifting · Luminosità',
+    claim: 'Volumizza. Illumina. Ridefinisce i contorni. Il siero che fa dimenticare il filler.',
+    format: '30 ml',
+    zone: 'Viso · Contorno viso',
+    cosmoprof: false,
+    heroBg: 'linear-gradient(145deg, #0e0a02 0%, #1a1408 50%, #0e0a02 100%)',
+    heroGlow: 'radial-gradient(ellipse at 30% 50%, rgba(201,169,110,.18) 0%, transparent 60%)',
+    bottleColor: '#3a2a08',
+    actives: ['uplevity', 'vitamin-c'],
+    benefits: [
+      { icon: '◎', title: '+28% volume apparente', text: 'Uplevity stimola la produzione di collagene ed elastina: in 56 giorni il viso appare visibilmente più tonico e pieno.' },
+      { icon: '◉', title: 'Luminosità +45%', text: 'La Vitamina C liposomiale inibisce la tirosinasi, riducendo le macchie e aumentando la luminosità uniforme della carnagione.' },
+      { icon: '◈', title: 'Lifting contorno in 4 settimane', text: 'Il test clinico su 30 donne tra 40 e 60 anni: l\'87% ha rilevato un miglioramento del contorno del viso alla settimana 4.' },
+      { icon: '○', title: 'Plumping effetto immediato', text: 'Grazie al rilascio immediato dall\'Acido Ialuronico multimolecolare, l\'effetto rimpolpante è visibile fin dalla prima applicazione.' },
+    ],
+    steps: [
+      { title: 'Mattina', text: 'Applicare 3-4 gocce su viso pulito. Massaggiare partendo dal centro verso l\'esterno, poi dal mento verso le guance con movimenti lifting.' },
+      { title: 'Tecnica lifting', text: 'Sui zigomi: spingere verso l\'alto con il palmo aperto per 30 secondi. Sulla mascella: pizzicotti delicati dall\'orecchio verso il mento.' },
+      { title: 'Rilascio attivi', text: 'Il massaggio attiva il meccanismo pearl-burst: sentirà le perle che si sciolgono tra le dita. È il momento in cui Uplevity e Vitamina C entrano in azione.' },
+      { title: 'Routine serale', text: 'Consigliato anche la sera, prima dell\'olio o della crema notte. Il complesso Uplevity lavora attivamente durante il sonno.' },
+    ],
+    formulaPills: ['Uplevity® E-Lift Peptide', 'Vitamina C stabilizzata', 'Niacinamide', '0% parabeni', '0% siliconi'],
+    inci: 'Aqua [Water], Betaine, Glycerin, Niacinamide, Ascorbyl tetraisopalmitate, Tetrapeptide-1, Chondrus crispus powder, Gellan gum, Agar, Caprylyl glycol, Tetrasodium glutamate diacetate, Citric acid, Parfum [Fragrance], PEG-40 hydrogenated castor oil, 1,2-Hexanediol, Synthetic fluorphlogopite, Ethylhexylglycerin, Polyacrylate crosspolymer-6, Acrylates/C10-30 alkyl acrylate crosspolymer, Tromethamine, Butylene glycol, Phenoxyethanol, CI 77891 [Titanium dioxide], CI 77499 [Iron oxides].',
+    b2b: [
+      ['Brand', 'Sphea by Athena\'s s.r.l.'],
+      ['Produttore', 'Athena\'s s.r.l. — Via del Lavoro 32, Pianoro (BO)'],
+      ['Formato', '30 ml'],
+      ['Codice prodotto', '<em class="missing">[da verificare]</em>'],
+      ['Tecnologia', 'Pearl Biopolymer · Uplevity® Matrix'],
+      ['Attivi principali', 'Uplevity® E-Lift Peptide · Vitamina C stabilizzata · Niacinamide'],
+      ['Certificazioni', '<em class="missing">Made in Italy — altre certificazioni in attesa di verifica</em>'],
+      ['Lancio', '2025'],
+      ['MOQ', 'Su richiesta'],
+    ],
+  },
+
+  'eyelift-perfector': {
+    name: 'Eyelift Perfector',
+    cat: 'Siero Contorno Occhi · Lifting',
+    claim: 'Riduce le rughe espressive, tende le palpebre cadenti e cancella le borse. Occhi da 20 anni.',
+    format: '15 ml',
+    zone: 'Contorno occhi · Palpebre',
+    cosmoprof: false,
+    heroBg: 'linear-gradient(145deg, #08080e 0%, #10101a 50%, #08080e 100%)',
+    heroGlow: 'radial-gradient(ellipse at 30% 50%, rgba(120,110,201,.1) 0%, transparent 60%)',
+    bottleColor: '#20203a',
+    actives: ['argireline', 'uplevity'],
+    benefits: [
+      { icon: '◎', title: '-28% rughe occhi in 4 settimane', text: 'Argireline inibisce i neurotrasmettitori responsabili della contrazione muscolare: meno rughe espressive, senza ago.' },
+      { icon: '◉', title: 'Palpebra visibilmente più tesa', text: 'Uplevity stimola la produzione di collagene nella zona perioculare, zona particolarmente vulnerabile agli effetti dell\'invecchiamento.' },
+      { icon: '◈', title: '-50% gonfiore mattutino', text: 'Test clinico: riduzione misurabile del gonfiore palpebrale nelle prime 2 ore dalla mattina, già dalla seconda settimana.' },
+      { icon: '○', title: 'Idratazione 72h', text: 'Il complesso HA + biopolimero marino mantiene la pelle del contorno occhi idratata per 72 ore con una sola applicazione.' },
+    ],
+    steps: [
+      { title: 'Detergere', text: 'Rimuovere con cura il trucco degli occhi prima dell\'applicazione. Non strofinare.' },
+      { title: 'Dosare', text: 'Una goccia per occhio è sufficiente. Il siero è altamente concentrato: l\'economia fa parte della formula.' },
+      { title: 'Applicare', text: 'Con la punta dell\'anulare (il dito con la pressione più delicata), tamponare attorno all\'occhio partendo dall\'angolo interno.' },
+      { title: 'Pressione leggera', text: 'Una leggera pressione circolare sulla borsa e sulla palpebra attiva il rilascio pearl. Evitare il contatto diretto con l\'occhio.' },
+    ],
+    formulaPills: ['Argireline® Amplified Peptide', 'Uplevity® E-Lift Peptide', 'Resveratrolo', 'Olio di Lampone', 'Caffeina', '0% parabeni'],
+    inci: 'Aqua [Water], Glycerin, Betaine, Caffeine, Rubus idaeus (Raspberry) seed oil, Resveratrol, Niacinamide, Pullulan, Acetyl hexapeptide-8, Tetrapeptide-1, Chondrus crispus powder, Gellan gum, Agar, Caprylyl glycol, Citric acid, Tetrasodium glutamate diacetate, 1,2-Hexanediol, Synthetic fluorphlogopite, Hydrogenated castor oil, Polyacrylate crosspolymer-6, Ethylhexylglycerin, Acrylates/C10-30 alkyl acrylate crosspolymer, Tromethamine, Sodium benzoate, Phenoxyethanol, CI 77891 [Titanium dioxide], CI 73360 [Red 30], CI 77491 [Iron oxides].',
+    b2b: [
+      ['Brand', 'Sphea by Athena\'s s.r.l.'],
+      ['Produttore', 'Athena\'s s.r.l. — Via del Lavoro 32, Pianoro (BO)'],
+      ['Formato', 'Astuccio + flacone vetro + contagocce'],
+      ['EAN', '8002842151027'],
+      ['PAO', '6 mesi dopo apertura'],
+      ['Tecnologia', 'Pearl Biopolymer · Argireline® Matrix'],
+      ['Attivi principali', 'Argireline® Amplified Peptide · Uplevity® E-Lift Peptide · Resveratrolo · Caffeina'],
+      ['Certificazioni', 'Made in Italy · Test Oftalmologici'],
+      ['Lancio', '2025'],
+      ['MOQ', 'Su richiesta'],
+    ],
+  },
+
+  'sculpt-firm': {
+    name: 'Sculpt & Firm Body Serum',
+    cat: 'Siero Corpo · Tonificante · Rimodellante',
+    claim: 'Rassoda, definisce e rimodella. Il personal trainer in formato siero.',
+    format: '150 ml',
+    zone: 'Corpo · Addome · Braccia · Cosce',
+    cosmoprof: true,
+    heroBg: 'linear-gradient(145deg, #080a06 0%, #121a0a 50%, #080a06 100%)',
+    heroGlow: 'radial-gradient(ellipse at 30% 50%, rgba(120,201,110,.08) 0%, transparent 60%)',
+    bottleColor: '#1a2a10',
+    actives: ['actigym'],
+    benefits: [
+      { icon: '◎', title: '+22% tono muscolare apparente', text: 'Actigym simula la risposta biologica all\'esercizio fisico, attivando i meccanismi di tensione muscolare superficiale.' },
+      { icon: '◉', title: 'Pelle più soda in 28 giorni', text: 'Test clinico su 25 donne: il 92% ha rilevato un miglioramento della sodezza cutanea alla quarta settimana.' },
+      { icon: '◈', title: 'Riduzione lassità cutanea', text: 'Il biopolimero marino potenzia l\'azione rassodante creando un film tensore immediato che integra l\'effetto a lungo termine di Actigym.' },
+      { icon: '○', title: 'Effetto tensore immediato', text: 'Dalla prima applicazione: il siero crea un effetto tensore percepibile al tatto, che aumenta con il trattamento continuativo.' },
+    ],
+    steps: [
+      { title: 'Dopo la doccia', text: 'Applicare su pelle ancora umida, appena asciugata con il telo. L\'umidità residua aiuta la distribuzione e l\'assorbimento.' },
+      { title: 'Distribuire', text: 'Versare una quantità generosa sul palmo e distribuire su addome, fianchi, braccia o cosce secondo necessità.' },
+      { title: 'Massaggio attivante', text: 'Massaggiare con movimenti energici circolari per almeno 60 secondi per zona. Il calore attiva il rilascio delle perle di Actigym.' },
+      { title: 'Frequenza', text: 'Usare mattina e/o sera per almeno 28 giorni. I risultati sono sia immediati (effetto tensore) sia progressivi (rimodellamento). Abbinare a regolare attività fisica per amplificare i risultati.' },
+    ],
+    formulaPills: ['Actigym® Marine Ingredient', 'Caffeina', 'Niacinamide', 'Resveratrolo', 'Vitamina C', 'Olio di Lampone', '0% parabeni', '0% siliconi'],
+    inci: 'Aqua [Water], Glycerin, Betaine, Caffeine, Bacillus/soybean ferment extract, Niacinamide, Ascorbyl tetraisopalmitate, Resveratrol, Rubus idaeus (Raspberry) seed oil, Gellan gum, Chondrus crispus powder, Agar, Juniperus virginiana oil, Potassium cocoyl rice amino acids, Glyceryl oleate, Citric acid, Caprylyl/capryl glucoside, 1,2-Hexanediol, Tetrasodium glutamate diacetate, Synthetic fluorphlogopite, Parfum [Fragrance], Butylene glycol, Polyacrylate crosspolymer-6, Ethylhexylglycerin, Acrylates/C10-30 alkyl acrylate crosspolymer, Tromethamine, Mica, Hexyl cinnamal, Phenoxyethanol, CI 77891 [Titanium dioxide], CI 77491 [Iron oxides], CI 73360 [Red 30].',
+    b2b: [
+      ['Brand', 'Sphea by Athena\'s s.r.l.'],
+      ['Produttore', 'Athena\'s s.r.l. — Via del Lavoro 32, Pianoro (BO)'],
+      ['Formato', '<em class="missing">[da verificare]</em>'],
+      ['Codice prodotto', '<em class="missing">[da verificare]</em>'],
+      ['Tecnologia', 'Pearl Biopolymer · Actigym® Complex'],
+      ['Attivi principali', 'Actigym® Marine · Caffeina · Niacinamide · Resveratrolo'],
+      ['Allergeni profumo', 'Hexyl cinnamal'],
+      ['Certificazioni', '<em class="missing">Made in Italy — altre certificazioni in attesa di verifica</em>'],
+      ['Lancio', '2025'],
+      ['MOQ', 'Su richiesta'],
+    ],
+  },
+
+  'slim-silhouette': {
+    name: 'Slim Silhouette Body Serum',
+    cat: 'Siero Corpo · Modellante · Anticellulite',
+    claim: 'Agisce sul tessuto adiposo mentre dormi. La notte che ridisegna la silhouette.',
+    format: '150 ml',
+    zone: 'Corpo · Cosce · Fianchi · Addome',
+    cosmoprof: false,
+    heroBg: 'linear-gradient(145deg, #08060e 0%, #12101a 50%, #08060e 100%)',
+    heroGlow: 'radial-gradient(ellipse at 30% 50%, rgba(140,100,201,.08) 0%, transparent 60%)',
+    bottleColor: '#2a1a3a',
+    actives: ['nocturshape'],
+    benefits: [
+      { icon: '◎', title: 'Lipolisi notturna attivata', text: 'Nocturshape sfrutta il picco di GH notturno per massimizzare la lipolisi naturale nelle ore di riposo.' },
+      { icon: '◉', title: '-1,2 cm circonferenza coscia in 56 gg', text: 'Studio clinico: riduzione media di 1,2 cm della circonferenza della coscia dopo 56 giorni di trattamento serale continuativo.' },
+      { icon: '◈', title: 'Pelle a buccia d\'arancia ridotta', text: 'Il biopolimero marino migliora il microcircolo e la texture cutanea, riducendo visibilmente la cellulite superficiale.' },
+      { icon: '○', title: 'Silhouette più definita in 4 settimane', text: 'Il 78% delle utilizzatrici nel test ha percepito un miglioramento della silhouette alla settimana 4.' },
+    ],
+    steps: [
+      { title: 'Solo serale', text: 'Applicare esclusivamente la sera, prima di dormire. Nocturshape sincronizza la sua azione col picco ormonale notturno.' },
+      { title: 'Zona target', text: 'Focalizzarsi su cosce, fianchi e addome: le aree a maggiore accumulo adiposo che rispondono meglio a Nocturshape.' },
+      { title: 'Massaggio drenante', text: 'Movimenti dal basso verso l\'alto, poi pinzature leggere. Il massaggio attiva le perle e stimola il microcircolo.' },
+      { title: 'Non risciacquare', text: 'Lasciare assorbire completamente prima di andare a letto. Indossare un indumento leggero aiuta a mantenere il calore e potenzia la penetrazione.' },
+    ],
+    formulaPills: ['Nocturshape® Blue Ingredient', 'Coenzima Q10 (Ubiquinone)', 'Caffeina', 'Niacinamide', 'Olio essenziale di Arancio dolce', '0% parabeni', '0% siliconi'],
+    inci: 'Aqua [Water], Niacinamide, Betaine, Glycerin, Caffeine, Propanediol, Ubiquinone, Saccharide isomerate, Glyceryl oleate, Gellan gum, Caprylyl/capryl glucoside, Potassium cocoyl rice amino acids, Tetrasodium glutamate diacetate, Agar, Citrus aurantium dulcis (Orange) peel oil, Chondrus crispus powder, Heptyl glucoside, Citric acid, Disodium phosphate, Xanthan gum, Parfum [Fragrance], 1,2-Hexanediol, Glyceryl caprylate, Mica, Butylene glycol, Sodium phosphate, Tromethamine, Polyacrylate crosspolymer-6, Synthetic fluorphlogopite, Ethylhexylglycerin, Acrylates/C10-30 alkyl acrylate crosspolymer, Tetramethyl acetyloctahydronaphthalenes, Hexamethylindanopyran, Limonene, Linalyl acetate, Alpha-isomethyl ionone, Hexyl cinnamal, Phenoxyethanol, CI 77289 [Chromium hydroxide green], CI 77007 [Ultramarines], CI 77891 [Titanium dioxide], CI 77492 [Iron oxides], CI 77491 [Iron oxides].',
+    b2b: [
+      ['Brand', 'Sphea by Athena\'s s.r.l.'],
+      ['Produttore', 'Athena\'s s.r.l. — Via del Lavoro 32, Pianoro (BO)'],
+      ['Formato', '<em class="missing">[da verificare]</em>'],
+      ['Codice prodotto', '<em class="missing">[da verificare]</em>'],
+      ['Tecnologia', 'Pearl Biopolymer · Nocturshape® Chrono-Complex'],
+      ['Attivi principali', 'Nocturshape® Blue · Coenzima Q10 · Caffeina · Niacinamide'],
+      ['Allergeni profumo', 'Hexyl cinnamal · Limonene · Linalyl acetate · Alpha-isomethyl ionone · Iso E Super · Galaxolide'],
+      ['Certificazioni', '<em class="missing">Made in Italy — altre certificazioni in attesa di verifica</em>'],
+      ['Lancio', '2025'],
+      ['MOQ', 'Su richiesta'],
+    ],
+  },
+
+};
+
+/* ───── ACTIVES LIBRARY ───── */
+const ACTIVES_LIB = {
+  'ectoin': {
+    name: 'Ectoin® natural',
+    tag: 'Aminoacido extremofilo · biofermentazione · bitop AG',
+    mechanism: 'Ectoin® natural è un aminoacido prodotto da Halomonas elongata, batterio estremofilo dei laghi salati del Sahara, attraverso un processo brevettato di biofermentazione e "bacterial milking" (estrazione senza uccidere il batterio). Sviluppato da bitop AG (Germania, 15+ brevetti attivi, certificato COSMOS). Agisce come cosmotrope: lega 4 molecole d\'acqua per ogni molecola di Ectoin, formando l\'Hydro-Complex — una struttura d\'acqua organizzata che avvolge le membrane cellulari creando uno scudo fisico contro PM2.5, PM10, ozono e radiazioni UV. L\'effetto è diretto, non mediato da recettori, e permane attivo 8-12h dopo l\'applicazione.',
+    efficacy: 'In vitro su cheratinociti: -48% danno ossidativo da PM2.5 in 5 giorni. 100% sopravvivenza cellulare sotto stress UV. Studio clinico 2020: -32% rughe di espressione + +82% elasticità. Il film protettivo Ectoin rimane attivo 8-12 ore dopo l\'applicazione.',
+    claims: ['-48% danno ossidativo PM2.5 in 5 gg', '100% sopravvivenza cellule UV', '-32% rughe · +82% elasticità', 'Schermo attivo 8-12h'],
+  },
+  'uplevity': {
+    name: 'Uplevity® E-Lift Peptide',
+    tag: 'Tetrapeptide-1 · effetto microcorrente · Lubrizol/Lipotec',
+    mechanism: 'Uplevity® E-Lift è un Tetrapeptide-1 sviluppato da Lubrizol/Lipotec (brevetto WO2018071640A1). Mima l\'azione di una microcorrente bioelettrica: stimola la proteina MBNL1 (Muscleblind-like splicing regulator 1) aumentandone l\'espressione del +72% in vitro. MBNL1 è un regolatore dello splicing alternativo che favorisce la forma adulta e strutturata di fibronectina (EDA-fibronectina), componente chiave dell\'impalcatura della matrice extracellulare. Contemporaneamente potenzia il metabolismo mitocondriale dei fibroblasti, equivalente all\'effetto di 5 sessioni di microcorrente professionale in 10 giorni.',
+    efficacy: 'Studio clinico vs placebo: +94.6% effetto lifting già a 10 giorni. -7.4% profondità piega nasolabiale in 28 giorni. -5.9% crow\'s feet in 28 giorni. In vitro: +72% EDA-fibronectina nei fibroblasti dermici.',
+    claims: ['+94.6% lifting vs placebo in 10 gg', '-7.4% piega nasolabiale in 28 gg', '-5.9% crow\'s feet in 28 gg', '+72% EDA-Fibronectina in vitro'],
+  },
+  'argireline': {
+    name: 'Argireline® Amplified Peptide',
+    tag: 'Acetyl Hexapeptide-8 · seconda generazione · Lubrizol/Lipotec',
+    mechanism: 'Argireline® Amplified (Acetyl Hexapeptide-8) è la seconda generazione del primo peptide anti-rughe cosmetico al mondo (2001, Lubrizol/Lipotec). Rispetto alla prima generazione, la formulazione Amplified ha un\'affinità di legame al complesso SNARE potenziata del +33% grazie a una sequenza ottimizzata. Blocca il complesso SNARE inibendo il rilascio di acetilcolina nella giunzione neuromuscolare: meno neurotrasmettitore = minor contrazione muscolare = meno rughe espressive. Brevetti attivi: US7015192B1 + US9079048B2 (fino al 2030). Studio 2025 (JAAD): prolunga l\'effetto delle iniezioni di botulino di +8 settimane.',
+    efficacy: 'Concentrazione 5%: -12.3% profondità rughe in 5 giorni. -20% rughe in 28 giorni. In vitro: +53.7% sintesi di collagene. Studio 2025: +8 settimane di prolungamento dell\'effetto botulino in pazienti trattati.',
+    claims: ['-12.3% rughe in 5 gg (conc. 5%)', '-20% rughe in 28 gg', '+53.7% sintesi collagene in vitro', '+8 sett. prolungamento Botox (2025)'],
+  },
+  'vitamin-c': {
+    name: 'Vitamina C 10% liposomiale',
+    tag: 'Antiossidante · Uniformante · Anti-macchia',
+    mechanism: 'La Vitamina C (acido ascorbico) è il più potente antiossidante idrosolubile prodotto dalla natura. Nella formulazione Sphea viene incapsulata in liposomi — vescicole lipidiche identiche alla struttura della membrana cellulare — che ne aumentano la stabilità ossidativa (problema classico dell\'acido ascorbico puro) e la penetrazione trans-epidermica fino al 3× rispetto alla forma libera. Agisce su tre livelli: inibizione della tirosinasi (anti-macchia), neutralizzazione dei radicali liberi e stimolazione della sintesi di collagene (co-fattore enzimatico).',
+    efficacy: 'Concentrazione 10%: +45% luminosità cutanea in 8 settimane. -38% intensità delle macchie solari. +22% sintesi di pro-collagene in cultura di fibroblasti. La forma liposomiale mantiene l\'80% di attività biologica dopo 18 mesi a temperatura ambiente vs il 12% dell\'acido ascorbico puro.',
+    claims: ['+45% luminosità', '-38% intensità macchie', '+22% collagene', 'Stabilità 18 mesi'],
+  },
+  'actigym': {
+    name: 'Actigym® Marine Ingredient',
+    tag: 'Esoopolisaccaride marino · Bacillus sp. · Bermuda · BIOINTEC',
+    mechanism: 'Actigym® è un esoopolisaccaride (EPS) prodotto da Bacillus sp., batterio isolato nelle acque profonde delle Bermuda, sviluppato da BIOINTEC nell\'ambito della blue biotechnology marina. Mima l\'allenamento aerobico di endurance a livello cellulare: stimola l\'adiponectina (+68.3% in vitro), ormone chiave che attiva l\'AMPK e favorisce la lipolisi, e potenzia la catena di trasporto elettronico mitocondriale aumentando la produzione di ATP del +136%. Segnala alle cellule che "l\'allenamento è in corso" anche in assenza di movimento fisico. Effetto sinergico con l\'attività fisica reale: amplifica i risultati dell\'esercizio quando usato in combinazione.',
+    efficacy: 'Studio clinico 56 giorni: -2.1 cm coscia e addome. -4.6 kg peso corporeo. -19.2% pannicolo adiposo. In vitro: +68.3% adiponectina, +136% ATP mitocondriale.',
+    claims: ['-2.1 cm coscia/addome in 56 gg', '-4.6 kg peso corporeo', '-19.2% pannicolo adiposo', '+136% ATP mitocondriale in vitro'],
+  },
+  'nocturshape': {
+    name: 'Nocturshape® Blue Ingredient',
+    tag: 'EPS marino · cronobiologia lipolisi · Lubrizol/Lipotec · SCC Award 2013',
+    mechanism: 'Nocturshape® è un esoopolisaccaride prodotto da un microrganismo planctonico della Laguna di Fuente de Piedra (Malaga, Spagna), sviluppato da Lubrizol/Lipotec. Premio SCC Award 2013 per l\'innovazione cosmetica. Il target molecolare è la proteina Nocturnin (-22.3% in vitro), un enzima circadiano che nelle ore notturne favorisce la lipogenesi (accumulo di grasso). Inibendo Nocturnin, Nocturshape® sblocca la finestra metabolica notturna favorendo la lipolisi. Parallelamente inibisce PPAR-γ e l\'adipogenesi, e stimola la sintesi di collagene di tipo I (+38.1% in vitro), migliorando la qualità della pelle nelle zone trattate.',
+    efficacy: 'Studio clinico: -0.9 cm coscia in 15 giorni, -1.5 cm in 30 giorni. +23% fermezza cutanea. -39.4% uniformità dei depositi adiposi. In vitro: -22.3% Nocturnin, +38.1% collagene di tipo I.',
+    claims: ['-0.9 cm coscia in 15 gg · -1.5 cm in 30 gg', '+23% fermezza cutanea', '-39.4% uniformità depositi adiposi', 'SCC Award 2013 · uso notturno'],
+  },
+  'niacinamide': {
+    name: 'Niacinamide',
+    tag: 'Poriformante · Uniformante · Barriera',
+    mechanism: 'La Niacinamide (vitamina B3 amide) è uno degli attivi cosmetici più versatili e scientificamente validati. Agisce come precursore del NAD+ e NADP+, coenzimi fondamentali per il metabolismo energetico cellulare. A livello cutaneo: riduce il trasferimento dei melanosomi dai melanociti ai cheratinociti (anti-macchia), inibisce le citochine infiammatorie (anti-arrossamento), stimola la sintesi di ceramidi (rafforzamento barriera) e riduce la produzione di sebo (effetto poriformante).',
+    efficacy: 'A concentrazioni 4-5%: -37% pori visibili in 8 settimane. -29% macchie solari. +24% contenuto di ceramidi nello strato corneo. -18% produzione di sebo. Compatibile con tutti i tipi di pelle incluse le pelli sensibili e reattive.',
+    claims: ['-37% pori visibili', '-29% macchie', '+24% ceramidi', 'Adatta a pelli sensibili'],
+  },
+};
+
+/* ───── RENDER ───── */
+const params = new URLSearchParams(window.location.search);
+const id = params.get('id') || 'anti-pollution';
+const d = SPHEA_DATA[id];
+
+if (!d) {
+  document.body.innerHTML = '<div style="padding:80px;text-align:center;color:#c9a96e;font-family:Inter">Siero non trovato</div>';
+} else {
+  renderPage(d, id);
+}
+
+function renderPage(d, id) {
+  document.title = `${d.name} — Sphea`;
+  const bcEl = document.getElementById('bcProduct');
+  if (bcEl) bcEl.textContent = d.name;
+
+  /* hero */
+  document.getElementById('heroBg').style.background = d.heroBg;
+  document.getElementById('heroBg').innerHTML = `<div style="position:absolute;inset:0;${d.heroGlow ? `background:${d.heroGlow}` : ''}"></div>`;
+  document.getElementById('heroName').textContent = d.name;
+  document.getElementById('heroClaim').textContent = d.claim;
+  document.getElementById('eyebrowCat').textContent = d.cat;
+  document.getElementById('specFormat').textContent = d.format;
+  document.getElementById('specZone').textContent = d.zone;
+  document.getElementById('heroBgText').textContent = d.name.toUpperCase().split(' ')[0];
+
+  if (d.cosmoprof) {
+    document.getElementById('cosmoprofBadge').style.display = 'block';
+  }
+
+
+  /* orbs in hero visual */
+  const visual = document.getElementById('heroVisual');
+  const orbSizes = [80,50,35,25,18];
+  const orbPositions = [
+    {top:'20%',left:'15%'},{top:'60%',left:'70%'},{top:'35%',left:'55%'},
+    {top:'75%',left:'25%'},{top:'15%',left:'65%'}
+  ];
+  orbSizes.forEach((s,i) => {
+    const o = document.createElement('div');
+    o.className = 'sp-hero__orb';
+    o.style.cssText = `width:${s}px;height:${s}px;top:${orbPositions[i].top};left:${orbPositions[i].left};animation-duration:${5+i*1.3}s;animation-delay:${-i*0.8}s;`;
+    visual.appendChild(o);
+  });
+
+  /* actives */
+  const activesContainer = document.getElementById('activesContainer');
+  const activesTitle = document.getElementById('activesTitle');
+  const activesCount = document.getElementById('activesCount');
+  const activeKeys = d.actives;
+  activesTitle.textContent = 'Attivi brevettati';
+  activesCount.textContent = `${activeKeys.length} principi attivi`;
+
+  activeKeys.forEach((key, i) => {
+    const a = ACTIVES_LIB[key];
+    if (!a) return;
+    const row = document.createElement('div');
+    row.className = 'sp-active-row';
+    row.innerHTML = `
+      <div class="sp-active-head">
+        <div class="sp-active-head__left">
+          <span class="sp-active-head__n">0${i+1}</span>
+          <div>
+            <span class="sp-active-head__name">${a.name}</span>
+            <span class="sp-active-head__tag">${a.tag}</span>
+          </div>
+        </div>
+        <div class="sp-active-head__arrow">+</div>
+      </div>
+      <div class="sp-active-body">
+        <div class="sp-active-body__grid">
+          <div>
+            <span class="sp-active-body__section-label">Meccanismo d'azione</span>
+            <p class="sp-active-body__text">${a.mechanism}</p>
+          </div>
+          <div>
+            <span class="sp-active-body__section-label">Efficacia clinica</span>
+            <p class="sp-active-body__text">${a.efficacy}</p>
+          </div>
+        </div>
+        <div class="sp-active-body__claims">
+          ${a.claims.map(c => `<span class="sp-active-body__claim">${c}</span>`).join('')}
+        </div>
+      </div>`;
+    row.querySelector('.sp-active-head').addEventListener('click', () => {
+      const isOpen = row.classList.contains('open');
+      document.querySelectorAll('.sp-active-row.open').forEach(r => r.classList.remove('open'));
+      if (!isOpen) row.classList.add('open');
+    });
+    activesContainer.appendChild(row);
+  });
+
+  /* clinical results */
+  const clinicalMap = {
+    'anti-pollution':  { stat1: 'T0', desc1: 'Pelle esposta a inquinamento, radicali liberi, luce blu.', stat2: '+92%', desc2: 'Riduzione stress ossidativo dopo 28 giorni. Barriera cutanea rinforzata.' },
+    'radiant-up-lift':    { stat1: 'T0', desc1: 'Rilassamento dei contorni del viso, riduzione tono muscolare.', stat2: '+89%', desc2: 'Effetto lifting tri-orbitale e riduzione visibile delle rughe a T28.' },
+    'eyelift-perfector':  { stat1: 'T0', desc1: 'Rughe peri-orbitali, area occhi affaticata, tono cutaneo ridotto.', stat2: '-47%', desc2: 'Riduzione profondità rughe periocchio. Effetto botox-like documentato.' },
+    'sculpt-firm':     { stat1: 'T0', desc1: 'Perdita di tonicità in zone critiche: addome, braccia, cosce.', stat2: '+4 sett.', desc2: 'Pelle più soda e compatta già dalla quarta settimana di trattamento.' },
+    'slim-silhouette': { stat1: 'T0', desc1: 'Cellulite visibile, effetto buccia d\'arancia, ritenzione idrica.', stat2: '-15 gg', desc2: 'Riduzione circonferenza coscia e miglioramento dell\'aspetto della cellulite.' },
+  };
+  const cr = clinicalMap[id];
+  if (cr) {
+    const s1 = document.getElementById('resultStat1');
+    const s2 = document.getElementById('resultStat2');
+    const d1 = document.getElementById('resultDesc1');
+    const d2 = document.getElementById('resultDesc2');
+    if (s1) s1.textContent = cr.stat1;
+    if (s2) s2.textContent = cr.stat2;
+    if (d1) d1.textContent = cr.desc1;
+    if (d2) d2.textContent = cr.desc2;
+  }
+
+  /* benefits — integrati nel pearl come efficacy stat cards */
+  const efficacyWrap = document.getElementById('pearlEfficacy');
+  const efficacyGrid = document.getElementById('efficacyGrid');
+  if (efficacyWrap && efficacyGrid && d.benefits && d.benefits.length) {
+    d.benefits.forEach(b => {
+      const card = document.createElement('div');
+      card.className = 'sp-efficacy-card';
+      /* Estrai il numero/dato dal titolo, sia in testa che in coda */
+      let numStr = '', restStr = b.title;
+      const mHead = b.title.match(/^([+\-]?\d[\d,.]*)(\s*[%cm\w°]+)?\s+(.+)$/);
+      const mTail = b.title.match(/^(.+?)\s+([+\-]?\d[\d,.]*\s*[%cm\w°]+)$/);
+      if (mHead && mHead[3]) {
+        numStr = mHead[1] + (mHead[2] || '');
+        restStr = mHead[3];
+      } else if (mTail) {
+        numStr = mTail[2];
+        restStr = mTail[1];
+      }
+      const numHtml = numStr
+        ? `<div class="sp-efficacy-card__num">${numStr.trim()}</div><h3 class="sp-efficacy-card__title">${restStr}</h3>`
+        : `<h3 class="sp-efficacy-card__title">${b.title}</h3>`;
+      card.innerHTML = `${numHtml}<p class="sp-efficacy-card__text">${b.text}</p>`;
+      efficacyGrid.appendChild(card);
+    });
+    efficacyWrap.style.display = '';
+  }
+
+  /* inci */
+  document.getElementById('inciBody').textContent = d.inci;
+  document.getElementById('inciToggle').addEventListener('click', function() {
+    const body = document.getElementById('inciBody');
+    const open = body.style.display === 'block';
+    body.style.display = open ? 'none' : 'block';
+    this.textContent = open ? 'Composizione INCI completa −' : 'Composizione INCI completa +';
+  });
+
+  /* b2b table */
+  const table = document.getElementById('b2bTable');
+  d.b2b.forEach(([label, val]) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${label}</td><td>${val}</td>`;
+    table.appendChild(tr);
+  });
+
+  /* aggiorna href CTA con subject dinamico per siero */
+  const ctaBtn = document.querySelector('.sp-b2b__btn--gold');
+  if (ctaBtn) ctaBtn.href = `../contatti.html?subject=sphea-${id}`;
+
+  /* lifestyle quote (personalizzata per prodotto) */
+  const quoteMap = {
+    'anti-pollution':  'La pelle che <em>respira</em> di nuovo',
+    'radiant-up-lift':   'Il tempo rallenta,<br><em>la pelle vola</em>',
+    'eyelift-perfector': 'Uno sguardo che non<br><em>tradisce l\'età</em>',
+    'sculpt-firm':     'Il corpo che<br><em>lavora con te</em>',
+    'slim-silhouette': 'La notte che<br><em>trasforma</em>',
+  };
+  const lifestyleQuote = document.getElementById('lifestyleQuote');
+  if (lifestyleQuote && quoteMap[id]) lifestyleQuote.innerHTML = quoteMap[id];
+
+  /* related */
+  const relGrid = document.getElementById('relatedGrid');
+  Object.entries(SPHEA_DATA).forEach(([slug, p]) => {
+    if (slug === id) return;
+    const a = document.createElement('a');
+    a.className = 'sp-rcard';
+    a.href = `prodotto-sphea.html?id=${slug}`;
+    a.innerHTML = `
+      <div class="sp-rcard__visual">
+        <span class="sp-rcard__visual-hint">${p.name}<br><!-- SOSTITUIRE: immagine prodotto --></span>
+      </div>
+      <div class="sp-rcard__body">
+        <div class="sp-rcard__cat">${p.cat}</div>
+        <div class="sp-rcard__name">${p.name}</div>
+        <div class="sp-rcard__active">${p.formulaPills[0]}</div>
+      </div>`;
+    relGrid.appendChild(a);
+  });
+}
+
+if (typeof initAthenas === 'function') initAthenas('sphea', { light: true });
+</script>
+</body>
+</html>

@@ -1,0 +1,626 @@
+﻿<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Conto Terzi — Athena's</title>
+<link rel="preload" href="assets/fonts/fraunces-200-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="stylesheet" href="assets/fonts.css"/>
+<link rel="stylesheet" href="assets/tokens.css"/>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--cream); color: var(--ink); font-family: var(--sans); overflow-x: hidden; }
+.container { max-width: 1320px; margin: 0 auto; padding: 0 clamp(20px,4vw,60px); }
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   HERO "” laboratorio style
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+.lh {
+  min-height: 100svh;
+  background: #0a0a0a;
+  color: var(--cream);
+  position: relative; overflow: clip;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+@media (max-width: 900px) { .lh { grid-template-columns: 1fr; } }
+
+.lh__bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 70% at 80% 30%, rgba(90,107,78,.12) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 50% at 15% 75%, rgba(201,169,110,.08) 0%, transparent 60%),
+    linear-gradient(170deg, #050505 0%, #0f0f0f 60%, #080808 100%);
+}
+
+.lh__particles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.lh__particle {
+  position: absolute; border-radius: 50%;
+  background: rgba(201,169,110,.35);
+  animation: particle-drift linear infinite;
+}
+@keyframes particle-drift {
+  0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateY(-120vh) translateX(30px) scale(.5); opacity: 0; }
+}
+
+.lh__left {
+  position: relative; z-index: 3;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: clamp(100px,12vh,160px) clamp(28px,5vw,80px) clamp(60px,8vw,100px);
+}
+
+.lh__eyebrow {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 9px; letter-spacing: 0.32em; text-transform: uppercase;
+  color: rgba(201,169,110,.6); margin-bottom: 24px;
+}
+.lh__eyebrow::before { content: ''; width: 28px; height: 1px; background: rgba(201,169,110,.4); }
+
+.lh h1 {
+  font-family: var(--display);
+  font-size: clamp(56px,10vw,160px);
+  font-weight: 200; letter-spacing: -0.04em; line-height: .88;
+  color: #e8e0d4; margin-bottom: clamp(24px,3vw,40px);
+}
+.lh h1 em { font-style: italic; color: var(--gold); }
+
+.lh__lead {
+  font-family: var(--serif);
+  font-size: clamp(17px,1.5vw,22px);
+  line-height: 1.55; max-width: 48ch;
+  color: rgba(232,224,212,.55);
+  margin-bottom: 40px;
+}
+
+.lh__specbar {
+  display: flex; gap: 32px; flex-wrap: wrap;
+  padding-top: 28px; border-top: 1px solid rgba(201,169,110,.12);
+}
+.lh__spec { display: flex; flex-direction: column; gap: 4px; }
+.lh__spec-n {
+  font-family: var(--display); font-style: italic;
+  font-size: clamp(22px,3vw,36px); font-weight: 200;
+  color: var(--gold); line-height: 1;
+}
+.lh__spec-l {
+  font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(232,224,212,.3);
+}
+
+.lh__right {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+@media (max-width: 900px) { .lh__right { display: none; } }
+
+.lh__diagram {
+  width: clamp(320px,45vw,600px);
+  height: clamp(320px,45vw,600px);
+  position: relative;
+}
+.lh__diagram svg { width: 100%; height: 100%; }
+
+.lh__wm {
+  position: absolute; bottom: -0.08em; left: 0; right: 0;
+  font-family: var(--display); font-size: clamp(120px,22vw,320px);
+  font-weight: 200; color: rgba(255,255,255,.025);
+  letter-spacing: -0.05em; line-height: 1;
+  pointer-events: none; white-space: nowrap; overflow: hidden;
+}
+
+.scroll-hint {
+  position: absolute; bottom: clamp(24px,4vw,40px); right: clamp(20px,4vw,60px);
+  z-index: 4; display: flex; flex-direction: column; align-items: center; gap: 10px;
+  font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+  opacity: .35; color: #fff;
+}
+.scroll-hint__line { width: 1px; height: 48px; background: rgba(255,255,255,.3); position: relative; overflow: hidden; }
+.scroll-hint__line::after { content: ''; position: absolute; top: -100%; left: 0; width: 100%; height: 100%; background: #fff; animation: scroll-line 2s ease-in-out infinite; }
+@keyframes scroll-line { 0% { top:-100%; } 100% { top:100%; opacity:0; } }
+
+/* â”€â”€ INTRO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.tz-intro {
+  background: var(--cream);
+  padding: clamp(40px,5.5vw,80px) 0;
+}
+.tz-intro__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: clamp(48px,7vw,100px);
+  align-items: start;
+}
+@media (max-width: 860px) { .tz-intro__grid { grid-template-columns: 1fr; } }
+
+.tz-intro__eyebrow {
+  font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold-deep); opacity: .7; margin-bottom: 20px;
+}
+.tz-intro h2 {
+  font-family: var(--display);
+  font-size: clamp(36px,5.5vw,78px);
+  font-weight: 300; letter-spacing: -0.03em; line-height: .95;
+  color: var(--ink); margin-bottom: 32px;
+}
+.tz-intro__eyebrow { margin-bottom: 28px; }
+.tz-intro h2 em { font-style: italic; color: var(--sage-deep); }
+.tz-intro__h2-spacer {
+  display: block;
+  margin-top: clamp(18px, 1.8vw, 32px);
+}
+
+.tz-intro__body {
+  font-family: var(--serif);
+  font-size: clamp(16px,1.4vw,19px);
+  line-height: 1.75; color: rgba(26,26,26,.65);
+}
+.tz-intro__body p + p { margin-top: 18px; }
+
+.tz-intro__certs {
+  margin-top: 40px;
+  display: flex; flex-wrap: wrap; gap: 10px;
+}
+.tz-cert-pill {
+  font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--sage-deep); border: 1px solid rgba(90,107,78,.25);
+  padding: 6px 12px;
+}
+
+/* â”€â”€ CAPABILITIES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.tz-cap {
+  background: var(--ink);
+  padding: clamp(80px,11vw,140px) 0;
+}
+.tz-cap__header {
+  margin-bottom: clamp(56px,7vw,90px);
+}
+.tz-cap__eyebrow {
+  font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold); opacity: .55; margin-bottom: 20px;
+}
+.tz-cap h2 {
+  font-family: var(--display);
+  font-size: clamp(40px,6vw,88px);
+  font-weight: 300; letter-spacing: -0.035em; line-height: .95;
+  color: var(--cream);
+}
+.tz-cap h2 em { font-style: italic; color: var(--gold); }
+
+.tz-cap__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,.06);
+}
+@media (max-width: 900px) { .tz-cap__grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .tz-cap__grid { grid-template-columns: 1fr; } }
+
+.tz-cap__card {
+  background: var(--ink);
+  padding: clamp(32px,4vw,52px) clamp(28px,3.5vw,44px);
+  display: flex; flex-direction: column; gap: 16px;
+  transition: background .3s var(--ease);
+}
+.tz-cap__card:hover { background: #222; }
+
+.tz-cap__n {
+  font-family: var(--display); font-style: italic;
+  font-size: 13px; color: var(--gold); opacity: .35; line-height: 1;
+}
+.tz-cap__name {
+  font-family: var(--display);
+  font-size: clamp(20px,2vw,28px);
+  font-weight: 300; letter-spacing: -0.015em;
+  color: var(--cream); line-height: 1.1;
+}
+.tz-cap__name em { font-style: italic; color: var(--gold); }
+.tz-cap__desc {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(16px,1.3vw,18px);
+  color: rgba(243,238,228,.55); line-height: 1.65; flex: 1;
+}
+.tz-cap__tag {
+  font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(201,169,110,.4); padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+
+/* â”€â”€ PROCESSO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.tz-process {
+  background: var(--cream-2);
+  padding: clamp(80px,11vw,140px) 0;
+}
+.tz-process__header { margin-bottom: clamp(56px,7vw,90px); }
+.tz-process__eyebrow {
+  font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold-deep); opacity: .65; margin-bottom: 20px;
+}
+.tz-process h2 {
+  font-family: var(--display);
+  font-size: clamp(36px,5.5vw,80px);
+  font-weight: 300; letter-spacing: -0.03em; line-height: .95;
+  color: var(--ink);
+}
+.tz-process h2 em { font-style: italic; color: var(--sage-deep); }
+
+.tz-process__steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(24px,3vw,40px);
+  position: relative;
+}
+@media (max-width: 860px) {
+  .tz-process__steps { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 540px) {
+  .tz-process__steps { grid-template-columns: 1fr; }
+}
+
+.tz-step {
+  position: relative;
+  padding-top: 28px;
+  border-top: 1px solid rgba(26,26,26,.1);
+}
+.tz-step__n {
+  font-family: var(--display); font-style: italic;
+  font-size: clamp(52px,6vw,80px); font-weight: 300;
+  color: rgba(26,26,26,.07); line-height: 1;
+  margin-bottom: 8px; letter-spacing: -0.03em;
+}
+.tz-step__name {
+  font-family: var(--display);
+  font-size: clamp(18px,1.8vw,24px);
+  font-weight: 300; letter-spacing: -0.01em;
+  color: var(--ink); margin-bottom: 12px; line-height: 1.1;
+}
+.tz-step__name em { font-style: italic; color: var(--gold-deep); }
+.tz-step__desc {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(16px,1.3vw,18px);
+  color: rgba(26,26,26,.6); line-height: 1.65;
+}
+
+/* â”€â”€ NUMERI â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.tz-numbers {
+  background: #2d3a2e;
+  padding: clamp(72px,10vw,120px) 0;
+}
+.tz-numbers__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,.08);
+}
+@media (max-width: 860px) { .tz-numbers__grid { grid-template-columns: 1fr 1fr; } }
+
+.tz-num {
+  background: #2d3a2e;
+  padding: clamp(28px,4vw,52px) clamp(24px,3vw,40px);
+  text-align: center;
+}
+.tz-num__val {
+  font-family: var(--display); font-style: italic;
+  font-size: clamp(44px,6vw,80px); font-weight: 300;
+  color: var(--gold); line-height: 1; letter-spacing: -0.03em;
+  margin-bottom: 10px;
+}
+.tz-num__label {
+  font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(243,238,228,.35);
+}
+
+/* â”€â”€ CTA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.tz-cta {
+  background: var(--cream);
+  padding: clamp(80px,12vw,160px) 0;
+  text-align: center;
+}
+.tz-cta__eyebrow {
+  font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold-deep); opacity: .65; margin-bottom: 24px;
+}
+.tz-cta h2 {
+  font-family: var(--display);
+  font-size: clamp(36px,6vw,90px);
+  font-weight: 300; letter-spacing: -0.035em; line-height: .95;
+  color: var(--ink); margin-bottom: 20px;
+}
+.tz-cta h2 em { font-style: italic; color: var(--sage-deep); }
+.tz-cta__sub {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(16px,1.5vw,20px);
+  color: rgba(26,26,26,.5); max-width: 48ch; margin: 0 auto 44px;
+  line-height: 1.55;
+}
+.tz-cta__actions {
+  display: flex; align-items: center; justify-content: center;
+  gap: 32px; flex-wrap: wrap;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--forest); color: var(--cream);
+  font-family: var(--sans); font-size: 10px;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  text-decoration: none; padding: 16px 36px;
+  transition: background .3s var(--ease), gap .2s var(--ease);
+}
+.btn-primary:hover { background: var(--sage-deep); gap: 18px; }
+
+/* â”€â”€ SCROLL REVEAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+[data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+[data-reveal].is-visible { opacity: 1; transform: none; }
+[data-reveal][style*="--d"] { transition-delay: var(--d, 0ms); }
+
+</style>
+<meta name="description" content="Manifattura conto terzi per cosmetica naturale: dalla formula al prodotto finito, 100% made in Italy."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://athenas.it/terzisti.html"/>
+<meta property="og:type" content="website"/>
+<meta property="og:locale" content="it_IT"/>
+<meta property="og:locale:alternate" content="en_GB"/>
+<meta property="og:site_name" content="Athena's"/>
+<meta property="og:url" content="https://athenas.it/terzisti.html"/>
+<meta property="og:title" content="Conto Terzi — Athena's"/>
+<meta property="og:description" content="Manifattura conto terzi per cosmetica naturale: dalla formula al prodotto finito, 100% made in Italy."/>
+<meta property="og:image" content="https://athenas.it/immagini/og/terzisti.jpg"/>
+<meta property="og:image:alt" content="Conto Terzi — Athena's"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Conto Terzi — Athena's"/>
+<meta name="twitter:description" content="Manifattura conto terzi per cosmetica naturale: dalla formula al prodotto finito, 100% made in Italy."/>
+<meta name="twitter:image" content="https://athenas.it/immagini/og/terzisti.jpg"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://athenas.it/" },
+    { "@type": "ListItem", "position": 2, "name": "Conto Terzi", "item": "https://athenas.it/terzisti.html" }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- â”€â”€ HERO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+<section class="lh" data-mood-fallback="dark">
+  <div class="lh__bg"></div>
+  <div class="lh__particles" id="particles" aria-hidden="true"></div>
+  <div class="lh__wm" aria-hidden="true">MADE</div>
+
+  <div class="lh__left">
+    <div class="lh__eyebrow" data-it="Conto Terzi · Pianoro (BO)" data-en="Contract Manufacturing · Pianoro (BO)">Conto Terzi · Pianoro (BO)</div>
+    <h1>
+      <span data-it="Produciamo" data-en="We manufacture">Produciamo</span><br>
+      <em data-it="il tuo brand." data-en="your brand.">il tuo brand.</em>
+    </h1>
+    <p class="lh__lead" data-it="Dal 1969 siamo la fabbrica che traduce le idee dei brand cosmetici in prodotti finiti. Formuliamo, produciamo, confezioniamo e certifichiamo nel nostro stabilimento di Pianoro." data-en="Since 1969 we are the factory translating cosmetic brand ideas into finished products. We formulate, manufacture, package and certify in our Pianoro facility.">Dal 1969 siamo la fabbrica che traduce le idee dei brand cosmetici in prodotti finiti. Formuliamo, produciamo, confezioniamo e certifichiamo nel nostro stabilimento di Pianoro.</p>
+  </div>
+
+  <div class="lh__right">
+    <div class="lh__diagram">
+      <svg viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="250" cy="250" r="230" stroke="rgba(201,169,110,.06)" stroke-width="1"/>
+        <circle cx="250" cy="250" r="195" stroke="rgba(201,169,110,.09)" stroke-width="1" stroke-dasharray="4 6"/>
+        <circle cx="250" cy="250" r="155" stroke="rgba(201,169,110,.12)" stroke-width="1"/>
+        <circle cx="250" cy="250" r="110" stroke="rgba(201,169,110,.18)" stroke-width="1.5" stroke-dasharray="2 4"/>
+        <circle cx="250" cy="250" r="68"  stroke="rgba(201,169,110,.25)" stroke-width="1.5"/>
+        <circle cx="250" cy="250" r="32" fill="url(#tcore)" filter="url(#tglow)"/>
+        <defs>
+          <radialGradient id="tcore" cx="35%" cy="35%">
+            <stop offset="0%" stop-color="rgba(201,169,110,.9)"/>
+            <stop offset="60%" stop-color="rgba(120,90,40,.6)"/>
+            <stop offset="100%" stop-color="rgba(20,20,20,.95)"/>
+          </radialGradient>
+          <filter id="tglow"><feGaussianBlur stdDeviation="3"/></filter>
+        </defs>
+        <text x="250" y="245" text-anchor="middle" font-family="Fraunces,serif" font-size="9" fill="rgba(201,169,110,.7)" font-style="italic">brand</text>
+        <text x="250" y="258" text-anchor="middle" font-family="sans-serif" font-size="5" fill="rgba(201,169,110,.4)" letter-spacing="2">PARTNER</text>
+
+        <circle cx="250" cy="95"  r="14" fill="rgba(201,169,110,.12)" stroke="rgba(201,169,110,.3)" stroke-width="1"/>
+        <circle cx="384" cy="173" r="10" fill="rgba(201,169,110,.10)" stroke="rgba(201,169,110,.25)" stroke-width="1"/>
+        <circle cx="384" cy="327" r="16" fill="rgba(201,169,110,.14)" stroke="rgba(201,169,110,.3)" stroke-width="1"/>
+        <circle cx="250" cy="405" r="11" fill="rgba(201,169,110,.1)"  stroke="rgba(201,169,110,.22)" stroke-width="1"/>
+        <circle cx="116" cy="327" r="13" fill="rgba(201,169,110,.12)" stroke="rgba(201,169,110,.28)" stroke-width="1"/>
+        <circle cx="116" cy="173" r="9"  fill="rgba(201,169,110,.09)" stroke="rgba(201,169,110,.2)"  stroke-width="1"/>
+
+        <line x1="250" y1="218" x2="250" y2="109" stroke="rgba(201,169,110,.15)" stroke-width="1" stroke-dasharray="3 4"/>
+        <line x1="272" y1="226" x2="376" y2="179" stroke="rgba(201,169,110,.12)" stroke-width="1" stroke-dasharray="3 4"/>
+        <line x1="272" y1="274" x2="370" y2="321" stroke="rgba(201,169,110,.15)" stroke-width="1" stroke-dasharray="3 4"/>
+        <line x1="250" y1="282" x2="250" y2="394" stroke="rgba(201,169,110,.12)" stroke-width="1" stroke-dasharray="3 4"/>
+        <line x1="228" y1="274" x2="130" y2="321" stroke="rgba(201,169,110,.15)" stroke-width="1" stroke-dasharray="3 4"/>
+        <line x1="228" y1="226" x2="124" y2="179" stroke="rgba(201,169,110,.12)" stroke-width="1" stroke-dasharray="3 4"/>
+
+        <text x="250" y="92"  text-anchor="middle" font-family="sans-serif" font-size="5.5" fill="rgba(201,169,110,.5)" letter-spacing="1">FORMULA</text>
+        <text x="388" y="170" text-anchor="start"  font-family="sans-serif" font-size="5.5" fill="rgba(201,169,110,.5)" letter-spacing="1">PRODUZ.</text>
+        <text x="388" y="324" text-anchor="start"  font-family="sans-serif" font-size="5.5" fill="rgba(201,169,110,.5)" letter-spacing="1">CONFEZ.</text>
+        <text x="250" y="424" text-anchor="middle" font-family="sans-serif" font-size="5.5" fill="rgba(201,169,110,.5)" letter-spacing="1">REGOLAT.</text>
+        <text x="112" y="340" text-anchor="end"    font-family="sans-serif" font-size="5.5" fill="rgba(201,169,110,.5)" letter-spacing="1">QUALITA'</text>
+        <text x="112" y="170" text-anchor="end"    font-family="sans-serif" font-size="5.5" fill="rgba(201,169,110,.5)" letter-spacing="1">LOGISTICA</text>
+
+        <circle cx="250" cy="250" r="230" stroke="rgba(201,169,110,.04)" stroke-width="1" stroke-dasharray="12 20"
+          style="transform-origin:250px 250px; animation: lab-rot 40s linear infinite;"/>
+        <circle cx="250" cy="250" r="155" stroke="rgba(90,107,78,.08)" stroke-width="1" stroke-dasharray="5 10"
+          style="transform-origin:250px 250px; animation: lab-rot 25s linear infinite reverse;"/>
+        <style>
+          @keyframes lab-rot { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        </style>
+      </svg>
+    </div>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true">
+    <div class="scroll-hint__line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+
+<!-- â”€â”€ INTRO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+<section class="tz-intro">
+  <div class="container">
+    <div class="tz-intro__grid">
+      <div data-reveal>
+        <div class="tz-intro__eyebrow" data-it="Il partner giusto" data-en="The right partner">Il partner giusto</div>
+        <h2>Produzione naturale<span class="tz-intro__h2-spacer"><em>certificata,</em><br>su misura</span></h2>
+      </div>
+      <div data-reveal style="--d:100ms">
+        <div class="tz-intro__body">
+          <p data-it="Athena's è un produttore conto terzi specializzato in cosmetica naturale. Dalla formulazione al confezionamento, gestiamo l'intero ciclo produttivo nel nostro stabilimento di Pianoro (BO), attivo dal 1969 e invariato nella sua filosofia: ingredienti naturali, qualità verificabile, zero compromessi." data-en="Athena's is a contract manufacturer specialised in natural cosmetics. From formulation to packaging, we manage the entire production cycle at our Pianoro (BO) facility, active since 1969 and unchanged in its philosophy: natural ingredients, verifiable quality, zero compromises.">Athena's è un produttore conto terzi specializzato in cosmetica naturale. Dalla formulazione al confezionamento, gestiamo l'intero ciclo produttivo nel nostro stabilimento di Pianoro (BO), attivo dal 1969 e invariato nella sua filosofia: ingredienti naturali, qualità verificabile, zero compromessi.</p>
+          <p data-it="Lavoriamo con brand della distribuzione specializzata, farmacie, erboristerie e operatori del benessere che vogliono una linea propria o integrare il proprio assortimento con prodotti certificati Vegan OK, Made in Italy, formulati nel rispetto dei più alti standard cosmetici." data-en="We work with specialist retail brands, pharmacies, herbalists and wellness operators who want their own line or wish to complement their range with Vegan OK and Made in Italy certified products, formulated to the highest cosmetic standards.">Lavoriamo con brand della distribuzione specializzata, farmacie, erboristerie e operatori del benessere che vogliono una linea propria o integrare il proprio assortimento con prodotti certificati Vegan OK, Made in Italy, formulati nel rispetto dei più alti standard cosmetici.</p>
+          <p style="font-family:var(--serif); font-style:italic; opacity:.78; margin-top:18px;" data-it="Negli anni Athena's ha realizzato saponi artistici e prodotti customizzati anche per maison italiane di prestigio, tra cui Acqua di Parma e La Perla — con discrezione e cura artigianale." data-en="Over the years, Athena's has also crafted artistic soaps and custom products for prestigious Italian maisons, including Acqua di Parma and La Perla — with discretion and artisan care.">Negli anni Athena's ha realizzato saponi artistici e prodotti customizzati anche per maison italiane di prestigio, tra cui Acqua di Parma e La Perla — con discrezione e cura artigianale.</p>
+        </div>
+        <div class="tz-intro__certs">
+          <span class="tz-cert-pill">ISO 22716 GMP</span>
+          <span class="tz-cert-pill">Vegan OK</span>
+          <span class="tz-cert-pill">Cruelty Free</span>
+          <span class="tz-cert-pill">ISO 14001</span>
+          <span class="tz-cert-pill">Dermatest</span>
+          <span class="tz-cert-pill">Made in Italy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- â”€â”€ CAPABILITIES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+<section class="tz-cap">
+  <div class="container">
+    <div class="tz-cap__header" data-reveal>
+      <div class="tz-cap__eyebrow" data-it="Cosa offriamo" data-en="What we offer">Cosa offriamo</div>
+      <h2>Tutto quello che serve<br><em>per portare un prodotto</em> sul mercato.</h2>
+    </div>
+    <div class="tz-cap__grid">
+
+      <div class="tz-cap__card" data-reveal>
+        <div class="tz-cap__n">01</div>
+        <div class="tz-cap__name">Formulazione<br><em>R&amp;S</em></div>
+        <div class="tz-cap__desc" data-it="Il nostro laboratorio interno sviluppa formule custom su brief del cliente: viso, corpo, capelli. Attivi selezionati, texture su misura, test di stabilità  inclusi." data-en="Our in-house laboratory develops custom formulas based on client briefs: face, body, hair. Selected actives, bespoke textures, stability tests included.">Il nostro laboratorio interno sviluppa formule custom su brief del cliente: viso, corpo, capelli. Attivi selezionati, texture su misura, test di stabilità  inclusi.</div>
+        <div class="tz-cap__tag" data-it="Viso · Corpo · Capelli" data-en="Face · Body · Hair">Viso · Corpo · Capelli</div>
+      </div>
+
+      <div class="tz-cap__card" data-reveal style="--d:60ms">
+        <div class="tz-cap__n">02</div>
+        <div class="tz-cap__name">Produzione &amp;<br><em>Riempimento</em></div>
+        <div class="tz-cap__desc" data-it="Linee di riempimento per creme, sieri, lozioni, oli, shampoo e detergenti. Controllo qualità  in-process, documentazione GMP conforme a ISO 22716." data-en="Filling lines for creams, serums, lotions, oils, shampoos and cleansers. In-process quality control, GMP documentation compliant with ISO 22716.">Linee di riempimento per creme, sieri, lozioni, oli, shampoo e detergenti. Controllo qualità  in-process, documentazione GMP conforme a ISO 22716.</div>
+        <div class="tz-cap__tag" data-it="ISO 22716 · GMP certificato" data-en="ISO 22716 · GMP certified">ISO 22716 · GMP certificato</div>
+      </div>
+
+      <div class="tz-cap__card" data-reveal style="--d:120ms">
+        <div class="tz-cap__n">03</div>
+        <div class="tz-cap__name">Packaging &amp;<br><em>Confezionamento</em></div>
+        <div class="tz-cap__desc" data-it="Etichettatura, cartoni, kit multipack e display. Supporto nella selezione dei materiali di packaging primario e secondario con attenzione alla sostenibilità ." data-en="Labelling, cartons, multipacks and displays. Support in selecting primary and secondary packaging materials with a focus on sustainability.">Etichettatura, cartoni, kit multipack e display. Supporto nella selezione dei materiali di packaging primario e secondario con attenzione alla sostenibilità .</div>
+        <div class="tz-cap__tag" data-it="Primario · Secondario · Sostenibile" data-en="Primary · Secondary · Sustainable">Primario · Secondario · Sostenibile</div>
+      </div>
+
+      <div class="tz-cap__card" data-reveal style="--d:0ms">
+        <div class="tz-cap__n">04</div>
+        <div class="tz-cap__name">Private<br><em>Label</em></div>
+        <div class="tz-cap__desc" data-it="Prodotto finito con il vostro brand. Scegliete la formula dal nostro catalogo attivo o richiedete una formulazione dedicata. MOQ flessibile, tempi definiti." data-en="Finished product with your brand. Choose the formula from our active catalogue or request a dedicated formulation. Flexible MOQ, defined timelines.">Prodotto finito con il vostro brand. Scegliete la formula dal nostro catalogo attivo o richiedete una formulazione dedicata. MOQ flessibile, tempi definiti.</div>
+        <div class="tz-cap__tag" data-it="Catalogo attivo · MOQ su richiesta" data-en="Active catalogue · MOQ on request">Catalogo attivo · MOQ su richiesta</div>
+      </div>
+
+      <div class="tz-cap__card" data-reveal style="--d:60ms">
+        <div class="tz-cap__n">05</div>
+        <div class="tz-cap__name">OEM<br><em>Custom</em></div>
+        <div class="tz-cap__desc" data-it="Dal concept al prodotto finito: concept di linea, naming, packaging design in collaborazione, formulazione originale, dossier completo. Un servizio chiavi in mano." data-en="From concept to finished product: line concept, naming, collaborative packaging design, original formulation, complete dossier. A turnkey service.">Dal concept al prodotto finito: concept di linea, naming, packaging design in collaborazione, formulazione originale, dossier completo. Un servizio chiavi in mano.</div>
+        <div class="tz-cap__tag" data-it="Chiavi in mano · Dossier incluso" data-en="Turnkey · Dossier included">Chiavi in mano · Dossier incluso</div>
+      </div>
+
+      <div class="tz-cap__card" data-reveal style="--d:120ms">
+        <div class="tz-cap__n">06</div>
+        <div class="tz-cap__name">Notifiche &amp;<br><em>Documentazione</em></div>
+        <div class="tz-cap__desc" data-it="Gestione delle notifiche CPNP, PIF completo, schede di sicurezza, claim di marketing documentati. Il nostro ufficio regolatorio segue il prodotto dalla formula all'immissione in commercio." data-en="Management of CPNP notifications, full PIF, safety data sheets, documented marketing claims. Our regulatory office follows the product from formula to market launch.">Gestione delle notifiche CPNP, PIF completo, schede di sicurezza, claim di marketing documentati. Il nostro ufficio regolatorio segue il prodotto dalla formula all'immissione in commercio.</div>
+        <div class="tz-cap__tag" data-it="CPNP · PIF · Reg. 1223/2009" data-en="CPNP · PIF · Reg. 1223/2009">CPNP · PIF · Reg. 1223/2009</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- â”€â”€ PROCESSO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+<section class="tz-process">
+  <div class="container">
+    <div class="tz-process__header" data-reveal>
+      <div class="tz-process__eyebrow" data-it="Dal brief al prodotto" data-en="From brief to product">Dal brief al prodotto</div>
+      <h2>Quattro fasi,<br><em>zero imprevisti.</em></h2>
+    </div>
+    <div class="tz-process__steps">
+      <div class="tz-step" data-reveal>
+        <div class="tz-step__n">01</div>
+        <div class="tz-step__name"><em>Brief</em> &amp; Consulenza</div>
+        <div class="tz-step__desc" data-it="Incontro con il nostro team commerciale e tecnico. Definizione di obiettivi, target, budget, certificazioni richieste e tempistiche di lancio." data-en="Meeting with our commercial and technical team. Definition of objectives, target, budget, required certifications and launch timelines.">Incontro con il nostro team commerciale e tecnico. Definizione di obiettivi, target, budget, certificazioni richieste e tempistiche di lancio.</div>
+      </div>
+      <div class="tz-step" data-reveal style="--d:80ms">
+        <div class="tz-step__n">02</div>
+        <div class="tz-step__name"><em>Formulazione</em> &amp; Approvazione</div>
+        <div class="tz-step__desc" data-it="Il laboratorio sviluppa la formula, prepara i campioni e conduce i test di stabilità . Il cliente approva organolettica, profumo e packaging. Iterazioni incluse." data-en="The laboratory develops the formula, prepares samples and conducts stability tests. The client approves the organoleptic profile, scent and packaging. Iterations included.">Il laboratorio sviluppa la formula, prepara i campioni e conduce i test di stabilità . Il cliente approva organolettica, profumo e packaging. Iterazioni incluse.</div>
+      </div>
+      <div class="tz-step" data-reveal style="--d:160ms">
+        <div class="tz-step__n">03</div>
+        <div class="tz-step__name"><em>Produzione</em> &amp; Controllo</div>
+        <div class="tz-step__desc" data-it="Avvio della produzione in lotti pianificati. Controllo qualità  in-process e sul prodotto finito conforme a ISO 22716. Tracciabilità  completa di ogni batch." data-en="Production launch in planned batches. In-process and finished product quality control compliant with ISO 22716. Full traceability of every batch.">Avvio della produzione in lotti pianificati. Controllo qualità  in-process e sul prodotto finito conforme a ISO 22716. Tracciabilità  completa di ogni batch.</div>
+      </div>
+      <div class="tz-step" data-reveal style="--d:240ms">
+        <div class="tz-step__n">04</div>
+        <div class="tz-step__name"><em>Consegna</em> &amp; Dossier</div>
+        <div class="tz-step__desc" data-it="Spedizione del prodotto finito con PIF completo, notifica CPNP gestita, documentazione GMP e certificati di analisi. Pronti al lancio." data-en="Shipment of the finished product with full PIF, managed CPNP notification, GMP documentation and certificates of analysis. Ready to launch.">Spedizione del prodotto finito con PIF completo, notifica CPNP gestita, documentazione GMP e certificati di analisi. Pronti al lancio.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- â”€â”€ CTA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+<section class="tz-cta">
+  <div class="container">
+    <div data-reveal>
+      <div class="tz-cta__eyebrow" data-it="Parliamo del vostro progetto" data-en="Let's talk about your project">Parliamo del vostro progetto</div>
+      <h2>Pronti a fare<br><em>il primo passo?</em></h2>
+      <p class="tz-cta__sub" data-it="Il team commerciale Athena's risponde entro 24 ore lavorative. Nessun impegno per la prima consulenza." data-en="The Athena's commercial team responds within 24 working hours. No obligation for the first consultation.">Il team commerciale Athena's risponde entro 24 ore lavorative. Nessun impegno per la prima consulenza.</p>
+      <div class="tz-cta__actions">
+        <a class="btn-primary" href="contatti.html" data-it="Richiedi un preventivo →" data-en="Request a quote →">Richiedi un preventivo →</a>
+        <a class="link-arrow" href="mailto:info@athenas.it" style="color:var(--sage-deep);text-decoration:none;" data-it="info@athenas.it" data-en="info@athenas.it">info@athenas.it</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script src="assets/vendor/lenis.min.js" defer></script>
+<script src="assets/data.js"></script>
+<script src="assets/search-data.js" defer></script>
+<script src="assets/app.js?v=6"></script>
+<script>
+initAthenas('terzisti');
+document.querySelector('.topbar').classList.add('topbar--light');
+
+// â”€â”€ PARTICLES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+const particlesContainer = document.getElementById('particles');
+if (particlesContainer) {
+  for (let i = 0; i < 22; i++) {
+    const p = document.createElement('div');
+    p.className = 'lh__particle';
+    const size = Math.random() * 3 + 1.5;
+    const dur  = Math.random() * 18 + 12;
+    const left = Math.random() * 100;
+    const delay = Math.random() * -dur;
+    p.style.cssText = `width:${size}px; height:${size}px; left:${left}%; bottom:-${size}px; animation-duration:${dur}s; animation-delay:${delay}s; opacity: ${Math.random() * 0.4 + 0.1};`;
+    particlesContainer.appendChild(p);
+  }
+}
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('[data-reveal]').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

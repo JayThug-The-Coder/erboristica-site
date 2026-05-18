@@ -1,0 +1,986 @@
+﻿<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sphea — Athena's</title>
+<link rel="preload" href="../assets/fonts/fraunces-200-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="stylesheet" href="../assets/fonts.css"/>
+<link rel="stylesheet" href="../assets/tokens.css"/>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #060606; color: #e4ddd4; font-family: var(--sans); overflow-x: hidden; }
+.container { max-width: 1320px; margin: 0 auto; padding: 0 clamp(20px,4vw,60px); }
+
+/* ── HERO ─────────────────────────────────────────────────── */
+.sh {
+  min-height: 100svh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(100px,12vw,160px) clamp(20px,4vw,60px) clamp(48px,7vw,80px);
+  overflow: hidden;
+}
+
+.sh__bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(170deg, #030303 0%, #0a0a0a 50%, #060606 100%);
+}
+.sh__photo-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background:
+    linear-gradient(100deg, rgba(4,3,2,.92) 0%, rgba(4,3,2,.70) 38%, rgba(4,3,2,.22) 62%, transparent 80%),
+    linear-gradient(180deg, rgba(4,3,2,.35) 0%, transparent 28%, transparent 60%, rgba(4,3,2,.75) 100%);
+}
+
+/* gold glow orb top-right */
+
+.sh__content {
+  position: relative;
+  z-index: 2;
+  max-width: 58ch;
+}
+
+.sh__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: .55;
+  margin-bottom: 20px;
+}
+.sh__eyebrow::before {
+  content: '';
+  display: block;
+  width: 28px; height: 1px;
+  background: var(--gold);
+  opacity: .5;
+}
+
+.sh h1 {
+  font-family: var(--display);
+  font-size: clamp(80px, 15vw, 200px);
+  font-weight: 200;
+  letter-spacing: -0.035em;
+  line-height: .88;
+  color: #e4ddd4;
+  margin-bottom: clamp(20px,3vw,36px);
+}
+.sh h1 em { font-style: italic; color: var(--gold); }
+
+.sh__tag {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(17px,1.8vw,24px);
+  color: rgba(228,221,212,.5);
+  margin-bottom: 28px;
+  line-height: 1.4;
+}
+
+.sh__award {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid rgba(201,169,110,.25);
+  padding: 10px 18px;
+  margin-bottom: 28px;
+}
+.sh__award-icon {
+  color: var(--gold);
+  font-size: 16px;
+}
+.sh__award-text {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: .7;
+}
+
+.sh__meta {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  padding-top: 24px;
+  border-top: 1px solid rgba(201,169,110,.1);
+}
+.sh__meta-label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(228,221,212,.25);
+  margin-bottom: 4px;
+}
+.sh__meta-val {
+  font-family: var(--serif);
+  font-size: 15px;
+  color: rgba(228,221,212,.65);
+}
+
+/* ── PEARL TECHNOLOGY ──────────────────────────────────────── */
+.sp-pearl-section {
+  position: relative;
+  min-height: clamp(480px,60vw,720px);
+  padding: clamp(80px,11vw,140px) 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.sp-pearl-section__bg {
+  position: absolute; inset: 0;
+}
+.sp-pearl-section__bg img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.sp-pearl-section__overlay {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(100deg, rgba(4,3,2,.94) 0%, rgba(4,3,2,.80) 42%, rgba(4,3,2,.35) 66%, transparent 84%),
+    linear-gradient(180deg, rgba(4,3,2,.35) 0%, transparent 25%, transparent 65%, rgba(4,3,2,.75) 100%);
+}
+
+.sp-pearl__eyebrow {
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: .5;
+  margin-bottom: 20px;
+}
+.sp-pearl h2 {
+  font-family: var(--display);
+  font-size: clamp(36px,5vw,72px);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.0;
+  color: #e4ddd4;
+  margin-bottom: 24px;
+}
+.sp-pearl h2 em { font-style: italic; color: var(--gold); }
+.sp-pearl p {
+  font-family: var(--serif);
+  font-size: clamp(17px,1.4vw,19px);
+  line-height: 1.75;
+  color: rgba(228,221,212,.55);
+  max-width: 48ch;
+  margin-bottom: 20px;
+}
+
+.sp-pearl__steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  margin-top: 32px;
+}
+.sp-pearl__step {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 18px 0;
+  border-top: 1px solid rgba(201,169,110,.08);
+}
+.sp-pearl__step-n {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 20px;
+  color: var(--gold);
+  opacity: .3;
+  flex-shrink: 0;
+  width: 32px;
+  line-height: 1;
+}
+.sp-pearl__step-text {
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.65;
+  color: rgba(228,221,212,.5);
+}
+.sp-pearl__step-text b { display: block; font-weight: 400; font-size: 17px; color: rgba(228,221,212,.8); margin-bottom: 2px; }
+
+/* Pearl animation diagram */
+.sp-pearl-diagram {
+  position: relative;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sp-pearl-diagram svg { width: 100%; height: 100%; overflow: visible; }
+
+/* ── ATTIVI — gli 8 principi ────────────────────────────────── */
+.sp-actives {
+  background: #0a0a0a;
+  padding: clamp(80px,11vw,140px) 0;
+  border-top: 1px solid rgba(201,169,110,.07);
+}
+.sp-actives__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: clamp(56px,7vw,90px);
+  flex-wrap: wrap;
+}
+.sp-actives h2 {
+  font-family: var(--display);
+  font-size: clamp(44px,7vw,100px);
+  font-weight: 200;
+  letter-spacing: -0.04em;
+  line-height: .9;
+  color: #e4ddd4;
+}
+.sp-actives h2 em { font-style: italic; color: var(--gold); }
+.sp-actives__count {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: rgba(228,221,212,.2);
+}
+
+/* Attivi — accordion */
+.sp-active-row {
+  border-top: 1px solid rgba(201,169,110,.08);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.sp-active-row:last-child { border-bottom: 1px solid rgba(201,169,110,.08); }
+.sp-active-row::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(201,169,110,.025);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .5s var(--ease);
+  pointer-events: none;
+}
+.sp-active-row:hover::before, .sp-active-row.open::before { transform: scaleX(1); }
+
+.sp-active-head {
+  display: grid;
+  grid-template-columns: clamp(48px,6vw,80px) 1fr auto;
+  align-items: center;
+  gap: clamp(16px,3vw,48px);
+  padding: clamp(22px,2.5vw,32px) 0;
+  position: relative; z-index: 1;
+  transition: padding .3s var(--ease);
+}
+.sp-active-row.open .sp-active-head { padding-bottom: 14px; }
+
+.sp-active__n {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: clamp(18px,2vw,28px);
+  color: var(--gold);
+  opacity: .2;
+  transition: opacity .3s;
+}
+.sp-active-row:hover .sp-active__n, .sp-active-row.open .sp-active__n { opacity: .55; }
+
+.sp-active__main { min-width: 0; }
+.sp-active__name {
+  font-family: var(--display);
+  font-size: clamp(20px,2.5vw,34px);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  color: #e4ddd4;
+  line-height: 1.15;
+  margin-bottom: 4px;
+  transition: color .3s;
+}
+.sp-active-row.open .sp-active__name { color: #fff; }
+.sp-active__name sup {
+  font-family: var(--sans);
+  font-size: .5em;
+  font-style: normal;
+  vertical-align: super;
+  color: var(--gold);
+  opacity: .7;
+  letter-spacing: 0;
+}
+.sp-active__tag {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: .35;
+}
+.sp-active__arrow {
+  width: 30px; height: 30px;
+  border: 1px solid rgba(201,169,110,.15);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(201,169,110,.4);
+  font-size: 13px; line-height: 1;
+  flex-shrink: 0;
+  transition: transform .4s var(--ease), color .3s, border-color .3s;
+}
+.sp-active-row.open .sp-active__arrow { transform: rotate(45deg); color: rgba(201,169,110,.8); border-color: rgba(201,169,110,.4); }
+@media (max-width: 640px) { .sp-active__arrow { display: none; } }
+
+/* Expand body */
+.sp-active-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .75s var(--ease);
+  position: relative; z-index: 1;
+}
+.sp-active-row.open .sp-active-body { max-height: 900px; }
+
+.sp-active-content {
+  padding: 0 0 clamp(28px,4vw,48px) clamp(68px,9vw,136px);
+  display: flex; flex-direction: column; gap: 0;
+}
+@media (max-width: 640px) { .sp-active-content { padding-left: 0; } }
+
+.sp-active__mechanism {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(15px,1.35vw,19px);
+  line-height: 1.85;
+  color: rgba(228,221,212,.4);
+  max-width: 62ch;
+  margin-bottom: 0;
+}
+.sp-active__mechanism + .sp-active__mechanism {
+  margin-top: 1.1em;
+  color: rgba(228,221,212,.28);
+  font-size: clamp(13px,1.1vw,16px);
+}
+.sp-active__mechanism strong {
+  font-style: normal;
+  font-weight: 600;
+  color: rgba(228,221,212,.72);
+}
+
+.sp-active__divider {
+  width: 32px; height: 1px;
+  background: rgba(201,169,110,.2);
+  margin: 20px 0 24px;
+}
+
+.sp-active__stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(201,169,110,.07);
+  max-width: 68ch;
+}
+@media (max-width: 860px) { .sp-active__stats { grid-template-columns: 1fr 1fr; } }
+
+.sp-active__stat {
+  background: #060606;
+  padding: clamp(14px,1.8vw,22px) clamp(14px,1.8vw,22px);
+  display: flex; flex-direction: column; gap: 8px;
+}
+.sp-active-row.open .sp-active__stat { background: #09080a; }
+
+.sp-active__stat-n {
+  font-family: var(--display);
+  font-size: clamp(20px,2vw,28px);
+  font-weight: 200;
+  color: var(--gold);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.sp-active__stat-l {
+  font-size: 9px; letter-spacing: 0.13em; text-transform: uppercase;
+  color: rgba(228,221,212,.3);
+  line-height: 1.5;
+}
+
+/* ── I 5 SIERI — zigzag ─────────────────────────────────────── */
+.sp-products {
+  background: #060606;
+  padding: clamp(80px,11vw,140px) 0 0;
+  border-top: 1px solid rgba(201,169,110,.07);
+}
+.sp-products__header {
+  margin-bottom: clamp(56px,7vw,90px);
+  padding: 0 clamp(20px,4vw,60px);
+  max-width: 1320px; margin-left: auto; margin-right: auto;
+}
+.sp-products h2 {
+  font-family: var(--display);
+  font-size: clamp(44px,7vw,100px);
+  font-weight: 200;
+  letter-spacing: -0.04em;
+  line-height: .9;
+  color: #e4ddd4;
+}
+.sp-products h2 em { font-style: italic; color: var(--gold); }
+
+.sp-prod-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid rgba(201,169,110,.06);
+  min-height: clamp(420px,56vh,680px);
+}
+.sp-prod-panel:last-child { border-bottom: 1px solid rgba(201,169,110,.06); }
+@media (max-width: 860px) {
+  .sp-prod-panel { grid-template-columns: 1fr; }
+  .sp-prod-panel--even .sp-prod-panel__photo { order: 0; }
+  .sp-prod-panel--even .sp-prod-panel__text  { order: 0; }
+}
+
+.sp-prod-panel--even .sp-prod-panel__photo { order: 2; }
+.sp-prod-panel--even .sp-prod-panel__text  { order: 1; }
+
+.sp-prod-panel__photo {
+  position: relative;
+  overflow: hidden;
+  min-height: clamp(300px,40vw,560px);
+}
+.sp-prod-panel__photo-bg {
+  position: absolute; inset: 0;
+  transition: transform 1.2s var(--ease);
+}
+.sp-prod-panel:hover .sp-prod-panel__photo-bg { transform: scale(1.04); }
+.sp-prod-panel__photo-num {
+  position: absolute; bottom: 20px; left: 24px;
+  font-family: var(--display); font-style: italic;
+  font-size: clamp(56px,10vw,120px); font-weight: 200;
+  color: rgba(201,169,110,.07); line-height: 1;
+  pointer-events: none; user-select: none;
+}
+/* SOSTITUIRE: immagine prodotto reale */
+.sp-prod-panel__photo-label {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  font-size: 9px; letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(201,169,110,.2); text-align: center;
+}
+
+.sp-prod-panel__text {
+  padding: clamp(48px,6vw,80px) clamp(40px,5vw,72px);
+  display: flex; flex-direction: column; justify-content: center;
+  gap: 0;
+}
+
+.sp-prod__eyebrow {
+  font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold); opacity: .35; margin-bottom: 18px;
+}
+.sp-prod__name {
+  font-family: var(--display);
+  font-size: clamp(28px,4vw,56px);
+  font-weight: 300; font-style: italic;
+  letter-spacing: -0.02em; color: #e4ddd4; line-height: 1.05;
+  margin-bottom: 10px;
+}
+.sp-prod__target {
+  font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(201,169,110,.3); margin-bottom: 24px;
+}
+.sp-prod__desc {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(15px,1.3vw,18px); line-height: 1.72;
+  color: rgba(228,221,212,.5); margin-bottom: 22px; max-width: 48ch;
+}
+.sp-prod__pills {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px;
+}
+.sp-prod__pill {
+  font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+  border: 1px solid rgba(201,169,110,.18); padding: 7px 15px;
+  color: var(--gold); opacity: .65;
+}
+.sp-prod__link {
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 13px 24px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(201,169,110,.6); text-decoration: none;
+  border: 1px solid rgba(201,169,110,.2);
+  transition: color .25s, border-color .25s, background .25s;
+  align-self: flex-start;
+}
+.sp-prod__link:hover { color: #c9a96e; border-color: rgba(201,169,110,.5); background: rgba(201,169,110,.04); }
+.sp-prod__link::after { content: '→'; font-size: 14px; }
+.sp-prod__cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--serif); font-style: italic; font-size: clamp(15px,1.3vw,18px);
+  color: rgba(228,221,212,.9); text-decoration: none; position: relative; padding-bottom: 3px;
+  transition: .3s var(--ease); align-self: flex-start;
+}
+.sp-prod__cta::after {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 0; height: 1px; background: rgba(228,221,212,.7);
+  transition: .35s var(--ease);
+}
+.sp-prod__cta:hover { gap: 18px; color: #fff; }
+.sp-prod__cta:hover::after { width: 100%; }
+.sp-prod__award {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold); opacity: .55; margin-bottom: 20px;
+}
+.sp-prod__award::before { content: '★'; font-size: 10px; }
+
+
+/* ── CTA ─────────────────────────────────────────────────── */
+.sp-cta {
+  position: relative;
+  padding: clamp(80px,11vw,140px) 0;
+  text-align: center;
+  overflow: hidden;
+}
+.sp-cta__bg {
+  position: absolute; inset: 0;
+}
+.sp-cta__bg img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.sp-cta__overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(4,3,2,.82) 0%, rgba(4,3,2,.72) 50%, rgba(4,3,2,.88) 100%);
+}
+.sp-cta__certs {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: clamp(48px,6vw,72px);
+}
+.sp-cert {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border: 1px solid rgba(201,169,110,.3);
+  padding: 7px 16px;
+  border-radius: 100px;
+  color: var(--gold);
+  opacity: .6;
+  white-space: nowrap;
+}
+
+.sp-cta h2 {
+  font-family: var(--display);
+  font-size: clamp(36px,5vw,72px);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  color: #e4ddd4;
+  margin-bottom: 12px;
+}
+.sp-cta h2 em { font-style: italic; color: var(--gold); }
+.sp-cta p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 17px;
+  color: rgba(228,221,212,.3);
+  margin-bottom: clamp(36px,4vw,52px);
+}
+.sp-cta__btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.sp-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  text-decoration: none; padding: 17px 34px;
+  transition: background .3s, color .3s, transform .2s;
+}
+.sp-btn--gold { background: var(--gold); color: #060606; }
+.sp-btn--gold:hover { background: #d4b47a; transform: translateY(-2px); }
+.sp-btn--ghost { background: transparent; color: rgba(228,221,212,.45); border: 1px solid rgba(201,169,110,.18); }
+.sp-btn--ghost:hover { color: #e4ddd4; border-color: rgba(201,169,110,.45); transform: translateY(-2px); }
+
+/* ── EDITORIAL CINEMATIC — dopo hero ────────────────────── */
+.sp-cin {
+  position: relative;
+  min-height: 80vh;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  border-top: 1px solid rgba(201,169,110,.06);
+}
+.sp-cin__photo {
+  position: absolute; inset: 0;
+  background: #08080e;
+  transition: transform 1.4s var(--ease);
+  /* SOSTITUIRE: aggiungere background-image + background-size: cover + background-position: center */
+}
+.sp-cin:hover .sp-cin__photo { transform: scale(1.02); }
+.sp-cin__photo-hint {
+  position: absolute; inset: 0; z-index: 1;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px dashed rgba(201,169,110,.08);
+}
+.sp-cin__photo-hint span {
+  font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(201,169,110,.15); text-align: center;
+}
+.sp-cin__overlay {
+  position: absolute; inset: 0; z-index: 2;
+  background: linear-gradient(to top, rgba(6,6,6,.97) 0%, rgba(6,6,6,.35) 55%, rgba(6,6,6,.08) 100%);
+}
+.sp-cin__content {
+  position: relative; z-index: 3;
+  padding: clamp(48px,8vw,100px) clamp(20px,4vw,60px);
+  width: 100%;
+  display: flex; align-items: flex-end;
+  justify-content: space-between; gap: 40px;
+  flex-wrap: wrap;
+  max-width: 1320px; margin: 0 auto;
+}
+.sp-cin__claim {
+  font-family: var(--display);
+  font-size: clamp(40px,8vw,108px);
+  font-weight: 200; line-height: .92;
+  letter-spacing: -0.03em; color: #e4ddd4;
+  max-width: 14ch;
+}
+.sp-cin__claim em { font-style: italic; color: var(--gold); display: block; }
+.sp-cin__right {
+  display: flex; flex-direction: column; gap: 10px;
+  padding-bottom: 6px; min-width: 180px;
+  border-left: 1px solid rgba(201,169,110,.12);
+  padding-left: 28px;
+}
+.sp-cin__right-line {
+  font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(228,221,212,.3); line-height: 1.7;
+}
+.sp-cin__right-line strong { color: rgba(228,221,212,.6); font-weight: 400; }
+@media (max-width: 700px) { .sp-cin__right { display: none; } }
+
+/* ── LINEUP SHOWCASE — prima della CTA ───────────────────── */
+.sp-lineup {
+  position: relative;
+  min-height: 88vh;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  justify-content: flex-end;
+  border-top: 1px solid rgba(201,169,110,.06);
+}
+.sp-lineup__photo {
+  position: absolute; inset: 0;
+  background: #06060e;
+  transition: transform 1.4s var(--ease);
+  /* SOSTITUIRE: aggiungere background-image slide 15 (group shot) + background-size: cover + background-position: center top */
+}
+.sp-lineup:hover .sp-lineup__photo { transform: scale(1.02); }
+.sp-lineup__photo-hint {
+  position: absolute; inset: 0; z-index: 1;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px dashed rgba(201,169,110,.08);
+}
+.sp-lineup__photo-hint span {
+  font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(201,169,110,.15); text-align: center;
+}
+.sp-lineup__overlay {
+  position: absolute; inset: 0; z-index: 2;
+  background: linear-gradient(to top, rgba(6,6,6,1) 0%, rgba(6,6,6,.6) 40%, rgba(6,6,6,.1) 100%);
+}
+.sp-lineup__bg-word {
+  position: absolute; bottom: -0.1em; right: -0.01em; z-index: 2;
+  font-family: var(--display); font-size: clamp(120px,22vw,320px);
+  font-weight: 200; color: rgba(201,169,110,.04);
+  line-height: 1; pointer-events: none; user-select: none;
+  letter-spacing: -0.04em;
+}
+.sp-lineup__content {
+  position: relative; z-index: 3;
+  padding: 0 clamp(20px,4vw,60px) clamp(52px,7vw,88px);
+  max-width: 1320px; margin: 0 auto; width: 100%;
+}
+.sp-lineup__eyebrow {
+  font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: rgba(201,169,110,.4); margin-bottom: 36px; display: block;
+}
+.sp-lineup__products {
+  display: flex; flex-wrap: wrap;
+  border-top: 1px solid rgba(201,169,110,.1);
+}
+.sp-lineup__item {
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 24px 32px 0 0;
+  margin-right: 32px;
+  border-right: 1px solid rgba(201,169,110,.1);
+  text-decoration: none;
+}
+.sp-lineup__item:last-child { border-right: 0; margin-right: 0; padding-right: 0; }
+.sp-lineup__item:hover .sp-lineup__item-name { color: var(--gold); }
+.sp-lineup__item-n {
+  font-family: var(--display); font-style: italic;
+  font-size: 11px; color: rgba(201,169,110,.3);
+}
+.sp-lineup__item-name {
+  font-family: var(--display); font-weight: 200; font-style: italic;
+  font-size: clamp(15px,1.8vw,22px); color: rgba(228,221,212,.8);
+  line-height: 1.2; transition: color .3s;
+}
+.sp-lineup__item-target {
+  font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(201,169,110,.25);
+}
+@media (max-width: 700px) {
+  .sp-lineup__item { margin-right: 20px; padding-right: 20px; }
+  .sp-lineup__item-target { display: none; }
+}
+
+/* reveal */
+[data-reveal] { opacity: 0; transform: translateY(22px); transition: opacity .75s var(--ease), transform .75s var(--ease); }
+[data-reveal].is-visible { opacity: 1; transform: none; }
+[data-reveal][style*="--d:100ms"] { transition-delay: 100ms; }
+[data-reveal][style*="--d:150ms"] { transition-delay: 150ms; }
+[data-reveal][style*="--d:200ms"] { transition-delay: 200ms; }
+[data-reveal][style*="--d:250ms"] { transition-delay: 250ms; }
+[data-reveal][style*="--d:300ms"] { transition-delay: 300ms; }
+[data-reveal][style*="--d:350ms"] { transition-delay: 350ms; }
+[data-reveal][style*="--d:400ms"] { transition-delay: 400ms; }
+
+/* ── COSMOPROF SECTION ─────────────────────────────────────── */
+.sp-cosmoprof {
+  background: #040404;
+  padding: clamp(80px,11vw,140px) 0;
+  border-top: 1px solid rgba(201,169,110,.07);
+}
+.sp-cosmoprof__inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: clamp(48px,7vw,100px); align-items: center;
+}
+@media (max-width: 860px) { .sp-cosmoprof__inner { grid-template-columns: 1fr; } }
+
+.sp-cosmoprof__star {
+  font-size: clamp(64px,12vw,160px); line-height: 1;
+  color: rgba(201,169,110,.08); font-family: var(--display); font-weight: 200;
+  user-select: none; pointer-events: none;
+}
+.sp-cosmoprof__eyebrow {
+  font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--gold); opacity: .55; margin-bottom: 16px;
+}
+.sp-cosmoprof h2 {
+  font-family: var(--display); font-weight: 200; font-style: italic;
+  font-size: clamp(32px,5vw,64px); color: #e4ddd4; line-height: 1.05; margin-bottom: 20px;
+}
+.sp-cosmoprof__desc {
+  font-family: var(--serif); font-size: clamp(16px,1.4vw,17px); line-height: 1.8;
+  color: rgba(228,221,212,.5); margin-bottom: 36px;
+}
+.sp-cosmoprof__nominees {
+  display: flex; flex-direction: column; gap: 1px;
+}
+.sp-cosmoprof__nominee {
+  display: flex; align-items: center; gap: 20px;
+  padding: 20px 0; border-top: 1px solid rgba(201,169,110,.1);
+}
+.sp-cosmoprof__nominee:last-child { border-bottom: 1px solid rgba(201,169,110,.1); }
+.sp-cosmoprof__nominee-star { color: var(--gold); font-size: 18px; flex-shrink: 0; }
+.sp-cosmoprof__nominee-name {
+  font-family: var(--display); font-size: clamp(17px,2vw,26px); font-weight: 300; font-style: italic;
+  color: #e4ddd4; line-height: 1.2; margin-bottom: 4px;
+}
+.sp-cosmoprof__nominee-cat {
+  font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(201,169,110,.4);
+}
+
+/* ── FOOTER OVERRIDE ─────────────────────────────────────── */
+.footer {
+  background: #040404;
+  margin-top: 0;
+}
+.footer__title { opacity: .65; color: rgba(228,221,212,.9); }
+.footer__link { opacity: .9; color: rgba(228,221,212,.9); }
+.footer__link:hover { opacity: 1; color: var(--gold); }
+.footer__contact { opacity: .6; }
+.footer__big { color: rgba(228,221,212,.9); opacity: .06; }
+.footer__bottom { opacity: .65; }
+
+</style>
+<meta name="description" content="Alta gamma Athena's con perle di biopolimeri marini. Peptidi brevettati e attivi di nuova generazione."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://athenas.it/linee/sphea.html"/>
+<meta property="og:type" content="website"/>
+<meta property="og:locale" content="it_IT"/>
+<meta property="og:locale:alternate" content="en_GB"/>
+<meta property="og:site_name" content="Athena's"/>
+<meta property="og:url" content="https://athenas.it/linee/sphea.html"/>
+<meta property="og:title" content="Sphea — Athena's"/>
+<meta property="og:description" content="Alta gamma Athena's con perle di biopolimeri marini. Peptidi brevettati e attivi di nuova generazione."/>
+<meta property="og:image" content="https://athenas.it/../immagini/og/sphea.jpg"/>
+<meta property="og:image:alt" content="Sphea — Athena's"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Sphea — Athena's"/>
+<meta name="twitter:description" content="Alta gamma Athena's con perle di biopolimeri marini. Peptidi brevettati e attivi di nuova generazione."/>
+<meta name="twitter:image" content="https://athenas.it/../immagini/og/sphea.jpg"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://athenas.it/" },
+    { "@type": "ListItem", "position": 2, "name": "Linee", "item": "https://athenas.it/linee.html" },
+    { "@type": "ListItem", "position": 3, "name": "Sphea", "item": "https://athenas.it/linee/sphea.html" }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div id="topbar"></div>
+
+<!-- ── HERO ──────────────────────────────────────────────── -->
+<section class="sh" data-mood-fallback="dark">
+  <img loading="eager" fetchpriority="high" decoding="async" src="../immagini/sphea/lifestyle-01.jpg" alt="Sphea by Athena's" class="bg-video" style="object-fit:cover;">
+  <!-- SOSTITUIRE: video hero Sphea · gruppo-sieri.mp4 da spostare in immagini/everby/gruppo-everby.mp4 (è contenuto Everby) · qui inserire video specifico Sphea quando disponibile -->
+  <!-- <video class="bg-video sh-hero__video" autoplay muted loop playsinline preload="metadata" poster="../immagini/sphea/01-anti-pollution.jpg">
+    <source src="../immagini/sphea/gruppo-sieri.mp4" type="video/mp4">
+  </video> -->
+  <div class="overlay"></div>
+  <div class="sh__photo-overlay"></div>
+  <div class="sh__content" data-reveal>
+    <div class="sh__eyebrow">04 · Athena's Portfolio · Premium</div>
+    <h1>Sph<em>ea</em></h1>
+    <p class="sh__tag" data-it="Biopolimeri marini. Perle. <em>Alta gamma.</em>" data-en="Marine biopolymers. Pearls. <em>Premium.</em>">Biopolimeri marini. Perle. <em>Alta gamma.</em></p>
+  </div>
+</section>
+
+
+<!-- ── PEARL TECHNOLOGY ──────────────────────────────────── -->
+<section class="sp-pearl-section">
+  <div class="sp-pearl-section__bg">
+    <img src="../immagini/sphea/stilllife.jpg" alt="Pearl Technology — Sphea" loading="lazy">
+  </div>
+  <div class="sp-pearl-section__overlay"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="sp-pearl" data-reveal style="max-width:52ch;">
+      <div class="sp-pearl__eyebrow" data-it="La tecnologia proprietaria" data-en="Proprietary technology">La tecnologia proprietaria</div>
+      <h2>
+        <span data-it="Pearl " data-en="Pearl ">Pearl </span><em data-it="Technology." data-en="Technology.">Technology.</em>
+      </h2>
+      <p data-it="Biopolimeri marini naturali al 100% — alghe, carragenina, agar — formano microsfere che incapsulano i principi attivi brevettati alla massima concentrazione possibile." data-en="100% natural marine biopolymers — algae, carrageenan, agar — form microspheres that encapsulate patented active ingredients at the highest possible concentration.">Biopolimeri marini naturali al 100% — alghe, carragenina, agar — formano microsfere che incapsulano i principi attivi brevettati alla massima concentrazione possibile.</p>
+      <p data-it="Al contatto con la pelle, le perle si rompono per pressione meccanica: rilasciano il principio attivo in modo mirato, progressivo, sensoriale. Un assorbimento profondo che nessun siero tradizionale può replicare. Il nome stesso del brand racconta la tecnologia: Sphea = sfere." data-en="On skin contact, the pearls break by mechanical pressure: they release the active ingredient in a targeted, progressive, sensorial way. Deep absorption that no traditional serum can replicate. The brand name itself tells the story: Sphea = spheres.">Al contatto con la pelle, le perle si rompono per pressione meccanica: rilasciano il principio attivo in modo mirato, progressivo, sensoriale. Un assorbimento profondo che nessun siero tradizionale può replicare. Il nome stesso del brand racconta la tecnologia: Sphea = sfere.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── I 5 SIERI — zigzag ─────────────────────────────────────── -->
+<section class="sp-products">
+  <!-- 01 — Anti Pollution (foto sx) -->
+  <div class="sp-prod-panel" data-reveal>
+    <div class="sp-prod-panel__photo">
+      <img loading="lazy" decoding="async" src="../immagini/sphea/anti-pollution/modella.jpg" alt="Anti Pollution Face Serum — Sphea" class="cover-img">
+      <div class="sp-prod-panel__photo-num">01</div>
+    </div>
+    <div class="sp-prod-panel__text">
+      <div class="sp-prod__eyebrow" data-it="01 · Viso · Tutti i tipi di pelle" data-en="01 · Face · All skin types">01 · Viso · Tutti i tipi di pelle</div>
+      <div class="sp-prod__name">Siero Viso<br>Antipollution</div>
+      <div class="sp-prod__target" data-it="Protezione · Idratazione · Detox" data-en="Protection · Hydration · Detox">Protezione · Idratazione · Detox</div>
+      <p class="sp-prod__desc" data-it="Scudo biologico contro smog, luce blu, UVA/UVB e radicali liberi. Ectoina — la molecola extremofila — forma un guscio protettivo attorno alle cellule cutanee." data-en="Biological shield against smog, blue light, UVA/UVB and free radicals. Ectoin forms a protective shell around skin cells.">Scudo biologico contro smog, luce blu, UVA/UVB e radicali liberi. Ectoina — la molecola extremofila — forma un guscio protettivo attorno alle cellule cutanee.</p>
+      <div class="sp-prod__pills"><span class="sp-prod__pill">Ectoina</span><span class="sp-prod__pill">Niacinamide</span><span class="sp-prod__pill">Coenzima Q10</span></div>
+      <a class="sp-prod__cta" href="prodotto-sphea.html?id=anti-pollution" data-it="Scopri il siero" data-en="Discover the serum">Scopri il siero</a>
+    </div>
+  </div>
+
+  <!-- 02 — Radiant Up-Lift (testo sx) -->
+  <div class="sp-prod-panel sp-prod-panel--even" data-reveal>
+    <div class="sp-prod-panel__photo">
+      <img loading="lazy" decoding="async" src="../immagini/sphea/radiant-up-lift/modella.jpg" alt="Radiant Up-Lift — Sphea" class="cover-img">
+      <div class="sp-prod-panel__photo-num">02</div>
+    </div>
+    <div class="sp-prod-panel__text">
+      <div class="sp-prod__eyebrow" data-it="02 · Viso · Tutti i tipi di pelle" data-en="02 · Face · All skin types">02 · Viso · Tutti i tipi di pelle</div>
+      <div class="sp-prod__name">Radiant<br>Up-Lift</div>
+      <div class="sp-prod__target" data-it="Lifting · Luminosità · Antiossidante" data-en="Lifting · Radiance · Antioxidant">Lifting · Luminosità · Antiossidante</div>
+      <p class="sp-prod__desc" data-it="Uplevity® contrae i muscoli facciali superficiali per un effetto lifting immediato e progressivo. Vitamina C stabilizzata per luminosità e protezione antiossidante." data-en="Uplevity® contracts superficial facial muscles for immediate and progressive lifting. Stabilised Vitamin C for radiance and antioxidant protection.">Uplevity® contrae i muscoli facciali superficiali per un effetto lifting immediato e progressivo. Vitamina C stabilizzata per luminosità e protezione antiossidante.</p>
+      <div class="sp-prod__pills"><span class="sp-prod__pill">Uplevity®</span><span class="sp-prod__pill">Vitamina C</span></div>
+      <a class="sp-prod__cta" href="prodotto-sphea.html?id=radiant-up-lift" data-it="Scopri il siero" data-en="Discover the serum">Scopri il siero</a>
+    </div>
+  </div>
+
+  <!-- 03 — Eyelift Perfector (foto sx) -->
+  <div class="sp-prod-panel" data-reveal>
+    <div class="sp-prod-panel__photo">
+      <img loading="lazy" decoding="async" src="../immagini/sphea/eyelift-perfector/modella.jpg" alt="Eyelift Perfector — Sphea" class="cover-img">
+      <div class="sp-prod-panel__photo-num">03</div>
+    </div>
+    <div class="sp-prod-panel__text">
+      <div class="sp-prod__eyebrow" data-it="03 · Occhi · Pelle matura" data-en="03 · Eyes · Mature skin">03 · Occhi · Pelle matura</div>
+      <div class="sp-prod__name">Eyelift<br>Perfector</div>
+      <div class="sp-prod__target" data-it="Rughe · Borse · Lifting occhi" data-en="Wrinkles · Bags · Eye lifting">Rughe · Borse · Lifting occhi</div>
+      <p class="sp-prod__desc" data-it="Argireline Amplified® riduce le rughe di espressione attorno agli occhi. Uplevity® effetto tensore per uno sguardo aperto e ringiovanito." data-en="Argireline Amplified® reduces expression lines around the eyes. Uplevity® tensing effect for an open and rejuvenated look.">Argireline Amplified® riduce le rughe di espressione attorno agli occhi. Uplevity® effetto tensore per uno sguardo aperto e ringiovanito.</p>
+      <div class="sp-prod__pills"><span class="sp-prod__pill">Argireline Amplified®</span><span class="sp-prod__pill">Uplevity®</span></div>
+      <a class="sp-prod__cta" href="prodotto-sphea.html?id=eyelift-perfector" data-it="Scopri il siero" data-en="Discover the serum">Scopri il siero</a>
+    </div>
+  </div>
+
+  <!-- 04 — Sculpt & Firm (testo sx) -->
+  <div class="sp-prod-panel sp-prod-panel--even" data-reveal>
+    <div class="sp-prod-panel__photo">
+      <img loading="lazy" decoding="async" src="../immagini/sphea/sculpt-firm/modella.jpg" alt="Sculpt &amp; Firm Body Serum — Sphea" class="cover-img">
+      <div class="sp-prod-panel__photo-num">04</div>
+    </div>
+    <div class="sp-prod-panel__text">
+      <div class="sp-prod__eyebrow" data-it="04 · Corpo · Tonificante" data-en="04 · Body · Toning">04 · Corpo · Tonificante</div>
+      <div class="sp-prod__name">Sculpt &amp;<br>Firm Body Serum</div>
+      <div class="sp-prod__target" data-it="Tonico · Rassodante · Modellante" data-en="Toning · Firming · Sculpting">Tonico · Rassodante · Modellante</div>
+      <p class="sp-prod__desc" data-it="Actigym® mima l'effetto dell'esercizio fisico sulle cellule muscolari. Corpo più tonico, sodo e modellato con uso regolare." data-en="Actigym® mimics the effect of physical exercise on muscle cells. More toned, firm and sculpted body with regular use.">Actigym® mima l'effetto dell'esercizio fisico sulle cellule muscolari. Corpo più tonico, sodo e modellato con uso regolare.</p>
+      <div class="sp-prod__pills"><span class="sp-prod__pill">Actigym®</span></div>
+      <a class="sp-prod__cta" href="prodotto-sphea.html?id=sculpt-firm" data-it="Scopri il siero" data-en="Discover the serum">Scopri il siero</a>
+    </div>
+  </div>
+
+  <!-- 05 — Slim Silhouette (foto sx) -->
+  <div class="sp-prod-panel" data-reveal>
+    <div class="sp-prod-panel__photo">
+      <img loading="lazy" decoding="async" src="../immagini/sphea/slim-silhouette/modella.jpg" alt="Slim Silhouette Body Serum — Sphea" class="cover-img">
+      <div class="sp-prod-panel__photo-num">05</div>
+    </div>
+    <div class="sp-prod-panel__text">
+      <div class="sp-prod__eyebrow" data-it="05 · Corpo · Snellente" data-en="05 · Body · Slimming">05 · Corpo · Snellente</div>
+      <div class="sp-prod__name">Slim Silhouette<br>Body Serum</div>
+      <div class="sp-prod__target" data-it="Snellente · Anti-cellulite · Drenante" data-en="Slimming · Anti-cellulite · Draining">Snellente · Anti-cellulite · Drenante</div>
+      <p class="sp-prod__desc" data-it="Nocturshape® attiva il metabolismo lipidico notturno. Formula a rilascio progressivo durante il sonno per risultati visibili sulla silhouette." data-en="Nocturshape® activates nocturnal lipid metabolism. Progressive release formula during sleep for visible results on the silhouette.">Nocturshape® attiva il metabolismo lipidico notturno. Formula a rilascio progressivo durante il sonno per risultati visibili sulla silhouette.</p>
+      <div class="sp-prod__pills"><span class="sp-prod__pill">Nocturshape®</span></div>
+      <a class="sp-prod__cta" href="prodotto-sphea.html?id=slim-silhouette" data-it="Scopri il siero" data-en="Discover the serum">Scopri il siero</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── CTA ────────────────────────────────────────────────── -->
+<section class="sp-cta">
+  <div class="sp-cta__bg">
+    <img src="../immagini/sphea/stilllife.jpg" alt="Sphea Pearl Technology" loading="lazy" style="object-position: center 40%;">
+  </div>
+  <div class="sp-cta__overlay"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <h2>
+      <span data-it="Alta gamma, " data-en="Premium, ">Alta gamma, </span><em data-it="dati reali." data-en="real data.">dati reali.</em>
+    </h2>
+    <p data-it="Campioni disponibili per i tuoi buyer · Scheda tecnica con claims certificati · Listino riservato" data-en="Samples available for your buyers · Technical sheet with certified claims · Reserved price list">Campioni disponibili per i tuoi buyer · Scheda tecnica con claims certificati · Listino riservato</p>
+    <div class="sp-cta__btns">
+      <a class="sp-btn sp-btn--gold" href="../contatti.html" data-it="Richiedi campioni" data-en="Request samples">Richiedi campioni</a>
+      <a class="sp-btn sp-btn--ghost" href="../contatti.html" data-it="Scarica scheda tecnica" data-en="Download technical sheet">Scarica scheda tecnica</a>
+    </div>
+  </div>
+</section>
+
+<div id="footer"></div>
+
+<script src="../assets/vendor/lenis.min.js" defer></script><script src="../assets/data.js"></script>
+<script src="../assets/search-data.js" defer></script>
+<script src="../assets/app.js?v=6"></script>
+<script>
+initAthenas('brands');
+document.querySelector('.topbar').classList.add('topbar--light');
+
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.07 });
+document.querySelectorAll('[data-reveal]').forEach(el => obs.observe(el));
+
+document.title = "Sphea — Athena's";
+
+// ── ATTIVI ACCORDION ──
+document.querySelectorAll('.sp-active-row').forEach(row => {
+  row.querySelector('.sp-active-head').addEventListener('click', () => {
+    const wasOpen = row.classList.contains('open');
+    document.querySelectorAll('.sp-active-row.open').forEach(r => r.classList.remove('open'));
+    if (!wasOpen) row.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
