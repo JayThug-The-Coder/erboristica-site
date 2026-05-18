@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="it">
 <head>
 <meta charset="utf-8"/>
@@ -130,7 +130,7 @@
 }
 .cat-nav__intro-title em { font-style: italic; color: var(--gold-deep); }
 .cat-nav__intro-text { font-family: var(--serif); font-size: clamp(17px,1.5vw,21px); line-height: 1.7; opacity: .7; }
-.cna { border-top: 1px solid rgba(0,0,0,.09); }
+.cna { border-top: 1px solid rgba(0,0,0,.09); display: flex; flex-direction: column; }
 .cna__item { border-bottom: 1px solid rgba(0,0,0,.09); }
 .cna__trigger {
   display: flex; align-items: center; justify-content: space-between;
@@ -366,21 +366,18 @@
 .line-skin-tag {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(17px, 1.5vw, 21px);
+  font-size: clamp(18px, 1.7vw, 24px);
   letter-spacing: 0;
   text-transform: none;
-  opacity: .7;
+  opacity: 1;
   margin-bottom: 28px;
+  padding-left: 14px;
+  border-left: 2px solid var(--gold);
 }
-.line-skin-tag::before {
-  content: '';
-  width: 8px; height: 1px;
-  background: currentColor;
-  flex-shrink: 0;
-}
+.line-skin-tag::before { display: none; }
 .ls-dark .line-story { opacity: .65; }
 .ls-forest .line-story { opacity: .65; }
 
@@ -543,7 +540,7 @@
       </div>
       <div class="cna" data-reveal style="--d:80ms;">
 
-        <div class="cna__item">
+        <div class="cna__item" style="order:4">
           <button class="cna__trigger" aria-expanded="false">
             <span class="cna__trigger-label">l'Erboristica</span>
             <span class="cna__trigger-icon"></span>
@@ -620,7 +617,7 @@
           </div>
         </div>
 
-        <div class="cna__item">
+        <div class="cna__item" style="order:1">
           <button class="cna__trigger" aria-expanded="false">
             <span class="cna__trigger-label">Sphea</span>
             <span class="cna__trigger-icon"></span>
@@ -659,7 +656,7 @@
           </div>
         </div>
 
-        <div class="cna__item">
+        <div class="cna__item" style="order:3">
           <button class="cna__trigger" aria-expanded="false">
             <span class="cna__trigger-label">Everby</span>
             <span class="cna__trigger-icon"></span>
@@ -726,7 +723,7 @@
           </div>
         </div>
 
-        <div class="cna__item">
+        <div class="cna__item" style="order:2">
           <button class="cna__trigger" aria-expanded="false">
             <span class="cna__trigger-label">Kaley</span>
             <span class="cna__trigger-icon"></span>
@@ -748,6 +745,59 @@
     </div>
   </div>
 </section>
+
+<!-- ── SPHEA ──────────────────────────────────────────────── -->
+<div id="sphea" class="line-section ls-dark" data-brand="sphea" data-category="viso corpo" style="background: linear-gradient(135deg, #040810 0%, #080e22 60%, #0c1432 100%);">
+  <div class="line-info">
+    <div class="line-n" style="color: var(--gold); opacity:.12;">S</div>
+    <div class="line-brand-tag" style="color: var(--gold);">Sphea</div>
+    <div class="line-name" data-it="Alta Gamma — Perle Biopolimeriche" data-en="Premium — Biopolymer Pearls">Alta Gamma — Perle Biopolimeriche</div>
+    <div class="line-tag" data-it="Attivi incapsulati. Rilascio mirato. Massima efficacia." data-en="Encapsulated actives. Targeted release. Maximum efficacy.">Attivi incapsulati. Rilascio mirato. Massima efficacia.</div>
+    <p class="line-desc" data-it="Dal 2025, il brand di alta gamma di Athena's. Sieri multi-trattamento con texture setosa e principi attivi incapsulati in preziose perle di biopolimeri marini: si rompono sotto pressione delle dita, rilasciando l'attivo al momento dell'applicazione. Argireline® Amplified, Uplevity® E-Lift, Actigym®, Nocturshape®: ingredienti brevettati per risultati clinicamente testati." data-en="Since 2025, Athena's premium brand. Multi-treatment serums with silky texture and active ingredients encapsulated in precious marine biopolymer pearls: they break under finger pressure, releasing the active at application. Clinically tested results.">Dal 2025, il brand di alta gamma di Athena's. Sieri multi-trattamento con texture setosa e principi attivi incapsulati in preziose perle di biopolimeri marini: si rompono sotto pressione delle dita, rilasciando l'attivo al momento dell'applicazione. Ingredienti brevettati per risultati clinicamente testati.</p>
+    <div class="line-count"><b style="color:var(--gold);">5</b> sieri</div>
+    <a href="linee/sphea.html" class="link-arrow" data-it="Scopri Sphea" data-en="Discover Sphea">Scopri Sphea</a>
+  </div>
+  <div class="line-visual">
+    <img src="immagini/sphea/linea.jpg" alt="Sphea — Athena's sieri premium" class="cover-img" loading="lazy">
+    <div class="line-visual__overlay"></div>
+  </div>
+</div>
+
+<!-- ── KALEY ──────────────────────────────────────────────── -->
+<div id="kaley" class="line-section ls-ink" data-brand="kaley" style="background: linear-gradient(135deg, #1e0610 0%, #380c20 60%, #521230 100%); color: var(--cream);">
+  <div class="line-info">
+    <div class="line-n" style="color: var(--gold); opacity:.15;">K</div>
+    <div class="line-brand-tag" style="color: var(--gold);">Kaley</div>
+    <div class="line-name" data-it="Profumi Roll-on Concentrati" data-en="Concentrated Roll-on Perfumes">Profumi Roll-on Concentrati</div>
+    <div class="line-tag" data-it="Fragranze in olio, senza alcol — 10 ml" data-en="Oil fragrances, alcohol-free — 10 ml">Fragranze in olio, senza alcol — 10 ml</div>
+    <p class="line-desc" data-it="Collezione dal 2022 di 7 profumi roll-on concentrati in olio puro. Senza alcol, delicati sulla pelle, con una persistenza superiore ai tradizionali eau de toilette. Ogni fragranza ha una personalità distinta: dalla speziatura ambrata di Crystal Rouge alle note marine di Dark Sea." data-en="Collection since 2022 of 7 concentrated roll-on perfumes in pure oil. Alcohol-free, gentle on the skin, with lasting power superior to traditional eau de toilette. Each fragrance has a distinct character.">Collezione dal 2022 di 7 profumi roll-on concentrati in olio puro. Senza alcol, delicati sulla pelle, con una persistenza superiore ai tradizionali eau de toilette. Ogni fragranza ha una personalità distinta: dalla speziatura ambrata di Crystal Rouge alle note marine di Dark Sea.</p>
+    <div class="line-count"><b style="color:var(--gold);">7</b> fragranze</div>
+    <a href="linee/kaley.html" class="link-arrow" data-it="Scopri Kaley" data-en="Discover Kaley">Scopri Kaley</a>
+  </div>
+  <div class="line-visual">
+    <img src="immagini/kaley/cover-2-rose.jpg" alt="Kaley" class="cover-img" loading="lazy">
+    <div class="line-visual__overlay"></div>
+  </div>
+</div>
+
+<!-- ── EVERBY ─────────────────────────────────────────────── -->
+<div id="everby" class="line-section ls-cream" data-brand="everby" style="background: linear-gradient(135deg, #f0faf7 0%, #d4ede9 55%, #74d0c4 100%);">
+  <div class="line-info">
+    <div class="line-n" style="color: #2e8a82; opacity:.15;">E</div>
+    <div class="line-brand-tag" style="color: #2e8a82;">Everby</div>
+    <div class="line-name" data-it="Everby — Clean Beauty Gen Z" data-en="Everby — Clean Beauty Gen Z">Everby — Clean Beauty Gen Z</div>
+    <div class="line-tag" data-it="Skincare innovativa con l'etica naturale di Athena's." data-en="Innovative skincare with Athena's natural ethics.">Skincare innovativa con l'etica naturale di Athena's.</div>
+    <p class="line-desc" data-it="Nata nel 2024, Everby unisce Clean Beauty innovativa alla qualità italiana di Athena's. Formule waterless, nomi anglofoni, packaging iridescente: pensata per la Gen Z, efficace per tutti." data-en="Born in 2024, Everby combines innovative Clean Beauty with Athena's Italian quality. Waterless formulas, English names, iridescent packaging: designed for Gen Z, effective for all.">Nata nel 2024, Everby unisce Clean Beauty innovativa alla qualità italiana di Athena's. Formule waterless, nomi anglofoni, packaging iridescente: pensata per la Gen Z, efficace per tutti.</p>
+    <div class="line-count"><b style="color:#2e8a82;">10</b> prodotti</div>
+    <div class="line-skin-tag" data-it="studiata per: ogni tipo di pelle, dalla teen alla mature" data-en="designed for: every skin type, from teen to mature">studiata per: ogni tipo di pelle, dalla teen alla mature</div>
+    <p class="line-story" data-it="Cica Cloud, Milky Rice, Pump &amp; Plump, Stay Porefect: dieci formule Clean Beauty con la firma italiana di Athena's. Texture innovative — gel-cream, bifasici, sieri waterless — e attivi naturali come Centella asiatica, niacinamide, peptidi biomimetici. Packaging iridescente teal, nomi anglofoni, comunicazione diretta: Everby è pensata per la Gen Z, ma le sue formule funzionano su ogni età." data-en="Cica Cloud, Milky Rice, Pump &amp; Plump, Stay Porefect: ten Clean Beauty formulas with Athena's Italian signature. Innovative textures — gel-cream, bi-phase, waterless serums — and natural actives like Centella asiatica, niacinamide, biomimetic peptides. Iridescent teal packaging, English names, direct communication: Everby is designed for Gen Z, but its formulas work at any age.">Cica Cloud, Milky Rice, Pump &amp; Plump, Stay Porefect: dieci formule Clean Beauty con la firma italiana di Athena's. Texture innovative — gel-cream, bifasici, sieri waterless — e attivi naturali come Centella asiatica, niacinamide, peptidi biomimetici. Packaging iridescente teal, nomi anglofoni, comunicazione diretta: Everby è pensata per la Gen Z, ma le sue formule funzionano su ogni età.</p>
+    <a href="linee/everby.html" class="link-arrow" data-it="Scopri Everby" data-en="Discover Everby">Scopri Everby</a>
+  </div>
+  <div class="line-visual">
+    <img src="immagini/everby/cover-generale.jpg" alt="Everby" class="cover-img" loading="lazy">
+    <div class="line-visual__overlay"></div>
+  </div>
+</div>
 
 <!-- 01 Argan -->
 <div id="argan" class="line-section ls-cream" data-brand="erboristica" data-line-id="argan" data-category="viso capelli corpo" style="background: linear-gradient(135deg, #f7ead0 0%, #f0d898 60%, #e8c878 100%);">
@@ -920,59 +970,6 @@
   </div>
   <div class="line-visual">
     <img src="immagini/pearls/cover.jpg" alt="Skincare Innovation" class="cover-img" loading="lazy">
-    <div class="line-visual__overlay"></div>
-  </div>
-</div>
-
-<!-- ── EVERBY ─────────────────────────────────────────────── -->
-<div id="everby" class="line-section ls-cream" data-brand="everby" style="background: linear-gradient(135deg, #f0faf7 0%, #d4ede9 55%, #74d0c4 100%);">
-  <div class="line-info">
-    <div class="line-n">01</div>
-    <div class="line-brand-tag" style="color: #2e8a82;">Everby</div>
-    <div class="line-name" data-it="Everby — Clean Beauty Gen Z" data-en="Everby — Clean Beauty Gen Z">Everby — Clean Beauty Gen Z</div>
-    <div class="line-tag" data-it="Skincare innovativa con l'etica naturale di Athena's." data-en="Innovative skincare with Athena's natural ethics.">Skincare innovativa con l'etica naturale di Athena's.</div>
-    <p class="line-desc" data-it="Nata nel 2024, Everby unisce Clean Beauty innovativa alla qualità italiana di Athena's. Formule waterless, nomi anglofoni, packaging iridescente: pensata per la Gen Z, efficace per tutti." data-en="Born in 2024, Everby combines innovative Clean Beauty with Athena's Italian quality. Waterless formulas, English names, iridescent packaging: designed for Gen Z, effective for all.">Nata nel 2024, Everby unisce Clean Beauty innovativa alla qualità italiana di Athena's. Formule waterless, nomi anglofoni, packaging iridescente: pensata per la Gen Z, efficace per tutti.</p>
-    <div class="line-count"><b style="color:#2e8a82;">10</b> prodotti</div>
-    <div class="line-skin-tag" data-it="studiata per: ogni tipo di pelle, dalla teen alla mature" data-en="designed for: every skin type, from teen to mature">studiata per: ogni tipo di pelle, dalla teen alla mature</div>
-    <p class="line-story" data-it="Cica Cloud, Milky Rice, Pump &amp; Plump, Stay Porefect: dieci formule Clean Beauty con la firma italiana di Athena's. Texture innovative — gel-cream, bifasici, sieri waterless — e attivi naturali come Centella asiatica, niacinamide, peptidi biomimetici. Packaging iridescente teal, nomi anglofoni, comunicazione diretta: Everby è pensata per la Gen Z, ma le sue formule funzionano su ogni età." data-en="Cica Cloud, Milky Rice, Pump &amp; Plump, Stay Porefect: ten Clean Beauty formulas with Athena's Italian signature. Innovative textures — gel-cream, bi-phase, waterless serums — and natural actives like Centella asiatica, niacinamide, biomimetic peptides. Iridescent teal packaging, English names, direct communication: Everby is designed for Gen Z, but its formulas work at any age.">Cica Cloud, Milky Rice, Pump &amp; Plump, Stay Porefect: dieci formule Clean Beauty con la firma italiana di Athena's. Texture innovative — gel-cream, bifasici, sieri waterless — e attivi naturali come Centella asiatica, niacinamide, peptidi biomimetici. Packaging iridescente teal, nomi anglofoni, comunicazione diretta: Everby è pensata per la Gen Z, ma le sue formule funzionano su ogni età.</p>
-    <a href="linee/everby.html" class="link-arrow" data-it="Scopri Everby" data-en="Discover Everby">Scopri Everby</a>
-  </div>
-  <div class="line-visual">
-    <img src="immagini/everby/cover-generale.jpg" alt="Everby" class="cover-img" loading="lazy">
-    <div class="line-visual__overlay"></div>
-  </div>
-</div>
-
-<!-- ── KALEY ──────────────────────────────────────────────── -->
-<div id="kaley" class="line-section ls-ink" data-brand="kaley" style="background: linear-gradient(135deg, #1e0610 0%, #380c20 60%, #521230 100%); color: var(--cream);">
-  <div class="line-info">
-    <div class="line-n" style="color: var(--gold); opacity:.15;">K</div>
-    <div class="line-brand-tag" style="color: var(--gold);">Kaley</div>
-    <div class="line-name" data-it="Profumi Roll-on Concentrati" data-en="Concentrated Roll-on Perfumes">Profumi Roll-on Concentrati</div>
-    <div class="line-tag" data-it="Fragranze in olio, senza alcol — 10 ml" data-en="Oil fragrances, alcohol-free — 10 ml">Fragranze in olio, senza alcol — 10 ml</div>
-    <p class="line-desc" data-it="Collezione dal 2022 di 7 profumi roll-on concentrati in olio puro. Senza alcol, delicati sulla pelle, con una persistenza superiore ai tradizionali eau de toilette. Ogni fragranza ha una personalità distinta: dalla speziatura ambrata di Crystal Rouge alle note marine di Dark Sea." data-en="Collection since 2022 of 7 concentrated roll-on perfumes in pure oil. Alcohol-free, gentle on the skin, with lasting power superior to traditional eau de toilette. Each fragrance has a distinct character.">Collezione dal 2022 di 7 profumi roll-on concentrati in olio puro. Senza alcol, delicati sulla pelle, con una persistenza superiore ai tradizionali eau de toilette. Ogni fragranza ha una personalità distinta: dalla speziatura ambrata di Crystal Rouge alle note marine di Dark Sea.</p>
-    <div class="line-count"><b style="color:var(--gold);">7</b> fragranze</div>
-    <a href="linee/kaley.html" class="link-arrow" data-it="Scopri Kaley" data-en="Discover Kaley">Scopri Kaley</a>
-  </div>
-  <div class="line-visual">
-    <img src="immagini/kaley/cover-2-rose.jpg" alt="Kaley" class="cover-img" loading="lazy">
-    <div class="line-visual__overlay"></div>
-  </div>
-</div>
-
-<!-- ── SPHEA ──────────────────────────────────────────────── -->
-<div id="sphea" class="line-section ls-dark" data-brand="sphea" data-category="viso corpo" style="background: linear-gradient(135deg, #040810 0%, #080e22 60%, #0c1432 100%);">
-  <div class="line-info">
-    <div class="line-n" style="color: var(--gold); opacity:.12;">S</div>
-    <div class="line-brand-tag" style="color: var(--gold);">Sphea</div>
-    <div class="line-name" data-it="Alta Gamma — Perle Biopolimeriche" data-en="Premium — Biopolymer Pearls">Alta Gamma — Perle Biopolimeriche</div>
-    <div class="line-tag" data-it="Attivi incapsulati. Rilascio mirato. Massima efficacia." data-en="Encapsulated actives. Targeted release. Maximum efficacy.">Attivi incapsulati. Rilascio mirato. Massima efficacia.</div>
-    <p class="line-desc" data-it="Dal 2025, il brand di alta gamma di Athena's. Sieri multi-trattamento con texture setosa e principi attivi incapsulati in preziose perle di biopolimeri marini: si rompono sotto pressione delle dita, rilasciando l'attivo al momento dell'applicazione. Argireline® Amplified, Uplevity® E-Lift, Actigym®, Nocturshape®: ingredienti brevettati per risultati clinicamente testati." data-en="Since 2025, Athena's premium brand. Multi-treatment serums with silky texture and active ingredients encapsulated in precious marine biopolymer pearls: they break under finger pressure, releasing the active at application. Clinically tested results.">Dal 2025, il brand di alta gamma di Athena's. Sieri multi-trattamento con texture setosa e principi attivi incapsulati in preziose perle di biopolimeri marini: si rompono sotto pressione delle dita, rilasciando l'attivo al momento dell'applicazione. Ingredienti brevettati per risultati clinicamente testati.</p>
-    <div class="line-count"><b style="color:var(--gold);">5</b> sieri</div>
-    <a href="linee/sphea.html" class="link-arrow" data-it="Scopri Sphea" data-en="Discover Sphea">Scopri Sphea</a>
-  </div>
-  <div class="line-visual">
-    <img src="immagini/sphea/linea.jpg" alt="Sphea — Athena's sieri premium" class="cover-img" loading="lazy">
     <div class="line-visual__overlay"></div>
   </div>
 </div>
