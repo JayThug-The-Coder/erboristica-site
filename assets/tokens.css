@@ -518,11 +518,33 @@ h1, h2, h3, h4, h5 {
 @media (max-width: 900px) {
   .footer__grid { grid-template-columns: 1fr 1fr; }
 }
-@media (max-width: 560px) {
-  .footer__grid { grid-template-columns: 1fr 1fr; gap: var(--s4) var(--s3); }
-  .footer__grid > div:first-child { grid-column: 1 / -1; }
-  .footer__contact { font-size: 10px; gap: 0 20px; }
-  .footer__bottom { flex-direction: column; gap: 10px; }
+@media (max-width: 600px) {
+  .footer__grid {
+    grid-template-columns: 1fr;
+    gap: var(--s5);
+    text-align: center;
+  }
+  .footer__grid > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .footer__grid p { max-width: 34ch; }
+  .footer__grid form { width: 100%; max-width: 300px; }
+  .footer__contact {
+    justify-content: center;
+    text-align: center;
+    font-size: 10px;
+    gap: 4px 18px;
+  }
+  .footer__social { width: auto; justify-content: center; }
+  .footer__bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+  }
+  .footer__bottom > div { justify-content: center; }
 }
 
 .footer__social {
