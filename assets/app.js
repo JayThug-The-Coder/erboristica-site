@@ -527,10 +527,9 @@
     const onScroll = () => {
       const y = window.scrollY;
       const goingDown = y > _lastY;
-      const isMobile = window.innerWidth <= 900;
       if (y < 10) {
         el.classList.remove('topbar--hidden', 'solid');
-      } else if (!isMobile && goingDown && y > 60) {
+      } else if (goingDown && y > 60) {
         el.classList.add('topbar--hidden');
       } else {
         el.classList.remove('topbar--hidden');

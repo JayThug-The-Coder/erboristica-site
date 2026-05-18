@@ -596,14 +596,14 @@
    dallo scroll verticale), con dimensioni ridotte per il telefono */
 @media (max-width: 960px) {
   .tl-pin-outer {
-    height: calc(100vh + 5000px);
+    height: calc(100vh + 3400px);
     --tl-title-top: clamp(72px, 10vh, 96px);
     --tl-title-left: clamp(16px, 5vw, 28px);
     --tl-track-top: clamp(190px, 26vh, 250px);
     --tl-photo-w: 78vw;
     --tl-photo-h: clamp(230px, 34vh, 320px);
     --tl-slide-w: 78vw;
-    --tl-gap: 16px;
+    --tl-gap: 0px;
   }
   .tl-pin-outer .tl-section {
     position: sticky;
@@ -637,7 +637,6 @@
     will-change: transform;
     align-items: flex-start;
   }
-  .tl-slide--text { width: var(--tl-slide-w); }
   .tl-slide__text { padding-bottom: 0; }
   .tl-slide__desc { font-size: 15px; line-height: 1.5; }
   .tl-track-outer::after {
@@ -2030,13 +2029,15 @@ document.querySelectorAll('[data-reveal]').forEach(el => revealObs.observe(el));
     const rect = outer.getBoundingClientRect();
     const scrollable = rect.height - window.innerHeight;
     if (scrollable <= 0) return;
+    const mobile = window.innerWidth <= 960;
     const raw = -rect.top / scrollable;
-    const startDelay = 0.18;
+    const startDelay = mobile ? 0.05 : 0.18;
     const endHold = 0.10;
     const progress = Math.max(0, Math.min(1, (raw - startDelay) / (1 - startDelay - endHold)));
     const maxTravel = Math.max(0, track.scrollWidth - window.innerWidth);
     const translateX = -progress * maxTravel;
-    track.style.transform = 'translateX(' + translateX + 'px)';
+    track.style.transform = 'translate3d(' + translateX + 'px,0,0)';
+    if (mobile) return;
     const vw = window.innerWidth;
     slides.forEach(slide => {
       const entry = (vw - slide.offsetLeft - translateX) / slide.offsetWidth;
