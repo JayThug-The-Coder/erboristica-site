@@ -49,7 +49,7 @@
     'everby':      ['everby', 'k-beauty', 'kbeauty', 'glass skin', 'gen z', 'fermentata'],
     'kaley':       ['kaley', 'roll-on', 'profumo tasca', 'fragranza tasca'],
     // Section navigation
-    'sostenibilita': ['sostenibilita', 'sostenibile', 'green', 'eco', 'ambiente', 'pianeta', 'fotovoltaico'],
+    'sostenibilita': ['sostenibilita', 'sostenibile', 'green', 'eco', 'ambiente', 'pianeta'],
     'laboratorio':   ['laboratorio', 'r&s', 'ricerca', 'sviluppo', 'r&d', 'innovazione', 'attivi', 'principi attivi'],
     'terzisti':      ['terzisti', 'conto terzi', 'private label', 'manifattura', 'manufacturer', 'contract', 'oem'],
     'contatti':      ['contatti', 'contact', 'email', 'telefono', 'indirizzo', 'spaccio', 'sede'],
