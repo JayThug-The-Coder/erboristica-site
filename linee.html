@@ -203,21 +203,14 @@
 .ls-cream2 { background: var(--cream-2); }
 .ls-dark   { background: var(--ink); color: var(--cream); }
 
-/* CTA — stile "SCOPRI ..." come da catalogo (no freccia, no underline) */
-.line-section .link-arrow {
+/* CTA — identico a catalogo.html (.line-info .link-arrow) */
+.line-info .link-arrow {
   font-family: var(--serif);
-  font-size: clamp(13px,1.15vw,16px);
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: inherit;
-  display: inline-block;
+  font-size: clamp(13px, 1.1vw, 15px);
+  letter-spacing: 0.22em;
+  margin-top: clamp(36px, 5vw, 72px);
   align-self: flex-start;
-  padding: 4px 0;
-  opacity: .85;
-  transition: opacity .25s var(--ease), letter-spacing .25s var(--ease);
 }
-.line-section:hover .link-arrow { opacity: 1; letter-spacing: 0.36em; }
 
 /* Placeholder visual per L'Erboristica (in attesa di foto reale) */
 .lv-erboristica {
