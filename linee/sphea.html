@@ -128,24 +128,34 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
 
 /* ── PEARL TECHNOLOGY ──────────────────────────────────────── */
 .sp-pearl-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: #eef1f7;
+  border-top: 1px solid rgba(74,106,160,.06);
+}
+@media (max-width: 860px) {
+  .sp-pearl-section { grid-template-columns: 1fr; }
+}
+.sp-pearl-section__media {
   position: relative;
-  min-height: clamp(480px,60vw,720px);
-  padding: clamp(80px,11vw,140px) 0;
   overflow: hidden;
-  display: flex;
-  align-items: center;
+  order: 2;
+  min-height: clamp(320px,42vw,620px);
 }
-.sp-pearl-section__bg {
+.sp-pearl-section__media img {
   position: absolute; inset: 0;
-}
-.sp-pearl-section__bg img {
   width: 100%; height: 100%; object-fit: cover;
 }
-.sp-pearl-section__overlay {
-  position: absolute; inset: 0;
-  background:
-    linear-gradient(100deg, rgba(244,247,252,.94) 0%, rgba(244,247,252,.80) 42%, rgba(244,247,252,.35) 66%, transparent 84%),
-    linear-gradient(180deg, rgba(244,247,252,.35) 0%, transparent 25%, transparent 65%, rgba(244,247,252,.75) 100%);
+@media (max-width: 860px) {
+  .sp-pearl-section__media { order: 0; min-height: clamp(280px,62vw,420px); }
+}
+
+.sp-pearl {
+  order: 1;
+  padding: clamp(64px,8vw,130px) clamp(40px,5vw,80px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .sp-pearl__eyebrow {
@@ -780,16 +790,16 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
   font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(74,106,160,.4);
 }
 
-/* ── FOOTER OVERRIDE ─────────────────────────────────────── */
+/* ── FOOTER OVERRIDE (resta scuro, come default) ─────────── */
 .footer {
-  background: #e7ecf5;
+  background: #040404;
   margin-top: 0;
 }
-.footer__title { opacity: .65; color: rgba(26,26,26,.9); }
-.footer__link { opacity: .9; color: rgba(26,26,26,.9); }
-.footer__link:hover { opacity: 1; color: #4a6aa0; }
+.footer__title { opacity: .65; color: rgba(228,221,212,.9); }
+.footer__link { opacity: .9; color: rgba(228,221,212,.9); }
+.footer__link:hover { opacity: 1; color: var(--gold); }
 .footer__contact { opacity: .6; }
-.footer__big { color: rgba(26,26,26,.9); opacity: .06; }
+.footer__big { color: rgba(228,221,212,.9); opacity: .06; }
 .footer__bottom { opacity: .65; }
 
 </style>
@@ -843,19 +853,16 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
 
 <!-- ── PEARL TECHNOLOGY ──────────────────────────────────── -->
 <section class="sp-pearl-section">
-  <div class="sp-pearl-section__bg">
-    <img src="../immagini/sphea/stilllife.jpg" alt="Pearl Technology — Sphea" loading="lazy">
+  <div class="sp-pearl" data-reveal>
+    <div class="sp-pearl__eyebrow" data-it="La tecnologia proprietaria" data-en="Proprietary technology">La tecnologia proprietaria</div>
+    <h2>
+      <span data-it="Pearl " data-en="Pearl ">Pearl </span><em data-it="Technology." data-en="Technology.">Technology.</em>
+    </h2>
+    <p data-it="Biopolimeri marini naturali al 100% — alghe, carragenina, agar — formano microsfere che incapsulano i principi attivi brevettati alla massima concentrazione possibile." data-en="100% natural marine biopolymers — algae, carrageenan, agar — form microspheres that encapsulate patented active ingredients at the highest possible concentration.">Biopolimeri marini naturali al 100% — alghe, carragenina, agar — formano microsfere che incapsulano i principi attivi brevettati alla massima concentrazione possibile.</p>
+    <p data-it="Al contatto con la pelle, le perle si rompono per pressione meccanica: rilasciano il principio attivo in modo mirato, progressivo, sensoriale. Un assorbimento profondo che nessun siero tradizionale può replicare. Il nome stesso del brand racconta la tecnologia: Sphea = sfere." data-en="On skin contact, the pearls break by mechanical pressure: they release the active ingredient in a targeted, progressive, sensorial way. Deep absorption that no traditional serum can replicate. The brand name itself tells the story: Sphea = spheres.">Al contatto con la pelle, le perle si rompono per pressione meccanica: rilasciano il principio attivo in modo mirato, progressivo, sensoriale. Un assorbimento profondo che nessun siero tradizionale può replicare. Il nome stesso del brand racconta la tecnologia: Sphea = sfere.</p>
   </div>
-  <div class="sp-pearl-section__overlay"></div>
-  <div class="container" style="position:relative;z-index:1;">
-    <div class="sp-pearl" data-reveal style="max-width:52ch;">
-      <div class="sp-pearl__eyebrow" data-it="La tecnologia proprietaria" data-en="Proprietary technology">La tecnologia proprietaria</div>
-      <h2>
-        <span data-it="Pearl " data-en="Pearl ">Pearl </span><em data-it="Technology." data-en="Technology.">Technology.</em>
-      </h2>
-      <p data-it="Biopolimeri marini naturali al 100% — alghe, carragenina, agar — formano microsfere che incapsulano i principi attivi brevettati alla massima concentrazione possibile." data-en="100% natural marine biopolymers — algae, carrageenan, agar — form microspheres that encapsulate patented active ingredients at the highest possible concentration.">Biopolimeri marini naturali al 100% — alghe, carragenina, agar — formano microsfere che incapsulano i principi attivi brevettati alla massima concentrazione possibile.</p>
-      <p data-it="Al contatto con la pelle, le perle si rompono per pressione meccanica: rilasciano il principio attivo in modo mirato, progressivo, sensoriale. Un assorbimento profondo che nessun siero tradizionale può replicare. Il nome stesso del brand racconta la tecnologia: Sphea = sfere." data-en="On skin contact, the pearls break by mechanical pressure: they release the active ingredient in a targeted, progressive, sensorial way. Deep absorption that no traditional serum can replicate. The brand name itself tells the story: Sphea = spheres.">Al contatto con la pelle, le perle si rompono per pressione meccanica: rilasciano il principio attivo in modo mirato, progressivo, sensoriale. Un assorbimento profondo che nessun siero tradizionale può replicare. Il nome stesso del brand racconta la tecnologia: Sphea = sfere.</p>
-    </div>
+  <div class="sp-pearl-section__media">
+    <img src="../immagini/sphea/stilllife.jpg" alt="Pearl Technology — Sphea" loading="lazy">
   </div>
 </section>
 
