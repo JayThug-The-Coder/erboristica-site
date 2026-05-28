@@ -4,6 +4,163 @@
 
 ---
 
+# 🚀 HANDOFF — Sessione 26-27 Maggio 2026
+
+> **Per la nuova conversazione Claude Code**: leggi questa sezione prima di tutto. Riassume dove siamo, cosa è stato deciso, e cosa rimane da fare.
+
+## Stato attuale
+
+Il sito è **funzionante online** su Netlify (`https://creative-sunburst-9a3c92.netlify.app`). Stiamo lavorando alla **scheda prodotto dinamica** (`prodotto.html?id=<slug>`) — era stata trasformata in redirect a erboristica.com, ora ripristinata e in fase di redesign.
+
+### Cosa è stato fatto in questa sessione
+
+1. **`prodotto.html` ripristinato** dal backup `Desktop/erboristica-site-backup-2026-05-06/prodotto.html` (1.360 righe) — prima era un redirect di 15 righe.
+
+2. **Link prodotti ridiretti a scheda interna**:
+   - `linee/linea.html` (riga ~1009): `ctaHref` ora punta a `../prodotto.html?id=${p.id}` invece di `erboristica.com`.
+   - `linee/everby.html`: 11 bottoni "Acquista su erboristica.com" sostituiti con "Scopri il prodotto →" verso schede interne.
+   - `linee/kaley.html`: 7 bottoni idem.
+   - Lo script che ha fatto il rewrite: `C:\Users\jagio\Desktop\_athena_inventory\rewrite_brand_links.py`.
+
+3. **Layout scheda prodotto in redesign**. Decisione finale presa con l'utente (Jagio):
+   - **HERO** invariato: foto sinistra full-height, info a destra (brand, nome, sub, desc, specs, CTA Acquista).
+   - **Sezione 1 — ATTIVI**: split foto sinistra + lista attivi destra (`pd-row pd-row--photo-left`).
+   - **Sezione 2 — MODO D'USO**: split testo sinistra + foto destra (`pd-row pd-row--photo-right`).
+   - **Sezione 3 — FORMULA CLEAN + CERTIFICAZIONI + INCI**: split foto sinistra + tutto destra (Formula pills + certificazioni + INCI accordion).
+   - **Prodotti correlati**: invariato.
+   - **4 foto totali per prodotto** (hero + 3 detail), non più 7.
+   - **CTA "Acquista su erboristica.com"** spostata nell'hero (sotto le specs) come link sobrio gold con underline animato, non bottone colorato.
+   - **Eliminata sezione B2B** "Richiedi campioni / Scarica scheda tecnica" (era in fondo, ora non serve perché siamo in scheda consumer).
+   - **`natural_pct`** (es. "98% origine") rimosso dalle visualizzazioni dirette — l'utente vuole solo il claim generico "Formula clean".
+
+### File modificati in questa sessione
+
+| File | Modifica |
+|------|----------|
+| `prodotto.html` | Ripristinato dal backup vecchio + Edit sezioni body (righe 783-872 sostituite con 3 sezioni `.pd-row` zig-zag) + CSS nuovo `.pd-row*` + CTA Acquista hero |
+| `linee/linea.html` | `ctaHref` punta a `../prodotto.html?id=...` |
+| `linee/everby.html` | 11 link riscritti |
+| `linee/kaley.html` | 7 link riscritti |
+| `prodotto.html.bak_old_layout` | Backup del prodotto.html copiato dal backup vecchio prima delle modifiche (puoi cancellarlo) |
+
+### Ruoli foto definiti (4 per prodotto)
+
+| Slot | Ruolo | Path JSON | Esempio |
+|------|-------|-----------|---------|
+| `images.hero` | Pack shot ambientato | `immagini/{linea}/{slug}/hero.webp` | Crema su gradient palette linea |
+| `images.detail_1` | Ingrediente / texture macro | `immagini/{linea}/{slug}/det-01.webp` | Foglia, fiore, goccia siero |
+| `images.detail_2` | Applicazione / gesto | `immagini/{linea}/{slug}/det-02.webp` | Mano che applica, modella |
+| `images.detail_3` | Ambient still-life | `immagini/{linea}/{slug}/det-03.webp` | Flacone su pietra + props naturali |
+
+Il `data.json` ha già i path predisposti per i 93 prodotti. Le immagini reali ancora non esistono — placeholder visibili nel sito.
+
+---
+
+## Strategia foto (DA FARE)
+
+L'utente ha capito che le foto attuali del server **non sono coerenti tra loro** (mix di pack bianchi, editorial, modelle diverse, mockup). Soluzione decisa:
+
+### Higgsfield "Ricette"
+
+Strumento già implementato: `Desktop/_athena_gallery/ricette.html`. Permette di creare ricette tipo:
+- **STILE / Reference**: foto da cui prendere sfondo / ambientazione / luce / mood
+- **TARGET / Soggetto**: foto su cui applicare lo stile (selezione manuale OR "tutta la linea")
+- **SCOPE**: hero linea / pack shot riprocessato / banner / ambient / texture / applicazione / ingrediente / og-image / homepage / brand-page
+- **LINEA**: antieta, argan, cocco, mandorle, purysens, nutra, perliance, illumia, mineral-infusions, doppia-detersione, uomo, everby, kaley, sphea, ecc.
+- **ISTRUZIONE testuale**: linguaggio naturale
+
+L'utente compila ricette → esporta CSV → il file va passato alla nuova conversazione Claude.
+
+### Workflow Higgsfield (DA IMPLEMENTARE nella nuova conversazione)
+
+1. Ricevi CSV ricette (`athena_RICETTE_*.csv`).
+2. Verifica MCP Higgsfield disponibile (probabilmente sotto `mcp__higgsfield__*` o simile).
+3. Per ogni ricetta:
+   - Carica foto reference su Higgsfield (style image).
+   - Carica foto target (se è "linea_intera", espandi caricando tutti i pack della linea).
+   - Costruisci prompt: instruction + palette/mood automatici della linea (vedi sezione "VISUAL LANGUAGE DAL CATALOGO" in `CLAUDE.md`).
+   - Genera 4 varianti per ricetta.
+4. Mostra le varianti in una nuova pagina della gallery dove l'utente sceglie.
+5. Le foto scelte vanno salvate in `Desktop/erboristica-site/immagini/{linea}/{slug}/` con i nomi `hero.webp`, `det-01.webp`, ecc.
+
+### Backup completo del server
+
+L'utente ha tutto offline in `C:\Athena_Backup\` (26.7 GB, ~4.657 file):
+- `FOTO PRODOTTI/` — 427 file
+- `DIGITAL MARKETING/` — 3.314 file
+- `ECOMMERCE/` — 98 file
+- `ATHENAS_FOTO_TEMP/ORGANIZZATO/` — 818 file
+
+---
+
+## Strumenti collaterali costruiti (vedi `Desktop/_athena_inventory/`)
+
+| File | A cosa serve |
+|------|--------------|
+| `_athena_gallery/index.html` | Gallery navigabile di tutte le 2.783 foto/video deduplicati + pre-selezione automatica USA |
+| `_athena_gallery/stile.html` | Marca foto USA come "STILE REFERENCE" (bordo viola) → CSV |
+| `_athena_gallery/ricette.html` | **Strumento chiave**: crea ricette Higgsfield con multi-selezione foto |
+| `_athena_gallery/pages/*.html` | 52 pagine categoria con USA/FORSE/NO toggle |
+| `athena_gallery_DA_CONDIVIDERE.zip` | 21 MB zip pronto per WeTransfer (gallery autosufficiente) |
+| `BACKUP_ATHENAS_OFFLINE.bat` | Script robocopy per backup totale del server |
+
+### File CSV già esportati dall'utente
+
+| File | Path | Contiene |
+|------|------|----------|
+| Selezioni USA | `Desktop/Downloads/athena_selezioni_2026-05-26.csv` | 573 foto marcate USA dall'utente |
+
+### Decisioni utente importanti
+
+- **Niente Higgsfield "puro"**: l'utente preferisce il workflow basato su "ricette" (reference + target + istruzione) invece di prompt-only generation.
+- **Le foto giocose** (es. Modella Siyan, alcune Pietro Athena's) NON vanno bene per il sito definitivo — sono incoerenti col tono premium.
+- **Sphea**: l'unica linea senza pack shot reali, deve essere generata interamente con Higgsfield partendo dai mockup.
+
+---
+
+## Cosa rimane DA FARE
+
+### Priorità ALTA
+1. **Finire il redesign `prodotto.html`** — aggiornare il JS che popola `kiRows`, `pdUsoSteps`, `formulaPills`, `pdCerts2`, `pdInci` perché il layout HTML è cambiato (ma gli ID sono rimasti uguali, il JS dovrebbe funzionare già). Verificare nel browser.
+2. **Aspettare CSV ricette** dall'utente (file `athena_RICETTE_*.csv` esportato da `ricette.html`).
+3. **Generare foto Higgsfield in batch** quando arriva il CSV.
+
+### Priorità MEDIA
+4. **Tradurre il sito in EN** per le pagine prodotto (data.json ha già `name_en`, `subtitle_en` ecc. quasi vuoti).
+5. **Foto OG** per ogni linea (11 file 1200×630) — da generare con Higgsfield.
+6. **Sitemap.xml** aggiornare con tutte le 93 schede prodotto.
+
+### Priorità BASSA
+7. **Form contatti Brevo** (aspetta API key dal cliente).
+8. **Iubenda credenziali** (aspetta dal cliente).
+9. **Redirect 301** dai vecchi URL WordPress.
+
+---
+
+## Comandi utili per la nuova conversazione
+
+### Avvia server locale
+```powershell
+cd "C:\Users\jagio\Desktop\erboristica-site"
+python -m http.server 8089
+```
+Poi `http://localhost:8089/prodotto.html?id=antieta-contorno-occhi`
+
+### Apri gallery selezioni
+Doppio clic su `C:\Users\jagio\Desktop\_athena_gallery\index.html`
+
+### Apri pagina ricette
+Doppio clic su `C:\Users\jagio\Desktop\_athena_gallery\ricette.html`
+
+### Path importanti
+- Sito live: `C:\Users\jagio\Desktop\erboristica-site\`
+- Backup vecchio sito (per layout reference): `C:\Users\jagio\Desktop\erboristica-site-backup-2026-05-06\`
+- Gallery foto: `C:\Users\jagio\Desktop\_athena_gallery\`
+- Backup foto server: `C:\Athena_Backup\` (26.7 GB offline)
+- Script Python helper: `C:\Users\jagio\Desktop\_athena_inventory\`
+
+---
+
 # 🗺️ MAPPA — Se voglio cambiare X, dove tocco?
 
 ## Testi e dati aziendali

@@ -9,80 +9,116 @@
 <link rel="stylesheet" href="assets/tokens.css"/>
 
 <style>
-/* ── INTRO ────────────────────────────────────────────────── */
-.ln-intro {
-  background: var(--cream);
-  padding: clamp(80px,12vw,160px) clamp(24px,5vw,80px) clamp(60px,8vw,100px);
-  border-bottom: 1px solid rgba(26,26,26,.08);
-}
-.ln-intro__inner {
-  max-width: var(--max-w);
-  margin: 0 auto;
-}
-.ln-intro__eyebrow {
-  font-family: var(--sans);
-  font-size: 10px;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--gold-deep);
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: clamp(28px,3vw,40px);
-}
-.ln-intro__eyebrow::before {
-  content: "";
-  display: inline-block;
-  width: 32px; height: 1px;
-  background: var(--gold);
-  opacity: .5;
-}
-.ln-intro h1 {
-  font-family: var(--display);
-  font-size: clamp(48px,8vw,128px);
-  font-weight: 200;
-  letter-spacing: -0.035em;
-  line-height: .95;
-  max-width: 18ch;
-  margin: 0 0 clamp(28px,3vw,42px);
-  color: var(--ink);
-}
-.ln-intro h1 em { font-style: italic; color: var(--gold); }
-.ln-intro__lead {
-  font-family: var(--serif);
-  font-size: clamp(18px,1.6vw,24px);
-  line-height: 1.55;
-  max-width: 58ch;
-  opacity: .78;
-  margin: 0 0 clamp(40px,5vw,60px);
-}
-.ln-intro__stats {
+/* ══════════════════════════════════════════════════════════
+   HERO — laboratorio style (identico a catalogo.html)
+══════════════════════════════════════════════════════════ */
+.lh {
+  min-height: 100svh;
+  background: #0a0a0a;
+  color: var(--cream);
+  position: relative; overflow: clip;
   display: grid;
-  grid-template-columns: repeat(3,auto);
-  gap: clamp(36px,5vw,72px);
-  padding-top: clamp(28px,3vw,40px);
-  border-top: 1px solid rgba(26,26,26,.08);
-  justify-content: start;
+  grid-template-columns: 1fr 1fr;
 }
-@media (max-width: 700px) {
-  .ln-intro__stats { grid-template-columns: 1fr; gap: 24px; }
+@media (max-width: 900px) { .lh { grid-template-columns: 1fr; } }
+
+.lh__bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 70% at 80% 30%, rgba(90,107,78,.12) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 50% at 15% 75%, rgba(201,169,110,.08) 0%, transparent 60%),
+    linear-gradient(170deg, #050505 0%, #0f0f0f 60%, #080808 100%);
 }
-.ln-stat__n {
+
+.lh__particles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.lh__particle {
+  position: absolute; border-radius: 50%;
+  background: rgba(201,169,110,.35);
+  animation: particle-drift linear infinite;
+}
+@keyframes particle-drift {
+  0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateY(-120vh) translateX(30px) scale(.5); opacity: 0; }
+}
+
+.lh__left {
+  position: relative; z-index: 3;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: clamp(100px,12vh,160px) clamp(28px,5vw,80px) clamp(60px,8vw,100px);
+}
+
+.lh__eyebrow {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 9px; letter-spacing: 0.32em; text-transform: uppercase;
+  color: rgba(201,169,110,.6); margin-bottom: 24px;
+}
+.lh__eyebrow::before { content: ''; width: 28px; height: 1px; background: rgba(201,169,110,.4); }
+
+.lh h1 {
   font-family: var(--display);
-  font-size: clamp(36px,4.5vw,56px);
-  font-weight: 300;
-  letter-spacing: -0.02em;
-  line-height: 1;
-  margin-bottom: 6px;
-  color: var(--gold-deep);
+  font-size: clamp(56px,10vw,180px);
+  font-weight: 200; letter-spacing: -0.04em; line-height: .88;
+  color: #e8e0d4; margin-bottom: clamp(24px,3vw,40px);
 }
-.ln-stat__l {
-  font-family: var(--sans);
-  font-size: 10px;
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
-  opacity: .55;
+.lh h1 em { font-style: italic; color: var(--gold); }
+
+.lh__lead {
+  font-family: var(--serif);
+  font-size: clamp(20px,1.8vw,26px);
+  line-height: 1.55; max-width: 56ch;
+  color: rgba(232,224,212,.62);
+  margin-bottom: 40px;
 }
+
+.lh__specbar {
+  display: flex; gap: 32px; flex-wrap: wrap;
+  padding-top: 28px; border-top: 1px solid rgba(201,169,110,.12);
+}
+.lh__spec { display: flex; flex-direction: column; gap: 4px; }
+.lh__spec-n {
+  font-family: var(--display); font-style: italic;
+  font-size: clamp(22px,3vw,36px); font-weight: 200;
+  color: var(--gold); line-height: 1;
+}
+.lh__spec-l {
+  font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(232,224,212,.3);
+}
+
+.lh__right {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+@media (max-width: 900px) { .lh__right { display: none; } }
+
+.lh__diagram {
+  width: clamp(320px,45vw,600px);
+  height: clamp(320px,45vw,600px);
+  position: relative;
+}
+.lh__diagram svg { width: 100%; height: 100%; }
+
+.lh__wm {
+  position: absolute; bottom: -0.08em; left: 0; right: 0;
+  font-family: var(--display); font-size: clamp(120px,22vw,320px);
+  font-weight: 200; color: rgba(255,255,255,.025);
+  letter-spacing: -0.05em; line-height: 1;
+  pointer-events: none; white-space: nowrap; overflow: hidden;
+}
+
+.scroll-hint {
+  position: absolute; bottom: clamp(24px,4vw,40px); right: clamp(20px,4vw,60px);
+  z-index: 4; display: flex; flex-direction: column; align-items: center; gap: 10px;
+  font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+  opacity: .35; color: #fff;
+}
+.scroll-hint__line { width: 1px; height: 48px; background: rgba(255,255,255,.3); position: relative; overflow: hidden; }
+.scroll-hint__line::after { content: ''; position: absolute; top: -100%; left: 0; width: 100%; height: 100%; background: #fff; animation: scroll-line 2s ease-in-out infinite; }
+@keyframes scroll-line { 0% { top:-100%; } 100% { top:100%; opacity:0; } }
+@keyframes lab-rot { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
 /* ── BRAND BANNERS (stessa struttura del catalogo) ────────── */
 .line-section {
@@ -264,29 +300,91 @@
 </head>
 <body>
 
-<!-- ── INTRO ────────────────────────────────────────────────── -->
-<section class="ln-intro">
-  <div class="ln-intro__inner">
-    <div class="ln-intro__eyebrow" data-it="Le linee" data-en="Our lines">Le linee</div>
+<!-- ── HERO ─────────────────────────────────────────────────── -->
+<section class="lh" data-mood-fallback="dark">
+  <div class="lh__bg"></div>
+  <div class="lh__particles" id="particles" aria-hidden="true"></div>
+  <div class="lh__wm" aria-hidden="true">LINEE</div>
+
+  <div class="lh__left">
+    <div class="lh__eyebrow" data-it="Le linee" data-en="Our lines">Le linee</div>
     <h1>
-      <span data-it="Ogni formula" data-en="Every formula">Ogni formula</span><br/>
+      <span data-it="Ogni formula" data-en="Every formula">Ogni formula</span><br>
       <em data-it="racconta una storia." data-en="tells a story.">racconta una storia.</em>
     </h1>
-    <p class="ln-intro__lead" data-it="Cosmetica naturale, K-beauty Gen Z, profumi roll-on e alta gamma: ogni linea soddisfa un'esigenza e un'estetica mirata, nata nello stesso laboratorio di Pianoro." data-en="Natural cosmetics, Gen Z K-beauty, roll-on perfumes and premium skincare: every line meets a specific need and aesthetic, born in the same Pianoro laboratory.">Cosmetica naturale, K-beauty Gen Z, profumi roll-on e alta gamma: ogni linea soddisfa un'esigenza e un'estetica mirata, nata nello stesso laboratorio di Pianoro.</p>
-    <div class="ln-intro__stats">
-      <div>
-        <div class="ln-stat__n">10</div>
-        <div class="ln-stat__l" data-it="linee di trattamento" data-en="treatment lines">linee di trattamento</div>
+    <p class="lh__lead" data-it="Cosmetica naturale, clean beauty, profumi roll-on e alta gamma: ogni linea soddisfa un'esigenza e un'estetica mirata, nata nello stesso laboratorio di Pianoro." data-en="Natural cosmetics, clean beauty, roll-on perfumes and premium skincare: every line meets a specific need and aesthetic, born in the same Pianoro laboratory.">Cosmetica naturale, clean beauty, profumi roll-on e alta gamma: ogni linea soddisfa un'esigenza e un'estetica mirata, nata nello stesso laboratorio di Pianoro.</p>
+    <div class="lh__specbar">
+      <div class="lh__spec">
+        <span class="lh__spec-n">10</span>
+        <span class="lh__spec-l" data-it="linee di trattamento" data-en="treatment lines">linee di trattamento</span>
       </div>
-      <div>
-        <div class="ln-stat__n">250+</div>
-        <div class="ln-stat__l" data-it="referenze" data-en="references">referenze</div>
+      <div class="lh__spec">
+        <span class="lh__spec-n">250+</span>
+        <span class="lh__spec-l" data-it="referenze" data-en="references">referenze</span>
       </div>
-      <div>
-        <div class="ln-stat__n">4</div>
-        <div class="ln-stat__l" data-it="brand differenti" data-en="distinct brands">brand differenti</div>
+      <div class="lh__spec">
+        <span class="lh__spec-n">4</span>
+        <span class="lh__spec-l" data-it="brand sviluppati" data-en="brands developed">brand sviluppati</span>
+      </div>
+      <div class="lh__spec">
+        <span class="lh__spec-n">95%+</span>
+        <span class="lh__spec-l" data-it="ingredienti naturali" data-en="natural ingredients">ingredienti naturali</span>
       </div>
     </div>
+  </div>
+
+  <div class="lh__right">
+    <div class="lh__diagram">
+      <svg viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="250" cy="250" r="230" stroke="rgba(201,169,110,.06)" stroke-width="1"/>
+        <circle cx="250" cy="250" r="195" stroke="rgba(201,169,110,.09)" stroke-width="1" stroke-dasharray="4 6"/>
+        <circle cx="250" cy="250" r="155" stroke="rgba(201,169,110,.12)" stroke-width="1"/>
+        <circle cx="250" cy="250" r="110" stroke="rgba(201,169,110,.18)" stroke-width="1.5" stroke-dasharray="2 4"/>
+        <circle cx="250" cy="250" r="68"  stroke="rgba(201,169,110,.25)" stroke-width="1.5"/>
+        <circle cx="250" cy="250" r="32" fill="url(#ccore)" filter="url(#cglow)"/>
+        <defs>
+          <radialGradient id="ccore" cx="35%" cy="35%">
+            <stop offset="0%" stop-color="rgba(201,169,110,.9)"/>
+            <stop offset="60%" stop-color="rgba(120,90,40,.6)"/>
+            <stop offset="100%" stop-color="rgba(20,20,20,.95)"/>
+          </radialGradient>
+          <filter id="cglow"><feGaussianBlur stdDeviation="3"/></filter>
+        </defs>
+        <text x="250" y="245" text-anchor="middle" font-family="Fraunces,serif" font-size="9" fill="rgba(201,169,110,.7)" font-style="italic">athena's</text>
+        <text x="250" y="258" text-anchor="middle" font-family="sans-serif" font-size="5" fill="rgba(201,169,110,.4)" letter-spacing="2">LE LINEE</text>
+
+        <circle cx="250" cy="95"  r="14" fill="rgba(201,169,110,.12)" stroke="rgba(201,169,110,.3)" stroke-width="1"/>
+        <circle cx="384" cy="173" r="10" fill="rgba(201,169,110,.10)" stroke="rgba(201,169,110,.25)" stroke-width="1"/>
+        <circle cx="384" cy="327" r="16" fill="rgba(201,169,110,.14)" stroke="rgba(201,169,110,.3)" stroke-width="1"/>
+        <circle cx="250" cy="405" r="11" fill="rgba(201,169,110,.1)"  stroke="rgba(201,169,110,.22)" stroke-width="1"/>
+        <circle cx="116" cy="327" r="13" fill="rgba(201,169,110,.12)" stroke="rgba(201,169,110,.28)" stroke-width="1"/>
+        <circle cx="116" cy="173" r="9"  fill="rgba(201,169,110,.09)" stroke="rgba(201,169,110,.2)"  stroke-width="1"/>
+
+        <line x1="250" y1="218" x2="250" y2="109" stroke="rgba(201,169,110,.15)" stroke-width="1" stroke-dasharray="3 4"/>
+        <line x1="272" y1="226" x2="376" y2="179" stroke="rgba(201,169,110,.12)" stroke-width="1" stroke-dasharray="3 4"/>
+        <line x1="272" y1="274" x2="370" y2="321" stroke="rgba(201,169,110,.15)" stroke-width="1" stroke-dasharray="3 4"/>
+        <line x1="250" y1="282" x2="250" y2="394" stroke="rgba(201,169,110,.12)" stroke-width="1" stroke-dasharray="3 4"/>
+        <line x1="228" y1="274" x2="130" y2="321" stroke="rgba(201,169,110,.15)" stroke-width="1" stroke-dasharray="3 4"/>
+        <line x1="228" y1="226" x2="124" y2="179" stroke="rgba(201,169,110,.12)" stroke-width="1" stroke-dasharray="3 4"/>
+
+        <text x="250" y="92"  text-anchor="middle" font-family="sans-serif" font-size="5.5" fill="rgba(201,169,110,.5)" letter-spacing="1">L'ERBORIST.</text>
+        <text x="388" y="170" text-anchor="start"  font-family="sans-serif" font-size="5.5" fill="rgba(201,169,110,.5)" letter-spacing="1">EVERBY</text>
+        <text x="388" y="324" text-anchor="start"  font-family="sans-serif" font-size="5.5" fill="rgba(201,169,110,.5)" letter-spacing="1">KALEY</text>
+        <text x="250" y="424" text-anchor="middle" font-family="sans-serif" font-size="5.5" fill="rgba(201,169,110,.5)" letter-spacing="1">SPHEA</text>
+        <text x="112" y="340" text-anchor="end"    font-family="sans-serif" font-size="5.5" fill="rgba(201,169,110,.5)" letter-spacing="1">VISO</text>
+        <text x="112" y="170" text-anchor="end"    font-family="sans-serif" font-size="5.5" fill="rgba(201,169,110,.5)" letter-spacing="1">CORPO</text>
+
+        <circle cx="250" cy="250" r="230" stroke="rgba(201,169,110,.04)" stroke-width="1" stroke-dasharray="12 20"
+          style="transform-origin:250px 250px; animation: lab-rot 40s linear infinite;"/>
+        <circle cx="250" cy="250" r="155" stroke="rgba(90,107,78,.08)" stroke-width="1" stroke-dasharray="5 10"
+          style="transform-origin:250px 250px; animation: lab-rot 25s linear infinite reverse;"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true">
+    <div class="scroll-hint__line"></div>
+    <span>Scroll</span>
   </div>
 </section>
 
@@ -367,6 +465,22 @@
 <script src="assets/app.js?v=6"></script>
 <script>
 initAthenas('brands');
+document.querySelector('.topbar').classList.add('topbar--light');
+
+// ── PARTICLES nell'hero (stessa logica di catalogo.html) ─────
+const particlesContainer = document.getElementById('particles');
+if (particlesContainer) {
+  for (let i = 0; i < 22; i++) {
+    const p = document.createElement('div');
+    p.className = 'lh__particle';
+    const size = Math.random() * 3 + 1.5;
+    const dur  = Math.random() * 18 + 12;
+    const left = Math.random() * 100;
+    const delay = Math.random() * -dur;
+    p.style.cssText = `width:${size}px; height:${size}px; left:${left}%; bottom:-${size}px; animation-duration:${dur}s; animation-delay:${delay}s; opacity: ${Math.random() * 0.4 + 0.1};`;
+    particlesContainer.appendChild(p);
+  }
+}
 
 // Scroll reveal sui banner (effetto identico a catalogo.html)
 const obs = new IntersectionObserver((entries) => {

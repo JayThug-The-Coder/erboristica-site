@@ -21,3 +21,13 @@ uploads/
 *.pdf
 *.docx
 *.zip
+
+# Cartelle di lavoro foto (scarti generazione, non per il sito live)
+immagini/higgsfield/
+immagini/_orphan/
+immagini/**/_concept/
+immagini/**/_reambient/
+immagini/**/_ecommerce/
+_docs/
+HANDOFF.md
+KNOWLEDGE.md

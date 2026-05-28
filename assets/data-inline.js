@@ -354,7 +354,8 @@ window.ATH_DATA_JSON = {
       "actives_main": [
         "Collagene vegetale",
         "Acido Ialuronico",
-        "Vitamina E"
+        "Vitamina E",
+        "Peptidi vegetali"
       ]
     },
     {
@@ -518,7 +519,8 @@ window.ATH_DATA_JSON = {
       "actives_main": [
         "Retinolo (Vitamina A)",
         "Olio di Argan",
-        "Peptidi anti-età"
+        "Peptidi anti-età",
+        "Vitamina E"
       ]
     },
     {
@@ -549,9 +551,9 @@ window.ATH_DATA_JSON = {
         "detail_2": "immagini/cocco/crema-corpo-cocco/det-02.webp"
       },
       "actives_main": [
-        "Burro di Cocco",
-        "Glicerina",
-        "Olio di Mandorle Dolci"
+        "Olio di Cocco",
+        "Burro di Karité",
+        "Vitamina E"
       ]
     },
     {
@@ -675,8 +677,8 @@ window.ATH_DATA_JSON = {
         "detail_2": "immagini/cocco/olio-secco-illuminante/det-02.webp"
       },
       "actives_main": [
+        "Olio di Mandorle Dolci",
         "Olio di Cocco",
-        "Olio di Jojoba",
         "Vitamina E"
       ]
     },
@@ -708,7 +710,7 @@ window.ATH_DATA_JSON = {
         "detail_2": "immagini/cocco/scrub-corpo-cocco-e-monoi/det-02.webp"
       },
       "actives_main": [
-        "Zucchero di Canna",
+        "Granuli di Albicocca",
         "Olio di Cocco",
         "Burro di Karité"
       ]
@@ -742,7 +744,7 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Olio di Cocco",
-        "Proteine della seta",
+        "Polifenoli del Mallo di Noce verde",
         "Pantenolo"
       ]
     },
@@ -776,7 +778,7 @@ window.ATH_DATA_JSON = {
       "actives_main": [
         "Olio di Cocco",
         "Aloe Vera",
-        "Glicerina"
+        "Vitamina E"
       ]
     },
     {
@@ -806,7 +808,12 @@ window.ATH_DATA_JSON = {
         "detail_1": "immagini/everby/cica-cloud-hydra-mousse-detergente-viso-delicata/det-01.webp",
         "detail_2": "immagini/everby/cica-cloud-hydra-mousse-detergente-viso-delicata/det-02.webp"
       },
-      "cert_note": "Certificazioni allineate L'Erboristica (PARTE N docx, rilettura 01/05/2026)"
+      "cert_note": "Certificazioni allineate L'Erboristica (PARTE N docx, rilettura 01/05/2026)",
+      "actives_main": [
+        "Acqua di Riso Fermentata",
+        "Centella Asiatica",
+        "Tensioattivi vegetali delicati"
+      ]
     },
     {
       "id": "everby-contorno-occhi-dont-call-me-panda",
@@ -835,7 +842,11 @@ window.ATH_DATA_JSON = {
         "detail_1": "immagini/everby/contorno-occhi-dont-call-me-panda/det-01.webp",
         "detail_2": "immagini/everby/contorno-occhi-dont-call-me-panda/det-02.webp"
       },
-      "cert_note": "Certificazioni allineate L'Erboristica (PARTE N docx, rilettura 01/05/2026)"
+      "cert_note": "Certificazioni allineate L'Erboristica (PARTE N docx, rilettura 01/05/2026)",
+      "actives_main": [
+        "Microperle Minerali Illuminanti",
+        "Estratto di Caffè"
+      ]
     },
     {
       "id": "everby-gel-burro-struccante-feel-butter",
@@ -864,7 +875,12 @@ window.ATH_DATA_JSON = {
         "detail_1": "immagini/everby/gel-burro-struccante-feel-butter/det-01.webp",
         "detail_2": "immagini/everby/gel-burro-struccante-feel-butter/det-02.webp"
       },
-      "cert_note": "Certificazioni allineate L'Erboristica (PARTE N docx, rilettura 01/05/2026)"
+      "cert_note": "Certificazioni allineate L'Erboristica (PARTE N docx, rilettura 01/05/2026)",
+      "actives_main": [
+        "Burri Vegetali",
+        "Vitamina A-C-E",
+        "Fitosteroli"
+      ]
     },
     {
       "id": "everby-gocce-illuminanti-viso-yes-i-glow",
@@ -893,7 +909,11 @@ window.ATH_DATA_JSON = {
         "detail_1": "immagini/everby/gocce-illuminanti-viso-yes-i-glow/det-01.webp",
         "detail_2": "immagini/everby/gocce-illuminanti-viso-yes-i-glow/det-02.webp"
       },
-      "cert_note": "Certificazioni allineate L'Erboristica (PARTE N docx, rilettura 01/05/2026)"
+      "cert_note": "Certificazioni allineate L'Erboristica (PARTE N docx, rilettura 01/05/2026)",
+      "actives_main": [
+        "Pigmenti Minerali Perlati",
+        "Acido Ialuronico"
+      ]
     },
     {
       "id": "everby-milky-rice-hydrating-milky-toner",
@@ -922,7 +942,11 @@ window.ATH_DATA_JSON = {
         "detail_1": "immagini/everby/milky-rice-hydrating-milky-toner/det-01.webp",
         "detail_2": "immagini/everby/milky-rice-hydrating-milky-toner/det-02.webp"
       },
-      "cert_note": "Certificazioni allineate L'Erboristica (PARTE N docx, rilettura 01/05/2026)"
+      "cert_note": "Certificazioni allineate L'Erboristica (PARTE N docx, rilettura 01/05/2026)",
+      "actives_main": [
+        "Acqua di Riso Fermentata",
+        "Niacinamide"
+      ]
     },
     {
       "id": "everby-no-cry-zone-truccante-bifasico-occhi-delicato",
@@ -951,7 +975,11 @@ window.ATH_DATA_JSON = {
         "detail_1": "immagini/everby/no-cry-zone-truccante-bifasico-occhi-delicato/det-01.webp",
         "detail_2": "immagini/everby/no-cry-zone-truccante-bifasico-occhi-delicato/det-02.webp"
       },
-      "cert_note": "Certificazioni allineate L'Erboristica (PARTE N docx, rilettura 01/05/2026)"
+      "cert_note": "Certificazioni allineate L'Erboristica (PARTE N docx, rilettura 01/05/2026)",
+      "actives_main": [
+        "Aloe Vera",
+        "Olio di Girasole (Omega 3-6)"
+      ]
     },
     {
       "id": "everby-pepti-boom-lip-filler-volumizzante-labbra",
@@ -980,7 +1008,12 @@ window.ATH_DATA_JSON = {
         "detail_1": "immagini/everby/pepti-boom-lip-filler-volumizzante-labbra/det-01.webp",
         "detail_2": "immagini/everby/pepti-boom-lip-filler-volumizzante-labbra/det-02.webp"
       },
-      "cert_note": "Certificazioni allineate L'Erboristica (PARTE N docx, rilettura 01/05/2026)"
+      "cert_note": "Certificazioni allineate L'Erboristica (PARTE N docx, rilettura 01/05/2026)",
+      "actives_main": [
+        "MAXI-LIP® (Palmitoyl Tripeptide-1)",
+        "Olio di Ricino",
+        "Vitamina E"
+      ]
     },
     {
       "id": "everby-siero-ciglia-e-sopracciglia-lash-me",
@@ -1009,7 +1042,13 @@ window.ATH_DATA_JSON = {
         "detail_1": "immagini/everby/siero-ciglia-e-sopracciglia-lash-me/det-01.webp",
         "detail_2": "immagini/everby/siero-ciglia-e-sopracciglia-lash-me/det-02.webp"
       },
-      "cert_note": "Certificazioni allineate L'Erboristica (PARTE N docx, rilettura 01/05/2026)"
+      "cert_note": "Certificazioni allineate L'Erboristica (PARTE N docx, rilettura 01/05/2026)",
+      "actives_main": [
+        "Capixyl® (Peptide biomimetico)",
+        "Capilia Longa (Curcuma Longa)",
+        "Cellule Meristematiche di Vite Rossa",
+        "Acido Ialuronico"
+      ]
     },
     {
       "id": "everby-siero-viso-rimpolpante-pump-e-plump",
@@ -1038,7 +1077,11 @@ window.ATH_DATA_JSON = {
         "detail_1": "immagini/everby/siero-viso-rimpolpante-pump-e-plump/det-01.webp",
         "detail_2": "immagini/everby/siero-viso-rimpolpante-pump-e-plump/det-02.webp"
       },
-      "cert_note": "Certificazioni allineate L'Erboristica (PARTE N docx, rilettura 01/05/2026)"
+      "cert_note": "Certificazioni allineate L'Erboristica (PARTE N docx, rilettura 01/05/2026)",
+      "actives_main": [
+        "Pumpcoll® (Zucca upcycling)",
+        "Argireline Amplified® (Acetyl Hexapeptide-8)"
+      ]
     },
     {
       "id": "everby-trattamento-viso-perfezionatore-pori-dilatati-stay-po",
@@ -1067,7 +1110,12 @@ window.ATH_DATA_JSON = {
         "detail_1": "immagini/everby/trattamento-viso-perfezionatore-pori-dilatati-stay-porefect/det-01.webp",
         "detail_2": "immagini/everby/trattamento-viso-perfezionatore-pori-dilatati-stay-porefect/det-02.webp"
       },
-      "cert_note": "Certificazioni allineate L'Erboristica (PARTE N docx, rilettura 01/05/2026)"
+      "cert_note": "Certificazioni allineate L'Erboristica (PARTE N docx, rilettura 01/05/2026)",
+      "actives_main": [
+        "Zinco PCA",
+        "Acido Salicilico",
+        "Bakuchiol"
+      ]
     },
     {
       "id": "estratti-bagno-doccia-tè-verde",
@@ -2652,7 +2700,7 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Aloe Vera",
-        "Bisabololo",
+        "Ginseng",
         "Pantenolo"
       ]
     },
@@ -2713,7 +2761,8 @@ window.ATH_DATA_JSON = {
       "actives_main": [
         "Caffeina",
         "Peptidi anti-rughe",
-        "Acido Ialuronico"
+        "Acido Ialuronico",
+        "Bakuchiol"
       ]
     },
     {
@@ -2746,7 +2795,8 @@ window.ATH_DATA_JSON = {
       "actives_main": [
         "Acido Ialuronico",
         "Collagene vegetale",
-        "Vitamina E"
+        "Vitamina E",
+        "Estratto di Bambù"
       ]
     },
     {
@@ -2843,9 +2893,10 @@ window.ATH_DATA_JSON = {
         "detail_2": "immagini/uomo/eau-de-toilette-uomo/det-02.webp"
       },
       "actives_main": [
-        "Olio Essenziale di Bergamotto",
-        "Olio Essenziale di Pepe Rosa",
-        "Vitamina E"
+        "Bergamotto",
+        "Pepe Rosa",
+        "Cedro",
+        "Patchouli"
       ]
     },
     {
@@ -2872,7 +2923,8 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Olio di Argan",
-        "Pantenolo",
+        "Acido Ialuronico",
+        "Vitamina E",
         "Aloe Vera"
       ]
     },
@@ -2937,8 +2989,8 @@ window.ATH_DATA_JSON = {
         "detail_2": "immagini/uomo/sapone-vegetale-uomo/det-02.webp"
       },
       "actives_main": [
-        "Olio di Oliva saponificato",
-        "Olio di Cocco saponificato",
+        "Burro di Karité",
+        "Ginkgo Biloba",
         "Glicerina naturale"
       ]
     },
@@ -2971,7 +3023,7 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Tensioattivi vegetali delicati",
-        "Estratto di Bambù",
+        "Ginkgo Biloba",
         "Pantenolo"
       ]
     },

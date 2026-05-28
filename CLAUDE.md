@@ -1,6 +1,24 @@
 # Athena's — Erboristica Site · Contesto Progetto
 
-> **⚠️ IMPORTANTE PER CLAUDE**: prima di lavorare leggi sempre [PROGRESS.md](PROGRESS.md), che contiene la mappa **"Se voglio cambiare X → tocco Y"**, lo storico delle decisioni prese e l'inventario di placeholder/file editabili. Aggiornalo dopo ogni modifica significativa.
+> **⚠️ IMPORTANTE PER CLAUDE — INIZIA QUI**:
+> 1. Leggi **[HANDOFF.md](HANDOFF.md)** — ultimi lavori (sessione mag 2026), setup ambiente e cosa resta da fare.
+> 2. Leggi **[KNOWLEDGE.md](KNOWLEDGE.md)** — azienda, 4 brand, tutti i prodotti con attivi/claim/note olfattive, estratti dai documenti ufficiali in [`_docs/`](_docs/). Contiene anche le **discrepanze/decisioni aperte** col cliente.
+> 3. Leggi la **sezione HANDOFF** in cima a [PROGRESS.md](PROGRESS.md) e poi il resto per lo storico completo.
+> 4. Aggiorna PROGRESS.md / HANDOFF.md dopo ogni modifica significativa.
+>
+> **Documenti ufficiali sorgente**: `_docs/` (catalogo 2026, brief Everby, brochure Sphea, testi sito docx).
+
+## 🔥 In una frase
+Stiamo lavorando alle **93 schede prodotto** (`prodotto.html?id=...`): layout zig-zag già definito, 4 foto per prodotto. Le foto vanno generate con **Higgsfield** tramite "ricette" che l'utente compila in `Desktop/_athena_gallery/ricette.html` ed esporta come CSV.
+
+## 📌 Path chiave fuori dal repo
+- **Backup completo server**: `C:\Athena_Backup\` (26.7 GB offline)
+- **Gallery foto + strumenti**: `C:\Users\jagio\Desktop\_athena_gallery\` (con `index.html`, `stile.html`, `ricette.html`)
+- **Backup vecchio sito** (per reference layout): `C:\Users\jagio\Desktop\erboristica-site-backup-2026-05-06\`
+- **Script Python helper**: `C:\Users\jagio\Desktop\_athena_inventory\`
+- **CSV selezioni utente**: `C:\Users\jagio\Downloads\athena_selezioni_2026-05-26.csv` (573 foto USA)
+- **Zip gallery condivisibile**: `C:\Users\jagio\Desktop\athena_gallery_DA_CONDIVIDERE.zip` (21 MB per WeTransfer)
+
 
 ## Cos'è questo progetto
 Sito web statico per **Athena's s.r.l.**, manufacturer di cosmetica naturale dal 1969, Pianoro (BO).

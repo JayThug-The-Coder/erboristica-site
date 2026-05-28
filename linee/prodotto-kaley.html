@@ -1,15 +1,699 @@
-<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta http-equiv="refresh" content="0;url=https://www.erboristica.com/kaley"/>
-  <title>Redirect — Kaley · Athena's</title>
-<link rel="preload" href="../assets/fonts/fraunces-200-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
-<link rel="stylesheet" href="../assets/fonts.css"/>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kaley — Scheda prodotto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;1,9..144,200;1,9..144,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../assets/tokens.css"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #0e0a06; color: #e8d8c0; font-family: var(--sans); overflow-x: hidden; }
+.container { max-width: 1320px; margin: 0 auto; padding: 0 clamp(20px,4vw,60px); }
+
+/* ── BREADCRUMB ─────────────────────────────────────────── */
+.kp-breadcrumb {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 24px;
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+}
+.kp-breadcrumb a { color: rgba(201,169,110,.4); text-decoration: none; transition: color .2s; }
+.kp-breadcrumb a:hover { color: var(--gold); }
+.kp-breadcrumb__sep { color: rgba(201,169,110,.2); font-size: 11px; }
+.kp-breadcrumb__current { color: rgba(232,216,192,.5); }
+
+/* ── HERO ─────────────────────────────────────────────────── */
+.kp-hero {
+  min-height: 100svh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+@media (max-width: 800px) { .kp-hero { grid-template-columns: 1fr; min-height: auto; } }
+
+.kp-hero__visual {
+  position: relative;
+  min-height: 60vmin;
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.kp-hero__bg { position: absolute; inset: 0; }
+/* SOSTITUIRE: inserire <img src="../uploads/kaley-NOME.jpg" alt="..."> con object-fit: cover e inset: 0 absolute */
+.kp-hero__photo-placeholder {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  border: 1px dashed rgba(201,169,110,.2);
+  z-index: 1;
+}
+.kp-hero__photo-placeholder span {
+  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(201,169,110,.3); text-align: center; padding: 0 20px;
+}
+.kp-hero__bottle {
+  position: relative; z-index: 2;
+  animation: bottle-bob 6s ease-in-out infinite;
+}
+.kp-hero__bottle svg {
+  width: min(180px, 45vw);
+  filter: drop-shadow(0 40px 80px rgba(0,0,0,.6));
+}
+@keyframes bottle-bob {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-16px); }
+}
+
+.kp-hero__info {
+  background: #0e0a06;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: clamp(100px,10vw,140px) clamp(32px,5vw,72px) clamp(60px,6vw,80px);
+  position: relative;
+}
+.kp-hero__eyebrow {
+  font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--gold); opacity: .5; margin-bottom: 16px;
+}
+.kp-hero__brand {
+  font-family: var(--display); font-style: italic;
+  font-size: clamp(44px,7vw,80px); font-weight: 200;
+  letter-spacing: -0.025em; line-height: 1.05;
+  color: #e8d8c0; margin-bottom: 26px;
+  padding-bottom: 4px;
+}
+.kp-hero__family {
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold); opacity: .45; margin-bottom: 28px;
+}
+.kp-hero__desc {
+  font-family: var(--serif); font-size: clamp(17px,1.4vw,19px);
+  line-height: 1.75; color: rgba(232,216,192,.6); max-width: 44ch;
+  margin-bottom: 32px;
+}
+.kp-hero__mood {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px;
+}
+.kp-mood-tag {
+  font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+  border: 1px solid rgba(201,169,110,.2); padding: 6px 12px;
+  color: rgba(232,216,192,.5);
+}
+.kp-hero__specs {
+  display: flex; gap: 28px; flex-wrap: wrap;
+  padding-top: 24px; border-top: 1px solid rgba(201,169,110,.1);
+}
+.kp-spec__label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(232,216,192,.3); margin-bottom: 4px; }
+.kp-spec__val { font-family: var(--serif); font-size: 17px; color: rgba(232,216,192,.75); }
+
+/* ── PIRAMIDE OLFATTIVA ────────────────────────────────────── */
+.kp-pyramid {
+  background: #080603;
+  padding: clamp(48px,6vw,72px) 0;
+  border-top: 1px solid rgba(201,169,110,.07);
+}
+.kp-pyramid__inner {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(40px,6vw,90px);
+  align-items: center;
+}
+@media (max-width: 800px) { .kp-pyramid__inner { grid-template-columns: 1fr; } }
+
+.kp-pyramid__text h2 {
+  font-family: var(--display); font-weight: 300;
+  font-size: clamp(34px,5vw,64px); line-height: 1.02;
+  letter-spacing: -0.03em; color: #e8d8c0; margin-bottom: 24px;
+}
+.kp-pyramid__text h2 em { font-style: italic; color: var(--gold); }
+.kp-pyramid__text p {
+  font-family: var(--serif); font-size: clamp(18px,1.5vw,22px);
+  line-height: 1.6;
+  color: rgba(232,216,192,.75); max-width: 48ch;
+}
+
+/* Piramide visuale */
+.kp-pyr-visual {
+  display: flex; flex-direction: column; gap: 2px;
+}
+.kp-pyr-tier {
+  display: flex; align-items: stretch; gap: 0;
+  position: relative;
+}
+.kp-pyr-tier__bar {
+  flex-shrink: 0;
+  width: 4px;
+  background: var(--gold);
+  opacity: .2;
+  transition: opacity .3s;
+}
+.kp-pyr-tier:hover .kp-pyr-tier__bar { opacity: .6; }
+.kp-pyr-tier__content {
+  flex: 1;
+  background: rgba(255,255,255,.03);
+  padding: clamp(18px,2vw,24px) clamp(20px,2.5vw,28px);
+  transition: background .3s;
+}
+.kp-pyr-tier:hover .kp-pyr-tier__content { background: rgba(255,255,255,.055); }
+.kp-pyr-tier__label {
+  font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold); opacity: .5; margin-bottom: 10px;
+}
+.kp-pyr-tier__notes {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.kp-note-pill {
+  font-family: var(--serif); font-style: italic; font-size: 15px;
+  color: rgba(232,216,192,.75);
+  padding: 4px 12px;
+  border: 1px solid rgba(201,169,110,.12);
+}
+
+/* ── Foto piramide olfattiva (zig-zag — foto a destra) ────── */
+.kp-pyramid__photo {
+  aspect-ratio: 4/5;
+  border: 1px dashed rgba(201,169,110,.18);
+  background: rgba(201,169,110,.02);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.kp-pyramid__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.kp-pyramid__photo span {
+  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(201,169,110,.35); text-align: center; padding: 0 22px;
+}
+
+/* ── CARATTERE DELLA FRAGRANZA (zig-zag: foto SX + testo DX) ── */
+.kp-character {
+  background: #0e0a06;
+  padding: clamp(48px,6vw,72px) 0;
+  border-top: 1px solid rgba(201,169,110,.07);
+}
+.kp-character__inner {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: clamp(40px,6vw,90px);
+  align-items: center;
+}
+@media (max-width: 800px) { .kp-character__inner { grid-template-columns: 1fr; } }
+.kp-character h2 {
+  font-family: var(--display); font-weight: 300;
+  font-size: clamp(34px,5vw,64px); letter-spacing: -0.03em;
+  line-height: 1.02; color: #e8d8c0;
+  margin: 0 0 24px;
+}
+.kp-character h2 em { font-style: italic; color: var(--gold); }
+
+/* Foto SX della sezione carattere (zig-zag) */
+.kp-character__photo {
+  aspect-ratio: 4/5;
+  border: 1px dashed rgba(201,169,110,.18);
+  background: rgba(201,169,110,.02);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.kp-character__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.kp-character__photo span {
+  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(201,169,110,.35); text-align: center; padding: 0 22px;
+}
+
+.kp-block__label {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--gold); opacity: .55; margin-bottom: 16px;
+}
+.kp-block__text {
+  font-family: var(--serif);
+  font-size: clamp(18px,1.5vw,22px);
+  line-height: 1.65;
+  color: rgba(232,216,192,.75);
+  max-width: 62ch;
+}
+.kp-block__steps {
+  display: flex; flex-direction: column; gap: 14px; margin-top: 6px;
+}
+.kp-step {
+  display: flex; gap: 16px; align-items: baseline;
+}
+.kp-step__n {
+  font-family: var(--display); font-style: italic; font-size: 20px;
+  color: var(--gold); opacity: .55; flex-shrink: 0; width: 26px;
+}
+.kp-step__text { font-family: var(--serif); font-size: 17px; line-height: 1.65; color: rgba(232,216,192,.68); }
+
+/* ── FORMULA ─────────────────────────────────────────────── */
+.kp-formula {
+  background: #080603;
+  padding: clamp(80px,10vw,120px) 0;
+  border-top: 1px solid rgba(201,169,110,.07);
+}
+.kp-formula__grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px,6vw,80px);
+  margin-bottom: clamp(40px,5vw,64px);
+}
+@media (max-width: 700px) { .kp-formula__grid { grid-template-columns: 1fr; } }
+
+.kp-formula h3 {
+  font-family: var(--display); font-weight: 300;
+  font-size: clamp(26px,3vw,38px); letter-spacing: -0.025em;
+  line-height: 1.05; color: #e8d8c0; margin: 8px 0 22px;
+}
+.kp-formula h3 em { font-style: italic; color: var(--gold); }
+.kp-formula__pills { display: flex; flex-direction: column; gap: 1px; }
+.kp-formula__pill {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 22px; background: rgba(255,255,255,.03); gap: 18px;
+}
+.kp-formula__pill-label { font-family: var(--serif); font-size: 18px; line-height: 1.4; color: rgba(232,216,192,.72); }
+.kp-formula__pill-val { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); opacity: .65; white-space: nowrap; }
+
+.kp-inci-toggle {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 0; border-top: 1px solid rgba(201,169,110,.1);
+  border-bottom: 1px solid rgba(201,169,110,.1);
+  cursor: pointer; user-select: none;
+}
+.kp-inci-toggle span { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(232,216,192,.35); }
+.kp-inci-chevron { width: 14px; height: 14px; color: rgba(201,169,110,.4); transition: transform .3s var(--ease); }
+.kp-inci-toggle.open .kp-inci-chevron { transform: rotate(180deg); }
+.kp-inci-body { max-height: 0; overflow: hidden; transition: max-height .4s var(--ease); }
+.kp-inci-body.open { max-height: 300px; }
+.kp-inci-text { font-family: var(--serif); font-size: 14px; line-height: 1.95; color: rgba(232,216,192,.35); padding: 18px 0; }
+
+/* ── B2B SCHEDA ───────────────────────────────────────────── */
+.kp-b2b {
+  background: #0e0a06;
+  padding: clamp(80px,10vw,120px) 0;
+  border-top: 1px solid rgba(201,169,110,.07);
+}
+.kp-b2b__grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px,6vw,80px);
+  align-items: start;
+}
+@media (max-width: 700px) { .kp-b2b__grid { grid-template-columns: 1fr; } }
+.kp-b2b h2 {
+  font-family: var(--display); font-size: clamp(28px,4vw,52px);
+  font-weight: 300; letter-spacing: -0.025em; color: #e8d8c0; margin-bottom: 12px;
+}
+.kp-b2b h2 em { font-style: italic; color: var(--gold); }
+.kp-b2b p { font-family: var(--serif); font-size: 16px; line-height: 1.8; color: rgba(232,216,192,.5); max-width: 42ch; margin-bottom: 28px; }
+.kp-b2b__table { display: flex; flex-direction: column; gap: 1px; }
+.kp-b2b__row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 18px; background: rgba(255,255,255,.03); gap: 16px;
+}
+.kp-b2b__key { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(232,216,192,.35); }
+.kp-b2b__val { font-family: var(--serif); font-size: 14px; color: rgba(232,216,192,.75); text-align: right; }
+.kp-b2b__ctas { display: flex; flex-direction: column; gap: 10px; margin-top: 24px; }
+.kp-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  text-decoration: none; padding: 16px 28px; transition: background .3s, transform .2s;
+}
+.kp-btn--gold { background: var(--gold); color: #0e0a06; }
+.kp-btn--gold:hover { background: #d4b47a; transform: translateY(-2px); }
+.kp-btn--ghost { background: transparent; border: 1px solid rgba(201,169,110,.2); color: rgba(232,216,192,.45); }
+.kp-btn--ghost:hover { border-color: rgba(201,169,110,.5); color: #e8d8c0; transform: translateY(-2px); }
+
+/* ── ALTRE FRAGRANZE ─────────────────────────────────────── */
+.kp-related {
+  background: #080603;
+  padding: clamp(80px,10vw,120px) 0;
+  border-top: 1px solid rgba(201,169,110,.07);
+}
+.kp-related h3 {
+  font-family: var(--display); font-size: clamp(24px,3vw,40px);
+  font-weight: 300; letter-spacing: -0.02em; color: #e8d8c0; margin-bottom: clamp(32px,4vw,48px);
+}
+.kp-related h3 em { font-style: italic; color: var(--gold); }
+.kp-related-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); gap: 1px;
+  background: rgba(201,169,110,.08);
+}
+.kp-rel-card {
+  background: #0e0a06;
+  text-decoration: none; color: inherit;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(201,169,110,.08);
+  transition: transform .35s var(--ease), border-color .25s, box-shadow .35s;
+  cursor: pointer;
+}
+.kp-rel-card:hover { transform: translateY(-6px); border-color: rgba(201,169,110,.25); box-shadow: 0 24px 48px -12px rgba(0,0,0,.5); }
+.kp-rel-card__visual {
+  aspect-ratio: 1;
+  position: relative;
+  overflow: hidden;
+  background: rgba(201,169,110,.04);
+  border-bottom: 1px solid rgba(201,169,110,.08);
+}
+.kp-rel-card__visual img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .5s var(--ease); }
+.kp-rel-card:hover .kp-rel-card__visual img { transform: scale(1.04); }
+.kp-rel-card__visual span {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(201,169,110,.25); text-align: center; padding: 0 16px;
+}
+.kp-rel-card__info {
+  padding: clamp(16px,1.6vw,22px);
+  display: flex; flex-direction: column; gap: 6px;
+  flex: 1;
+}
+.kp-rel-card__n { font-family: var(--display); font-style: italic; font-size: 13px; color: var(--gold); opacity: .45; }
+.kp-rel-card__name { font-family: var(--display); font-size: clamp(18px,1.9vw,24px); font-weight: 300; font-style: italic; color: #e8d8c0; line-height: 1.15; }
+.kp-rel-card__family { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(232,216,192,.35); margin-top: 4px; }
+.kp-rel-card__desc { font-family: var(--serif); font-style: italic; font-size: 14px; line-height: 1.45; color: rgba(232,216,192,.55); margin-top: 4px; }
+
+/* reveal */
+[data-reveal] { opacity: 0; transform: translateY(20px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+[data-reveal].is-visible { opacity: 1; transform: none; }
+[data-reveal][style*="--d:100ms"] { transition-delay: 100ms; }
+[data-reveal][style*="--d:150ms"] { transition-delay: 150ms; }
+[data-reveal][style*="--d:200ms"] { transition-delay: 200ms; }
+</style>
 </head>
 <body>
-  <p>Stai per essere reindirizzato a erboristica.com. Se la pagina non si apre, <a href="https://www.erboristica.com/kaley">vai a erboristica.com/kaley</a>.</p>
+
+<div id="topbar"></div>
+
+<!-- HERO -->
+<section class="kp-hero">
+  <div class="kp-hero__visual">
+    <div class="kp-hero__bg" id="kpBg"></div>
+    <!-- SOSTITUIRE: <img src="../uploads/kaley-NOME.jpg" alt="Kaley NOME" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"> -->
+    <div class="kp-hero__photo-placeholder">
+      <span>Foto prodotto<br><!-- SOSTITUIRE --></span>
+    </div>
+    <div class="kp-hero__bottle" id="kpBottle"></div>
+  </div>
+  <div class="kp-hero__info">
+    <nav class="kp-breadcrumb">
+      <a href="../linee.html">Linee</a>
+      <span class="kp-breadcrumb__sep">›</span>
+      <a href="kaley.html">Kaley</a>
+      <span class="kp-breadcrumb__sep">›</span>
+      <span class="kp-breadcrumb__current" id="bcProduct">—</span>
+    </nav>
+    <div class="kp-hero__eyebrow">Kaley · Fragranza Roll-on</div>
+    <h1 class="kp-hero__brand" id="kpName"></h1>
+    <div class="kp-hero__family" id="kpFamily"></div>
+    <p class="kp-hero__desc" id="kpDesc"></p>
+    <div class="kp-hero__mood" id="kpMood"></div>
+    <div class="kp-hero__specs">
+      <div><div class="kp-spec__label">Formato</div><div class="kp-spec__val">10 ml · Roll-on</div></div>
+      <div><div class="kp-spec__label">Base</div><div class="kp-spec__val">Olio puro concentrato</div></div>
+      <div><div class="kp-spec__label">Alcol</div><div class="kp-spec__val">0%</div></div>
+      <div><div class="kp-spec__label">Codice</div><div class="kp-spec__val" id="kpSku">—</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PIRAMIDE OLFATTIVA -->
+<section class="kp-pyramid">
+  <div class="container">
+    <div class="kp-pyramid__inner">
+      <div class="kp-pyramid__text" data-reveal>
+        <h2><span>Piramide </span><em>olfattiva.</em></h2>
+        <p id="kpPyrDesc">Ogni fragranza Kaley è costruita su tre livelli di note che si rivelano nel tempo, fondendosi con il calore naturale della pelle per creare un'olfazione unica e personale.</p>
+      </div>
+      <div class="kp-pyramid__photo" data-reveal style="--d:120ms">
+        <!-- SOSTITUIRE: foto macro piramide olfattiva — tre note testa/cuore/fondo in composizione editoriale jewel-tone Kaley su sfondo warm scuro -->
+        <span data-it="Foto piramide olfattiva · 4:5" data-en="Olfactory pyramid photo · 4:5">FOTO PIRAMIDE OLFATTIVA · 4:5</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CARATTERE DELLA FRAGRANZA (zig-zag: foto SX + testo DX) -->
+<section class="kp-character">
+  <div class="container">
+    <div class="kp-character__inner">
+      <div class="kp-character__photo" data-reveal>
+        <!-- SOSTITUIRE: foto editoriale Kaley — mood jewel-tone, sfera roll-on su polso o still-life sensoriale -->
+        <span data-it="Foto carattere fragranza · 4:5" data-en="Fragrance character photo · 4:5">FOTO CARATTERE FRAGRANZA · 4:5</span>
+      </div>
+      <div data-reveal style="--d:120ms">
+        <div class="kp-block__label" data-it="Carattere" data-en="Character">Carattere</div>
+        <h2><span data-it="Carattere " data-en="Character ">Carattere </span><em data-it="della fragranza." data-en="of the fragrance.">della fragranza.</em></h2>
+        <p class="kp-block__text" id="kpCharacter"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FORMULA -->
+<section class="kp-formula">
+  <div class="container">
+    <div class="kp-formula__grid">
+      <div data-reveal>
+        <div class="kp-block__label" data-it="Formula" data-en="Formula">Formula</div>
+        <h3><em data-it="Formula." data-en="Formula.">Formula.</em></h3>
+        <div class="kp-formula__pills">
+          <div class="kp-formula__pill"><span class="kp-formula__pill-label">Base olio concentrato</span><span class="kp-formula__pill-val">0% Alcol</span></div>
+          <div class="kp-formula__pill"><span class="kp-formula__pill-label">Tocopherolo (Vitamina E)</span><span class="kp-formula__pill-val">Antiossidante</span></div>
+          <div class="kp-formula__pill"><span class="kp-formula__pill-label">Beta-sitosterolo · Squalene</span><span class="kp-formula__pill-val">Emolliente naturale</span></div>
+          <div class="kp-formula__pill"><span class="kp-formula__pill-label">Triethyl citrate</span><span class="kp-formula__pill-val">Veicolante</span></div>
+          <div class="kp-formula__pill"><span class="kp-formula__pill-label">Vegan · Cruelty Free · Made in Italy</span><span class="kp-formula__pill-val">Certificato</span></div>
+        </div>
+      </div>
+      <div data-reveal style="--d:120ms">
+        <div class="kp-block__label">INCI — Ingredienti completi</div>
+        <div class="kp-inci-toggle" id="inciToggle">
+          <span>Mostra INCI</span>
+          <svg class="kp-inci-chevron" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="kp-inci-body" id="inciBody">
+          <p class="kp-inci-text" id="kpInci"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ALTRE FRAGRANZE -->
+<section class="kp-related">
+  <div class="container">
+    <h3><span>Altre </span><em>fragranze.</em></h3>
+    <div class="kp-related-grid" id="kpRelated"></div>
+  </div>
+</section>
+
+<div id="footer"></div>
+
+<script src="../assets/vendor/lenis.min.js"></script><script src="../assets/data.js"></script>
+<script src="../assets/app.js?v=6"></script>
+<script>
+initAthenas('brands');
+
+// ── DATA ───────────────────────────────────────────────────
+const KALEY_DATA = {
+  'crystal-rouge': {
+    name: 'Crystal Rouge',
+    family: 'Legnosa · Ambrata',
+    desc: 'Una firma olfattiva audace e seducente. Lo zafferano apre con un calore speziato e prezioso, il gelsomino porta morbidezza floreale inaspettata, mentre il legno d\'ambra e l\'ambra grigia costruiscono un cuore prezioso; resina di abete e cedro chiudono con un finale profondo, tenace, indimenticabile.',
+    character: 'Avvolgente e sicura di sé. Crystal Rouge è la fragranza di chi entra in una stanza e lascia un segno. L\'accordo speziato-ambrato richiama l\'oro, la resina, il lusso discreto. Adatta per occasioni speciali e serate importanti, si sviluppa magnificamente sul calore della pelle.',
+    mood: ['Serale', 'Autunnale', 'Audace', 'Lussuosa'],
+    pyramid: {
+      top:   ['Zafferano', 'Gelsomino'],
+      heart: ['Legno d\'ambra', 'Ambra grigia'],
+      base:  ['Resina di abete', 'Legno di cedro'],
+    },
+    bgColor: 'linear-gradient(145deg, #3a1808 0%, #1a0804 100%)',
+    inci: 'Triethyl citrate, Parfum, Tocopherol, Beta-sitosterol, Squalene, Limonene, Linalool, Linalyl acetate, Tetramethyl acetyloctahydronaphthalenes, Hexamethylindanopyran, Pinene, Terpineol, Citral',
+    bottleColor: '#5a2010',
+  },
+  'dark-sea': {
+    name: 'Dark Sea',
+    family: 'Legnosa · Marina',
+    desc: 'Un viaggio sensoriale verso l\'oceano aperto. L\'accordo acquatico, l\'ananas e il limone aprono con freschezza assoluta; mughetto e rosa introducono un cuore floreale inaspettato; sandalo, cedro e muschio vegetale chiudono con calore profondo e misterioso.',
+    character: 'Fresca e misteriosa. Dark Sea cattura il contrasto dell\'oceano: la superficie luminosa e la profondità oscura. Un\'olfazione che cambia durante il giorno, evolvendosi da fresca e marina a calda e avvolgente. Ideale per chi ama la semplicità sofisticata e il mare d\'inverno.',
+    mood: ['Diurna', 'Estiva e autunnale', 'Fresca', 'Misteriosa'],
+    pyramid: {
+      top:   ['Accordo acquatico', 'Ananas', 'Limone'],
+      heart: ['Mughetto', 'Rosa', 'Ambra'],
+      base:  ['Sandalo', 'Cedro', 'Muschio vegetale'],
+    },
+    bgColor: 'linear-gradient(145deg, #081420 0%, #030810 100%)',
+    inci: 'Triethyl citrate, Parfum, Tocopherol, Beta-sitosterol, Squalene, Citrus limon peel oil, Juniperus virginiana oil, Hexyl cinnamal, Alpha-isomethyl ionone, Citronellol, Geraniol, Geranyl acetate, Linalool, Trimethylcyclopentenyl Methylisopentenol, Limonene, Rose ketones, Vanillin, Beta-caryophyllene, Pinene, Citral, Amyl cinnamal, Benzyl alcohol, Cinnamyl alcohol',
+    bottleColor: '#0e2030',
+  },
+  'golden-hour': {
+    name: 'Golden Hour',
+    family: 'Solare · Floreale',
+    desc: 'La fragranza dell\'ora d\'oro. Arancio dolce, note solari e bergamotto aprono con una luce agrumata; note fruttate, mughetto, violetta, vaniglia e caramello compongono un cuore goloso; ambra, legno di cashmere, muschio e sandalo avvolgono in un finale morbido, indimenticabile come un tramonto.',
+    character: 'Solare, gioiosa, accogliente. Golden Hour è ottimismo in una boccetta. La sua progressione dalla freschezza agrumata alla dolcezza vanigliata racconta la transizione dal giorno alla sera — quel momento di luce che tutto trasforma. Versatile, adatta a ogni stagione.',
+    mood: ['Diurna e serale', 'Primavera-Estate', 'Solare', 'Dolce'],
+    pyramid: {
+      top:   ['Arancio dolce', 'Note solari', 'Bergamotto'],
+      heart: ['Note fruttate', 'Mughetto', 'Violetta', 'Vaniglia', 'Caramello'],
+      base:  ['Ambra', 'Legno di cashmere', 'Muschio', 'Sandalo'],
+    },
+    bgColor: 'linear-gradient(145deg, #2a1800 0%, #100a00 100%)',
+    inci: 'Triethyl citrate, Parfum, Tetramethyl acetyloctahydronaphthalenes, Tocopherol, Beta-sitosterol, Squalene, Citrus aurantium dulcis peel oil, Pogostemon cablin oil, Hexamethylindanopyran, Limonene, Linalyl acetate, Alpha-isomethyl ionone, Hexyl cinnamal, Benzyl salicylate, Vanillin, Terpineol, Acetylcedrene, Rose ketones, Farnesol, Beta-caryophyllene, Citral, Benzyl benzoate',
+    bottleColor: '#3a2000',
+  },
+  'moka-rose': {
+    name: 'Moka Rose',
+    family: 'Gourmand · Floreale',
+    desc: 'Un incontro irresistibile tra la rosa e il caffè. Caffè, rosa e nocciola aprono con un accordo floreale-gourmand inaspettato; vaniglia e muschio bianco chiudono con una dolcezza seducente che resta sulla pelle per ore.',
+    character: 'Romantica e gourmand. Moka Rose è la fragranza che racconta un mattino in un caffè parigino: fiori sul tavolo, tazza calda tra le mani. Un contrasto che funziona — la femminilità della rosa e il calore del caffè si bilanciano in un\'olfazione originale e indimenticabile.',
+    mood: ['Mattina e sera', 'Autunno-Inverno', 'Romantica', 'Gourmand'],
+    pyramid: {
+      top:   ['Caffè', 'Rosa', 'Nocciola'],
+      heart: [],
+      base:  ['Vaniglia', 'Muschio bianco'],
+    },
+    bgColor: 'linear-gradient(145deg, #1e0a0a 0%, #0a0404 100%)',
+    inci: 'Triethyl citrate, Parfum, Tocopherol, Beta-sitosterol, Squalene, Limonene, Linalool, Linalyl acetate, Tetramethyl acetyloctahydronaphthalenes, Hexamethylindanopyran, Pinene, Terpineol, Citral',
+    bottleColor: '#2a1010',
+  },
+  'monty-tonka': {
+    name: 'Monty Tonka',
+    family: 'Ambrata · Speziata',
+    desc: 'Un\'odissea olfattiva tra Oriente e Occidente. Lo zafferano e il bergamotto aprono con classe e speziatura; l\'oud e la rosa bulgara costruiscono un cuore reale e prezioso; canna da zucchero, fava tonka, ambra grigia e muschi avvolgono in un finale orientale caldo e persistente.',
+    character: 'Regale, speziata, avvolgente. Monty Tonka è la fragranza per chi non ha paura di essere notato. L\'oud le conferisce una profondità rara; la fava tonka una dolcezza boisée sofisticata. Una firma olfattiva che racconta storie di luoghi lontani e momenti preziosi.',
+    mood: ['Serale', 'Autunno-Inverno', 'Regale', 'Speziata'],
+    pyramid: {
+      top:   ['Zafferano', 'Bergamotto'],
+      heart: ['Oud', 'Rosa bulgara'],
+      base:  ['Canna da zucchero', 'Fava tonka', 'Ambra grigia', 'Muschio bianco', 'Muschio di quercia'],
+    },
+    bgColor: 'linear-gradient(145deg, #1a1000 0%, #080600 100%)',
+    inci: 'Triethyl citrate, Parfum, Tetramethyl acetyloctahydronaphthalenes, Tocopherol, Beta-sitosterol, Squalene, Vanillin, Hexamethylindanopyran, Linalyl acetate, Limonene, Benzyl benzoate, Coumarin, Hexyl cinnamal, Linalool, Eugenol, Cinnamyl alcohol, Benzyl alcohol',
+    bottleColor: '#241500',
+  },
+  'spring-symphony': {
+    name: 'Spring Symphony',
+    family: 'Fruttata · Floreale',
+    desc: 'La primavera in una boccetta. Bergamotto, cassis e mandarino aprono con luce agrumata e fruttata; rosa, gelsomino e pepe rosa compongono un cuore floreale vivace; patchouli e muschio bianco concludono con pulizia e leggerezza.',
+    character: 'Leggera, fresca, ottimista. Spring Symphony è la fragranza della rinascita — adatta a ogni momento del giorno, è compagna ideale della bella stagione. Delicata ma presente, racconta il profumo di un giardino in fiore sotto il sole di aprile.',
+    mood: ['Diurna', 'Primavera-Estate', 'Fresca', 'Floreale'],
+    pyramid: {
+      top:   ['Bergamotto', 'Cassis', 'Mandarino'],
+      heart: ['Rosa', 'Gelsomino', 'Pepe rosa'],
+      base:  ['Patchouli', 'Muschio bianco', 'Muschio vegetale'],
+    },
+    bgColor: 'linear-gradient(145deg, #0a1808 0%, #040a04 100%)',
+    inci: 'Triethyl citrate, Parfum, Tocopherol, Beta-sitosterol, Squalene, Hexyl cinnamal, Linalool, Geraniol, Citronellol, Alpha-isomethyl ionone, Benzyl salicylate, Limonene, Farnesol, Eugenol, Benzyl alcohol, Cinnamyl alcohol',
+    bottleColor: '#102008',
+  },
+  'sweet-whisper': {
+    name: 'Sweet Whisper',
+    family: 'Dolce · Vanigliata',
+    desc: 'Una carezza olfattiva. Bergamotto, pesca e polpa di cocco aprono con dolcezza quasi edibile; note cipriate, latte, zucchero ed eliotropio portano un cuore polveroso e romantico; vaniglia, caramello, fava tonka e muschi avvolgono in un finale vellutato, caldo come pelle su pelle. Una fragranza che sussurra.',
+    character: 'Intima, sensuale, confortante. Sweet Whisper è la fragranza da indossare vicino alla pelle, per chi ama i profumi che dicono qualcosa solo a chi è abbastanza vicino per sentire. Il suo carattere dolce e polveroso evolve durante il giorno in qualcosa di sempre più personale.',
+    mood: ['Serale', 'Tutto l\'anno', 'Sensuale', 'Romantica'],
+    pyramid: {
+      top:   ['Bergamotto', 'Pesca', 'Polpa di cocco'],
+      heart: ['Note cipriate', 'Latte', 'Zucchero', 'Eliotropio'],
+      base:  ['Vaniglia', 'Caramello', 'Fava tonka', 'Muschi'],
+    },
+    bgColor: 'linear-gradient(145deg, #20100e 0%, #0a0606 100%)',
+    inci: 'Triethyl citrate, Parfum, Tocopherol, Beta-sitosterol, Squalene, Linalool, Limonene, Benzyl benzoate, Hexyl cinnamal, Alpha-isomethyl ionone, Benzyl salicylate, Coumarin, Farnesol, Eugenol, Cinnamyl alcohol, Benzyl alcohol',
+    bottleColor: '#2a1414',
+  },
+};
+
+const ALL_FRAGRANCES = [
+  { id: 'crystal-rouge',   n: '01', name: 'Crystal Rouge',   family: 'Legnosa · Ambrata',   desc: 'Seduzione a filo di seta.',           img: '../immagini/kaley/crystal_rouge/flatlay.jpg' },
+  { id: 'dark-sea',        n: '02', name: 'Dark Sea',        family: 'Legnosa · Marina',    desc: 'Salmastro e profondi segreti.',       img: '../immagini/kaley/dark_sea/flatlay.jpg' },
+  { id: 'golden-hour',     n: '03', name: 'Golden Hour',     family: 'Solare · Floreale',   desc: "L'ora dorata che non vuoi smettere.", img: '../immagini/kaley/golden_hour/flatlay.jpg' },
+  { id: 'moka-rose',       n: '04', name: 'Moka Rose',       family: 'Gourmand · Floreale', desc: 'Un caffè tra petali di rosa.',        img: '../immagini/kaley/moka_rose/flatlay.jpg' },
+  { id: 'monty-tonka',     n: '05', name: 'Monty Tonka',     family: 'Ambrata · Speziata',  desc: 'Spezie antiche, pelle calda.',        img: '../immagini/kaley/monty_tonka/inuse.jpg' },
+  { id: 'spring-symphony', n: '06', name: 'Spring Symphony', family: 'Fruttata · Floreale', desc: 'Il primo mattino di aprile.',         img: '' },
+  { id: 'sweet-whisper',   n: '07', name: 'Sweet Whisper',   family: 'Dolce · Vanigliata',  desc: 'Dolcezza che non urla.',              img: '../immagini/kaley/sweet_whisper/flatlay.jpg' },
+];
+
+// ── RENDER ─────────────────────────────────────────────────
+const params = new URLSearchParams(location.search);
+const id = params.get('id') || 'crystal-rouge';
+const data = KALEY_DATA[id];
+
+if (!data) {
+  document.body.innerHTML = '<div style="padding:120px 40px;text-align:center;opacity:.4">Fragranza non trovata.</div>';
+  throw new Error('not found');
+}
+
+const bcEl = document.getElementById('bcProduct');
+if (bcEl) bcEl.textContent = data.name;
+
+document.getElementById('kpBg').style.background = data.bgColor;
+document.getElementById('kpName').textContent = data.name;
+document.getElementById('kpFamily').textContent = data.family;
+document.getElementById('kpDesc').textContent = data.desc;
+document.getElementById('kpCharacter').textContent = data.character;
+document.getElementById('kpInci').textContent = data.inci;
+
+data.mood.forEach(m => {
+  const el = document.createElement('span');
+  el.className = 'kp-mood-tag';
+  el.textContent = m;
+  document.getElementById('kpMood').appendChild(el);
+});
+
+// Bottle SVG
+document.getElementById('kpBottle').innerHTML = `
+  <svg width="140" height="320" viewBox="0 0 80 180" fill="none">
+    <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${data.bottleColor}"/><stop offset="1" stop-color="#0a0604"/></linearGradient></defs>
+    <ellipse cx="40" cy="16" rx="12" ry="6" fill="#c9a96e"/>
+    <rect x="24" y="16" width="32" height="6" fill="rgba(201,169,110,.7)"/>
+    <rect x="12" y="22" width="56" height="150" rx="28" fill="url(#bg)" stroke="rgba(201,169,110,.25)" stroke-width=".5"/>
+    <text x="40" y="88" text-anchor="middle" font-family="Fraunces,serif" font-size="10" fill="rgba(201,169,110,.8)" font-style="italic">Kaley</text>
+    <line x1="24" y1="96" x2="56" y2="96" stroke="rgba(201,169,110,.3)" stroke-width=".5"/>
+    <text x="40" y="110" text-anchor="middle" font-family="sans-serif" font-size="4" fill="rgba(201,169,110,.55)" letter-spacing="2">${data.name.toUpperCase()}</text>
+    <text x="40" y="130" text-anchor="middle" font-family="serif" font-size="3" fill="rgba(201,169,110,.3)" letter-spacing="2" font-style="italic">10 ml</text>
+  </svg>`;
+
+// Piramide
+function renderNotes(el, arr) {
+  if (!el) return;
+  arr.forEach(n => {
+    const span = document.createElement('span');
+    span.className = 'kp-note-pill';
+    span.textContent = n;
+    el.appendChild(span);
+  });
+}
+renderNotes(document.getElementById('kpTop'),   data.pyramid.top);
+renderNotes(document.getElementById('kpHeart'), data.pyramid.heart);
+renderNotes(document.getElementById('kpBase'),  data.pyramid.base);
+
+// Related
+const grid = document.getElementById('kpRelated');
+ALL_FRAGRANCES.filter(f => f.id !== id).forEach(f => {
+  const visual = f.img
+    ? `<img src="${f.img}" alt="${f.name} — Kaley profumo roll-on" loading="lazy">`
+    : `<span>Foto · ${f.name}</span>`;
+  grid.insertAdjacentHTML('beforeend', `
+    <a class="kp-rel-card" href="prodotto-kaley.html?id=${f.id}">
+      <div class="kp-rel-card__visual">${visual}</div>
+      <div class="kp-rel-card__info">
+        <div class="kp-rel-card__n">${f.n}</div>
+        <div class="kp-rel-card__name">${f.name}</div>
+        <div class="kp-rel-card__desc">${f.desc || ''}</div>
+        <div class="kp-rel-card__family">${f.family}</div>
+      </div>
+    </a>`);
+});
+
+// INCI accordion
+const toggle = document.getElementById('inciToggle');
+const body   = document.getElementById('inciBody');
+toggle.addEventListener('click', () => {
+  const open = body.classList.toggle('open');
+  toggle.classList.toggle('open', open);
+  toggle.querySelector('span').textContent = open ? 'Nascondi INCI' : 'Mostra INCI';
+});
+
+// Reveal
+const obs = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); } }); }, { threshold: 0.08 });
+document.querySelectorAll('[data-reveal]').forEach(el => obs.observe(el));
+
+document.title = `${data.name} — Kaley · Athena's`;
+</script>
 </body>
 </html>

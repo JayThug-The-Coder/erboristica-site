@@ -279,50 +279,33 @@ body { background: #0e0a06; color: #e8d8c0; font-family: var(--sans); overflow-x
 .kf-frag__notes {
   display: flex;
   flex-direction: column;
+  gap: 10px;
   padding-top: 24px;
   border-top: 1px solid rgba(201,169,110,.1);
   margin-bottom: 36px;
 }
-.kf-frag__note {
-  display: grid;
-  grid-template-columns: 68px 1fr;
-  gap: 8px 16px;
-  padding: 9px 0;
-  border-bottom: 1px solid rgba(201,169,110,.06);
-}
-.kf-frag__note:last-child { border-bottom: none; }
-.kf-frag__note-l {
-  font-size: clamp(9px, 0.7vw, 11px);
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--gold);
-  opacity: .42;
-  padding-top: 2px;
-  white-space: nowrap;
-}
-.kf-frag__note-v {
+.kf-frag__character {
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(15px, 1.2vw, 18px);
-  color: rgba(232,216,192,.48);
-  line-height: 1.5;
+  font-size: clamp(16px, 1.25vw, 19px);
+  line-height: 1.55;
+  color: rgba(232,216,192,.72);
+  max-width: 48ch;
 }
 .kf-frag__cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 26px;
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(201,169,110,.65);
-  text-decoration: none;
-  border: 1px solid rgba(201,169,110,.22);
-  align-self: flex-start;
-  transition: color .25s, border-color .25s, background .25s;
+  display: inline-flex; align-items: center;
+  font-family: var(--serif); font-style: italic; font-size: clamp(15px,1.3vw,18px);
+  color: var(--gold); opacity: .65; text-decoration: none;
+  position: relative; padding-bottom: 3px;
+  transition: opacity .3s var(--ease); align-self: flex-start;
 }
-.kf-frag__cta:hover { color: #c9a96e; border-color: rgba(201,169,110,.5); background: rgba(201,169,110,.05); }
-.kf-frag__cta::after { content: '→'; font-size: 14px; }
+.kf-frag__cta::after {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 0; height: 1px; background: var(--gold);
+  transition: width .35s var(--ease);
+}
+.kf-frag__cta:hover { opacity: 1; }
+.kf-frag__cta:hover::after { width: 100%; }
 
 /* ── FORMATO + FILOSOFIA ────────────────────────────────────── */
 .kf-format {
@@ -421,6 +404,70 @@ body { background: #0e0a06; color: #e8d8c0; font-family: var(--sans); overflow-x
 .kf-btn--gold:hover { background: #d4b47a; transform: translateY(-2px); }
 .kf-btn--ghost { background: transparent; color: rgba(232,216,192,.5); border: 1px solid rgba(201,169,110,.2); }
 .kf-btn--ghost:hover { color: #e8d8c0; border-color: rgba(201,169,110,.5); transform: translateY(-2px); }
+
+/* ── ROW ZIG-ZAG (Piramide olfattiva / Modo d'applicazione) ── */
+.kf-row {
+  padding: clamp(80px,10vw,130px) 0;
+  background: #0e0a06;
+  border-top: 1px solid rgba(201,169,110,.08);
+}
+.kf-row + .kf-row { background: #110c07; }
+.kf-row__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px,6vw,100px);
+  align-items: center;
+}
+.kf-row--photo-right .kf-row__visual { order: 2; }
+.kf-row--photo-right .kf-row__content { order: 1; }
+@media (max-width: 860px) {
+  .kf-row__grid { grid-template-columns: 1fr; gap: 40px; }
+  .kf-row--photo-right .kf-row__visual,
+  .kf-row--photo-right .kf-row__content { order: 0; }
+}
+.kf-row__photo {
+  aspect-ratio: 4/5;
+  border: 1px dashed rgba(201,169,110,.18);
+  background: rgba(201,169,110,.02);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.kf-row__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.kf-row__photo span {
+  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(201,169,110,.35); text-align: center; padding: 0 24px;
+}
+.kf-row__label {
+  font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: rgba(201,169,110,.55); margin-bottom: 18px; display: block;
+}
+.kf-row__title {
+  font-family: var(--display); font-weight: 200;
+  font-size: clamp(32px,4.6vw,56px); line-height: 1.05;
+  color: #e8d8c0; margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+.kf-row__title em { font-style: italic; color: var(--gold); }
+.kf-row__text {
+  font-family: var(--serif); font-size: clamp(17px,1.4vw,20px);
+  line-height: 1.7; color: rgba(232,216,192,.7);
+  margin-bottom: 28px; max-width: 52ch;
+}
+
+.kf-steps { display: flex; flex-direction: column; gap: 20px; margin-top: 32px; }
+.kf-step { display: flex; gap: 22px; align-items: flex-start; }
+.kf-step__n {
+  font-family: var(--display); font-style: italic; font-weight: 200;
+  font-size: clamp(28px,3vw,40px); line-height: 1;
+  color: var(--gold); flex-shrink: 0; min-width: 2ch;
+}
+.kf-step__text {
+  font-family: var(--serif); font-size: clamp(15px,1.2vw,18px);
+  line-height: 1.65; color: rgba(232,216,192,.7);
+  padding-top: 8px; border-top: 1px solid rgba(201,169,110,.1);
+  flex: 1;
+}
 
 /* reveal */
 [data-reveal] { opacity: 0; transform: translateY(22px); transition: opacity .75s var(--ease), transform .75s var(--ease); }
@@ -535,13 +582,12 @@ body { background: #0e0a06; color: #e8d8c0; font-family: var(--sans); overflow-x
       <div class="kf-frag__num">01</div>
       <div class="kf-frag__name">Crystal Rouge</div>
       <p class="kf-frag__phrase" data-it="Seduzione a filo di seta." data-en="Seduction drawn in silk.">Seduzione a filo di seta.</p>
-      <div class="kf-frag__family">Ambrata · Speziata</div>
+      <div class="kf-frag__family">Legnosa · Ambrata</div>
       <div class="kf-frag__notes">
-        <div class="kf-frag__note"><div class="kf-frag__note-l">Testa</div><div class="kf-frag__note-v">Zafferano · Bergamotto</div></div>
-        <div class="kf-frag__note"><div class="kf-frag__note-l">Cuore</div><div class="kf-frag__note-v">Gelsomino · Ambra grigia · Amberwood</div></div>
-        <div class="kf-frag__note"><div class="kf-frag__note-l">Fondo</div><div class="kf-frag__note-v">Resina abete · Cedro · Muschio bianco</div></div>
+        <p class="kf-frag__character" data-it="Avvolgente e sicura di sé. La fragranza di chi entra in una stanza e lascia un segno." data-en="Enveloping and self-assured. The fragrance of those who enter a room and leave a mark.">Avvolgente e sicura di sé. La fragranza di chi entra in una stanza e lascia un segno.</p>
+        <p class="kf-frag__character" data-it="L'accordo speziato-ambrato richiama oro, resina, lusso discreto — si sviluppa sul calore della pelle." data-en="The spicy-amber accord recalls gold, resin, quiet luxury — unfolding on the skin's warmth.">L'accordo speziato-ambrato richiama oro, resina, lusso discreto — si sviluppa sul calore della pelle.</p>
       </div>
-      <a class="kf-frag__cta" href="https://www.erboristica.com/kaley/profumo-roll-on-crystal-rouge/" target="_blank" rel="noopener" data-it="Acquista su erboristica.com" data-en="Buy on erboristica.com">Acquista su erboristica.com</a>
+      <a class="kf-frag__cta" href="prodotto-kaley.html?id=crystal-rouge" data-it="Scopri la fragranza" data-en="Discover the fragrance">Scopri la fragranza</a>
     </div>
   </article>
 
@@ -557,13 +603,12 @@ body { background: #0e0a06; color: #e8d8c0; font-family: var(--sans); overflow-x
       <div class="kf-frag__num">02</div>
       <div class="kf-frag__name">Dark Sea</div>
       <p class="kf-frag__phrase" data-it="Salmastro e profondi segreti." data-en="Salt air and deep secrets.">Salmastro e profondi segreti.</p>
-      <div class="kf-frag__family">Acquatica · Marina</div>
+      <div class="kf-frag__family">Legnosa · Marina</div>
       <div class="kf-frag__notes">
-        <div class="kf-frag__note"><div class="kf-frag__note-l">Testa</div><div class="kf-frag__note-v">Accordo marino · Limone · Ananas</div></div>
-        <div class="kf-frag__note"><div class="kf-frag__note-l">Cuore</div><div class="kf-frag__note-v">Rosa · Mughetto · Ambra</div></div>
-        <div class="kf-frag__note"><div class="kf-frag__note-l">Fondo</div><div class="kf-frag__note-v">Sandalo · Cedro · Muschio</div></div>
+        <p class="kf-frag__character" data-it="Fresca e misteriosa. Cattura il contrasto dell'oceano — superficie luminosa e profondità oscura." data-en="Fresh and mysterious. It captures the ocean's contrast — luminous surface and dark depth.">Fresca e misteriosa. Cattura il contrasto dell'oceano — superficie luminosa e profondità oscura.</p>
+        <p class="kf-frag__character" data-it="Evolve durante il giorno, da marina e luminosa a calda e avvolgente. Per chi ama il mare d'inverno." data-en="Evolves through the day, from marine and bright to warm and enveloping. For those who love a winter sea.">Evolve durante il giorno, da marina e luminosa a calda e avvolgente. Per chi ama il mare d'inverno.</p>
       </div>
-      <a class="kf-frag__cta" href="https://www.erboristica.com/kaley/profumo-roll-on-dark-sea/" target="_blank" rel="noopener" data-it="Acquista su erboristica.com" data-en="Buy on erboristica.com">Acquista su erboristica.com</a>
+      <a class="kf-frag__cta" href="prodotto-kaley.html?id=dark-sea" data-it="Scopri la fragranza" data-en="Discover the fragrance">Scopri la fragranza</a>
     </div>
   </article>
 
@@ -579,13 +624,12 @@ body { background: #0e0a06; color: #e8d8c0; font-family: var(--sans); overflow-x
       <div class="kf-frag__num">03</div>
       <div class="kf-frag__name">Golden Hour</div>
       <p class="kf-frag__phrase" data-it="L'ora dorata che non vuoi smettere." data-en="The golden hour you never want to end.">L'ora dorata che non vuoi smettere.</p>
-      <div class="kf-frag__family">Luminosa · Calda</div>
+      <div class="kf-frag__family">Solare · Floreale</div>
       <div class="kf-frag__notes">
-        <div class="kf-frag__note"><div class="kf-frag__note-l">Testa</div><div class="kf-frag__note-v">Bergamotto · Arancio · Mandarino</div></div>
-        <div class="kf-frag__note"><div class="kf-frag__note-l">Cuore</div><div class="kf-frag__note-v">Violetta · Mughetto · Vaniglia</div></div>
-        <div class="kf-frag__note"><div class="kf-frag__note-l">Fondo</div><div class="kf-frag__note-v">Caramello · Cashmere · Sandalo · Ambra</div></div>
+        <p class="kf-frag__character" data-it="Solare, gioiosa, accogliente. Ottimismo in una boccetta — quella luce che tutto trasforma." data-en="Sunny, joyful, welcoming. Optimism in a bottle — the light that transforms everything.">Solare, gioiosa, accogliente. Ottimismo in una boccetta — quella luce che tutto trasforma.</p>
+        <p class="kf-frag__character" data-it="Dalla freschezza agrumata alla dolcezza vanigliata: la transizione dal giorno alla sera. Versatile, per ogni stagione." data-en="From citrus freshness to vanilla sweetness: the day-to-evening shift. Versatile, for every season.">Dalla freschezza agrumata alla dolcezza vanigliata: la transizione dal giorno alla sera. Versatile, per ogni stagione.</p>
       </div>
-      <a class="kf-frag__cta" href="https://www.erboristica.com/kaley/profumo-roll-on-golden-hour/" target="_blank" rel="noopener" data-it="Acquista su erboristica.com" data-en="Buy on erboristica.com">Acquista su erboristica.com</a>
+      <a class="kf-frag__cta" href="prodotto-kaley.html?id=golden-hour" data-it="Scopri la fragranza" data-en="Discover the fragrance">Scopri la fragranza</a>
     </div>
   </article>
 
@@ -601,13 +645,12 @@ body { background: #0e0a06; color: #e8d8c0; font-family: var(--sans); overflow-x
       <div class="kf-frag__num">04</div>
       <div class="kf-frag__name">Moka Rose</div>
       <p class="kf-frag__phrase" data-it="Un caffè tra petali di rosa." data-en="A coffee among rose petals.">Un caffè tra petali di rosa.</p>
-      <div class="kf-frag__family">Floreale · Gourmand</div>
+      <div class="kf-frag__family">Gourmand · Floreale</div>
       <div class="kf-frag__notes">
-        <div class="kf-frag__note"><div class="kf-frag__note-l">Testa</div><div class="kf-frag__note-v">Fiori bianchi · Caffè · Rosa</div></div>
-        <div class="kf-frag__note"><div class="kf-frag__note-l">Cuore</div><div class="kf-frag__note-v">Rosa bulgara · Nocciola tostata</div></div>
-        <div class="kf-frag__note"><div class="kf-frag__note-l">Fondo</div><div class="kf-frag__note-v">Vaniglia · Muschio bianco · Legno cashmere</div></div>
+        <p class="kf-frag__character" data-it="Romantica e gourmand. Un mattino in un caffè parigino — fiori sul tavolo, tazza calda fra le mani." data-en="Romantic and gourmand. A morning at a Parisian café — flowers on the table, a warm cup in hand.">Romantica e gourmand. Un mattino in un caffè parigino — fiori sul tavolo, tazza calda fra le mani.</p>
+        <p class="kf-frag__character" data-it="La femminilità della rosa incontra il calore del caffè: un contrasto originale e indimenticabile." data-en="The femininity of rose meets the warmth of coffee: an original, unforgettable contrast.">La femminilità della rosa incontra il calore del caffè: un contrasto originale e indimenticabile.</p>
       </div>
-      <a class="kf-frag__cta" href="https://www.erboristica.com/kaley/profumo-roll-on-moka-rose/" target="_blank" rel="noopener" data-it="Acquista su erboristica.com" data-en="Buy on erboristica.com">Acquista su erboristica.com</a>
+      <a class="kf-frag__cta" href="prodotto-kaley.html?id=moka-rose" data-it="Scopri la fragranza" data-en="Discover the fragrance">Scopri la fragranza</a>
     </div>
   </article>
 
@@ -623,13 +666,12 @@ body { background: #0e0a06; color: #e8d8c0; font-family: var(--sans); overflow-x
       <div class="kf-frag__num">05</div>
       <div class="kf-frag__name">Monty Tonka</div>
       <p class="kf-frag__phrase" data-it="Spezie antiche, pelle calda." data-en="Ancient spices, warm skin.">Spezie antiche, pelle calda.</p>
-      <div class="kf-frag__family">Orientale · Ambrata</div>
+      <div class="kf-frag__family">Ambrata · Speziata</div>
       <div class="kf-frag__notes">
-        <div class="kf-frag__note"><div class="kf-frag__note-l">Testa</div><div class="kf-frag__note-v">Bergamotto · Zafferano · Canna da zucchero</div></div>
-        <div class="kf-frag__note"><div class="kf-frag__note-l">Cuore</div><div class="kf-frag__note-v">Oud · Rosa bulgara · Ambra</div></div>
-        <div class="kf-frag__note"><div class="kf-frag__note-l">Fondo</div><div class="kf-frag__note-v">Fava tonka · Muschio · Vaniglia</div></div>
+        <p class="kf-frag__character" data-it="Regale, speziata, avvolgente. La fragranza per chi non ha paura di essere notato." data-en="Regal, spicy, enveloping. The fragrance for those who don't fear being noticed.">Regale, speziata, avvolgente. La fragranza per chi non ha paura di essere notato.</p>
+        <p class="kf-frag__character" data-it="L'oud le dona profondità rara; la fava tonka una dolcezza boisée sofisticata — luoghi lontani, momenti preziosi." data-en="Oud lends rare depth; tonka bean a sophisticated boisé sweetness — distant places, precious moments.">L'oud le dona profondità rara; la fava tonka una dolcezza boisée sofisticata — luoghi lontani, momenti preziosi.</p>
       </div>
-      <a class="kf-frag__cta" href="https://www.erboristica.com/kaley/profumo-roll-on-monty-tonka/" target="_blank" rel="noopener" data-it="Acquista su erboristica.com" data-en="Buy on erboristica.com">Acquista su erboristica.com</a>
+      <a class="kf-frag__cta" href="prodotto-kaley.html?id=monty-tonka" data-it="Scopri la fragranza" data-en="Discover the fragrance">Scopri la fragranza</a>
     </div>
   </article>
 
@@ -650,13 +692,12 @@ body { background: #0e0a06; color: #e8d8c0; font-family: var(--sans); overflow-x
       <div class="kf-frag__num">06</div>
       <div class="kf-frag__name">Spring Symphony</div>
       <p class="kf-frag__phrase" data-it="Il primo mattino di aprile." data-en="The first morning of April.">Il primo mattino di aprile.</p>
-      <div class="kf-frag__family">Floreale · Verde</div>
+      <div class="kf-frag__family">Fruttata · Floreale</div>
       <div class="kf-frag__notes">
-        <div class="kf-frag__note"><div class="kf-frag__note-l">Testa</div><div class="kf-frag__note-v">Peonia · Bergamotto · Foglia verde</div></div>
-        <div class="kf-frag__note"><div class="kf-frag__note-l">Cuore</div><div class="kf-frag__note-v">Gelsomino · Rosa · Mughetto</div></div>
-        <div class="kf-frag__note"><div class="kf-frag__note-l">Fondo</div><div class="kf-frag__note-v">Muschio bianco · Cedro · Ambra</div></div>
+        <p class="kf-frag__character" data-it="Leggera, fresca, ottimista. La fragranza della rinascita — compagna ideale della bella stagione." data-en="Light, fresh, optimistic. The fragrance of rebirth — perfect companion for warmer days.">Leggera, fresca, ottimista. La fragranza della rinascita — compagna ideale della bella stagione.</p>
+        <p class="kf-frag__character" data-it="Delicata ma presente: racconta il profumo di un giardino in fiore sotto il sole d'aprile." data-en="Delicate yet present: it tells of a garden in bloom under the April sun.">Delicata ma presente: racconta il profumo di un giardino in fiore sotto il sole d'aprile.</p>
       </div>
-      <a class="kf-frag__cta" href="https://www.erboristica.com/kaley/profumo-roll-on-spring-symphony/" target="_blank" rel="noopener" data-it="Acquista su erboristica.com" data-en="Buy on erboristica.com">Acquista su erboristica.com</a>
+      <a class="kf-frag__cta" href="prodotto-kaley.html?id=spring-symphony" data-it="Scopri la fragranza" data-en="Discover the fragrance">Scopri la fragranza</a>
     </div>
   </article>
 
@@ -672,13 +713,12 @@ body { background: #0e0a06; color: #e8d8c0; font-family: var(--sans); overflow-x
       <div class="kf-frag__num">07</div>
       <div class="kf-frag__name">Sweet Whisper</div>
       <p class="kf-frag__phrase" data-it="Dolcezza che non urla." data-en="Sweetness that doesn't shout.">Dolcezza che non urla.</p>
-      <div class="kf-frag__family">Dolce · Vellutata</div>
+      <div class="kf-frag__family">Dolce · Vanigliata</div>
       <div class="kf-frag__notes">
-        <div class="kf-frag__note"><div class="kf-frag__note-l">Testa</div><div class="kf-frag__note-v">Fiori d'arancio · Iris · Pera</div></div>
-        <div class="kf-frag__note"><div class="kf-frag__note-l">Cuore</div><div class="kf-frag__note-v">Heliotrope · Rosa · Peonia</div></div>
-        <div class="kf-frag__note"><div class="kf-frag__note-l">Fondo</div><div class="kf-frag__note-v">Ambra rosa · Vaniglia bourbon · Muschio · Benzoino</div></div>
+        <p class="kf-frag__character" data-it="Intima, sensuale, confortante. Da indossare vicino alla pelle — per chi sente il profumo solo se si avvicina abbastanza." data-en="Intimate, sensual, comforting. Worn close to the skin — for those who only sense the scent when they come near.">Intima, sensuale, confortante. Da indossare vicino alla pelle — per chi sente il profumo solo se si avvicina abbastanza.</p>
+        <p class="kf-frag__character" data-it="Il suo carattere dolce e polveroso evolve durante il giorno in qualcosa di sempre più personale." data-en="Its sweet, powdery character evolves through the day into something ever more personal.">Il suo carattere dolce e polveroso evolve durante il giorno in qualcosa di sempre più personale.</p>
       </div>
-      <a class="kf-frag__cta" href="https://www.erboristica.com/kaley/profumo-roll-on-sweet-whisper/" target="_blank" rel="noopener" data-it="Acquista su erboristica.com" data-en="Buy on erboristica.com">Acquista su erboristica.com</a>
+      <a class="kf-frag__cta" href="prodotto-kaley.html?id=sweet-whisper" data-it="Scopri la fragranza" data-en="Discover the fragrance">Scopri la fragranza</a>
     </div>
   </article>
 
@@ -716,6 +756,61 @@ body { background: #0e0a06; color: #e8d8c0; font-family: var(--sans); overflow-x
           <span class="kf-format__pill-label" data-it="MOQ su richiesta" data-en="MOQ on request">MOQ su richiesta</span>
           <span class="kf-format__pill-val" data-it="Listino B2B" data-en="B2B pricing">Listino B2B</span>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ROW 1 — Piramide olfattiva (foto sx + testo dx) ───── -->
+<section class="kf-row kf-row--photo-left" data-reveal>
+  <div class="container kf-row__grid">
+    <div class="kf-row__visual">
+      <div class="kf-row__photo">
+        <!-- SOSTITUIRE: foto piramide olfattiva — macro tre note (testa/cuore/fondo), composizione editoriale jewel-tone -->
+        <span data-it="Foto piramide olfattiva · 4:5" data-en="Olfactory pyramid photo · 4:5">FOTO PIRAMIDE OLFATTIVA · 4:5</span>
+      </div>
+    </div>
+    <div class="kf-row__content">
+      <span class="kf-row__label" data-it="Architettura della fragranza" data-en="Fragrance architecture">Architettura della fragranza</span>
+      <h2 class="kf-row__title">
+        <span data-it="Piramide " data-en="Olfactory ">Piramide </span><em data-it="olfattiva." data-en="pyramid.">olfattiva.</em>
+      </h2>
+      <p class="kf-row__text" data-it="Ogni fragranza Kaley è costruita su tre livelli di note che si rivelano nel tempo, fondendosi con il calore naturale della pelle per creare un'olfazione unica e personale." data-en="Every Kaley fragrance is built on three layers of notes that reveal themselves over time, blending with the skin's natural warmth to create a unique, personal scent.">Ogni fragranza Kaley è costruita su tre livelli di note che si rivelano nel tempo, fondendosi con il calore naturale della pelle per creare un'olfazione unica e personale.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── ROW 2 — Modo d'applicazione (testo sx + foto dx) ──── -->
+<section class="kf-row kf-row--photo-right" data-reveal>
+  <div class="container kf-row__grid">
+    <div class="kf-row__content">
+      <span class="kf-row__label" data-it="Rituale" data-en="Ritual">Rituale</span>
+      <h2 class="kf-row__title">
+        <span data-it="Modo " data-en="How to ">Modo </span><em data-it="d'applicazione." data-en="apply.">d'applicazione.</em>
+      </h2>
+      <div class="kf-steps">
+        <div class="kf-step">
+          <span class="kf-step__n">01</span>
+          <p class="kf-step__text" data-it="Fai scorrere la sfera direttamente su polsi, collo e décolleté." data-en="Glide the roll-on ball directly over wrists, neck, and décolletage.">Fai scorrere la sfera direttamente su polsi, collo e décolleté.</p>
+        </div>
+        <div class="kf-step">
+          <span class="kf-step__n">02</span>
+          <p class="kf-step__text" data-it="Non sfregare — lascia che l'olio si scaldi con il calore della pelle." data-en="Do not rub — let the oil warm with the skin's heat.">Non sfregare — lascia che l'olio si scaldi con il calore della pelle.</p>
+        </div>
+        <div class="kf-step">
+          <span class="kf-step__n">03</span>
+          <p class="kf-step__text" data-it="Le note si sviluppano nei primi 30 minuti e persistono per tutto il giorno." data-en="The notes develop in the first 30 minutes and last throughout the day.">Le note si sviluppano nei primi 30 minuti e persistono per tutto il giorno.</p>
+        </div>
+        <div class="kf-step">
+          <span class="kf-step__n">04</span>
+          <p class="kf-step__text" data-it="Adatto anche sul décolleté e dietro le orecchie per maggiore persistenza." data-en="Also suited to the décolletage and behind the ears for extra persistence.">Adatto anche sul décolleté e dietro le orecchie per maggiore persistenza.</p>
+        </div>
+      </div>
+    </div>
+    <div class="kf-row__visual">
+      <div class="kf-row__photo">
+        <!-- SOSTITUIRE: foto applicazione roll-on — macro sfera su polso, luce calda, jewel-tone Kaley -->
+        <span data-it="Foto rituale roll-on · 4:5" data-en="Roll-on ritual photo · 4:5">FOTO RITUALE ROLL-ON · 4:5</span>
       </div>
     </div>
   </div>

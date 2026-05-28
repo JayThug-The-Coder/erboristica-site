@@ -22,7 +22,7 @@ body { background: #060606; color: #e4ddd4; font-family: var(--sans); overflow-x
 .sp-breadcrumb a { color: rgba(201,169,110,.4); text-decoration: none; transition: color .2s; }
 .sp-breadcrumb a:hover { color: #c9a96e; }
 .sp-breadcrumb__sep { color: rgba(201,169,110,.2); font-size: 11px; }
-.sp-breadcrumb__current { color: rgba(228,221,212,.5); }
+.sp-breadcrumb__current { color: rgba(228,221,212,.8); }
 
 /* ── HERO ─────────────────────────────────────────────────── */
 .sp-hero {
@@ -90,7 +90,7 @@ body { background: #060606; color: #e4ddd4; font-family: var(--sans); overflow-x
 }
 .sp-eyebrow__sep { width: 32px; height: 1px; background: rgba(201,169,110,.3); }
 .sp-eyebrow__cat {
-  font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(228,221,212,.4);
+  font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(228,221,212,.75);
 }
 
 .sp-hero__name {
@@ -100,7 +100,7 @@ body { background: #060606; color: #e4ddd4; font-family: var(--sans); overflow-x
 }
 .sp-hero__claim {
   font-family: var(--serif); font-size: clamp(17px,1.4vw,19px); line-height: 1.75;
-  color: rgba(228,221,212,.6); max-width: 44ch; margin-bottom: 28px;
+  color: rgba(228,221,212,.88); max-width: 44ch; margin-bottom: 28px;
   position: relative; z-index: 1;
 }
 
@@ -119,43 +119,52 @@ body { background: #060606; color: #e4ddd4; font-family: var(--sans); overflow-x
 }
 .sp-spec { display: flex; flex-direction: column; gap: 3px; }
 .sp-spec__label {
-  font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(228,221,212,.35);
+  font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(228,221,212,.65);
 }
 .sp-spec__val { font-family: var(--serif); font-size: 17px; color: #c9a96e; }
 
-/* ── PHOTOS ────────────────────────────────────────────────── */
-.sp-photos {
-  padding: clamp(60px,8vw,100px) 0;
-  background: #0a0a0a;
-}
-.sp-photos .container { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 2px; }
-@media (max-width: 700px) {
-  .sp-photos .container { grid-template-columns: 1fr 1fr; }
-  .sp-photo:first-child { grid-column: 1 / -1; }
-}
-
-.sp-photo {
-  aspect-ratio: 4/5;
-  display: flex; align-items: center; justify-content: center;
-  border: 1px dashed rgba(201,169,110,.12); position: relative; overflow: hidden;
-}
-.sp-photo:first-child { aspect-ratio: 3/4; }
-.sp-photo span {
-  font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
-  color: rgba(201,169,110,.2); text-align: center; padding: 0 20px;
-}
-
-/* ── PEARL TECH ───────────────────────────────────────────── */
-.sp-pearl {
+/* ── ROW ZIG-ZAG ─────────────────────────────────────────── */
+.sp-row {
   padding: clamp(80px,10vw,120px) 0;
   background: #060606;
+  border-top: 1px solid rgba(201,169,110,.05);
 }
-.sp-pearl .container {
-  display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px,6vw,100px);
-  align-items: start;
+.sp-row:nth-of-type(even) { background: #080808; }
+.sp-row__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px,6vw,100px);
+  align-items: center;
 }
-@media (max-width: 860px) { .sp-pearl .container { grid-template-columns: 1fr; } }
+.sp-row--photo-right .sp-row__visual { order: 2; }
+.sp-row--photo-right .sp-row__content { order: 1; }
+@media (max-width: 860px) {
+  .sp-row__grid { grid-template-columns: 1fr; gap: 40px; }
+  .sp-row--photo-right .sp-row__visual,
+  .sp-row--photo-right .sp-row__content { order: 0; }
+}
+.sp-row__photo {
+  aspect-ratio: 4/5;
+  border: 1px dashed rgba(201,169,110,.12);
+  background: rgba(201,169,110,.02);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.sp-row__photo span {
+  font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(201,169,110,.25); text-align: center; padding: 0 20px;
+}
+.sp-row__efficacy-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  margin-top: 28px;
+}
+@media (max-width: 700px) { .sp-row__efficacy-grid { grid-template-columns: 1fr; } }
+.sp-row__actives-list {
+  margin-top: 24px;
+  display: flex; flex-direction: column;
+}
 
+/* ── PEARL TECH (label/title/desc/steps usati nei row) ────── */
 .sp-pearl__label {
   font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
   color: rgba(201,169,110,.5); margin-bottom: 16px; display: block;
@@ -165,7 +174,7 @@ body { background: #060606; color: #e4ddd4; font-family: var(--sans); overflow-x
   font-size: clamp(28px,4vw,52px); line-height: 1.1; color: #e4ddd4; margin-bottom: 20px;
 }
 .sp-pearl__desc {
-  font-family: var(--serif); font-size: 17px; line-height: 1.75; color: rgba(228,221,212,.6); margin-bottom: 32px;
+  font-family: var(--serif); font-size: 17px; line-height: 1.75; color: rgba(228,221,212,.88); margin-bottom: 32px;
 }
 .sp-pearl__steps { display: flex; flex-direction: column; gap: 16px; }
 .sp-pearl__step {
@@ -180,34 +189,15 @@ body { background: #060606; color: #e4ddd4; font-family: var(--sans); overflow-x
 .sp-pearl__step-text { font-family: var(--serif); font-size: 17px; line-height: 1.65; color: rgba(228,221,212,.65); padding-top: 4px; }
 .sp-pearl__step-text strong { text-transform: uppercase; letter-spacing: 0.05em; }
 
-/* SVG diagram side */
-.sp-pearl__diagram {
-  display: flex; align-items: center; justify-content: center;
-  position: relative;
-}
-.sp-pearl__diagram svg { width: 100%; max-width: 400px; }
-
-/* ── ACTIVES ───────────────────────────────────────────────── */
-.sp-actives {
-  padding: clamp(80px,10vw,120px) 0;
-  background: #080808;
-}
-.sp-actives__header {
-  display: flex; align-items: baseline; gap: 24px; margin-bottom: 48px;
-}
-.sp-actives__title {
-  font-family: var(--display); font-weight: 200; font-style: italic;
-  font-size: clamp(28px,4vw,48px); color: #e4ddd4;
-}
-.sp-actives__sub {
-  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
-  color: rgba(201,169,110,.4);
-}
-
+/* ── ACTIVES ROW (compatta, clic apre modal) ───────────────── */
 .sp-active-row {
   border-top: 1px solid rgba(228,221,212,.06);
   cursor: pointer;
   transition: background .2s;
+  background: transparent;
+  display: block; width: 100%; text-align: left;
+  font: inherit; color: inherit;
+  padding: 0;
 }
 .sp-active-row:last-child { border-bottom: 1px solid rgba(228,221,212,.06); }
 .sp-active-row:hover { background: rgba(201,169,110,.03); }
@@ -265,22 +255,7 @@ body { background: #060606; color: #e4ddd4; font-family: var(--sans); overflow-x
   font-size: 11px; color: #c9a96e; white-space: nowrap;
 }
 
-/* ── PEARL EFFICACY STRIP (benefit visivi integrati) ──────── */
-.sp-pearl__efficacy {
-  margin-top: clamp(48px,6vw,80px);
-  padding-top: clamp(36px,4vw,56px);
-  border-top: 1px solid rgba(201,169,110,.1);
-  grid-column: 1 / -1;
-}
-.sp-pearl__efficacy-label {
-  font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
-  color: rgba(201,169,110,.4); margin-bottom: clamp(28px,3vw,40px); display: block;
-}
-.sp-pearl__efficacy-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1px;
-}
+/* ── EFFICACY CARDS (usate dentro .sp-row__efficacy-grid) ── */
 .sp-efficacy-card {
   padding: clamp(24px,3vw,36px) clamp(20px,2.5vw,32px);
   border-left: 1px solid rgba(201,169,110,.07);
@@ -311,12 +286,150 @@ body { background: #060606; color: #e4ddd4; font-family: var(--sans); overflow-x
 }
 .sp-efficacy-card__text {
   font-family: var(--serif); font-size: 15px; line-height: 1.7;
-  color: rgba(228,221,212,.45);
+  color: rgba(228,221,212,.85);
 }
 @media (max-width: 700px) {
-  .sp-pearl__efficacy-grid { grid-template-columns: 1fr 1fr; }
   .sp-efficacy-card:nth-child(odd) { border-left: 0; }
 }
+
+/* ── MODAL ATTIVI — editoriale, visual-led ───────────────── */
+.sp-modal {
+  position: fixed; inset: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: center;
+  padding: clamp(20px,4vh,60px) clamp(16px,4vw,40px);
+  animation: spModalIn .3s var(--ease);
+}
+.sp-modal[hidden] { display: none; }
+@keyframes spModalIn { from { opacity: 0; } to { opacity: 1; } }
+.sp-modal__backdrop {
+  position: absolute; inset: 0;
+  background: rgba(4,4,4,.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  cursor: pointer;
+}
+.sp-modal__panel {
+  position: relative; z-index: 1;
+  width: 100%; max-width: 960px;
+  max-height: 85vh; overflow-y: auto;
+  background: #0a0a0a;
+  border: 1px solid rgba(201,169,110,.18);
+  box-shadow: 0 60px 120px rgba(0,0,0,.6);
+  transform: translateY(20px);
+  animation: spModalPanelIn .45s var(--ease) forwards;
+}
+@keyframes spModalPanelIn { to { transform: translateY(0); } }
+.sp-modal__close {
+  position: absolute; top: 18px; right: 18px;
+  width: 40px; height: 40px;
+  background: none; border: 1px solid rgba(201,169,110,.18); border-radius: 50%;
+  color: rgba(201,169,110,.7);
+  cursor: pointer; font-size: 22px; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  transition: color .25s, border-color .25s, transform .25s;
+  z-index: 3;
+}
+.sp-modal__close:hover { color: #c9a96e; border-color: #c9a96e; transform: rotate(90deg); }
+
+.sp-modal__grid {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.85fr) 1.6fr;
+  min-height: 420px;
+}
+@media (max-width: 760px) {
+  .sp-modal__grid { grid-template-columns: 1fr; }
+}
+
+/* Visual sx: numero gigante + pearl decorativa */
+.sp-modal__visual {
+  position: relative;
+  background: radial-gradient(circle at 30% 30%, rgba(201,169,110,.06) 0%, transparent 60%), #060606;
+  border-right: 1px solid rgba(201,169,110,.08);
+  padding: clamp(40px,5vw,60px) clamp(28px,3vw,40px);
+  display: flex; flex-direction: column; justify-content: space-between;
+  overflow: hidden;
+}
+@media (max-width: 760px) {
+  .sp-modal__visual { border-right: 0; border-bottom: 1px solid rgba(201,169,110,.08); min-height: 220px; }
+}
+.sp-modal__num {
+  font-family: var(--display); font-weight: 200; font-style: italic;
+  font-size: clamp(120px, 16vw, 200px); line-height: 0.85;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(201,169,110,.45);
+  letter-spacing: -0.04em;
+  position: relative; z-index: 2;
+  margin-top: -10px;
+}
+.sp-modal__pearl {
+  position: absolute; right: -40px; bottom: -40px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(212,184,124,.55) 0%, rgba(122,88,48,.3) 50%, rgba(26,18,8,.6) 100%);
+  filter: blur(2px);
+  opacity: .55;
+  z-index: 1;
+}
+.sp-modal__pearl::before {
+  content: ''; position: absolute; inset: -30px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,169,110,.12);
+}
+.sp-modal__pearl::after {
+  content: ''; position: absolute; inset: -70px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,169,110,.06);
+}
+.sp-modal__visual-label {
+  position: relative; z-index: 2;
+  font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: rgba(201,169,110,.5);
+}
+
+/* Contenuto dx */
+.sp-modal__body {
+  padding: clamp(40px,5vw,64px) clamp(32px,4vw,56px);
+  display: flex; flex-direction: column; justify-content: center;
+}
+.sp-modal__tag {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(13px,1.2vw,15px);
+  color: rgba(201,169,110,.75);
+  margin-bottom: 10px;
+}
+.sp-modal__title {
+  font-family: var(--display); font-weight: 200; font-style: italic;
+  font-size: clamp(32px,4.4vw,54px); line-height: 1.02;
+  color: #e4ddd4;
+  letter-spacing: -0.02em;
+  margin-bottom: clamp(24px,3vw,36px);
+  padding-bottom: clamp(20px,2.5vw,28px);
+  border-bottom: 1px solid rgba(201,169,110,.12);
+}
+.sp-modal__block { margin-bottom: 22px; }
+.sp-modal__block:last-of-type { margin-bottom: 0; }
+.sp-modal__label {
+  font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
+  color: rgba(201,169,110,.6);
+  margin-bottom: 8px;
+}
+.sp-modal__text {
+  font-family: var(--serif); font-weight: 300;
+  font-size: clamp(15px,1.25vw,17px); line-height: 1.7;
+  color: rgba(228,221,212,.85);
+}
+.sp-modal__claims {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-top: 24px; padding-top: 20px;
+  border-top: 1px solid rgba(201,169,110,.1);
+}
+.sp-modal__claim {
+  font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(201,169,110,.85);
+  border: 1px solid rgba(201,169,110,.25); border-radius: 100px;
+  padding: 6px 14px;
+}
+body.sp-modal-open { overflow: hidden; }
 
 /* ── FORMULA / INCI ───────────────────────────────────────── */
 .sp-formula {
@@ -358,7 +471,7 @@ body { background: #060606; color: #e4ddd4; font-family: var(--sans); overflow-x
 }
 .sp-b2b__table td:first-child {
   width: 40%; font-family: var(--sans); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
-  color: rgba(228,221,212,.3); padding-right: 24px;
+  color: rgba(228,221,212,.65); padding-right: 24px;
 }
 .sp-b2b__table td:last-child { color: rgba(228,221,212,.8); }
 .sp-b2b__cta {
@@ -412,31 +525,6 @@ body { background: #060606; color: #e4ddd4; font-family: var(--sans); overflow-x
   position: absolute; inset: 0; z-index: 2;
   background: linear-gradient(to top, rgba(6,6,6,.95) 0%, rgba(6,6,6,.25) 60%, transparent 100%);
 }
-.sp-lifestyle__content {
-  position: relative; z-index: 3;
-  padding: clamp(48px,8vw,100px) clamp(20px,4vw,60px);
-  max-width: 1320px; margin: 0 auto; width: 100%;
-  display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; flex-wrap: wrap;
-}
-.sp-lifestyle__quote {
-  font-family: var(--display); font-weight: 200; font-style: italic;
-  font-size: clamp(26px,4.5vw,62px); line-height: 1.1;
-  color: #e4ddd4; max-width: 22ch;
-  letter-spacing: -0.02em;
-}
-.sp-lifestyle__quote em { color: var(--gold); font-style: italic; }
-.sp-lifestyle__meta {
-  display: flex; flex-direction: column; gap: 8px;
-  padding-left: 24px; border-left: 1px solid rgba(201,169,110,.15);
-  min-width: 160px;
-}
-.sp-lifestyle__meta-line {
-  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
-  color: rgba(228,221,212,.35); line-height: 1.8;
-}
-.sp-lifestyle__meta-line strong { color: rgba(228,221,212,.6); font-weight: 400; }
-@media (max-width: 700px) { .sp-lifestyle__meta { display: none; } }
-
 /* ── CLINICAL RESULTS ──────────────────────────────────── */
 .sp-results {
   padding: clamp(80px,10vw,120px) 0;
@@ -502,11 +590,11 @@ body { background: #060606; color: #e4ddd4; font-family: var(--sans); overflow-x
 }
 .sp-result-panel__desc {
   font-family: var(--serif); font-size: 16px; line-height: 1.7;
-  color: rgba(228,221,212,.55);
+  color: rgba(228,221,212,.85);
 }
 .sp-result-panel__source {
   margin-top: 12px; font-size: 9px; letter-spacing: 0.12em;
-  color: rgba(228,221,212,.2); text-transform: uppercase;
+  color: rgba(228,221,212,.65); text-transform: uppercase;
 }
 
 /* ── RELATED — film strip ─────────────────────────────── */
@@ -642,14 +730,6 @@ body { background: #060606; color: #e4ddd4; font-family: var(--sans); overflow-x
 </section>
 
 <!-- ─────────────────────────── PHOTOS ────────────────────────────────── -->
-<section class="sp-photos">
-  <div class="container">
-    <div class="sp-photo"><!-- SOSTITUIRE: shot editoriale ambientato --><span>Editoriale · 1200×1600</span></div>
-    <div class="sp-photo"><!-- SOSTITUIRE: texture / macro ingrediente --><span>Macro · 800×1000</span></div>
-    <div class="sp-photo"><!-- SOSTITUIRE: gesto applicazione --><span>Gesto · 800×1000</span></div>
-  </div>
-</section>
-
 <!-- ──────────────────── LIFESTYLE EDITORIAL ───────────────────────────── -->
 <section class="sp-lifestyle" data-reveal>
   <div class="sp-lifestyle__photo">
@@ -660,23 +740,18 @@ body { background: #060606; color: #e4ddd4; font-family: var(--sans); overflow-x
     <span data-it="Foto lifestyle — applicazione siero" data-en="Lifestyle photo — serum application">FOTO LIFESTYLE<br>applicazione prodotto · formato verticale</span>
   </div>
   <div class="sp-lifestyle__overlay"></div>
-  <div class="sp-lifestyle__content">
-    <p class="sp-lifestyle__quote" id="lifestyleQuote" data-it="La pelle che <em>respira</em> di nuovo" data-en="Skin that <em>breathes</em> again">La pelle che <em>respira</em> di nuovo</p>
-    <div class="sp-lifestyle__meta" id="lifestyleMeta">
-      <div class="sp-lifestyle__meta-line"><strong data-it="Doppio beneficio" data-en="Double benefit">Doppio beneficio</strong></div>
-      <div class="sp-lifestyle__meta-line" data-it="Serum + perle in un solo gesto" data-en="Serum + pearls in a single gesture">Serum + perle in un solo gesto</div>
-      <div class="sp-lifestyle__meta-line" data-it="Tecnologia esclusiva Sphea" data-en="Exclusive Sphea technology">Tecnologia esclusiva Sphea</div>
-    </div>
-  </div>
 </section>
 
-<!-- ───────────────────────── PEARL TECH ──────────────────────────────── -->
-<section class="sp-pearl">
-  <div class="container">
-    <div>
-      <span class="sp-pearl__label">Tecnologia esclusiva Sphea</span>
-      <h2 class="sp-pearl__title">Pearl Biopolymer<br>Delivery System</h2>
-      <p class="sp-pearl__desc">Le perle di biopolimeri marini incapsulano il principio attivo in uno strato protettivo naturale. A contatto con la pelle, la pressione del massaggio rompe la capsula e rilascia l'attivo puro, fresco, intatto — con biodisponibilità massima e zero degradazione ossidativa.</p>
+<!-- ──── ROW 1 — Foto SX + Tecnologia DX ──────────────────────── -->
+<section class="sp-row sp-row--photo-left" data-reveal>
+  <div class="container sp-row__grid">
+    <div class="sp-row__visual">
+      <div class="sp-row__photo"><span data-it="Foto tecnologia · 800×1000" data-en="Technology photo · 800×1000">FOTO TECNOLOGIA · 800×1000</span></div>
+    </div>
+    <div class="sp-row__content">
+      <span class="sp-pearl__label" data-it="Tecnologia esclusiva Sphea" data-en="Exclusive Sphea technology">Tecnologia esclusiva Sphea</span>
+      <h2 class="sp-pearl__title" data-it="Pearl Biopolymer<br>Delivery System" data-en="Pearl Biopolymer<br>Delivery System">Pearl Biopolymer<br>Delivery System</h2>
+      <p class="sp-pearl__desc" data-it="Le perle di biopolimeri marini incapsulano il principio attivo in uno strato protettivo naturale. A contatto con la pelle, la pressione del massaggio rompe la capsula e rilascia l'attivo puro, fresco, intatto — con biodisponibilità massima e zero degradazione ossidativa." data-en="Marine biopolymer pearls encapsulate the active ingredient in a natural protective layer. On contact with the skin, the pressure of the massage breaks the capsule and releases the pure, fresh, intact active — with maximum bioavailability and zero oxidative degradation.">Le perle di biopolimeri marini incapsulano il principio attivo in uno strato protettivo naturale. A contatto con la pelle, la pressione del massaggio rompe la capsula e rilascia l'attivo puro, fresco, intatto — con biodisponibilità massima e zero degradazione ossidativa.</p>
       <div class="sp-pearl__steps">
         <div class="sp-pearl__step">
           <div class="sp-pearl__step-n">1</div>
@@ -696,60 +771,52 @@ body { background: #060606; color: #e4ddd4; font-family: var(--sans); overflow-x
         </div>
       </div>
     </div>
-    <div class="sp-pearl__diagram">
-      <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- outer ring -->
-        <circle cx="200" cy="200" r="175" stroke="rgba(201,169,110,.08)" stroke-width="1"/>
-        <circle cx="200" cy="200" r="130" stroke="rgba(201,169,110,.12)" stroke-width="1"/>
-        <circle cx="200" cy="200" r="80"  stroke="rgba(201,169,110,.2)"  stroke-width="1.5"/>
-        <!-- core pearl -->
-        <circle cx="200" cy="200" r="48"
-          fill="url(#pg1)"
-          filter="url(#blur1)"/>
-        <defs>
-          <radialGradient id="pg1" cx="35%" cy="35%">
-            <stop offset="0%" stop-color="#d4b87c" stop-opacity=".8"/>
-            <stop offset="60%" stop-color="#7a5830" stop-opacity=".5"/>
-            <stop offset="100%" stop-color="#1a1208" stop-opacity=".9"/>
-          </radialGradient>
-          <filter id="blur1"><feGaussianBlur stdDeviation="2"/></filter>
-        </defs>
-        <!-- orbiting small pearls -->
-        <circle cx="200" cy="68"  r="10" fill="url(#pg1)" opacity=".7"/>
-        <circle cx="316" cy="148" r="7"  fill="url(#pg1)" opacity=".6"/>
-        <circle cx="316" cy="252" r="12" fill="url(#pg1)" opacity=".8"/>
-        <circle cx="200" cy="332" r="8"  fill="url(#pg1)" opacity=".6"/>
-        <circle cx="84"  cy="252" r="10" fill="url(#pg1)" opacity=".7"/>
-        <circle cx="84"  cy="148" r="6"  fill="url(#pg1)" opacity=".5"/>
-        <!-- lines -->
-        <line x1="200" y1="152" x2="200" y2="78"  stroke="rgba(201,169,110,.2)" stroke-width="1" stroke-dasharray="3 4"/>
-        <line x1="241" y1="168" x2="308" y2="151" stroke="rgba(201,169,110,.2)" stroke-width="1" stroke-dasharray="3 4"/>
-        <line x1="241" y1="233" x2="307" y2="250" stroke="rgba(201,169,110,.2)" stroke-width="1" stroke-dasharray="3 4"/>
-        <line x1="200" y1="248" x2="200" y2="322" stroke="rgba(201,169,110,.2)" stroke-width="1" stroke-dasharray="3 4"/>
-        <line x1="159" y1="233" x2="93"  y2="250" stroke="rgba(201,169,110,.2)" stroke-width="1" stroke-dasharray="3 4"/>
-        <line x1="159" y1="168" x2="93"  y2="151" stroke="rgba(201,169,110,.2)" stroke-width="1" stroke-dasharray="3 4"/>
-        <!-- center label -->
-        <text x="200" y="195" text-anchor="middle" fill="rgba(201,169,110,.6)" font-size="9" font-family="Inter" letter-spacing="2">ATTIVO</text>
-        <text x="200" y="210" text-anchor="middle" fill="rgba(201,169,110,.4)" font-size="8" font-family="Inter" letter-spacing="1">PURO</text>
-      </svg>
+  </div>
+</section>
+
+<!-- ──── ROW 2 — Efficacia clinica SX + Foto DX ───────────────── -->
+<section class="sp-row sp-row--photo-right" id="pearlEfficacy" style="display:none" data-reveal>
+  <div class="container sp-row__grid">
+    <div class="sp-row__content">
+      <span class="sp-pearl__label" data-it="Efficacia clinica documentata" data-en="Documented clinical efficacy">Efficacia clinica documentata</span>
+      <h2 class="sp-pearl__title" data-it="Misurata. Replicabile.<br>Documentata." data-en="Measured. Replicable.<br>Documented.">Misurata. Replicabile.<br>Documentata.</h2>
+      <div class="sp-row__efficacy-grid" id="efficacyGrid"></div>
     </div>
-    <div class="sp-pearl__efficacy" id="pearlEfficacy" style="display:none">
-      <span class="sp-pearl__efficacy-label" data-it="Efficacia clinica documentata" data-en="Documented clinical efficacy">Efficacia clinica documentata</span>
-      <div class="sp-pearl__efficacy-grid" id="efficacyGrid"></div>
+    <div class="sp-row__visual">
+      <div class="sp-row__photo"><span data-it="Foto risultati · 800×1000" data-en="Results photo · 800×1000">FOTO RISULTATI · 800×1000</span></div>
     </div>
   </div>
 </section>
 
-<!-- ────────────────────────── ACTIVES ───────────────────────────────── -->
-<section class="sp-actives" id="activesSection">
-  <div class="container">
-    <div class="sp-actives__header">
-      <h2 class="sp-actives__title" id="activesTitle">Attivi</h2>
-      <span class="sp-actives__sub" id="activesCount"></span>
+<!-- ──── ROW 3 — Foto SX + Attivi brevettati DX (con modal) ───── -->
+<section class="sp-row sp-row--photo-left" id="activesSection" data-reveal>
+  <div class="container sp-row__grid">
+    <div class="sp-row__visual">
+      <div class="sp-row__photo"><span data-it="Foto attivi · 800×1000" data-en="Actives photo · 800×1000">FOTO ATTIVI · 800×1000</span></div>
     </div>
-    <div id="activesContainer"></div>
+    <div class="sp-row__content">
+      <span class="sp-pearl__label" id="activesCount"></span>
+      <h2 class="sp-pearl__title" id="activesTitle" data-it="Attivi brevettati" data-en="Patented actives">Attivi brevettati</h2>
+      <div id="activesContainer" class="sp-row__actives-list"></div>
+    </div>
   </div>
 </section>
+
+<!-- ──── MODAL ATTIVO ─────────────────────────────────────────── -->
+<div class="sp-modal" id="activeModal" hidden>
+  <div class="sp-modal__backdrop" data-modal-close></div>
+  <div class="sp-modal__panel" role="dialog" aria-modal="true" aria-labelledby="activeModalTitle">
+    <button class="sp-modal__close" data-modal-close aria-label="Chiudi">×</button>
+    <div class="sp-modal__grid">
+      <div class="sp-modal__visual">
+        <span class="sp-modal__visual-label" data-it="Principio attivo" data-en="Active ingredient">Principio attivo</span>
+        <div class="sp-modal__num" id="activeModalNum">01</div>
+        <div class="sp-modal__pearl" aria-hidden="true"></div>
+      </div>
+      <div class="sp-modal__body" id="activeModalBody"></div>
+    </div>
+  </div>
+</div>
 
 <!-- ─────────────────────── CLINICAL RESULTS ────────────────────────────── -->
 <section class="sp-results" data-reveal>
@@ -802,20 +869,6 @@ body { background: #060606; color: #e4ddd4; font-family: var(--sans); overflow-x
   </div>
 </section>
 
-<!-- ─────────────────────────── B2B TABLE ────────────────────────────── -->
-<section class="sp-b2b">
-  <div class="container">
-    <span class="sp-b2b__label" data-it="Informazioni commerciali" data-en="Commercial information">Informazioni commerciali</span>
-    <h2 class="sp-b2b__title" data-it="Scheda B2B" data-en="B2B Dossier">Scheda B2B</h2>
-    <table class="sp-b2b__table" id="b2bTable"></table>
-    <div class="sp-b2b__cta">
-      <a href="../contatti.html?subject=sphea-samples" class="sp-b2b__btn sp-b2b__btn--gold" data-it="Richiedi campioni &rarr;" data-en="Request samples &rarr;">Richiedi campioni &rarr;</a>
-      <a href="mailto:info@athenas.it" class="sp-b2b__btn sp-b2b__btn--ghost" data-it="Contatta l'area commerciale" data-en="Contact the sales team">Contatta l'area commerciale</a>
-    </div>
-    <p style="margin-top:24px; font-family:var(--serif); font-size:13px; color:rgba(228,221,212,.3); letter-spacing:0.04em;" data-it="Sphea &egrave; anche disponibile su Amazon (rivenditore autorizzato)." data-en="Sphea is also available on Amazon (authorized retailer).">Sphea &egrave; anche disponibile su Amazon (rivenditore autorizzato).</p>
-  </div>
-</section>
-
 <!-- ─────────────────────────── RELATED ──────────────────────────────── -->
 <section class="sp-related" data-reveal>
   <div class="sp-related__head">
@@ -848,10 +901,10 @@ const SPHEA_DATA = {
     bottleColor: '#2a2010',
     actives: ['ectoin'],
     benefits: [
-      { icon: '◎', title: '-48% danno da smog', text: 'Testato in vitro: riduzione del 48% dei danni cellulari da particolato PM2.5 in 5 giorni di trattamento continuativo.' },
-      { icon: '◉', title: '100% protezione UV cellulare', text: 'Ectoin forma un film biologico che assorbe le radiazioni UV prima che raggiungano il DNA cellulare.' },
-      { icon: '◈', title: '+30% idratazione', text: 'Aumento misurabile dell\'idratazione cutanea dalla prima settimana grazie all\'effetto igroscopico dell\'Ectoin.' },
-      { icon: '○', title: 'Effetto barriera 24h', text: 'Un unico gesto mattutino crea uno scudo anti-stress che dura l\'intera giornata, anche in ambienti urbani ad alto traffico.' },
+      { icon: '◎', title: '-48% danno ossidativo', text: 'Studio in vivo con 1% di Ectoin: riduzione del 48% del danno ossidativo (contenuto di MDA) dopo soli 5 giorni di applicazione, rispetto al placebo.' },
+      { icon: '◉', title: '100% protezione cellule', text: 'Protezione del 100% delle cellule cutanee dal danno indotto dai raggi UV, documentata in vivo rispetto a cellule non trattate.' },
+      { icon: '◈', title: '+7 giorni idratazione', text: 'L\'effetto idratante resta misurabile fino a 7 giorni dopo la sospensione del trattamento (studio in vivo).' },
+      { icon: '○', title: 'Anti luce blu & pollution', text: 'Ectoin, molecola 100% naturale, difende da PM10, fumo di sigaretta, luce blu, luce visibile e radicali liberi.' },
     ],
     steps: [
       { title: 'Detergere', text: 'Pulire accuratamente il viso con detergente delicato. La pelle pulita massimizza la penetrazione dell\'Ectoin.' },
@@ -886,10 +939,10 @@ const SPHEA_DATA = {
     bottleColor: '#3a2a08',
     actives: ['uplevity', 'vitamin-c'],
     benefits: [
-      { icon: '◎', title: '+28% volume apparente', text: 'Uplevity stimola la produzione di collagene ed elastina: in 56 giorni il viso appare visibilmente più tonico e pieno.' },
-      { icon: '◉', title: 'Luminosità +45%', text: 'La Vitamina C liposomiale inibisce la tirosinasi, riducendo le macchie e aumentando la luminosità uniforme della carnagione.' },
-      { icon: '◈', title: 'Lifting contorno in 4 settimane', text: 'Il test clinico su 30 donne tra 40 e 60 anni: l\'87% ha rilevato un miglioramento del contorno del viso alla settimana 4.' },
-      { icon: '○', title: 'Plumping effetto immediato', text: 'Grazie al rilascio immediato dall\'Acido Ialuronico multimolecolare, l\'effetto rimpolpante è visibile fin dalla prima applicazione.' },
+      { icon: '◎', title: '+94,6% lifting', text: 'Effetto lifting dello zigomo superiore +94,6% rispetto al placebo, grazie a Uplevity® E-Lift Peptide (studio in vivo).' },
+      { icon: '◉', title: '-40% rughe', text: 'Riduzione della visibilità delle rughe del 40% con soluzione al 2% di Uplevity, documentata in vivo.' },
+      { icon: '◈', title: '10 giorni = 5 sedute', text: '10 giorni di trattamento equivalgono a 5 sedute di dispositivo estetico a microcorrente.' },
+      { icon: '○', title: '+72% fibronectina', text: 'In vitro: +72% di EDA-fibronectina, proteina chiave per la contrazione e l\'adesione cellulare.' },
     ],
     steps: [
       { title: 'Mattina', text: 'Applicare 3-4 gocce su viso pulito. Massaggiare partendo dal centro verso l\'esterno, poi dal mento verso le guance con movimenti lifting.' },
@@ -924,10 +977,10 @@ const SPHEA_DATA = {
     bottleColor: '#20203a',
     actives: ['argireline', 'uplevity'],
     benefits: [
-      { icon: '◎', title: '-28% rughe occhi in 4 settimane', text: 'Argireline inibisce i neurotrasmettitori responsabili della contrazione muscolare: meno rughe espressive, senza ago.' },
-      { icon: '◉', title: 'Palpebra visibilmente più tesa', text: 'Uplevity stimola la produzione di collagene nella zona perioculare, zona particolarmente vulnerabile agli effetti dell\'invecchiamento.' },
-      { icon: '◈', title: '-50% gonfiore mattutino', text: 'Test clinico: riduzione misurabile del gonfiore palpebrale nelle prime 2 ore dalla mattina, già dalla seconda settimana.' },
-      { icon: '○', title: 'Idratazione 72h', text: 'Il complesso HA + biopolimero marino mantiene la pelle del contorno occhi idratata per 72 ore con una sola applicazione.' },
+      { icon: '◎', title: '-20% rughe a 28 giorni', text: 'Profondità delle rughe -12,3% in 5 giorni e -20% in 28 giorni con Argireline® Amplified Peptide al 5% (studio in vivo).' },
+      { icon: '◉', title: '5 anni in 5 giorni', text: 'La pelle appare fino a 5 anni più giovane in soli 5 giorni di applicazione.' },
+      { icon: '◈', title: '-5,9% zampe di gallina', text: 'Riduzione della rugosità delle crow\'s feet del 5,9% dopo il sorriso, grazie all\'effetto rilassante botox-like.' },
+      { icon: '○', title: '+53,7% collagene', text: 'Capacità del peptide di aumentare la sintesi di nuovo collagene del 53,7% (in vitro).' },
     ],
     steps: [
       { title: 'Detergere', text: 'Rimuovere con cura il trucco degli occhi prima dell\'applicazione. Non strofinare.' },
@@ -963,10 +1016,10 @@ const SPHEA_DATA = {
     bottleColor: '#1a2a10',
     actives: ['actigym'],
     benefits: [
-      { icon: '◎', title: '+22% tono muscolare apparente', text: 'Actigym simula la risposta biologica all\'esercizio fisico, attivando i meccanismi di tensione muscolare superficiale.' },
-      { icon: '◉', title: 'Pelle più soda in 28 giorni', text: 'Test clinico su 25 donne: il 92% ha rilevato un miglioramento della sodezza cutanea alla quarta settimana.' },
-      { icon: '◈', title: 'Riduzione lassità cutanea', text: 'Il biopolimero marino potenzia l\'azione rassodante creando un film tensore immediato che integra l\'effetto a lungo termine di Actigym.' },
-      { icon: '○', title: 'Effetto tensore immediato', text: 'Dalla prima applicazione: il siero crea un effetto tensore percepibile al tatto, che aumenta con il trattamento continuativo.' },
+      { icon: '◎', title: '-1,2 cm coscia', text: 'Riduzione del contorno coscia fino a -1,2 cm a 56 giorni con Actigym® al 5% abbinato ad attività fisica (studio in vivo).' },
+      { icon: '◉', title: 'Rassodato in 4 settimane', text: 'Aspetto più rassodato e scolpito già dopo 4 settimane di utilizzo, su addome, cosce e braccia.' },
+      { icon: '◈', title: 'Mima l\'esercizio fisico', text: 'Actigym®, ingrediente marino delle Bermuda, migliora il tono muscolare imitando gli effetti dell\'allenamento.' },
+      { icon: '○', title: 'Densità & tonicità', text: 'Aumenta la densità del tessuto cutaneo e contrasta il rilassamento, con azione rivitalizzante e rimodellante.' },
     ],
     steps: [
       { title: 'Dopo la doccia', text: 'Applicare su pelle ancora umida, appena asciugata con il telo. L\'umidità residua aiuta la distribuzione e l\'assorbimento.' },
@@ -1002,10 +1055,10 @@ const SPHEA_DATA = {
     bottleColor: '#2a1a3a',
     actives: ['nocturshape'],
     benefits: [
-      { icon: '◎', title: 'Lipolisi notturna attivata', text: 'Nocturshape sfrutta il picco di GH notturno per massimizzare la lipolisi naturale nelle ore di riposo.' },
-      { icon: '◉', title: '-1,2 cm circonferenza coscia in 56 gg', text: 'Studio clinico: riduzione media di 1,2 cm della circonferenza della coscia dopo 56 giorni di trattamento serale continuativo.' },
-      { icon: '◈', title: 'Pelle a buccia d\'arancia ridotta', text: 'Il biopolimero marino migliora il microcircolo e la texture cutanea, riducendo visibilmente la cellulite superficiale.' },
-      { icon: '○', title: 'Silhouette più definita in 4 settimane', text: 'Il 78% delle utilizzatrici nel test ha percepito un miglioramento della silhouette alla settimana 4.' },
+      { icon: '◎', title: '-0,9 cm coscia in 15 giorni', text: 'Riduzione del contorno coscia di -0,9 cm dopo soli 15 giorni con Nocturshape® (studio in vivo).' },
+      { icon: '◉', title: '+23% fermezza', text: 'Aumento della fermezza cutanea del 23% documentato in vivo dopo il trattamento serale.' },
+      { icon: '◈', title: '-39,4% grasso irregolare', text: 'Riduzione del 39,4% dell\'irregolarità dei depositi di grasso sottocutaneo, per una pelle più liscia.' },
+      { icon: '○', title: '-22,3% nocturnina', text: 'In vitro: -22,3% dei livelli di nocturnina durante la notte, la proteina che favorisce l\'accumulo di lipidi.' },
     ],
     steps: [
       { title: 'Solo serale', text: 'Applicare esclusivamente la sera, prima di dormire. Nocturshape sincronizza la sua azione col picco ormonale notturno.' },
@@ -1129,18 +1182,52 @@ function renderPage(d, id) {
     visual.appendChild(o);
   });
 
-  /* actives */
+  /* actives — clic apre modal */
   const activesContainer = document.getElementById('activesContainer');
   const activesTitle = document.getElementById('activesTitle');
   const activesCount = document.getElementById('activesCount');
+  const activeModal = document.getElementById('activeModal');
+  const activeModalBody = document.getElementById('activeModalBody');
+  const activeModalNum = document.getElementById('activeModalNum');
   const activeKeys = d.actives;
   activesTitle.textContent = 'Attivi brevettati';
   activesCount.textContent = `${activeKeys.length} principi attivi`;
 
+  function openActiveModal(a, idx) {
+    activeModalNum.textContent = String(idx + 1).padStart(2, '0');
+    activeModalBody.innerHTML = `
+      <span class="sp-modal__tag">${a.tag}</span>
+      <h3 class="sp-modal__title" id="activeModalTitle">${a.name}</h3>
+      <div class="sp-modal__block">
+        <div class="sp-modal__label" data-it="Meccanismo d'azione" data-en="Mechanism of action">Meccanismo d'azione</div>
+        <p class="sp-modal__text">${a.mechanism}</p>
+      </div>
+      <div class="sp-modal__block">
+        <div class="sp-modal__label" data-it="Efficacia clinica" data-en="Clinical efficacy">Efficacia clinica</div>
+        <p class="sp-modal__text">${a.efficacy}</p>
+      </div>
+      <div class="sp-modal__claims">
+        ${a.claims.map(c => `<span class="sp-modal__claim">${c}</span>`).join('')}
+      </div>`;
+    activeModal.hidden = false;
+    document.body.classList.add('sp-modal-open');
+  }
+  function closeActiveModal() {
+    activeModal.hidden = true;
+    document.body.classList.remove('sp-modal-open');
+  }
+  activeModal.querySelectorAll('[data-modal-close]').forEach(el => {
+    el.addEventListener('click', closeActiveModal);
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !activeModal.hidden) closeActiveModal();
+  });
+
   activeKeys.forEach((key, i) => {
     const a = ACTIVES_LIB[key];
     if (!a) return;
-    const row = document.createElement('div');
+    const row = document.createElement('button');
+    row.type = 'button';
     row.className = 'sp-active-row';
     row.innerHTML = `
       <div class="sp-active-head">
@@ -1151,38 +1238,19 @@ function renderPage(d, id) {
             <span class="sp-active-head__tag">${a.tag}</span>
           </div>
         </div>
-        <div class="sp-active-head__arrow">+</div>
-      </div>
-      <div class="sp-active-body">
-        <div class="sp-active-body__grid">
-          <div>
-            <span class="sp-active-body__section-label">Meccanismo d'azione</span>
-            <p class="sp-active-body__text">${a.mechanism}</p>
-          </div>
-          <div>
-            <span class="sp-active-body__section-label">Efficacia clinica</span>
-            <p class="sp-active-body__text">${a.efficacy}</p>
-          </div>
-        </div>
-        <div class="sp-active-body__claims">
-          ${a.claims.map(c => `<span class="sp-active-body__claim">${c}</span>`).join('')}
-        </div>
+        <div class="sp-active-head__arrow">→</div>
       </div>`;
-    row.querySelector('.sp-active-head').addEventListener('click', () => {
-      const isOpen = row.classList.contains('open');
-      document.querySelectorAll('.sp-active-row.open').forEach(r => r.classList.remove('open'));
-      if (!isOpen) row.classList.add('open');
-    });
+    row.addEventListener('click', () => openActiveModal(a, i));
     activesContainer.appendChild(row);
   });
 
   /* clinical results */
   const clinicalMap = {
-    'anti-pollution':  { stat1: 'T0', desc1: 'Pelle esposta a inquinamento, radicali liberi, luce blu.', stat2: '+92%', desc2: 'Riduzione stress ossidativo dopo 28 giorni. Barriera cutanea rinforzata.' },
-    'radiant-up-lift':    { stat1: 'T0', desc1: 'Rilassamento dei contorni del viso, riduzione tono muscolare.', stat2: '+89%', desc2: 'Effetto lifting tri-orbitale e riduzione visibile delle rughe a T28.' },
-    'eyelift-perfector':  { stat1: 'T0', desc1: 'Rughe peri-orbitali, area occhi affaticata, tono cutaneo ridotto.', stat2: '-47%', desc2: 'Riduzione profondità rughe periocchio. Effetto botox-like documentato.' },
-    'sculpt-firm':     { stat1: 'T0', desc1: 'Perdita di tonicità in zone critiche: addome, braccia, cosce.', stat2: '+4 sett.', desc2: 'Pelle più soda e compatta già dalla quarta settimana di trattamento.' },
-    'slim-silhouette': { stat1: 'T0', desc1: 'Cellulite visibile, effetto buccia d\'arancia, ritenzione idrica.', stat2: '-15 gg', desc2: 'Riduzione circonferenza coscia e miglioramento dell\'aspetto della cellulite.' },
+    'anti-pollution':  { stat1: 'T0', desc1: 'Pelle esposta a inquinamento, radicali liberi, luce blu.', stat2: '-48%', desc2: 'Riduzione del danno ossidativo (MDA) dopo 5 giorni con 1% di Ectoin, vs placebo.' },
+    'radiant-up-lift':    { stat1: 'T0', desc1: 'Rilassamento dei contorni del viso, riduzione tono muscolare.', stat2: '+94,6%', desc2: 'Effetto lifting dello zigomo superiore vs placebo, con Uplevity® E-Lift Peptide.' },
+    'eyelift-perfector':  { stat1: 'T0', desc1: 'Rughe peri-orbitali, area occhi affaticata, tono cutaneo ridotto.', stat2: '-20%', desc2: 'Riduzione della profondità delle rughe a 28 giorni con Argireline® Amplified al 5%.' },
+    'sculpt-firm':     { stat1: 'T0', desc1: 'Perdita di tonicità in zone critiche: addome, braccia, cosce.', stat2: '-1,2 cm', desc2: 'Riduzione del contorno coscia a 56 giorni con Actigym® al 5% + attività fisica.' },
+    'slim-silhouette': { stat1: 'T0', desc1: 'Cellulite visibile, effetto buccia d\'arancia, ritenzione idrica.', stat2: '-0,9 cm', desc2: 'Riduzione del contorno coscia dopo 15 giorni con Nocturshape®.' },
   };
   const cr = clinicalMap[id];
   if (cr) {
@@ -1231,28 +1299,15 @@ function renderPage(d, id) {
     this.textContent = open ? 'Composizione INCI completa −' : 'Composizione INCI completa +';
   });
 
-  /* b2b table */
+  /* b2b table — sezione rimossa, JS no-op con guard */
   const table = document.getElementById('b2bTable');
-  d.b2b.forEach(([label, val]) => {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `<td>${label}</td><td>${val}</td>`;
-    table.appendChild(tr);
-  });
-
-  /* aggiorna href CTA con subject dinamico per siero */
-  const ctaBtn = document.querySelector('.sp-b2b__btn--gold');
-  if (ctaBtn) ctaBtn.href = `../contatti.html?subject=sphea-${id}`;
-
-  /* lifestyle quote (personalizzata per prodotto) */
-  const quoteMap = {
-    'anti-pollution':  'La pelle che <em>respira</em> di nuovo',
-    'radiant-up-lift':   'Il tempo rallenta,<br><em>la pelle vola</em>',
-    'eyelift-perfector': 'Uno sguardo che non<br><em>tradisce l\'età</em>',
-    'sculpt-firm':     'Il corpo che<br><em>lavora con te</em>',
-    'slim-silhouette': 'La notte che<br><em>trasforma</em>',
-  };
-  const lifestyleQuote = document.getElementById('lifestyleQuote');
-  if (lifestyleQuote && quoteMap[id]) lifestyleQuote.innerHTML = quoteMap[id];
+  if (table && d.b2b) {
+    d.b2b.forEach(([label, val]) => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${label}</td><td>${val}</td>`;
+      table.appendChild(tr);
+    });
+  }
 
   /* related */
   const relGrid = document.getElementById('relatedGrid');

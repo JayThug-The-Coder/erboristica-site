@@ -420,7 +420,14 @@
         const pid = new URLSearchParams(window.location.search).get('id');
         if (pid && window.ATH_DATA_JSON && window.ATH_DATA_JSON.products) {
           const prod = window.ATH_DATA_JSON.products.find(pr => pr.id === pid);
-          if (prod && prod.line) return 'linee/linea.html?id=' + prod.line;
+          if (prod) {
+            const brand = prod.brand || prod.line;
+            // I brand non-Erboristica non hanno una pagina linea: vai alla hub del brand
+            if (brand === 'everby') return 'linee/everby.html';
+            if (brand === 'kaley')  return 'linee/kaley.html';
+            if (brand === 'sphea')  return 'linee/sphea.html';
+            if (prod.line) return 'linee/linea.html?id=' + prod.line;
+          }
         }
       } catch(e) {}
       return 'linee/erboristica.html';

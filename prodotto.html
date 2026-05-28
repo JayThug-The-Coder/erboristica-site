@@ -1,15 +1,1649 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta http-equiv="refresh" content="0;url=https://www.erboristica.com"/>
-  <title>Redirect — Athena's</title>
-<link rel="preload" href="assets/fonts/fraunces-200-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
-<link rel="stylesheet" href="assets/fonts.css"/>
-<link rel="stylesheet" href="assets/tokens.css"/>
+  <title>Prodotto — Athena's</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="assets/tokens.css"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--sans); background: var(--cream); color: var(--ink); overflow-x: hidden; }
+
+    /* Tema per brand — sovrascrive token cream/accent quando il prodotto appartiene al brand */
+    body.theme-everby {
+      --cream: #eef6f4;
+      --cream-2: #dceee9;
+      --gold: #5fb6ab;
+      --gold-deep: #5fb6ab;
+      --sage-deep: #5fb6ab;
+      --sage: #8fc7c0;
+    }
+    .container { max-width: 1320px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 60px); }
+
+    /* ── HERO 2-COL ─────────────────────────────────────────── */
+    .pd-hero {
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+    }
+    @media (max-width: 800px) { .pd-hero { grid-template-columns: 1fr; min-height: auto; } }
+
+    .pd-hero__visual {
+      position: relative;
+      min-height: 55vmin;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pd-hero__bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(145deg, #2d3a2e 0%, #050505 100%);
+      transition: background .6s;
+    }
+    .pd-hero__photo-ph {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 1px dashed rgba(201,169,110,.15);
+      z-index: 1;
+    }
+    .pd-hero__photo-ph span {
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(201,169,110,.35);
+      text-align: center;
+      padding: 0 20px;
+    }
+    .pd-hero__watermark {
+      position: absolute;
+      bottom: -0.1em;
+      right: -0.02em;
+      font-family: var(--display);
+      font-size: clamp(80px, 14vw, 200px);
+      font-weight: 300;
+      font-style: italic;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: #fff;
+      opacity: .03;
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+      z-index: 1;
+    }
+    .pd-hero__mock {
+      position: relative;
+      z-index: 2;
+      animation: mock-float 6s ease-in-out infinite;
+    }
+    .pd-hero__mock svg {
+      width: min(200px, 38vw);
+      filter: drop-shadow(0 30px 60px rgba(0,0,0,.5));
+    }
+    @keyframes mock-float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-16px); }
+    }
+    .pd-hero__glow {
+      position: absolute;
+      width: 50vmin;
+      height: 50vmin;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--glow-c, rgba(201,169,110,.18)) 0%, transparent 70%);
+      pointer-events: none;
+      animation: glow-pulse 6s ease-in-out infinite;
+      z-index: 1;
+    }
+    @keyframes glow-pulse {
+      0%, 100% { transform: scale(1); opacity: .7; }
+      50%       { transform: scale(1.15); opacity: 1; }
+    }
+
+    .pd-hero__info {
+      background: var(--cream);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+      text-align: right;
+      padding: clamp(100px,10vw,140px) clamp(32px,5vw,72px) clamp(60px,6vw,80px);
+    }
+    .pd-hero__brand-tag {
+      font-family: var(--sans);
+      font-size: 12px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: .75;
+      margin-bottom: 32px;
+    }
+    .pd-hero__line-tag {
+      display: none;
+    }
+    .pd-hero__name {
+      font-family: var(--display);
+      font-size: clamp(36px, 5.5vw, 72px);
+      font-weight: 300;
+      letter-spacing: -0.025em;
+      line-height: 1.0;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .pd-hero__cat {
+      display: none;
+    }
+    .pd-hero__sub {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(17px, 1.4vw, 19px);
+      color: rgba(26,26,26,.6);
+      margin-bottom: 32px;
+      margin-top: 4px;
+      line-height: 1.55;
+      max-width: 52ch;
+    }
+    .pd-hero__desc {
+      font-family: var(--serif);
+      font-size: clamp(17px, 1.4vw, 19px);
+      line-height: 1.78;
+      color: rgba(26,26,26,.62);
+      margin-bottom: 40px;
+    }
+    .pd-hero__desc strong {
+      color: rgba(26,26,26,.88);
+      font-weight: 400;
+    }
+    .pd-hero__specs {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+      padding-top: 22px;
+      border-top: 1px solid rgba(0,0,0,.09);
+    }
+    .pd-spec__label {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(26,26,26,.4);
+      margin-bottom: 6px;
+    }
+    .pd-spec__val {
+      font-family: var(--serif);
+      font-size: 17px;
+      color: rgba(26,26,26,.78);
+    }
+
+    /* CTA Acquista (hero) — sobria, no bottone colorato */
+    .pd-hero__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 36px;
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: .06em;
+      color: var(--ink);
+      text-decoration: none;
+      padding: 0 0 8px;
+      border-bottom: 1px solid rgba(26,26,26,.25);
+      transition: all .35s cubic-bezier(.22,.61,.36,1);
+      position: relative;
+      align-self: flex-start;
+    }
+    .pd-hero__cta::before {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -1px;
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: width .55s cubic-bezier(.22,.61,.36,1);
+    }
+    .pd-hero__cta:hover { color: var(--gold-deep); }
+    .pd-hero__cta:hover::before { width: 100%; }
+    .pd-hero__cta-arrow {
+      display: inline-block;
+      transition: transform .35s cubic-bezier(.22,.61,.36,1);
+    }
+    .pd-hero__cta:hover .pd-hero__cta-arrow { transform: translateX(6px); }
+
+    /* ── CERT BADGES ────────────────────────────────────────── */
+    .pd-certs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .pd-cert-badge {
+      font-size: 8px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border: 1px solid rgba(0,0,0,.12);
+      padding: 5px 10px;
+      color: var(--sage-deep);
+      opacity: .75;
+    }
+
+    /* ── ZIG-ZAG ROWS (foto + testo alternati) ─────────────────── */
+    .pd-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: clamp(480px, 80vh, 760px);
+      background: var(--cream);
+      border-top: 1px solid rgba(0,0,0,.06);
+    }
+    .pd-row__fig {
+      position: relative;
+      min-height: clamp(380px, 60vh, 600px);
+      background: rgba(45,58,46,.04);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pd-row__fig .pd-photo-ph {
+      width: 100%; height: 100%;
+      aspect-ratio: auto;
+      border: 1px dashed rgba(45,58,46,.12);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .pd-row__txt {
+      padding: clamp(60px, 8vh, 110px) clamp(28px, 5vw, 80px);
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .pd-row__h {
+      font-family: var(--display);
+      font-weight: 200;
+      font-size: clamp(32px, 4vw, 52px);
+      line-height: 1.1;
+      letter-spacing: -.01em;
+      margin-bottom: 36px;
+      color: var(--ink);
+    }
+    .pd-row__h em {
+      font-style: italic;
+      color: var(--gold-deep);
+      font-weight: 200;
+    }
+    @media (max-width: 800px) {
+      .pd-row { grid-template-columns: 1fr; }
+      .pd-row--photo-right .pd-row__fig { order: 1; }
+      .pd-row--photo-right .pd-row__txt { order: 2; }
+      .pd-row__fig { min-height: 55vh; }
+    }
+
+    /* PHOTO STRIP legacy (non più usato ma mantenuto se serve) */
+    .pd-photos {
+      background: #fff;
+      padding: clamp(40px, 5vw, 64px) 0;
+      border-top: 1px solid rgba(0,0,0,.06);
+    }
+    .pd-photos__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    @media (max-width: 800px) { .pd-photos__grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .pd-photos__grid { grid-template-columns: 1fr; } }
+    .pd-photo-ph {
+      aspect-ratio: 4/5;
+      background: rgba(45,58,46,.04);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px dashed rgba(45,58,46,.12);
+    }
+    .pd-photo-ph span {
+      font-size: 8px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(45,58,46,.3);
+      text-align: center;
+      padding: 0 12px;
+    }
+
+    /* ── BENEFICI CHIAVE (light, sezione combinata) ─────────────── */
+    .pd-benefits-light {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1px;
+      background: rgba(0,0,0,.06);
+      margin-bottom: clamp(48px, 6vw, 72px);
+    }
+    /* ── INGREDIENTI CHIAVE ─────────────────────────────────── */
+    .pd-ingredients {
+      background: var(--cream-2);
+      padding: clamp(70px, 9vw, 110px) 0;
+      border-top: 1px solid rgba(0,0,0,.06);
+    }
+    .pd-ingredients__heading {
+      font-family: var(--display);
+      font-size: clamp(28px, 4.5vw, 56px);
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin-bottom: clamp(36px, 5vw, 56px);
+    }
+    .pd-ingredients__heading em { font-style: italic; color: var(--gold-deep); }
+    .pd-ingredients__count {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 13px;
+      color: rgba(26,26,26,.35);
+      margin-left: 16px;
+    }
+
+    /* ingredient row */
+    .ki-row {
+      border-top: 1px solid rgba(0,0,0,.08);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .ki-row:last-child { border-bottom: 1px solid rgba(0,0,0,.08); }
+    .ki-row__head {
+      display: grid;
+      grid-template-columns: clamp(40px, 5vw, 60px) 1fr auto;
+      align-items: center;
+      gap: clamp(16px, 3vw, 36px);
+      padding: clamp(20px, 2.5vw, 28px) 0;
+      position: relative;
+    }
+    .ki-row__head::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(201,169,110,.05);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .4s var(--ease);
+    }
+    .ki-row:hover .ki-row__head::before { transform: scaleX(1); }
+    .ki-row__num {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: clamp(24px, 3vw, 40px);
+      font-weight: 300;
+      color: var(--gold);
+      opacity: .22;
+      line-height: 1;
+      transition: opacity .3s;
+    }
+    .ki-row:hover .ki-row__num,
+    .ki-row.open .ki-row__num { opacity: .55; }
+    .ki-row__main { min-width: 0; }
+    .ki-row__name {
+      font-family: var(--display);
+      font-size: clamp(18px, 2.2vw, 28px);
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+    .ki-row__tag {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      opacity: .5;
+    }
+    .ki-row__toggle {
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: rgba(26,26,26,.4);
+      flex-shrink: 0;
+      transition: background .25s, color .25s, transform .35s var(--ease), border-color .25s;
+      position: relative;
+      z-index: 1;
+    }
+    .ki-row.open .ki-row__toggle {
+      background: var(--gold);
+      color: var(--ink);
+      border-color: var(--gold);
+      transform: rotate(45deg);
+    }
+    .ki-row--no-data { cursor: default; }
+    .ki-row--no-data .ki-row__toggle { opacity: .25; cursor: default; }
+
+    /* body inline NON usato — apre modale */
+    .ki-row__body { display: none; }
+
+    /* MODALE INGREDIENTE */
+    .ki-modal {
+      position: fixed; inset: 0;
+      background: rgba(8,8,10,.78);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      z-index: 1000;
+      display: none;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: clamp(40px, 6vh, 80px) clamp(16px, 4vw, 40px);
+      opacity: 0;
+      transition: opacity .35s var(--ease);
+    }
+    .ki-modal.show { display: block; opacity: 1; }
+    .ki-modal__box {
+      background: var(--cream);
+      border-radius: 6px;
+      max-width: 920px; width: 100%;
+      margin: 0 auto;
+      position: relative;
+      padding: clamp(40px, 5vw, 80px) clamp(28px, 5vw, 80px);
+      transform: translateY(20px);
+      transition: transform .5s var(--ease);
+      box-shadow: 0 60px 120px rgba(0,0,0,.5);
+    }
+    .ki-modal.show .ki-modal__box { transform: none; }
+    .ki-modal__close {
+      position: absolute;
+      top: 18px; right: 22px;
+      background: transparent; border: 0;
+      width: 40px; height: 40px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(26,26,26,.5);
+      font-size: 28px; line-height: 1;
+      transition: color .25s;
+      z-index: 2;
+    }
+    .ki-modal__close:hover { color: var(--ink); }
+    .ki-modal__num {
+      font-family: var(--sans);
+      font-size: 12px;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      margin-bottom: 18px;
+    }
+    .ki-modal__name {
+      font-family: var(--display);
+      font-weight: 200;
+      font-size: clamp(32px, 4vw, 48px);
+      line-height: 1.05;
+      color: var(--ink);
+      margin-bottom: 8px;
+      letter-spacing: -.01em;
+    }
+    .ki-modal__role {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(17px, 1.5vw, 21px);
+      color: rgba(26,26,26,.6);
+      margin-bottom: 36px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(26,26,26,.1);
+    }
+    .ki-modal__block { margin-bottom: 28px; }
+    .ki-modal__block:last-of-type { margin-bottom: 0; }
+    .ki-modal__label {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      margin-bottom: 10px;
+    }
+    .ki-modal__text {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(15px, 1.3vw, 18px);
+      line-height: 1.7;
+      color: rgba(26,26,26,.85);
+    }
+    .ki-modal__tags {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-top: 28px; padding-top: 24px;
+      border-top: 1px solid rgba(26,26,26,.1);
+    }
+    .ki-modal__tag {
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(26,26,26,.65);
+      padding: 6px 12px;
+      border: 1px solid rgba(26,26,26,.18);
+      border-radius: 100px;
+    }
+    body.ki-modal-open {
+      overflow: hidden;
+      position: fixed;
+      width: 100%;
+    }
+
+    .ki-detail {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px;
+      background: rgba(0,0,0,.06);
+      margin-bottom: clamp(20px, 3vw, 32px);
+    }
+    @media (max-width: 900px) { .ki-detail { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .ki-detail { grid-template-columns: 1fr; } }
+    .ki-detail__block {
+      background: var(--cream-2);
+      padding: clamp(22px, 2.5vw, 36px);
+    }
+    .ki-detail__block--wide { grid-column: 1 / -1; }
+    .ki-detail__label {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      opacity: .7;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .ki-detail__text {
+      font-family: var(--serif);
+      font-size: clamp(15px, 1.35vw, 17px);
+      line-height: 1.7;
+      color: rgba(26,26,26,.72);
+    }
+    .ki-detail__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(0,0,0,.06);
+    }
+    .ki-detail__tag {
+      font-family: var(--sans);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 9px 18px;
+      border: 1px solid rgba(201,169,110,.35);
+      color: var(--gold-deep);
+      background: rgba(201,169,110,.07);
+      transition: background .25s, border-color .25s;
+    }
+    .ki-detail__tag:hover {
+      background: rgba(201,169,110,.14);
+      border-color: rgba(201,169,110,.6);
+    }
+
+    /* ── USO ────────────────────────────────────────────────── */
+    .pd-uso {
+      background: #fff;
+      padding: clamp(70px, 9vw, 110px) 0;
+      border-top: 1px solid rgba(0,0,0,.06);
+    }
+    .pd-uso__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(36px, 5vw, 72px);
+    }
+    @media (max-width: 700px) { .pd-uso__grid { grid-template-columns: 1fr; } }
+    .pd-block__label {
+      font-size: 10px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      opacity: .65;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+    .pd-uso__steps {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .pd-uso__step {
+      display: flex;
+      gap: 16px;
+    }
+    .pd-uso__step-n {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 22px;
+      color: var(--gold);
+      opacity: .35;
+      flex-shrink: 0;
+      width: 28px;
+    }
+    .pd-uso__step-text {
+      font-family: var(--serif);
+      font-size: 16px;
+      line-height: 1.65;
+      color: rgba(26,26,26,.7);
+    }
+    .pd-uso__text {
+      font-family: var(--serif);
+      font-size: 16px;
+      line-height: 1.75;
+      color: rgba(26,26,26,.65);
+    }
+
+    /* ── FORMULA + INCI ─────────────────────────────────────── */
+    .pd-formula-section {
+      background: var(--cream-2);
+      padding: clamp(70px, 9vw, 110px) 0;
+      border-top: 1px solid rgba(0,0,0,.06);
+    }
+    .pd-formula-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(36px, 5vw, 72px);
+    }
+    @media (max-width: 700px) { .pd-formula-grid { grid-template-columns: 1fr; } }
+    .pd-formula__pills {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .pd-formula__pill {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 18px;
+      background: rgba(45,58,46,.05);
+      gap: 16px;
+    }
+    .pd-formula__pill-label {
+      font-family: var(--serif);
+      font-size: 15px;
+      color: rgba(26,26,26,.7);
+    }
+    .pd-formula__pill-val {
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      opacity: .6;
+      white-space: nowrap;
+    }
+    .pd-inci-toggle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+      border-top: 1px solid rgba(0,0,0,.09);
+      border-bottom: 1px solid rgba(0,0,0,.09);
+      cursor: pointer;
+      user-select: none;
+    }
+    .pd-inci-toggle span {
+      font-size: 10px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(26,26,26,.4);
+    }
+    .pd-inci-chevron {
+      width: 14px;
+      height: 14px;
+      color: rgba(26,26,26,.3);
+      transition: transform .3s var(--ease);
+    }
+    .pd-inci-toggle.open .pd-inci-chevron { transform: rotate(180deg); }
+    .pd-inci-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .4s var(--ease);
+    }
+    .pd-inci-body.open { max-height: 500px; }
+    .pd-inci-text {
+      font-family: var(--serif);
+      font-size: 13px;
+      line-height: 1.95;
+      color: rgba(26,26,26,.55);
+      padding: 16px 0;
+    }
+
+    /* meta row */
+    .pd-sheet__meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      margin-top: 28px;
+    }
+    .pd-sheet__meta-item {
+      flex: 1 1 140px;
+      padding: 18px 32px 18px 0;
+    }
+    .pd-sheet__meta-label {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: .3;
+      margin-bottom: 6px;
+    }
+    .pd-sheet__meta-val {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 15px;
+      opacity: .75;
+    }
+
+    /* ── B2B ────────────────────────────────────────────────── */
+    .pd-b2b {
+      background: var(--ink);
+      padding: clamp(70px, 9vw, 110px) 0;
+    }
+    .pd-b2b__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(36px, 5vw, 72px);
+      align-items: start;
+    }
+    @media (max-width: 700px) { .pd-b2b__grid { grid-template-columns: 1fr; } }
+    .pd-b2b h2 {
+      font-family: var(--display);
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 300;
+      letter-spacing: -0.025em;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .pd-b2b h2 em { font-style: italic; color: var(--gold); }
+    .pd-b2b p {
+      font-family: var(--serif);
+      font-size: 15px;
+      line-height: 1.8;
+      color: rgba(255,255,255,.4);
+      max-width: 40ch;
+      margin-bottom: 24px;
+    }
+    .pd-b2b__ctas {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .pd-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 15px 26px;
+      transition: background .3s, transform .2s;
+    }
+    .pd-btn--gold {
+      background: var(--gold);
+      color: var(--ink);
+    }
+    .pd-btn--gold:hover { background: #d4b47a; transform: translateY(-2px); }
+    .pd-btn--ghost {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.4);
+    }
+    .pd-btn--ghost:hover { border-color: rgba(255,255,255,.35); color: #fff; transform: translateY(-2px); }
+    .pd-b2b__table {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .pd-b2b__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 13px 16px;
+      background: rgba(255,255,255,.04);
+      gap: 16px;
+    }
+    .pd-b2b__key {
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.25);
+    }
+    .pd-b2b__val {
+      font-family: var(--serif);
+      font-size: 14px;
+      color: rgba(255,255,255,.65);
+      text-align: right;
+    }
+
+    /* ── PRODOTTI CORRELATI ─────────────────────────────────── */
+    .pd-related {
+      background: var(--cream);
+      padding: clamp(70px, 9vw, 110px) 0;
+      border-top: 1px solid rgba(0,0,0,.06);
+    }
+    .pd-related h3 {
+      font-family: var(--display);
+      font-size: clamp(24px, 3vw, 40px);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: clamp(28px, 4vw, 44px);
+    }
+    .pd-related h3 em { font-style: italic; color: var(--gold-deep); }
+    .pd-related-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(12px, 1.5vw, 20px);
+    }
+    @media (max-width: 800px) { .pd-related-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .pd-related-grid { grid-template-columns: 1fr; } }
+    .pr-card {
+      --accent: var(--gold-deep);
+      background: #fff;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+    }
+    .pr-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -12px rgba(45,58,46,.18); }
+    .pr-card[data-brand="everby"] { --accent: #5fb6ab; }
+    .pr-card[data-brand="kaley"]  { --accent: #b8527a; }
+    .pr-card[data-brand="sphea"]  { --accent: #c9a96e; }
+
+    .pr-card__visual {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .pr-card__visual svg {
+      height: 55%;
+      transition: transform .5s var(--ease);
+      filter: drop-shadow(0 12px 24px rgba(0,0,0,.18));
+    }
+    .pr-card:hover .pr-card__visual svg { transform: translateY(-8px) scale(1.04); }
+
+    .pr-card__info {
+      padding: clamp(16px,2vw,24px);
+      border-top: 1px solid color-mix(in srgb, var(--accent) 14%, transparent);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .pr-card__cat {
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: .55;
+      margin-bottom: 8px;
+    }
+    .pr-card__name {
+      font-family: var(--display);
+      font-size: clamp(18px, 1.8vw, 24px);
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 6px;
+      line-height: 1.2;
+    }
+    .pr-card__sub {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 18px;
+      color: rgba(26,26,26,.5);
+      margin-bottom: 14px;
+      flex: 1;
+      line-height: 1.5;
+    }
+    .pr-card__actives {
+      font-family: var(--sans);
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(26,26,26,.28);
+      line-height: 2.2;
+      border-top: 1px solid color-mix(in srgb, var(--accent) 14%, transparent);
+      padding-top: 13px;
+      margin-top: 4px;
+    }
+    .pr-card__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--sans);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--accent);
+      margin-top: 14px;
+      padding-top: 13px;
+      border-top: 1px solid color-mix(in srgb, var(--accent) 14%, transparent);
+      transition: gap .2s var(--ease), opacity .2s;
+      opacity: .7;
+    }
+    .pr-card:hover .pr-card__cta { gap: 12px; opacity: 1; }
+
+    /* reveal */
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .7s var(--ease), transform .7s var(--ease);
+    }
+    [data-reveal].is-visible { opacity: 1; transform: none; }
+    [data-reveal][style*="--d:60ms"]  { transition-delay: 60ms; }
+    [data-reveal][style*="--d:120ms"] { transition-delay: 120ms; }
+    [data-reveal][style*="--d:180ms"] { transition-delay: 180ms; }
+    [data-reveal][style*="--d:200ms"] { transition-delay: 200ms; }
+    [data-reveal][style*="--d:240ms"] { transition-delay: 240ms; }
+    [data-reveal][style*="--d:300ms"] { transition-delay: 300ms; }
+  </style>
 </head>
 <body>
-  <p>Stai per essere reindirizzato a erboristica.com. Se la pagina non si apre, <a href="https://www.erboristica.com">vai a erboristica.com</a>.</p>
+
+<div id="topbar"></div>
+
+<!-- ── HERO ──────────────────────────────────────────────────── -->
+<section class="pd-hero">
+  <div class="pd-hero__visual">
+    <div class="pd-hero__bg" id="pdBg"></div>
+    <!-- SOSTITUIRE: <img src="immagini/{linea}/{prodotto}/hero.webp" alt="..." style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"> -->
+    <div class="pd-hero__photo-ph">
+      <span>Foto prodotto<br><!-- SOSTITUIRE --></span>
+    </div>
+    <div class="pd-hero__watermark" id="pdWatermark" aria-hidden="true"></div>
+    <div class="pd-hero__glow" id="pdGlow"></div>
+    <div class="pd-hero__mock" id="pdMock"></div>
+  </div>
+  <div class="pd-hero__info">
+    <div class="pd-hero__brand-tag" id="pdBrandTag"></div>
+    <h1 class="pd-hero__name" id="pdName"></h1>
+    <div class="pd-hero__cat" id="pdCat"></div>
+    <p class="pd-hero__sub" id="pdSub"></p>
+    <p class="pd-hero__desc" id="pdDesc"></p>
+    <div class="pd-hero__specs" id="pdSpecs"></div>
+    <a class="pd-hero__cta" id="pdCta" href="#" target="_blank" rel="noopener">
+      <span data-it="Acquista su erboristica.com" data-en="Buy on erboristica.com">Acquista su erboristica.com</span>
+      <span class="pd-hero__cta-arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- ── SEZIONE 1: ATTIVI (foto sx + lista attivi dx) ─────────── -->
+<section class="pd-row pd-row--photo-left">
+  <div class="pd-row__fig" data-reveal>
+    <div class="pd-photo-ph"><span>Ingrediente<br>chiave</span></div>
+    <!-- SOSTITUIRE: <img src="immagini/{linea}/{prodotto}/det-01.webp" alt=""> -->
+  </div>
+  <div class="pd-row__txt" data-reveal style="--d:120ms">
+    <h2 class="pd-row__h">
+      Ingredienti attivi <em>e benefici.</em>
+      <span class="pd-ingredients__count" id="kiCount"></span>
+    </h2>
+    <div id="kiRows"></div>
+  </div>
+</section>
+
+<!-- ── SEZIONE 2: FORMULA + CERTIFICAZIONI + INCI (testo sx + foto dx) ── -->
+<section class="pd-row pd-row--photo-right">
+  <div class="pd-row__txt" data-reveal>
+    <div class="pd-block__label">Formula clean</div>
+    <h2 class="pd-row__h">Cosa <em>non c'è.</em></h2>
+    <div class="pd-formula__pills" id="formulaPills"></div>
+
+    <div class="pd-block__label" style="margin-top:48px">Certificazioni</div>
+    <div class="pd-certs" id="pdCerts2"></div>
+
+    <div class="pd-inci-wrap" style="margin-top:48px">
+      <div class="pd-inci-toggle" id="inciToggle">
+        <span>INCI completo</span>
+        <svg class="pd-inci-chevron" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="pd-inci-body" id="inciBody">
+        <p class="pd-inci-text" id="pdInci"></p>
+      </div>
+    </div>
+  </div>
+  <div class="pd-row__fig" data-reveal style="--d:120ms">
+    <div class="pd-photo-ph"><span>Ambient<br>still-life</span></div>
+    <!-- SOSTITUIRE: <img src="immagini/{linea}/{prodotto}/det-03.webp" alt=""> -->
+  </div>
+</section>
+
+<!-- ── PRODOTTI CORRELATI ──────────────────────────────────────── -->
+<section class="pd-related" id="relatedSection">
+  <div class="container">
+    <h3>Dalla stessa <em>linea.</em></h3>
+    <div class="pd-related-grid" id="relatedGrid"></div>
+  </div>
+</section>
+
+<!-- ── MODALE INGREDIENTE ATTIVO ─────────────────────────────── -->
+<div class="ki-modal" id="kiModal" role="dialog" aria-modal="true" aria-labelledby="kiModalName">
+  <div class="ki-modal__box">
+    <button class="ki-modal__close" type="button" id="kiModalClose" aria-label="Chiudi">&times;</button>
+    <div class="ki-modal__num" id="kiModalNum"></div>
+    <h3 class="ki-modal__name" id="kiModalName"></h3>
+    <div class="ki-modal__role" id="kiModalRole"></div>
+    <div class="ki-modal__block">
+      <div class="ki-modal__label" data-it="Origine" data-en="Origin">Origine</div>
+      <div class="ki-modal__text" id="kiModalOrigine"></div>
+    </div>
+    <div class="ki-modal__block">
+      <div class="ki-modal__label" data-it="Meccanismo d'azione" data-en="Mechanism">Meccanismo d'azione</div>
+      <div class="ki-modal__text" id="kiModalMeccanismo"></div>
+    </div>
+    <div class="ki-modal__block">
+      <div class="ki-modal__label" data-it="Evidenza clinica" data-en="Clinical evidence">Evidenza clinica</div>
+      <div class="ki-modal__text" id="kiModalEfficacia"></div>
+    </div>
+    <div class="ki-modal__tags" id="kiModalTags"></div>
+  </div>
+</div>
+
+<div id="footer"></div>
+
+<script src="assets/vendor/lenis.min.js"></script><script src="assets/data.js"></script>
+<script src="assets/data-inline.js"></script>
+<script src="assets/datastore.js"></script>
+<script src="assets/app.js?v=6"></script>
+<script>
+initAthenas('prodotto');
+const _topbar = document.querySelector('.topbar');
+if (_topbar) { _topbar.classList.add('solid'); }
+window.addEventListener('scroll', () => { if (_topbar) _topbar.classList.add('solid'); }, { passive: true });
+
+const params    = new URLSearchParams(location.search);
+const productId = params.get('id');
+
+if (!productId) {
+  document.body.innerHTML = '<div style="padding:120px 40px;text-align:center;font-family:sans-serif;opacity:.5">Prodotto non trovato.</div>';
+  throw new Error('no product id');
+}
+
+function adaptJsonProduct(p) {
+  if (!p) return null;
+  return {
+    id: p.id,
+    line: p.line,
+    brand: p.brand,
+    code: p.sku,
+    size: p.format || p.size || '',
+    category: p.subtitle_it ? '' : '',
+    inci: p.inci,
+    natural_pct: p.natural_pct,
+    certifications: p.certifications || [],
+    images: p.images,
+    it: {
+      name: p.name_it || '',
+      sub: p.subtitle_it || '',
+      desc: p.description_it || '',
+      use: p.usage_it || '',
+      actives: p.actives_main || []
+    },
+    en: {
+      name: p.name_en || p.name_it || '',
+      sub: p.subtitle_en || p.subtitle_it || '',
+      desc: p.description_en || p.description_it || '',
+      use: p.usage_en || p.usage_it || '',
+      actives: p.actives_main || []
+    }
+  };
+}
+
+function bootProduct(prod) {
+  window.product = prod;
+  initProductPage(prod);
+}
+
+let product = (window.PRODUCTS || []).find(p => p.id === productId);
+
+if (!product) {
+  ATH_DATA.ready(() => {
+    const p = ATH_DATA.product(productId);
+    if (!p) {
+      document.body.innerHTML = '<div style="padding:120px 40px;text-align:center;font-family:sans-serif;opacity:.5">Prodotto non trovato.</div>';
+      return;
+    }
+    bootProduct(adaptJsonProduct(p));
+  });
+} else {
+  bootProduct(product);
+}
+
+function initProductPage(product) {
+
+const lang = document.documentElement.lang === 'en' ? 'en' : 'it';
+const loc  = product[lang] || product.it;
+
+const palettes = {
+  antieta:    { bg: '#2e1f10', glow: 'rgba(201,169,110,.22)' },
+  argan:      { bg: '#3a2410', glow: 'rgba(210,150,70,.22)' },
+  cocco:      { bg: '#0e1e2e', glow: 'rgba(100,180,220,.18)' },
+  mandorle:   { bg: '#2e1520', glow: 'rgba(220,150,170,.2)' },
+  illumia:    { bg: '#251a08', glow: 'rgba(220,180,60,.2)' },
+  purysens:   { bg: '#101528', glow: 'rgba(130,160,220,.18)' },
+  nutra:      { bg: '#2e1208', glow: 'rgba(200,120,60,.2)' },
+  estratti:   { bg: '#0f1e0f', glow: 'rgba(90,160,90,.2)' },
+  uomo:       { bg: '#101525', glow: 'rgba(100,120,180,.18)' },
+  innovation: { bg: '#1a0f28', glow: 'rgba(160,100,220,.2)' },
+  pearls:     { bg: '#1a0f28', glow: 'rgba(160,100,220,.2)' },
+  'mineral-infusions': { bg: '#0a1a24', glow: 'rgba(80,160,200,.2)' },
+  'doppia-detersione': { bg: '#1a1a1a', glow: 'rgba(180,140,100,.15)' },
+  kaley:      { bg: '#1a0e05', glow: 'rgba(201,169,110,.22)' },
+  everby:     { bg: '#0e1824', glow: 'rgba(180,220,230,.2)' },
+  sphea:      { bg: '#080808', glow: 'rgba(201,169,110,.15)' },
+};
+
+const lineId = product.line || product.brand || '';
+const pal    = palettes[lineId] || { bg: '#1a1a1a', glow: 'rgba(201,169,110,.15)' };
+
+/* tema brand-aware sul body */
+document.body.classList.forEach(c => { if (c.startsWith('theme-')) document.body.classList.remove(c); });
+if (product.brand) document.body.classList.add('theme-' + product.brand);
+
+document.getElementById('pdBg').style.background = `linear-gradient(145deg, ${pal.bg} 0%, #050505 100%)`;
+document.getElementById('pdGlow').style.setProperty('--glow-c', pal.glow);
+
+const brand = window.BRANDS && BRANDS.find(b => b.id === (product.brand || lineId));
+const line  = window.LINES  && LINES.find(l => l.id === lineId);
+
+document.getElementById('pdWatermark').textContent = brand ? brand.name : (line ? (line.name || '') : '');
+const brandLabel = brand ? brand.name.toUpperCase() : '';
+const lineLabel  = line  ? (line.shortName || line.name || '') : '';
+document.getElementById('pdBrandTag').textContent = [brandLabel, lineLabel].filter(Boolean).join(' · ');
+const catEl = document.getElementById('pdCat');
+if (catEl && line) catEl.textContent = line.shortName || line.name || '';
+
+document.getElementById('pdName').textContent = loc.name;
+const subRaw = loc.sub || '';
+const subShort = subRaw.split(/\.(?:\s|$)/)[0].trim().replace(/\.?$/, '.');
+document.getElementById('pdSub').textContent  = subShort;
+const descRaw   = loc.desc || '';
+const descSents = descRaw.split(/\.(?:\s|$)/).map(s => s.trim()).filter(s => s.length > 3);
+document.getElementById('pdDesc').textContent = descSents.slice(0, 2).join('. ').replace(/\.?$/, '.');
+
+// hero specs
+const specsEl = document.getElementById('pdSpecs');
+if (specsEl) {
+  [
+    product.size ? { l: lang === 'it' ? 'Formato' : 'Size', v: product.size } : null,
+    product.code ? { l: lang === 'it' ? 'Codice' : 'SKU', v: product.code } : null,
+  ].filter(Boolean).forEach(m => {
+    specsEl.insertAdjacentHTML('beforeend',
+      `<div><div class="pd-spec__label">${m.l}</div><div class="pd-spec__val">${m.v}</div></div>`);
+  });
+}
+
+// CTA Acquista — popolato con product.url o nascosto se assente
+const ctaEl = document.getElementById('pdCta');
+if (ctaEl) {
+  if (product.url) {
+    ctaEl.href = product.url;
+  } else {
+    ctaEl.style.display = 'none';
+  }
+}
+
+// product mock SVG
+if (typeof productMock === 'function') {
+  const shape = /Siero|Serum|Olio viso/i.test(product.category) ? 'pipette'
+              : /Scrub|Esfolia|Crema|Burro|Trattamento/i.test(product.category) ? 'jar'
+              : 'bottle';
+  document.getElementById('pdMock').innerHTML = productMock(lineId, loc.name, shape);
+}
+
+// certifications
+const _prodNameForCerts = ((product.it && product.it.name) || product.name || '').toLowerCase();
+const _prodSubForCerts  = ((product.it && product.it.sub) || '').toLowerCase();
+const _isEyeProduct = /occhi|contorno/.test(_prodNameForCerts) || /occhi|contorno/.test(_prodSubForCerts);
+const certNames = ['Plant Based', 'Vegan', 'Dermat. testato', 'Energia Solare', 'Test Metalli', 'OPIMM', 'Made in Italy'];
+if (_isEyeProduct) certNames.push('Test Oftalmologici');
+const certsEl2 = document.getElementById('pdCerts2');
+certNames.forEach(c => {
+  if (certsEl2) certsEl2.insertAdjacentHTML('beforeend', `<span class="pd-cert-badge">${c}</span>`);
+});
+
+// ── ACTIVES LIBRARY ──────────────────────────────────────────────
+const ACTIVES_LIB = {
+  'acido-ialuronico': { name: 'Acido Ialuronico', role: 'Idratante · Volumizzante', origine: 'Biotecnologico — prodotto per fermentazione batterica da Streptococcus equi. Identico all\'acido ialuronico endogeno.', meccanismo: 'Glicosaminoglicano igroscopico: lega fino a 1.000× il suo peso in acqua. A basso PM penetra negli strati profondi, ad alto PM forma un film idratante in superficie.', efficacia: 'Studio clinico (n=34): riduzione profondità rughe del 27% in 4 settimane. Aumento dell\'idratazione cutanea del 43%.', tags: ['Idratante','Filler naturale','Anti-rughe','Rimpolpante'] },
+  'collagene-vegetale': { name: 'Collagene Vegetale Idrolizzato', role: 'Rassodante · Rimpolpante', origine: 'Derivato dall\'idrolisi di proteine vegetali (grano, avena, soia). Peptidi di basso PM capaci di penetrare la barriera cutanea.', meccanismo: 'I peptidi collagene-simili stimolano la sintesi di collagene endogeno tipo I e III nei fibroblasti. Effetto tensore meccanico immediato.', efficacia: 'Riduzione della lassità cutanea del 19% in 8 settimane (cutometria). Effetto lifting visibile in 30 minuti.', tags: ['Rassodante','Anti-età','Lifting','Stimolante'] },
+  'collagene-marino': { name: 'Collagene Marino Idrolizzato', role: 'Rimpolpante · Ristrutturante', origine: 'Estratto da squame di pesce mediante idrolisi enzimatica. PM < 5 kDa per massima biodisponibilità cutanea.', meccanismo: 'Peptidi Gly-Pro-Hyp attivano i fibroblasti dermici aumentando la produzione di collagene e acido ialuronico endogeni.', efficacia: 'Meta-analisi di 11 RCT: riduzione rughe del 23% e aumento elasticità del 22% in 12 settimane.', tags: ['Rimpolpante','Anti-rughe','Ristrutturante','Bioidentico'] },
+  'vitamina-c': { name: 'Vitamina C (Ascorbyl Glucoside)', role: 'Antiossidante · Schiarente', origine: 'Forma stabile della vitamina C idrolizzata dalle α-glucosidasi cutanee rilasciando acido ascorbico puro nel derma.', meccanismo: 'Inibitore competitivo della tirosinasi (IC50 ~0,1 mM). Cofattore per la sintesi di collagene. Potente donatore di elettroni contro i radicali liberi.', efficacia: 'Riduzione dell\'indice di melanina dell\'8% in 4 settimane (concentrazione 2%). Aumento collagene tipo I del 33% in vitro.', tags: ['Antiossidante','Schiarente','Anti-età','Luminosità'] },
+  'vitamina-e': { name: 'Vitamina E (Tocopheryl Acetate)', role: 'Antiossidante · Nutriente', origine: 'Tocoferolo acetato di origine vegetale (girasole, germe di grano). Convertito dalla cute in tocoferolo libero via esterasi.', meccanismo: 'Principale antiossidante liposolubile della membrana cellulare: interrompe la perossidazione lipidica catturando il radicale perossilico (ROO•). Sinergia con Vitamina C.', efficacia: 'Riduzione eritema UV-indotto del 34%. Diminuzione del TEWL del 14% su pelle secca in 6 settimane.', tags: ['Antiossidante','Foto-protettivo','Emolliente','Barriera'] },
+  'retinolo': { name: 'Retinolo (Retinyl Palmitate)', role: 'Rinnovamento cellulare · Anti-età', origine: 'Estere stabile del retinolo con acido palmitico. La cute lo libera per idrolisi, poi lo ossida ad acido retinoico (forma bioattiva).', meccanismo: 'Si lega ai recettori RAR/RXR nucleari: upregola sintesi procollagene I/III, downregola MMP-1 e MMP-3. Accelera il turnover cheratinocitario.', efficacia: 'Riduzione rughe fini del 36% in 12 settimane (n=53). Aumento spessore epidermide del 14% in 6 mesi.', tags: ['Anti-età','Rinnovamento','Anti-rughe','Collagene'] },
+  'peptidi': { name: 'Peptidi Biomimetici', role: 'Stimolante cellulare · Lifting', origine: 'Sintetici (Palmitoyl Tripeptide-1, Tetrapeptide-7, Argireline®). Il gruppo palmitoil aumenta la lipofilicità per penetrare la barriera cornea.', meccanismo: 'Tripeptide-1 attiva i fibroblasti → sintesi collagene. Tetrapeptide-7 riduce IL-6 e TNF-α. Argireline mima il frammento N-terminale di SNAP-25, riducendo la contrazione muscolare.', efficacia: 'Matrixyl 3000: riduzione rughe profonde del 44% in 2 mesi (n=28). Argireline: riduzione mimica del 17% in 4 settimane.', tags: ['Lifting','Anti-rughe','Stimolante','Biomimetico'] },
+  'caffeina': { name: 'Caffeina', role: 'Drenante · Decongestionante', origine: 'Alcaloide xantinico da Coffea arabica, Camellia sinensis, Theobroma cacao.', meccanismo: 'Inibitore della fosfodiesterasi: blocca la degradazione del cAMP → attiva la lipasi → lipolisi degli adipociti. Vasocostrizione per antagonismo adenosinico → riduzione gonfiore.', efficacia: 'Riduzione perimetro coscia 1,9 cm in 4 settimane (caffeina 3%). Borse perioculari -22% in 6 settimane.', tags: ['Drenante','Anti-cellulite','Decongestionante','Stimolante'] },
+  'niacinamide': { name: 'Niacinamide (Vitamina B3)', role: 'Uniformante · Sebo-regolatore', origine: 'Forma ammidica della vitamina B3. Stabile in formule acquose a pH 4–7.', meccanismo: '1) Inibisce il trasferimento melanosomi → effetto depigmentante. 2) Stimola sintesi ceramidi. 3) Downregola citochine pro-infiammatorie. 4) Inibisce la lipasi batterica → riduce sebo ossidato.', efficacia: 'Riduzione macchie del 35–68% in 8 settimane (5%). Pori -16% in 4 settimane. Sebum output -24% (n=50).', tags: ['Uniformante','Anti-macchia','Pori','Sebo-regolatore'] },
+  'aloe-vera': { name: 'Aloe Vera (Aloe Barbadensis)', role: 'Idratante · Lenitiva', origine: 'Gel dalle foglie di Aloe barbadensis. Contiene acemannano, aminoacidi, enzimi (bradichinase), antrachinoni, vitamine A/C/E.', meccanismo: 'Acemannano forma film occlusivo (riduce TEWL). Inibisce la bradichinina. Galatturonan stimola proliferazione fibroblasti. Attività antimicrobica.', efficacia: 'Riduzione xerosi del 32% in 2 settimane. Accelerazione guarigione ustioni I grado di 9 giorni vs. sulfadiazina (Cochrane).', tags: ['Lenitiva','Idratante','Cicatrizzante','Anti-eritema'] },
+  'bisabololo': { name: 'α-Bisabololo', role: 'Anti-infiammatorio · Lenitivo', origine: 'Terpene monocyclico estratto da camomilla (Matricaria chamomilla) o sintetico.', meccanismo: 'Inibisce COX-2 riducendo prostaglandine pro-infiammatorie. Chelante Fe³⁺/Cu²⁺ → inibizione radicali •OH. Aumenta la penetrazione di altri attivi.', efficacia: 'Riduzione eritema da SDS del 28% in 24h. Effetto sinergico con Vitamina E: -45% perossidazione lipidica in vitro.', tags: ['Anti-infiammatorio','Lenitivo','Penetration enhancer','Calming'] },
+  'olio-argan': { name: 'Olio di Argan (Argania spinosa)', role: 'Nutriente · Antiossidante', origine: 'Estratto a freddo da noccioli di argan biologico marocchino. Preserva tutti i componenti bioattivi.', meccanismo: 'Acidi grassi insaturi (oleico 43–49%, linoleico 29–36%) riparano la barriera cutanea. γ-Tocoferolo antiossidante. Scualene e β-sitosterolo anti-infiammatori.', efficacia: 'Riduzione TEWL del 26% in 4 settimane. Elasticità cutanea +9,5% in 60 giorni (menopausa).', tags: ['Nutriente','Riparatore','Antiossidante','Omega-6'] },
+  'olio-cocco': { name: 'Olio di Cocco (Cocos nucifera)', role: 'Idratante · Protettivo', origine: 'Olio vergine dalla polpa essiccata del cocco. Acidi grassi saturi a media catena (MCFA) con affinità proteica.', meccanismo: 'Acido laurico (48–52%) si integra nei lipidi intercellulari. Attività antimicrobica contro batteri gram+ e funghi (P. acnes). Riduce il TEWL.', efficacia: 'Non inferiore all\'olio minerale su dermatite atopica pediatrica (SCORAD -68% vs -38%, RCT Manila 2014).', tags: ['Idratante','Antimicrobico','Protettivo','Capelli'] },
+  'olio-monoi': { name: 'Olio di Monoï di Tahiti DOP', role: 'Illuminante · Elasticizzante', origine: 'Macerazione fiori di Gardenia Tahitensis (Tiare) in olio di cocco. DOP garantisce origine tahitiana (macerazione ≥10 giorni).', meccanismo: 'Film protettivo elasticizzante su pelle e capello. Terpeni floreali (geraniol, linalool) con azione antiossidante e anti-irritante.', efficacia: 'Riduzione TEWL del 31% e lucentezza capello +23% rispetto al non trattato (studio tribologico).', tags: ['Illuminante','Elasticizzante','Profumato','DOP Tahiti'] },
+  'olio-mandorle': { name: 'Olio di Mandorle Dolci (Prunus amygdalus)', role: 'Emolliente · Lenitivo', origine: 'Estratto a freddo dal seme di Prunus amygdalus dulcis. Inodore, altissima tollerabilità su pelli sensibili e pediatriche.', meccanismo: 'Acido oleico (64–82%) e linoleico (7–30%) mimano i lipidi intercorneocitari. Vitamina E antiossidante. β-sitosterolo anti-infiammatorio.', efficacia: 'Riduzione prurito del 34% e xerosi del 41% in bambini con dermatite atopica in 4 settimane (RCT, n=56).', tags: ['Emolliente','Lenitivo','Pediatrico','Pelle sensibile'] },
+  'ceramidi': { name: 'Ceramidi Vegetali', role: 'Barriera cutanea · Anti-TEWL', origine: 'Ceramide NP e AP da grano, riso, konjac. Strutturalmente identiche alle ceramidi cutanee umane.', meccanismo: 'Si incorporano nelle strutture lamellari dello strato corneo riparando i difetti di barriera. Modulano il differenziamento cheratinocitario upregolando la filaggrina.', efficacia: 'Riduzione TEWL del 15–30% in 4 settimane. Efficacia comparabile al colesterolo nella riparazione lamellare.', tags: ['Barriera','Anti-TEWL','Pelle secca','Riparatore'] },
+  'zinco-pca': { name: 'Zinco PCA', role: 'Sebo-regolatore · Anti-batterico', origine: 'Sale dello zinco con acido pirrolidonico carbossilico (PCA), umettante naturale della pelle.', meccanismo: 'Inibisce la 5α-reduttasi → riduzione DHT locale → minor stimolazione sebacea. Attività antibatterica verso C. acnes. PCA è umettante (NMF).', efficacia: 'Sebum output -31% in 4 settimane (n=35). Conteggio P. acnes -68% in biofilm in vitro (0,3%).', tags: ['Sebo-regolatore','Anti-acne','Anti-batterico','Pori'] },
+  'bakuchiol': { name: 'Bakuchiol', role: 'Alternativa al retinolo · Rinnovante', origine: 'Meroterpene fenolico da semi di Psoralea corylifolia. 100% vegetale, profilo di sicurezza superiore al retinolo.', meccanismo: 'Attiva gli stessi geni del retinolo (RAR/RXR) stimolando collagene I/III/IV, fibronectina, elastina — senza irritazione da acido retinoico.', efficacia: 'Studio comparativo (n=44, 12 sett): bakuchiol 0,5% = retinolo 0,5% su rughe (-19,7% vs -20,1%) con significativamente meno irritazione.', tags: ['Rinnovante','Anti-rughe','Naturale','Pelle sensibile'] },
+  'isoflavoni-soia': { name: 'Isoflavoni di Soia', role: 'Sebo-regolatore · Fitoestrogeno', origine: 'Polifenoli (genisteina, daidzeina) da Glycine max. Struttura simile agli estrogeni endogeni.', meccanismo: 'Si legano ai recettori ERβ cutanei → meno infiammazione, più barriera. Inibizione 5α-reduttasi tipo 1 → riduzione sebo.', efficacia: 'Rughe -14% in 24 settimane su pelle perimenopausale. Sebo -18% in 8 settimane.', tags: ['Sebo-regolatore','Antiossidante','Fitoestrogeno','Fotoprotettivo'] },
+  'olio-baobab': { name: 'Olio di Baobab (Adansonia digitata)', role: 'Rigenerante · Nutriente', origine: 'Biologico equosolidale, estratto a freddo dai semi del baobab africano. Fonte di vitamine B2, C, calcio, ferro, zinco, manganese.', meccanismo: 'Composizione unica: palmitoleico, linoleico, linolenico. Penetra rapidamente. Omega-3 e Omega-6 in rapporto 1:2 → riduzione infiammazione cutanea.', efficacia: 'Desquamazione -43%, idratazione epidermide +52% in 4 settimane su pelle molto secca (n=30).', tags: ['Rigenerante','Nutriente','Omega-3 e 6','Pelle secca'] },
+  'cellule-staminali-leontopodium': { name: 'Cellule Staminali di Stella Alpina', role: 'Anti-età · Protezione UV', origine: 'Estratto biotecnologico (PhytoCellTec™) da Leontopodium alpinum coltivato in vitro. Produce leontopodic acid per sopravvivere alle UV alpine.', meccanismo: 'Protegge le cellule staminali epiteliali dall\'apoptosi UV-indotta. Stimola p63 (marcatore staminale) nei cheratinociti. Riduce danno ossidativo mitocondriale.', efficacia: 'Rughe -15% in 4 settimane (profilometria). Vitalità cellule staminali epidermiche +63% dopo irradiazione UVB in vitro.', tags: ['Anti-UV','Anti-età','Staminale','Rigenerante'] },
+  'luminescine': { name: 'Luminescine® (Verbascum thapsus)', role: 'Schiarente · Fotoluminescente', origine: 'Estratto brevettato Silab® da Verbascum thapsus biologico francese. COSMOS ORGANIC certificato.', meccanismo: 'Glicoiridoidi fotoluminescenti: assorbono UV e li riemettono come luce visibile. Inibisce tirosinasi e melanogenesi (CRTC1/MITF). Riduce trasferimento melanosomi.', efficacia: 'Indice melanina -24% in 56 giorni (n=25). Luminosità percepita +31% in 4 settimane.', tags: ['Schiarente','Fotoluminescente','Anti-macchia','COSMOS'] },
+  'butylresorcinol': { name: '4-Butylresorcinol', role: 'Depigmentante · Anti-macchia', origine: 'Derivato sintetico del resorcinolo, sviluppato come depigmentante di nuova generazione.', meccanismo: 'Doppio meccanismo: inibisce tirosinasi (TYR) con IC50 ~0,5 µM (80× più potente dell\'arbutina) e TYRP-1/TYRP-2, bloccando la melanogenesi in due step.', efficacia: 'Macchie iperpigmentazione -41% in 8 settimane (0,1%, vs. idrochinone 4%). Senza rischio di rebound.', tags: ['Depigmentante','Anti-macchia','Tirosinasi','Alta efficacia'] },
+  'karite': { name: 'Burro di Karité (Vitellaria paradoxa)', role: 'Nutriente · Rigenerante', origine: 'Grasso da semi di Vitellaria paradoxa (Sahel). Ricco di insaponificabili (7–11%) con attività biologiche uniche.', meccanismo: 'Stearico (43–48%) + oleico (43–55%). Triterpeni insaponificabili anti-infiammatori via 5-LOX. Stimolazione sintesi collagene. Ceramidi naturali.', efficacia: 'TEWL -48% in 4 settimane su pelle secca cronica. Anti-infiammatorio comparabile all\'idrocortisone 0,5% su eritema da SDS.', tags: ['Nutriente','Rigenerante','Anti-infiammatorio','Barriera'] },
+  'pantenolo': { name: 'Pantenolo (Pro-Vitamina B5)', role: 'Idratante · Lenitivo', origine: 'Alcol della D-acido pantotenico. La cute lo converte in acido pantotenico (B5), cofattore del Coenzima A.', meccanismo: 'Umettante: attira molecole d\'acqua (5 g H₂O / g). Stimola proliferazione fibroblasti e sintesi fibronectina. Accelera la riepitrizzazione.', efficacia: 'TEWL -8% e xerosi -21% in 4 settimane (5%). Riepitrizzazione +42% su wound healing ex vivo.', tags: ['Idratante','Lenitivo','Cicatrizzante','B5'] },
+  'estratto-te-verde': { name: 'Estratto di Tè Verde (Camellia sinensis)', role: 'Antiossidante · Anti-infiammatorio', origine: 'Standardizzato in EGCG (epigallocatechina gallato) da foglie non fermentate. EGCG = 60–65% delle catechine totali.', meccanismo: 'EGCG inibisce MMP-9 (degrada il collagene). Downregola NF-κB. Assorbe UV-B (280–320 nm). Chelante Fe²⁺ e Cu²⁺.', efficacia: 'Eritema UV-B -27% (EGCG 1% pre-esposizione). MMP-9 -62% in cheratinociti irradiati (in vitro).', tags: ['Antiossidante','Anti-UV','Anti-infiammatorio','MMP-inibitore'] },
+  'jojoba': { name: 'Olio di Jojoba (Simmondsia chinensis)', role: 'Bilanciante del sebo · Emolliente', origine: 'Cera liquida da semi di Simmondsia chinensis. 97% esteri cerosi a catena lunga — struttura unica nel regno vegetale.', meccanismo: 'Struttura identica al sebo cutaneo → bilanciamento non comedogenico. Stabilissima all\'ossidazione. Bassa viscosità senza effetto grasso.', efficacia: 'Non comedogenica (0/5 in vitro). Sebo -12% in 4 settimane. Ottima tollerabilità con acne (n=40).', tags: ['Bilanciante','Emolliente','Non comedogenico','Sebo'] },
+  'allantoina': { name: 'Allantoina', role: 'Lenitiva · Cheratoplastica', origine: 'Da Symphytum officinale o per sintesi (ossidazione acido urico). GRAS FDA.', meccanismo: 'Cheratoplastica (basse conc.) / cheratolitica (alte conc.). Antagonizza prostaglandine pro-infiammatorie. Forma complessi con proteine irritanti neutralizzandole.', efficacia: 'Guarigione cutanea +39% vs controllo (allantoina 2%). Irritazione da SDS -26% (0,5%).', tags: ['Lenitiva','Cicatrizzante','Rinnovante','Tollerabilità'] },
+  'bamboo': { name: 'Estratto di Bambù (Bambusa vulgaris)', role: 'Rinforzante · Minerale', origine: 'Dall\'internodo del bambù. Ricco in silice vegetale (70% del contenuto secco), flavonoidi e aminoacidi.', meccanismo: 'Silice organica biodisponibile → cofattore della prolil-idrossilasi → sintesi idrossiprolina nel collagene. Stimola proliferazione fibroblasti.', efficacia: 'Collagene +18% in coltura di fibroblasti (0,5%). Rughe -12% in 6 settimane su pelle maschile (n=28).', tags: ['Rinforzante','Silicio','Collagene','Anti-età'] },
+  'tea-tree': { name: 'Tea Tree Oil (Melaleuca alternifolia)', role: 'Antibatterico · Purificante', origine: 'Olio essenziale da foglie di Melaleuca alternifolia. Standardizzato in terpinen-4-olo (>30%) secondo ISO 4730.', meccanismo: 'Terpinen-4-olo altera permeabilità di membrana batterica. Attività contro C. acnes, S. aureus MRSA, Candida. Inibisce mediatori infiammatori da monociti.', efficacia: 'TTO 5% = benzoyl peroxide 5% su acne (RCT n=124, 3 mesi) con meno irritazione. Lesioni acneiche -44%.', tags: ['Antibatterico','Antifungino','Purificante','Anti-acne'] },
+  'camomilla': { name: 'Estratto di Camomilla (Matricaria chamomilla)', role: 'Lenitivo · Anti-eritema', origine: 'Da capolini di Matricaria chamomilla. Standardizzato in apigenina e α-bisabololo.', meccanismo: 'Apigenina inibisce COX-2 e LOX-5 → riduzione PGE2 e leucotrieni. Α-bisabololo anti-infiammatorio. Camazulene antiossidante e anti-istaminico.', efficacia: 'Eritema e prurito -60% vs placebo in dermatite allergica (2%, n=20). Paragonabile a idrocortisone 0,25% su eczema cronico lieve.', tags: ['Lenitiva','Anti-eritema','Anti-prurito','Flavonoidi'] },
+  'rosa': { name: 'Estratto di Rosa (Rosa damascena)', role: 'Antiossidante · Idratante', origine: 'Da petali di Rosa damascena (Bulgaria, Marocco). Olio essenziale (citronellolo, geraniolo) e polifenoli (quercetina, antocianine).', meccanismo: 'Olio essenziale inibisce elastasi neutrofila. Polifenoli antiossidanti (ORAC ~22.000 µmol TE/g). Galloyl glucosidi inibitori MMP-1/2.', efficacia: 'TEWL -11%, idratazione +25% in 4 settimane (2%). Attività antiossidante 10× superiore alla vitamina E (DPPH).', tags: ['Antiossidante','Idratante','Sensoriale','Anti-età'] },
+  'ginkgo-biloba': { name: 'Estratto di Ginkgo Biloba', role: 'Antiossidante · Microcircolatorio', origine: 'Foglie di Ginkgo biloba (fossile vivente). Standardizzato in flavonoidi (quercetina, kaempferolo) e terpenolattoni (bilobalide, ginkgolidi A/B).', meccanismo: 'Scavenger di radicali liberi (ROS). Migliora la microcircolazione cutanea inibendo PAF (platelet-activating factor). Aumenta l\'ossigenazione tissutale e protegge l\'endotelio capillare.', efficacia: 'Riduzione del 35% dei segni di stanchezza cutanea in 4 settimane (1%). Aumento microcircolazione del 18% (laser-Doppler).', tags: ['Antiossidante','Tonificante','Microcircolazione','Energizzante'] },
+  'ginseng': { name: 'Estratto di Ginseng (Panax ginseng)', role: 'Tonico · Rivitalizzante', origine: 'Radice di Panax ginseng coreano. Saponine triterpeniche (ginsenosidi Rb1, Rg1, Re) ad azione adattogena.', meccanismo: 'Rg1 stimola la proliferazione dei fibroblasti e la sintesi di procollagene I. Rb1 protegge dall\'apoptosi UV-indotta. Effetto adattogeno: migliora la risposta cutanea allo stress.', efficacia: 'Elasticità cutanea +18% in 12 settimane (3%, n=23). Riduzione del 22% dei segni di affaticamento cutaneo.', tags: ['Tonico','Rivitalizzante','Anti-età','Adattogeno'] },
+  'bergamotto': { name: 'Olio Essenziale di Bergamotto (Citrus bergamia)', role: 'Tonico · Rinfrescante', origine: 'Spremitura a freddo della scorza del frutto di Citrus bergamia (Calabria DOP). Limonene (37%), linalile acetato (30%), linalolo (10%).', meccanismo: 'Aroma agrumato fresco con effetto tonico psicofisico. Antimicrobico ad ampio spettro (S. aureus, E. coli). Bergamottina e bergaptene: usati in formula bergapten-free per evitare fototossicità.', efficacia: 'Attività antibatterica MIC 0,25% su S. aureus. Effetto rinfrescante percepito a 30 sec dall\'applicazione.', tags: ['Tonico','Agrumato','Antimicrobico','Rinfrescante'] },
+  'pepe-rosa': { name: 'Pepe Rosa (Schinus molle)', role: 'Stimolante · Tonico', origine: 'Bacche essiccate di Schinus molle (falso pepe). Olio essenziale ricco di α-pinene, β-pinene, limonene e sesquiterpeni.', meccanismo: 'Nota piccante-floreale che apre la composizione olfattiva. Tonificante locale, leggero effetto vasoattivo. Antiossidante grazie ai polifenoli.', efficacia: 'Capacità antiossidante DPPH IC50 = 35 µg/mL. Tonicità cutanea percepita +15% (panel sensoriale).', tags: ['Tonico','Speziato','Antiossidante','Vivace'] },
+  'cedro': { name: 'Legno di Cedro (Cedrus atlantica)', role: 'Riequilibrante · Lenitivo', origine: 'Distillazione del legno di Cedrus atlantica (Atlante marocchino). Sesquiterpeni (cedrolo, atlantolo, cedreni) con note balsamiche calde.', meccanismo: 'Cedrolo: leggera azione sedativa via GABA e tonificante della microcircolazione capillare. Antibatterico contro S. aureus e P. acnes.', efficacia: 'Effetto rilassante percepito (HRV +8%) entro 5 minuti. Attività antibatterica MIC 0,5%.', tags: ['Riequilibrante','Legnoso','Calmante','Antibatterico'] },
+  'patchouli': { name: 'Patchouli (Pogostemon cablin)', role: 'Rigenerante · Sensoriale', origine: 'Distillazione delle foglie essiccate e fermentate di Pogostemon cablin (Indonesia). Patchoulolo (35-40%), α-bulnesene, α-guaiene.', meccanismo: 'Patchoulolo stimola il turnover cellulare e ha attività anti-elastasi. Riconosciuta azione rigenerante e cicatrizzante. Fissativo olfattivo nelle composizioni.', efficacia: 'Inibizione elastasi -42% (in vitro, 0,5%). Effetto sulla coesione cellulare epidermica +12%.', tags: ['Rigenerante','Terroso','Fissativo','Anti-elastasi'] },
+  'glicerina': { name: 'Glicerina Naturale Vegetale', role: 'Idratante · Umettante', origine: 'Glicerol ottenuto da saponificazione di oli vegetali (oliva, cocco, palma) o per fermentazione di zuccheri. Identica alla glicerina endogena.', meccanismo: 'Umettante per eccellenza: lega molecole d\'acqua dall\'atmosfera e le trattiene nello strato corneo. Substrato per AQP3 (acquaporine cutanee). Non occlusivo.', efficacia: 'Riduzione TEWL del 11% e idratazione cornea +28% in 4 settimane (5%). Effetto comparabile all\'urea senza irritazione.', tags: ['Idratante','Umettante','Comfort','Tollerabilità'] },
+  'tensioattivi-vegetali': { name: 'Tensioattivi Vegetali Delicati', role: 'Detergente · Delicato', origine: 'Derivati da cocco e zuccheri (cocoyl glutamate, coco-glucoside, decyl glucoside, sodium coceth sulfate). Biodegradabili, non eco-tossici.', meccanismo: 'Tensioattivi anionici/non-ionici a bassa CMC: detergenza efficace rispettando il film idrolipidico. PH-compatibili con la pelle (5,5-6,5).', efficacia: 'TEWL post-lavaggio +3% (vs +15% di SLS). Tollerabilità oculare e cutanea superiore ai tensioattivi sintetici tradizionali.', tags: ['Detergente','Delicato','Biodegradabile','Eco-friendly'] },
+  'acqua-riso-fermentata': { name: 'Acqua di Riso Fermentata', role: 'Idratante · Illuminante', origine: 'Ottenuta dalla fermentazione del riso (Oryza sativa) tramite lieviti — tradizione cosmetica K-beauty. Ricca di aminoacidi, peptidi, vitamine B, gamma-oryzanolo.', meccanismo: 'I fermenti producono acido lattico (esfoliazione delicata + idratazione), allantoina (lenitiva), inositolo (cofattore cellulare). Aminoacidi mantengono il film idrolipidico.', efficacia: 'Luminosità cutanea +21% in 28 giorni (n=30). Tessitura uniforme, glass skin effect documentato in studi K-beauty.', tags: ['Idratante','Illuminante','K-beauty','Fermentato'] },
+  'centella': { name: 'Centella Asiatica (Cica)', role: 'Lenitiva · Riparatrice', origine: 'Pianta medicinale asiatica (Centella asiatica). Triterpeni standardizzati (madecassoside, asiaticoside, acidi madecassico e asiatico).', meccanismo: 'Madecassoside attiva la sintesi di collagene I/III e fibronectina. Asiaticoside accelera la riepitalizzazione. Anti-infiammatorio via inibizione NF-κB.', efficacia: 'Eritema cutaneo -38% in 14 giorni (n=42). Riparazione barriera epidermica accelerata del 40% in studi clinici.', tags: ['Lenitiva','Cica','Riparatrice','Anti-rossori'] },
+  'estratto-caffe': { name: 'Estratto di Caffè (Coffea arabica)', role: 'Drenante · Decongestionante', origine: 'Estratto idroglicerico da chicchi di Coffea arabica. Ricco di caffeina, acidi clorogenici, trigonelline, polifenoli.', meccanismo: 'Caffeina inibisce la fosfodiesterasi → vasocostrizione e lipolisi locale. Acidi clorogenici antiossidanti. Riduce gonfiore e occhiaie tramite drenaggio linfatico.', efficacia: 'Borse perioculari -22% e occhiaie -16% in 6 settimane (estratto al 3%, n=28). Microcircolazione cutanea +18%.', tags: ['Drenante','Anti-borse','Antiossidante','Microcircolatorio'] },
+  'microperle-minerali': { name: 'Microperle Minerali Illuminanti', role: 'Illuminante · Correttivo', origine: 'Pigmenti minerali perlati (mica rivestita di ossidi di titanio e ferro). Sfericoidali, ad alta riflettanza ottica diffusa.', meccanismo: 'Riflettono la luce in modo diffuso e uniforme, mascherando otticamente le imperfezioni (effetto soft-focus). Non sono iridescenti ma luminescenti pearlescent.', efficacia: 'Effetto correttivo immediato sulla zona perioculare: borse e occhiaie meno visibili dalla prima applicazione (test sensoriale n=25, 89% di apprezzamento).', tags: ['Illuminante','Correttivo','Soft-focus','Minerale'] },
+  'pigmenti-perlati': { name: 'Pigmenti Minerali Perlati', role: 'Luminosità · Glow', origine: 'Mica naturale rivestita con biossido di titanio (CI 77891) e ossidi di ferro. Granulometria micronizzata per finitura pearlescent delicata.', meccanismo: 'Riflettono la luce con angolo Bragg specifico, creando un effetto luminoso multicolore-bianco. Glow naturale senza glitter visibili.', efficacia: 'Luminosità cutanea percepita +34% (panel sensoriale n=30). Sicuri per pelli sensibili, niente FD&C dyes.', tags: ['Luminosità','Glow','Pearlescent','Modulabile'] },
+  'pumpcoll': { name: 'Pumpcoll® (Zucca Upcycling)', role: 'Stimolante collagene · Elasticizzante', origine: 'Estratto idrolizzato da zucca (Cucurbita pepo) ottenuto da scarti di filiera (upcycling). Brevetto bioattivo italiano.', meccanismo: 'Peptidi di zucca + cucurbitine stimolano i fibroblasti dermici aumentando la sintesi di collagene I e fibronectina. Migliora l\'elasticità cutanea.', efficacia: 'Elasticità cutanea +14% in 28 giorni (cutometria, n=22). Sintesi collagene +27% in coltura di fibroblasti.', tags: ['Anti-età','Elasticità','Upcycling','Brevettato'] },
+  'argireline-amplified': { name: 'Argireline Amplified® (Acetyl Hexapeptide-8)', role: 'Anti-rughe · Effetto botox-like', origine: 'Hexapeptide sintetico (Lucas Meyer Cosmetics) di seconda generazione, evoluzione dell\'Argireline classico — penetrazione cutanea +6×.', meccanismo: 'Mima il frammento N-terminale di SNAP-25, bloccando la formazione del complesso SNARE → ridotto rilascio di acetilcolina → minor contrazione muscolare mimica.', efficacia: 'Riduzione rughe d\'espressione del 30% in 28 giorni (10%, n=25). Effetto comparabile alla tossina botulinica topica.', tags: ['Anti-rughe','Botox-like','Peptide','Espressione'] },
+  'capixyl': { name: 'Capixyl® (Peptide Biomimetico)', role: 'Stimolante crescita pilifera · Anti-caduta', origine: 'Complesso biomimetico Lipotec®: Acetyl Tetrapeptide-3 + estratto di Trifolium pratense (trifoglio rosso) ricco di biocanin A.', meccanismo: 'Tetrapeptide-3 stimola la sintesi delle proteine della matrice extracellulare follicolare (laminina, collagene XVII). Biocanin A inibisce la 5α-reduttasi (riduce DHT, anti-caduta).', efficacia: 'Densità ciglia/sopracciglia +46% in 56 giorni (5%, n=44). Lunghezza ciglia +24%. Riduzione caduta significativa.', tags: ['Anti-caduta','Crescita pilifera','Peptide','Follicolare'] },
+  'capilia-longa': { name: 'Capilia Longa (Curcuma Longa Callus)', role: 'Anti-caduta · Rinforzante', origine: 'Cellule staminali meristematiche di Curcuma longa coltivate in vitro (Vytrus Biotech, Spagna). Contengono curcuminoidi e PIE (polifenoli).', meccanismo: 'Inibisce la transizione da fase anagen a catagen del follicolo pilifero — prolunga la fase di crescita. Riduce lo stress ossidativo del follicolo.', efficacia: 'Riduzione caduta capelli/ciglia del 89% in 150 giorni (RCT n=30). Aumento densità +52% nei soggetti con alopecia androgenetica lieve.', tags: ['Anti-caduta','Staminali','Curcuma','Rinforzante'] },
+  'vite-rossa': { name: 'Cellule Meristematiche di Vite Rossa', role: 'Antiossidante · Protettivo', origine: 'Cellule staminali vegetali di Vitis vinifera (vite rossa) coltivate in vitro. Resveratrolo, antociani, viniferine.', meccanismo: 'Resveratrolo attiva sirtuina-1 (longevità cellulare). Antociani neutralizzano ROS. Viniferine inibiscono la tirosinasi (uniformità tono).', efficacia: 'Protezione da stress ossidativo +28% in cheratinociti (in vitro). Effetto anti-aging epigenetico documentato.', tags: ['Antiossidante','Anti-età','Staminali','Resveratrolo'] },
+  'maxi-lip': { name: 'MAXI-LIP® (Palmitoyl Tripeptide-1)', role: 'Volumizzante labbra · Idratante', origine: 'Tripeptide biomimetico (Sederma, Francia) coniugato con acido palmitico per aumentare la penetrazione lipidica.', meccanismo: 'Stimola la sintesi di collagene e acido ialuronico nei fibroblasti delle labbra. Aumenta volume e idratazione in modo progressivo e fisiologico.', efficacia: 'Volume labbra +40% in 28 giorni (videomicroscopia, n=30). Idratazione +60%, contorno definito.', tags: ['Volumizzante','Anti-rughe','Peptide','Labbra'] },
+  'olio-ricino': { name: 'Olio di Ricino (Ricinus communis)', role: 'Nutriente · Lucidante', origine: 'Spremitura a freddo dei semi di Ricinus communis. Ricco di acido ricinoleico (90%), unico nel regno vegetale.', meccanismo: 'Acido ricinoleico ha proprietà emollienti e anti-infiammatorie (inibizione PGE2). Bassa viscosità, alto potere lucidante e nutriente.', efficacia: 'Lucentezza labbra +52% (effetto gloss durevole). Idratazione 8 ore dopo applicazione singola.', tags: ['Nutriente','Lucidante','Emolliente','Lipid-barrier'] },
+  'zinco-pca': { name: 'Zinco PCA (Pyrrolidone Carboxylate)', role: 'Sebo-regolatore · Purificante', origine: 'Sale di zinco con acido pirrolidonico carbossilico (NMF naturale della pelle). Forma chelata, biodisponibile.', meccanismo: 'Zinco inibisce la 5α-reduttasi tipo I (riduce DHT, riduce sebo). PCA è umettante naturale. Effetto antibatterico verso C. acnes.', efficacia: 'Sebo +37% di riduzione in 28 giorni (3%, n=35). Punti neri visibili -41% in 6 settimane. Pori dilatati visibilmente ridotti.', tags: ['Sebo-regolatore','Purificante','Pori','Anti-acne'] },
+  'acido-salicilico': { name: 'Acido Salicilico (BHA)', role: 'Esfoliante · Anti-imperfezioni', origine: 'Beta-hydroxy acid (BHA) ottenuto da corteccia di salice (Salix alba) o per sintesi. Lipofilo, penetra nei pori sebacei.', meccanismo: 'Dissolve i corneociti del dotto pilosebaceo (esfoliazione intracanalicolare). Anti-infiammatorio via COX/LOX inhibition. Comedolitico.', efficacia: 'Comedoni -47% in 8 settimane (2%, n=40). Pori meno visibili, grana cutanea uniforme. Standard in dermatologia per acne lieve.', tags: ['Esfoliante','BHA','Anti-comedone','Pori'] },
+  'micelle-acqua-girasole': { name: 'Olio di Girasole (Omega 3-6)', role: 'Emolliente · Struccante', origine: 'Olio vergine spremuto a freddo dai semi di Helianthus annuus (girasole). Ricco di acido linoleico (omega-6, 65%) e oleico (omega-9).', meccanismo: 'Affinità lipidica con il sebo: scioglie make-up waterproof e impurità lipofile per solubilizzazione. Riparativo della barriera cutanea.', efficacia: 'Rimozione mascara waterproof: 96% in un singolo passaggio (panel n=30). Non comedogenico (0/5).', tags: ['Struccante','Lipofilo','Omega 3-6','Non comedogenico'] },
+};
+
+const ING_KEY_MAP = {
+  'acido ialuronico': 'acido-ialuronico','hyaluronic acid': 'acido-ialuronico',
+  'sodium hyaluronate': 'acido-ialuronico','hydrolyzed hyaluronic': 'acido-ialuronico','sodium acetylated hyaluronate': 'acido-ialuronico',
+  'collagene vegetale': 'collagene-vegetale','plant collagen': 'collagene-vegetale',
+  'collagene marino': 'collagene-marino','marine collagen': 'collagene-marino',
+  'vitamina c': 'vitamina-c','vitamin c': 'vitamina-c','ascorbyl': 'vitamina-c','ascorbic acid': 'vitamina-c',
+  'vitamina e': 'vitamina-e','vitamin e': 'vitamina-e','tocopheryl': 'vitamina-e','tocopherol': 'vitamina-e',
+  'retinolo': 'retinolo','retinol': 'retinolo','retinyl': 'retinolo',
+  'peptide': 'peptidi','peptidi': 'peptidi','tripeptide': 'peptidi','tetrapeptide': 'peptidi','palmitoyl': 'peptidi',
+  'caffeina': 'caffeina','caffeine': 'caffeina','coffea': 'caffeina',
+  'niacinamide': 'niacinamide','vitamina b3': 'niacinamide',
+  'aloe vera': 'aloe-vera','aloe barbadensis': 'aloe-vera',
+  'bisabololo': 'bisabololo','bisabolol': 'bisabololo',
+  'olio di argan': 'olio-argan','argan oil': 'olio-argan','argania spinosa': 'olio-argan',
+  'olio di cocco': 'olio-cocco','coconut oil': 'olio-cocco','cocos nucifera': 'olio-cocco',
+  'gardenia tahitensis': 'olio-monoi','gardenia taitensis': 'olio-monoi','monoi': 'olio-monoi',
+  'olio di mandorle': 'olio-mandorle','sweet almond': 'olio-mandorle','prunus amygdalus': 'olio-mandorle','prunus dulcis': 'olio-mandorle',
+  'ceramide': 'ceramidi',
+  'zinco pca': 'zinco-pca','zinc pca': 'zinco-pca',
+  'bakuchiol': 'bakuchiol',
+  'isoflavoni': 'isoflavoni-soia','soy isoflavone': 'isoflavoni-soia','glycine soja': 'isoflavoni-soia',
+  'baobab': 'olio-baobab','adansonia': 'olio-baobab',
+  'cellule staminali': 'cellule-staminali-leontopodium','leontopodium': 'cellule-staminali-leontopodium','stella alpina': 'cellule-staminali-leontopodium',
+  'luminescine': 'luminescine','verbascum': 'luminescine',
+  'butylresorcinol': 'butylresorcinol','4-butyl': 'butylresorcinol',
+  'karit': 'karite','shea': 'karite','butyrospermum': 'karite','vitellaria': 'karite',
+  'pantenolo': 'pantenolo','panthenol': 'pantenolo','pantothen': 'pantenolo',
+  'tè verde': 'estratto-te-verde','te verde': 'estratto-te-verde','green tea': 'estratto-te-verde','camellia sinensis': 'estratto-te-verde',
+  'jojoba': 'jojoba','simmondsia': 'jojoba',
+  'allantoina': 'allantoina','allantoin': 'allantoina',
+  'bambù': 'bamboo','bambu': 'bamboo','bamboo': 'bamboo','bambusa': 'bamboo',
+  'tea tree': 'tea-tree','melaleuca': 'tea-tree',
+  'camomilla': 'camomilla','chamomile': 'camomilla','matricaria': 'camomilla',
+  'rosa damascena': 'rosa','rosa canina': 'rosa','rosehip': 'rosa',
+  'olio di mandorle dolci': 'olio-mandorle',
+  'ginkgo biloba': 'ginkgo-biloba','ginkgo': 'ginkgo-biloba',
+  'ginseng': 'ginseng','panax ginseng': 'ginseng','panax': 'ginseng',
+  'bergamotto': 'bergamotto','bergamot': 'bergamotto','citrus bergamia': 'bergamotto','olio essenziale di bergamotto': 'bergamotto',
+  'pepe rosa': 'pepe-rosa','pink pepper': 'pepe-rosa','schinus': 'pepe-rosa','olio essenziale di pepe rosa': 'pepe-rosa',
+  'cedro': 'cedro','cedarwood': 'cedro','cedrus': 'cedro','legno di cedro': 'cedro',
+  'patchouli': 'patchouli','pogostemon': 'patchouli',
+  'glicerina': 'glicerina','glycerin': 'glicerina','glycerol': 'glicerina','glicerina naturale': 'glicerina',
+  'tensioattivi vegetali': 'tensioattivi-vegetali','tensioattivi': 'tensioattivi-vegetali','plant surfactant': 'tensioattivi-vegetali',
+  'acqua di riso': 'acqua-riso-fermentata','riso fermentato': 'acqua-riso-fermentata','oryza sativa': 'acqua-riso-fermentata','rice ferment': 'acqua-riso-fermentata',
+  'centella': 'centella','centella asiatica': 'centella','cica': 'centella','madecassoside': 'centella',
+  'estratto di caffè': 'estratto-caffe','estratto di caffe': 'estratto-caffe','caffè': 'estratto-caffe','coffea arabica': 'estratto-caffe',
+  'microperle minerali': 'microperle-minerali','microperle illuminanti': 'microperle-minerali',
+  'pigmenti perlati': 'pigmenti-perlati','pigmenti minerali perlati': 'pigmenti-perlati','mica': 'pigmenti-perlati',
+  'pumpcoll': 'pumpcoll','cucurbita': 'pumpcoll',
+  'argireline amplified': 'argireline-amplified','argireline': 'argireline-amplified','acetyl hexapeptide-8': 'argireline-amplified',
+  'capixyl': 'capixyl','acetyl tetrapeptide-3': 'capixyl','trifolium pratense': 'capixyl',
+  'capilia longa': 'capilia-longa','curcuma longa callus': 'capilia-longa','curcuma callus': 'capilia-longa',
+  'vite rossa': 'vite-rossa','vitis vinifera': 'vite-rossa','resveratrolo': 'vite-rossa','meristematiche': 'vite-rossa',
+  'maxi-lip': 'maxi-lip','maxi lip': 'maxi-lip','palmitoyl tripeptide-1': 'maxi-lip',
+  'olio di ricino': 'olio-ricino','ricino': 'olio-ricino','ricinus communis': 'olio-ricino','castor oil': 'olio-ricino',
+  'zinco pca': 'zinco-pca','zinc pca': 'zinco-pca','pyrrolidone carboxylate': 'zinco-pca',
+  'acido salicilico': 'acido-salicilico','salicylic acid': 'acido-salicilico','sodium salicylate': 'acido-salicilico','salix alba': 'acido-salicilico',
+  'olio di girasole': 'micelle-acqua-girasole','helianthus annuus': 'micelle-acqua-girasole','sunflower oil': 'micelle-acqua-girasole','omega 3-6': 'micelle-acqua-girasole',
+};
+
+function findLibKey(text) {
+  const lower = text.toLowerCase();
+  for (const [k, v] of Object.entries(ING_KEY_MAP)) {
+    if (lower.includes(k)) return v;
+  }
+  return null;
+}
+
+// bold keywords in description
+(function() {
+  const el = document.getElementById('pdDesc');
+  const raw = el.textContent;
+  const kws = Object.keys(ING_KEY_MAP).filter(k => k.length > 5).sort((a,b) => b.length - a.length);
+  let html = raw.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  kws.forEach(kw => {
+    html = html.replace(new RegExp('(' + kw.replace(/[-]/g,'[-]') + ')', 'gi'), '<strong>$1</strong>');
+  });
+  el.innerHTML = html;
+})();
+
+const actives = loc.actives || [];
+
+// ── KEY INGREDIENTS — build activesDisplay con INCI fallback ──
+let activesDisplay = actives.slice();
+if (product.inci) {
+  const inciParts = product.inci.split(',').map(s => s.trim());
+  const seen = new Set();
+  inciParts.forEach(part => {
+    const key = findLibKey(part);
+    if (key && !seen.has(key)) {
+      seen.add(key);
+      const lib = ACTIVES_LIB[key];
+      if (lib && !activesDisplay.some(a => a.startsWith(lib.name))) {
+        activesDisplay.push(lib.name + ' — ' + lib.role);
+      }
+    }
+  });
+  // Se ancora vuoto o pochi attivi riconosciuti, integra con INCI grezzo
+  if (activesDisplay.length === 0) {
+    const skipWords = ['aqua','water','parfum','fragrance','phenoxyethanol','ethylhexylglycerin',
+                       'sodium hydroxide','citric acid','benzyl','linalool','limonene',
+                       'sodium benzoate','potassium sorbate','dehydroacetic acid'];
+    inciParts
+      .filter(s => s.length > 4 && !skipWords.some(w => s.toLowerCase().startsWith(w)))
+      .slice(0, 7)
+      .forEach(ing => activesDisplay.push(ing + ' — Ingrediente attivo'));
+  }
+}
+document.getElementById('kiCount').textContent = '';
+const kiRows = document.getElementById('kiRows');
+
+activesDisplay.forEach((active, i) => {
+  const sep     = active.indexOf('—');
+  const rawName = sep > -1 ? active.slice(0, sep).trim() : active;
+  const shortDesc = sep > -1 ? active.slice(sep + 1).trim() : '';
+  const key  = findLibKey(rawName);
+  const data = key ? ACTIVES_LIB[key] : null;
+
+  const row = document.createElement('div');
+  row.className = 'ki-row' + (data ? '' : ' ki-row--no-data');
+  row.setAttribute('data-reveal', '');
+  row.style.setProperty('--d', Math.min(i, 5) * 60 + 'ms');
+
+  row.innerHTML = `
+    <div class="ki-row__head">
+      <div class="ki-row__num">${String(i + 1).padStart(2, '0')}</div>
+      <div class="ki-row__main">
+        <div class="ki-row__name">${data ? data.name : rawName}</div>
+        <div class="ki-row__tag">${data ? data.role : (shortDesc || 'Ingrediente attivo')}</div>
+      </div>
+      <div class="ki-row__toggle">${data ? '+' : '—'}</div>
+    </div>
+    ${data ? `
+    <div class="ki-row__body">
+      <div class="ki-detail">
+        <div class="ki-detail__block">
+          <div class="ki-detail__label">Origine</div>
+          <div class="ki-detail__text">${data.origine}</div>
+        </div>
+        <div class="ki-detail__block">
+          <div class="ki-detail__label">Meccanismo d'azione</div>
+          <div class="ki-detail__text">${data.meccanismo}</div>
+        </div>
+        <div class="ki-detail__block">
+          <div class="ki-detail__label">Evidenza clinica</div>
+          <div class="ki-detail__text">${data.efficacia}</div>
+        </div>
+      </div>
+      <div class="ki-detail" style="margin-top:-1px; margin-bottom: clamp(20px,3vw,32px);">
+        <div class="ki-detail__block ki-detail__block--wide">
+          <div class="ki-detail__tags">
+            ${data.tags.map(t => `<span class="ki-detail__tag">${t}</span>`).join('')}
+          </div>
+        </div>
+      </div>
+    </div>` : ''}
+  `;
+
+  if (data) {
+    row.addEventListener('click', () => openKiModal(data, i + 1));
+  }
+  kiRows.appendChild(row);
+});
+
+// ── MODALE INGREDIENTE ────────────────────────────────────────
+let _kiSavedScrollY = 0;
+function openKiModal(data, num) {
+  const modal = document.getElementById('kiModal');
+  if (!modal) return;
+  document.getElementById('kiModalNum').textContent = String(num).padStart(2, '0');
+  document.getElementById('kiModalName').textContent = data.name || '';
+  document.getElementById('kiModalRole').textContent = data.role || '';
+  document.getElementById('kiModalOrigine').textContent = data.origine || '';
+  document.getElementById('kiModalMeccanismo').textContent = data.meccanismo || '';
+  document.getElementById('kiModalEfficacia').textContent = data.efficacia || '';
+  const tagsEl = document.getElementById('kiModalTags');
+  tagsEl.innerHTML = '';
+  (data.tags || []).forEach(t => {
+    tagsEl.insertAdjacentHTML('beforeend', `<span class="ki-modal__tag">${t}</span>`);
+  });
+  // Stop Lenis smooth scroll
+  if (window.lenis && typeof window.lenis.stop === 'function') window.lenis.stop();
+  // Memorizza posizione e congela body
+  _kiSavedScrollY = window.scrollY || window.pageYOffset || 0;
+  document.body.style.top = `-${_kiSavedScrollY}px`;
+  document.body.classList.add('ki-modal-open');
+  // Reset scroll della modale
+  modal.scrollTop = 0;
+  modal.classList.add('show');
+}
+function closeKiModal() {
+  const modal = document.getElementById('kiModal');
+  if (!modal) return;
+  modal.classList.remove('show');
+  document.body.classList.remove('ki-modal-open');
+  document.body.style.top = '';
+  // Ripristina posizione di scroll
+  window.scrollTo(0, _kiSavedScrollY);
+  // Riprendi Lenis
+  if (window.lenis && typeof window.lenis.start === 'function') window.lenis.start();
+}
+const kiModal = document.getElementById('kiModal');
+if (kiModal) {
+  document.getElementById('kiModalClose').addEventListener('click', closeKiModal);
+  kiModal.addEventListener('click', (e) => { if (e.target === kiModal) closeKiModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeKiModal(); });
+}
+
+// ── USO STEPS — sezione rimossa, JS lasciato no-op con guard ─
+const useText = loc.use || '';
+const stepsEl = document.getElementById('pdUsoSteps');
+if (stepsEl && useText) {
+  const steps = useText.split(/\.(?:\s|$)/).map(s => s.trim()).filter(s => s.length > 4);
+  if (steps.length > 1) {
+    steps.forEach((s, i) => {
+      stepsEl.insertAdjacentHTML('beforeend', `
+        <div class="pd-uso__step">
+          <span class="pd-uso__step-n">0${i + 1}</span>
+          <span class="pd-uso__step-text">${s}.</span>
+        </div>`);
+    });
+  } else {
+    stepsEl.insertAdjacentHTML('beforeend', `<p class="pd-uso__text">${useText}</p>`);
+  }
+}
+
+// ── FORMULA PILLS ─────────────────────────────────────────
+const formulaPills = document.getElementById('formulaPills');
+if (formulaPills) [
+  { l: '0% Petrolchimici · 0% Siliconi · 0% Coloranti sintetici', v: 'Formula pulita' },
+  { l: '95-100% ingredienti di origine naturale', v: 'Naturalità' },
+  { l: '100% Made in Italy · Pianoro (BO)', v: 'Produzione integrata' },
+  { l: 'Test in collaborazione con Università di Ferrara', v: 'Dermatol. testato' },
+].forEach(pill => {
+  formulaPills.insertAdjacentHTML('beforeend', `
+    <div class="pd-formula__pill">
+      <span class="pd-formula__pill-label">${pill.l}</span>
+      <span class="pd-formula__pill-val">${pill.v}</span>
+    </div>`);
+});
+
+// ── META ROW rimossa dal layout (sezione pdMetaRow non più presente) ────
+
+// ── INCI ─────────────────────────────────────────────────────
+document.getElementById('pdInci').textContent = product.inci || (lang === 'it' ? 'INCI non disponibile.' : 'INCI not available.');
+const inciToggle = document.getElementById('inciToggle');
+const inciBody   = document.getElementById('inciBody');
+inciToggle.addEventListener('click', () => {
+  const open = inciBody.classList.toggle('open');
+  inciToggle.classList.toggle('open', open);
+});
+
+// ── B2B TABLE rimossa dal layout (sezione B2B non più presente) ────
+
+// ── PRODOTTI CORRELATI ────────────────────────────────────────
+const relatedSection = document.getElementById('relatedSection');
+const relatedGrid    = document.getElementById('relatedGrid');
+let siblings = (window.PRODUCTS || []).filter(p => p.line && p.line === product.line && p.id !== product.id);
+if (!siblings.length && window.ATH_DATA && product.line) {
+  try {
+    siblings = (ATH_DATA.byLine(product.line) || [])
+      .filter(p => p.id !== product.id)
+      .map(adaptJsonProduct);
+  } catch(e) { siblings = []; }
+}
+if (!siblings.length) {
+  relatedSection.style.display = 'none';
+} else {
+  /* Testi delle card Everby copia-incollati 1:1 da linee/everby.html */
+  const EVERBY_COPY = {
+    'everby-no-cry-zone-truccante-bifasico-occhi-delicato': {
+      cat: 'Struccante Occhi', name: 'No Cry Zone',
+      sub: 'Struccante bifasico occhi waterproof, senza irritazioni',
+      actives: 'Aloe Vera · Omega 3-6 · Formula bifasica'
+    },
+    'everby-cica-cloud-hydra-mousse-detergente-viso-delicata': {
+      cat: 'Detergente', name: 'Cica Cloud',
+      sub: 'Hydra-Mousse detergente quotidiana — glass skin effect',
+      actives: 'Acqua di Riso Fermentata · Centella Asiatica'
+    },
+    'everby-gel-burro-struccante-feel-butter': {
+      cat: 'Struccante', name: 'Feel Butter',
+      sub: 'Gel burro struccante 3-in-1 anche waterproof',
+      actives: 'Blend Vitaminico A-C-E · Fitosteroli · 3 Oli Vegetali'
+    },
+    'everby-milky-rice-hydrating-milky-toner': {
+      cat: 'Toner', name: 'Milky Rice',
+      sub: 'Hydrating Milky Toner — glass skin effect, pH-friendly',
+      actives: 'Acqua di Riso Fermentata · Niacinamide'
+    },
+    'everby-trattamento-viso-perfezionatore-pori-dilatati-stay-po': {
+      cat: 'Siero Viso', name: 'Stay Porefect',
+      sub: 'Siero perfezionatore opacizzante — pori ridotti, base trucco perfetta',
+      actives: 'Zinco PCA · Acido Salicilico · Niacinamide · Tè Verde'
+    },
+    'everby-siero-viso-rimpolpante-pump-e-plump': {
+      cat: 'Siero Viso', name: 'Pump & Plump',
+      sub: 'Siero rimpolpante intensivo con peptide botox-like',
+      actives: '<strong>Pumpcoll®</strong> (zucca, upcycling) · <strong>Argireline Amplified®</strong> · Acido Ialuronico'
+    },
+    'everby-gocce-illuminanti-viso-yes-i-glow': {
+      cat: 'Gocce Viso', name: 'Yes I Glow',
+      sub: 'Gocce illuminanti per un glow immediato e modulabile',
+      actives: 'Pigmenti perlati · Acido Ialuronico · Vitamina C stabilizzata'
+    },
+    'everby-contorno-occhi-dont-call-me-panda': {
+      cat: 'Contorno Occhi', name: "Don't Call Me Panda",
+      sub: 'Contorno occhi 2-in-1 per borse e occhiaie',
+      actives: 'Microperle Illuminanti · Estratto di Caffè · <strong>Luminescine®</strong> · Niacinamide'
+    },
+    'everby-pepti-boom-lip-filler-volumizzante-labbra': {
+      cat: 'Lip Filler', name: 'Pepti Boom',
+      sub: 'Lip filler volumizzante — +40% volume clinicamente testato',
+      actives: '<strong>MAXI-LIP® Peptide</strong> · Vitamina E · Olio di Ricino'
+    },
+    'everby-siero-ciglia-e-sopracciglia-lash-me': {
+      cat: 'Siero Ciglia & Sopracciglia', name: 'Lash Me',
+      sub: 'Siero rinforzante e allungante — risultati visibili in 8 settimane',
+      actives: '<strong>Capixyl®</strong> · Cellule Meristematiche Vite Rossa · Cellule Staminali Curcuma'
+    },
+  };
+  siblings.slice(0, 4).forEach((sib, i) => {
+    const sloc   = sib[lang] || sib.it;
+    const sibPal = palettes[sib.line || sib.brand] || { bg: '#1a1a1a' };
+    const sibBg  = `linear-gradient(145deg, ${sibPal.bg} 0%, #050505 100%)`;
+    const sibLine = window.LINES && LINES.find(l => l.id === (sib.line || sib.brand));
+    const sibSvg = typeof productMock === 'function' ? productMock(sib.line || sib.brand || 'argan', sloc.name, '') : '';
+    const sibBrand = sib.brand || sib.line || '';
+    const ctaText = lang === 'en' ? 'Discover product &rarr;' : 'Scopri il prodotto &rarr;';
+    /* Per Everby usa i testi copiati 1:1 da linee/everby.html; per gli altri estrai da data */
+    let cat, name, sub, actives;
+    const evCopy = sibBrand === 'everby' ? EVERBY_COPY[sib.id] : null;
+    if (evCopy) {
+      cat = evCopy.cat; name = evCopy.name; sub = evCopy.sub; actives = evCopy.actives;
+    } else {
+      cat = sibLine ? sibLine.shortName : '';
+      name = sloc.name;
+      sub = (sloc.sub || '').split('. ').slice(0,1).join('. ').replace(/\.?$/, '.');
+      actives = (sloc.actives || []).slice(0,3).map(a => a.split('—')[0].split('(')[0].trim()).join(' · ');
+    }
+    /* Visual: per Everby la foto lifestyle come in linee/everby.html; altri brand: mock SVG */
+    let visualHtml;
+    if (sibBrand === 'everby') {
+      visualHtml = `<div class="pr-card__visual"><img src="immagini/everby/lifestyle-01.jpg" alt="${name}" loading="lazy"></div>`;
+    } else {
+      visualHtml = `<div class="pr-card__visual" style="background:${sibBg}">${sibSvg}</div>`;
+    }
+    relatedGrid.insertAdjacentHTML('beforeend', `
+      <a class="pr-card" data-brand="${sibBrand}" href="prodotto.html?id=${sib.id}" data-reveal style="--d:${i * 80}ms">
+        ${visualHtml}
+        <div class="pr-card__info">
+          <div class="pr-card__cat">${cat}</div>
+          <div class="pr-card__name">${name}</div>
+          <div class="pr-card__sub">${sub}</div>
+          ${actives ? `<div class="pr-card__actives">${actives}</div>` : ''}
+          <span class="pr-card__cta">${ctaText}</span>
+        </div>
+      </a>`);
+  });
+}
+
+// ── SCROLL REVEAL ─────────────────────────────────────────────
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('is-visible'); revealObs.unobserve(e.target); }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('[data-reveal]').forEach(el => revealObs.observe(el));
+
+document.title = `${loc.name} — Athena's`;
+} /* end initProductPage() */
+</script>
 </body>
 </html>

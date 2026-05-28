@@ -1006,8 +1006,8 @@
         const activeChips = (locData.actives || []).slice(0, 3)
           .map(a => a.split('—')[0].split('(')[0].trim())
           .filter(Boolean);
-        const ctaHref = p.url || `https://www.erboristica.com/${line.slug || line.id || ''}`;
-        const ctaLabel = l === 'en' ? 'Buy on erboristica.com →' : 'Acquista su erboristica.com →';
+        const ctaHref = `../prodotto.html?id=${p.id}`;
+        const ctaLabel = l === 'en' ? 'Discover product →' : 'Scopri il prodotto →';
         const cardImg = cardImgs.length ? cardImgs[i % cardImgs.length] : null;
 
         const article = document.createElement('article');
@@ -1029,7 +1029,7 @@
             <h3 class="mini-card__name">${toTitleCase(locData.name)}</h3>
             <p class="mini-card__desc">${DESC_SHORT[p.id] || firstSent(descFull)}</p>
             <div class="mini-card__actives">${activeChips.join(' · ')}</div>
-            <a class="mini-card__cta" href="${ctaHref}" target="_blank" rel="noopener" data-it="Acquista su erboristica.com &rarr;" data-en="Buy on erboristica.com &rarr;">${ctaLabel}</a>
+            <a class="mini-card__cta" href="${ctaHref}" data-it="Scopri il prodotto &rarr;" data-en="Discover product &rarr;">${ctaLabel}</a>
           </div>`;
 
         grid.appendChild(article);
