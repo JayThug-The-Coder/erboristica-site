@@ -111,7 +111,7 @@
   }
 
   .el-banner__text {
-    background: var(--cream-2);
+    background: var(--el-tint, var(--cream-2));
     display: flex; flex-direction: column; justify-content: center;
     padding: clamp(32px, 5vw, 72px);
     border: 1px solid rgba(0,0,0,.06);
@@ -358,7 +358,7 @@
 
 <script src="../assets/vendor/lenis.min.js" defer></script><script src="../assets/data.js"></script>
 <script src="../assets/search-data.js" defer></script>
-<script src="../assets/app.js?v=6"></script>
+<script src="../assets/app.js?v=7"></script>
 <script>
   // Override nav paths for subfolder
   window.renderTopbar = (function(orig) {
@@ -412,6 +412,13 @@
   // Skincare Innovation in cima, poi il resto nell'ordine attuale
   const innIdx = lines.findIndex(l => l.id === 'innovation');
   if (innIdx > 0) lines.unshift(lines.splice(innIdx, 1)[0]);
+  // Tint chiaro per linea (coerente con prodotto.html e linea.html)
+  const lineTints = {
+    antieta: '#ecd9bf', argan: '#f2e2ab', cocco: '#cfe6ee', mandorle: '#f0d8cd',
+    illumia: '#f0e1a4', purysens: '#cdddee', nutra: '#ecd6bf', estratti: '#d6e6c8',
+    uomo: '#d4dce6', innovation: '#ddd0ee', pearls: '#e2d2ee',
+    'mineral-infusions': '#cce8ec', 'doppia-detersione': '#dacfec',
+  };
   const g = document.getElementById('lines-grid');
   const render = () => {
     g.innerHTML = '';
@@ -419,6 +426,7 @@
       const el = document.createElement('a');
       el.className = 'el-banner' + (i % 2 !== 0 ? ' el-banner--reverse' : '');
       el.href = `linea.html?id=${l.id}`;
+      if (lineTints[l.id]) el.style.setProperty('--el-tint', `linear-gradient(150deg, #fbfaf7 0%, ${lineTints[l.id]} 75%, ${lineTints[l.id]} 100%)`);
       const lang = ATH.lang;
       const ld = l[lang];
       const count = LINE_COUNTS[l.id]?.[lang] || '';

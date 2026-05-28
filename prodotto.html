@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="assets/tokens.css"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--sans); background: var(--cream); color: var(--ink); overflow-x: hidden; }
+    body { font-family: var(--sans); background: var(--pd-tint, var(--cream)); color: var(--ink); overflow-x: hidden; }
 
     /* Tema per brand — sovrascrive token cream/accent quando il prodotto appartiene al brand */
     body.theme-everby {
@@ -110,7 +110,7 @@
     }
 
     .pd-hero__info {
-      background: var(--cream);
+      background: var(--pd-tint, var(--cream));
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -239,7 +239,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       min-height: clamp(480px, 80vh, 760px);
-      background: var(--cream);
+      background: var(--pd-tint, var(--cream));
       border-top: 1px solid rgba(0,0,0,.06);
     }
     .pd-row__fig {
@@ -819,7 +819,7 @@
 
     /* ── PRODOTTI CORRELATI ─────────────────────────────────── */
     .pd-related {
-      background: var(--cream);
+      background: var(--pd-tint, var(--cream));
       padding: clamp(70px, 9vw, 110px) 0;
       border-top: 1px solid rgba(0,0,0,.06);
     }
@@ -1053,10 +1053,10 @@
 
 <div id="footer"></div>
 
-<script src="assets/vendor/lenis.min.js"></script><script src="assets/data.js"></script>
-<script src="assets/data-inline.js"></script>
-<script src="assets/datastore.js"></script>
-<script src="assets/app.js?v=6"></script>
+<script src="assets/vendor/lenis.min.js"></script><script src="assets/data.js?v=7"></script>
+<script src="assets/data-inline.js?v=7"></script>
+<script src="assets/datastore.js?v=7"></script>
+<script src="assets/app.js?v=7"></script>
 <script>
 initAthenas('prodotto');
 const _topbar = document.querySelector('.topbar');
@@ -1126,34 +1126,40 @@ function initProductPage(product) {
 const lang = document.documentElement.lang === 'en' ? 'en' : 'it';
 const loc  = product[lang] || product.it;
 
+// Palette per linea — grad: sfondo hero dietro foto (dal catalogo) · tint: sfondo chiaro pannelli/sezioni · glow: alone · accent: colore-linea
 const palettes = {
-  antieta:    { bg: '#2e1f10', glow: 'rgba(201,169,110,.22)' },
-  argan:      { bg: '#3a2410', glow: 'rgba(210,150,70,.22)' },
-  cocco:      { bg: '#0e1e2e', glow: 'rgba(100,180,220,.18)' },
-  mandorle:   { bg: '#2e1520', glow: 'rgba(220,150,170,.2)' },
-  illumia:    { bg: '#251a08', glow: 'rgba(220,180,60,.2)' },
-  purysens:   { bg: '#101528', glow: 'rgba(130,160,220,.18)' },
-  nutra:      { bg: '#2e1208', glow: 'rgba(200,120,60,.2)' },
-  estratti:   { bg: '#0f1e0f', glow: 'rgba(90,160,90,.2)' },
-  uomo:       { bg: '#101525', glow: 'rgba(100,120,180,.18)' },
-  innovation: { bg: '#1a0f28', glow: 'rgba(160,100,220,.2)' },
-  pearls:     { bg: '#1a0f28', glow: 'rgba(160,100,220,.2)' },
-  'mineral-infusions': { bg: '#0a1a24', glow: 'rgba(80,160,200,.2)' },
-  'doppia-detersione': { bg: '#1a1a1a', glow: 'rgba(180,140,100,.15)' },
-  kaley:      { bg: '#1a0e05', glow: 'rgba(201,169,110,.22)' },
-  everby:     { bg: '#0e1824', glow: 'rgba(180,220,230,.2)' },
-  sphea:      { bg: '#080808', glow: 'rgba(201,169,110,.15)' },
+  antieta:    { grad: '135deg, #160c04 0%, #2c1508 60%, #3e1e0c 100%', tint: '#ecd9bf', glow: 'rgba(201,169,110,.22)', accent: '#9a7f4a' },
+  argan:      { grad: '135deg, #f7ead0 0%, #f0d898 60%, #e8c878 100%', tint: '#f2e2ab', glow: 'rgba(210,150,70,.20)', accent: '#a8842c' },
+  cocco:      { grad: '135deg, #eef5f7 0%, #cce4ec 60%, #a8d0dc 100%', tint: '#cfe6ee', glow: 'rgba(100,180,220,.18)', accent: '#3a8aa0' },
+  mandorle:   { grad: '135deg, #f7edea 0%, #eed8d0 60%, #e0c4b8 100%', tint: '#f0d8cd', glow: 'rgba(220,150,170,.18)', accent: '#b87860' },
+  illumia:    { grad: '135deg, #f7edd0 0%, #edda98 60%, #e0c870 100%', tint: '#f0e1a4', glow: 'rgba(220,180,60,.20)', accent: '#b8902c' },
+  purysens:   { grad: '135deg, #dde8f2 0%, #c0d4e8 60%, #a0c0dc 100%', tint: '#cdddee', glow: 'rgba(130,160,220,.18)', accent: '#5a7a9a' },
+  nutra:      { grad: '135deg, #f5ede5 0%, #e8ceac 60%, #d8ae88 100%', tint: '#ecd6bf', glow: 'rgba(200,120,60,.18)', accent: '#a8703c' },
+  estratti:   { grad: '135deg, #edf2e8 0%, #ccddb8 60%, #aac898 100%', tint: '#d6e6c8', glow: 'rgba(90,160,90,.18)', accent: '#5a7a4a' },
+  uomo:       { grad: '135deg, #070c18 0%, #0e1c30 60%, #162440 100%', tint: '#d4dce6', glow: 'rgba(100,120,180,.18)', accent: '#5a6e9a' },
+  innovation: { grad: '135deg, #0c0818 0%, #1a1030 60%, #261640 100%', tint: '#ddd0ee', glow: 'rgba(160,100,220,.20)', accent: '#8a5ac0' },
+  pearls:     { grad: '135deg, #f2eef6 0%, #ddd0e8 60%, #c0a8d8 100%', tint: '#e2d2ee', glow: 'rgba(160,100,220,.18)', accent: '#8a5ac0' },
+  'mineral-infusions': { grad: '135deg, #e4f2f4 0%, #b8e0e4 60%, #88ccd4 100%', tint: '#cce8ec', glow: 'rgba(80,160,200,.18)', accent: '#3a9aa6' },
+  'doppia-detersione': { grad: '135deg, #ece8f4 0%, #d4c8e8 60%, #b4a0d8 100%', tint: '#dacfec', glow: 'rgba(150,120,200,.16)', accent: '#7a60a8' },
+  kaley:      { grad: '135deg, #1e0610 0%, #380c20 60%, #521230 100%', tint: '#f0d6e0', glow: 'rgba(200,96,144,.20)', accent: '#c86090' },
+  everby:     { grad: '135deg, #f0faf7 0%, #d4ede9 55%, #74d0c4 100%', tint: '#eef9f5', glow: 'rgba(116,208,196,.20)', accent: '#2e8a82' },
+  sphea:      { grad: '135deg, #040810 0%, #080e22 60%, #0c1432 100%', tint: '#d4dce6', glow: 'rgba(138,154,192,.16)', accent: '#5a6e9a' },
 };
 
 const lineId = product.line || product.brand || '';
-const pal    = palettes[lineId] || { bg: '#1a1a1a', glow: 'rgba(201,169,110,.15)' };
+const pal    = palettes[lineId] || { grad: '145deg, #1a1a1a 0%, #050505 100%', tint: '#f3eee4', glow: 'rgba(201,169,110,.15)', accent: '#9a7f4a' };
 
 /* tema brand-aware sul body */
 document.body.classList.forEach(c => { if (c.startsWith('theme-')) document.body.classList.remove(c); });
 if (product.brand) document.body.classList.add('theme-' + product.brand);
 
-document.getElementById('pdBg').style.background = `linear-gradient(145deg, ${pal.bg} 0%, #050505 100%)`;
+document.getElementById('pdBg').style.background = `linear-gradient(${pal.grad})`;
 document.getElementById('pdGlow').style.setProperty('--glow-c', pal.glow);
+// applica tint chiaro della linea ai pannelli/sezioni + accent (gradiente soft)
+const pdTintGrad = `linear-gradient(168deg, #fbfaf7 0%, ${pal.tint} 70%, ${pal.tint} 100%)`;
+document.body.style.setProperty('--pd-tint', pdTintGrad);
+document.body.style.setProperty('--pd-accent', pal.accent);
+document.body.style.background = pdTintGrad;  // forza sul body (vince su tokens.css)
 
 const brand = window.BRANDS && BRANDS.find(b => b.id === (product.brand || lineId));
 const line  = window.LINES  && LINES.find(l => l.id === lineId);

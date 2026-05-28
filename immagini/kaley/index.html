@@ -1,0 +1,136 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Kaley - Selezione foto Higgsfield</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}body{background:#0e0a06;color:#e8d8c0;font-family:Inter,system-ui,sans-serif;padding:32px clamp(16px,4vw,60px) 120px}
+h1{font-weight:300;font-size:clamp(26px,4vw,48px);letter-spacing:-.02em;margin-bottom:6px}h1 em{font-style:italic;color:#c9a96e}
+.sub{color:rgba(232,216,192,.5);font-size:13px;letter-spacing:.08em;margin-bottom:36px}
+.grp{margin-bottom:56px}
+.grp__h{display:flex;align-items:center;gap:18px;border-bottom:1px solid rgba(201,169,110,.2);padding-bottom:14px;margin-bottom:22px;flex-wrap:wrap}
+.grp__name{font-size:clamp(20px,3vw,32px);font-weight:300;font-style:italic;color:#e8d8c0}.grp__fam{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#c9a96e;opacity:.6}
+.grp__count{margin-left:auto;font-size:12px;color:#c9a96e}
+.grp__ref{display:flex;align-items:center;gap:10px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(232,216,192,.4)}
+.grp__ref img{width:54px;height:54px;object-fit:contain;border:1px solid rgba(201,169,110,.2);background:#fff;border-radius:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.card{position:relative;background:#080603;border:2px solid rgba(201,169,110,.12);overflow:hidden;cursor:pointer;transition:border-color .2s,transform .2s}
+.card:hover{transform:translateY(-3px)}
+.card img{width:100%;aspect-ratio:1;object-fit:cover;display:block;transition:opacity .2s}
+.card__id{font-size:10px;letter-spacing:.1em;color:rgba(201,169,110,.5);padding:7px 10px;font-family:monospace;word-break:break-all}
+.card__check{position:absolute;top:10px;right:10px;width:30px;height:30px;border-radius:50%;border:2px solid rgba(255,255,255,.5);background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;transition:all .2s}
+.card.sel{border-color:#5fd18a}
+.card.sel .card__check{background:#5fd18a;border-color:#5fd18a;color:#06280f}
+.card:not(.sel) img{opacity:.5}.card:not(.sel):hover img{opacity:.8}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(8,6,3,.96);backdrop-filter:blur(8px);border-top:1px solid rgba(201,169,110,.25);padding:14px clamp(16px,4vw,60px);display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.bar__n{font-size:14px;color:#e8d8c0}.bar__n b{color:#c9a96e;font-size:20px;font-family:Fraunces,serif}
+.btn{font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:11px 20px;border:1px solid rgba(201,169,110,.35);background:transparent;color:#c9a96e;cursor:pointer;transition:all .2s;border-radius:3px}
+.btn:hover{background:#c9a96e;color:#0e0a06}.btn--primary{background:#c9a96e;color:#0e0a06;border-color:#c9a96e}.btn--primary:hover{background:#d4b87c}
+.bar__sp{margin-left:auto}
+#out{position:fixed;inset:0;z-index:60;background:rgba(4,3,2,.92);display:none;align-items:center;justify-content:center;padding:24px}#out.show{display:flex}
+#out .box{background:#0e0a06;border:1px solid rgba(201,169,110,.3);max-width:640px;width:100%;max-height:80vh;display:flex;flex-direction:column;padding:24px}
+#out h2{font-weight:300;font-style:italic;color:#c9a96e;margin-bottom:12px}
+#out textarea{flex:1;min-height:300px;background:#060403;color:#e8d8c0;border:1px solid rgba(201,169,110,.2);font-family:monospace;font-size:12px;padding:12px;resize:none;margin-bottom:12px}
+#out .row{display:flex;gap:10px;justify-content:flex-end}
+</style></head><body>
+<h1>Kaley &mdash; <em>seleziona le foto</em></h1>
+<div class="sub">57 foto totali &middot; clicca per selezionare (verde = tenuta) &middot; la scelta si salva da sola nel browser</div>
+<section class="grp" data-slug="crystal_rouge">
+<div class="grp__h"><span class="grp__name">Crystal Rouge</span><span class="grp__fam">Legnosa / Ambrata</span><span class="grp__ref"><img src="_ecommerce/crystal_rouge_thumb.webp" alt="packshot"> packshot reale</span><span class="grp__count" data-count="crystal_rouge">0 / 7</span></div>
+<div class="grid">
+<div class="card" data-key="crystal_rouge/crystal_rouge_saffron" data-slug="crystal_rouge"><img loading="lazy" src="../higgsfield/kaley/crystal_rouge/thumb/crystal_rouge_saffron.png" alt="crystal_rouge_saffron"><div class="card__check">&#10003;</div><div class="card__id">crystal_rouge_saffron</div></div>
+<div class="card" data-key="crystal_rouge/33f373cf" data-slug="crystal_rouge"><img loading="lazy" src="../higgsfield/kaley/crystal_rouge/thumb/kaley-33f373cf.webp" alt="33f373cf"><div class="card__check">&#10003;</div><div class="card__id">33f373cf</div></div>
+<div class="card" data-key="crystal_rouge/bc58aefe" data-slug="crystal_rouge"><img loading="lazy" src="../higgsfield/kaley/crystal_rouge/thumb/kaley-bc58aefe.webp" alt="bc58aefe"><div class="card__check">&#10003;</div><div class="card__id">bc58aefe</div></div>
+<div class="card" data-key="crystal_rouge/bd07c4c2" data-slug="crystal_rouge"><img loading="lazy" src="../higgsfield/kaley/crystal_rouge/thumb/kaley-bd07c4c2.webp" alt="bd07c4c2"><div class="card__check">&#10003;</div><div class="card__id">bd07c4c2</div></div>
+<div class="card" data-key="crystal_rouge/c8de84d9" data-slug="crystal_rouge"><img loading="lazy" src="../higgsfield/kaley/crystal_rouge/thumb/kaley-c8de84d9.webp" alt="c8de84d9"><div class="card__check">&#10003;</div><div class="card__id">c8de84d9</div></div>
+<div class="card" data-key="crystal_rouge/ebf37408" data-slug="crystal_rouge"><img loading="lazy" src="../higgsfield/kaley/crystal_rouge/thumb/kaley-ebf37408.webp" alt="ebf37408"><div class="card__check">&#10003;</div><div class="card__id">ebf37408</div></div>
+<div class="card" data-key="crystal_rouge/f201de7b" data-slug="crystal_rouge"><img loading="lazy" src="../higgsfield/kaley/crystal_rouge/thumb/kaley-f201de7b.webp" alt="f201de7b"><div class="card__check">&#10003;</div><div class="card__id">f201de7b</div></div>
+</div></section>
+<section class="grp" data-slug="dark_sea">
+<div class="grp__h"><span class="grp__name">Dark Sea</span><span class="grp__fam">Legnosa / Marina</span><span class="grp__ref"><img src="_ecommerce/dark_sea_thumb.webp" alt="packshot"> packshot reale</span><span class="grp__count" data-count="dark_sea">0 / 16</span></div>
+<div class="grid">
+<div class="card" data-key="dark_sea/darksea_lily_amber" data-slug="dark_sea"><img loading="lazy" src="../higgsfield/kaley/dark_sea/thumb/darksea_lily_amber.png" alt="darksea_lily_amber"><div class="card__check">&#10003;</div><div class="card__id">darksea_lily_amber</div></div>
+<div class="card" data-key="dark_sea/darksea_water_lemon" data-slug="dark_sea"><img loading="lazy" src="../higgsfield/kaley/dark_sea/thumb/darksea_water_lemon.png" alt="darksea_water_lemon"><div class="card__check">&#10003;</div><div class="card__id">darksea_water_lemon</div></div>
+<div class="card" data-key="dark_sea/378e5107" data-slug="dark_sea"><img loading="lazy" src="../higgsfield/kaley/dark_sea/thumb/kaley-378e5107.webp" alt="378e5107"><div class="card__check">&#10003;</div><div class="card__id">378e5107</div></div>
+<div class="card" data-key="dark_sea/408fab02" data-slug="dark_sea"><img loading="lazy" src="../higgsfield/kaley/dark_sea/thumb/kaley-408fab02.webp" alt="408fab02"><div class="card__check">&#10003;</div><div class="card__id">408fab02</div></div>
+<div class="card" data-key="dark_sea/4f6a6c5d" data-slug="dark_sea"><img loading="lazy" src="../higgsfield/kaley/dark_sea/thumb/kaley-4f6a6c5d.webp" alt="4f6a6c5d"><div class="card__check">&#10003;</div><div class="card__id">4f6a6c5d</div></div>
+<div class="card" data-key="dark_sea/6a037169" data-slug="dark_sea"><img loading="lazy" src="../higgsfield/kaley/dark_sea/thumb/kaley-6a037169.webp" alt="6a037169"><div class="card__check">&#10003;</div><div class="card__id">6a037169</div></div>
+<div class="card" data-key="dark_sea/7ac993cf" data-slug="dark_sea"><img loading="lazy" src="../higgsfield/kaley/dark_sea/thumb/kaley-7ac993cf.webp" alt="7ac993cf"><div class="card__check">&#10003;</div><div class="card__id">7ac993cf</div></div>
+<div class="card" data-key="dark_sea/7f9732c4" data-slug="dark_sea"><img loading="lazy" src="../higgsfield/kaley/dark_sea/thumb/kaley-7f9732c4.webp" alt="7f9732c4"><div class="card__check">&#10003;</div><div class="card__id">7f9732c4</div></div>
+<div class="card" data-key="dark_sea/8e4213c5" data-slug="dark_sea"><img loading="lazy" src="../higgsfield/kaley/dark_sea/thumb/kaley-8e4213c5.webp" alt="8e4213c5"><div class="card__check">&#10003;</div><div class="card__id">8e4213c5</div></div>
+<div class="card" data-key="dark_sea/9ae9a38e" data-slug="dark_sea"><img loading="lazy" src="../higgsfield/kaley/dark_sea/thumb/kaley-9ae9a38e.webp" alt="9ae9a38e"><div class="card__check">&#10003;</div><div class="card__id">9ae9a38e</div></div>
+<div class="card" data-key="dark_sea/ac517f6a" data-slug="dark_sea"><img loading="lazy" src="../higgsfield/kaley/dark_sea/thumb/kaley-ac517f6a.webp" alt="ac517f6a"><div class="card__check">&#10003;</div><div class="card__id">ac517f6a</div></div>
+<div class="card" data-key="dark_sea/b7c49dcc" data-slug="dark_sea"><img loading="lazy" src="../higgsfield/kaley/dark_sea/thumb/kaley-b7c49dcc.webp" alt="b7c49dcc"><div class="card__check">&#10003;</div><div class="card__id">b7c49dcc</div></div>
+<div class="card" data-key="dark_sea/d1a5e479" data-slug="dark_sea"><img loading="lazy" src="../higgsfield/kaley/dark_sea/thumb/kaley-d1a5e479.webp" alt="d1a5e479"><div class="card__check">&#10003;</div><div class="card__id">d1a5e479</div></div>
+<div class="card" data-key="dark_sea/d8c48290" data-slug="dark_sea"><img loading="lazy" src="../higgsfield/kaley/dark_sea/thumb/kaley-d8c48290.webp" alt="d8c48290"><div class="card__check">&#10003;</div><div class="card__id">d8c48290</div></div>
+<div class="card" data-key="dark_sea/da88d4b1" data-slug="dark_sea"><img loading="lazy" src="../higgsfield/kaley/dark_sea/thumb/kaley-da88d4b1.webp" alt="da88d4b1"><div class="card__check">&#10003;</div><div class="card__id">da88d4b1</div></div>
+<div class="card" data-key="dark_sea/fe80e0de" data-slug="dark_sea"><img loading="lazy" src="../higgsfield/kaley/dark_sea/thumb/kaley-fe80e0de.webp" alt="fe80e0de"><div class="card__check">&#10003;</div><div class="card__id">fe80e0de</div></div>
+</div></section>
+<section class="grp" data-slug="golden_hour">
+<div class="grp__h"><span class="grp__name">Golden Hour</span><span class="grp__fam">Solare / Floreale</span><span class="grp__ref"><img src="_ecommerce/golden_hour_thumb.webp" alt="packshot"> packshot reale</span><span class="grp__count" data-count="golden_hour">0 / 4</span></div>
+<div class="grid">
+<div class="card" data-key="golden_hour/golden_hour_caramel_pilot" data-slug="golden_hour"><img loading="lazy" src="../higgsfield/kaley/golden_hour/thumb/golden_hour_caramel_pilot.png" alt="golden_hour_caramel_pilot"><div class="card__check">&#10003;</div><div class="card__id">golden_hour_caramel_pilot</div></div>
+<div class="card" data-key="golden_hour/golden_hour_FIALA_legno" data-slug="golden_hour"><img loading="lazy" src="../higgsfield/kaley/golden_hour/thumb/golden_hour_FIALA_legno.png" alt="golden_hour_FIALA_legno"><div class="card__check">&#10003;</div><div class="card__id">golden_hour_FIALA_legno</div></div>
+<div class="card" data-key="golden_hour/0bdf8d68" data-slug="golden_hour"><img loading="lazy" src="../higgsfield/kaley/golden_hour/thumb/kaley-0bdf8d68.webp" alt="0bdf8d68"><div class="card__check">&#10003;</div><div class="card__id">0bdf8d68</div></div>
+<div class="card" data-key="golden_hour/19dc5c3c" data-slug="golden_hour"><img loading="lazy" src="../higgsfield/kaley/golden_hour/thumb/kaley-19dc5c3c.webp" alt="19dc5c3c"><div class="card__check">&#10003;</div><div class="card__id">19dc5c3c</div></div>
+</div></section>
+<section class="grp" data-slug="moka_rose">
+<div class="grp__h"><span class="grp__name">Moka Rose</span><span class="grp__fam">Gourmand / Floreale</span><span class="grp__ref"><img src="_ecommerce/moka_rose_thumb.webp" alt="packshot"> packshot reale</span><span class="grp__count" data-count="moka_rose">0 / 12</span></div>
+<div class="grid">
+<div class="card" data-key="moka_rose/118edf4d" data-slug="moka_rose"><img loading="lazy" src="../higgsfield/kaley/moka_rose/thumb/kaley-118edf4d.webp" alt="118edf4d"><div class="card__check">&#10003;</div><div class="card__id">118edf4d</div></div>
+<div class="card" data-key="moka_rose/131ed06e" data-slug="moka_rose"><img loading="lazy" src="../higgsfield/kaley/moka_rose/thumb/kaley-131ed06e.webp" alt="131ed06e"><div class="card__check">&#10003;</div><div class="card__id">131ed06e</div></div>
+<div class="card" data-key="moka_rose/1a3edf74" data-slug="moka_rose"><img loading="lazy" src="../higgsfield/kaley/moka_rose/thumb/kaley-1a3edf74.webp" alt="1a3edf74"><div class="card__check">&#10003;</div><div class="card__id">1a3edf74</div></div>
+<div class="card" data-key="moka_rose/2d7eed9c" data-slug="moka_rose"><img loading="lazy" src="../higgsfield/kaley/moka_rose/thumb/kaley-2d7eed9c.webp" alt="2d7eed9c"><div class="card__check">&#10003;</div><div class="card__id">2d7eed9c</div></div>
+<div class="card" data-key="moka_rose/421c955b" data-slug="moka_rose"><img loading="lazy" src="../higgsfield/kaley/moka_rose/thumb/kaley-421c955b.webp" alt="421c955b"><div class="card__check">&#10003;</div><div class="card__id">421c955b</div></div>
+<div class="card" data-key="moka_rose/72e27788" data-slug="moka_rose"><img loading="lazy" src="../higgsfield/kaley/moka_rose/thumb/kaley-72e27788.webp" alt="72e27788"><div class="card__check">&#10003;</div><div class="card__id">72e27788</div></div>
+<div class="card" data-key="moka_rose/788cdea6" data-slug="moka_rose"><img loading="lazy" src="../higgsfield/kaley/moka_rose/thumb/kaley-788cdea6.webp" alt="788cdea6"><div class="card__check">&#10003;</div><div class="card__id">788cdea6</div></div>
+<div class="card" data-key="moka_rose/8f060332" data-slug="moka_rose"><img loading="lazy" src="../higgsfield/kaley/moka_rose/thumb/kaley-8f060332.webp" alt="8f060332"><div class="card__check">&#10003;</div><div class="card__id">8f060332</div></div>
+<div class="card" data-key="moka_rose/995ef4a4" data-slug="moka_rose"><img loading="lazy" src="../higgsfield/kaley/moka_rose/thumb/kaley-995ef4a4.webp" alt="995ef4a4"><div class="card__check">&#10003;</div><div class="card__id">995ef4a4</div></div>
+<div class="card" data-key="moka_rose/c940cd6a" data-slug="moka_rose"><img loading="lazy" src="../higgsfield/kaley/moka_rose/thumb/kaley-c940cd6a.webp" alt="c940cd6a"><div class="card__check">&#10003;</div><div class="card__id">c940cd6a</div></div>
+<div class="card" data-key="moka_rose/d5943b0e" data-slug="moka_rose"><img loading="lazy" src="../higgsfield/kaley/moka_rose/thumb/kaley-d5943b0e.webp" alt="d5943b0e"><div class="card__check">&#10003;</div><div class="card__id">d5943b0e</div></div>
+<div class="card" data-key="moka_rose/d69e14b9" data-slug="moka_rose"><img loading="lazy" src="../higgsfield/kaley/moka_rose/thumb/kaley-d69e14b9.webp" alt="d69e14b9"><div class="card__check">&#10003;</div><div class="card__id">d69e14b9</div></div>
+</div></section>
+<section class="grp" data-slug="monty_tonka">
+<div class="grp__h"><span class="grp__name">Monty Tonka</span><span class="grp__fam">Ambrata / Speziata</span><span class="grp__ref"><img src="_ecommerce/monty_tonka_thumb.webp" alt="packshot"> packshot reale</span><span class="grp__count" data-count="monty_tonka">0 / 4</span></div>
+<div class="grid">
+<div class="card" data-key="monty_tonka/4a6c2b1b" data-slug="monty_tonka"><img loading="lazy" src="../higgsfield/kaley/monty_tonka/thumb/kaley-4a6c2b1b.webp" alt="4a6c2b1b"><div class="card__check">&#10003;</div><div class="card__id">4a6c2b1b</div></div>
+<div class="card" data-key="monty_tonka/e8e9f6cd" data-slug="monty_tonka"><img loading="lazy" src="../higgsfield/kaley/monty_tonka/thumb/kaley-e8e9f6cd.webp" alt="e8e9f6cd"><div class="card__check">&#10003;</div><div class="card__id">e8e9f6cd</div></div>
+<div class="card" data-key="monty_tonka/e99bc7e3" data-slug="monty_tonka"><img loading="lazy" src="../higgsfield/kaley/monty_tonka/thumb/kaley-e99bc7e3.webp" alt="e99bc7e3"><div class="card__check">&#10003;</div><div class="card__id">e99bc7e3</div></div>
+<div class="card" data-key="monty_tonka/monty_rose_saffron" data-slug="monty_tonka"><img loading="lazy" src="../higgsfield/kaley/monty_tonka/thumb/monty_rose_saffron.png" alt="monty_rose_saffron"><div class="card__check">&#10003;</div><div class="card__id">monty_rose_saffron</div></div>
+</div></section>
+<section class="grp" data-slug="spring_symphony">
+<div class="grp__h"><span class="grp__name">Spring Symphony</span><span class="grp__fam">Fruttata / Floreale</span><span class="grp__ref"><img src="_ecommerce/spring_symphony_thumb.webp" alt="packshot"> packshot reale</span><span class="grp__count" data-count="spring_symphony">0 / 6</span></div>
+<div class="grid">
+<div class="card" data-key="spring_symphony/18ca545e" data-slug="spring_symphony"><img loading="lazy" src="../higgsfield/kaley/spring_symphony/thumb/kaley-18ca545e.webp" alt="18ca545e"><div class="card__check">&#10003;</div><div class="card__id">18ca545e</div></div>
+<div class="card" data-key="spring_symphony/57077189" data-slug="spring_symphony"><img loading="lazy" src="../higgsfield/kaley/spring_symphony/thumb/kaley-57077189.webp" alt="57077189"><div class="card__check">&#10003;</div><div class="card__id">57077189</div></div>
+<div class="card" data-key="spring_symphony/63cba31f" data-slug="spring_symphony"><img loading="lazy" src="../higgsfield/kaley/spring_symphony/thumb/kaley-63cba31f.webp" alt="63cba31f"><div class="card__check">&#10003;</div><div class="card__id">63cba31f</div></div>
+<div class="card" data-key="spring_symphony/a80a7545" data-slug="spring_symphony"><img loading="lazy" src="../higgsfield/kaley/spring_symphony/thumb/kaley-a80a7545.webp" alt="a80a7545"><div class="card__check">&#10003;</div><div class="card__id">a80a7545</div></div>
+<div class="card" data-key="spring_symphony/d897f5b9" data-slug="spring_symphony"><img loading="lazy" src="../higgsfield/kaley/spring_symphony/thumb/kaley-d897f5b9.webp" alt="d897f5b9"><div class="card__check">&#10003;</div><div class="card__id">d897f5b9</div></div>
+<div class="card" data-key="spring_symphony/spring_cassis" data-slug="spring_symphony"><img loading="lazy" src="../higgsfield/kaley/spring_symphony/thumb/spring_cassis.png" alt="spring_cassis"><div class="card__check">&#10003;</div><div class="card__id">spring_cassis</div></div>
+</div></section>
+<section class="grp" data-slug="sweet_whisper">
+<div class="grp__h"><span class="grp__name">Sweet Whisper</span><span class="grp__fam">Dolce / Vanigliata</span><span class="grp__ref"><img src="_ecommerce/sweet_whisper_thumb.webp" alt="packshot"> packshot reale</span><span class="grp__count" data-count="sweet_whisper">0 / 8</span></div>
+<div class="grid">
+<div class="card" data-key="sweet_whisper/2e80fabc" data-slug="sweet_whisper"><img loading="lazy" src="../higgsfield/kaley/sweet_whisper/thumb/kaley-2e80fabc.webp" alt="2e80fabc"><div class="card__check">&#10003;</div><div class="card__id">2e80fabc</div></div>
+<div class="card" data-key="sweet_whisper/34671b80" data-slug="sweet_whisper"><img loading="lazy" src="../higgsfield/kaley/sweet_whisper/thumb/kaley-34671b80.webp" alt="34671b80"><div class="card__check">&#10003;</div><div class="card__id">34671b80</div></div>
+<div class="card" data-key="sweet_whisper/4bcd2cbd" data-slug="sweet_whisper"><img loading="lazy" src="../higgsfield/kaley/sweet_whisper/thumb/kaley-4bcd2cbd.webp" alt="4bcd2cbd"><div class="card__check">&#10003;</div><div class="card__id">4bcd2cbd</div></div>
+<div class="card" data-key="sweet_whisper/60ecb102" data-slug="sweet_whisper"><img loading="lazy" src="../higgsfield/kaley/sweet_whisper/thumb/kaley-60ecb102.webp" alt="60ecb102"><div class="card__check">&#10003;</div><div class="card__id">60ecb102</div></div>
+<div class="card" data-key="sweet_whisper/64b9dea6" data-slug="sweet_whisper"><img loading="lazy" src="../higgsfield/kaley/sweet_whisper/thumb/kaley-64b9dea6.webp" alt="64b9dea6"><div class="card__check">&#10003;</div><div class="card__id">64b9dea6</div></div>
+<div class="card" data-key="sweet_whisper/ca09fa22" data-slug="sweet_whisper"><img loading="lazy" src="../higgsfield/kaley/sweet_whisper/thumb/kaley-ca09fa22.webp" alt="ca09fa22"><div class="card__check">&#10003;</div><div class="card__id">ca09fa22</div></div>
+<div class="card" data-key="sweet_whisper/sweet_whisper_caramel_tonka" data-slug="sweet_whisper"><img loading="lazy" src="../higgsfield/kaley/sweet_whisper/thumb/sweet_whisper_caramel_tonka.png" alt="sweet_whisper_caramel_tonka"><div class="card__check">&#10003;</div><div class="card__id">sweet_whisper_caramel_tonka</div></div>
+<div class="card" data-key="sweet_whisper/sweet_whisper_peach_coconut" data-slug="sweet_whisper"><img loading="lazy" src="../higgsfield/kaley/sweet_whisper/thumb/sweet_whisper_peach_coconut.png" alt="sweet_whisper_peach_coconut"><div class="card__check">&#10003;</div><div class="card__id">sweet_whisper_peach_coconut</div></div>
+</div></section>
+<div class="bar"><span class="bar__n">Selezionate: <b id="tot">0</b> / 57</span>
+<button class="btn" id="clr">Deseleziona tutto</button><button class="btn" id="all">Seleziona tutto</button>
+<span class="bar__sp"></span><button class="btn btn--primary" id="exp">Esporta selezione</button></div>
+<div id="out"><div class="box"><h2>Foto selezionate</h2><textarea id="outtxt" readonly></textarea><div class="row"><button class="btn" id="cpy">Copia</button><button class="btn" id="cls">Chiudi</button></div></div></div>
+<script>
+var KEY="kaley_sel_v1";var sel=JSON.parse(localStorage.getItem(KEY)||"{}");
+function save(){localStorage.setItem(KEY,JSON.stringify(sel));}
+function counts(){var tot=0,per={};document.querySelectorAll(".card").forEach(function(c){var s=c.dataset.slug;per[s]=per[s]||0;if(sel[c.dataset.key]){per[s]++;tot++;}});document.getElementById("tot").textContent=tot;document.querySelectorAll("[data-count]").forEach(function(el){var s=el.getAttribute("data-count");var n=document.querySelectorAll(".card[data-slug=\""+s+"\"]").length;el.textContent=(per[s]||0)+" / "+n;});}
+function paint(){document.querySelectorAll(".card").forEach(function(c){c.classList.toggle("sel",!!sel[c.dataset.key]);});counts();}
+document.querySelectorAll(".card").forEach(function(c){c.addEventListener("click",function(){if(sel[c.dataset.key]){delete sel[c.dataset.key];}else{sel[c.dataset.key]=true;}save();c.classList.toggle("sel",!!sel[c.dataset.key]);counts();});});
+document.getElementById("clr").addEventListener("click",function(){sel={};save();paint();});
+document.getElementById("all").addEventListener("click",function(){document.querySelectorAll(".card").forEach(function(c){sel[c.dataset.key]=true;});save();paint();});
+document.getElementById("exp").addEventListener("click",function(){var by={};document.querySelectorAll(".card").forEach(function(c){if(sel[c.dataset.key]){var s=c.dataset.slug;(by[s]=by[s]||[]).push(c.dataset.key.split("/")[1]);}});var lines=[];Object.keys(by).forEach(function(s){lines.push("## "+s+" ("+by[s].length+")");by[s].forEach(function(id){lines.push("higgsfield/kaley/"+s+"/"+id+".png");});lines.push("");});document.getElementById("outtxt").value=lines.join("\\n")||"(nessuna foto selezionata)";document.getElementById("out").classList.add("show");});
+document.getElementById("cls").addEventListener("click",function(){document.getElementById("out").classList.remove("show");});
+document.getElementById("cpy").addEventListener("click",function(){var t=document.getElementById("outtxt");t.select();document.execCommand("copy");this.textContent="Copiato!";var b=this;setTimeout(function(){b.textContent="Copia";},1500);});
+paint();
+</script></body></html>

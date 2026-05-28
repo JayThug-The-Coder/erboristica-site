@@ -190,7 +190,7 @@
 
 /* ── PRODOTTI ─────────────────────────────────────── */
 .lp {
-  background: var(--cream);
+  background: var(--pd-tint, var(--cream));
   padding: clamp(80px,12vw,160px) 0;
 }
 
@@ -727,7 +727,7 @@
 <script src="../assets/data-inline.js"></script>
 <script src="../assets/datastore.js"></script>
 <script src="../assets/search-data.js" defer></script>
-<script src="../assets/app.js?v=6"></script>
+<script src="../assets/app.js?v=7"></script>
 <script>
   /* Adapter master JSON → formato compatibile data.js (PRODUCTS legacy) */
   function adaptJsonProductForLinea(p) {
@@ -807,6 +807,20 @@
     const bg = palettes[line.palette] || palettes['sage'];
     const heroBg = document.getElementById('heroBg');
     heroBg.style.background = bg;
+
+    // Tint chiaro della linea per sezioni prodotti (coerente con prodotto.html)
+    const lineTints = {
+      antieta: '#ecd9bf', argan: '#f2e2ab', cocco: '#cfe6ee', mandorle: '#f0d8cd',
+      illumia: '#f0e1a4', purysens: '#cdddee', nutra: '#ecd6bf', estratti: '#d6e6c8',
+      uomo: '#d4dce6', innovation: '#ddd0ee', pearls: '#e2d2ee',
+      'mineral-infusions': '#cce8ec', 'doppia-detersione': '#dacfec',
+    };
+    const tint = lineTints[lineId] || 'var(--cream)';
+    const tintGrad = lineTints[lineId]
+      ? `linear-gradient(168deg, #fbfaf7 0%, ${tint} 70%, ${tint} 100%)`
+      : tint;
+    document.body.style.setProperty('--pd-tint', tintGrad);
+    document.body.style.background = tintGrad;
 
     const HERO_IMGS = {
       argan:      '../immagini/argan/hero.jpg',

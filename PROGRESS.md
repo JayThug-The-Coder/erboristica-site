@@ -4,6 +4,26 @@
 
 ---
 
+# 📸 Sessione 28 Maggio 2026 (pomeriggio) — Generazione foto
+
+> Vedi **HANDOFF.md** per il dettaglio operativo aggiornato. Sintesi:
+
+**Foto generate (gpt_image_2, 2k, high):**
+- **Cocco**: 7 HERO packshot ri-ambientati su gradiente azzurro polvere (`immagini/cocco/_reambient/`) + 8 concept attivi macro (`immagini/cocco/_concept/`).
+- **Everby**: 11 concept attivi completi (incl. Cityblock 365); 2 HERO su mint fatti (Cica Cloud, Milky Rice in `immagini/everby/_reambient/`), **8 HERO in sospeso** per outage `media_confirm` Higgsfield.
+- **Uomo**: 8 concept attivi in stile realistico (`immagini/uomo/_concept/`).
+
+**Workflow foto consolidati:**
+- *Re-ambiance HERO*: packshot reale + (per uniformare) un HERO già approvato come 2ª reference di sfondo/luce → es. Everby usa `job_id 78bf0297` (Cica Cloud). Confermare i media SINGOLARMENTE (batch confirm rotto).
+- *Concept attivi*: prompt macro strutturato (WORLD/LIGHTING/CAMERA/COLOR/MOOD/NEGATIVE/QUALITY), attivi reali dal DOCX, sfondo coordinato alla linea, imperfezioni naturali, "real photo not AI".
+- *Uomo realistico*: luce naturale soft ~5000K (no faretto/tungsten/vignette), sfondo `#3a2e26`, imperfezioni, no CGI.
+
+**Dati corretti (DOCX = verità)** su `data-inline.js`+`data.json`+`data.js`: attivi Cocco di Crema Corpo, Scrub (albicocca, non zucchero), Shampoo (mallo di noce, non seta), Olio Secco (mandorle, non jojoba), Spray.
+
+**Da fare:** completare 8 HERO Everby; packshot Cityblock 365; cablare foto nelle schede (webp + `images.*` in data); fix INCI residui `data.js` + encoding SKU/`Mono�`.
+
+---
+
 # 🚀 HANDOFF — Sessione 26-27 Maggio 2026
 
 > **Per la nuova conversazione Claude Code**: leggi questa sezione prima di tutto. Riassume dove siamo, cosa è stato deciso, e cosa rimane da fare.

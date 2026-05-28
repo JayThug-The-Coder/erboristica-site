@@ -523,11 +523,7 @@
       b.addEventListener('click', () => ATH.setLang(b.dataset.lang));
     });
 
-    // Back button: usa history.back() se c'è storia, altrimenti fallback href
-    const backEl = el.querySelector('#topbarBack');
-    if (backEl && hasHistory) {
-      backEl.addEventListener('click', e => { e.preventDefault(); history.back(); });
-    }
+    // Back button: naviga SEMPRE al parent gerarchico (href=parentUrl) — deterministico, niente loop di history.back()
 
     // Scroll state
     let _lastY = window.scrollY;

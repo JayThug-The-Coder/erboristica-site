@@ -31,3 +31,13 @@ immagini/**/_ecommerce/
 _docs/
 HANDOFF.md
 KNOWLEDGE.md
+
+# Sorgenti PNG foto prodotto (il sito usa webp)
+immagini/**/hero.png
+immagini/**/det-*.png
+immagini/**/_hero_contact_sheet.png
+# Backup locali
+*.bak
+*.bak_*
+*.bak_old_layout
+*.bak_redirect

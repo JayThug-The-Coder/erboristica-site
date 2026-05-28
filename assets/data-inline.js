@@ -525,7 +525,7 @@ window.ATH_DATA_JSON = {
     },
     {
       "id": "cocco-crema-corpo-cocco",
-      "sku": "62",
+      "sku": "6992",
       "line": "cocco",
       "brand": "erboristica",
       "name_it": "CREMA CORPO COCCO",
@@ -551,14 +551,14 @@ window.ATH_DATA_JSON = {
         "detail_2": "immagini/cocco/crema-corpo-cocco/det-02.webp"
       },
       "actives_main": [
-        "Olio di Cocco",
-        "Burro di Karité",
-        "Vitamina E"
+        "Burro di Cocco",
+        "Glicerina",
+        "Olio di Mandorle Dolci"
       ]
     },
     {
       "id": "cocco-maschera-capelli-olio-di-cocco-e-monoi",
-      "sku": "741",
+      "sku": "7419",
       "line": "cocco",
       "brand": "erboristica",
       "name_it": "MASCHERA CAPELLI OLIO DI COCCO & MONOI",
@@ -591,7 +591,7 @@ window.ATH_DATA_JSON = {
     },
     {
       "id": "cocco-mousse-doccia-cocco",
-      "sku": "61",
+      "sku": "6991",
       "line": "cocco",
       "brand": "erboristica",
       "name_it": "MOUSSE DOCCIA COCCO",
@@ -744,7 +744,7 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Olio di Cocco",
-        "Polifenoli del Mallo di Noce verde",
+        "Proteine della seta",
         "Pantenolo"
       ]
     },
@@ -778,7 +778,7 @@ window.ATH_DATA_JSON = {
       "actives_main": [
         "Olio di Cocco",
         "Aloe Vera",
-        "Vitamina E"
+        "Glicerina"
       ]
     },
     {
@@ -950,7 +950,7 @@ window.ATH_DATA_JSON = {
     },
     {
       "id": "everby-no-cry-zone-truccante-bifasico-occhi-delicato",
-      "sku": "774",
+      "sku": "7749",
       "line": "everby",
       "brand": "everby",
       "name_it": "NO CRY ZONE TRUCCANTE BIFASICO OCCHI DELICATO",
@@ -1251,7 +1251,7 @@ window.ATH_DATA_JSON = {
     },
     {
       "id": "estratti-doccia-schiuma-camelia-japonica",
-      "sku": "662",
+      "sku": "6962",
       "line": "estratti",
       "brand": "erboristica",
       "name_it": "DOCCIA SCHIUMA CAMELIA JAPONICA",
@@ -1284,7 +1284,7 @@ window.ATH_DATA_JSON = {
     },
     {
       "id": "estratti-doccia-schiuma-patchouli-e-neroli",
-      "sku": "664",
+      "sku": "6964",
       "line": "estratti",
       "brand": "erboristica",
       "name_it": "DOCCIA SCHIUMA PATCHOULI E NEROLI",
@@ -1350,7 +1350,7 @@ window.ATH_DATA_JSON = {
     },
     {
       "id": "estratti-mousse-doccia-bergamotto-e-abete-bianco",
-      "sku": "666",
+      "sku": "6966",
       "line": "estratti",
       "brand": "erboristica",
       "name_it": "MOUSSE DOCCIA BERGAMOTTO & ABETE BIANCO",
@@ -2015,7 +2015,7 @@ window.ATH_DATA_JSON = {
     },
     {
       "id": "nutra-olio-corpo-nutra-repair",
-      "sku": "630",
+      "sku": "6309",
       "line": "nutra",
       "brand": "erboristica",
       "name_it": "OLIO CORPO NUTRA REPAIR",
@@ -2207,8 +2207,7 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Olio di Argan Virgin 100%",
-        "Vitamina E naturale (Tocoferoli)",
-        "Acidi grassi Omega-9"
+        "Vitamina E naturale (Tocoferoli)"
       ]
     },
     {
@@ -2246,7 +2245,7 @@ window.ATH_DATA_JSON = {
     },
     {
       "id": "argan-trattamento-intensivo-riparatore-viso",
-      "sku": "700",
+      "sku": "7009",
       "line": "argan",
       "brand": "erboristica",
       "name_it": "TRATTAMENTO INTENSIVO RIPARATORE VISO",
@@ -2312,7 +2311,7 @@ window.ATH_DATA_JSON = {
     },
     {
       "id": "mandorle-crema-mani-e-unghie-mandorle-dolci",
-      "sku": "67",
+      "sku": "6997",
       "line": "mandorle",
       "brand": "erboristica",
       "name_it": "CREMA MANI & UNGHIE MANDORLE DOLCI",
@@ -2345,7 +2344,7 @@ window.ATH_DATA_JSON = {
     },
     {
       "id": "mandorle-crema-viso-prime-rughe",
-      "sku": "670",
+      "sku": "6970",
       "line": "mandorle",
       "brand": "erboristica",
       "name_it": "CREMA VISO PRIME RUGHE",
@@ -2673,7 +2672,7 @@ window.ATH_DATA_JSON = {
     },
     {
       "id": "uomo-balsamo-dopobarba-uomo",
-      "sku": "702",
+      "sku": "7092",
       "line": "uomo",
       "brand": "erboristica",
       "name_it": "BALSAMO DOPOBARBA UOMO",
@@ -2739,7 +2738,7 @@ window.ATH_DATA_JSON = {
     },
     {
       "id": "uomo-contorno-occhi-uomo-anti-età",
-      "sku": "708",
+      "sku": "7089",
       "line": "uomo",
       "brand": "erboristica",
       "name_it": "CONTORNO OCCHI UOMO ANTI-ETÀ",
@@ -2767,7 +2766,7 @@ window.ATH_DATA_JSON = {
     },
     {
       "id": "uomo-crema-viso-idratante-antirughe-uomo",
-      "sku": "701",
+      "sku": "7091",
       "line": "uomo",
       "brand": "erboristica",
       "name_it": "CREMA VISO IDRATANTE ANTIRUGHE UOMO",
@@ -2834,7 +2833,7 @@ window.ATH_DATA_JSON = {
     },
     {
       "id": "uomo-deodorante-spray-uomo",
-      "sku": "703",
+      "sku": "7093",
       "line": "uomo",
       "brand": "erboristica",
       "name_it": "DEODORANTE SPRAY UOMO",
@@ -2867,7 +2866,7 @@ window.ATH_DATA_JSON = {
     },
     {
       "id": "uomo-eau-de-toilette-uomo",
-      "sku": "705",
+      "sku": "7095",
       "line": "uomo",
       "brand": "erboristica",
       "name_it": "EAU DE TOILETTE UOMO",
@@ -2901,7 +2900,7 @@ window.ATH_DATA_JSON = {
     },
     {
       "id": "uomo-fluido-idratante-viso-e-barba-uomo",
-      "sku": "707",
+      "sku": "7097",
       "line": "uomo",
       "brand": "erboristica",
       "name_it": "FLUIDO IDRATANTE VISO E BARBA UOMO",
@@ -2930,7 +2929,7 @@ window.ATH_DATA_JSON = {
     },
     {
       "id": "uomo-olio-da-barba-uomo",
-      "sku": "706",
+      "sku": "7096",
       "line": "uomo",
       "brand": "erboristica",
       "name_it": "OLIO DA BARBA UOMO",
@@ -2996,7 +2995,7 @@ window.ATH_DATA_JSON = {
     },
     {
       "id": "uomo-shampoo-doccia-uomo",
-      "sku": "700",
+      "sku": "7090",
       "line": "uomo",
       "brand": "erboristica",
       "name_it": "SHAMPOO DOCCIA UOMO",
@@ -3062,7 +3061,7 @@ window.ATH_DATA_JSON = {
     },
     {
       "id": "uomo-siero-viso-uomo",
-      "sku": "70",
+      "sku": "7099",
       "line": "uomo",
       "brand": "erboristica",
       "name_it": "SIERO VISO UOMO",
