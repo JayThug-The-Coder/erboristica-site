@@ -77,11 +77,18 @@
 /* Overlay gradiente scuro in basso */
 .pg-hero__overlay {
   position: absolute; inset: 0; z-index: 1;
-  background: linear-gradient(180deg,
-    rgba(0,0,0,.25) 0%,
-    transparent 25%,
-    transparent 55%,
-    rgba(0,0,0,.6) 100%);
+  background:
+    linear-gradient(180deg,
+      rgba(0,0,0,.32) 0%,
+      rgba(0,0,0,.10) 20%,
+      transparent 42%,
+      rgba(0,0,0,.30) 62%,
+      rgba(0,0,0,.62) 82%,
+      rgba(0,0,0,.82) 100%),
+    linear-gradient(90deg,
+      rgba(0,0,0,.45) 0%,
+      rgba(0,0,0,.12) 32%,
+      transparent 60%);
 }
 
 /* Parallax wrapper — JS sposta translateY */
@@ -90,6 +97,17 @@
   inset: -20%;
   z-index: 0;
   will-change: transform;
+}
+
+/* Foto hero reale — copre lo sfondo CSS animato (fallback se non carica) */
+.pg-hero__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  z-index: 0;
 }
 
 .pg-hero__content {
@@ -674,6 +692,13 @@
 }
 @media (max-width: 860px) {
   .az-band__bg { inset: 0; transform: none !important; }
+}
+.az-band__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .az-band__overlay {
   position: absolute; inset: 0;
@@ -1369,17 +1394,6 @@
   }
 }
 
-/* ── BANDA 03 — layout flex + griglia visuals ─────────────── */
-.az-band--03-inner {
-  display: flex; align-items: center; justify-content: space-between; gap: 32px;
-}
-.az-band-3__visuals {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
-  width: 240px; flex-shrink: 0;
-}
-.az-band-3__visuals .photo-slot { width: 116px; height: 116px; }
-@media (max-width: 900px) { .az-band-3__visuals { display: none; } }
-
 /* ── SEZIONE TEAM — marquee archivio ──────────────────────── */
 .az-team__archive {
   overflow: hidden; margin: clamp(32px,4vw,52px) 0;
@@ -1604,18 +1618,11 @@
 
 <!-- ── HERO ─────────────────────────────────────────────── -->
 <section class="pg-hero" id="hero">
-  <div class="photo-slot photo-slot--video-overlay photo-slot--fullbleed" style="z-index:0;pointer-events:none;" data-slot-label="VIDEO HERO stabilimento Athena's · 16:9 · loop muted · alternativa: foto macro materie prime da ORGANIZZATO">
-    <span class="photo-slot__label" style="pointer-events:none;">Video Hero · Stabilimento</span>
-  </div>
   <div class="pg-hero__parallax" id="heroParallax">
-    <div class="photo-slot photo-slot--video-overlay photo-slot--fullbleed" data-slot-label="hero-video.mp4">
-      <!-- SOSTITUIRE: aggiungere qui un <video autoplay muted loop playsinline class="bg-video"> con il file 'immagini/azienda/hero-video.mp4' quando sarà caricato. Suggerito: video stabilimento/laboratorio Athena's, 16:9, 15-25 secondi, no audio. File da copiare manualmente in immagini/azienda/ — il file CUORE DI ATHENA'S - LABORATORIO.mp4 è in C:\Users\jagio\Desktop\ATHENAS_FOTO_TEMP\ATHENAS_SITE_2026\azienda\hero_video\ -->
-      <svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
-      <span class="photo-slot__label">Video hero botanico</span>
-      <span class="photo-slot__sub">video mp4 · 16:9 · 15-25s</span>
-    </div>
     <div class="pg-hero__bg"></div>
     <div class="pg-hero__particle"></div>
+    <!-- Foto hero reale (laghetto + stabilimento). In futuro sostituibile con un <video autoplay muted loop playsinline> dello stabilimento mantenendo la stessa classe/posizione. -->
+    <img class="pg-hero__img" src="immagini/azienda/hero-laghetto.jpg" alt="Lo stabilimento Athena's affacciato sul laghetto, immerso nel verde dell'Appennino bolognese" loading="eager" fetchpriority="high">
   </div>
   <div class="pg-hero__overlay"></div>
 
@@ -1653,8 +1660,8 @@
     <div class="ve-zigzag">
       <div class="ve-zz" data-reveal-repeat>
         <div class="ve-zz__visual">
-          <img src="immagini/azienda/lifestyle-01.jpg" alt="Ingredienti naturali — Athena's" class="cover-img" loading="lazy">
-          <span class="ve-zz__ph-tag" data-it="Foto · Ingredienti naturali" data-en="Photo · Natural ingredients">Foto · Ingredienti naturali</span>
+          <img src="immagini/azienda/natura-cosmetica.jpg" alt="Tubo L'Erboristica sulla linea di riempimento, cosmetica naturale italiana dal 1969" class="cover-img" loading="lazy">
+          <span class="ve-zz__ph-tag" data-it="Foto · Cosmetica naturale italiana" data-en="Photo · Italian natural cosmetics">Foto · Cosmetica naturale italiana</span>
         </div>
         <div class="ve-zz__text">
           <div class="ve-zz__eyebrow" data-it="01 · Natura" data-en="01 · Nature">01 · Natura</div>
@@ -1664,7 +1671,7 @@
       </div>
       <div class="ve-zz" data-reveal-repeat>
         <div class="ve-zz__visual">
-          <img src="immagini/azienda/lifestyle-02.jpg" alt="Laboratorio R&amp;S — Athena's" class="cover-img" loading="lazy">
+          <img src="immagini/azienda/ricerca-laboratorio.jpg" alt="Banco del laboratorio R&amp;S Athena's con reagenti, omogeneizzatori e strumentazione" class="cover-img" loading="lazy">
           <span class="ve-zz__ph-tag" data-it="Foto · Laboratorio R&amp;S" data-en="Photo · R&amp;D Lab">Foto · Laboratorio R&amp;S</span>
         </div>
         <div class="ve-zz__text">
@@ -1675,8 +1682,8 @@
       </div>
       <div class="ve-zz" data-reveal-repeat>
         <div class="ve-zz__visual">
-          <img src="immagini/azienda/lifestyle-03.jpg" alt="Fabbrica Pianoro — Athena's" class="cover-img" loading="lazy">
-          <span class="ve-zz__ph-tag" data-it="Foto · Fabbrica, Pianoro 1969" data-en="Photo · Factory, Pianoro 1969">Foto · Fabbrica, Pianoro 1969</span>
+          <img src="immagini/azienda/famiglia-titolari.jpg" alt="La famiglia Athena's, le persone dietro l'azienda di Pianoro" class="cover-img" loading="lazy">
+          <span class="ve-zz__ph-tag" data-it="Foto · La famiglia Athena's" data-en="Photo · The Athena's family">Foto · La famiglia Athena's</span>
         </div>
         <div class="ve-zz__text">
           <div class="ve-zz__eyebrow" data-it="03 · Famiglia" data-en="03 · Family">03 · Famiglia</div>
@@ -1694,12 +1701,7 @@
 
   <div class="az-band az-band--01 az-band--left" data-mood-fallback="dark">
     <div class="az-band__bg" data-az-band="1">
-      <div class="photo-slot photo-slot--fullbleed" data-slot-label="panorama-appennini.jpg">
-        <!-- SOSTITUIRE: foto panorama Appennini tosco-emiliani · 16:9 · alba o tramonto · 3000px+ larghezza · da reperire o stock photo -->
-        <svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
-        <span class="photo-slot__label">Panorama Appennini</span>
-        <span class="photo-slot__sub">foto · 16:9 · 3000px+</span>
-      </div>
+      <img class="az-band__img" src="immagini/azienda/panorama-appennini.webp" alt="Le colline tosco-emiliane dell'Appennino al tramonto, con casolare e cipressi" loading="lazy">
     </div>
     <div class="az-band__overlay"></div>
     <div class="az-band__content" data-reveal>
@@ -1711,12 +1713,7 @@
 
   <div class="az-band az-band--02 az-band--right" data-mood-fallback="dark">
     <div class="az-band__bg" data-az-band="2">
-      <div class="photo-slot photo-slot--fullbleed" data-slot-label="stabilimento-esterno.jpg">
-        <!-- SOSTITUIRE: foto esterno stabilimento Athena's, vista frontale o aerea · 16:9 · giorno · 3000px+ larghezza · da nuovo shooting -->
-        <svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
-        <span class="photo-slot__label">Stabilimento esterno</span>
-        <span class="photo-slot__sub">foto · 16:9 · 3000px+</span>
-      </div>
+      <img class="az-band__img" src="immagini/azienda/stabilimento-esterno.jpg" alt="Lo stabilimento Athena's a Pianoro, esterno con insegna L'Erboristica" loading="lazy">
     </div>
     <div class="az-band__overlay"></div>
     <div class="az-band__content" data-reveal style="--d:60ms">
@@ -1728,26 +1725,13 @@
 
   <div class="az-band az-band--03 az-band--center" data-mood-fallback="dark">
     <div class="az-band__bg" data-az-band="3">
-      <div class="photo-slot photo-slot--fullbleed" data-slot-label="interno-laboratorio.jpg">
-        <!-- SOSTITUIRE: foto interno laboratorio o squadra al lavoro · 16:9 · luce naturale · 3000px+ larghezza · da nuovo shooting -->
-        <svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
-        <span class="photo-slot__label">Interno laboratorio</span>
-        <span class="photo-slot__sub">foto · 16:9 · 3000px+</span>
-      </div>
+      <img class="az-band__img" src="immagini/azienda/interno-laboratorio.jpg" alt="Interno della produzione Athena's, reparto con serbatoi in acciaio e tecnici al lavoro" loading="lazy">
     </div>
     <div class="az-band__overlay"></div>
-    <div class="az-band__content az-band--03-inner" data-reveal style="--d:120ms">
-      <div>
-        <div class="az-band__eyebrow">Dentro</div>
-        <h2 class="az-band__title">Una cucina,<br><em>non una fabbrica.</em></h2>
-        <p class="az-band__body">Ottanta persone che lavorano ogni giorno nello stesso laboratorio dove Venturino mescolava le prime formule. I macchinari sono cambiati; il principio — capire cosa metti sulla pelle — è rimasto identico nel tempo.</p>
-      </div>
-      <div class="az-band-3__visuals">
-        <div class="photo-slot photo-slot--dark photo-slot--1x1" data-slot-label="DETTAGLIO banco lavoro"><svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg><span class="photo-slot__label">Banco lavoro</span></div>
-        <div class="photo-slot photo-slot--dark photo-slot--1x1" data-slot-label="MACRO formula in becher"><svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg><span class="photo-slot__label">Formula in becher</span></div>
-        <div class="photo-slot photo-slot--dark photo-slot--1x1" data-slot-label="DETTAGLIO strumenti lab"><svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg><span class="photo-slot__label">Strumenti lab</span></div>
-        <div class="photo-slot photo-slot--dark photo-slot--1x1" data-slot-label="SQUADRA in laboratorio"><svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg><span class="photo-slot__label">Squadra lab</span></div>
-      </div>
+    <div class="az-band__content" data-reveal style="--d:120ms">
+      <div class="az-band__eyebrow">Dentro</div>
+      <h2 class="az-band__title">Una cucina,<br><em>non una fabbrica.</em></h2>
+      <p class="az-band__body">Ottanta persone che lavorano ogni giorno nello stesso laboratorio dove Venturino mescolava le prime formule. I macchinari sono cambiati; il principio — capire cosa metti sulla pelle — è rimasto identico nel tempo.</p>
     </div>
   </div>
 

@@ -188,6 +188,16 @@
   opacity: .6;
 }
 
+/* Linea Antietà — verde giada campionato dal packaging (effetto chiaro stile Everby) */
+body.theme-line-antieta {
+  --cream: #eef7f3;
+  --cream-2: #ddefe8;
+  --gold: #2e9e82;
+  --gold-deep: #247e68;
+  --sage-deep: #2e9e82;
+  --sage: #7cc3ad;
+}
+
 /* ── PRODOTTI ─────────────────────────────────────── */
 .lp {
   background: var(--pd-tint, var(--cream));
@@ -204,7 +214,7 @@
   letter-spacing: -0.025em;
   line-height: .95;
 }
-.lp__head h2 em { font-style: italic; color: var(--sage-deep); }
+.lp__head h2 em { font-style: italic; color: var(--gold-deep); }
 
 .lp__grid {
   display: grid;
@@ -551,7 +561,7 @@
   box-shadow: 0 16px 40px rgba(45,58,46,.12);
 }
 .mini-card__visual {
-  aspect-ratio: 1;
+  aspect-ratio: 3 / 4;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -810,7 +820,7 @@
 
     // Tint chiaro della linea per sezioni prodotti (coerente con prodotto.html)
     const lineTints = {
-      antieta: '#ecd9bf', argan: '#f2e2ab', cocco: '#cfe6ee', mandorle: '#f0d8cd',
+      antieta: '#e9f5f0', argan: '#f2e2ab', cocco: '#cfe6ee', mandorle: '#f0d8cd',
       illumia: '#f0e1a4', purysens: '#cdddee', nutra: '#ecd6bf', estratti: '#d6e6c8',
       uomo: '#d4dce6', innovation: '#ddd0ee', pearls: '#e2d2ee',
       'mineral-infusions': '#cce8ec', 'doppia-detersione': '#dacfec',
@@ -821,6 +831,48 @@
       : tint;
     document.body.style.setProperty('--pd-tint', tintGrad);
     document.body.style.background = tintGrad;
+    document.body.classList.forEach(c => { if (c.startsWith('theme-line-')) document.body.classList.remove(c); });
+    document.body.classList.add('theme-line-' + lineId);
+
+    // Accento palette-aligned della linea (coerente con prodotto.html): tinge i
+    // dettagli oro ("Scopri i N prodotti", CTA card, ecc.) col colore della linea.
+    const LINE_ACCENT = {
+      antieta: '#2e9e82', argan: '#a8842c', cocco: '#3a8aa0', mandorle: '#b87860',
+      illumia: '#b8902c', purysens: '#5a7a9a', nutra: '#a8703c', estratti: '#5a7a4a',
+      uomo: '#5a6e9a', innovation: '#8a5ac0', pearls: '#8a5ac0',
+      'mineral-infusions': '#3a9aa6', 'doppia-detersione': '#7a60a8',
+    };
+    const accent = LINE_ACCENT[lineId];
+    if (accent) {
+      const darkenHex = (hex, f) => {
+        const n = parseInt(hex.slice(1), 16);
+        const r = Math.round(((n >> 16) & 255) * (1 - f));
+        const g = Math.round(((n >> 8) & 255) * (1 - f));
+        const b = Math.round((n & 255) * (1 - f));
+        return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+      };
+      document.body.style.setProperty('--gold', accent);
+      document.body.style.setProperty('--gold-deep', darkenHex(accent, 0.18));
+      document.body.style.setProperty('--line-accent', accent);
+    }
+    // Topbar adattiva: la barra in alto (header) prende il colore della linea
+    // quando diventa solida, come gia avviene in prodotto.html.
+    if (lineTints[lineId]) document.body.style.setProperty('--topbar-bg', tint);
+
+    // Footer scuro tintato: tonalita' scura della linea per staccare dallo
+    // sfondo chiaro di pagina (stessa palette, tonalita' diversa).
+    if (accent) {
+      const dk = (hex, f) => {
+        const n = parseInt(hex.slice(1), 16);
+        const r = Math.round(((n >> 16) & 255) * (1 - f));
+        const g = Math.round(((n >> 8) & 255) * (1 - f));
+        const b = Math.round((n & 255) * (1 - f));
+        return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+      };
+      document.body.classList.add('footer-brand');
+      document.body.style.setProperty('--footer-bg', dk(accent, 0.6));
+      document.body.style.setProperty('--footer-accent', accent);
+    }
 
     const HERO_IMGS = {
       argan:      '../immagini/argan/hero.jpg',
@@ -875,7 +927,7 @@
       const metaItems = [
         { label: l === 'it' ? 'Pelle' : 'Skin', val: line[l].skin || '—' },
         { label: l === 'it' ? 'Linea' : 'Line', val: `L.${String(lineIdx).padStart(2,'0')}` },
-        { label: l === 'it' ? 'Prodotti' : 'Products', val: PRODUCTS.filter(p => p.line === lineId).length + '+' },
+        { label: l === 'it' ? 'Prodotti' : 'Products', val: PRODUCTS.filter(p => p.line === lineId).length },
       ];
       metaItems.forEach(m => {
         meta.innerHTML += `<div class="lh__meta-item">${m.label}<b>${m.val}</b></div>`;
@@ -884,8 +936,9 @@
     fill();
     document.addEventListener('lang-change', fill);
 
-    // Prodotti
+    // Prodotti — i prodotti "Active" vanno come prime card
     const products = PRODUCTS.filter(p => p.line === lineId);
+    products.sort((a, b) => (/-active$/.test(a.id) ? 0 : 1) - (/-active$/.test(b.id) ? 0 : 1));
     const countEl = document.getElementById('prodCountLabel');
     countEl.textContent = products.length + (lang() === 'it' ? ' prodotti' : ' products');
 
@@ -896,7 +949,7 @@
     grid.className = 'lp__grid';
     const PALETTE_ACCENT = {
       argan:      '#9a7f4a',
-      antieta:    '#9a7f4a',
+      antieta:    '#2e9e82',
       illumia:    '#9a7f4a',
       cocco:      '#4a8fa0',
       purysens:   '#5a88a0',
@@ -906,7 +959,7 @@
       estratti:   '#5a6b4e',
       uomo:       '#3a5a8a',
     };
-    grid.style.setProperty('--line-accent', PALETTE_ACCENT[line.palette] || '#5a6b4e');
+    grid.style.setProperty('--line-accent', accent || PALETTE_ACCENT[line.palette] || '#5a6b4e');
 
     const CARD_IMGS = {
       antieta:    ['../immagini/antieta/detail-01.jpg','../immagini/antieta/detail-02.jpg','../immagini/antieta/flatlay-01.jpg','../immagini/antieta/flatlay-02.jpg','../immagini/antieta/flatlay-03.jpg','../immagini/antieta/packaging-01.jpg','../immagini/antieta/inuse-01.jpg','../immagini/antieta/inuse-02.jpg'],
@@ -917,6 +970,7 @@
       innovation: ['../immagini/pearls/detail-01.jpg','../immagini/pearls/detail-02.jpg','../immagini/pearls/inuse-01.jpg','../immagini/pearls/inuse-02.jpg','../immagini/pearls/inuse-03.jpg','../immagini/pearls/packaging-01.jpg'],
     };
 
+    /* Override inquadratura per foto in cui il prodotto verrebbe tagliato in alto */
     const toTitleCase = s => s.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
 
     const firstSent = txt => {
@@ -1005,6 +1059,7 @@
       'inn-pearls-c':    'Siero con perle di vitamina C liposomiale per un viso luminoso e uniformato.',
       'inn-pearls-niac': 'Siero con perle di niacinamide per pori ridotti e una pelle visibilmente più compatta.',
       'inn-min-1':       'Spray bifasico ai minerali marini per riequilibrare e illuminare la pelle in un gesto.',
+      'inn-min-2':       'Spray bifasico ai minerali marini ad azione rigenerante per una pelle più tonica e vitale.',
       'inn-kit':         'Kit Doppia Detersione K-beauty per una pulizia profonda e una pelle perfettamente levigata.',
     };
 
@@ -1022,7 +1077,8 @@
           .filter(Boolean);
         const ctaHref = `../prodotto.html?id=${p.id}`;
         const ctaLabel = l === 'en' ? 'Discover product →' : 'Scopri il prodotto →';
-        const cardImg = cardImgs.length ? cardImgs[i % cardImgs.length] : null;
+        const heroImg = (p.images && p.images.hero) ? ('../' + p.images.hero) : null;
+        const cardImg = heroImg || (cardImgs.length ? cardImgs[i % cardImgs.length] : null);
 
         const article = document.createElement('article');
         article.className = 'mini-card';
@@ -1034,7 +1090,7 @@
         article.innerHTML = `
           <div class="mini-card__visual">
             ${cardImg
-              ? `<img loading="lazy" decoding="async" src="${cardImg}" alt="${locData.name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">`
+              ? `<img loading="lazy" decoding="async" src="${cardImg}" alt="${locData.name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;">`
               : `<div class="pm">${productMock(line.palette, '', shape)}</div>`
             }
           </div>
@@ -1046,6 +1102,13 @@
             <a class="mini-card__cta" href="${ctaHref}" data-it="Scopri il prodotto &rarr;" data-en="Discover product &rarr;">${ctaLabel}</a>
           </div>`;
 
+        if (heroImg) {
+          const imgEl = article.querySelector('.mini-card__visual img');
+          if (imgEl) imgEl.onerror = () => {
+            const v = imgEl.closest('.mini-card__visual');
+            if (v) v.innerHTML = `<div class="pm">${productMock(line.palette, '', shape)}</div>`;
+          };
+        }
         grid.appendChild(article);
       });
     }

@@ -7,6 +7,7 @@
 <link rel="preload" href="assets/fonts/fraunces-200-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="stylesheet" href="assets/fonts.css"/>
 <link rel="stylesheet" href="assets/tokens.css"/>
+<link rel="stylesheet" href="assets/cert-masks.css"/>
 
 <style>
 
@@ -476,7 +477,11 @@
   justify-content: center;
   overflow: hidden;
 }
-/* SOSTITUIRE con foto per ogni pilastro */
+.pillar-block__visual img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; z-index: 0;
+}
 .pillar-block__photo-hint {
   font-family: var(--sans);
   font-size: 9px;
@@ -568,24 +573,14 @@
   overflow: hidden;
 }
 @media (max-width: 660px) { .cert-card__logo { width: 80px; height: 80px; } }
-.cert-card__logo img {
+.cert-card__logo-mark {
   width: 100%; height: 100%;
-  object-fit: contain;
+  background-color: var(--gold);
+  -webkit-mask: var(--logo) center / contain no-repeat;
+          mask: var(--logo) center / contain no-repeat;
   transition: transform .4s var(--ease);
 }
-.cert-card:hover .cert-card__logo img { transform: scale(1.05); }
-.cert-card__logo:not(:has(img)) {
-  background: rgba(201,169,110,.06);
-  border: 1px dashed rgba(201,169,110,.3);
-  border-radius: 50%;
-}
-.cert-card__logo:not(:has(img))::before {
-  content: 'LOGO\Aente cert.';
-  white-space: pre; text-align: center;
-  font-family: var(--sans); font-size: 11px; letter-spacing: 0.25em;
-  color: rgba(201,169,110,.5);
-  line-height: 1.7;
-}
+.cert-card:hover .cert-card__logo-mark { transform: scale(1.05); }
 
 .cert-card__icon { width: 24px; height: 24px; flex-shrink: 0; }
 .cert-card__name {
@@ -1023,30 +1018,8 @@
       </div>
     </div>
     <div class="pillar-block__visual" style="direction:ltr;">
-      <div class="photo-slot photo-slot--4x5">
-        <!-- SOSTITUIRE: foto materie prime botaniche su tavolo · 4:3 · 1600px+ · da reperire shooting laboratorio -->
-        <svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
-        <span class="photo-slot__label">Materie prime botaniche — shooting laboratorio</span>
-      </div>
+      <img src="immagini/sostenibilita/controllo-laboratorio.jpg" alt="Controllo del pH di una formula in laboratorio Athena's, con soluzioni tampone tarate" class="cover-img" loading="lazy">
       <div class="pillar-block__visual-n" aria-hidden="true">01</div>
-      <div class="pillar-block__svg-deco">
-        <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="opacity:.18;">
-          <!-- foglia botanica -->
-          <path d="M100 180 C100 180 30 130 30 80 C30 40 65 20 100 20 C135 20 170 40 170 80 C170 130 100 180 100 180Z" stroke="rgba(138,154,123,1)" stroke-width="1.5" fill="none"/>
-          <path d="M100 20 L100 180" stroke="rgba(138,154,123,1)" stroke-width="1"/>
-          <path d="M100 65 Q140 80 155 110" stroke="rgba(138,154,123,.7)" stroke-width="1" fill="none"/>
-          <path d="M100 90 Q135 100 145 128" stroke="rgba(138,154,123,.6)" stroke-width="1" fill="none"/>
-          <path d="M100 115 Q128 122 132 145" stroke="rgba(138,154,123,.5)" stroke-width="1" fill="none"/>
-          <path d="M100 65 Q60 80 45 110" stroke="rgba(138,154,123,.7)" stroke-width="1" fill="none"/>
-          <path d="M100 90 Q65 100 55 128" stroke="rgba(138,154,123,.6)" stroke-width="1" fill="none"/>
-          <path d="M100 115 Q72 122 68 145" stroke="rgba(138,154,123,.5)" stroke-width="1" fill="none"/>
-          <!-- piccoli cerchi ingrediente -->
-          <circle cx="155" cy="110" r="5" stroke="rgba(201,169,110,.8)" stroke-width="1" fill="none"/>
-          <circle cx="45" cy="110" r="5" stroke="rgba(201,169,110,.8)" stroke-width="1" fill="none"/>
-          <circle cx="100" cy="20" r="5" stroke="rgba(201,169,110,.8)" stroke-width="1" fill="none"/>
-        </svg>
-      </div>
-      <span class="pillar-block__photo-hint" data-it="Materie prime botaniche" data-en="Botanical raw materials">Materie prime botaniche</span>
     </div>
   </div>
 </div>
@@ -1076,31 +1049,8 @@
       </div>
     </div>
     <div class="pillar-block__visual">
-      <div class="photo-slot photo-slot--4x5">
-        <!-- SOSTITUIRE: foto packaging riciclato/riciclabile (flaconi vuoti, cartoni) · 4:3 · 1600px+ · da reperire -->
-        <svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
-        <span class="photo-slot__label">Packaging riciclato — flaconi vuoti e cartoni</span>
-      </div>
+      <img src="immagini/sostenibilita/packaging-vuoti.jpg" alt="Vasetti in vetro vuoti sulla giostra di riempimento, packaging dei prodotti Athena's" class="cover-img" loading="lazy">
       <div class="pillar-block__visual-n" aria-hidden="true">02</div>
-      <div class="pillar-block__svg-deco">
-        <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="opacity:.18;">
-          <!-- frecce ciclo riciclaggio stilizzate -->
-          <circle cx="100" cy="100" r="65" stroke="rgba(201,169,110,.3)" stroke-width="1" stroke-dasharray="6 4"/>
-          <!-- freccia 1 top-right -->
-          <path d="M100 35 A65 65 0 0 1 165 100" stroke="rgba(201,169,110,1)" stroke-width="1.5" fill="none"/>
-          <polygon points="165,100 158,88 172,90" fill="rgba(201,169,110,1)"/>
-          <!-- freccia 2 bottom -->
-          <path d="M165 100 A65 65 0 0 1 35 100" stroke="rgba(201,169,110,1)" stroke-width="1.5" fill="none"/>
-          <polygon points="35,100 42,112 28,110" fill="rgba(201,169,110,1)"/>
-          <!-- freccia 3 top-left -->
-          <path d="M35 100 A65 65 0 0 1 100 35" stroke="rgba(201,169,110,1)" stroke-width="1.5" fill="none"/>
-          <polygon points="100,35 88,42 90,28" fill="rgba(201,169,110,1)"/>
-          <!-- flacone al centro -->
-          <rect x="86" y="78" width="28" height="42" rx="4" stroke="rgba(255,255,255,.5)" stroke-width="1" fill="none"/>
-          <rect x="90" y="70" width="20" height="10" rx="2" stroke="rgba(255,255,255,.4)" stroke-width="1" fill="none"/>
-        </svg>
-      </div>
-      <span class="pillar-block__photo-hint" data-it="Packaging sostenibile" data-en="Sustainable packaging">Packaging sostenibile</span>
     </div>
   </div>
 </div>
@@ -1326,13 +1276,9 @@ const CERT_TAGLINES_EN = {
   madeinitaly: 'Everything in Italy, under one roof.',
 };
 
+// In sostenibilità mostriamo solo il logo dermatologico (gli altri restano card testuali).
 const CERT_LOGOS = {
-  bioagricert: 'immagini/sostenibilita/logos/bioagricert.png',
-  vegan: 'immagini/sostenibilita/logos/vegan.png',
-  dermatologico: 'immagini/sostenibilita/logos/dermatologicamente-testato.png',
-  'metalli-pesanti': 'immagini/sostenibilita/logos/test-metalli.png',
-  opimm: 'immagini/sostenibilita/logos/opimm.png',
-  madeinitaly: 'immagini/sostenibilita/logos/made-in-italy.png',
+  dermatologico: 'var(--cert-dermatologicamente)',
 };
 
 const certsGrid = document.getElementById('certsGrid');
@@ -1354,10 +1300,12 @@ function renderCertsGrid() {
     const tagline = lang === 'en' ? (CERT_TAGLINES_EN[c.id] || c.tagline) : c.tagline;
     const badge = lang === 'en' ? (CERT_BADGES_EN[c.id] || c.badge) : (CERT_BADGES_IT[c.id] || c.badge);
     const cta = lang === 'en' ? '→ Learn more' : '→ Approfondisci';
+    const logoSrc = CERT_LOGOS[c.id];
+    const logoHTML = logoSrc
+      ? `<div class="cert-card__logo"><span class="cert-card__logo-mark" style="--logo:${logoSrc}"></span></div>`
+      : '';
     card.innerHTML = `
-      <div class="cert-card__logo">
-        <!-- SOSTITUIRE: logo ufficiale ente certificatore (PNG trasparente o SVG, 200x200px) — disponibile in immagini/sostenibilita/logos/ quando caricato -->
-      </div>
+      ${logoHTML}
       <div class="cert-card__icon">${CERT_ICONS[c.id] || ''}</div>
       <h3 class="cert-card__name">${name}</h3>
       <span class="cert-card__badge">${badge}</span>

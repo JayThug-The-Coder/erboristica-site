@@ -97,15 +97,18 @@
   width: 100%; height: 100%;
   object-fit: cover;
   object-position: center;
-  opacity: .4;
+  opacity: .9;
 }
 .loc-banner__overlay {
   position: absolute; inset: 0;
   background:
-    linear-gradient(105deg, rgba(8,12,8,.96) 0%, rgba(8,12,8,.82) 40%, rgba(8,12,8,.48) 68%, rgba(8,12,8,.22) 100%),
-    linear-gradient(180deg, rgba(8,12,8,.28) 0%, transparent 18%, transparent 82%, rgba(8,12,8,.42) 100%);
+    linear-gradient(90deg, rgba(12,16,10,.74) 0%, rgba(12,16,10,.30) 26%, rgba(12,16,10,.06) 50%, rgba(12,16,10,.30) 74%, rgba(12,16,10,.74) 100%),
+    linear-gradient(180deg, rgba(12,16,10,.16) 0%, transparent 24%, transparent 70%, rgba(12,16,10,.50) 100%);
 }
-.loc-banner__inner { position: relative; z-index: 1; }
+.loc-banner__inner {
+  position: relative; z-index: 1;
+  text-shadow: 0 1px 16px rgba(0,0,0,.5), 0 1px 3px rgba(0,0,0,.38);
+}
 
 .loc-banner__grid {
   display: grid;
@@ -143,7 +146,7 @@
   transition: border-color .3s;
 }
 .loc-block__value a:hover { border-color: var(--gold); }
-.loc-block__note { font-family: var(--serif); font-style: italic; font-size: 14px; opacity: .5; line-height: 1.5; }
+.loc-block__note { font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--cream); opacity: .78; line-height: 1.5; }
 
 .loc-map { display: flex; flex-direction: column; }
 .loc-map__place {
@@ -167,6 +170,12 @@
 }
 .loc-map__embed:hover iframe { filter: grayscale(0) brightness(1); }
 @media (max-width: 860px) { .loc-map__embed, .loc-map__embed iframe { min-height: 260px; } }
+/* Desktop: colonna destra speculare a sinistra — gruppo "Dove siamo" + Pianoro + mappa allineati a destra, mappa dimezzata in larghezza.
+   translate: spostato un po' verso sinistra e leggermente più in alto (la mappa alta sbordava troppo sotto "Telefono"). */
+@media (min-width: 901px) {
+  .loc-map { align-items: flex-end; text-align: right; transform: translate(-40px, -48px); }
+  .loc-map__embed { width: 50%; align-self: flex-end; }
+}
 .loc-map__caption {
   margin-top: 10px; font-family: var(--sans); font-size: 11px;
   letter-spacing: .2em; text-transform: uppercase; opacity: .45;
@@ -261,7 +270,7 @@
 }
 .form-field input:focus,
 .form-field textarea:focus { border-color: var(--sage-deep); }
-.form-field textarea { resize: vertical; min-height: 180px; line-height: 1.6; }
+.form-field textarea { resize: vertical; min-height: 360px; line-height: 1.6; }
 
 /* ── FILE ATTACHMENT ─────────────────────────────────────── */
 .form-file { margin-bottom: 24px; }
@@ -422,7 +431,7 @@
 <!-- DOVE TROVARCI + DOVE SIAMO -->
 <section class="loc-banner">
   <div class="loc-banner__bg">
-    <!-- SOSTITUIRE: <img src="immagini/azienda/lifestyle-01.jpg" alt="" class="loc-banner__photo" loading="lazy"> -->
+    <img src="immagini/azienda/stabilimento-esterno.jpg" alt="La sede Athena's a Pianoro, vista frontale dell'edificio con il logo e l'insegna L'Erboristica" class="loc-banner__photo" loading="lazy">
   </div>
   <div class="loc-banner__overlay"></div>
   <div class="loc-banner__inner container">
@@ -451,7 +460,7 @@
       </div>
 
       <div class="loc-map">
-        <div class="eyebrow" style="color:rgba(201,169,110,.65); margin-bottom:clamp(16px,2.5vw,28px);" data-it="Dove siamo" data-en="Where we are">Dove siamo</div>
+        <div class="eyebrow" style="color:rgba(201,169,110,.65); margin-bottom:10px;" data-it="Dove siamo" data-en="Where we are">Dove siamo</div>
         <div class="loc-map__place" data-reveal>
           <span data-it="Pianoro," data-en="Pianoro,">Pianoro,</span><br/>
           <em data-it="Bologna, Italia." data-en="Bologna, Italy.">Bologna, Italia.</em>

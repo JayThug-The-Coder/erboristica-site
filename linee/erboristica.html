@@ -122,13 +122,14 @@
   .el-banner__n {
     font-family: var(--sans); font-size: 9px; font-weight: 500;
     letter-spacing: 0.28em; text-transform: uppercase;
-    color: var(--gold-deep); opacity: .75; margin-bottom: 16px;
+    color: var(--el-accent, var(--gold-deep)); opacity: .85; margin-bottom: 16px;
   }
   .el-banner__name {
     font-family: var(--display);
     font-size: clamp(28px, 3.5vw, 54px);
     font-weight: 300; letter-spacing: -0.025em; line-height: .95;
     margin-bottom: 12px;
+    color: var(--el-title, var(--ink));
   }
   .el-banner__desc {
     font-family: var(--serif);
@@ -143,7 +144,8 @@
   .el-banner__tag {
     font-family: var(--sans);
     font-size: 10px; letter-spacing: 0.18em;
-    text-transform: uppercase; opacity: .5;
+    text-transform: uppercase;
+    color: var(--el-accent, inherit); opacity: .72;
     white-space: nowrap; margin-bottom: 24px;
   }
   .el-banner__meta {
@@ -158,13 +160,13 @@
   .el-banner__cta {
     font-family: var(--sans); font-size: 9px;
     letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--gold-deep); margin-left: auto;
+    color: var(--el-accent, var(--gold-deep)); margin-left: auto;
     position: relative; padding-bottom: 5px;
     transition: letter-spacing .25s var(--ease);
   }
   .el-banner__cta::after {
     content: ''; position: absolute; left: 0; bottom: 0;
-    width: 0; height: 1px; background: var(--gold-deep);
+    width: 0; height: 1px; background: var(--el-accent, var(--gold-deep));
     transition: width .3s var(--ease);
   }
   .el-banner__cta:hover { letter-spacing: 0.28em; }
@@ -226,39 +228,6 @@
           <div class="eh__strip-l" data-it="Petrolchimici &amp; siliconi" data-en="Petrochemicals &amp; silicones">Petrolchimici &amp; siliconi</div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- FILOSOFIA / ARCHIVIO — sezione 02 (da implementare) -->
-<section style="padding: clamp(48px,6vw,80px) clamp(20px,4vw,60px); background: var(--cream-2);">
-  <div style="max-width:1200px; margin:0 auto;">
-    <div style="font-family:var(--sans); font-size:9px; letter-spacing:0.2em; text-transform:uppercase; opacity:.45; margin-bottom:clamp(20px,3vw,32px);">— 02 · Archivio</div>
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(18px,2.6vw,36px);">
-      <figure style="margin:0;">
-        <div class="photo-slot photo-slot--cream photo-slot--1x1" data-slot-label="Etichetta vintage anni '70 · 1:1 · b/n o seppia · 600x600px">
-          <svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
-          <span class="photo-slot__label">Etichetta vintage anni '70</span>
-          <span class="photo-slot__sub">archivio aziendale</span>
-        </div>
-        <figcaption style="font-family:var(--sans); font-size:10px; letter-spacing:0.18em; text-transform:uppercase; opacity:.5; margin-top:14px; text-align:center;">Etichetta vintage — anni '70</figcaption>
-      </figure>
-      <figure style="margin:0;">
-        <div class="photo-slot photo-slot--cream photo-slot--1x1" data-slot-label="Prima formula scritta a mano · 1:1 · b/n o seppia · 600x600px">
-          <svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
-          <span class="photo-slot__label">Prima formula scritta a mano</span>
-          <span class="photo-slot__sub">archivio aziendale</span>
-        </div>
-        <figcaption style="font-family:var(--sans); font-size:10px; letter-spacing:0.18em; text-transform:uppercase; opacity:.5; margin-top:14px; text-align:center;">Prima formula — scritta a mano</figcaption>
-      </figure>
-      <figure style="margin:0;">
-        <div class="photo-slot photo-slot--cream photo-slot--1x1" data-slot-label="Ritratto Antonio Venturino o stabilimento originale 1969 · 1:1 · b/n o seppia · 600x600px">
-          <svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
-          <span class="photo-slot__label">Ritratto fondatore o stabilimento 1969</span>
-          <span class="photo-slot__sub">archivio aziendale</span>
-        </div>
-        <figcaption style="font-family:var(--sans); font-size:10px; letter-spacing:0.18em; text-transform:uppercase; opacity:.5; margin-top:14px; text-align:center;">Il fondatore — 1969</figcaption>
-      </figure>
     </div>
   </div>
 </section>
@@ -382,18 +351,8 @@
   initAthenas('brands');
   document.querySelector('.topbar').classList.add('topbar--light');
 
-  const LINE_COUNTS = {
-    argan:      { it: '9 prodotti',   en: '9 products'   },
-    cocco:      { it: '7 prodotti',   en: '7 products'   },
-    mandorle:   { it: '6 prodotti',   en: '6 products'   },
-    antieta:    { it: '8 prodotti',   en: '8 products'   },
-    illumia:    { it: '2 prodotti',   en: '2 products'   },
-    purysens:   { it: '4 prodotti',   en: '4 products'   },
-    nutra:      { it: '4 prodotti',   en: '4 products'   },
-    estratti:   { it: '25 prodotti',  en: '25 products'  },
-    uomo:       { it: '12 prodotti',  en: '12 products'  },
-    innovation: { it: '12+ prodotti', en: '12+ products' },
-  };
+  // Conteggio reale dalle schede prodotto effettive (window.PRODUCTS)
+  const lineCount = (id) => (window.PRODUCTS || []).filter(p => p.line === id).length;
 
   const LINE_IMGS = {
     argan:      '../immagini/argan/hero.jpg',
@@ -414,10 +373,25 @@
   if (innIdx > 0) lines.unshift(lines.splice(innIdx, 1)[0]);
   // Tint chiaro per linea (coerente con prodotto.html e linea.html)
   const lineTints = {
-    antieta: '#ecd9bf', argan: '#f2e2ab', cocco: '#cfe6ee', mandorle: '#f0d8cd',
+    antieta: '#e9f5f0', argan: '#f2e2ab', cocco: '#cfe6ee', mandorle: '#f0d8cd',
     illumia: '#f0e1a4', purysens: '#cdddee', nutra: '#ecd6bf', estratti: '#d6e6c8',
     uomo: '#d4dce6', innovation: '#ddd0ee', pearls: '#e2d2ee',
     'mineral-infusions': '#cce8ec', 'doppia-detersione': '#dacfec',
+  };
+  // Accento per banner (coerente con prodotto.html / linea.html): "L.NN", tagline
+  // e "Scopri" prendono il colore della linea invece del gold sabbia.
+  const lineAccents = {
+    antieta: '#2e9e82', argan: '#a8842c', cocco: '#3a8aa0', mandorle: '#b87860',
+    illumia: '#b8902c', purysens: '#5a7a9a', nutra: '#a8703c', estratti: '#5a7a4a',
+    uomo: '#5a6e9a', innovation: '#8a5ac0', pearls: '#8a5ac0',
+    'mineral-infusions': '#3a9aa6', 'doppia-detersione': '#7a60a8',
+  };
+  const darkenEl = (hex, f) => {
+    const n = parseInt(hex.slice(1), 16);
+    const r = Math.round(((n >> 16) & 255) * (1 - f));
+    const gg = Math.round(((n >> 8) & 255) * (1 - f));
+    const b = Math.round((n & 255) * (1 - f));
+    return '#' + ((1 << 24) + (r << 16) + (gg << 8) + b).toString(16).slice(1);
   };
   const g = document.getElementById('lines-grid');
   const render = () => {
@@ -427,9 +401,16 @@
       el.className = 'el-banner' + (i % 2 !== 0 ? ' el-banner--reverse' : '');
       el.href = `linea.html?id=${l.id}`;
       if (lineTints[l.id]) el.style.setProperty('--el-tint', `linear-gradient(150deg, #fbfaf7 0%, ${lineTints[l.id]} 75%, ${lineTints[l.id]} 100%)`);
+      if (lineAccents[l.id]) {
+        el.style.setProperty('--el-accent', lineAccents[l.id]);
+        // Titolo in tonalita' piu' scura dell'accento: stacca dallo sfondo
+        // tintato del pannello (es. viola su viola chiaro era poco leggibile).
+        el.style.setProperty('--el-title', darkenEl(lineAccents[l.id], 0.45));
+      }
       const lang = ATH.lang;
       const ld = l[lang];
-      const count = LINE_COUNTS[l.id]?.[lang] || '';
+      const n = lineCount(l.id);
+      const count = n ? (lang === 'en' ? `${n} ${n === 1 ? 'product' : 'products'}` : `${n} ${n === 1 ? 'prodotto' : 'prodotti'}`) : '';
       const imgUrl = LINE_IMGS[l.id];
       const phBg = l.id === 'illumia'
         ? 'linear-gradient(135deg,#c9a96e,#9a7f4a)'

@@ -418,8 +418,13 @@
     if (file === 'prodotto.html') {
       try {
         const pid = new URLSearchParams(window.location.search).get('id');
-        if (pid && window.ATH_DATA_JSON && window.ATH_DATA_JSON.products) {
-          const prod = window.ATH_DATA_JSON.products.find(pr => pr.id === pid);
+        if (pid) {
+          // Cerca prima in window.PRODUCTS (data.js, id usati dalle schede),
+          // poi in ATH_DATA_JSON (data-inline.js, id slug) come fallback.
+          let prod = (window.PRODUCTS || []).find(pr => pr.id === pid);
+          if (!prod && window.ATH_DATA_JSON && window.ATH_DATA_JSON.products) {
+            prod = window.ATH_DATA_JSON.products.find(pr => pr.id === pid);
+          }
           if (prod) {
             const brand = prod.brand || prod.line;
             // I brand non-Erboristica non hanno una pagina linea: vai alla hub del brand
@@ -994,6 +999,29 @@
     els.forEach(el => obs.observe(el));
   }
 
+  function initClickableCards() {
+    const CARD_SELECTOR = '.ev-card, .kf-frag, .sp-prod-panel, .mini-card';
+    const style = document.createElement('style');
+    style.textContent = CARD_SELECTOR.split(',')
+      .map(s => s.trim() + '{cursor:pointer;}')
+      .join('');
+    document.head.appendChild(style);
+
+    document.addEventListener('click', (e) => {
+      const card = e.target.closest(CARD_SELECTOR);
+      if (!card) return;
+      if (e.target.closest('a, button, input, textarea, select, label')) return;
+      if (window.getSelection && String(window.getSelection())) return;
+      const cta = card.querySelector('a[href]');
+      if (!cta) return;
+      if (cta.target === '_blank') {
+        window.open(cta.href, '_blank', 'noopener');
+      } else {
+        window.location.href = cta.href;
+      }
+    });
+  }
+
   window.initAthenas = function (activeKey, opts) {
     renderTopbar(activeKey, opts);
     renderFooter();
@@ -1005,5 +1033,6 @@
     initMagneticButtons();
     initSideNav(activeKey);
     initVanishOnScroll();
+    initClickableCards();
   };
 })();

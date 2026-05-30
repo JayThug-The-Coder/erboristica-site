@@ -7,6 +7,7 @@
 <link rel="preload" href="../assets/fonts/fraunces-200-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="stylesheet" href="../assets/fonts.css"/>
 <link rel="stylesheet" href="../assets/tokens.css"/>
+<link rel="stylesheet" href="../assets/cert-masks.css"/>
 
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -15,7 +16,7 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
 
 /* ── BREADCRUMB ─────────────────────────────────────────────── */
 .sp-breadcrumb {
-  display: flex; align-items: center; gap: 8px;
+  display: flex; align-items: center; justify-content: flex-end; gap: 8px;
   margin-bottom: 28px; position: relative; z-index: 1;
   font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
 }
@@ -44,7 +45,6 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
 .sp-hero__photo-placeholder {
   position: absolute; inset: 0; z-index: 1;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  border: 1px dashed rgba(74,106,160,.15);
 }
 .sp-hero__photo-placeholder span {
   font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
@@ -70,9 +70,9 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
 }
 
 .sp-hero__info {
-  display: flex; flex-direction: column; justify-content: flex-end;
-  padding: clamp(80px,10vh,140px) clamp(32px,5vw,80px) clamp(48px,7vw,80px);
-  position: relative; z-index: 2;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: clamp(100px,12vh,150px) clamp(32px,5vw,80px) clamp(48px,7vw,80px);
+  position: relative; z-index: 2; text-align: right;
 }
 .sp-hero__bg-text {
   position: absolute; bottom: -0.1em; left: 0; right: 0;
@@ -83,7 +83,7 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
 }
 
 .sp-eyebrow {
-  display: flex; align-items: center; gap: 12px; margin-bottom: 20px; position: relative; z-index: 1;
+  display: flex; align-items: center; justify-content: flex-end; gap: 12px; margin-bottom: 20px; position: relative; z-index: 1;
 }
 .sp-eyebrow__brand {
   font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: #4a6aa0;
@@ -100,8 +100,8 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
 }
 .sp-hero__claim {
   font-family: var(--serif); font-size: clamp(17px,1.4vw,19px); line-height: 1.75;
-  color: rgba(26,26,26,.88); max-width: 44ch; margin-bottom: 28px;
-  position: relative; z-index: 1;
+  color: rgba(26,26,26,.88); max-width: 42ch; margin-bottom: 28px; margin-left: auto;
+  position: relative; z-index: 1; text-wrap: pretty;
 }
 
 .sp-hero__cosmoprof {
@@ -114,10 +114,12 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
 .sp-hero__cosmoprof svg { width: 14px; height: 14px; fill: #4a6aa0; flex-shrink: 0; }
 
 .sp-specs {
-  display: flex; flex-wrap: wrap; gap: 20px 32px;
+  display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 20px 32px;
+  margin-top: auto; padding-top: 28px;
+  border-top: 1px solid rgba(74,106,160,.1);
   position: relative; z-index: 1;
 }
-.sp-spec { display: flex; flex-direction: column; gap: 3px; }
+.sp-spec { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; }
 .sp-spec__label {
   font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(26,26,26,.65);
 }
@@ -145,11 +147,11 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
 }
 .sp-row__photo {
   aspect-ratio: 4/5;
-  border: 1px dashed rgba(74,106,160,.12);
   background: rgba(74,106,160,.02);
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
 }
+.sp-row__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .sp-row__photo span {
   font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
   color: rgba(74,106,160,.25); text-align: center; padding: 0 20px;
@@ -447,6 +449,24 @@ body.sp-modal-open { overflow: hidden; }
   display: none; margin-top: 20px;
   font-family: var(--serif); font-size: 14px; line-height: 1.95; color: rgba(26,26,26,.35);
 }
+.sp-certs {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: clamp(20px,2.6vw,38px);
+  margin-bottom: clamp(30px,3.6vw,46px);
+}
+.sp-certs__label {
+  flex-basis: 100%;
+  font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(74,106,160,.45); margin-bottom: 2px;
+}
+.sp-cert-logo {
+  width: clamp(56px,6vw,76px); aspect-ratio: 1;
+  background-color: #4a6aa0;
+  -webkit-mask: var(--logo) center / contain no-repeat;
+          mask: var(--logo) center / contain no-repeat;
+  opacity: .82; transition: opacity .35s var(--ease), transform .35s var(--ease);
+}
+.sp-cert-logo:hover { opacity: 1; transform: translateY(-3px); }
 
 /* ── B2B TABLE ────────────────────────────────────────────── */
 .sp-b2b {
@@ -563,9 +583,10 @@ body.sp-modal-open { overflow: hidden; }
   aspect-ratio: 4/5;
   position: relative; overflow: hidden;
   display: flex; align-items: center; justify-content: center;
-  border: 1px dashed rgba(74,106,160,.1);
+  background: rgba(74,106,160,.02);
   /* SOSTITUIRE: aggiungere background-image + background-size: cover */
 }
+.sp-result-panel__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .sp-result-panel__photo-hint {
   font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
   color: rgba(74,106,160,.18); text-align: center; padding: 0 20px; line-height: 2;
@@ -617,9 +638,9 @@ body.sp-modal-open { overflow: hidden; }
   font-size: clamp(22px,3vw,38px); color: rgba(26,26,26,.7);
 }
 .sp-related__strip {
-  display: flex; overflow-x: auto; gap: 2px;
+  display: flex; overflow-x: auto; gap: clamp(16px,2vw,28px);
   scrollbar-width: none; -ms-overflow-style: none;
-  padding-bottom: 2px;
+  padding: 0 clamp(20px,4vw,60px) 2px;
   scroll-snap-type: x mandatory;
 }
 .sp-related__strip::-webkit-scrollbar { display: none; }
@@ -699,11 +720,6 @@ body.sp-modal-open { overflow: hidden; }
       <span class="sp-breadcrumb__sep">›</span>
       <span class="sp-breadcrumb__current" id="bcProduct">—</span>
     </nav>
-    <div class="sp-eyebrow">
-      <span class="sp-eyebrow__brand">Sphea</span>
-      <span class="sp-eyebrow__sep"></span>
-      <span class="sp-eyebrow__cat" id="eyebrowCat">Siero</span>
-    </div>
     <h1 class="sp-hero__name" id="heroName">Loading…</h1>
     <p class="sp-hero__claim" id="heroClaim"></p>
     <div id="cosmoprofBadge" style="display:none; margin-bottom:28px;">
@@ -864,6 +880,11 @@ body.sp-modal-open { overflow: hidden; }
 <!-- ────────────────────────── FORMULA / INCI ────────────────────────── -->
 <section class="sp-formula">
   <div class="container">
+    <div class="sp-certs" data-reveal>
+      <span class="sp-certs__label" data-it="Certificazioni" data-en="Certifications">Certificazioni</span>
+      <span class="sp-cert-logo" role="img" aria-label="Dermatologicamente testato" title="Dermatologicamente testato" style="--logo:var(--cert-dermatologicamente)"></span>
+      <span class="sp-cert-logo" role="img" aria-label="Testato al Nickel, Cromo e Cobalto" title="Testato al Nickel, Cromo e Cobalto" style="--logo:var(--cert-nickel-cobalto)"></span>
+    </div>
     <button class="sp-inci-toggle" id="inciToggle" data-it="Composizione INCI completa +" data-en="Full INCI composition +">Composizione INCI completa +</button>
     <div class="sp-inci-body" id="inciBody"></div>
   </div>
@@ -1158,7 +1179,6 @@ function renderPage(d, id) {
   document.getElementById('heroBg').innerHTML = `<div style="position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%, rgba(74,106,160,.16) 0%, transparent 60%)"></div>`;
   document.getElementById('heroName').textContent = d.name;
   document.getElementById('heroClaim').textContent = d.claim;
-  document.getElementById('eyebrowCat').textContent = d.cat;
   document.getElementById('specFormat').textContent = d.format;
   document.getElementById('specZone').textContent = d.zone;
   document.getElementById('heroBgText').textContent = d.name.toUpperCase().split(' ')[0];
@@ -1330,6 +1350,12 @@ function renderPage(d, id) {
 }
 
 if (typeof initAthenas === 'function') initAthenas('sphea');
+
+// Footer scuro premium blu-navy per staccare dallo sfondo chiaro.
+document.body.classList.add('footer-brand');
+document.body.style.setProperty('--footer-bg', '#1d3157');
+document.body.style.setProperty('--footer-accent', '#7da0d4');
+document.body.style.setProperty('--topbar-bg', '#dbe3f0');
 </script>
 </body>
 </html>

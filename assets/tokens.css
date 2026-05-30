@@ -253,7 +253,7 @@ h1, h2, h3, h4, h5 {
   gap: 22px;
 }
 .topbar.solid {
-  background: var(--cream);
+  background: var(--topbar-bg, var(--cream));
   color: var(--ink);
   border-bottom: 1px solid rgba(0,0,0,.08);
 }
@@ -490,7 +490,7 @@ h1, h2, h3, h4, h5 {
 
 /* Footer */
 .footer {
-  background: var(--ink);
+  background: var(--footer-bg, var(--ink));
   color: var(--cream);
   margin-top: var(--s10);
   position: relative;
@@ -621,6 +621,32 @@ h1, h2, h3, h4, h5 {
   white-space: nowrap;
   pointer-events: none;
 }
+
+/* Footer tintato (prodotto.html / linee/linea.html): assume il colore-sfondo
+   della linea con testi scuri adattati. Attivato da body.footer-tinted + le
+   variabili --footer-bg / --footer-accent impostate via JS. */
+body.footer-tinted .footer { background: var(--footer-bg, var(--cream-2)); color: var(--ink); }
+body.footer-tinted .footer__big { color: var(--ink); opacity: .045; }
+body.footer-tinted .footer__social a,
+body.footer-tinted .footer__title,
+body.footer-tinted .footer__link,
+body.footer-tinted .footer__contact { color: var(--ink); }
+body.footer-tinted .footer__contact { opacity: .5; }
+body.footer-tinted .footer__contact a,
+body.footer-tinted .footer__link:hover,
+body.footer-tinted .footer__social a:hover { color: var(--footer-accent, var(--gold-deep)); }
+body.footer-tinted .footer__title { color: var(--footer-accent, var(--ink)); opacity: .85; }
+body.footer-tinted .footer__bottom { border-top-color: rgba(0,0,0,.12); }
+
+/* Footer brand SCURO (prodotto/linea erboristica, Kaley, Sphea): sfondo
+   tonalita' scura della palette per staccare dallo sfondo chiaro di pagina.
+   Testo chiaro (base), titoli colonna e link nell'accento brillante.
+   Attivato da body.footer-brand + --footer-bg (scuro) / --footer-accent. */
+body.footer-brand .footer__title { color: var(--footer-accent, var(--gold)); opacity: .92; }
+body.footer-brand .footer__link:hover,
+body.footer-brand .footer__social a:hover,
+body.footer-brand .footer__contact a { color: var(--footer-accent, var(--gold)); }
+body.footer-brand .footer__big { color: var(--footer-accent, var(--cream)); opacity: .06; }
 
 /* Page intro */
 .page-hero {

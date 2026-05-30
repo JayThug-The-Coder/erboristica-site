@@ -410,7 +410,7 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
 /* ── I 5 SIERI — zigzag ─────────────────────────────────────── */
 .sp-products {
   background: #eef1f7;
-  padding: clamp(80px,11vw,140px) 0 0;
+  padding: 0;
   border-top: 1px solid rgba(74,106,160,.07);
 }
 .sp-products__header {
@@ -496,13 +496,15 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
   color: rgba(26,26,26,.5); margin-bottom: 22px; max-width: 48ch;
 }
 .sp-prod__pills {
-  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px;
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-bottom: 28px;
 }
 .sp-prod__pill {
-  font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
-  border: 1px solid rgba(74,106,160,.18); padding: 7px 15px;
-  color: #4a6aa0; opacity: .65;
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(15px,1.3vw,19px); letter-spacing: 0; text-transform: none;
+  border: 0; padding: 0;
+  color: #4a6aa0; opacity: .8;
 }
+.sp-prod__pill + .sp-prod__pill::before { content: '·'; margin-right: 14px; opacity: .45; }
 .sp-prod__link {
   display: inline-flex; align-items: center; gap: 12px;
   padding: 13px 24px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
@@ -792,12 +794,12 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
 
 /* ── FOOTER OVERRIDE (resta scuro, come default) ─────────── */
 .footer {
-  background: #040404;
+  background: #1d3157;
   margin-top: 0;
 }
-.footer__title { opacity: .65; color: rgba(228,221,212,.9); }
+.footer__title { opacity: .9; color: var(--footer-accent, #7da0d4); }
 .footer__link { opacity: .9; color: rgba(228,221,212,.9); }
-.footer__link:hover { opacity: 1; color: var(--gold); }
+.footer__link:hover { opacity: 1; color: var(--footer-accent, #7da0d4); }
 .footer__contact { opacity: .6; }
 .footer__big { color: rgba(228,221,212,.9); opacity: .06; }
 .footer__bottom { opacity: .65; }
@@ -950,24 +952,6 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
 </section>
 
 
-<!-- ── CTA ────────────────────────────────────────────────── -->
-<section class="sp-cta">
-  <div class="sp-cta__bg">
-    <img src="../immagini/sphea/stilllife.jpg" alt="Sphea Pearl Technology" loading="lazy" style="object-position: center 40%;">
-  </div>
-  <div class="sp-cta__overlay"></div>
-  <div class="container" style="position:relative;z-index:1;">
-    <h2>
-      <span data-it="Alta gamma, " data-en="Premium, ">Alta gamma, </span><em data-it="dati reali." data-en="real data.">dati reali.</em>
-    </h2>
-    <p data-it="Campioni disponibili per i tuoi buyer · Scheda tecnica con claims certificati · Listino riservato" data-en="Samples available for your buyers · Technical sheet with certified claims · Reserved price list">Campioni disponibili per i tuoi buyer · Scheda tecnica con claims certificati · Listino riservato</p>
-    <div class="sp-cta__btns">
-      <a class="sp-btn sp-btn--gold" href="../contatti.html" data-it="Richiedi campioni" data-en="Request samples">Richiedi campioni</a>
-      <a class="sp-btn sp-btn--ghost" href="../contatti.html" data-it="Scarica scheda tecnica" data-en="Download technical sheet">Scarica scheda tecnica</a>
-    </div>
-  </div>
-</section>
-
 <div id="footer"></div>
 
 <script src="../assets/vendor/lenis.min.js" defer></script><script src="../assets/data.js"></script>
@@ -975,6 +959,13 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
 <script src="../assets/app.js?v=6"></script>
 <script>
 initAthenas('brands');
+
+// Footer scuro premium blu-navy per staccare dallo sfondo chiaro (Sphea alta
+// gamma). Testo chiaro, titoli/link nel blu del brand.
+document.body.classList.add('footer-brand');
+document.body.style.setProperty('--footer-bg', '#1d3157');
+document.body.style.setProperty('--footer-accent', '#7da0d4');
+document.body.style.setProperty('--topbar-bg', '#dbe3f0');
 
 // Scroll reveal
 const obs = new IntersectionObserver(entries => {

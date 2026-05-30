@@ -41,3 +41,11 @@ immagini/**/_hero_contact_sheet.png
 *.bak_*
 *.bak_old_layout
 *.bak_redirect
+
+# Scratch root (script helper, PNG di prova, dump di lavoro) — non per il sito
+/_*
+
+# Backup immagini locali (pesanti, non per il sito)
+immagini/_GALLERIA/
+immagini/_hero_backup_prenorm/
+immagini/_hero_backup_prezoom/

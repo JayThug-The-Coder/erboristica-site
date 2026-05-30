@@ -109,24 +109,27 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
 
 /* ── INTRO — storia profumo ────────────────────────────────── */
 .ki-intro {
-  background: #f9eef2;
-  padding: clamp(80px, 11vw, 140px) 0;
-  border-top: 1px solid rgba(168,56,94,.08);
+  background: #2a0a18;
+  border-top: 1px solid rgba(229,138,168,.14);
 }
 .ki-intro__grid {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: clamp(48px, 7vw, 100px);
-  align-items: center;
+  grid-template-columns: 1fr 1.1fr;
+  align-items: stretch;
+  min-height: clamp(420px, 48vw, 640px);
 }
 @media (max-width: 860px) { .ki-intro__grid { grid-template-columns: 1fr; } }
+.ki-intro__text {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: clamp(52px, 7vw, 100px) clamp(40px, 6vw, 90px);
+}
 
 .ki-intro__eyebrow {
   font-size: 9px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: #a8385e;
-  opacity: .5;
+  color: #e58aa8;
+  opacity: .7;
   margin-bottom: 20px;
 }
 .ki-intro h2 {
@@ -136,26 +139,26 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
   letter-spacing: -0.03em;
   line-height: 1.0;
   margin-bottom: 28px;
-  color: #1a1a1a;
+  color: #f4e6ec;
 }
-.ki-intro h2 em { font-style: italic; color: #a8385e; }
+.ki-intro h2 em { font-style: italic; color: #e58aa8; }
 .ki-intro p {
   font-family: var(--serif);
   font-size: clamp(17px, 1.4vw, 19px);
   line-height: 1.75;
-  color: rgba(26,26,26,.6);
+  color: rgba(244,230,236,.62);
   max-width: 48ch;
 }
 
 /* foto placeholder — destra intro */
 .ki-photo-space {
   position: relative;
-  aspect-ratio: 3/4;
+  height: 100%;
+  min-height: clamp(340px, 36vw, 520px);
   overflow: hidden;
-  background: rgba(255,255,255,.03);
-  border: 1px solid rgba(168,56,94,.1);
+  background: transparent;
 }
-/* SOSTITUIRE: .ki-photo-space img { width:100%; height:100%; object-fit:cover; } */
+.ki-photo-space img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .ki-photo-ph {
   width: 100%;
   height: 100%;
@@ -175,9 +178,9 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
 
 /* ── FRAGRANZE ZIGZAG ──────────────────────────────────────── */
 .kf-frags-header {
-  background: #f3e3ea;
-  padding: clamp(80px, 11vw, 140px) 0 clamp(56px, 7vw, 80px);
-  border-top: 1px solid rgba(168,56,94,.08);
+  background: #330d1e;
+  padding: clamp(52px, 7vw, 92px) 0 clamp(40px, 5vw, 60px);
+  border-top: 1px solid rgba(229,138,168,.14);
 }
 .kf-heading {
   font-family: var(--display);
@@ -185,15 +188,16 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
   font-weight: 200;
   letter-spacing: -0.04em;
   line-height: .9;
-  color: #1a1a1a;
+  color: #f4e6ec;
 }
-.kf-heading em { font-style: italic; color: #a8385e; }
+.kf-heading em { font-style: italic; color: #e58aa8; }
 
 .kf-frags { background: #f3e3ea; }
 .kf-frag {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 76vh;
+  align-items: stretch;
+  min-height: auto;
   border-top: 1px solid rgba(168,56,94,.07);
 }
 @media (max-width: 768px) {
@@ -209,7 +213,8 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
 .kf-frag__photo {
   position: relative;
   overflow: hidden;
-  min-height: 400px;
+  aspect-ratio: 1 / 1;
+  min-height: 0;
 }
 .kf-frag__photo-inner {
   width: 100%;
@@ -220,16 +225,15 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
   align-items: center;
   justify-content: center;
 }
-/* SOSTITUIRE: img reale con position:absolute inset:0 object-fit:cover */
-.kf-frag__ph-label {
+.kf-pack-img {
   position: absolute;
-  bottom: 20px;
-  left: 24px;
-  font-family: var(--sans);
-  font-size: 9px;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: rgba(26,26,26,.25);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  object-fit: cover;
+  object-position: center;
+  padding: 0;
 }
 
 .kf-frag__text {
@@ -237,14 +241,14 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
   flex-direction: column;
   justify-content: center;
   padding: clamp(48px, 6vw, 96px) clamp(36px, 5.5vw, 84px);
-  background: #f3e3ea;
+  background: linear-gradient(160deg,#f8ecf0 0%,#eecfd9 55%,#dcabbb 100%);
 }
 .kf-frag__num {
   font-family: var(--display);
   font-style: italic;
   font-size: 13px;
-  color: #a8385e;
-  opacity: .4;
+  color: var(--kf-accent, #a8385e);
+  opacity: .55;
   margin-bottom: 22px;
   letter-spacing: 0.08em;
 }
@@ -255,7 +259,7 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
   font-style: italic;
   letter-spacing: -0.025em;
   line-height: .92;
-  color: #1a1a1a;
+  color: var(--kf-accent, #1a1a1a);
   margin-bottom: 22px;
 }
 .kf-frag__phrase {
@@ -272,8 +276,8 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
   font-size: 9px;
   letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: #a8385e;
-  opacity: .6;
+  color: var(--kf-accent, #a8385e);
+  opacity: .85;
   margin-bottom: 36px;
 }
 .kf-frag__notes {
@@ -295,13 +299,13 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
 .kf-frag__cta {
   display: inline-flex; align-items: center;
   font-family: var(--serif); font-style: italic; font-size: clamp(15px,1.3vw,18px);
-  color: #a8385e; opacity: .65; text-decoration: none;
+  color: var(--kf-accent, #a8385e); opacity: .8; text-decoration: none;
   position: relative; padding-bottom: 3px;
   transition: opacity .3s var(--ease); align-self: flex-start;
 }
 .kf-frag__cta::after {
   content: ''; position: absolute; bottom: 0; left: 0;
-  width: 0; height: 1px; background: #a8385e;
+  width: 0; height: 1px; background: var(--kf-accent, #a8385e);
   transition: width .35s var(--ease);
 }
 .kf-frag__cta:hover { opacity: 1; }
@@ -309,9 +313,9 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
 
 /* ── FORMATO + FILOSOFIA ────────────────────────────────────── */
 .kf-format {
-  background: #f9eef2;
+  background: #2a0a18;
   padding: clamp(80px, 11vw, 140px) 0;
-  border-top: 1px solid rgba(168,56,94,.08);
+  border-top: 1px solid rgba(229,138,168,.14);
 }
 .kf-format__grid {
   display: grid;
@@ -327,15 +331,15 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
   font-weight: 300;
   letter-spacing: -0.03em;
   line-height: 1.05;
-  color: #1a1a1a;
+  color: #f4e6ec;
   margin-bottom: 28px;
 }
-.kf-format__headline em { font-style: italic; color: #a8385e; }
+.kf-format__headline em { font-style: italic; color: #e58aa8; }
 .kf-format__text {
   font-family: var(--serif);
   font-size: 17px;
   line-height: 1.8;
-  color: rgba(26,26,26,.55);
+  color: rgba(244,230,236,.58);
   max-width: 46ch;
 }
 
@@ -349,43 +353,43 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
   justify-content: space-between;
   align-items: center;
   padding: 18px 24px;
-  background: rgba(168,56,94,.06);
+  background: rgba(255,255,255,.05);
   gap: 20px;
 }
 .kf-format__pill-label {
   font-family: var(--serif);
   font-size: 16px;
-  color: rgba(26,26,26,.6);
+  color: rgba(244,230,236,.68);
 }
 .kf-format__pill-val {
   font-size: 9px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #a8385e;
-  opacity: .55;
+  color: #e58aa8;
+  opacity: .75;
 }
 
 /* ── B2B CTA ──────────────────────────────────────────────── */
 .kf-cta {
-  background: #f3e3ea;
+  background: #330d1e;
   padding: clamp(80px, 11vw, 140px) 0;
   text-align: center;
-  border-top: 1px solid rgba(168,56,94,.08);
+  border-top: 1px solid rgba(229,138,168,.14);
 }
 .kf-cta h2 {
   font-family: var(--display);
   font-size: clamp(36px, 5vw, 72px);
   font-weight: 300;
   letter-spacing: -0.03em;
-  color: #1a1a1a;
+  color: #f4e6ec;
   margin-bottom: 12px;
 }
-.kf-cta h2 em { font-style: italic; color: #a8385e; }
+.kf-cta h2 em { font-style: italic; color: #e58aa8; }
 .kf-cta p {
   font-family: var(--serif);
   font-style: italic;
   font-size: 17px;
-  color: rgba(26,26,26,.35);
+  color: rgba(244,230,236,.42);
   margin-bottom: clamp(32px, 4vw, 48px);
 }
 .kf-cta__btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
@@ -400,18 +404,18 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
   padding: 17px 34px;
   transition: background .3s, color .3s, transform .2s;
 }
-.kf-btn--gold { background: #a8385e; color: #fff; }
-.kf-btn--gold:hover { background: #bf5277; transform: translateY(-2px); }
-.kf-btn--ghost { background: transparent; color: rgba(26,26,26,.5); border: 1px solid rgba(168,56,94,.2); }
-.kf-btn--ghost:hover { color: #1a1a1a; border-color: rgba(168,56,94,.5); transform: translateY(-2px); }
+.kf-btn--gold { background: #c85a7d; color: #2a0a18; }
+.kf-btn--gold:hover { background: #d97a99; transform: translateY(-2px); }
+.kf-btn--ghost { background: transparent; color: rgba(244,230,236,.6); border: 1px solid rgba(229,138,168,.3); }
+.kf-btn--ghost:hover { color: #f4e6ec; border-color: rgba(229,138,168,.6); transform: translateY(-2px); }
 
 /* ── ROW ZIG-ZAG (Piramide olfattiva / Modo d'applicazione) ── */
 .kf-row {
   padding: clamp(80px,10vw,130px) 0;
-  background: #f9eef2;
-  border-top: 1px solid rgba(168,56,94,.08);
+  background: #2a0a18;
+  border-top: 1px solid rgba(229,138,168,.14);
 }
-.kf-row + .kf-row { background: #f6e8ee; }
+.kf-row + .kf-row { background: #330d1e; }
 .kf-row__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -427,8 +431,8 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
 }
 .kf-row__photo {
   aspect-ratio: 4/5;
-  border: 1px dashed rgba(168,56,94,.18);
-  background: rgba(168,56,94,.02);
+  border: 1px dashed rgba(229,138,168,.22);
+  background: rgba(255,255,255,.03);
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
   position: relative;
@@ -436,22 +440,22 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
 .kf-row__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .kf-row__photo span {
   font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
-  color: rgba(168,56,94,.35); text-align: center; padding: 0 24px;
+  color: rgba(229,138,168,.4); text-align: center; padding: 0 24px;
 }
 .kf-row__label {
   font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase;
-  color: rgba(168,56,94,.55); margin-bottom: 18px; display: block;
+  color: rgba(229,138,168,.65); margin-bottom: 18px; display: block;
 }
 .kf-row__title {
   font-family: var(--display); font-weight: 200;
   font-size: clamp(32px,4.6vw,56px); line-height: 1.05;
-  color: #1a1a1a; margin-bottom: 24px;
+  color: #f4e6ec; margin-bottom: 24px;
   letter-spacing: -0.02em;
 }
-.kf-row__title em { font-style: italic; color: #a8385e; }
+.kf-row__title em { font-style: italic; color: #e58aa8; }
 .kf-row__text {
   font-family: var(--serif); font-size: clamp(17px,1.4vw,20px);
-  line-height: 1.7; color: rgba(26,26,26,.7);
+  line-height: 1.7; color: rgba(244,230,236,.7);
   margin-bottom: 28px; max-width: 52ch;
 }
 
@@ -460,12 +464,12 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
 .kf-step__n {
   font-family: var(--display); font-style: italic; font-weight: 200;
   font-size: clamp(28px,3vw,40px); line-height: 1;
-  color: #a8385e; flex-shrink: 0; min-width: 2ch;
+  color: #e58aa8; flex-shrink: 0; min-width: 2ch;
 }
 .kf-step__text {
   font-family: var(--serif); font-size: clamp(15px,1.2vw,18px);
-  line-height: 1.65; color: rgba(26,26,26,.7);
-  padding-top: 8px; border-top: 1px solid rgba(168,56,94,.1);
+  line-height: 1.65; color: rgba(244,230,236,.7);
+  padding-top: 8px; border-top: 1px solid rgba(229,138,168,.18);
   flex: 1;
 }
 
@@ -476,6 +480,15 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
 [data-reveal][style*="--d:150ms"] { transition-delay: 150ms; }
 [data-reveal][style*="--d:200ms"] { transition-delay: 200ms; }
 [data-reveal][style*="--d:300ms"] { transition-delay: 300ms; }
+
+/* footer in palette vinaccia, unito direttamente alla sezione precedente */
+.footer { background: #481629; margin-top: 0; border-top: 1px solid rgba(229,138,168,.16); }
+/* topbar SEMPRE vinaccia (anche in cima, non solo solid) con testo chiaro */
+.topbar:not(.topbar--menu-open) { background: #330d1e; color: var(--cream); border-bottom: 1px solid rgba(229,138,168,.18); }
+.topbar:not(.topbar--menu-open) .topbar__nav a,
+.topbar:not(.topbar--menu-open) .topbar__right,
+.topbar:not(.topbar--menu-open) .topbar__logo { color: var(--cream); }
+.topbar__logo .dot { color: #e58aa8; }
 </style>
 <meta name="description" content="Profumi roll-on in olio concentrato, senza alcol. Sette espressioni olfattive in flaconi da tasca."/>
 <meta name="robots" content="index, follow"/>
@@ -522,14 +535,6 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
     <p class="kh__tag" data-it="Profumo intimo. Non esibito." data-en="Intimate fragrance. Unassuming.">Profumo intimo. Non esibito.</p>
     <div class="kh__meta">
       <div class="kh__meta-item">
-        <div class="kh__meta-label" data-it="Lancio" data-en="Launch">Lancio</div>
-        <div class="kh__meta-val">2022</div>
-      </div>
-      <div class="kh__meta-item">
-        <div class="kh__meta-label" data-it="Fragranze" data-en="Fragrances">Fragranze</div>
-        <div class="kh__meta-val">07</div>
-      </div>
-      <div class="kh__meta-item">
         <div class="kh__meta-label" data-it="Formato" data-en="Format">Formato</div>
         <div class="kh__meta-val">10 ml · Roll-on</div>
       </div>
@@ -543,18 +548,16 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
 
 <!-- ── INTRO ─────────────────────────────────────────────── -->
 <section class="ki-intro">
-  <div class="container">
-    <div class="ki-intro__grid">
-      <div data-reveal>
-        <div class="ki-intro__eyebrow" data-it="La filosofia" data-en="The philosophy">La filosofia</div>
-        <h2>
-          <span data-it="Un profumo che appartiene " data-en="A fragrance that belongs ">Un profumo che appartiene </span><em data-it="solo a te." data-en="only to you.">solo a te.</em>
-        </h2>
-        <p data-it="Kaley nasce dall'idea che il profumo sia un gesto intimo, non una dichiarazione. Roll-on in olio puro concentrato, senza alcol: non si diffonde nell'aria, accarezza la pelle. Le fragranze si fondono con il calore naturale del corpo, diventando uniche per chi le indossa. Durata tutto il giorno, applicazione silenziosa, formula gentile anche sulla pelle più sensibile." data-en="Kaley was born from the idea that fragrance is an intimate gesture, not a statement. Pure concentrated oil roll-on, alcohol-free: it doesn't diffuse into the air, it caresses the skin. The fragrances merge with the body's natural warmth, becoming unique for each wearer. All-day lasting, silent application, gentle formula even on the most sensitive skin.">Kaley nasce dall'idea che il profumo sia un gesto intimo, non una dichiarazione. Roll-on in olio puro concentrato, senza alcol: non si diffonde nell'aria, accarezza la pelle. Le fragranze si fondono con il calore naturale del corpo, diventando uniche per chi le indossa. Durata tutto il giorno, applicazione silenziosa, formula gentile anche sulla pelle più sensibile.</p>
-      </div>
-      <div class="ki-photo-space" data-reveal style="--d:150ms">
-        <img src="../immagini/kaley/lifestyle-01.jpg" alt="Kaley fragranze roll-on — lifestyle" class="cover-img" loading="lazy">
-      </div>
+  <div class="ki-intro__grid">
+    <div class="ki-intro__text" data-reveal>
+      <div class="ki-intro__eyebrow" data-it="La filosofia" data-en="The philosophy">La filosofia</div>
+      <h2>
+        <span data-it="Un profumo che appartiene " data-en="A fragrance that belongs ">Un profumo che appartiene </span><em data-it="solo a te." data-en="only to you.">solo a te.</em>
+      </h2>
+      <p data-it="Kaley nasce dall'idea che il profumo sia un gesto intimo, non una dichiarazione. Roll-on in olio puro concentrato, senza alcol: non si diffonde nell'aria, accarezza la pelle. Le fragranze si fondono con il calore naturale del corpo, diventando uniche per chi le indossa. Durata tutto il giorno, applicazione silenziosa, formula gentile anche sulla pelle più sensibile." data-en="Kaley was born from the idea that fragrance is an intimate gesture, not a statement. Pure concentrated oil roll-on, alcohol-free: it doesn't diffuse into the air, it caresses the skin. The fragrances merge with the body's natural warmth, becoming unique for each wearer. All-day lasting, silent application, gentle formula even on the most sensitive skin.">Kaley nasce dall'idea che il profumo sia un gesto intimo, non una dichiarazione. Roll-on in olio puro concentrato, senza alcol: non si diffonde nell'aria, accarezza la pelle. Le fragranze si fondono con il calore naturale del corpo, diventando uniche per chi le indossa. Durata tutto il giorno, applicazione silenziosa, formula gentile anche sulla pelle più sensibile.</p>
+    </div>
+    <div class="ki-photo-space" data-reveal style="--d:150ms">
+      <img src="../immagini/kaley/lifestyle-01.jpg" alt="Kaley fragranze roll-on — lifestyle" class="cover-img" loading="lazy">
     </div>
   </div>
 </section>
@@ -573,12 +576,11 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
   <!-- 01 Crystal Rouge — foto sinistra -->
   <article class="kf-frag">
     <div class="kf-frag__photo">
-      <div class="kf-frag__photo-inner" style="background: linear-gradient(145deg, #3a0e10 0%, #6b1a1c 40%, #2a0608 100%);">
-        <img src="../immagini/kaley/crystal_rouge/flatlay.jpg" alt="Crystal Rouge — Kaley profumo roll-on" class="cover-img" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      <div class="kf-frag__photo-inner" style="background: linear-gradient(165deg,#faeadb 0%,#e8bdb2 100%);">
+        <img src="../immagini/kaley/crystal_rouge/pack-gradiente.webp" alt="Crystal Rouge — Kaley profumo roll-on" class="kf-pack-img" loading="lazy">
       </div>
-      <span class="kf-frag__ph-label">Foto · Crystal Rouge</span>
     </div>
-    <div class="kf-frag__text" data-reveal>
+    <div class="kf-frag__text" data-reveal style="--kf-accent:#b02a3c; background:linear-gradient(155deg,#fdf6f0 0%,#faeadb 55%,#e8bdb2 100%);">
       <div class="kf-frag__num">01</div>
       <div class="kf-frag__name">Crystal Rouge</div>
       <p class="kf-frag__phrase" data-it="Seduzione a filo di seta." data-en="Seduction drawn in silk.">Seduzione a filo di seta.</p>
@@ -594,12 +596,11 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
   <!-- 02 Dark Sea — foto destra -->
   <article class="kf-frag kf-frag--even">
     <div class="kf-frag__photo">
-      <div class="kf-frag__photo-inner" style="background: linear-gradient(145deg, #050e18 0%, #0f2035 45%, #071422 100%);">
-        <img src="../immagini/kaley/dark_sea/flatlay.jpg" alt="Dark Sea — Kaley profumo roll-on" class="cover-img" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      <div class="kf-frag__photo-inner" style="background: linear-gradient(165deg,#f2f5f6 0%,#dae8ed 100%);">
+        <img src="../immagini/kaley/dark_sea/pack-gradiente.webp" alt="Dark Sea — Kaley profumo roll-on" class="kf-pack-img" loading="lazy">
       </div>
-      <span class="kf-frag__ph-label">Foto · Dark Sea</span>
     </div>
-    <div class="kf-frag__text" data-reveal>
+    <div class="kf-frag__text" data-reveal style="--kf-accent:#2a6f8c; background:linear-gradient(155deg,#fafcfc 0%,#f2f5f6 55%,#dae8ed 100%);">
       <div class="kf-frag__num">02</div>
       <div class="kf-frag__name">Dark Sea</div>
       <p class="kf-frag__phrase" data-it="Salmastro e profondi segreti." data-en="Salt air and deep secrets.">Salmastro e profondi segreti.</p>
@@ -615,12 +616,11 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
   <!-- 03 Golden Hour — foto sinistra -->
   <article class="kf-frag">
     <div class="kf-frag__photo">
-      <div class="kf-frag__photo-inner" style="background: linear-gradient(145deg, #2a1a04 0%, #5a3a10 45%, #3a2208 100%);">
-        <img src="../immagini/kaley/golden_hour/flatlay.jpg" alt="Golden Hour — Kaley profumo roll-on" class="cover-img" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      <div class="kf-frag__photo-inner" style="background: linear-gradient(165deg,#feecce 0%,#f5d6a8 100%);">
+        <img src="../immagini/kaley/golden_hour/pack-gradiente.webp" alt="Golden Hour — Kaley profumo roll-on" class="kf-pack-img" loading="lazy">
       </div>
-      <span class="kf-frag__ph-label">Foto · Golden Hour</span>
     </div>
-    <div class="kf-frag__text" data-reveal>
+    <div class="kf-frag__text" data-reveal style="--kf-accent:#c08327; background:linear-gradient(155deg,#fff8ec 0%,#feecce 55%,#f5d6a8 100%);">
       <div class="kf-frag__num">03</div>
       <div class="kf-frag__name">Golden Hour</div>
       <p class="kf-frag__phrase" data-it="L'ora dorata che non vuoi smettere." data-en="The golden hour you never want to end.">L'ora dorata che non vuoi smettere.</p>
@@ -636,12 +636,11 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
   <!-- 04 Moka Rose — foto destra -->
   <article class="kf-frag kf-frag--even">
     <div class="kf-frag__photo">
-      <div class="kf-frag__photo-inner" style="background: linear-gradient(145deg, #180810 0%, #2e1220 45%, #140608 100%);">
-        <img src="../immagini/kaley/moka_rose/flatlay.jpg" alt="Moka Rose — Kaley profumo roll-on" class="cover-img" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      <div class="kf-frag__photo-inner" style="background: linear-gradient(165deg,#fae9e9 0%,#f7e3e5 100%);">
+        <img src="../immagini/kaley/moka_rose/pack-gradiente.webp" alt="Moka Rose — Kaley profumo roll-on" class="kf-pack-img" loading="lazy">
       </div>
-      <span class="kf-frag__ph-label">Foto · Moka Rose</span>
     </div>
-    <div class="kf-frag__text" data-reveal>
+    <div class="kf-frag__text" data-reveal style="--kf-accent:#a83a4e; background:linear-gradient(155deg,#fdf5f5 0%,#fae9e9 55%,#f7e3e5 100%);">
       <div class="kf-frag__num">04</div>
       <div class="kf-frag__name">Moka Rose</div>
       <p class="kf-frag__phrase" data-it="Un caffè tra petali di rosa." data-en="A coffee among rose petals.">Un caffè tra petali di rosa.</p>
@@ -657,12 +656,11 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
   <!-- 05 Monty Tonka — foto sinistra -->
   <article class="kf-frag">
     <div class="kf-frag__photo">
-      <div class="kf-frag__photo-inner" style="background: linear-gradient(145deg, #0a0804 0%, #1e1408 45%, #100c04 100%);">
-        <img src="../immagini/kaley/monty_tonka/inuse.jpg" alt="Monty Tonka — Kaley profumo roll-on" class="cover-img" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      <div class="kf-frag__photo-inner" style="background: linear-gradient(165deg,#f6eff4 0%,#e0d7eb 100%);">
+        <img src="../immagini/kaley/monty_tonka/pack-gradiente.webp" alt="Monty Tonka — Kaley profumo roll-on" class="kf-pack-img" loading="lazy">
       </div>
-      <span class="kf-frag__ph-label">Foto · Monty Tonka</span>
     </div>
-    <div class="kf-frag__text" data-reveal>
+    <div class="kf-frag__text" data-reveal style="--kf-accent:#9a6a34; background:linear-gradient(155deg,#fbf8fa 0%,#f6eff4 55%,#e0d7eb 100%);">
       <div class="kf-frag__num">05</div>
       <div class="kf-frag__name">Monty Tonka</div>
       <p class="kf-frag__phrase" data-it="Spezie antiche, pelle calda." data-en="Ancient spices, warm skin.">Spezie antiche, pelle calda.</p>
@@ -678,17 +676,11 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
   <!-- 06 Spring Symphony — foto destra -->
   <article class="kf-frag kf-frag--even">
     <div class="kf-frag__photo">
-      <div class="kf-frag__photo-inner" style="background: linear-gradient(145deg, #0a140a 0%, #162414 45%, #0e1a0c 100%);">
-        <div class="photo-slot photo-slot--1x1" data-slot-label="Spring Symphony packshot">
-          <!-- SOSTITUIRE: foto packshot fragranza Spring Symphony · 1:1 · file disponibili in C:\Users\jagio\Desktop\ATHENAS_FOTO_TEMP\ORGANIZZATO\06_KALEY\[nome_fragranza]\ — copiare manualmente: Crystal Rouge → crystal_rouge/ · Dark Sea → dark_sea/ · Golden Hour → (non in cartella organizzata) · Moka Rose → (vedi cover-moka.jpg) · Monty Tonka → monty_tonka/ · Spring Symphony → (da pescare) · Sweet Whisper → sweet_whisper/ -->
-          <svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
-          <span class="photo-slot__label">Spring Symphony</span>
-          <span class="photo-slot__sub">1:1 · 600x600px</span>
-        </div>
+      <div class="kf-frag__photo-inner" style="background: linear-gradient(165deg,#f6eff2 0%,#f5e6eb 100%);">
+        <img src="../immagini/kaley/spring_symphony/pack-gradiente.webp" alt="Spring Symphony — Kaley profumo roll-on" class="kf-pack-img" loading="lazy">
       </div>
-      <span class="kf-frag__ph-label">Foto · Spring Symphony</span>
     </div>
-    <div class="kf-frag__text" data-reveal>
+    <div class="kf-frag__text" data-reveal style="--kf-accent:#c43d7a; background:linear-gradient(155deg,#fcf8fa 0%,#f6eff2 55%,#f5e6eb 100%);">
       <div class="kf-frag__num">06</div>
       <div class="kf-frag__name">Spring Symphony</div>
       <p class="kf-frag__phrase" data-it="Il primo mattino di aprile." data-en="The first morning of April.">Il primo mattino di aprile.</p>
@@ -704,12 +696,11 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
   <!-- 07 Sweet Whisper — foto sinistra -->
   <article class="kf-frag">
     <div class="kf-frag__photo">
-      <div class="kf-frag__photo-inner" style="background: linear-gradient(145deg, #120814 0%, #221030 45%, #0e0810 100%);">
-        <img src="../immagini/kaley/sweet_whisper/flatlay.jpg" alt="Sweet Whisper — Kaley profumo roll-on" class="cover-img" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      <div class="kf-frag__photo-inner" style="background: linear-gradient(165deg,#f2edd9 0%,#c8dcd3 100%);">
+        <img src="../immagini/kaley/sweet_whisper/pack-gradiente.webp" alt="Sweet Whisper — Kaley profumo roll-on" class="kf-pack-img" loading="lazy">
       </div>
-      <span class="kf-frag__ph-label">Foto · Sweet Whisper</span>
     </div>
-    <div class="kf-frag__text" data-reveal>
+    <div class="kf-frag__text" data-reveal style="--kf-accent:#5a7d4e; background:linear-gradient(155deg,#faf8ee 0%,#f2edd9 55%,#c8dcd3 100%);">
       <div class="kf-frag__num">07</div>
       <div class="kf-frag__name">Sweet Whisper</div>
       <p class="kf-frag__phrase" data-it="Dolcezza che non urla." data-en="Sweetness that doesn't shout.">Dolcezza che non urla.</p>
@@ -761,21 +752,6 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
   </div>
 </section>
 
-<!-- ── B2B CTA ────────────────────────────────────────────── -->
-<section class="kf-cta">
-  <div class="container">
-    <h2>
-      <span data-it="Inserisci " data-en="Include ">Inserisci </span><em data-it="Kaley" data-en="Kaley">Kaley</em><br>
-      <span data-it="nel tuo assortimento." data-en="in your assortment.">nel tuo assortimento.</span>
-    </h2>
-    <p data-it="Campioni disponibili · Listino riservato · Supporto display" data-en="Samples available · Reserved price list · Display support">Campioni disponibili · Listino riservato · Supporto display</p>
-    <div class="kf-cta__btns">
-      <a class="kf-btn kf-btn--gold" href="../contatti.html" data-it="Richiedi campioni" data-en="Request samples">Richiedi campioni</a>
-      <a class="kf-btn kf-btn--ghost" href="../contatti.html" data-it="Scarica catalogo" data-en="Download catalogue">Scarica catalogo</a>
-    </div>
-  </div>
-</section>
-
 <div id="footer"></div>
 
 <script src="../assets/vendor/lenis.min.js" defer></script><script src="../assets/data.js"></script>
@@ -783,6 +759,13 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
 <script src="../assets/app.js?v=6"></script>
 <script>
 initAthenas('brands');
+
+// Footer scuro vinaccia (come le sezioni dark del brand) per staccare dallo
+// sfondo chiaro. Testo chiaro, titoli/link nel rosa del brand.
+document.body.classList.add('footer-brand');
+document.body.style.setProperty('--footer-bg', '#2a0a18');
+document.body.style.setProperty('--footer-accent', '#e58aa8');
+document.body.style.setProperty('--topbar-bg', '#330d1e');
 
 // Scroll reveal
 const obs = new IntersectionObserver(entries => {

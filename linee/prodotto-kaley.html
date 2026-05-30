@@ -8,14 +8,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;1,9..144,200;1,9..144,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../assets/tokens.css"/>
+<link rel="stylesheet" href="../assets/cert-masks.css"/>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: #0e0a06; color: #e8d8c0; font-family: var(--sans); overflow-x: hidden; }
+body { background: var(--pg, #0e0a06); color: #e8d8c0; font-family: var(--sans); overflow-x: hidden; }
 .container { max-width: 1320px; margin: 0 auto; padding: 0 clamp(20px,4vw,60px); }
 
 /* ── BREADCRUMB ─────────────────────────────────────────── */
 .kp-breadcrumb {
-  display: flex; align-items: center; gap: 8px;
+  display: flex; align-items: center; justify-content: flex-end; gap: 8px;
   margin-bottom: 24px;
   font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
 }
@@ -26,9 +27,10 @@ body { background: #0e0a06; color: #e8d8c0; font-family: var(--sans); overflow-x
 
 /* ── HERO ─────────────────────────────────────────────────── */
 .kp-hero {
-  min-height: 100svh;
+  min-height: auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  align-items: stretch;
   position: relative;
   overflow: hidden;
 }
@@ -36,40 +38,26 @@ body { background: #0e0a06; color: #e8d8c0; font-family: var(--sans); overflow-x
 
 .kp-hero__visual {
   position: relative;
-  min-height: 60vmin;
   overflow: hidden;
-  display: flex; align-items: center; justify-content: center;
+  display: block;
+  background: var(--pg, #0e0a06);
 }
 .kp-hero__bg { position: absolute; inset: 0; }
-/* SOSTITUIRE: inserire <img src="../uploads/kaley-NOME.jpg" alt="..."> con object-fit: cover e inset: 0 absolute */
-.kp-hero__photo-placeholder {
-  position: absolute; inset: 0;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  border: 1px dashed rgba(201,169,110,.2);
-  z-index: 1;
+.kp-hero__photo {
+  position: relative; z-index: 1;
+  display: block;
+  width: 100%; height: auto;
+  margin-top: 72px;
+  opacity: 0; transition: opacity .6s var(--ease);
 }
-.kp-hero__photo-placeholder span {
-  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
-  color: rgba(201,169,110,.3); text-align: center; padding: 0 20px;
-}
-.kp-hero__bottle {
-  position: relative; z-index: 2;
-  animation: bottle-bob 6s ease-in-out infinite;
-}
-.kp-hero__bottle svg {
-  width: min(180px, 45vw);
-  filter: drop-shadow(0 40px 80px rgba(0,0,0,.6));
-}
-@keyframes bottle-bob {
-  0%,100% { transform: translateY(0); }
-  50%      { transform: translateY(-16px); }
-}
+.kp-hero__photo.is-loaded { opacity: 1; }
 
 .kp-hero__info {
-  background: #0e0a06;
+  background: var(--pg, #0e0a06);
   display: flex; flex-direction: column; justify-content: center;
   padding: clamp(100px,10vw,140px) clamp(32px,5vw,72px) clamp(60px,6vw,80px);
   position: relative;
+  text-align: right;
 }
 .kp-hero__eyebrow {
   font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase;
@@ -88,37 +76,49 @@ body { background: #0e0a06; color: #e8d8c0; font-family: var(--sans); overflow-x
 }
 .kp-hero__desc {
   font-family: var(--serif); font-size: clamp(17px,1.4vw,19px);
-  line-height: 1.75; color: rgba(232,216,192,.6); max-width: 44ch;
-  margin-bottom: 32px;
+  line-height: 1.75; color: rgba(232,216,192,.6); max-width: 52ch;
+  margin-bottom: 32px; margin-left: auto;
+  text-align: right; text-wrap: pretty;
 }
 .kp-hero__mood {
-  display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px;
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  justify-content: flex-end;
+  gap: 4px 14px; margin-bottom: 32px;
 }
 .kp-mood-tag {
-  font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
-  border: 1px solid rgba(201,169,110,.2); padding: 6px 12px;
-  color: rgba(232,216,192,.5);
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(16px,1.4vw,20px); letter-spacing: 0;
+  text-transform: none; border: 0; padding: 0;
+  color: var(--accent, var(--gold)); opacity: .85;
+}
+.kp-mood-tag + .kp-mood-tag::before {
+  content: '·'; margin-right: 14px; opacity: .45;
 }
 .kp-hero__specs {
   display: flex; gap: 28px; flex-wrap: wrap;
-  padding-top: 24px; border-top: 1px solid rgba(201,169,110,.1);
+  justify-content: flex-end;
+  margin-top: auto;
+  padding-top: 28px; border-top: 1px solid rgba(201,169,110,.1);
 }
 .kp-spec__label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(232,216,192,.3); margin-bottom: 4px; }
 .kp-spec__val { font-family: var(--serif); font-size: 17px; color: rgba(232,216,192,.75); }
 
 /* ── PIRAMIDE OLFATTIVA ────────────────────────────────────── */
 .kp-pyramid {
-  background: #080603;
-  padding: clamp(48px,6vw,72px) 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: clamp(480px, 80vh, 760px);
+  background: var(--pg2, #080603);
   border-top: 1px solid rgba(201,169,110,.07);
 }
-.kp-pyramid__inner {
-  display: grid;
-  grid-template-columns: 1.05fr 1fr;
-  gap: clamp(40px,6vw,90px);
-  align-items: center;
+.kp-pyramid__text {
+  padding: clamp(56px,8vh,110px) clamp(28px,5vw,80px);
+  display: flex; flex-direction: column; justify-content: center;
 }
-@media (max-width: 800px) { .kp-pyramid__inner { grid-template-columns: 1fr; } }
+@media (max-width: 800px) {
+  .kp-pyramid { grid-template-columns: 1fr; }
+  .kp-pyramid__photo { order: -1; }
+}
 
 .kp-pyramid__text h2 {
   font-family: var(--display); font-weight: 300;
@@ -129,7 +129,8 @@ body { background: #0e0a06; color: #e8d8c0; font-family: var(--sans); overflow-x
 .kp-pyramid__text p {
   font-family: var(--serif); font-size: clamp(18px,1.5vw,22px);
   line-height: 1.6;
-  color: rgba(232,216,192,.75); max-width: 48ch;
+  color: rgba(232,216,192,.75); max-width: 40ch;
+  text-wrap: pretty;
 }
 
 /* Piramide visuale */
@@ -171,12 +172,10 @@ body { background: #0e0a06; color: #e8d8c0; font-family: var(--sans); overflow-x
 
 /* ── Foto piramide olfattiva (zig-zag — foto a destra) ────── */
 .kp-pyramid__photo {
-  aspect-ratio: 4/5;
-  border: 1px dashed rgba(201,169,110,.18);
-  background: rgba(201,169,110,.02);
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden;
   position: relative;
+  overflow: hidden;
+  min-height: clamp(380px, 55vh, 760px);
+  display: flex; align-items: center; justify-content: center;
 }
 .kp-pyramid__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .kp-pyramid__photo span {
@@ -186,17 +185,20 @@ body { background: #0e0a06; color: #e8d8c0; font-family: var(--sans); overflow-x
 
 /* ── CARATTERE DELLA FRAGRANZA (zig-zag: foto SX + testo DX) ── */
 .kp-character {
-  background: #0e0a06;
-  padding: clamp(48px,6vw,72px) 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: clamp(480px, 80vh, 760px);
+  background: var(--pg, #0e0a06);
   border-top: 1px solid rgba(201,169,110,.07);
 }
-.kp-character__inner {
-  display: grid;
-  grid-template-columns: 1fr 1.05fr;
-  gap: clamp(40px,6vw,90px);
-  align-items: center;
+.kp-character__text {
+  padding: clamp(56px,8vh,110px) clamp(28px,5vw,80px);
+  display: flex; flex-direction: column; justify-content: center;
 }
-@media (max-width: 800px) { .kp-character__inner { grid-template-columns: 1fr; } }
+@media (max-width: 800px) {
+  .kp-character { grid-template-columns: 1fr; }
+  .kp-character__photo { order: -1; }
+}
 .kp-character h2 {
   font-family: var(--display); font-weight: 300;
   font-size: clamp(34px,5vw,64px); letter-spacing: -0.03em;
@@ -207,9 +209,8 @@ body { background: #0e0a06; color: #e8d8c0; font-family: var(--sans); overflow-x
 
 /* Foto SX della sezione carattere (zig-zag) */
 .kp-character__photo {
-  aspect-ratio: 4/5;
-  border: 1px dashed rgba(201,169,110,.18);
-  background: rgba(201,169,110,.02);
+  align-self: stretch;
+  min-height: 460px;
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
   position: relative;
@@ -229,7 +230,8 @@ body { background: #0e0a06; color: #e8d8c0; font-family: var(--sans); overflow-x
   font-size: clamp(18px,1.5vw,22px);
   line-height: 1.65;
   color: rgba(232,216,192,.75);
-  max-width: 62ch;
+  max-width: 50ch;
+  text-wrap: pretty;
 }
 .kp-block__steps {
   display: flex; flex-direction: column; gap: 14px; margin-top: 6px;
@@ -245,15 +247,31 @@ body { background: #0e0a06; color: #e8d8c0; font-family: var(--sans); overflow-x
 
 /* ── FORMULA ─────────────────────────────────────────────── */
 .kp-formula {
-  background: #080603;
-  padding: clamp(80px,10vw,120px) 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: clamp(480px, 80vh, 760px);
+  background: var(--pg2, #080603);
   border-top: 1px solid rgba(201,169,110,.07);
 }
-.kp-formula__grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px,6vw,80px);
-  margin-bottom: clamp(40px,5vw,64px);
+.kp-formula__text {
+  padding: clamp(56px,8vh,110px) clamp(28px,5vw,80px);
+  display: flex; flex-direction: column; justify-content: center;
 }
-@media (max-width: 700px) { .kp-formula__grid { grid-template-columns: 1fr; } }
+.kp-formula__inci { margin-top: clamp(28px,3.5vw,44px); }
+.kp-formula__photo {
+  position: relative; overflow: hidden;
+  min-height: clamp(380px, 55vh, 760px);
+  display: flex; align-items: center; justify-content: center;
+}
+.kp-formula__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.kp-formula__photo span {
+  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(201,169,110,.35); text-align: center; padding: 0 22px;
+}
+@media (max-width: 800px) {
+  .kp-formula { grid-template-columns: 1fr; }
+  .kp-formula__photo { order: -1; }
+}
 
 .kp-formula h3 {
   font-family: var(--display); font-weight: 300;
@@ -268,6 +286,17 @@ body { background: #0e0a06; color: #e8d8c0; font-family: var(--sans); overflow-x
 }
 .kp-formula__pill-label { font-family: var(--serif); font-size: 18px; line-height: 1.4; color: rgba(232,216,192,.72); }
 .kp-formula__pill-val { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); opacity: .65; white-space: nowrap; }
+
+.kp-certs { margin-top: clamp(28px,3.5vw,44px); }
+.kp-certs__row { display: flex; flex-wrap: wrap; align-items: center; gap: clamp(22px,3vw,40px); margin-top: 16px; }
+.kp-cert-logo {
+  width: 64px; height: 64px; flex: 0 0 auto;
+  background-color: var(--accent, var(--gold));
+  -webkit-mask: var(--logo) center / contain no-repeat;
+  mask: var(--logo) center / contain no-repeat;
+  opacity: .82; transition: opacity .3s var(--ease), transform .3s var(--ease);
+}
+.kp-cert-logo:hover { opacity: 1; transform: translateY(-3px); }
 
 .kp-inci-toggle {
   display: flex; justify-content: space-between; align-items: center;
@@ -284,7 +313,7 @@ body { background: #0e0a06; color: #e8d8c0; font-family: var(--sans); overflow-x
 
 /* ── B2B SCHEDA ───────────────────────────────────────────── */
 .kp-b2b {
-  background: #0e0a06;
+  background: var(--pg, #0e0a06);
   padding: clamp(80px,10vw,120px) 0;
   border-top: 1px solid rgba(201,169,110,.07);
 }
@@ -319,7 +348,7 @@ body { background: #0e0a06; color: #e8d8c0; font-family: var(--sans); overflow-x
 
 /* ── ALTRE FRAGRANZE ─────────────────────────────────────── */
 .kp-related {
-  background: #080603;
+  background: var(--pg2, #080603);
   padding: clamp(80px,10vw,120px) 0;
   border-top: 1px solid rgba(201,169,110,.07);
 }
@@ -329,27 +358,39 @@ body { background: #0e0a06; color: #e8d8c0; font-family: var(--sans); overflow-x
 }
 .kp-related h3 em { font-style: italic; color: var(--gold); }
 .kp-related-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); gap: 1px;
-  background: rgba(201,169,110,.08);
+  display: flex;
+  gap: clamp(16px,1.8vw,26px);
+  overflow-x: auto;
+  padding: 4px 0 18px;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(201,169,110,.35) transparent;
 }
+.kp-related-grid::-webkit-scrollbar { height: 6px; }
+.kp-related-grid::-webkit-scrollbar-track { background: rgba(201,169,110,.06); }
+.kp-related-grid::-webkit-scrollbar-thumb { background: rgba(201,169,110,.3); border-radius: 3px; }
 .kp-rel-card {
-  background: #0e0a06;
+  flex: 0 0 clamp(230px, 25vw, 290px);
+  scroll-snap-align: start;
+  background: var(--rc-bg, var(--pg, #0e0a06));
   text-decoration: none; color: inherit;
   display: flex; flex-direction: column;
   overflow: hidden;
-  border: 1px solid rgba(201,169,110,.08);
+  border: 1px solid rgba(201,169,110,.1);
+  border-top: 3px solid var(--rc, var(--gold));
   transition: transform .35s var(--ease), border-color .25s, box-shadow .35s;
   cursor: pointer;
 }
-.kp-rel-card:hover { transform: translateY(-6px); border-color: rgba(201,169,110,.25); box-shadow: 0 24px 48px -12px rgba(0,0,0,.5); }
+.kp-rel-card:hover { transform: translateY(-6px); border-color: var(--rc, rgba(201,169,110,.25)); box-shadow: 0 24px 48px -12px rgba(0,0,0,.5); }
 .kp-rel-card__visual {
-  aspect-ratio: 1;
+  aspect-ratio: 1/1;
   position: relative;
   overflow: hidden;
   background: rgba(201,169,110,.04);
   border-bottom: 1px solid rgba(201,169,110,.08);
 }
-.kp-rel-card__visual img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .5s var(--ease); }
+.kp-rel-card__visual img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transition: transform .5s var(--ease); }
 .kp-rel-card:hover .kp-rel-card__visual img { transform: scale(1.04); }
 .kp-rel-card__visual span {
   position: absolute; inset: 0;
@@ -362,10 +403,27 @@ body { background: #0e0a06; color: #e8d8c0; font-family: var(--sans); overflow-x
   display: flex; flex-direction: column; gap: 6px;
   flex: 1;
 }
-.kp-rel-card__n { font-family: var(--display); font-style: italic; font-size: 13px; color: var(--gold); opacity: .45; }
-.kp-rel-card__name { font-family: var(--display); font-size: clamp(18px,1.9vw,24px); font-weight: 300; font-style: italic; color: #e8d8c0; line-height: 1.15; }
-.kp-rel-card__family { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(232,216,192,.35); margin-top: 4px; }
+.kp-rel-card__n { font-family: var(--display); font-style: italic; font-size: 14px; color: var(--rc, var(--gold)); opacity: .85; }
+.kp-rel-card__name { font-family: var(--display); font-size: clamp(20px,2.1vw,26px); font-weight: 300; font-style: italic; color: var(--rc, #e8d8c0); line-height: 1.15; }
+.kp-rel-card__family { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(232,216,192,.4); margin-top: 4px; }
 .kp-rel-card__desc { font-family: var(--serif); font-style: italic; font-size: 14px; line-height: 1.45; color: rgba(232,216,192,.55); margin-top: 4px; }
+
+/* ── TOPBAR per-fragranza ────────────────────────────────── */
+.topbar, .topbar.solid, .topbar--light, .topbar--light.solid {
+  background: var(--pg2, #080603);
+  color: rgba(232,216,192,.92);
+  border-bottom: 1px solid rgba(201,169,110,.1);
+  transition: color .4s var(--ease), transform .35s var(--ease);
+}
+.topbar__logo { color: #e8d8c0; }
+.topbar__logo .dot { color: var(--accent, var(--gold)); }
+.topbar__nav a:hover, .topbar__nav a.active { color: var(--accent, var(--gold)); }
+
+/* ── FOOTER per-fragranza ────────────────────────────────── */
+.footer { background: var(--pg2, #080603); }
+.footer__big { color: var(--accent, var(--gold)); opacity: .12; }
+.footer__bottom { border-top-color: rgba(201,169,110,.12); }
+.footer__contact a, .footer__link:hover, .footer__social a:hover { color: var(--accent, var(--gold)); }
 
 /* reveal */
 [data-reveal] { opacity: 0; transform: translateY(20px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
@@ -383,11 +441,7 @@ body { background: #0e0a06; color: #e8d8c0; font-family: var(--sans); overflow-x
 <section class="kp-hero">
   <div class="kp-hero__visual">
     <div class="kp-hero__bg" id="kpBg"></div>
-    <!-- SOSTITUIRE: <img src="../uploads/kaley-NOME.jpg" alt="Kaley NOME" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"> -->
-    <div class="kp-hero__photo-placeholder">
-      <span>Foto prodotto<br><!-- SOSTITUIRE --></span>
-    </div>
-    <div class="kp-hero__bottle" id="kpBottle"></div>
+    <img class="kp-hero__photo" id="kpPhoto" alt="" loading="eager">
   </div>
   <div class="kp-hero__info">
     <nav class="kp-breadcrumb">
@@ -397,14 +451,12 @@ body { background: #0e0a06; color: #e8d8c0; font-family: var(--sans); overflow-x
       <span class="kp-breadcrumb__sep">›</span>
       <span class="kp-breadcrumb__current" id="bcProduct">—</span>
     </nav>
-    <div class="kp-hero__eyebrow">Kaley · Fragranza Roll-on</div>
     <h1 class="kp-hero__brand" id="kpName"></h1>
-    <div class="kp-hero__family" id="kpFamily"></div>
     <p class="kp-hero__desc" id="kpDesc"></p>
     <div class="kp-hero__mood" id="kpMood"></div>
     <div class="kp-hero__specs">
       <div><div class="kp-spec__label">Formato</div><div class="kp-spec__val">10 ml · Roll-on</div></div>
-      <div><div class="kp-spec__label">Base</div><div class="kp-spec__val">Olio puro concentrato</div></div>
+      <div><div class="kp-spec__label">Base</div><div class="kp-spec__val">Olio</div></div>
       <div><div class="kp-spec__label">Alcol</div><div class="kp-spec__val">0%</div></div>
       <div><div class="kp-spec__label">Codice</div><div class="kp-spec__val" id="kpSku">—</div></div>
     </div>
@@ -413,64 +465,63 @@ body { background: #0e0a06; color: #e8d8c0; font-family: var(--sans); overflow-x
 
 <!-- PIRAMIDE OLFATTIVA -->
 <section class="kp-pyramid">
-  <div class="container">
-    <div class="kp-pyramid__inner">
-      <div class="kp-pyramid__text" data-reveal>
-        <h2><span>Piramide </span><em>olfattiva.</em></h2>
-        <p id="kpPyrDesc">Ogni fragranza Kaley è costruita su tre livelli di note che si rivelano nel tempo, fondendosi con il calore naturale della pelle per creare un'olfazione unica e personale.</p>
-      </div>
-      <div class="kp-pyramid__photo" data-reveal style="--d:120ms">
-        <!-- SOSTITUIRE: foto macro piramide olfattiva — tre note testa/cuore/fondo in composizione editoriale jewel-tone Kaley su sfondo warm scuro -->
-        <span data-it="Foto piramide olfattiva · 4:5" data-en="Olfactory pyramid photo · 4:5">FOTO PIRAMIDE OLFATTIVA · 4:5</span>
-      </div>
-    </div>
+  <div class="kp-pyramid__text" data-reveal>
+    <h2><span>Piramide </span><em>olfattiva.</em></h2>
+    <p id="kpPyrDesc">Ogni fragranza Kaley è costruita su tre livelli di note che si rivelano nel tempo, fondendosi con il calore naturale della pelle per creare un'olfazione unica e personale.</p>
+  </div>
+  <div class="kp-pyramid__photo" data-reveal style="--d:120ms">
+    <span data-it="Foto piramide olfattiva · 4:5" data-en="Olfactory pyramid photo · 4:5">FOTO PIRAMIDE OLFATTIVA · 4:5</span>
   </div>
 </section>
 
 <!-- CARATTERE DELLA FRAGRANZA (zig-zag: foto SX + testo DX) -->
 <section class="kp-character">
-  <div class="container">
-    <div class="kp-character__inner">
-      <div class="kp-character__photo" data-reveal>
-        <!-- SOSTITUIRE: foto editoriale Kaley — mood jewel-tone, sfera roll-on su polso o still-life sensoriale -->
-        <span data-it="Foto carattere fragranza · 4:5" data-en="Fragrance character photo · 4:5">FOTO CARATTERE FRAGRANZA · 4:5</span>
-      </div>
-      <div data-reveal style="--d:120ms">
-        <div class="kp-block__label" data-it="Carattere" data-en="Character">Carattere</div>
-        <h2><span data-it="Carattere " data-en="Character ">Carattere </span><em data-it="della fragranza." data-en="of the fragrance.">della fragranza.</em></h2>
-        <p class="kp-block__text" id="kpCharacter"></p>
-      </div>
-    </div>
+  <div class="kp-character__photo" data-reveal>
+    <img id="kpCharPhoto" alt="" loading="lazy">
+    <span data-it="Foto carattere fragranza · 4:5" data-en="Fragrance character photo · 4:5">FOTO CARATTERE FRAGRANZA · 4:5</span>
+  </div>
+  <div class="kp-character__text" data-reveal style="--d:120ms">
+    <div class="kp-block__label" data-it="Carattere" data-en="Character">Carattere</div>
+    <h2><span data-it="Carattere " data-en="Character ">Carattere </span><em data-it="della fragranza." data-en="of the fragrance.">della fragranza.</em></h2>
+    <p class="kp-block__text" id="kpCharacter"></p>
   </div>
 </section>
 
 
-<!-- FORMULA -->
+<!-- FORMULA (zig-zag: contenuto SX + foto DX) -->
 <section class="kp-formula">
-  <div class="container">
-    <div class="kp-formula__grid">
-      <div data-reveal>
-        <div class="kp-block__label" data-it="Formula" data-en="Formula">Formula</div>
-        <h3><em data-it="Formula." data-en="Formula.">Formula.</em></h3>
-        <div class="kp-formula__pills">
-          <div class="kp-formula__pill"><span class="kp-formula__pill-label">Base olio concentrato</span><span class="kp-formula__pill-val">0% Alcol</span></div>
-          <div class="kp-formula__pill"><span class="kp-formula__pill-label">Tocopherolo (Vitamina E)</span><span class="kp-formula__pill-val">Antiossidante</span></div>
-          <div class="kp-formula__pill"><span class="kp-formula__pill-label">Beta-sitosterolo · Squalene</span><span class="kp-formula__pill-val">Emolliente naturale</span></div>
-          <div class="kp-formula__pill"><span class="kp-formula__pill-label">Triethyl citrate</span><span class="kp-formula__pill-val">Veicolante</span></div>
-          <div class="kp-formula__pill"><span class="kp-formula__pill-label">Vegan · Cruelty Free · Made in Italy</span><span class="kp-formula__pill-val">Certificato</span></div>
-        </div>
-      </div>
-      <div data-reveal style="--d:120ms">
-        <div class="kp-block__label">INCI — Ingredienti completi</div>
-        <div class="kp-inci-toggle" id="inciToggle">
-          <span>Mostra INCI</span>
-          <svg class="kp-inci-chevron" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="kp-inci-body" id="inciBody">
-          <p class="kp-inci-text" id="kpInci"></p>
-        </div>
+  <div class="kp-formula__text" data-reveal>
+    <div class="kp-block__label" data-it="Formula" data-en="Formula">Formula</div>
+    <h3><em data-it="Formula." data-en="Formula.">Formula.</em></h3>
+    <div class="kp-formula__pills">
+      <div class="kp-formula__pill"><span class="kp-formula__pill-label">Base olio concentrato</span><span class="kp-formula__pill-val">0% Alcol</span></div>
+      <div class="kp-formula__pill"><span class="kp-formula__pill-label">Tocopherolo (Vitamina E)</span><span class="kp-formula__pill-val">Antiossidante</span></div>
+      <div class="kp-formula__pill"><span class="kp-formula__pill-label">Beta-sitosterolo · Squalene</span><span class="kp-formula__pill-val">Emolliente naturale</span></div>
+      <div class="kp-formula__pill"><span class="kp-formula__pill-label">Triethyl citrate</span><span class="kp-formula__pill-val">Veicolante</span></div>
+      <div class="kp-formula__pill"><span class="kp-formula__pill-label">Vegan · Cruelty Free · Made in Italy</span><span class="kp-formula__pill-val">Certificato</span></div>
+    </div>
+    <div class="kp-certs" data-reveal>
+      <div class="kp-block__label">Certificazioni</div>
+      <div class="kp-certs__row">
+        <span class="kp-cert-logo" role="img" aria-label="Vegan" title="Vegan" style="--logo:var(--cert-vegan)"></span>
+        <span class="kp-cert-logo" role="img" aria-label="Testato al Nickel, Cromo e Cobalto" title="Testato al Nickel, Cromo e Cobalto" style="--logo:var(--cert-nickel-cobalto)"></span>
+        <span class="kp-cert-logo" role="img" aria-label="Dermatologicamente testato" title="Dermatologicamente testato" style="--logo:var(--cert-dermatologicamente)"></span>
       </div>
     </div>
+    <div class="kp-formula__inci">
+      <div class="kp-block__label">INCI — Ingredienti completi</div>
+      <div class="kp-inci-toggle" id="inciToggle">
+        <span>Mostra INCI</span>
+        <svg class="kp-inci-chevron" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="kp-inci-body" id="inciBody">
+        <p class="kp-inci-text" id="kpInci"></p>
+      </div>
+    </div>
+  </div>
+  <div class="kp-formula__photo" data-reveal style="--d:120ms">
+    <img id="kpFormulaPhoto" alt="" loading="lazy">
+    <span data-it="Foto dettaglio fragranza · 4:5" data-en="Fragrance detail photo · 4:5">FOTO DETTAGLIO FRAGRANZA · 4:5</span>
   </div>
 </section>
 
@@ -489,6 +540,10 @@ body { background: #0e0a06; color: #e8d8c0; font-family: var(--sans); overflow-x
 <script>
 initAthenas('brands');
 
+// Footer brand: pagina scura -> footer vinaccia. L'accento segue la fragranza (impostato sotto).
+document.body.classList.add('footer-brand');
+document.body.style.setProperty('--footer-bg', '#2a0a18');
+
 // ── DATA ───────────────────────────────────────────────────
 const KALEY_DATA = {
   'crystal-rouge': {
@@ -502,7 +557,7 @@ const KALEY_DATA = {
       heart: ['Legno d\'ambra', 'Ambra grigia'],
       base:  ['Resina di abete', 'Legno di cedro'],
     },
-    bgColor: 'linear-gradient(145deg, #3a1808 0%, #1a0804 100%)',
+    bgColor: 'linear-gradient(165deg,#faeadb 0%,#e8bdb2 100%)',
     inci: 'Triethyl citrate, Parfum, Tocopherol, Beta-sitosterol, Squalene, Limonene, Linalool, Linalyl acetate, Tetramethyl acetyloctahydronaphthalenes, Hexamethylindanopyran, Pinene, Terpineol, Citral',
     bottleColor: '#5a2010',
   },
@@ -517,7 +572,7 @@ const KALEY_DATA = {
       heart: ['Mughetto', 'Rosa', 'Ambra'],
       base:  ['Sandalo', 'Cedro', 'Muschio vegetale'],
     },
-    bgColor: 'linear-gradient(145deg, #081420 0%, #030810 100%)',
+    bgColor: 'linear-gradient(165deg,#f2f5f6 0%,#dae8ed 100%)',
     inci: 'Triethyl citrate, Parfum, Tocopherol, Beta-sitosterol, Squalene, Citrus limon peel oil, Juniperus virginiana oil, Hexyl cinnamal, Alpha-isomethyl ionone, Citronellol, Geraniol, Geranyl acetate, Linalool, Trimethylcyclopentenyl Methylisopentenol, Limonene, Rose ketones, Vanillin, Beta-caryophyllene, Pinene, Citral, Amyl cinnamal, Benzyl alcohol, Cinnamyl alcohol',
     bottleColor: '#0e2030',
   },
@@ -532,7 +587,7 @@ const KALEY_DATA = {
       heart: ['Note fruttate', 'Mughetto', 'Violetta', 'Vaniglia', 'Caramello'],
       base:  ['Ambra', 'Legno di cashmere', 'Muschio', 'Sandalo'],
     },
-    bgColor: 'linear-gradient(145deg, #2a1800 0%, #100a00 100%)',
+    bgColor: 'linear-gradient(165deg,#feecce 0%,#f5d6a8 100%)',
     inci: 'Triethyl citrate, Parfum, Tetramethyl acetyloctahydronaphthalenes, Tocopherol, Beta-sitosterol, Squalene, Citrus aurantium dulcis peel oil, Pogostemon cablin oil, Hexamethylindanopyran, Limonene, Linalyl acetate, Alpha-isomethyl ionone, Hexyl cinnamal, Benzyl salicylate, Vanillin, Terpineol, Acetylcedrene, Rose ketones, Farnesol, Beta-caryophyllene, Citral, Benzyl benzoate',
     bottleColor: '#3a2000',
   },
@@ -547,7 +602,7 @@ const KALEY_DATA = {
       heart: [],
       base:  ['Vaniglia', 'Muschio bianco'],
     },
-    bgColor: 'linear-gradient(145deg, #1e0a0a 0%, #0a0404 100%)',
+    bgColor: 'linear-gradient(165deg,#fae9e9 0%,#f7e3e5 100%)',
     inci: 'Triethyl citrate, Parfum, Tocopherol, Beta-sitosterol, Squalene, Limonene, Linalool, Linalyl acetate, Tetramethyl acetyloctahydronaphthalenes, Hexamethylindanopyran, Pinene, Terpineol, Citral',
     bottleColor: '#2a1010',
   },
@@ -562,7 +617,7 @@ const KALEY_DATA = {
       heart: ['Oud', 'Rosa bulgara'],
       base:  ['Canna da zucchero', 'Fava tonka', 'Ambra grigia', 'Muschio bianco', 'Muschio di quercia'],
     },
-    bgColor: 'linear-gradient(145deg, #1a1000 0%, #080600 100%)',
+    bgColor: 'linear-gradient(165deg,#f6eff4 0%,#e0d7eb 100%)',
     inci: 'Triethyl citrate, Parfum, Tetramethyl acetyloctahydronaphthalenes, Tocopherol, Beta-sitosterol, Squalene, Vanillin, Hexamethylindanopyran, Linalyl acetate, Limonene, Benzyl benzoate, Coumarin, Hexyl cinnamal, Linalool, Eugenol, Cinnamyl alcohol, Benzyl alcohol',
     bottleColor: '#241500',
   },
@@ -577,7 +632,7 @@ const KALEY_DATA = {
       heart: ['Rosa', 'Gelsomino', 'Pepe rosa'],
       base:  ['Patchouli', 'Muschio bianco', 'Muschio vegetale'],
     },
-    bgColor: 'linear-gradient(145deg, #0a1808 0%, #040a04 100%)',
+    bgColor: 'linear-gradient(165deg,#f6eff2 0%,#f5e6eb 100%)',
     inci: 'Triethyl citrate, Parfum, Tocopherol, Beta-sitosterol, Squalene, Hexyl cinnamal, Linalool, Geraniol, Citronellol, Alpha-isomethyl ionone, Benzyl salicylate, Limonene, Farnesol, Eugenol, Benzyl alcohol, Cinnamyl alcohol',
     bottleColor: '#102008',
   },
@@ -592,20 +647,20 @@ const KALEY_DATA = {
       heart: ['Note cipriate', 'Latte', 'Zucchero', 'Eliotropio'],
       base:  ['Vaniglia', 'Caramello', 'Fava tonka', 'Muschi'],
     },
-    bgColor: 'linear-gradient(145deg, #20100e 0%, #0a0606 100%)',
+    bgColor: 'linear-gradient(165deg,#f2edd9 0%,#c8dcd3 100%)',
     inci: 'Triethyl citrate, Parfum, Tocopherol, Beta-sitosterol, Squalene, Linalool, Limonene, Benzyl benzoate, Hexyl cinnamal, Alpha-isomethyl ionone, Benzyl salicylate, Coumarin, Farnesol, Eugenol, Cinnamyl alcohol, Benzyl alcohol',
     bottleColor: '#2a1414',
   },
 };
 
 const ALL_FRAGRANCES = [
-  { id: 'crystal-rouge',   n: '01', name: 'Crystal Rouge',   family: 'Legnosa · Ambrata',   desc: 'Seduzione a filo di seta.',           img: '../immagini/kaley/crystal_rouge/flatlay.jpg' },
-  { id: 'dark-sea',        n: '02', name: 'Dark Sea',        family: 'Legnosa · Marina',    desc: 'Salmastro e profondi segreti.',       img: '../immagini/kaley/dark_sea/flatlay.jpg' },
-  { id: 'golden-hour',     n: '03', name: 'Golden Hour',     family: 'Solare · Floreale',   desc: "L'ora dorata che non vuoi smettere.", img: '../immagini/kaley/golden_hour/flatlay.jpg' },
-  { id: 'moka-rose',       n: '04', name: 'Moka Rose',       family: 'Gourmand · Floreale', desc: 'Un caffè tra petali di rosa.',        img: '../immagini/kaley/moka_rose/flatlay.jpg' },
-  { id: 'monty-tonka',     n: '05', name: 'Monty Tonka',     family: 'Ambrata · Speziata',  desc: 'Spezie antiche, pelle calda.',        img: '../immagini/kaley/monty_tonka/inuse.jpg' },
-  { id: 'spring-symphony', n: '06', name: 'Spring Symphony', family: 'Fruttata · Floreale', desc: 'Il primo mattino di aprile.',         img: '' },
-  { id: 'sweet-whisper',   n: '07', name: 'Sweet Whisper',   family: 'Dolce · Vanigliata',  desc: 'Dolcezza che non urla.',              img: '../immagini/kaley/sweet_whisper/flatlay.jpg' },
+  { id: 'crystal-rouge',   n: '01', name: 'Crystal Rouge',   family: 'Legnosa · Ambrata',   desc: 'Seduzione a filo di seta.',           img: '../immagini/kaley/crystal_rouge/pack-gradiente.webp' },
+  { id: 'dark-sea',        n: '02', name: 'Dark Sea',        family: 'Legnosa · Marina',    desc: 'Salmastro e profondi segreti.',       img: '../immagini/kaley/dark_sea/pack-gradiente.webp' },
+  { id: 'golden-hour',     n: '03', name: 'Golden Hour',     family: 'Solare · Floreale',   desc: "L'ora dorata che non vuoi smettere.", img: '../immagini/kaley/golden_hour/pack-gradiente.webp' },
+  { id: 'moka-rose',       n: '04', name: 'Moka Rose',       family: 'Gourmand · Floreale', desc: 'Un caffè tra petali di rosa.',        img: '../immagini/kaley/moka_rose/pack-gradiente.webp' },
+  { id: 'monty-tonka',     n: '05', name: 'Monty Tonka',     family: 'Ambrata · Speziata',  desc: 'Spezie antiche, pelle calda.',        img: '../immagini/kaley/monty_tonka/pack-gradiente.webp' },
+  { id: 'spring-symphony', n: '06', name: 'Spring Symphony', family: 'Fruttata · Floreale', desc: 'Il primo mattino di aprile.',         img: '../immagini/kaley/spring_symphony/pack-gradiente.webp' },
+  { id: 'sweet-whisper',   n: '07', name: 'Sweet Whisper',   family: 'Dolce · Vanigliata',  desc: 'Dolcezza che non urla.',              img: '../immagini/kaley/sweet_whisper/pack-gradiente.webp' },
 ];
 
 // ── RENDER ─────────────────────────────────────────────────
@@ -621,12 +676,67 @@ if (!data) {
 const bcEl = document.getElementById('bcProduct');
 if (bcEl) bcEl.textContent = data.name;
 
-document.getElementById('kpBg').style.background = data.bgColor;
+const KP_THEME = {
+  'crystal-rouge':   ['#2c1311', '#1f0c0b'],
+  'dark-sea':        ['#0f2030', '#0a1622'],
+  'golden-hour':     ['#2a1d0b', '#1d1407'],
+  'moka-rose':       ['#2a1515', '#1d0e0e'],
+  'monty-tonka':     ['#251b0f', '#1a1209'],
+  'spring-symphony': ['#281522', '#1c0e17'],
+  'sweet-whisper':   ['#142113', '#0d160d'],
+};
+const KP_ACCENT = {
+  'crystal-rouge':   '#b02a3c',
+  'dark-sea':        '#2a6f8c',
+  'golden-hour':     '#c08327',
+  'moka-rose':       '#a83a4e',
+  'monty-tonka':     '#9a6a34',
+  'spring-symphony': '#c43d7a',
+  'sweet-whisper':   '#5a7d4e',
+};
+const KP_SKU = {
+  'crystal-rouge':   '5504',
+  'dark-sea':        '5500',
+  'golden-hour':     '5502',
+  'moka-rose':       '5507',
+  'monty-tonka':     '5503',
+  'spring-symphony': '5501',
+  'sweet-whisper':   '5505',
+};
+const theme = KP_THEME[id];
+if (theme) {
+  document.documentElement.style.setProperty('--pg', theme[0]);
+  document.documentElement.style.setProperty('--pg2', theme[1]);
+}
+document.documentElement.style.setProperty('--accent', KP_ACCENT[id] || 'var(--gold)');
+document.body.style.setProperty('--footer-accent', KP_ACCENT[id] || 'var(--gold)');
+document.getElementById('kpBg').style.background =
+  'radial-gradient(120% 95% at 42% 60%, rgba(255,255,255,.05) 0%, transparent 58%)';
+
+const slug = id.replace(/-/g, '_');
+const kpPhoto = document.getElementById('kpPhoto');
+kpPhoto.src = `../immagini/kaley/${slug}/pack-gradiente.webp`;
+kpPhoto.alt = `${data.name} — Kaley profumo roll-on`;
+kpPhoto.addEventListener('load', () => kpPhoto.classList.add('is-loaded'));
+kpPhoto.addEventListener('error', () => kpPhoto.remove());
+
+function setAmbient(imgId, file, altText) {
+  const img = document.getElementById(imgId);
+  if (!img) return;
+  const ph = img.parentElement.querySelector('span');
+  img.alt = altText;
+  img.addEventListener('load', () => { if (ph) ph.style.display = 'none'; });
+  img.addEventListener('error', () => img.remove());
+  img.src = `../immagini/kaley/${slug}/${file}`;
+}
+setAmbient('kpCharPhoto', 'ambient-2.webp', `${data.name} — Kaley mood`);
+setAmbient('kpFormulaPhoto', 'ambient-1.webp', `${data.name} — Kaley dettaglio`);
+
 document.getElementById('kpName').textContent = data.name;
-document.getElementById('kpFamily').textContent = data.family;
 document.getElementById('kpDesc').textContent = data.desc;
 document.getElementById('kpCharacter').textContent = data.character;
 document.getElementById('kpInci').textContent = data.inci;
+document.getElementById('kpSku').textContent = KP_SKU[id] || '—';
 
 data.mood.forEach(m => {
   const el = document.createElement('span');
@@ -634,19 +744,6 @@ data.mood.forEach(m => {
   el.textContent = m;
   document.getElementById('kpMood').appendChild(el);
 });
-
-// Bottle SVG
-document.getElementById('kpBottle').innerHTML = `
-  <svg width="140" height="320" viewBox="0 0 80 180" fill="none">
-    <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${data.bottleColor}"/><stop offset="1" stop-color="#0a0604"/></linearGradient></defs>
-    <ellipse cx="40" cy="16" rx="12" ry="6" fill="#c9a96e"/>
-    <rect x="24" y="16" width="32" height="6" fill="rgba(201,169,110,.7)"/>
-    <rect x="12" y="22" width="56" height="150" rx="28" fill="url(#bg)" stroke="rgba(201,169,110,.25)" stroke-width=".5"/>
-    <text x="40" y="88" text-anchor="middle" font-family="Fraunces,serif" font-size="10" fill="rgba(201,169,110,.8)" font-style="italic">Kaley</text>
-    <line x1="24" y1="96" x2="56" y2="96" stroke="rgba(201,169,110,.3)" stroke-width=".5"/>
-    <text x="40" y="110" text-anchor="middle" font-family="sans-serif" font-size="4" fill="rgba(201,169,110,.55)" letter-spacing="2">${data.name.toUpperCase()}</text>
-    <text x="40" y="130" text-anchor="middle" font-family="serif" font-size="3" fill="rgba(201,169,110,.3)" letter-spacing="2" font-style="italic">10 ml</text>
-  </svg>`;
 
 // Piramide
 function renderNotes(el, arr) {
@@ -669,7 +766,7 @@ ALL_FRAGRANCES.filter(f => f.id !== id).forEach(f => {
     ? `<img src="${f.img}" alt="${f.name} — Kaley profumo roll-on" loading="lazy">`
     : `<span>Foto · ${f.name}</span>`;
   grid.insertAdjacentHTML('beforeend', `
-    <a class="kp-rel-card" href="prodotto-kaley.html?id=${f.id}">
+    <a class="kp-rel-card" href="prodotto-kaley.html?id=${f.id}" style="--rc:${KP_ACCENT[f.id] || 'var(--gold)'};--rc-bg:${(KP_THEME[f.id] && KP_THEME[f.id][0]) || 'var(--pg)'}">
       <div class="kp-rel-card__visual">${visual}</div>
       <div class="kp-rel-card__info">
         <div class="kp-rel-card__n">${f.n}</div>
