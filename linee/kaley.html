@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Kaley — Athena's</title>
+<title>Kaley · Athena's</title>
 <link rel="preload" href="../assets/fonts/fraunces-200-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="stylesheet" href="../assets/fonts.css"/>
 <link rel="stylesheet" href="../assets/tokens.css"/>
@@ -483,12 +483,13 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
 
 /* footer in palette vinaccia, unito direttamente alla sezione precedente */
 .footer { background: #481629; margin-top: 0; border-top: 1px solid rgba(229,138,168,.16); }
-/* topbar SEMPRE vinaccia (anche in cima, non solo solid) con testo chiaro */
-.topbar:not(.topbar--menu-open) { background: #330d1e; color: var(--cream); border-bottom: 1px solid rgba(229,138,168,.18); }
-.topbar:not(.topbar--menu-open) .topbar__nav a,
-.topbar:not(.topbar--menu-open) .topbar__right,
-.topbar:not(.topbar--menu-open) .topbar__logo { color: var(--cream); }
-.topbar__logo .dot { color: #e58aa8; }
+/* topbar vinaccia con testo chiaro SOLO da scrollati (stato .solid);
+   in cima resta trasparente come nelle altre pagine */
+.topbar.solid { background: #330d1e; color: var(--cream); border-bottom: 1px solid rgba(229,138,168,.18); }
+.topbar.solid .topbar__nav a,
+.topbar.solid .topbar__right,
+.topbar.solid .topbar__logo { color: var(--cream); }
+.topbar.solid .topbar__logo .dot { color: #e58aa8; }
 </style>
 <meta name="description" content="Profumi roll-on in olio concentrato, senza alcol. Sette espressioni olfattive in flaconi da tasca."/>
 <meta name="robots" content="index, follow"/>
@@ -498,12 +499,12 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
 <meta property="og:locale:alternate" content="en_GB"/>
 <meta property="og:site_name" content="Athena's"/>
 <meta property="og:url" content="https://athenas.it/linee/kaley.html"/>
-<meta property="og:title" content="Kaley — Athena's"/>
+<meta property="og:title" content="Kaley · Athena's"/>
 <meta property="og:description" content="Profumi roll-on in olio concentrato, senza alcol. Sette espressioni olfattive in flaconi da tasca."/>
 <meta property="og:image" content="https://athenas.it/../immagini/og/kaley.jpg"/>
-<meta property="og:image:alt" content="Kaley — Athena's"/>
+<meta property="og:image:alt" content="Kaley · Athena's"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Kaley — Athena's"/>
+<meta name="twitter:title" content="Kaley · Athena's"/>
 <meta name="twitter:description" content="Profumi roll-on in olio concentrato, senza alcol. Sette espressioni olfattive in flaconi da tasca."/>
 <meta name="twitter:image" content="https://athenas.it/../immagini/og/kaley.jpg"/>
 <script type="application/ld+json">
@@ -557,7 +558,7 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
       <p data-it="Kaley nasce dall'idea che il profumo sia un gesto intimo, non una dichiarazione. Roll-on in olio puro concentrato, senza alcol: non si diffonde nell'aria, accarezza la pelle. Le fragranze si fondono con il calore naturale del corpo, diventando uniche per chi le indossa. Durata tutto il giorno, applicazione silenziosa, formula gentile anche sulla pelle più sensibile." data-en="Kaley was born from the idea that fragrance is an intimate gesture, not a statement. Pure concentrated oil roll-on, alcohol-free: it doesn't diffuse into the air, it caresses the skin. The fragrances merge with the body's natural warmth, becoming unique for each wearer. All-day lasting, silent application, gentle formula even on the most sensitive skin.">Kaley nasce dall'idea che il profumo sia un gesto intimo, non una dichiarazione. Roll-on in olio puro concentrato, senza alcol: non si diffonde nell'aria, accarezza la pelle. Le fragranze si fondono con il calore naturale del corpo, diventando uniche per chi le indossa. Durata tutto il giorno, applicazione silenziosa, formula gentile anche sulla pelle più sensibile.</p>
     </div>
     <div class="ki-photo-space" data-reveal style="--d:150ms">
-      <img src="../immagini/kaley/lifestyle-01.jpg" alt="Kaley fragranze roll-on — lifestyle" class="cover-img" loading="lazy">
+      <img src="../immagini/kaley/lifestyle-01.jpg" alt="Kaley fragranze roll-on · lifestyle" class="cover-img" loading="lazy">
     </div>
   </div>
 </section>
@@ -577,7 +578,7 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
   <article class="kf-frag">
     <div class="kf-frag__photo">
       <div class="kf-frag__photo-inner" style="background: linear-gradient(165deg,#faeadb 0%,#e8bdb2 100%);">
-        <img src="../immagini/kaley/crystal_rouge/pack-gradiente.webp" alt="Crystal Rouge — Kaley profumo roll-on" class="kf-pack-img" loading="lazy">
+        <img src="../immagini/kaley/crystal_rouge/pack-gradiente.webp" alt="Crystal Rouge · Kaley profumo roll-on" class="kf-pack-img" loading="lazy">
       </div>
     </div>
     <div class="kf-frag__text" data-reveal style="--kf-accent:#b02a3c; background:linear-gradient(155deg,#fdf6f0 0%,#faeadb 55%,#e8bdb2 100%);">
@@ -587,7 +588,7 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
       <div class="kf-frag__family">Legnosa · Ambrata</div>
       <div class="kf-frag__notes">
         <p class="kf-frag__character" data-it="Avvolgente e sicura di sé. La fragranza di chi entra in una stanza e lascia un segno." data-en="Enveloping and self-assured. The fragrance of those who enter a room and leave a mark.">Avvolgente e sicura di sé. La fragranza di chi entra in una stanza e lascia un segno.</p>
-        <p class="kf-frag__character" data-it="L'accordo speziato-ambrato richiama oro, resina, lusso discreto — si sviluppa sul calore della pelle." data-en="The spicy-amber accord recalls gold, resin, quiet luxury — unfolding on the skin's warmth.">L'accordo speziato-ambrato richiama oro, resina, lusso discreto — si sviluppa sul calore della pelle.</p>
+        <p class="kf-frag__character" data-it="L'accordo speziato-ambrato richiama oro, resina, lusso discreto, si sviluppa sul calore della pelle." data-en="The spicy-amber accord recalls gold, resin, quiet luxury, unfolding on the skin's warmth.">L'accordo speziato-ambrato richiama oro, resina, lusso discreto, si sviluppa sul calore della pelle.</p>
       </div>
       <a class="kf-frag__cta" href="prodotto-kaley.html?id=crystal-rouge" data-it="Scopri la fragranza" data-en="Discover the fragrance">Scopri la fragranza</a>
     </div>
@@ -597,7 +598,7 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
   <article class="kf-frag kf-frag--even">
     <div class="kf-frag__photo">
       <div class="kf-frag__photo-inner" style="background: linear-gradient(165deg,#f2f5f6 0%,#dae8ed 100%);">
-        <img src="../immagini/kaley/dark_sea/pack-gradiente.webp" alt="Dark Sea — Kaley profumo roll-on" class="kf-pack-img" loading="lazy">
+        <img src="../immagini/kaley/dark_sea/pack-gradiente.webp" alt="Dark Sea · Kaley profumo roll-on" class="kf-pack-img" loading="lazy">
       </div>
     </div>
     <div class="kf-frag__text" data-reveal style="--kf-accent:#2a6f8c; background:linear-gradient(155deg,#fafcfc 0%,#f2f5f6 55%,#dae8ed 100%);">
@@ -606,7 +607,7 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
       <p class="kf-frag__phrase" data-it="Salmastro e profondi segreti." data-en="Salt air and deep secrets.">Salmastro e profondi segreti.</p>
       <div class="kf-frag__family">Legnosa · Marina</div>
       <div class="kf-frag__notes">
-        <p class="kf-frag__character" data-it="Fresca e misteriosa. Cattura il contrasto dell'oceano — superficie luminosa e profondità oscura." data-en="Fresh and mysterious. It captures the ocean's contrast — luminous surface and dark depth.">Fresca e misteriosa. Cattura il contrasto dell'oceano — superficie luminosa e profondità oscura.</p>
+        <p class="kf-frag__character" data-it="Fresca e misteriosa. Cattura il contrasto dell'oceano, superficie luminosa e profondità oscura." data-en="Fresh and mysterious. It captures the ocean's contrast, luminous surface and dark depth.">Fresca e misteriosa. Cattura il contrasto dell'oceano, superficie luminosa e profondità oscura.</p>
         <p class="kf-frag__character" data-it="Evolve durante il giorno, da marina e luminosa a calda e avvolgente. Per chi ama il mare d'inverno." data-en="Evolves through the day, from marine and bright to warm and enveloping. For those who love a winter sea.">Evolve durante il giorno, da marina e luminosa a calda e avvolgente. Per chi ama il mare d'inverno.</p>
       </div>
       <a class="kf-frag__cta" href="prodotto-kaley.html?id=dark-sea" data-it="Scopri la fragranza" data-en="Discover the fragrance">Scopri la fragranza</a>
@@ -617,7 +618,7 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
   <article class="kf-frag">
     <div class="kf-frag__photo">
       <div class="kf-frag__photo-inner" style="background: linear-gradient(165deg,#feecce 0%,#f5d6a8 100%);">
-        <img src="../immagini/kaley/golden_hour/pack-gradiente.webp" alt="Golden Hour — Kaley profumo roll-on" class="kf-pack-img" loading="lazy">
+        <img src="../immagini/kaley/golden_hour/pack-gradiente.webp" alt="Golden Hour · Kaley profumo roll-on" class="kf-pack-img" loading="lazy">
       </div>
     </div>
     <div class="kf-frag__text" data-reveal style="--kf-accent:#c08327; background:linear-gradient(155deg,#fff8ec 0%,#feecce 55%,#f5d6a8 100%);">
@@ -626,7 +627,7 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
       <p class="kf-frag__phrase" data-it="L'ora dorata che non vuoi smettere." data-en="The golden hour you never want to end.">L'ora dorata che non vuoi smettere.</p>
       <div class="kf-frag__family">Solare · Floreale</div>
       <div class="kf-frag__notes">
-        <p class="kf-frag__character" data-it="Solare, gioiosa, accogliente. Ottimismo in una boccetta — quella luce che tutto trasforma." data-en="Sunny, joyful, welcoming. Optimism in a bottle — the light that transforms everything.">Solare, gioiosa, accogliente. Ottimismo in una boccetta — quella luce che tutto trasforma.</p>
+        <p class="kf-frag__character" data-it="Solare, gioiosa, accogliente. Ottimismo in una boccetta, quella luce che tutto trasforma." data-en="Sunny, joyful, welcoming. Optimism in a bottle, the light that transforms everything.">Solare, gioiosa, accogliente. Ottimismo in una boccetta, quella luce che tutto trasforma.</p>
         <p class="kf-frag__character" data-it="Dalla freschezza agrumata alla dolcezza vanigliata: la transizione dal giorno alla sera. Versatile, per ogni stagione." data-en="From citrus freshness to vanilla sweetness: the day-to-evening shift. Versatile, for every season.">Dalla freschezza agrumata alla dolcezza vanigliata: la transizione dal giorno alla sera. Versatile, per ogni stagione.</p>
       </div>
       <a class="kf-frag__cta" href="prodotto-kaley.html?id=golden-hour" data-it="Scopri la fragranza" data-en="Discover the fragrance">Scopri la fragranza</a>
@@ -637,7 +638,7 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
   <article class="kf-frag kf-frag--even">
     <div class="kf-frag__photo">
       <div class="kf-frag__photo-inner" style="background: linear-gradient(165deg,#fae9e9 0%,#f7e3e5 100%);">
-        <img src="../immagini/kaley/moka_rose/pack-gradiente.webp" alt="Moka Rose — Kaley profumo roll-on" class="kf-pack-img" loading="lazy">
+        <img src="../immagini/kaley/moka_rose/pack-gradiente.webp" alt="Moka Rose · Kaley profumo roll-on" class="kf-pack-img" loading="lazy">
       </div>
     </div>
     <div class="kf-frag__text" data-reveal style="--kf-accent:#a83a4e; background:linear-gradient(155deg,#fdf5f5 0%,#fae9e9 55%,#f7e3e5 100%);">
@@ -646,7 +647,7 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
       <p class="kf-frag__phrase" data-it="Un caffè tra petali di rosa." data-en="A coffee among rose petals.">Un caffè tra petali di rosa.</p>
       <div class="kf-frag__family">Gourmand · Floreale</div>
       <div class="kf-frag__notes">
-        <p class="kf-frag__character" data-it="Romantica e gourmand. Un mattino in un caffè parigino — fiori sul tavolo, tazza calda fra le mani." data-en="Romantic and gourmand. A morning at a Parisian café — flowers on the table, a warm cup in hand.">Romantica e gourmand. Un mattino in un caffè parigino — fiori sul tavolo, tazza calda fra le mani.</p>
+        <p class="kf-frag__character" data-it="Romantica e gourmand. Un mattino in un caffè parigino, fiori sul tavolo, tazza calda fra le mani." data-en="Romantic and gourmand. A morning at a Parisian café, flowers on the table, a warm cup in hand.">Romantica e gourmand. Un mattino in un caffè parigino, fiori sul tavolo, tazza calda fra le mani.</p>
         <p class="kf-frag__character" data-it="La femminilità della rosa incontra il calore del caffè: un contrasto originale e indimenticabile." data-en="The femininity of rose meets the warmth of coffee: an original, unforgettable contrast.">La femminilità della rosa incontra il calore del caffè: un contrasto originale e indimenticabile.</p>
       </div>
       <a class="kf-frag__cta" href="prodotto-kaley.html?id=moka-rose" data-it="Scopri la fragranza" data-en="Discover the fragrance">Scopri la fragranza</a>
@@ -657,7 +658,7 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
   <article class="kf-frag">
     <div class="kf-frag__photo">
       <div class="kf-frag__photo-inner" style="background: linear-gradient(165deg,#f6eff4 0%,#e0d7eb 100%);">
-        <img src="../immagini/kaley/monty_tonka/pack-gradiente.webp" alt="Monty Tonka — Kaley profumo roll-on" class="kf-pack-img" loading="lazy">
+        <img src="../immagini/kaley/monty_tonka/pack-gradiente.webp" alt="Monty Tonka · Kaley profumo roll-on" class="kf-pack-img" loading="lazy">
       </div>
     </div>
     <div class="kf-frag__text" data-reveal style="--kf-accent:#9a6a34; background:linear-gradient(155deg,#fbf8fa 0%,#f6eff4 55%,#e0d7eb 100%);">
@@ -667,7 +668,7 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
       <div class="kf-frag__family">Ambrata · Speziata</div>
       <div class="kf-frag__notes">
         <p class="kf-frag__character" data-it="Regale, speziata, avvolgente. La fragranza per chi non ha paura di essere notato." data-en="Regal, spicy, enveloping. The fragrance for those who don't fear being noticed.">Regale, speziata, avvolgente. La fragranza per chi non ha paura di essere notato.</p>
-        <p class="kf-frag__character" data-it="L'oud le dona profondità rara; la fava tonka una dolcezza boisée sofisticata — luoghi lontani, momenti preziosi." data-en="Oud lends rare depth; tonka bean a sophisticated boisé sweetness — distant places, precious moments.">L'oud le dona profondità rara; la fava tonka una dolcezza boisée sofisticata — luoghi lontani, momenti preziosi.</p>
+        <p class="kf-frag__character" data-it="L'oud le dona profondità rara; la fava tonka una dolcezza boisée sofisticata, luoghi lontani, momenti preziosi." data-en="Oud lends rare depth; tonka bean a sophisticated boisé sweetness, distant places, precious moments.">L'oud le dona profondità rara; la fava tonka una dolcezza boisée sofisticata, luoghi lontani, momenti preziosi.</p>
       </div>
       <a class="kf-frag__cta" href="prodotto-kaley.html?id=monty-tonka" data-it="Scopri la fragranza" data-en="Discover the fragrance">Scopri la fragranza</a>
     </div>
@@ -677,7 +678,7 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
   <article class="kf-frag kf-frag--even">
     <div class="kf-frag__photo">
       <div class="kf-frag__photo-inner" style="background: linear-gradient(165deg,#f6eff2 0%,#f5e6eb 100%);">
-        <img src="../immagini/kaley/spring_symphony/pack-gradiente.webp" alt="Spring Symphony — Kaley profumo roll-on" class="kf-pack-img" loading="lazy">
+        <img src="../immagini/kaley/spring_symphony/pack-gradiente.webp" alt="Spring Symphony · Kaley profumo roll-on" class="kf-pack-img" loading="lazy">
       </div>
     </div>
     <div class="kf-frag__text" data-reveal style="--kf-accent:#c43d7a; background:linear-gradient(155deg,#fcf8fa 0%,#f6eff2 55%,#f5e6eb 100%);">
@@ -686,7 +687,7 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
       <p class="kf-frag__phrase" data-it="Il primo mattino di aprile." data-en="The first morning of April.">Il primo mattino di aprile.</p>
       <div class="kf-frag__family">Fruttata · Floreale</div>
       <div class="kf-frag__notes">
-        <p class="kf-frag__character" data-it="Leggera, fresca, ottimista. La fragranza della rinascita — compagna ideale della bella stagione." data-en="Light, fresh, optimistic. The fragrance of rebirth — perfect companion for warmer days.">Leggera, fresca, ottimista. La fragranza della rinascita — compagna ideale della bella stagione.</p>
+        <p class="kf-frag__character" data-it="Leggera, fresca, ottimista. La fragranza della rinascita, compagna ideale della bella stagione." data-en="Light, fresh, optimistic. The fragrance of rebirth, perfect companion for warmer days.">Leggera, fresca, ottimista. La fragranza della rinascita, compagna ideale della bella stagione.</p>
         <p class="kf-frag__character" data-it="Delicata ma presente: racconta il profumo di un giardino in fiore sotto il sole d'aprile." data-en="Delicate yet present: it tells of a garden in bloom under the April sun.">Delicata ma presente: racconta il profumo di un giardino in fiore sotto il sole d'aprile.</p>
       </div>
       <a class="kf-frag__cta" href="prodotto-kaley.html?id=spring-symphony" data-it="Scopri la fragranza" data-en="Discover the fragrance">Scopri la fragranza</a>
@@ -697,7 +698,7 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
   <article class="kf-frag">
     <div class="kf-frag__photo">
       <div class="kf-frag__photo-inner" style="background: linear-gradient(165deg,#f2edd9 0%,#c8dcd3 100%);">
-        <img src="../immagini/kaley/sweet_whisper/pack-gradiente.webp" alt="Sweet Whisper — Kaley profumo roll-on" class="kf-pack-img" loading="lazy">
+        <img src="../immagini/kaley/sweet_whisper/pack-gradiente.webp" alt="Sweet Whisper · Kaley profumo roll-on" class="kf-pack-img" loading="lazy">
       </div>
     </div>
     <div class="kf-frag__text" data-reveal style="--kf-accent:#5a7d4e; background:linear-gradient(155deg,#faf8ee 0%,#f2edd9 55%,#c8dcd3 100%);">
@@ -706,7 +707,7 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
       <p class="kf-frag__phrase" data-it="Dolcezza che non urla." data-en="Sweetness that doesn't shout.">Dolcezza che non urla.</p>
       <div class="kf-frag__family">Dolce · Vanigliata</div>
       <div class="kf-frag__notes">
-        <p class="kf-frag__character" data-it="Intima, sensuale, confortante. Da indossare vicino alla pelle — per chi sente il profumo solo se si avvicina abbastanza." data-en="Intimate, sensual, comforting. Worn close to the skin — for those who only sense the scent when they come near.">Intima, sensuale, confortante. Da indossare vicino alla pelle — per chi sente il profumo solo se si avvicina abbastanza.</p>
+        <p class="kf-frag__character" data-it="Intima, sensuale, confortante. Da indossare vicino alla pelle, per chi sente il profumo solo se si avvicina abbastanza." data-en="Intimate, sensual, comforting. Worn close to the skin, for those who only sense the scent when they come near.">Intima, sensuale, confortante. Da indossare vicino alla pelle, per chi sente il profumo solo se si avvicina abbastanza.</p>
         <p class="kf-frag__character" data-it="Il suo carattere dolce e polveroso evolve durante il giorno in qualcosa di sempre più personale." data-en="Its sweet, powdery character evolves through the day into something ever more personal.">Il suo carattere dolce e polveroso evolve durante il giorno in qualcosa di sempre più personale.</p>
       </div>
       <a class="kf-frag__cta" href="prodotto-kaley.html?id=sweet-whisper" data-it="Scopri la fragranza" data-en="Discover the fragrance">Scopri la fragranza</a>
@@ -724,7 +725,7 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
           <span data-it="Olio puro " data-en="Pure oil ">Olio puro </span><em data-it="concentrato." data-en="concentrated.">concentrato.</em><br>
           <span data-it="Zero alcol." data-en="Zero alcohol.">Zero alcol.</span>
         </h2>
-        <p class="kf-format__text" data-it="La formula di Kaley è a base di olio anziché alcol: più delicata, più persistente, più personale. L'olio non evapora nell'aria — resta sulla pelle, si scalda con il corpo, si fonde con la chimica personale di chi lo indossa. Un'esperienza olfattiva che diventa davvero intima." data-en="Kaley's formula uses oil instead of alcohol: gentler, more persistent, more personal. Oil doesn't evaporate into the air — it stays on the skin, warms with the body, merges with the wearer's personal chemistry. An olfactory experience that becomes truly intimate.">La formula di Kaley è a base di olio anziché alcol: più delicata, più persistente, più personale. L'olio non evapora nell'aria — resta sulla pelle, si scalda con il corpo, si fonde con la chimica personale di chi lo indossa. Un'esperienza olfattiva che diventa davvero intima.</p>
+        <p class="kf-format__text" data-it="La formula di Kaley è a base di olio anziché alcol: più delicata, più persistente, più personale. L'olio non evapora nell'aria, resta sulla pelle, si scalda con il corpo, si fonde con la chimica personale di chi lo indossa. Un'esperienza olfattiva che diventa davvero intima." data-en="Kaley's formula uses oil instead of alcohol: gentler, more persistent, more personal. Oil doesn't evaporate into the air, it stays on the skin, warms with the body, merges with the wearer's personal chemistry. An olfactory experience that becomes truly intimate.">La formula di Kaley è a base di olio anziché alcol: più delicata, più persistente, più personale. L'olio non evapora nell'aria, resta sulla pelle, si scalda con il corpo, si fonde con la chimica personale di chi lo indossa. Un'esperienza olfattiva che diventa davvero intima.</p>
       </div>
       <div class="kf-format__pills" data-reveal style="--d:150ms">
         <div class="kf-format__pill">
@@ -732,12 +733,12 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
           <span class="kf-format__pill-val" data-it="Formula olio puro" data-en="Pure oil formula">Formula olio puro</span>
         </div>
         <div class="kf-format__pill">
-          <span class="kf-format__pill-label" data-it="Formato 10 ml — Tascabile" data-en="10 ml — Pocket size">Formato 10 ml — Tascabile</span>
+          <span class="kf-format__pill-label" data-it="Formato 10 ml · Tascabile" data-en="10 ml · Pocket size">Formato 10 ml · Tascabile</span>
           <span class="kf-format__pill-val" data-it="Roll-on applicator" data-en="Roll-on applicator">Roll-on applicator</span>
         </div>
         <div class="kf-format__pill">
           <span class="kf-format__pill-label" data-it="Persistenza tutto il giorno" data-en="All-day lasting">Persistenza tutto il giorno</span>
-          <span class="kf-format__pill-val" data-it="Termica — corpo-calda" data-en="Thermal — body-warm">Termica — corpo-calda</span>
+          <span class="kf-format__pill-val" data-it="Termica · corpo-calda" data-en="Thermal · body-warm">Termica · corpo-calda</span>
         </div>
         <div class="kf-format__pill">
           <span class="kf-format__pill-label" data-it="Made in Italy" data-en="Made in Italy">Made in Italy</span>
@@ -773,7 +774,7 @@ const obs = new IntersectionObserver(entries => {
 }, { threshold: 0.08 });
 document.querySelectorAll('[data-reveal]').forEach(el => obs.observe(el));
 
-document.title = "Kaley — Athena's";
+document.title = "Kaley · Athena's";
 </script>
 </body>
 </html>

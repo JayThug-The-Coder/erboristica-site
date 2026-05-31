@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Contatti — Athena's</title>
+<title>Contatti · Athena's</title>
 <link rel="preload" href="assets/fonts/fraunces-200-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="stylesheet" href="assets/fonts.css"/>
 <link rel="stylesheet" href="assets/tokens.css"/>
@@ -393,12 +393,12 @@
 <meta property="og:locale:alternate" content="en_GB"/>
 <meta property="og:site_name" content="Athena's"/>
 <meta property="og:url" content="https://athenas.it/contatti.html"/>
-<meta property="og:title" content="Contatti — Athena's"/>
+<meta property="og:title" content="Contatti · Athena's"/>
 <meta property="og:description" content="Contatta Athena's: sede produttiva Pianoro (BO), spaccio aziendale settimanale, richieste conto terzi."/>
 <meta property="og:image" content="https://athenas.it/immagini/og/contatti.jpg"/>
-<meta property="og:image:alt" content="Contatti — Athena's"/>
+<meta property="og:image:alt" content="Contatti · Athena's"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Contatti — Athena's"/>
+<meta name="twitter:title" content="Contatti · Athena's"/>
 <meta name="twitter:description" content="Contatta Athena's: sede produttiva Pianoro (BO), spaccio aziendale settimanale, richieste conto terzi."/>
 <meta name="twitter:image" content="https://athenas.it/immagini/og/contatti.jpg"/>
 <script type="application/ld+json">
@@ -474,7 +474,7 @@
             allowfullscreen=""
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
-            title="Sede Athena's — Pianoro (BO)">
+            title="Sede Athena's · Pianoro (BO)">
           </iframe>
         </div>
         <p class="loc-map__caption" data-it="Pianoro (BO) · Bologna, Italia" data-en="Pianoro (BO) · Bologna, Italy">Pianoro (BO) · Bologna, Italia</p>
@@ -607,17 +607,6 @@
         <textarea id="comune-messaggio" name="messaggio" rows="6" style="min-height:180px;"></textarea>
       </div>
 
-      <!-- ALLEGATI -->
-      <div class="form-file">
-        <div class="form-file__label" data-it="Allegati" data-en="Attachments">Allegati</div>
-        <input type="file" id="form-allegati" name="allegati" multiple class="form-file__input"/>
-        <label for="form-allegati" class="form-file__btn">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l8.57-8.57A4 4 0 0118 9.21l-8.57 8.57a2 2 0 01-2.83-2.83l8.49-8.48"/></svg>
-          <span data-it="Aggiungi file" data-en="Attach files">Aggiungi file</span>
-        </label>
-        <div class="form-file__names" id="fileNames"></div>
-      </div>
-
       <!-- Honeypot anti-spam (invisibile agli umani, riempito dai bot) -->
       <div style="position:absolute; left:-9999px; height:0; overflow:hidden;" aria-hidden="true">
         <label>Lascia vuoto questo campo<input type="text" name="website" tabindex="-1" autocomplete="off"/></label>
@@ -692,12 +681,6 @@ const obs = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.15 });
 document.querySelectorAll('.loc-block, .person-block, [data-reveal]').forEach(el => obs.observe(el));
-
-// ── FILE INPUT LABEL ─────────────────────────────────────────
-document.getElementById('form-allegati').addEventListener('change', function() {
-  const names = Array.from(this.files).map(f => f.name).join(', ');
-  document.getElementById('fileNames').textContent = names || '';
-});
 
 // ── TAB SWITCHING ────────────────────────────────────────────
 (function() {
@@ -797,7 +780,7 @@ document.getElementById('contactForm').addEventListener('submit', async function
     btn.textContent = isEn ? 'Sent ✓' : 'Inviato ✓';
   } else {
     // Fallback: open mailto with prefilled subject/body
-    const subject = oggetto || (isEn ? '[' + categoria + '] — Contact request' : '[' + categoria + '] — Richiesta contatto');
+    const subject = oggetto || (isEn ? '[' + categoria + '] · Contact request' : '[' + categoria + '] · Richiesta contatto');
     let body = '';
     if (nome)     body += (isEn ? 'Name' : 'Nome') + ': ' + nome + '\n';
     if (email)    body += 'Email: ' + email + '\n';

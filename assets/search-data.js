@@ -61,9 +61,8 @@
   // INDEX: documenti ricercabili (pagine principali)
   // ───────────────────────────────────────────────────────────────
   const PAGES = [
-    { type: 'page', title: "Athena's — l'azienda", url: '/', desc: 'Storia, fondatori, timeline, valori', tags: ['azienda', 'storia', 'home', 'chi siamo', 'about'] },
-    { type: 'page', title: 'I nostri brand', url: '/linee.html', desc: "L'Erboristica, Everby, Kaley, Sphea", tags: ['brand', 'linee', 'marchi', 'prodotti'] },
-    { type: 'page', title: 'Catalogo prodotti', url: '/catalogo.html', desc: "10 linee L'Erboristica, 250+ referenze", tags: ['catalogo'] },
+    { type: 'page', title: "Athena's · l'azienda", url: '/', desc: 'Storia, fondatori, timeline, valori', tags: ['azienda', 'storia', 'home', 'chi siamo', 'about'] },
+    { type: 'page', title: 'I nostri brand', url: '/linee.html', desc: "L'Erboristica, Everby, Kaley, Sphea", tags: ['brand', 'linee', 'marchi', 'prodotti', 'catalogo', 'referenze'] },
     { type: 'page', title: 'Laboratorio R&S', url: '/laboratorio.html', desc: 'Ricerca, innovazione, attivi cosmetici', tags: ['laboratorio'] },
     { type: 'page', title: 'Sostenibilità', url: '/sostenibilita.html', desc: 'Energia rinnovabile, scelte etiche, formule vegan', tags: ['sostenibilita'] },
     { type: 'page', title: 'Conto Terzi B2B', url: '/terzisti.html', desc: 'Manifattura private label per cosmetica naturale', tags: ['terzisti', 'b2b', 'private label'] },
@@ -71,10 +70,10 @@
   ];
 
   const BRANDS = [
-    { type: 'brand', title: "l'Erboristica", url: '/linee/erboristica.html', desc: "Il brand storico Athena's — cosmetica naturale, 10 linee", tags: ['erboristica', 'naturale', 'erbe'] },
-    { type: 'brand', title: 'Everby', url: '/linee/everby.html', desc: 'K-beauty contemporanea Gen Z — texture innovative', tags: ['everby', 'k-beauty', 'gen z', 'glass skin'] },
+    { type: 'brand', title: "l'Erboristica", url: '/linee/erboristica.html', desc: "Il brand storico Athena's, cosmetica naturale, 10 linee", tags: ['erboristica', 'naturale', 'erbe'] },
+    { type: 'brand', title: 'Everby', url: '/linee/everby.html', desc: 'K-beauty contemporanea Gen Z, texture innovative', tags: ['everby', 'k-beauty', 'gen z', 'glass skin'] },
     { type: 'brand', title: 'Kaley', url: '/linee/kaley.html', desc: 'Profumi roll-on in olio concentrato, senza alcol', tags: ['kaley', 'profumo', 'fragranza', 'roll-on'] },
-    { type: 'brand', title: 'Sphea', url: '/linee/sphea.html', desc: 'Alta gamma — perle di biopolimeri marini, peptidi brevettati', tags: ['sphea', 'premium', 'perle', 'biopolimeri'] }
+    { type: 'brand', title: 'Sphea', url: '/linee/sphea.html', desc: 'Alta gamma, perle di biopolimeri marini, peptidi brevettati', tags: ['sphea', 'premium', 'perle', 'biopolimeri'] }
   ];
 
   const LINES = [

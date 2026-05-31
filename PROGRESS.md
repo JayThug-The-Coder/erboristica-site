@@ -4,6 +4,132 @@
 
 ---
 
+# 🛠️ Sessione 31 Maggio 2026 (round 3: laboratorio cleanup + i18n EN completo)
+
+**`laboratorio.html`:**
+- **Rimosso** l'eyebrow del hero "Laboratorio R&S · Pianoro (BO)" (`.lh__eyebrow`).
+- **Rimosso** l'intero banner CTA finale "Vuoi vedere il laboratorio? / Visite su appuntamento…" (`<section class="lab-cta">`): ora dopo la sezione GMP segue direttamente il footer (la regola CSS `.lab-gmp ~ .footer` dà già il margine; gli stili `.lab-cta`/`.lab-btn` restano come dead-CSS innocuo).
+- **Traduzione EN completa** della pagina. Aggiunti `data-it`/`data-en` mancanti su: eyebrow "01 · Dal concept al prodotto", numeri fase "— Fase 0X", titoli fase (`<h2>` con `<br>`/`<em>` dentro l'attributo → `applyLang` usa `innerHTML` quando il valore contiene `<`), h3 "La rete di controllo indipendente", h4 "Università di Ferrara", titolo origine "Dove cerchiamo gli ingredienti".
+- **Fix bug i18n h2 GMP**: aveva `data-it="Una sola fabbrica"` (senza `<em>`) → in EN `textContent` cancellava la parte "tracciata lotto per lotto". Spostato tutto il markup (`<em>`) negli attributi dell'`<h2>`.
+- **Globo origini i18n**: i contenuti erano generati via JS solo in IT (`nameIt`/`placeIt`/`descIt`). Aggiunti campi `labelEn`/`placeEn`/`nameEn`/`placeEnLong`/`descEn` a tutti i 15 marker + `placeEn` all'HQ; getter `mLabel/mPlace/mName/mPlaceLong/mDesc` che leggono `window.ATH.lang`; counter, righe accordion, pin e pannello dettaglio resi language-aware con listener `lang-change` (aggiorna anche il dettaglio se aperto). Counter default "15 origini · 14 ingredienti" / "15 origins · 14 ingredients".
+
+**Verificato (preview :8088, `preview_eval`):** load IT di default corretto; switch EN traduce tutto (statico + globo); switch IT↔EN bidirezionale ok incl. dettaglio aperto; 0 errori console; hero senza eyebrow, CTA assente, footer subito dopo GMP. (Screenshot non affidabile: il loop di animazione globo/particelle manda in timeout la cattura → verifica fatta via DOM.)
+
+**`sostenibilita.html` (3 fix):**
+- **Header certificazioni duplicato**: l'eyebrow aveva `data-it="— 03 / Le nostre certificazioni"` mentre accanto c'è già `<span class="num">— 03</span>` → rendeva "— 03 — 03 / …". Eyebrow ridotto a "Le nostre certificazioni"/"Our certifications" (come "— 02 / I pilastri").
+- **Traduzione EN**: aggiunti `data-it`/`data-en` a `pillar-block__index` "— Pilastro 01/02" → "— Pillar 01/02" (unici gap reali; card certificazioni JS già tradotte). Resta in IT solo il banner cookie globale (app.js, condiviso, → Iubenda) e il placeholder foto "Foto · Natura".
+- **Numeri impatto "tagliati"**: il watermark `.impact-item__ghost` (95/0/8) era a `right:-0.1em; bottom:-0.15em`, sbordava ~22px ed era tagliato dall'`overflow:hidden` sul bordo inferiore (section `padding-bottom:0`) → sembrava un numero mozzato sul confine con la sezione nera. Portato a `right:.04em; bottom:0` → fantasma interamente dentro la card (verificato overflow 0px).
+
+**Nota file Higgsfield logo**: il PNG sorgente (`hf_..._43e9ac68-...png`, anche la copia "(1)") è **2688×1520 Format24bppRgb, NON trasparente** — lo "scacchiere" è disegnato nei pixel (finta trasparenza). Va sempre processato (chroma-key + crop) prima dell'uso.
+
+**Logo l'Erboristica aggiornato (`immagini/brand-erboristica/logo.png`):** usato da `linee.html` (`.line-logo`, sezione `ls-cream`) e `linee/erboristica.html` (`<h1><img>`, hero verde scuro). Sorgente fornita era un export Higgsfield 2688×1520 con **sfondo checkerboard bakeato nei pixel** (no alpha) + molto margine. Processato via System.Drawing/LockBits: chroma-key per luminanza (trasparente >215, opaco <165, ramp anti-alias) + crop al bounding box → PNG 32bpp ARGB trasparente **2543×435** (ratio 5.85, vs 5.03 del vecchio). ⚠️ Logo marrone su hero verde scuro di erboristica.html = contrasto basso (stato preesistente, vecchio logo era anch'esso marrone); valutare versione chiara dedicata se serve più leggibilità.
+
+---
+
+# 🛠️ Sessione 31 Maggio 2026 (round 2: footer/catalogo, video Sphea, loghi certificazioni)
+
+**Footer "Catalogo prodotti" → Linee (`assets/app.js`):** il link B2B "Catalogo prodotti" puntava a `catalogo.html` (pagina obsoleta) → ora punta a **`linee.html`** (etichetta invariata, in futuro Linee verrà rinominata "Catalogo"). Stessa cosa nella ricerca (`assets/search-data.js`): rimossa la voce `/catalogo.html`, accorpati i tag `catalogo`/`referenze` nella voce `/linee.html`.
+
+**`catalogo.html` ELIMINATA** (`git rm -f`): nessun link reale vi puntava più (solo commenti CSS in `linee.html` e doc). Rimosso anche l'`<url>` da `sitemap.xml`. ⚠️ I file doc (CLAUDE.md, AUDIT-2026.md, ecc.) citano ancora "catalogo.html" come storico — non sono link serviti.
+
+**Flash hero Sphea risolto (`linee/sphea.html`):** prima del video appariva per un istante la **foto vecchia** (`poster="...lifestyle-01.jpg"`). Estratto il **primo frame del video** (`immagini/sphea/hero-poster.jpg`, 3000×1500, via `imageio` — niente ffmpeg sulla macchina) e impostato come `poster` + `preload="auto"`. Ora il poster coincide col primo fotogramma → transizione invisibile, nessuna foto vecchia. Sfondo di fallback `#0e1a2c`.
+
+**Loghi certificazioni ovunque + fix bug "quadrato" (`sostenibilita.html`):**
+- Prima mostrava il logo solo su **Dermatologico**; ora logo (mask oro) su **4 card**: Plant Based → `--cert-plant-based`, Vegan → `--cert-vegan`, Dermatologico → `--cert-dermatologicamente`, Nichel·Cromo·Cobalto → `--cert-nickel-cobalto` (file in `immagini/certificazioni/`, mask base64 in `assets/cert-masks.css`). **OPIMM**: logo fornito dall'utente (`OPIMM.jpg`, teal su bianco, 225px) → convertito in `immagini/certificazioni/opimm.png` (alpha da non-bianco), aggiunto `opimm` ai `slugs` di `_gen_mask_css.py` e **rigenerato `assets/cert-masks.css`** (`--cert-opimm`), attivato in `CERT_LOGOS` → ora **logo oro** come gli altri (sorgente 225px = un filo morbido a 120px, ma ok). **Made in Italy**: il file fornito era un **preview Adobe Stock con watermark** → scartato. Su richiesta utente **rigenerato su Higgsfield** (`nano_banana_pro`, 2k, 21:9, fondo bianco) identico al riferimento — barra tricolore + "MADE IN ITALY". **Tutto il bianco reso trasparente** (sfondo esterno + striscia centrale bandiera + buchi interni delle lettere) con keying alpha sfumato sulla luminanza → la card si vede attraverso ovunque; la bandiera resta verde–[card]–rosso col bordo grigio, leggibile come tricolore. `immagini/certificazioni/made-in-italy.png` (trasparente, 800×254, ~125 KB). Agganciato come **immagine a colori** (mantiene il tricolore, NON mask oro) via nuova mappa `CERT_LOGO_IMG` + branch nel render (`.cert-card__logo--img img`, max 240×72, contain). **Ora tutte e 6 le card hanno il logo.**
+- **Bug "logo diventa quadrato coi bordi rovinati" al click/hover**: causato dal tilt 3D (`perspective()` inline + `transform-style:preserve-3d` + `will-change:transform`) che rompeva il CSS-mask in compositing → si vedeva il quadrato oro pieno. **Rimosso il tilt 3D** (IIFE + regole CSS), lo `scale` hover spostato dal `.cert-card__logo-mark` (mascherato) al contenitore `.cert-card__logo` (non mascherato). Resta il lift `translateY(-3px)`.
+- **Card Plant Based ridimensionata**: era `2×2` (`.cert-card--big`), troppo grande. Ora **griglia a 3 colonne, tutte le 6 card uguali 1×1** (richiesta utente), niente più card in evidenza. Tagline Plant Based estesa (IT+EN, "due parole in più").
+- Box simbolo uniforme: card con logo → mask oro; card senza → icona SVG ingrandita a 54px nello stesso box (heights coerenti; quando arrivano i loghi OPIMM/Made in Italy la griglia resta identica).
+
+**Verificato (preview :8088, `preview_eval` — screenshot inaffidabile su pagina Lenis):** sostenibilità 3 col / 6 card, 4 mask oro 120×120 risolte + 2 icone 54px, 0 errori console, mousemove non applica più transform (tilt sparito), click apre ancora il pannello dettaglio; footer `Catalogo prodotti`→`linee.html`; `hero-poster.jpg` 200; `catalogo.html` 404.
+
+---
+
+# 🛠️ Sessione 31 Maggio 2026 (correzioni cliente — round 1: copy/UI sicure)
+
+Lista correzioni cliente valutata insieme. Eseguite **solo le modifiche sicure e autonome**; tutto ciò che richiede conferma azienda/laboratorio è **congelato** e raccolto in **[DOMANDE-AZIENDA.md](DOMANDE-AZIENDA.md)** (NON modificare quelle voci finché non arriva conferma).
+
+**Fatto — menu & home (`assets/app.js`, `index.html`):**
+- **Menu**: rimossa la voce **Catalogo** (resta **Linee**; in futuro Linee → rename "Catalogo"). `catalogo.html` resta raggiungibile dal footer.
+- **Hero home leggibilità**: overlay scuro rinforzato in basso/sx + `text-shadow` su `.pg-hero h1` e `.pg-hero__lead`.
+- **Banda "Quaranta minuti da Bologna" eliminata** (blocco + foto `stabilimento-esterno.jpg`); contenuto utile fuso nella banda precedente "Tra Toscana ed Emilia" (`.az-band--01`). Rimossa la regola CSS orfana `.az-band--02`.
+- **Banda 03**: titolo "Una cucina, non una fabbrica" → **"Le persone, prima delle macchine."** (la parola "cucina" sfiorava il gourmand vietato). Sfondo banda 03 reso più scuro (override `.az-band--03 .az-band__overlay`) per leggibilità testo.
+- **Riquadro verde conto terzi** (`.az-terzisti`): rimossa pill **COSMOS / "Cosmetica bio certificata"**; desc riscritta senza "cosmetica naturale **certificata**" né "**farmacie ed erboristerie**".
+- **Timeline**: ridotta la lunghezza di scroll (`.tl-pin-outer` desktop `8000→5000px`, mobile `3400→2200px`).
+
+**Fatto — sostenibilità (`sostenibilita.html`):**
+- Riformulata la frase difensiva "Non è una scelta di marketing…" → "È il motivo per cui siamo nati, prima ancora che diventasse una tendenza…".
+- **Packaging consapevole**: lasciato com'è (decisione utente "c"; eliminarlo lascerebbe l'header "Due impegni" con un solo pilastro).
+
+**Fatto — i18n "Scorri":**
+- L'indicatore in basso a destra ora è **"Scorri" (IT) / "Scroll" (EN)** su `index.html` (×2), `linee.html`, `catalogo.html`, `terzisti.html`, `sostenibilita.html`, `laboratorio.html` (prima "Scroll" fisso, alcuni senza i18n).
+
+**Fatto — contatti (`contatti.html`):**
+- Rimosso il campo upload **"Allegati"** (HTML + handler JS): su sito statico senza backend non era funzionante (`mailto` non porta allegati).
+
+**Fatto — Sphea (`linee/sphea.html`):**
+- Reveal foto: observer inline da `add + unobserve` (una sola volta) → **`toggle('is-visible')`**: l'effetto di comparsa si **ripete** a ogni rientro nel viewport (su e giù).
+
+**Fatto — scheda prodotto, modale attivi (`prodotto.html`):**
+- Modale ingrediente **agganciato alla palette**: box `background: var(--topbar-bg, var(--cream))` (= tint pagina) invece di `--cream` fisso; divisori su accento (`color-mix(--gold-deep)`); num/label già su `--gold-deep`.
+- **Rimosso l'effetto "rewind"** alla chiusura: eliminata la tecnica `body.ki-modal-open { position: fixed }` + `window.scrollTo`; ora solo `overflow:hidden` + `lenis.stop()/start()`, la pagina resta dove era.
+
+**Mappa "cambiare X → modifica Y":**
+- Voci menu = `navLinks` in `renderTopbar` (`assets/app.js`).
+- Testo "Scorri/Scroll" = `<span data-it="Scorri" data-en="Scroll">` dentro `.scroll-hint` di ogni pagina.
+- Lunghezza scroll timeline = `.tl-pin-outer { height: calc(100vh + Npx) }` (desktop/mobile in `index.html`).
+- Colore modale attivi = `--topbar-bg` (tint, impostato via JS in `prodotto.html`) per lo sfondo; `--gold-deep` per accenti/linee.
+- Domande aperte da confermare con l'azienda = `DOMANDE-AZIENDA.md`.
+
+**Decisioni di questo round:** menu → eliminare Catalogo / tenere Linee; "Terzisti" invariato; timeline NON si elimina (va riempita di foto); Packaging consapevole → lasciare (c); policy bio confermata (tenere Plant Based + cert. materia prima fornitore, togliere "biologico" sul prodotto finito).
+
+**Nota operativa:** d'ora in poi aggiornare HANDOFF.md + PROGRESS.md a ogni modifica (regola utente). Verifica finale a occhio dall'utente (preview in timeout per Lenis): leggibilità hero/banda scura, scroll timeline, toggle Sphea, colore + assenza rewind del modale attivi.
+
+---
+
+# 🎨 Sessione 31 Maggio 2026 (sera) — Footer scuri contrastanti + topbar Kaley vinaccia
+
+**Problema utente:** i footer "tintati chiari" erano quasi dello stesso colore dello sfondo pagina → effetto monocromo, nessuno stacco. Regola data: *footer in tonalità DIVERSA (più scura) della stessa palette-linea.*
+
+**Fatto:**
+- **Footer scuri per-linea** (nuovo blocco `body.footer-brand` in `assets/tokens.css`): testo chiaro, titoli/link-hover sull'accento brillante. `prodotto.html` + `linee/linea.html` passati da `footer-tinted` a `footer-brand`, `--footer-bg = darken(accent, 0.6)`.
+- **Kaley** (`linee/kaley.html`): footer vinaccia `#481629` + topbar vinaccia `#330d1e` con testo cream **solo da scrollati** (`.topbar.solid`); in cima resta trasparente come ovunque (no barra colorata fissa in cima).
+- **Sphea** (`linee/sphea.html` + `prodotto-sphea.html`): footer navy `#1d3157`, accento `#7da0d4`, topbar azzurro chiaro. Non più nero/oro originale.
+- **Everby** (`linee/everby.html`): footer teal più profondo dello sfondo (`#bfe0d8` su `#eef6f4`) + titoli colonna verdi `#2f8c80`.
+- **Banner "Skincare Innovation"** (hub `erboristica.html`): titolo scurito a viola `#4c326a` (non più monocromo).
+- **Rifinitura "footer meno scuri"**: alleggerite le tonalità (darken `0.72 → 0.6`; kaley `#330d1e → #481629`; sphea `#14213d → #1d3157`) mantenendo lo stacco dallo sfondo chiaro.
+
+**Mappa "cambiare X → modifica Y":**
+- Colore footer scheda prodotto/linea = `--footer-bg` impostato via JS (helper `darkenHex`/`dk` con fattore 0.6) in `prodotto.html` / `linee/linea.html`; tema CSS in `body.footer-brand` (`tokens.css`).
+- Footer/topbar Kaley = regole locali `.footer` e `.topbar.solid` nel `<style>` di `linee/kaley.html`.
+- Footer Sphea = regola locale `.footer` in `linee/sphea.html` + `--footer-bg` JS (sphea hub e prodotto-sphea).
+
+**Note tecniche:**
+- ⚠️ Per leggere colori reali via `preview_eval` su elementi con `transition`, disabilitare la transizione (`el.style.transition='none'; void el.offsetHeight`) PRIMA di `getComputedStyle` — altrimenti si legge un valore a metà animazione (i falsi "link cream" di Everby erano questo, non un bug).
+- `.topbar.solid { background: var(--topbar-bg, var(--cream)); color: var(--ink) }`: per topbar scuro serve override locale di background E colore testo.
+
+---
+
+# ✍️ Sessione 31 Maggio 2026 — Testi schede prodotto uniformati + fix card linea + push online
+
+**Fatto:**
+- Riscritti i testi delle **79 schede prodotto** Everby + L'Erboristica (`prodotto.html?id=...`): claim in diagonale = 1 frase pulita, descrizione = 2 frasi / max 3-3,5 righe con attivi chiave, senza emoji/bullet/"biologico". Kaley e Sphea NON toccati (già a posto). Modello di riferimento: `uomo-shampoo-doccia-uomo-active`.
+- Modificati **insieme** `assets/data.json` + `assets/data-inline.js` (data-inline.js è la fonte runtime via `datastore.js`; vanno tenuti identici).
+- Fix card pagina linea `linee/linea.html`: aggiunta voce `DESC_SHORT['inn-min-2']` (Mineral Infusions Rigenerante) che mancava e rendeva la card a 4 righe; ora tutte le mini-card a 2 righe coerenti con le Pearls.
+- `.gitignore`: escluso scratch root (`/_*`) e backup immagini locali pesanti (`immagini/_GALLERIA`, `immagini/_hero_backup_*`).
+- **Push online**: commit `f9ca739` → `origin/main` (212 file, ~38 MB, include foto reali prodotto/azienda/certificazioni sessioni precedenti). Netlify deploy automatico.
+
+**Mappa "cambiare X → modifica Y":**
+- Claim diagonale scheda prodotto = `subtitle_it` (1ª frase) in `data.json`+`data-inline.js`.
+- Descrizione scheda prodotto = prime 2 frasi di `description_it` in `data.json`+`data-inline.js`.
+- Testo card mini in pagina linea = `DESC_SHORT[id]` in `linee/linea.html` (fallback: 1ª frase desc legacy).
+
+**Note tecniche:**
+- Il rendering scheda spezza il claim sulla prima `.` → subtitle = 1 sola frase, niente punti interni problematici.
+- 2 id master troncati a 60 char: `everby-...-stay-po`, `mineral-infusions-...-elasticizzan`.
+- Verifica solo via `preview_eval` (screenshot in timeout per Lenis); navigazione con path assoluti.
+
+---
+
 # 📸 Sessione 28 Maggio 2026 (pomeriggio) — Generazione foto
 
 > Vedi **HANDOFF.md** per il dettaglio operativo aggiornato. Sintesi:

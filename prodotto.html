@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Prodotto — Athena's</title>
+  <title>Prodotto · Athena's</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
@@ -471,7 +471,7 @@
     }
     .ki-modal.show { display: block; opacity: 1; }
     .ki-modal__box {
-      background: var(--cream);
+      background: var(--topbar-bg, var(--cream));
       border-radius: 6px;
       max-width: 920px; width: 100%;
       margin: 0 auto;
@@ -520,6 +520,7 @@
       margin-bottom: 36px;
       padding-bottom: 28px;
       border-bottom: 1px solid rgba(26,26,26,.1);
+      border-bottom: 1px solid color-mix(in srgb, var(--gold-deep) 32%, transparent);
     }
     .ki-modal__block { margin-bottom: 28px; }
     .ki-modal__block:last-of-type { margin-bottom: 0; }
@@ -542,6 +543,7 @@
       display: flex; flex-wrap: wrap; gap: 8px;
       margin-top: 28px; padding-top: 24px;
       border-top: 1px solid rgba(26,26,26,.1);
+      border-top: 1px solid color-mix(in srgb, var(--gold-deep) 32%, transparent);
     }
     .ki-modal__tag {
       font-family: var(--sans);
@@ -555,8 +557,6 @@
     }
     body.ki-modal-open {
       overflow: hidden;
-      position: fixed;
-      width: 100%;
     }
 
     .ki-detail {
@@ -1083,7 +1083,7 @@
 <script src="assets/vendor/lenis.min.js"></script><script src="assets/data.js?v=7"></script>
 <script src="assets/data-inline.js?v=7"></script>
 <script src="assets/datastore.js?v=7"></script>
-<script src="assets/app.js?v=7"></script>
+<script src="assets/app.js?v=8"></script>
 <script>
 initAthenas('prodotto');
 const _topbar = document.querySelector('.topbar');
@@ -1344,7 +1344,7 @@ if (certsEl2) {
 
 // ── ACTIVES LIBRARY ──────────────────────────────────────────────
 const ACTIVES_LIB = {
-  'acido-ialuronico': { name: 'Acido Ialuronico', role: 'Idratante · Volumizzante', origine: 'Biotecnologico — prodotto per fermentazione batterica da Streptococcus equi. Identico all\'acido ialuronico endogeno.', meccanismo: 'Glicosaminoglicano igroscopico: lega fino a 1.000× il suo peso in acqua. A basso PM penetra negli strati profondi, ad alto PM forma un film idratante in superficie.', efficacia: 'Studio clinico (n=34): riduzione profondità rughe del 27% in 4 settimane. Aumento dell\'idratazione cutanea del 43%.', tags: ['Idratante','Filler naturale','Anti-rughe','Rimpolpante'] },
+  'acido-ialuronico': { name: 'Acido Ialuronico', role: 'Idratante · Volumizzante', origine: 'Biotecnologico, prodotto per fermentazione batterica da Streptococcus equi. Identico all\'acido ialuronico endogeno.', meccanismo: 'Glicosaminoglicano igroscopico: lega fino a 1.000× il suo peso in acqua. A basso PM penetra negli strati profondi, ad alto PM forma un film idratante in superficie.', efficacia: 'Studio clinico (n=34): riduzione profondità rughe del 27% in 4 settimane. Aumento dell\'idratazione cutanea del 43%.', tags: ['Idratante','Filler naturale','Anti-rughe','Rimpolpante'] },
   'collagene-vegetale': { name: 'Collagene Vegetale Idrolizzato', role: 'Rassodante · Rimpolpante', origine: 'Derivato dall\'idrolisi di proteine vegetali (grano, avena, soia). Peptidi di basso PM capaci di penetrare la barriera cutanea.', meccanismo: 'I peptidi collagene-simili stimolano la sintesi di collagene endogeno tipo I e III nei fibroblasti. Effetto tensore meccanico immediato.', efficacia: 'Riduzione della lassità cutanea del 19% in 8 settimane (cutometria). Effetto lifting visibile in 30 minuti.', tags: ['Rassodante','Anti-età','Lifting','Stimolante'] },
   'collagene-marino': { name: 'Collagene Marino Idrolizzato', role: 'Rimpolpante · Ristrutturante', origine: 'Estratto da squame di pesce mediante idrolisi enzimatica. PM < 5 kDa per massima biodisponibilità cutanea.', meccanismo: 'Peptidi Gly-Pro-Hyp attivano i fibroblasti dermici aumentando la produzione di collagene e acido ialuronico endogeni.', efficacia: 'Meta-analisi di 11 RCT: riduzione rughe del 23% e aumento elasticità del 22% in 12 settimane.', tags: ['Rimpolpante','Anti-rughe','Ristrutturante','Bioidentico'] },
   'vitamina-c': { name: 'Vitamina C (Ascorbyl Glucoside)', role: 'Antiossidante · Schiarente', origine: 'Forma stabile della vitamina C idrolizzata dalle α-glucosidasi cutanee rilasciando acido ascorbico puro nel derma.', meccanismo: 'Inibitore competitivo della tirosinasi (IC50 ~0,1 mM). Cofattore per la sintesi di collagene. Potente donatore di elettroni contro i radicali liberi.', efficacia: 'Riduzione dell\'indice di melanina dell\'8% in 4 settimane (concentrazione 2%). Aumento collagene tipo I del 33% in vitro.', tags: ['Antiossidante','Schiarente','Anti-età','Luminosità'] },
@@ -1361,7 +1361,7 @@ const ACTIVES_LIB = {
   'olio-mandorle': { name: 'Olio di Mandorle Dolci (Prunus amygdalus)', role: 'Emolliente · Lenitivo', origine: 'Estratto a freddo dal seme di Prunus amygdalus dulcis. Inodore, altissima tollerabilità su pelli sensibili e pediatriche.', meccanismo: 'Acido oleico (64–82%) e linoleico (7–30%) mimano i lipidi intercorneocitari. Vitamina E antiossidante. β-sitosterolo anti-infiammatorio.', efficacia: 'Riduzione prurito del 34% e xerosi del 41% in bambini con dermatite atopica in 4 settimane (RCT, n=56).', tags: ['Emolliente','Lenitivo','Pediatrico','Pelle sensibile'] },
   'ceramidi': { name: 'Ceramidi Vegetali', role: 'Barriera cutanea · Anti-TEWL', origine: 'Ceramide NP e AP da grano, riso, konjac. Strutturalmente identiche alle ceramidi cutanee umane.', meccanismo: 'Si incorporano nelle strutture lamellari dello strato corneo riparando i difetti di barriera. Modulano il differenziamento cheratinocitario upregolando la filaggrina.', efficacia: 'Riduzione TEWL del 15–30% in 4 settimane. Efficacia comparabile al colesterolo nella riparazione lamellare.', tags: ['Barriera','Anti-TEWL','Pelle secca','Riparatore'] },
   'zinco-pca': { name: 'Zinco PCA', role: 'Sebo-regolatore · Anti-batterico', origine: 'Sale dello zinco con acido pirrolidonico carbossilico (PCA), umettante naturale della pelle.', meccanismo: 'Inibisce la 5α-reduttasi → riduzione DHT locale → minor stimolazione sebacea. Attività antibatterica verso C. acnes. PCA è umettante (NMF).', efficacia: 'Sebum output -31% in 4 settimane (n=35). Conteggio P. acnes -68% in biofilm in vitro (0,3%).', tags: ['Sebo-regolatore','Anti-acne','Anti-batterico','Pori'] },
-  'bakuchiol': { name: 'Bakuchiol', role: 'Alternativa al retinolo · Rinnovante', origine: 'Meroterpene fenolico da semi di Psoralea corylifolia. 100% vegetale, profilo di sicurezza superiore al retinolo.', meccanismo: 'Attiva gli stessi geni del retinolo (RAR/RXR) stimolando collagene I/III/IV, fibronectina, elastina — senza irritazione da acido retinoico.', efficacia: 'Studio comparativo (n=44, 12 sett): bakuchiol 0,5% = retinolo 0,5% su rughe (-19,7% vs -20,1%) con significativamente meno irritazione.', tags: ['Rinnovante','Anti-rughe','Naturale','Pelle sensibile'] },
+  'bakuchiol': { name: 'Bakuchiol', role: 'Alternativa al retinolo · Rinnovante', origine: 'Meroterpene fenolico da semi di Psoralea corylifolia. 100% vegetale, profilo di sicurezza superiore al retinolo.', meccanismo: 'Attiva gli stessi geni del retinolo (RAR/RXR) stimolando collagene I/III/IV, fibronectina, elastina, senza irritazione da acido retinoico.', efficacia: 'Studio comparativo (n=44, 12 sett): bakuchiol 0,5% = retinolo 0,5% su rughe (-19,7% vs -20,1%) con significativamente meno irritazione.', tags: ['Rinnovante','Anti-rughe','Naturale','Pelle sensibile'] },
   'isoflavoni-soia': { name: 'Isoflavoni di Soia', role: 'Sebo-regolatore · Fitoestrogeno', origine: 'Polifenoli (genisteina, daidzeina) da Glycine max. Struttura simile agli estrogeni endogeni.', meccanismo: 'Si legano ai recettori ERβ cutanei → meno infiammazione, più barriera. Inibizione 5α-reduttasi tipo 1 → riduzione sebo.', efficacia: 'Rughe -14% in 24 settimane su pelle perimenopausale. Sebo -18% in 8 settimane.', tags: ['Sebo-regolatore','Antiossidante','Fitoestrogeno','Fotoprotettivo'] },
   'olio-baobab': { name: 'Olio di Baobab (Adansonia digitata)', role: 'Rigenerante · Nutriente', origine: 'Biologico equosolidale, estratto a freddo dai semi del baobab africano. Fonte di vitamine B2, C, calcio, ferro, zinco, manganese.', meccanismo: 'Composizione unica: palmitoleico, linoleico, linolenico. Penetra rapidamente. Omega-3 e Omega-6 in rapporto 1:2 → riduzione infiammazione cutanea.', efficacia: 'Desquamazione -43%, idratazione epidermide +52% in 4 settimane su pelle molto secca (n=30).', tags: ['Rigenerante','Nutriente','Omega-3 e 6','Pelle secca'] },
   'cellule-staminali-leontopodium': { name: 'Cellule Staminali di Stella Alpina', role: 'Anti-età · Protezione UV', origine: 'Estratto biotecnologico (PhytoCellTec™) da Leontopodium alpinum coltivato in vitro. Produce leontopodic acid per sopravvivere alle UV alpine.', meccanismo: 'Protegge le cellule staminali epiteliali dall\'apoptosi UV-indotta. Stimola p63 (marcatore staminale) nei cheratinociti. Riduce danno ossidativo mitocondriale.', efficacia: 'Rughe -15% in 4 settimane (profilometria). Vitalità cellule staminali epidermiche +63% dopo irradiazione UVB in vitro.', tags: ['Anti-UV','Anti-età','Staminale','Rigenerante'] },
@@ -1370,7 +1370,7 @@ const ACTIVES_LIB = {
   'karite': { name: 'Burro di Karité (Vitellaria paradoxa)', role: 'Nutriente · Rigenerante', origine: 'Grasso da semi di Vitellaria paradoxa (Sahel). Ricco di insaponificabili (7–11%) con attività biologiche uniche.', meccanismo: 'Stearico (43–48%) + oleico (43–55%). Triterpeni insaponificabili anti-infiammatori via 5-LOX. Stimolazione sintesi collagene. Ceramidi naturali.', efficacia: 'TEWL -48% in 4 settimane su pelle secca cronica. Anti-infiammatorio comparabile all\'idrocortisone 0,5% su eritema da SDS.', tags: ['Nutriente','Rigenerante','Anti-infiammatorio','Barriera'] },
   'pantenolo': { name: 'Pantenolo (Pro-Vitamina B5)', role: 'Idratante · Lenitivo', origine: 'Alcol della D-acido pantotenico. La cute lo converte in acido pantotenico (B5), cofattore del Coenzima A.', meccanismo: 'Umettante: attira molecole d\'acqua (5 g H₂O / g). Stimola proliferazione fibroblasti e sintesi fibronectina. Accelera la riepitrizzazione.', efficacia: 'TEWL -8% e xerosi -21% in 4 settimane (5%). Riepitrizzazione +42% su wound healing ex vivo.', tags: ['Idratante','Lenitivo','Cicatrizzante','B5'] },
   'estratto-te-verde': { name: 'Estratto di Tè Verde (Camellia sinensis)', role: 'Antiossidante · Anti-infiammatorio', origine: 'Standardizzato in EGCG (epigallocatechina gallato) da foglie non fermentate. EGCG = 60–65% delle catechine totali.', meccanismo: 'EGCG inibisce MMP-9 (degrada il collagene). Downregola NF-κB. Assorbe UV-B (280–320 nm). Chelante Fe²⁺ e Cu²⁺.', efficacia: 'Eritema UV-B -27% (EGCG 1% pre-esposizione). MMP-9 -62% in cheratinociti irradiati (in vitro).', tags: ['Antiossidante','Anti-UV','Anti-infiammatorio','MMP-inibitore'] },
-  'jojoba': { name: 'Olio di Jojoba (Simmondsia chinensis)', role: 'Bilanciante del sebo · Emolliente', origine: 'Cera liquida da semi di Simmondsia chinensis. 97% esteri cerosi a catena lunga — struttura unica nel regno vegetale.', meccanismo: 'Struttura identica al sebo cutaneo → bilanciamento non comedogenico. Stabilissima all\'ossidazione. Bassa viscosità senza effetto grasso.', efficacia: 'Non comedogenica (0/5 in vitro). Sebo -12% in 4 settimane. Ottima tollerabilità con acne (n=40).', tags: ['Bilanciante','Emolliente','Non comedogenico','Sebo'] },
+  'jojoba': { name: 'Olio di Jojoba (Simmondsia chinensis)', role: 'Bilanciante del sebo · Emolliente', origine: 'Cera liquida da semi di Simmondsia chinensis. 97% esteri cerosi a catena lunga, struttura unica nel regno vegetale.', meccanismo: 'Struttura identica al sebo cutaneo → bilanciamento non comedogenico. Stabilissima all\'ossidazione. Bassa viscosità senza effetto grasso.', efficacia: 'Non comedogenica (0/5 in vitro). Sebo -12% in 4 settimane. Ottima tollerabilità con acne (n=40).', tags: ['Bilanciante','Emolliente','Non comedogenico','Sebo'] },
   'allantoina': { name: 'Allantoina', role: 'Lenitiva · Cheratoplastica', origine: 'Da Symphytum officinale o per sintesi (ossidazione acido urico). GRAS FDA.', meccanismo: 'Cheratoplastica (basse conc.) / cheratolitica (alte conc.). Antagonizza prostaglandine pro-infiammatorie. Forma complessi con proteine irritanti neutralizzandole.', efficacia: 'Guarigione cutanea +39% vs controllo (allantoina 2%). Irritazione da SDS -26% (0,5%).', tags: ['Lenitiva','Cicatrizzante','Rinnovante','Tollerabilità'] },
   'bamboo': { name: 'Estratto di Bambù (Bambusa vulgaris)', role: 'Rinforzante · Minerale', origine: 'Dall\'internodo del bambù. Ricco in silice vegetale (70% del contenuto secco), flavonoidi e aminoacidi.', meccanismo: 'Silice organica biodisponibile → cofattore della prolil-idrossilasi → sintesi idrossiprolina nel collagene. Stimola proliferazione fibroblasti.', efficacia: 'Collagene +18% in coltura di fibroblasti (0,5%). Rughe -12% in 6 settimane su pelle maschile (n=28).', tags: ['Rinforzante','Silicio','Collagene','Anti-età'] },
   'tea-tree': { name: 'Tea Tree Oil (Melaleuca alternifolia)', role: 'Antibatterico · Purificante', origine: 'Olio essenziale da foglie di Melaleuca alternifolia. Standardizzato in terpinen-4-olo (>30%) secondo ISO 4730.', meccanismo: 'Terpinen-4-olo altera permeabilità di membrana batterica. Attività contro C. acnes, S. aureus MRSA, Candida. Inibisce mediatori infiammatori da monociti.', efficacia: 'TTO 5% = benzoyl peroxide 5% su acne (RCT n=124, 3 mesi) con meno irritazione. Lesioni acneiche -44%.', tags: ['Antibatterico','Antifungino','Purificante','Anti-acne'] },
@@ -1384,15 +1384,15 @@ const ACTIVES_LIB = {
   'patchouli': { name: 'Patchouli (Pogostemon cablin)', role: 'Rigenerante · Sensoriale', origine: 'Distillazione delle foglie essiccate e fermentate di Pogostemon cablin (Indonesia). Patchoulolo (35-40%), α-bulnesene, α-guaiene.', meccanismo: 'Patchoulolo stimola il turnover cellulare e ha attività anti-elastasi. Riconosciuta azione rigenerante e cicatrizzante. Fissativo olfattivo nelle composizioni.', efficacia: 'Inibizione elastasi -42% (in vitro, 0,5%). Effetto sulla coesione cellulare epidermica +12%.', tags: ['Rigenerante','Terroso','Fissativo','Anti-elastasi'] },
   'glicerina': { name: 'Glicerina Naturale Vegetale', role: 'Idratante · Umettante', origine: 'Glicerol ottenuto da saponificazione di oli vegetali (oliva, cocco, palma) o per fermentazione di zuccheri. Identica alla glicerina endogena.', meccanismo: 'Umettante per eccellenza: lega molecole d\'acqua dall\'atmosfera e le trattiene nello strato corneo. Substrato per AQP3 (acquaporine cutanee). Non occlusivo.', efficacia: 'Riduzione TEWL del 11% e idratazione cornea +28% in 4 settimane (5%). Effetto comparabile all\'urea senza irritazione.', tags: ['Idratante','Umettante','Comfort','Tollerabilità'] },
   'tensioattivi-vegetali': { name: 'Tensioattivi Vegetali Delicati', role: 'Detergente · Delicato', origine: 'Derivati da cocco e zuccheri (cocoyl glutamate, coco-glucoside, decyl glucoside, sodium coceth sulfate). Biodegradabili, non eco-tossici.', meccanismo: 'Tensioattivi anionici/non-ionici a bassa CMC: detergenza efficace rispettando il film idrolipidico. PH-compatibili con la pelle (5,5-6,5).', efficacia: 'TEWL post-lavaggio +3% (vs +15% di SLS). Tollerabilità oculare e cutanea superiore ai tensioattivi sintetici tradizionali.', tags: ['Detergente','Delicato','Biodegradabile','Eco-friendly'] },
-  'acqua-riso-fermentata': { name: 'Acqua di Riso Fermentata', role: 'Idratante · Illuminante', origine: 'Ottenuta dalla fermentazione del riso (Oryza sativa) tramite lieviti — tradizione cosmetica K-beauty. Ricca di aminoacidi, peptidi, vitamine B, gamma-oryzanolo.', meccanismo: 'I fermenti producono acido lattico (esfoliazione delicata + idratazione), allantoina (lenitiva), inositolo (cofattore cellulare). Aminoacidi mantengono il film idrolipidico.', efficacia: 'Luminosità cutanea +21% in 28 giorni (n=30). Tessitura uniforme, glass skin effect documentato in studi K-beauty.', tags: ['Idratante','Illuminante','K-beauty','Fermentato'] },
+  'acqua-riso-fermentata': { name: 'Acqua di Riso Fermentata', role: 'Idratante · Illuminante', origine: 'Ottenuta dalla fermentazione del riso (Oryza sativa) tramite lieviti, tradizione cosmetica K-beauty. Ricca di aminoacidi, peptidi, vitamine B, gamma-oryzanolo.', meccanismo: 'I fermenti producono acido lattico (esfoliazione delicata + idratazione), allantoina (lenitiva), inositolo (cofattore cellulare). Aminoacidi mantengono il film idrolipidico.', efficacia: 'Luminosità cutanea +21% in 28 giorni (n=30). Tessitura uniforme, glass skin effect documentato in studi K-beauty.', tags: ['Idratante','Illuminante','K-beauty','Fermentato'] },
   'centella': { name: 'Centella Asiatica (Cica)', role: 'Lenitiva · Riparatrice', origine: 'Pianta medicinale asiatica (Centella asiatica). Triterpeni standardizzati (madecassoside, asiaticoside, acidi madecassico e asiatico).', meccanismo: 'Madecassoside attiva la sintesi di collagene I/III e fibronectina. Asiaticoside accelera la riepitalizzazione. Anti-infiammatorio via inibizione NF-κB.', efficacia: 'Eritema cutaneo -38% in 14 giorni (n=42). Riparazione barriera epidermica accelerata del 40% in studi clinici.', tags: ['Lenitiva','Cica','Riparatrice','Anti-rossori'] },
   'estratto-caffe': { name: 'Estratto di Caffè (Coffea arabica)', role: 'Drenante · Decongestionante', origine: 'Estratto idroglicerico da chicchi di Coffea arabica. Ricco di caffeina, acidi clorogenici, trigonelline, polifenoli.', meccanismo: 'Caffeina inibisce la fosfodiesterasi → vasocostrizione e lipolisi locale. Acidi clorogenici antiossidanti. Riduce gonfiore e occhiaie tramite drenaggio linfatico.', efficacia: 'Borse perioculari -22% e occhiaie -16% in 6 settimane (estratto al 3%, n=28). Microcircolazione cutanea +18%.', tags: ['Drenante','Anti-borse','Antiossidante','Microcircolatorio'] },
   'microperle-minerali': { name: 'Microperle Minerali Illuminanti', role: 'Illuminante · Correttivo', origine: 'Pigmenti minerali perlati (mica rivestita di ossidi di titanio e ferro). Sfericoidali, ad alta riflettanza ottica diffusa.', meccanismo: 'Riflettono la luce in modo diffuso e uniforme, mascherando otticamente le imperfezioni (effetto soft-focus). Non sono iridescenti ma luminescenti pearlescent.', efficacia: 'Effetto correttivo immediato sulla zona perioculare: borse e occhiaie meno visibili dalla prima applicazione (test sensoriale n=25, 89% di apprezzamento).', tags: ['Illuminante','Correttivo','Soft-focus','Minerale'] },
   'pigmenti-perlati': { name: 'Pigmenti Minerali Perlati', role: 'Luminosità · Glow', origine: 'Mica naturale rivestita con biossido di titanio (CI 77891) e ossidi di ferro. Granulometria micronizzata per finitura pearlescent delicata.', meccanismo: 'Riflettono la luce con angolo Bragg specifico, creando un effetto luminoso multicolore-bianco. Glow naturale senza glitter visibili.', efficacia: 'Luminosità cutanea percepita +34% (panel sensoriale n=30). Sicuri per pelli sensibili, niente FD&C dyes.', tags: ['Luminosità','Glow','Pearlescent','Modulabile'] },
   'pumpcoll': { name: 'Pumpcoll® (Zucca Upcycling)', role: 'Stimolante collagene · Elasticizzante', origine: 'Estratto idrolizzato da zucca (Cucurbita pepo) ottenuto da scarti di filiera (upcycling). Brevetto bioattivo italiano.', meccanismo: 'Peptidi di zucca + cucurbitine stimolano i fibroblasti dermici aumentando la sintesi di collagene I e fibronectina. Migliora l\'elasticità cutanea.', efficacia: 'Elasticità cutanea +14% in 28 giorni (cutometria, n=22). Sintesi collagene +27% in coltura di fibroblasti.', tags: ['Anti-età','Elasticità','Upcycling','Brevettato'] },
-  'argireline-amplified': { name: 'Argireline Amplified® (Acetyl Hexapeptide-8)', role: 'Anti-rughe · Effetto botox-like', origine: 'Hexapeptide sintetico (Lucas Meyer Cosmetics) di seconda generazione, evoluzione dell\'Argireline classico — penetrazione cutanea +6×.', meccanismo: 'Mima il frammento N-terminale di SNAP-25, bloccando la formazione del complesso SNARE → ridotto rilascio di acetilcolina → minor contrazione muscolare mimica.', efficacia: 'Riduzione rughe d\'espressione del 30% in 28 giorni (10%, n=25). Effetto comparabile alla tossina botulinica topica.', tags: ['Anti-rughe','Botox-like','Peptide','Espressione'] },
+  'argireline-amplified': { name: 'Argireline Amplified® (Acetyl Hexapeptide-8)', role: 'Anti-rughe · Effetto botox-like', origine: 'Hexapeptide sintetico (Lucas Meyer Cosmetics) di seconda generazione, evoluzione dell\'Argireline classico, penetrazione cutanea +6×.', meccanismo: 'Mima il frammento N-terminale di SNAP-25, bloccando la formazione del complesso SNARE → ridotto rilascio di acetilcolina → minor contrazione muscolare mimica.', efficacia: 'Riduzione rughe d\'espressione del 30% in 28 giorni (10%, n=25). Effetto comparabile alla tossina botulinica topica.', tags: ['Anti-rughe','Botox-like','Peptide','Espressione'] },
   'capixyl': { name: 'Capixyl® (Peptide Biomimetico)', role: 'Stimolante crescita pilifera · Anti-caduta', origine: 'Complesso biomimetico Lipotec®: Acetyl Tetrapeptide-3 + estratto di Trifolium pratense (trifoglio rosso) ricco di biocanin A.', meccanismo: 'Tetrapeptide-3 stimola la sintesi delle proteine della matrice extracellulare follicolare (laminina, collagene XVII). Biocanin A inibisce la 5α-reduttasi (riduce DHT, anti-caduta).', efficacia: 'Densità ciglia/sopracciglia +46% in 56 giorni (5%, n=44). Lunghezza ciglia +24%. Riduzione caduta significativa.', tags: ['Anti-caduta','Crescita pilifera','Peptide','Follicolare'] },
-  'capilia-longa': { name: 'Capilia Longa (Curcuma Longa Callus)', role: 'Anti-caduta · Rinforzante', origine: 'Cellule staminali meristematiche di Curcuma longa coltivate in vitro (Vytrus Biotech, Spagna). Contengono curcuminoidi e PIE (polifenoli).', meccanismo: 'Inibisce la transizione da fase anagen a catagen del follicolo pilifero — prolunga la fase di crescita. Riduce lo stress ossidativo del follicolo.', efficacia: 'Riduzione caduta capelli/ciglia del 89% in 150 giorni (RCT n=30). Aumento densità +52% nei soggetti con alopecia androgenetica lieve.', tags: ['Anti-caduta','Staminali','Curcuma','Rinforzante'] },
+  'capilia-longa': { name: 'Capilia Longa (Curcuma Longa Callus)', role: 'Anti-caduta · Rinforzante', origine: 'Cellule staminali meristematiche di Curcuma longa coltivate in vitro (Vytrus Biotech, Spagna). Contengono curcuminoidi e PIE (polifenoli).', meccanismo: 'Inibisce la transizione da fase anagen a catagen del follicolo pilifero, prolunga la fase di crescita. Riduce lo stress ossidativo del follicolo.', efficacia: 'Riduzione caduta capelli/ciglia del 89% in 150 giorni (RCT n=30). Aumento densità +52% nei soggetti con alopecia androgenetica lieve.', tags: ['Anti-caduta','Staminali','Curcuma','Rinforzante'] },
   'vite-rossa': { name: 'Cellule Meristematiche di Vite Rossa', role: 'Antiossidante · Protettivo', origine: 'Cellule staminali vegetali di Vitis vinifera (vite rossa) coltivate in vitro. Resveratrolo, antociani, viniferine.', meccanismo: 'Resveratrolo attiva sirtuina-1 (longevità cellulare). Antociani neutralizzano ROS. Viniferine inibiscono la tirosinasi (uniformità tono).', efficacia: 'Protezione da stress ossidativo +28% in cheratinociti (in vitro). Effetto anti-aging epigenetico documentato.', tags: ['Antiossidante','Anti-età','Staminali','Resveratrolo'] },
   'maxi-lip': { name: 'MAXI-LIP® (Palmitoyl Tripeptide-1)', role: 'Volumizzante labbra · Idratante', origine: 'Tripeptide biomimetico (Sederma, Francia) coniugato con acido palmitico per aumentare la penetrazione lipidica.', meccanismo: 'Stimola la sintesi di collagene e acido ialuronico nei fibroblasti delle labbra. Aumenta volume e idratazione in modo progressivo e fisiologico.', efficacia: 'Volume labbra +40% in 28 giorni (videomicroscopia, n=30). Idratazione +60%, contorno definito.', tags: ['Volumizzante','Anti-rughe','Peptide','Labbra'] },
   'olio-ricino': { name: 'Olio di Ricino (Ricinus communis)', role: 'Nutriente · Lucidante', origine: 'Spremitura a freddo dei semi di Ricinus communis. Ricco di acido ricinoleico (90%), unico nel regno vegetale.', meccanismo: 'Acido ricinoleico ha proprietà emollienti e anti-infiammatorie (inibizione PGE2). Bassa viscosità, alto potere lucidante e nutriente.', efficacia: 'Lucentezza labbra +52% (effetto gloss durevole). Idratazione 8 ore dopo applicazione singola.', tags: ['Nutriente','Lucidante','Emolliente','Lipid-barrier'] },
@@ -1566,7 +1566,6 @@ activesDisplay.forEach((active, i) => {
 });
 
 // ── MODALE INGREDIENTE ────────────────────────────────────────
-let _kiSavedScrollY = 0;
 function openKiModal(data, num) {
   const modal = document.getElementById('kiModal');
   if (!modal) return;
@@ -1581,11 +1580,8 @@ function openKiModal(data, num) {
   (data.tags || []).forEach(t => {
     tagsEl.insertAdjacentHTML('beforeend', `<span class="ki-modal__tag">${t}</span>`);
   });
-  // Stop Lenis smooth scroll
+  // Blocca lo scroll di sfondo senza spostare la pagina (niente rewind alla chiusura)
   if (window.lenis && typeof window.lenis.stop === 'function') window.lenis.stop();
-  // Memorizza posizione e congela body
-  _kiSavedScrollY = window.scrollY || window.pageYOffset || 0;
-  document.body.style.top = `-${_kiSavedScrollY}px`;
   document.body.classList.add('ki-modal-open');
   // Reset scroll della modale
   modal.scrollTop = 0;
@@ -1596,10 +1592,7 @@ function closeKiModal() {
   if (!modal) return;
   modal.classList.remove('show');
   document.body.classList.remove('ki-modal-open');
-  document.body.style.top = '';
-  // Ripristina posizione di scroll
-  window.scrollTo(0, _kiSavedScrollY);
-  // Riprendi Lenis
+  // Riprendi Lenis nella stessa posizione (niente rewind)
   if (window.lenis && typeof window.lenis.start === 'function') window.lenis.start();
 }
 const kiModal = document.getElementById('kiModal');
@@ -1764,7 +1757,7 @@ if (!siblings.length) {
     },
     'everby-cica-cloud-hydra-mousse-detergente-viso-delicata': {
       cat: 'Detergente', name: 'Cica Cloud',
-      sub: 'Hydra-Mousse detergente quotidiana — glass skin effect',
+      sub: 'Hydra-Mousse detergente quotidiana, glass skin effect',
       actives: 'Acqua di Riso Fermentata · Centella Asiatica'
     },
     'everby-gel-burro-struccante-feel-butter': {
@@ -1774,12 +1767,12 @@ if (!siblings.length) {
     },
     'everby-milky-rice-hydrating-milky-toner': {
       cat: 'Toner', name: 'Milky Rice',
-      sub: 'Hydrating Milky Toner — glass skin effect, pH-friendly',
+      sub: 'Hydrating Milky Toner, glass skin effect, pH-friendly',
       actives: 'Acqua di Riso Fermentata · Niacinamide'
     },
     'everby-trattamento-viso-perfezionatore-pori-dilatati-stay-po': {
       cat: 'Siero Viso', name: 'Stay Porefect',
-      sub: 'Siero perfezionatore opacizzante — pori ridotti, base trucco perfetta',
+      sub: 'Siero perfezionatore opacizzante, pori ridotti, base trucco perfetta',
       actives: 'Zinco PCA · Acido Salicilico · Niacinamide · Tè Verde'
     },
     'everby-siero-viso-rimpolpante-pump-e-plump': {
@@ -1799,12 +1792,12 @@ if (!siblings.length) {
     },
     'everby-pepti-boom-lip-filler-volumizzante-labbra': {
       cat: 'Lip Filler', name: 'Pepti Boom',
-      sub: 'Lip filler volumizzante — +40% volume clinicamente testato',
+      sub: 'Lip filler volumizzante, +40% volume clinicamente testato',
       actives: '<strong>MAXI-LIP® Peptide</strong> · Vitamina E · Olio di Ricino'
     },
     'everby-siero-ciglia-e-sopracciglia-lash-me': {
       cat: 'Siero Ciglia & Sopracciglia', name: 'Lash Me',
-      sub: 'Siero rinforzante e allungante — risultati visibili in 8 settimane',
+      sub: 'Siero rinforzante e allungante, risultati visibili in 8 settimane',
       actives: '<strong>Capixyl®</strong> · Cellule Meristematiche Vite Rossa · Cellule Staminali Curcuma'
     },
   };
@@ -1858,7 +1851,7 @@ const revealObs = new IntersectionObserver(entries => {
 }, { threshold: 0.08 });
 document.querySelectorAll('[data-reveal]').forEach(el => revealObs.observe(el));
 
-document.title = `${loc.name} — Athena's`;
+document.title = `${loc.name} · Athena's`;
 } /* end initProductPage() */
 </script>
 </body>

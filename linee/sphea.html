@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Sphea — Athena's</title>
+<title>Sphea · Athena's</title>
 <link rel="preload" href="../assets/fonts/fraunces-200-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="stylesheet" href="../assets/fonts.css"/>
 <link rel="stylesheet" href="../assets/tokens.css"/>
@@ -34,8 +34,9 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
 .sh__photo-overlay {
   position: absolute; inset: 0; z-index: 1;
   background:
-    linear-gradient(100deg, rgba(244,247,252,.92) 0%, rgba(244,247,252,.70) 38%, rgba(244,247,252,.22) 62%, transparent 80%),
-    linear-gradient(180deg, rgba(244,247,252,.35) 0%, transparent 28%, transparent 60%, rgba(244,247,252,.75) 100%);
+    radial-gradient(ellipse 64% 56% at 16% 30%, rgba(8,14,26,.55) 0%, transparent 68%),
+    linear-gradient(58deg, rgba(8,14,26,.80) 0%, rgba(8,14,26,.50) 30%, rgba(8,14,26,.16) 54%, transparent 74%),
+    linear-gradient(0deg, rgba(8,14,26,.66) 0%, rgba(8,14,26,.18) 34%, transparent 56%);
 }
 
 /* gold glow orb top-right */
@@ -53,16 +54,15 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
   font-size: 11px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: #4a6aa0;
-  opacity: .55;
+  color: rgba(255,255,255,.78);
+  opacity: 1;
   margin-bottom: 20px;
 }
 .sh__eyebrow::before {
   content: '';
   display: block;
   width: 28px; height: 1px;
-  background: #4a6aa0;
-  opacity: .5;
+  background: rgba(255,255,255,.6);
 }
 
 .sh h1 {
@@ -75,15 +75,16 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
   margin-bottom: clamp(20px,3vw,36px);
 }
 .sh h1 em { font-style: italic; color: #4a6aa0; }
-.sh h1 img { display: block; width: clamp(240px, 40vw, 520px); height: auto; }
+.sh h1 img { display: block; width: clamp(240px, 40vw, 520px); height: auto; filter: drop-shadow(0 4px 30px rgba(8,14,26,.55)); }
 
 .sh__tag {
   font-family: var(--serif);
   font-style: italic;
   font-size: clamp(17px,1.8vw,24px);
-  color: rgba(26,26,26,.5);
+  color: rgba(255,255,255,.85);
   margin-bottom: 28px;
   line-height: 1.4;
+  text-shadow: 0 1px 18px rgba(8,14,26,.45);
 }
 
 .sh__award {
@@ -181,9 +182,10 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
   font-size: clamp(17px,1.4vw,19px);
   line-height: 1.75;
   color: rgba(26,26,26,.55);
-  max-width: 48ch;
-  margin-bottom: 20px;
+  max-width: 60ch;
+  margin-bottom: 22px;
 }
+.sp-pearl p .sp-prod__hl { color: #4a6aa0; font-weight: 600; }
 
 .sp-pearl__steps {
   display: flex;
@@ -432,7 +434,7 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
   display: grid;
   grid-template-columns: 1fr 1fr;
   border-top: 1px solid rgba(74,106,160,.06);
-  min-height: clamp(420px,56vh,680px);
+  min-height: clamp(320px,38vh,440px);
 }
 .sp-prod-panel:last-child { border-bottom: 1px solid rgba(74,106,160,.06); }
 .sp-prod-panel--even .sp-prod-panel__photo { order: 2; }
@@ -443,13 +445,25 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
   /* mobile: sempre foto sopra, testo sotto — niente effetto zigzag */
   .sp-prod-panel__photo { order: 0 !important; }
   .sp-prod-panel__text  { order: 1 !important; }
+  /* mobile: testo sempre allineato a sinistra */
+  .sp-prod-panel__text,
+  .sp-prod-panel--even .sp-prod-panel__text { align-items: flex-start; text-align: left; }
+  .sp-prod-panel__text .sp-prod__pills,
+  .sp-prod-panel--even .sp-prod-panel__text .sp-prod__pills { justify-content: flex-start; }
+  .sp-prod-panel__text .sp-prod__cta,
+  .sp-prod-panel__text .sp-prod__link,
+  .sp-prod-panel--even .sp-prod-panel__text .sp-prod__cta,
+  .sp-prod-panel--even .sp-prod-panel__text .sp-prod__link { align-self: flex-start; }
 }
 
 .sp-prod-panel__photo {
   position: relative;
   overflow: hidden;
-  min-height: clamp(300px,40vw,560px);
+  min-height: clamp(280px,32vw,400px);
+  background: linear-gradient(165deg, #e8eef8 0%, #c4d3e9 55%, #a9bdda 100%);
 }
+/* packaging portrait: niente crop, scena intera su fondo blu coordinato */
+.sp-prod-panel__photo .cover-img { object-fit: contain; }
 .sp-prod-panel__photo-bg {
   position: absolute; inset: 0;
   transition: transform 1.2s var(--ease);
@@ -470,33 +484,65 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
 }
 
 .sp-prod-panel__text {
-  padding: clamp(48px,6vw,80px) clamp(40px,5vw,72px);
+  padding: clamp(40px,5vw,72px) clamp(40px,5vw,72px) clamp(40px,5vw,64px);
   display: flex; flex-direction: column; justify-content: center;
   gap: 0;
+  /* default = card dispari (foto a sx) → testo allineato al bordo destro (esterno) */
+  align-items: flex-end; text-align: right;
 }
+.sp-prod-panel__text .sp-prod__pills { justify-content: flex-end; }
+.sp-prod-panel__text .sp-prod__cta,
+.sp-prod-panel__text .sp-prod__link { align-self: flex-end; }
+/* card pari (foto a dx) → testo allineato al bordo sinistro (esterno) */
+.sp-prod-panel--even .sp-prod-panel__text { align-items: flex-start; text-align: left; }
+.sp-prod-panel--even .sp-prod-panel__text .sp-prod__pills { justify-content: flex-start; }
+.sp-prod-panel--even .sp-prod-panel__text .sp-prod__cta,
+.sp-prod-panel--even .sp-prod-panel__text .sp-prod__link { align-self: flex-start; }
 
-.sp-prod__eyebrow {
-  font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
-  color: #4a6aa0; opacity: .35; margin-bottom: 18px;
-}
+.sp-prod__eyebrow { display: none; }
 .sp-prod__name {
   font-family: var(--display);
-  font-size: clamp(28px,4vw,56px);
+  font-size: clamp(32px,4.4vw,60px);
   font-weight: 300; font-style: italic;
-  letter-spacing: -0.02em; color: #1a1a1a; line-height: 1.05;
-  margin-bottom: 10px;
+  letter-spacing: -0.02em; color: #1a1a1a; line-height: 1.04;
+  margin-bottom: 14px;
+}
+.sp-prod__kicker {
+  display: block; font-family: var(--display); font-style: italic; font-weight: 300;
+  font-size: clamp(24px,3.4vw,46px); letter-spacing: -0.01em; text-transform: none;
+  line-height: 1.02; color: #4a6aa0; opacity: .9; margin-bottom: 2px;
+}
+.sp-prod__claim {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(18px,1.7vw,25px); line-height: 1.32;
+  color: rgba(26,26,26,.82); margin-bottom: 0; max-width: 40ch;
 }
 .sp-prod__target {
-  font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
-  color: rgba(74,106,160,.3); margin-bottom: 24px;
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(15px,1.3vw,19px); letter-spacing: 0; text-transform: none;
+  color: #4a6aa0; opacity: .85; margin-bottom: 0;
 }
 .sp-prod__desc {
   font-family: var(--serif); font-style: italic;
-  font-size: clamp(15px,1.3vw,18px); line-height: 1.72;
-  color: rgba(26,26,26,.5); margin-bottom: 22px; max-width: 48ch;
+  font-size: clamp(15px,1.25vw,18px); line-height: 1.78;
+  color: rgba(26,26,26,.6); margin-bottom: 16px; max-width: 56ch;
 }
+/* 3 zone distribuite su tutta l'altezza: [titolo+claim+tag] / [descrizione] / [riga+attivi+cta]
+   due margin-top:auto uguali riempiono la colonna in modo omogeneo */
+.sp-prod__name    { order: 2; }
+.sp-prod__claim   { order: 3; }
+.sp-prod__target  { order: 4; margin-top: 52px; margin-bottom: 12px; }   /* 2 righe di stacco (claim → mood) */
+.sp-prod__desc    { order: 5; margin-top: 0; margin-bottom: 0; }
+.sp-prod__pills   { order: 6; }
+.sp-prod__cta,
+.sp-prod__link    { order: 7; }
+.sp-prod__hl { color: #4a6aa0; font-weight: 600; }
 .sp-prod__pills {
-  display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-bottom: 28px;
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px;
+  margin-top: 162px;                  /* 6 righe di stacco (descrizione → riga attivi) */
+  align-self: stretch; width: 100%;
+  padding-top: 24px; border-top: 1px solid rgba(74,106,160,.22);
+  margin-bottom: 16px;
 }
 .sp-prod__pill {
   font-family: var(--serif); font-style: italic;
@@ -517,9 +563,9 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
 .sp-prod__link::after { content: '→'; font-size: 14px; }
 .sp-prod__cta {
   display: inline-flex; align-items: center;
-  font-family: var(--serif); font-style: italic; font-size: clamp(15px,1.3vw,18px);
-  color: #4a6aa0; opacity: .65; text-decoration: none;
-  position: relative; padding-bottom: 3px;
+  font-family: var(--serif); font-style: italic; font-size: clamp(18px,1.7vw,24px);
+  color: #4a6aa0; opacity: .8; text-decoration: none;
+  position: relative; padding-bottom: 4px;
   transition: opacity .3s var(--ease); align-self: flex-start;
 }
 .sp-prod__cta::after {
@@ -813,12 +859,12 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
 <meta property="og:locale:alternate" content="en_GB"/>
 <meta property="og:site_name" content="Athena's"/>
 <meta property="og:url" content="https://athenas.it/linee/sphea.html"/>
-<meta property="og:title" content="Sphea — Athena's"/>
+<meta property="og:title" content="Sphea · Athena's"/>
 <meta property="og:description" content="Alta gamma Athena's con perle di biopolimeri marini. Peptidi brevettati e attivi di nuova generazione."/>
 <meta property="og:image" content="https://athenas.it/../immagini/og/sphea.jpg"/>
-<meta property="og:image:alt" content="Sphea — Athena's"/>
+<meta property="og:image:alt" content="Sphea · Athena's"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Sphea — Athena's"/>
+<meta name="twitter:title" content="Sphea · Athena's"/>
 <meta name="twitter:description" content="Alta gamma Athena's con perle di biopolimeri marini. Peptidi brevettati e attivi di nuova generazione."/>
 <meta name="twitter:image" content="https://athenas.it/../immagini/og/sphea.jpg"/>
 <script type="application/ld+json">
@@ -839,15 +885,17 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
 
 <!-- ── HERO ──────────────────────────────────────────────── -->
 <section class="sh" data-mood-fallback="light">
-  <img loading="eager" fetchpriority="high" decoding="async" src="../immagini/sphea/lifestyle-01.jpg" alt="Sphea by Athena's" class="bg-video" style="object-fit:cover;">
-  <!-- SOSTITUIRE: video hero Sphea quando disponibile (compresso, max 3-5 MB).
-       Inserire qui un <video class="bg-video sh-hero__video" autoplay muted loop
-       playsinline preload="metadata" poster="..."> con <source> al file mp4. -->
+  <video class="bg-video" autoplay muted loop playsinline preload="auto"
+         poster="../immagini/sphea/hero-poster.jpg"
+         style="object-fit:cover;object-position:center 35%;background:#0e1a2c;"
+         aria-label="Sphea by Athena's">
+    <source src="../immagini/sphea/hero.mp4" type="video/mp4">
+  </video>
 
   <div class="sh__photo-overlay"></div>
   <div class="sh__content" data-reveal>
     <div class="sh__eyebrow">04 · Athena's Portfolio · Premium</div>
-    <h1><img src="../immagini/brand-sphea/logo.png" alt="Sphea" decoding="async"></h1>
+    <h1><img src="../immagini/brand-sphea/logo-clean.png" alt="Sphea" decoding="async"></h1>
     <p class="sh__tag" data-it="Biopolimeri marini. Perle. <em>Alta gamma.</em>" data-en="Marine biopolymers. Pearls. <em>Premium.</em>">Biopolimeri marini. Perle. <em>Alta gamma.</em></p>
   </div>
 </section>
@@ -858,13 +906,13 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
   <div class="sp-pearl" data-reveal>
     <div class="sp-pearl__eyebrow" data-it="La tecnologia proprietaria" data-en="Proprietary technology">La tecnologia proprietaria</div>
     <h2>
-      <span data-it="Pearl " data-en="Pearl ">Pearl </span><em data-it="Technology." data-en="Technology.">Technology.</em>
+      <span data-it="La scienza " data-en="The science ">La scienza </span><em data-it="delle perle." data-en="of pearls.">delle perle.</em>
     </h2>
-    <p data-it="Biopolimeri marini naturali al 100% — alghe, carragenina, agar — formano microsfere che incapsulano i principi attivi brevettati alla massima concentrazione possibile." data-en="100% natural marine biopolymers — algae, carrageenan, agar — form microspheres that encapsulate patented active ingredients at the highest possible concentration.">Biopolimeri marini naturali al 100% — alghe, carragenina, agar — formano microsfere che incapsulano i principi attivi brevettati alla massima concentrazione possibile.</p>
-    <p data-it="Al contatto con la pelle, le perle si rompono per pressione meccanica: rilasciano il principio attivo in modo mirato, progressivo, sensoriale. Un assorbimento profondo che nessun siero tradizionale può replicare. Il nome stesso del brand racconta la tecnologia: Sphea = sfere." data-en="On skin contact, the pearls break by mechanical pressure: they release the active ingredient in a targeted, progressive, sensorial way. Deep absorption that no traditional serum can replicate. The brand name itself tells the story: Sphea = spheres.">Al contatto con la pelle, le perle si rompono per pressione meccanica: rilasciano il principio attivo in modo mirato, progressivo, sensoriale. Un assorbimento profondo che nessun siero tradizionale può replicare. Il nome stesso del brand racconta la tecnologia: Sphea = sfere.</p>
+    <p data-it="Sphea combina due sistemi di rilascio in un solo gesto:<br>gli <span class='sp-prod__hl'>attivi del siero</span> agiscono subito, le <span class='sp-prod__hl'>perle</span> si liberano a poco a poco.<br>Microsfere di <span class='sp-prod__hl'>biopolimeri marini</span> naturali al 100%, alghe, carragenina e agar,<br>custodiscono ogni attivo brevettato alla massima concentrazione, intatto fino all'applicazione." data-en="Sphea combines two delivery systems in a single gesture:<br>the <span class='sp-prod__hl'>serum actives</span> work at once, the <span class='sp-prod__hl'>pearls</span> release little by little.<br>Microspheres of 100% natural <span class='sp-prod__hl'>marine biopolymers</span>, algae, carrageenan and agar,<br>guard every patented active at maximum concentration, intact until application.">Sphea combina due sistemi di rilascio in un solo gesto:<br>gli <span class="sp-prod__hl">attivi del siero</span> agiscono subito, le <span class="sp-prod__hl">perle</span> si liberano a poco a poco.<br>Microsfere di <span class="sp-prod__hl">biopolimeri marini</span> naturali al 100%, alghe, carragenina e agar,<br>custodiscono ogni attivo brevettato alla massima concentrazione, intatto fino all'applicazione.</p>
+    <p data-it="Sulla pelle, una leggera pressione rompe le perle e libera l'attivo fresco,<br>senza <span class='sp-prod__hl'>degradazione ossidativa</span>.<br>Un <span class='sp-prod__hl'>assorbimento profondo</span> che nessun siero tradizionale può replicare.<br>La sinergia tra siero e perle è la firma di Sphea: un <span class='sp-prod__hl'>doppio beneficio</span> in un'unica soluzione.<br>Il nome stesso lo racconta: Sphea, le sfere." data-en="On the skin, a light pressure breaks the pearls and releases the fresh active,<br>with no <span class='sp-prod__hl'>oxidative degradation</span>.<br>A <span class='sp-prod__hl'>deep absorption</span> that no traditional serum can replicate.<br>The synergy of serum and pearls is Sphea's signature: a <span class='sp-prod__hl'>double benefit</span> in a single solution.<br>The name itself tells the story: Sphea, the spheres.">Sulla pelle, una leggera pressione rompe le perle e libera l'attivo fresco,<br>senza <span class="sp-prod__hl">degradazione ossidativa</span>.<br>Un <span class="sp-prod__hl">assorbimento profondo</span> che nessun siero tradizionale può replicare.<br>La sinergia tra siero e perle è la firma di Sphea: un <span class="sp-prod__hl">doppio beneficio</span> in un'unica soluzione.<br>Il nome stesso lo racconta: Sphea, le sfere.</p>
   </div>
   <div class="sp-pearl-section__media">
-    <img src="../immagini/sphea/stilllife.jpg" alt="Pearl Technology — Sphea" loading="lazy">
+    <img src="../immagini/sphea/stilllife.jpg" alt="Pearl Technology · Sphea" loading="lazy">
   </div>
 </section>
 
@@ -873,14 +921,15 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
   <!-- 01 — Anti Pollution (foto sx) -->
   <div class="sp-prod-panel" data-reveal>
     <div class="sp-prod-panel__photo">
-      <img loading="lazy" decoding="async" src="../immagini/sphea/anti-pollution/modella.jpg" alt="Anti Pollution Face Serum — Sphea" class="cover-img">
+      <img loading="lazy" decoding="async" src="../immagini/sphea/anti-pollution/packaging.webp" alt="Anti Pollution Face Serum · Sphea" class="cover-img">
       <div class="sp-prod-panel__photo-num">01</div>
     </div>
     <div class="sp-prod-panel__text">
       <div class="sp-prod__eyebrow" data-it="01 · Viso · Tutti i tipi di pelle" data-en="01 · Face · All skin types">01 · Viso · Tutti i tipi di pelle</div>
-      <div class="sp-prod__name">Siero Viso<br>Antipollution</div>
+      <div class="sp-prod__name"><span class="sp-prod__kicker" data-it="Siero Viso" data-en="Face Serum">Siero Viso</span>Antipollution</div>
+      <div class="sp-prod__claim" data-it="Scudo biologico contro smog, polveri sottili e stress ossidativo. La pelle respira di nuovo." data-en="A biological shield against smog, fine dust and oxidative stress. Skin breathes again.">Scudo biologico contro smog, polveri sottili e stress ossidativo. La pelle respira di nuovo.</div>
       <div class="sp-prod__target" data-it="Protezione · Idratazione · Detox" data-en="Protection · Hydration · Detox">Protezione · Idratazione · Detox</div>
-      <p class="sp-prod__desc" data-it="Scudo biologico contro smog, luce blu, UVA/UVB e radicali liberi. Ectoina — la molecola extremofila — forma un guscio protettivo attorno alle cellule cutanee." data-en="Biological shield against smog, blue light, UVA/UVB and free radicals. Ectoin forms a protective shell around skin cells.">Scudo biologico contro smog, luce blu, UVA/UVB e radicali liberi. Ectoina — la molecola extremofila — forma un guscio protettivo attorno alle cellule cutanee.</p>
+      <p class="sp-prod__desc" data-it="Una barriera invisibile contro lo stress urbano: neutralizza <span class='sp-prod__hl'>smog</span>, <span class='sp-prod__hl'>PM10</span> e <span class='sp-prod__hl'>luce blu</span> prima che spengano la pelle. Giorno dopo giorno l'incarnato resta fresco, idratato e luminoso." data-en="An invisible barrier against urban stress: it neutralises <span class='sp-prod__hl'>smog</span>, <span class='sp-prod__hl'>PM10</span> and <span class='sp-prod__hl'>blue light</span> before they dull the skin. Day after day the complexion stays fresh, hydrated and luminous.">Una barriera invisibile contro lo stress urbano: neutralizza <span class="sp-prod__hl">smog</span>, <span class="sp-prod__hl">PM10</span> e <span class="sp-prod__hl">luce blu</span> prima che spengano la pelle. Giorno dopo giorno l'incarnato resta fresco, idratato e luminoso.</p>
       <div class="sp-prod__pills"><span class="sp-prod__pill">Ectoina</span><span class="sp-prod__pill">Niacinamide</span><span class="sp-prod__pill">Coenzima Q10</span></div>
       <a class="sp-prod__cta" href="prodotto-sphea.html?id=anti-pollution" data-it="Scopri il siero" data-en="Discover the serum">Scopri il siero</a>
     </div>
@@ -889,14 +938,15 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
   <!-- 02 — Radiant Up-Lift (testo sx) -->
   <div class="sp-prod-panel sp-prod-panel--even" data-reveal>
     <div class="sp-prod-panel__photo">
-      <img loading="lazy" decoding="async" src="../immagini/sphea/radiant-up-lift/modella.jpg" alt="Radiant Up-Lift — Sphea" class="cover-img">
+      <img loading="lazy" decoding="async" src="../immagini/sphea/radiant-up-lift/packaging.webp" alt="Radiant Up-Lift · Sphea" class="cover-img">
       <div class="sp-prod-panel__photo-num">02</div>
     </div>
     <div class="sp-prod-panel__text">
       <div class="sp-prod__eyebrow" data-it="02 · Viso · Tutti i tipi di pelle" data-en="02 · Face · All skin types">02 · Viso · Tutti i tipi di pelle</div>
-      <div class="sp-prod__name">Radiant<br>Up-Lift</div>
+      <div class="sp-prod__name"><span class="sp-prod__kicker" data-it="Siero Viso" data-en="Face Serum">Siero Viso</span>Radiant Up-Lift</div>
+      <div class="sp-prod__claim" data-it="Volumizza. Illumina. Ridefinisce i contorni. Il siero che fa dimenticare il filler." data-en="Plumps. Brightens. Redefines contours. The serum that makes you forget filler.">Volumizza. Illumina. Ridefinisce i contorni. Il siero che fa dimenticare il filler.</div>
       <div class="sp-prod__target" data-it="Lifting · Luminosità · Antiossidante" data-en="Lifting · Radiance · Antioxidant">Lifting · Luminosità · Antiossidante</div>
-      <p class="sp-prod__desc" data-it="Uplevity® contrae i muscoli facciali superficiali per un effetto lifting immediato e progressivo. Vitamina C stabilizzata per luminosità e protezione antiossidante." data-en="Uplevity® contracts superficial facial muscles for immediate and progressive lifting. Stabilised Vitamin C for radiance and antioxidant protection.">Uplevity® contrae i muscoli facciali superficiali per un effetto lifting immediato e progressivo. Vitamina C stabilizzata per luminosità e protezione antiossidante.</p>
+      <p class="sp-prod__desc" data-it="<span class='sp-prod__hl'>Uplevity®</span> agisce come una microcorrente bioelettrica e ridefinisce i contorni del viso con un <span class='sp-prod__hl'>effetto tensore</span> immediato e progressivo. La <span class='sp-prod__hl'>Vitamina C liposomiale</span> aggiunge luminosità e protezione antiossidante giorno dopo giorno. Il viso appare più disteso, pieno e luminoso, <span class='sp-prod__hl'>senza ricorrere al filler</span>." data-en="<span class='sp-prod__hl'>Uplevity®</span> acts like a bioelectric microcurrent, redefining facial contours with an immediate, progressive <span class='sp-prod__hl'>tightening effect</span>. <span class='sp-prod__hl'>Liposomal Vitamin C</span> adds radiance and antioxidant protection day after day. The face looks smoother, fuller and more luminous, <span class='sp-prod__hl'>without resorting to filler</span>."><span class="sp-prod__hl">Uplevity®</span> agisce come una microcorrente bioelettrica e ridefinisce i contorni del viso con un <span class="sp-prod__hl">effetto tensore</span> immediato e progressivo. La <span class="sp-prod__hl">Vitamina C liposomiale</span> aggiunge luminosità e protezione antiossidante giorno dopo giorno. Il viso appare più disteso, pieno e luminoso, <span class="sp-prod__hl">senza ricorrere al filler</span>.</p>
       <div class="sp-prod__pills"><span class="sp-prod__pill">Uplevity®</span><span class="sp-prod__pill">Vitamina C</span></div>
       <a class="sp-prod__cta" href="prodotto-sphea.html?id=radiant-up-lift" data-it="Scopri il siero" data-en="Discover the serum">Scopri il siero</a>
     </div>
@@ -905,14 +955,15 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
   <!-- 03 — Eyelift Perfector (foto sx) -->
   <div class="sp-prod-panel" data-reveal>
     <div class="sp-prod-panel__photo">
-      <img loading="lazy" decoding="async" src="../immagini/sphea/eyelift-perfector/modella.jpg" alt="Eyelift Perfector — Sphea" class="cover-img">
+      <img loading="lazy" decoding="async" src="../immagini/sphea/eyelift-perfector/packaging.webp" alt="Eyelift Perfector · Sphea" class="cover-img">
       <div class="sp-prod-panel__photo-num">03</div>
     </div>
     <div class="sp-prod-panel__text">
       <div class="sp-prod__eyebrow" data-it="03 · Occhi · Pelle matura" data-en="03 · Eyes · Mature skin">03 · Occhi · Pelle matura</div>
-      <div class="sp-prod__name">Eyelift<br>Perfector</div>
+      <div class="sp-prod__name"><span class="sp-prod__kicker" data-it="Siero Occhi" data-en="Eye Serum">Siero Occhi</span>Eyelift Perfector</div>
+      <div class="sp-prod__claim" data-it="Riduce le rughe espressive, tende le palpebre cadenti e cancella le borse. Occhi da 20 anni." data-en="Reduces expression lines, lifts drooping eyelids and erases bags. Eyes that look 20 again.">Riduce le rughe espressive, tende le palpebre cadenti e cancella le borse. Occhi da 20 anni.</div>
       <div class="sp-prod__target" data-it="Rughe · Borse · Lifting occhi" data-en="Wrinkles · Bags · Eye lifting">Rughe · Borse · Lifting occhi</div>
-      <p class="sp-prod__desc" data-it="Argireline Amplified® riduce le rughe di espressione attorno agli occhi. Uplevity® effetto tensore per uno sguardo aperto e ringiovanito." data-en="Argireline Amplified® reduces expression lines around the eyes. Uplevity® tensing effect for an open and rejuvenated look.">Argireline Amplified® riduce le rughe di espressione attorno agli occhi. Uplevity® effetto tensore per uno sguardo aperto e ringiovanito.</p>
+      <p class="sp-prod__desc" data-it="<span class='sp-prod__hl'>Argireline Amplified®</span> rilassa i micromovimenti che incidono le rughe d'espressione, con un <span class='sp-prod__hl'>effetto botox-like</span>. Uplevity® tende la palpebra e attenua le borse, per uno sguardo aperto e riposato. Bastano <span class='sp-prod__hl'>due gocce</span>: formula concentrata, a rilascio progressivo." data-en="<span class='sp-prod__hl'>Argireline Amplified®</span> relaxes the micro-movements that carve expression lines, with a <span class='sp-prod__hl'>botox-like effect</span>. Uplevity® tightens the eyelid and reduces bags, for an open, rested look. Just <span class='sp-prod__hl'>two drops</span>: a concentrated, progressive-release formula."><span class="sp-prod__hl">Argireline Amplified®</span> rilassa i micromovimenti che incidono le rughe d'espressione, con un <span class="sp-prod__hl">effetto botox-like</span>. Uplevity® tende la palpebra e attenua le borse, per uno sguardo aperto e riposato. Bastano <span class="sp-prod__hl">due gocce</span>: formula concentrata, a rilascio progressivo.</p>
       <div class="sp-prod__pills"><span class="sp-prod__pill">Argireline Amplified®</span><span class="sp-prod__pill">Uplevity®</span></div>
       <a class="sp-prod__cta" href="prodotto-sphea.html?id=eyelift-perfector" data-it="Scopri il siero" data-en="Discover the serum">Scopri il siero</a>
     </div>
@@ -921,14 +972,15 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
   <!-- 04 — Sculpt & Firm (testo sx) -->
   <div class="sp-prod-panel sp-prod-panel--even" data-reveal>
     <div class="sp-prod-panel__photo">
-      <img loading="lazy" decoding="async" src="../immagini/sphea/sculpt-firm/modella.jpg" alt="Sculpt &amp; Firm Body Serum — Sphea" class="cover-img">
+      <img loading="lazy" decoding="async" src="../immagini/sphea/sculpt-firm/packaging.webp" alt="Sculpt &amp; Firm Body Serum · Sphea" class="cover-img">
       <div class="sp-prod-panel__photo-num">04</div>
     </div>
     <div class="sp-prod-panel__text">
       <div class="sp-prod__eyebrow" data-it="04 · Corpo · Tonificante" data-en="04 · Body · Toning">04 · Corpo · Tonificante</div>
-      <div class="sp-prod__name">Sculpt &amp;<br>Firm Body Serum</div>
+      <div class="sp-prod__name"><span class="sp-prod__kicker" data-it="Siero Corpo" data-en="Body Serum">Siero Corpo</span>Sculpt &amp; Firm</div>
+      <div class="sp-prod__claim" data-it="Rassoda, definisce e rimodella. Il personal trainer in formato siero." data-en="Firms, defines and reshapes. A personal trainer in serum form.">Rassoda, definisce e rimodella. Il personal trainer in formato siero.</div>
       <div class="sp-prod__target" data-it="Tonico · Rassodante · Modellante" data-en="Toning · Firming · Sculpting">Tonico · Rassodante · Modellante</div>
-      <p class="sp-prod__desc" data-it="Actigym® mima l'effetto dell'esercizio fisico sulle cellule muscolari. Corpo più tonico, sodo e modellato con uso regolare." data-en="Actigym® mimics the effect of physical exercise on muscle cells. More toned, firm and sculpted body with regular use.">Actigym® mima l'effetto dell'esercizio fisico sulle cellule muscolari. Corpo più tonico, sodo e modellato con uso regolare.</p>
+      <p class="sp-prod__desc" data-it="<span class='sp-prod__hl'>Actigym®</span>, ingrediente marino delle Bermuda, segnala alle cellule che l'allenamento è in corso e amplifica i risultati del movimento. Con l'uso regolare il corpo appare <span class='sp-prod__hl'>più tonico</span>, sodo e definito su addome, cosce e braccia. Il massaggio attivante rompe le perle e libera l'attivo dove serve." data-en="<span class='sp-prod__hl'>Actigym®</span>, a marine ingredient from Bermuda, tells cells that exercise is under way and amplifies the results of movement. With regular use the body looks <span class='sp-prod__hl'>more toned</span>, firm and defined on abdomen, thighs and arms. The activating massage breaks the pearls and releases the active where needed."><span class="sp-prod__hl">Actigym®</span>, ingrediente marino delle Bermuda, segnala alle cellule che l'allenamento è in corso e amplifica i risultati del movimento. Con l'uso regolare il corpo appare <span class="sp-prod__hl">più tonico</span>, sodo e definito su addome, cosce e braccia. Il massaggio attivante rompe le perle e libera l'attivo dove serve.</p>
       <div class="sp-prod__pills"><span class="sp-prod__pill">Actigym®</span></div>
       <a class="sp-prod__cta" href="prodotto-sphea.html?id=sculpt-firm" data-it="Scopri il siero" data-en="Discover the serum">Scopri il siero</a>
     </div>
@@ -937,14 +989,15 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
   <!-- 05 — Slim Silhouette (foto sx) -->
   <div class="sp-prod-panel" data-reveal>
     <div class="sp-prod-panel__photo">
-      <img loading="lazy" decoding="async" src="../immagini/sphea/slim-silhouette/modella.jpg" alt="Slim Silhouette Body Serum — Sphea" class="cover-img">
+      <img loading="lazy" decoding="async" src="../immagini/sphea/slim-silhouette/packaging.webp" alt="Slim Silhouette Body Serum · Sphea" class="cover-img">
       <div class="sp-prod-panel__photo-num">05</div>
     </div>
     <div class="sp-prod-panel__text">
       <div class="sp-prod__eyebrow" data-it="05 · Corpo · Snellente" data-en="05 · Body · Slimming">05 · Corpo · Snellente</div>
-      <div class="sp-prod__name">Slim Silhouette<br>Body Serum</div>
+      <div class="sp-prod__name"><span class="sp-prod__kicker" data-it="Siero Corpo" data-en="Body Serum">Siero Corpo</span>Slim Silhouette</div>
+      <div class="sp-prod__claim" data-it="Agisce sul tessuto adiposo mentre dormi. La notte che ridisegna la silhouette." data-en="Acts on fat tissue while you sleep. The night that reshapes your silhouette.">Agisce sul tessuto adiposo mentre dormi. La notte che ridisegna la silhouette.</div>
       <div class="sp-prod__target" data-it="Snellente · Anti-cellulite · Drenante" data-en="Slimming · Anti-cellulite · Draining">Snellente · Anti-cellulite · Drenante</div>
-      <p class="sp-prod__desc" data-it="Nocturshape® attiva il metabolismo lipidico notturno. Formula a rilascio progressivo durante il sonno per risultati visibili sulla silhouette." data-en="Nocturshape® activates nocturnal lipid metabolism. Progressive release formula during sleep for visible results on the silhouette.">Nocturshape® attiva il metabolismo lipidico notturno. Formula a rilascio progressivo durante il sonno per risultati visibili sulla silhouette.</p>
+      <p class="sp-prod__desc" data-it="<span class='sp-prod__hl'>Nocturshape®</span> lavora in sincronia con l'<span class='sp-prod__hl'>orologio biologico</span>: di notte inibisce la nocturnina, la proteina che favorisce l'accumulo di grasso. Applicato la sera su cosce, fianchi e addome, ridisegna progressivamente <span class='sp-prod__hl'>la silhouette</span> e migliora la fermezza. Al risveglio la pelle è più liscia e compatta." data-en="<span class='sp-prod__hl'>Nocturshape®</span> works in sync with the <span class='sp-prod__hl'>body clock</span>: at night it inhibits nocturnin, the protein that drives fat storage. Applied in the evening on thighs, hips and abdomen, it progressively reshapes <span class='sp-prod__hl'>the silhouette</span> and improves firmness. By morning, skin feels smoother and firmer."><span class="sp-prod__hl">Nocturshape®</span> lavora in sincronia con l'<span class="sp-prod__hl">orologio biologico</span>: di notte inibisce la nocturnina, la proteina che favorisce l'accumulo di grasso. Applicato la sera su cosce, fianchi e addome, ridisegna progressivamente <span class="sp-prod__hl">la silhouette</span> e migliora la fermezza. Al risveglio la pelle è più liscia e compatta.</p>
       <div class="sp-prod__pills"><span class="sp-prod__pill">Nocturshape®</span></div>
       <a class="sp-prod__cta" href="prodotto-sphea.html?id=slim-silhouette" data-it="Scopri il siero" data-en="Discover the serum">Scopri il siero</a>
     </div>
@@ -969,11 +1022,11 @@ document.body.style.setProperty('--topbar-bg', '#dbe3f0');
 
 // Scroll reveal
 const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); } });
+  entries.forEach(e => { e.target.classList.toggle('is-visible', e.isIntersecting); });
 }, { threshold: 0.07 });
 document.querySelectorAll('[data-reveal]').forEach(el => obs.observe(el));
 
-document.title = "Sphea — Athena's";
+document.title = "Sphea · Athena's";
 
 // ── ATTIVI ACCORDION ──
 document.querySelectorAll('.sp-active-row').forEach(row => {

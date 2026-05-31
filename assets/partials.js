@@ -153,7 +153,7 @@
             <div>
               <div class="brand-lg">Erboristica</div>
               <p style="opacity:.7; font-size:13px; line-height:1.6; max-width:340px;">
-                [ Claim brand · "0% derivati petrolchimici, siliconi, coloranti — 100% attivi di origine naturale". Sostituire con copy definitivo. ]
+                [ Claim brand · "0% derivati petrolchimici, siliconi, coloranti, 100% attivi di origine naturale". Sostituire con copy definitivo. ]
               </p>
               <div style="margin-top:28px;">
                 <div style="font-family: var(--font-mono); font-size:10px; letter-spacing:0.18em; text-transform:uppercase; opacity:0.6; margin-bottom:12px;">Iscriviti alla newsletter</div>

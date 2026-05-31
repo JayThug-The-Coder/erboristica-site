@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Everby — Athena's</title>
+<title>Everby · Athena's</title>
 <link rel="preload" href="../assets/fonts/fraunces-200-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="stylesheet" href="../assets/fonts.css"/>
 <link rel="stylesheet" href="../assets/tokens.css"/>
@@ -434,29 +434,20 @@ body { background: #eef6f4; color: #1a1a1a; font-family: var(--sans); overflow-x
   z-index: 1;
 }
 .ev-intro__active {
-  display: grid;
-  grid-template-columns: 1fr 88px;
-  gap: 18px;
+  display: block;
   padding: 18px 20px;
   background: rgba(255,255,255,.03);
   border: 1px solid rgba(255,255,255,.1);
-  align-items: start;
-}
-@media (max-width: 560px) {
-  .ev-intro__active {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-  .ev-intro__active-photo {
-    order: -1;
-    width: 100% !important;
-    height: 140px !important;
-  }
 }
 .ev-intro__active-content {
   display: flex;
   flex-direction: column;
   gap: 7px;
+}
+.ev-hl {
+  color: #74d0c4;
+  font-style: normal;
+  font-weight: 500;
 }
 .ev-intro__active-name {
   font-family: var(--display);
@@ -472,19 +463,6 @@ body { background: #eef6f4; color: #1a1a1a; font-family: var(--sans); overflow-x
   font-size: clamp(15px,1.25vw,18px);
   color: rgba(255,255,255,.55);
   line-height: 1.65;
-}
-.ev-intro__active-photo {
-  width: 88px;
-  height: 88px;
-  background: rgba(116,208,196,.08);
-  border: 1px solid rgba(116,208,196,.18);
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.ev-intro__active-photo img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  display: block;
 }
 
 .ev-intro__cert-logos {
@@ -618,12 +596,17 @@ body { background: #eef6f4; color: #1a1a1a; font-family: var(--sans); overflow-x
   font-weight: 600;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: #5fb6ab;
-  opacity: .75;
+  --pc: #5fb6ab;
+  color: var(--pc);
+  opacity: .85;
   padding: clamp(18px,2.5vw,32px) 0 8px 52px;
   list-style: none;
 }
 .ev-rl__phase:first-child { padding-top: 0; }
+.ev-rl__phase[data-phase="cleanse"]  { --pc: #2f93b0; }
+.ev-rl__phase[data-phase="treat"]    { --pc: #5fb6ab; }
+.ev-rl__phase[data-phase="protect"]  { --pc: #c49038; }
+.ev-rl__phase[data-phase="specific"] { --pc: #9060b4; }
 .ev-rl__item {
   display: flex;
   align-items: center;
@@ -636,7 +619,7 @@ body { background: #eef6f4; color: #1a1a1a; font-family: var(--sans); overflow-x
   --pc: #5fb6ab;
 }
 .ev-rl__item:last-child { border-bottom: none; }
-.ev-rl__item[data-phase="cleanse"]  { --pc: #4ab4ac; }
+.ev-rl__item[data-phase="cleanse"]  { --pc: #2f93b0; }
 .ev-rl__item[data-phase="treat"]    { --pc: #5fb6ab; }
 .ev-rl__item[data-phase="protect"]  { --pc: #c49038; }
 .ev-rl__item[data-phase="specific"] { --pc: #9060b4; }
@@ -797,12 +780,12 @@ body { background: #eef6f4; color: #1a1a1a; font-family: var(--sans); overflow-x
 <meta property="og:locale:alternate" content="en_GB"/>
 <meta property="og:site_name" content="Athena's"/>
 <meta property="og:url" content="https://athenas.it/linee/everby.html"/>
-<meta property="og:title" content="Everby — Athena's"/>
+<meta property="og:title" content="Everby · Athena's"/>
 <meta property="og:description" content="K-beauty con etica Athena's: skincare contemporanea per la Gen Z, texture innovative, waterless formulations."/>
 <meta property="og:image" content="https://athenas.it/../immagini/og/everby.jpg"/>
-<meta property="og:image:alt" content="Everby — Athena's"/>
+<meta property="og:image:alt" content="Everby · Athena's"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Everby — Athena's"/>
+<meta name="twitter:title" content="Everby · Athena's"/>
 <meta name="twitter:description" content="K-beauty con etica Athena's: skincare contemporanea per la Gen Z, texture innovative, waterless formulations."/>
 <meta name="twitter:image" content="https://athenas.it/../immagini/og/everby.jpg"/>
 <script type="application/ld+json">
@@ -864,51 +847,36 @@ body { background: #eef6f4; color: #1a1a1a; font-family: var(--sans); overflow-x
         <span data-it="innovativa," data-en="innovative,">innovativa,</span><br>
         <em data-it="un'attitudine." data-en="an attitude.">un'attitudine.</em>
       </h2>
-      <p class="ev-intro__body" data-reveal style="--d:100ms" data-it="Impatto fresco e accattivante. Everby è sub-brand di l'Erboristica di Athena's: ne eredita la filosofia e i valori — formulazioni con oltre il 95% di ingredienti di origine naturale certificata, sviluppate con attivi brevettati di ultima generazione come Pumpcoll®, Argireline Amplified® e Capixyl®. Non una moda: un metodo di cura della pelle con uno scopo preciso per ogni step, efficace quanto rispettoso dell'ambiente." data-en="Fresh and captivating. Everby is a sub-brand of l'Erboristica by Athena's: it inherits its philosophy and values — formulas with over 95% certified natural-origin ingredients, developed with cutting-edge patented actives such as Pumpcoll®, Argireline Amplified® and Capixyl®. Not a trend: a skincare method with a precise purpose for every step, as effective as it is eco-conscious.">Impatto fresco e accattivante. Everby è sub-brand di l'Erboristica di Athena's: ne eredita la filosofia e i valori — formulazioni con oltre il 95% di ingredienti di origine naturale certificata, sviluppate con attivi brevettati di ultima generazione come Pumpcoll®, Argireline Amplified® e Capixyl®. Non una moda: un metodo di cura della pelle con uno scopo preciso per ogni step, efficace quanto rispettoso dell'ambiente.</p>
+      <p class="ev-intro__body" data-reveal style="--d:100ms" data-it="Impatto fresco e accattivante. Everby è sub-brand di l'Erboristica di Athena's: ne eredita la filosofia e i valori, formulazioni con oltre il 95% di ingredienti di origine naturale certificata, sviluppate con attivi brevettati di ultima generazione come Pumpcoll®, Argireline Amplified® e Capixyl®. Non una moda: un metodo di cura della pelle con uno scopo preciso per ogni step, efficace quanto rispettoso dell'ambiente." data-en="Fresh and captivating. Everby is a sub-brand of l'Erboristica by Athena's: it inherits its philosophy and values, formulas with over 95% certified natural-origin ingredients, developed with cutting-edge patented actives such as Pumpcoll®, Argireline Amplified® and Capixyl®. Not a trend: a skincare method with a precise purpose for every step, as effective as it is eco-conscious.">Impatto fresco e accattivante. Everby è sub-brand di l'Erboristica di Athena's: ne eredita la filosofia e i valori, formulazioni con oltre il 95% di ingredienti di origine naturale certificata, sviluppate con attivi brevettati di ultima generazione come Pumpcoll®, Argireline Amplified® e Capixyl®. Non una moda: un metodo di cura della pelle con uno scopo preciso per ogni step, efficace quanto rispettoso dell'ambiente.</p>
       <div class="ev-intro__actives" data-reveal style="--d:180ms">
         <div class="ev-intro__active">
           <div class="ev-intro__active-content">
             <span class="ev-intro__active-name">Pumpcoll®</span>
-            <span class="ev-intro__active-desc" data-it="Idrolizzato proteico da semi di zucca per upcycling (Phenbiox, COSMOS). Profilo aminoacidico biomimetico al collagene — +33% fermezza e -28% rughe in 28 giorni." data-en="Protein hydrolysate from pumpkin seeds via upcycling (Phenbiox, COSMOS). Collagen-biomimetic amino acid profile — +33% firmness and -28% wrinkles in 28 days.">Idrolizzato proteico da semi di zucca per upcycling (Phenbiox, COSMOS). Profilo aminoacidico biomimetico al collagene — +33% fermezza e -28% rughe in 28 giorni.</span>
-          </div>
-          <div class="ev-intro__active-photo">
-            <!-- SOSTITUIRE: <img src="../immagini/everby/actives/pumpcoll.jpg" alt="Pumpcoll®" loading="lazy"> -->
+            <span class="ev-intro__active-desc" data-it="Idrolizzato proteico da semi di zucca per upcycling (Phenbiox, COSMOS). Profilo aminoacidico biomimetico al collagene, <span class='ev-hl'>+33% fermezza</span> e <span class='ev-hl'>-28% rughe</span> in <span class='ev-hl'>28 giorni</span>." data-en="Protein hydrolysate from pumpkin seeds via upcycling (Phenbiox, COSMOS). Collagen-biomimetic amino acid profile, <span class='ev-hl'>+33% firmness</span> and <span class='ev-hl'>-28% wrinkles</span> in <span class='ev-hl'>28 days</span>.">Idrolizzato proteico da semi di zucca per upcycling (Phenbiox, COSMOS). Profilo aminoacidico biomimetico al collagene, <span class="ev-hl">+33% fermezza</span> e <span class="ev-hl">-28% rughe</span> in <span class="ev-hl">28 giorni</span>.</span>
           </div>
         </div>
         <div class="ev-intro__active">
           <div class="ev-intro__active-content">
             <span class="ev-intro__active-name">Argireline Amplified®</span>
-            <span class="ev-intro__active-desc" data-it="Blocca il complesso SNARE inibendo il rilascio di acetilcolina — effetto botox-like senza ago. -20% rughe in 28 giorni. Studio 2025: prolunga l'effetto delle iniezioni di botulino di +8 settimane." data-en="Blocks the SNARE complex inhibiting acetylcholine release — needle-free botox-like effect. -20% wrinkles in 28 days. 2025 study: extends the effect of botulinum injections by +8 weeks.">Blocca il complesso SNARE inibendo il rilascio di acetilcolina — effetto botox-like senza ago. -20% rughe in 28 giorni. Studio 2025: prolunga l'effetto delle iniezioni di botulino di +8 settimane.</span>
-          </div>
-          <div class="ev-intro__active-photo">
-            <!-- SOSTITUIRE: <img src="../immagini/everby/actives/argireline.jpg" alt="Argireline Amplified®" loading="lazy"> -->
+            <span class="ev-intro__active-desc" data-it="Blocca il complesso SNARE inibendo il rilascio di acetilcolina, <span class='ev-hl'>effetto botox-like</span> senza ago. <span class='ev-hl'>-20% rughe</span> in 28 giorni. Studio 2025: prolunga l'effetto delle iniezioni di botulino di <span class='ev-hl'>+8 settimane</span>." data-en="Blocks the SNARE complex inhibiting acetylcholine release, <span class='ev-hl'>botox-like effect</span> without needles. <span class='ev-hl'>-20% wrinkles</span> in 28 days. 2025 study: extends the effect of botulinum injections by <span class='ev-hl'>+8 weeks</span>.">Blocca il complesso SNARE inibendo il rilascio di acetilcolina, <span class="ev-hl">effetto botox-like</span> senza ago. <span class="ev-hl">-20% rughe</span> in 28 giorni. Studio 2025: prolunga l'effetto delle iniezioni di botulino di <span class="ev-hl">+8 settimane</span>.</span>
           </div>
         </div>
         <div class="ev-intro__active">
           <div class="ev-intro__active-content">
             <span class="ev-intro__active-name">MAXI-LIP® Peptide</span>
-            <span class="ev-intro__active-desc" data-it="Palmitoyl Tripeptide-1 (Sederma/Croda) che stimola collagene di tipo I, II e IV nelle labbra. +40% volume, +70% morbidezza e +100% condizioni generali clinicamente testati in 29 giorni." data-en="Palmitoyl Tripeptide-1 (Sederma/Croda) that stimulates type I, II and IV collagen in the lips. +40% volume, +70% softness and +100% overall condition clinically tested in 29 days.">Palmitoyl Tripeptide-1 (Sederma/Croda) che stimola collagene di tipo I, II e IV nelle labbra. +40% volume, +70% morbidezza e +100% condizioni generali clinicamente testati in 29 giorni.</span>
-          </div>
-          <div class="ev-intro__active-photo">
-            <!-- SOSTITUIRE: <img src="../immagini/everby/actives/maxi-lip.jpg" alt="MAXI-LIP® Peptide" loading="lazy"> -->
+            <span class="ev-intro__active-desc" data-it="Palmitoyl Tripeptide-1 (Sederma/Croda) che stimola collagene di tipo I, II e IV nelle labbra. <span class='ev-hl'>+40% volume</span>, <span class='ev-hl'>+70% morbidezza</span> e <span class='ev-hl'>+100% condizioni</span> generali clinicamente testati in 29 giorni." data-en="Palmitoyl Tripeptide-1 (Sederma/Croda) that stimulates type I, II and IV collagen in the lips. <span class='ev-hl'>+40% volume</span>, <span class='ev-hl'>+70% softness</span> and <span class='ev-hl'>+100% overall</span> condition clinically tested in 29 days.">Palmitoyl Tripeptide-1 (Sederma/Croda) che stimola collagene di tipo I, II e IV nelle labbra. <span class="ev-hl">+40% volume</span>, <span class="ev-hl">+70% morbidezza</span> e <span class="ev-hl">+100% condizioni</span> generali clinicamente testati in 29 giorni.</span>
           </div>
         </div>
         <div class="ev-intro__active">
           <div class="ev-intro__active-content">
             <span class="ev-intro__active-name">Capixyl®</span>
-            <span class="ev-intro__active-desc" data-it="Acetyl Tetrapeptide-3 + Biochanin A (trifoglio rosso, Lucas Meyer/Clariant): rinforza l'ancoraggio del follicolo e inibisce il DHT. +46% rapporto anagen/telogen in 4 mesi. Brevetto attivo fino al 2035." data-en="Acetyl Tetrapeptide-3 + Biochanin A (red clover, Lucas Meyer/Clariant): strengthens follicle anchoring and inhibits DHT. +46% anagen/telogen ratio in 4 months. Patent active until 2035.">Acetyl Tetrapeptide-3 + Biochanin A (trifoglio rosso, Lucas Meyer/Clariant): rinforza l'ancoraggio del follicolo e inibisce il DHT. +46% rapporto anagen/telogen in 4 mesi. Brevetto attivo fino al 2035.</span>
-          </div>
-          <div class="ev-intro__active-photo">
-            <!-- SOSTITUIRE: <img src="../immagini/everby/actives/capixyl.jpg" alt="Capixyl®" loading="lazy"> -->
+            <span class="ev-intro__active-desc" data-it="Acetyl Tetrapeptide-3 + Biochanin A (trifoglio rosso, Lucas Meyer/Clariant): rinforza l'ancoraggio del follicolo e <span class='ev-hl'>inibisce il DHT</span>. <span class='ev-hl'>+46% rapporto</span> anagen/telogen in <span class='ev-hl'>4 mesi</span>. Brevetto attivo fino al 2035." data-en="Acetyl Tetrapeptide-3 + Biochanin A (red clover, Lucas Meyer/Clariant): strengthens follicle anchoring and <span class='ev-hl'>inhibits DHT</span>. <span class='ev-hl'>+46% ratio</span> anagen/telogen in <span class='ev-hl'>4 months</span>. Patent active until 2035.">Acetyl Tetrapeptide-3 + Biochanin A (trifoglio rosso, Lucas Meyer/Clariant): rinforza l'ancoraggio del follicolo e <span class="ev-hl">inibisce il DHT</span>. <span class="ev-hl">+46% rapporto</span> anagen/telogen in <span class="ev-hl">4 mesi</span>. Brevetto attivo fino al 2035.</span>
           </div>
         </div>
         <div class="ev-intro__active">
           <div class="ev-intro__active-content">
             <span class="ev-intro__active-name">Ectoin® natural</span>
-            <span class="ev-intro__active-desc" data-it="Aminoacido extremofilo di Halomonas elongata (bitop AG, 15+ brevetti, COSMOS). Lega 4 molecole d'acqua per ogni molecola formando uno scudo cellulare anti-smog. -48% danno ossidativo da PM2.5 in 5 giorni." data-en="Extremophile amino acid from Halomonas elongata (bitop AG, 15+ patents, COSMOS). Binds 4 water molecules per molecule forming an anti-smog cellular shield. -48% oxidative damage from PM2.5 in 5 days.">Aminoacido extremofilo di Halomonas elongata (bitop AG, 15+ brevetti, COSMOS). Lega 4 molecole d'acqua per ogni molecola formando uno scudo cellulare anti-smog. -48% danno ossidativo da PM2.5 in 5 giorni.</span>
-          </div>
-          <div class="ev-intro__active-photo">
-            <!-- SOSTITUIRE: <img src="../immagini/everby/actives/ectoin.jpg" alt="Ectoin® natural" loading="lazy"> -->
+            <span class="ev-intro__active-desc" data-it="Aminoacido extremofilo di Halomonas elongata (bitop AG, <span class='ev-hl'>15+ brevetti</span>, COSMOS). Lega 4 molecole d'acqua per ogni molecola formando uno <span class='ev-hl'>scudo anti-smog</span>. <span class='ev-hl'>-48% danno</span> ossidativo da PM2.5 in 5 giorni." data-en="Extremophile amino acid from Halomonas elongata (bitop AG, <span class='ev-hl'>15+ patents</span>, COSMOS). Binds 4 water molecules per molecule forming an <span class='ev-hl'>anti-smog shield</span>. <span class='ev-hl'>-48% oxidative</span> damage from PM2.5 in 5 days.">Aminoacido extremofilo di Halomonas elongata (bitop AG, <span class="ev-hl">15+ brevetti</span>, COSMOS). Lega 4 molecole d'acqua per ogni molecola formando uno <span class="ev-hl">scudo anti-smog</span>. <span class="ev-hl">-48% danno</span> ossidativo da PM2.5 in 5 giorni.</span>
           </div>
         </div>
       </div>
@@ -922,7 +890,7 @@ body { background: #eef6f4; color: #1a1a1a; font-family: var(--sans); overflow-x
       </div>
       <ol class="ev-rl">
 
-        <li class="ev-rl__phase" data-reveal-bi data-it="Detersione" data-en="Cleansing">Detersione</li>
+        <li class="ev-rl__phase" data-phase="cleanse" data-reveal-bi data-it="Detersione" data-en="Cleansing">Detersione</li>
 
         <li class="ev-rl__item" data-phase="cleanse" data-reveal-bi style="--d:0ms">
           <div class="ev-rl__icon-wrap">
@@ -948,7 +916,7 @@ body { background: #eef6f4; color: #1a1a1a; font-family: var(--sans); overflow-x
           </div>
         </li>
 
-        <li class="ev-rl__phase" data-reveal-bi data-it="Idratazione &amp; Trattamento" data-en="Hydration &amp; Treatment">Idratazione &amp; Trattamento</li>
+        <li class="ev-rl__phase" data-phase="treat" data-reveal-bi data-it="Idratazione &amp; Trattamento" data-en="Hydration &amp; Treatment">Idratazione &amp; Trattamento</li>
 
         <li class="ev-rl__item" data-phase="treat" data-reveal-bi style="--d:0ms">
           <div class="ev-rl__icon-wrap">
@@ -974,7 +942,7 @@ body { background: #eef6f4; color: #1a1a1a; font-family: var(--sans); overflow-x
           </div>
         </li>
 
-        <li class="ev-rl__phase" data-reveal-bi data-it="Protezione &amp; Finish" data-en="Protection &amp; Finish">Protezione &amp; Finish</li>
+        <li class="ev-rl__phase" data-phase="protect" data-reveal-bi data-it="Protezione &amp; Finish" data-en="Protection &amp; Finish">Protezione &amp; Finish</li>
 
         <li class="ev-rl__item" data-phase="protect" data-reveal-bi style="--d:0ms">
           <div class="ev-rl__icon-wrap">
@@ -988,7 +956,7 @@ body { background: #eef6f4; color: #1a1a1a; font-family: var(--sans); overflow-x
           </div>
         </li>
 
-        <li class="ev-rl__phase" data-reveal-bi data-it="Trattamenti Specifici" data-en="Specific Treatments">Trattamenti Specifici</li>
+        <li class="ev-rl__phase" data-phase="specific" data-reveal-bi data-it="Trattamenti Specifici" data-en="Specific Treatments">Trattamenti Specifici</li>
 
         <li class="ev-rl__item" data-phase="specific" data-reveal-bi style="--d:0ms">
           <div class="ev-rl__icon-wrap">
@@ -1046,7 +1014,7 @@ body { background: #eef6f4; color: #1a1a1a; font-family: var(--sans); overflow-x
       <!-- No Cry Zone -->
       <div class="ev-card" data-reveal>
         <div class="ev-card__visual ev-bg--nocry">
-          <img src="../immagini/everby/no-cry-zone-truccante-bifasico-occhi-delicato/hero.webp" alt="No Cry Zone — Everby struccante bifasico occhi" class="cover-img" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <img src="../immagini/everby/no-cry-zone-truccante-bifasico-occhi-delicato/hero.webp" alt="No Cry Zone · Everby struccante bifasico occhi" class="cover-img" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
         </div>
         <div class="ev-card__info">
           <div class="ev-card__cat" data-it="Struccante Occhi" data-en="Eye Makeup Remover">Struccante Occhi</div>
@@ -1060,12 +1028,12 @@ body { background: #eef6f4; color: #1a1a1a; font-family: var(--sans); overflow-x
       <!-- Cica Cloud -->
       <div class="ev-card" data-reveal style="--d:60ms">
         <div class="ev-card__visual ev-bg--cica">
-          <img src="../immagini/everby/cica-cloud-hydra-mousse-detergente-viso-delicata/hero.webp" alt="Cica Cloud — Everby hydra-mousse detergente" class="cover-img" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <img src="../immagini/everby/cica-cloud-hydra-mousse-detergente-viso-delicata/hero.webp" alt="Cica Cloud · Everby hydra-mousse detergente" class="cover-img" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
         </div>
         <div class="ev-card__info">
           <div class="ev-card__cat" data-it="Detergente" data-en="Cleanser">Detergente</div>
           <h3>Cica Cloud</h3>
-          <div class="ev-card__sub" data-it="Hydra-Mousse detergente quotidiana — glass skin effect" data-en="Hydra-Mousse daily cleanser — glass skin effect">Hydra-Mousse detergente quotidiana — glass skin effect</div>
+          <div class="ev-card__sub" data-it="Hydra-Mousse detergente quotidiana, glass skin effect" data-en="Hydra-Mousse daily cleanser, glass skin effect">Hydra-Mousse detergente quotidiana, glass skin effect</div>
           <div class="ev-card__actives" data-it="Acqua di Riso Fermentata · Centella Asiatica" data-en="Fermented Rice Water · Centella Asiatica">Acqua di Riso Fermentata · Centella Asiatica</div>
           <a class="ev-card__cta" href="../prodotto.html?id=everby-cica-cloud-hydra-mousse-detergente-viso-delicata" data-it="Scopri il prodotto &rarr;" data-en="Discover product &rarr;">Scopri il prodotto &rarr;</a>
         </div>
@@ -1074,7 +1042,7 @@ body { background: #eef6f4; color: #1a1a1a; font-family: var(--sans); overflow-x
       <!-- Feel Butter -->
       <div class="ev-card" data-reveal style="--d:120ms">
         <div class="ev-card__visual ev-bg--butter">
-          <img src="../immagini/everby/gel-burro-struccante-feel-butter/hero.webp" alt="Feel Butter — Everby gel burro struccante" class="cover-img" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <img src="../immagini/everby/gel-burro-struccante-feel-butter/hero.webp" alt="Feel Butter · Everby gel burro struccante" class="cover-img" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 8%;">
         </div>
         <div class="ev-card__info">
           <div class="ev-card__cat" data-it="Struccante" data-en="Makeup Remover">Struccante</div>
@@ -1088,12 +1056,12 @@ body { background: #eef6f4; color: #1a1a1a; font-family: var(--sans); overflow-x
       <!-- Milky Rice -->
       <div class="ev-card" data-reveal style="--d:180ms">
         <div class="ev-card__visual ev-bg--milky">
-          <img src="../immagini/everby/milky-rice-hydrating-milky-toner/hero.webp" alt="Milky Rice — Everby hydrating toner" class="cover-img" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <img src="../immagini/everby/milky-rice-hydrating-milky-toner/hero.webp" alt="Milky Rice · Everby hydrating toner" class="cover-img" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%;">
         </div>
         <div class="ev-card__info">
           <div class="ev-card__cat" data-it="Toner" data-en="Toner">Toner</div>
           <h3>Milky Rice</h3>
-          <div class="ev-card__sub" data-it="Hydrating Milky Toner — glass skin effect, pH-friendly" data-en="Hydrating Milky Toner — glass skin effect, pH-friendly">Hydrating Milky Toner — glass skin effect, pH-friendly</div>
+          <div class="ev-card__sub" data-it="Hydrating Milky Toner, glass skin effect, pH-friendly" data-en="Hydrating Milky Toner, glass skin effect, pH-friendly">Hydrating Milky Toner, glass skin effect, pH-friendly</div>
           <div class="ev-card__actives" data-it="Acqua di Riso Fermentata · Niacinamide" data-en="Fermented Rice Water · Niacinamide">Acqua di Riso Fermentata · Niacinamide</div>
           <a class="ev-card__cta" href="../prodotto.html?id=everby-milky-rice-hydrating-milky-toner" data-it="Scopri il prodotto &rarr;" data-en="Discover product &rarr;">Scopri il prodotto &rarr;</a>
         </div>
@@ -1102,12 +1070,12 @@ body { background: #eef6f4; color: #1a1a1a; font-family: var(--sans); overflow-x
       <!-- Stay Porefect -->
       <div class="ev-card" data-reveal>
         <div class="ev-card__visual ev-bg--pore">
-          <img src="../immagini/everby/trattamento-viso-perfezionatore-pori-dilatati-stay-po/hero.webp" alt="Stay Porefect — Everby trattamento pori" class="cover-img" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <img src="../immagini/everby/trattamento-viso-perfezionatore-pori-dilatati-stay-po/hero.webp" alt="Stay Porefect · Everby trattamento pori" class="cover-img" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;">
         </div>
         <div class="ev-card__info">
           <div class="ev-card__cat" data-it="Siero Viso" data-en="Face Serum">Siero Viso</div>
           <h3>Stay Porefect</h3>
-          <div class="ev-card__sub" data-it="Siero perfezionatore opacizzante — pori ridotti, base trucco perfetta" data-en="Mattifying perfecting serum — minimised pores, perfect makeup base">Siero perfezionatore opacizzante — pori ridotti, base trucco perfetta</div>
+          <div class="ev-card__sub" data-it="Siero perfezionatore opacizzante, pori ridotti, base trucco perfetta" data-en="Mattifying perfecting serum, minimised pores, perfect makeup base">Siero perfezionatore opacizzante, pori ridotti, base trucco perfetta</div>
           <div class="ev-card__actives" data-it="Zinco PCA · Acido Salicilico · Niacinamide · Tè Verde" data-en="Zinc PCA · Salicylic Acid · Niacinamide · Green Tea">Zinco PCA · Acido Salicilico · Niacinamide · Tè Verde</div>
           <a class="ev-card__cta" href="../prodotto.html?id=everby-trattamento-viso-perfezionatore-pori-dilatati-stay-po" data-it="Scopri il prodotto &rarr;" data-en="Discover product &rarr;">Scopri il prodotto &rarr;</a>
         </div>
@@ -1117,7 +1085,7 @@ body { background: #eef6f4; color: #1a1a1a; font-family: var(--sans); overflow-x
       <div class="ev-card" data-reveal style="--d:60ms">
         <div class="ev-card__visual ev-bg--pump">
 
-          <img src="../immagini/everby/siero-viso-rimpolpante-pump-e-plump/hero.webp" alt="Pump and Plump — Everby siero rimpolpante" class="cover-img" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <img src="../immagini/everby/siero-viso-rimpolpante-pump-e-plump/hero.webp" alt="Pump and Plump · Everby siero rimpolpante" class="cover-img" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 14%;">
         </div>
         <div class="ev-card__info">
           <div class="ev-card__cat" data-it="Siero Viso" data-en="Face Serum">Siero Viso</div>
@@ -1131,7 +1099,7 @@ body { background: #eef6f4; color: #1a1a1a; font-family: var(--sans); overflow-x
       <!-- Yes I Glow -->
       <div class="ev-card" data-reveal style="--d:180ms">
         <div class="ev-card__visual ev-bg--glow">
-          <img src="../immagini/everby/gocce-illuminanti-viso-yes-i-glow/hero.webp" alt="Yes I Glow — Everby gocce illuminanti" class="cover-img" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <img src="../immagini/everby/gocce-illuminanti-viso-yes-i-glow/hero.webp" alt="Yes I Glow · Everby gocce illuminanti" class="cover-img" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 16%;">
         </div>
         <div class="ev-card__info">
           <div class="ev-card__cat" data-it="Gocce Viso" data-en="Face Drops">Gocce Viso</div>
@@ -1146,7 +1114,7 @@ body { background: #eef6f4; color: #1a1a1a; font-family: var(--sans); overflow-x
       <div class="ev-card" data-reveal>
         <div class="ev-card__visual ev-bg--panda">
 
-          <img src="../immagini/everby/contorno-occhi-dont-call-me-panda/hero.webp" alt="Don't Call Me Panda — Everby contorno occhi" class="cover-img" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <img src="../immagini/everby/contorno-occhi-dont-call-me-panda/hero.webp" alt="Don't Call Me Panda · Everby contorno occhi" class="cover-img" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;">
         </div>
         <div class="ev-card__info">
           <div class="ev-card__cat" data-it="Contorno Occhi" data-en="Eye Contour">Contorno Occhi</div>
@@ -1161,12 +1129,12 @@ body { background: #eef6f4; color: #1a1a1a; font-family: var(--sans); overflow-x
       <div class="ev-card" data-reveal style="--d:60ms">
         <div class="ev-card__visual ev-bg--pepti">
 
-          <img src="../immagini/everby/pepti-boom-lip-filler-volumizzante-labbra/hero.webp" alt="Pepti Boom — Everby lip filler" class="cover-img" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <img src="../immagini/everby/pepti-boom-lip-filler-volumizzante-labbra/hero.webp" alt="Pepti Boom · Everby lip filler" class="cover-img" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 27%;">
         </div>
         <div class="ev-card__info">
           <div class="ev-card__cat" data-it="Lip Filler" data-en="Lip Filler">Lip Filler</div>
           <h3>Pepti Boom</h3>
-          <div class="ev-card__sub" data-it="Lip filler volumizzante — +40% volume clinicamente testato" data-en="Volumising lip filler — +40% volume clinically tested">Lip filler volumizzante — +40% volume clinicamente testato</div>
+          <div class="ev-card__sub" data-it="Lip filler volumizzante, +40% volume clinicamente testato" data-en="Volumising lip filler, +40% volume clinically tested">Lip filler volumizzante, +40% volume clinicamente testato</div>
           <div class="ev-card__actives"><strong>MAXI-LIP® Peptide</strong> · Vitamina E · Olio di Ricino</div>
           <a class="ev-card__cta" href="../prodotto.html?id=everby-pepti-boom-lip-filler-volumizzante-labbra" data-it="Scopri il prodotto &rarr;" data-en="Discover product &rarr;">Scopri il prodotto &rarr;</a>
         </div>
@@ -1176,12 +1144,12 @@ body { background: #eef6f4; color: #1a1a1a; font-family: var(--sans); overflow-x
       <div class="ev-card" data-reveal style="--d:120ms">
         <div class="ev-card__visual ev-bg--lash">
 
-          <img src="../immagini/everby/siero-ciglia-e-sopracciglia-lash-me/hero.webp" alt="Lash Me — Everby siero ciglia" class="cover-img" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <img src="../immagini/everby/siero-ciglia-e-sopracciglia-lash-me/hero.webp" alt="Lash Me · Everby siero ciglia" class="cover-img" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 26%;">
         </div>
         <div class="ev-card__info">
           <div class="ev-card__cat" data-it="Siero Ciglia &amp; Sopracciglia" data-en="Lash &amp; Brow Serum">Siero Ciglia &amp; Sopracciglia</div>
           <h3>Lash Me</h3>
-          <div class="ev-card__sub" data-it="Siero rinforzante e allungante — risultati visibili in 8 settimane" data-en="Strengthening and lengthening serum — visible results in 8 weeks">Siero rinforzante e allungante — risultati visibili in 8 settimane</div>
+          <div class="ev-card__sub" data-it="Siero rinforzante e allungante, risultati visibili in 8 settimane" data-en="Strengthening and lengthening serum, visible results in 8 weeks">Siero rinforzante e allungante, risultati visibili in 8 settimane</div>
           <div class="ev-card__actives"><strong>Capixyl®</strong> · Cellule Meristematiche Vite Rossa · Cellule Staminali Curcuma</div>
           <a class="ev-card__cta" href="../prodotto.html?id=everby-siero-ciglia-e-sopracciglia-lash-me" data-it="Scopri il prodotto &rarr;" data-en="Discover product &rarr;">Scopri il prodotto &rarr;</a>
         </div>
@@ -1213,7 +1181,7 @@ body { background: #eef6f4; color: #1a1a1a; font-family: var(--sans); overflow-x
           <span class="ev-promise__pill-val">Natural</span>
         </div>
         <div class="ev-promise__pill">
-          <span class="ev-promise__pill-label" data-it="Texture innovative — gel, sieri waterless, formule concentrate" data-en="Innovative textures — gels, waterless serums, concentrated formulas">Texture innovative — gel, sieri waterless, formule concentrate</span>
+          <span class="ev-promise__pill-label" data-it="Texture innovative, gel, sieri waterless, formule concentrate" data-en="Innovative textures, gels, waterless serums, concentrated formulas">Texture innovative, gel, sieri waterless, formule concentrate</span>
           <span class="ev-promise__pill-val" data-it="Texture" data-en="Texture">Texture</span>
         </div>
       </div>
@@ -1267,7 +1235,7 @@ const obsBi = new IntersectionObserver(entries => {
 }, { threshold: 0.05, rootMargin: '0px 0px -2% 0px' });
 document.querySelectorAll('[data-reveal-bi]').forEach(el => obsBi.observe(el));
 
-document.title = "Everby — Athena's";
+document.title = "Everby · Athena's";
 </script>
 </body>
 </html>

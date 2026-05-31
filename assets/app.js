@@ -9,7 +9,7 @@
     .cc-banner {
       position: fixed; left: 16px; right: 16px; bottom: 16px;
       max-width: 720px; margin: 0 auto;
-      background: rgba(26,26,26,.97);
+      background: var(--cc-bg, rgba(26,26,26,.97));
       color: #f3eee4;
       padding: 22px 26px;
       z-index: 9998;
@@ -23,7 +23,7 @@
     .cc-banner.is-open { opacity: 1; pointer-events: auto; transform: translateY(0); }
     .cc-banner__title { font-family: var(--display, serif); font-size: 18px; font-weight: 400; margin-bottom: 6px; letter-spacing: -0.01em; }
     .cc-banner__text { font-size: 13px; line-height: 1.55; opacity: .72; margin-bottom: 14px; }
-    .cc-banner__text a { color: #c9a96e; text-decoration: underline; }
+    .cc-banner__text a { color: var(--cc-accent, #c9a96e); text-decoration: underline; }
     .cc-banner__actions { display: flex; flex-wrap: wrap; gap: 8px; }
     .cc-btn {
       flex: 1 1 auto; min-width: 110px;
@@ -33,8 +33,8 @@
       transition: .25s;
       text-align: center;
     }
-    .cc-btn--accept { background: #c9a96e; color: #1a1a1a; }
-    .cc-btn--accept:hover { background: #d5b97e; }
+    .cc-btn--accept { background: var(--cc-accent, #c9a96e); color: var(--cc-accent-ink, #1a1a1a); }
+    .cc-btn--accept:hover { background: var(--cc-accent-hover, #d5b97e); }
     .cc-btn--reject { background: transparent; color: #f3eee4; border: 1px solid rgba(243,238,228,.3); }
     .cc-btn--reject:hover { border-color: rgba(243,238,228,.6); }
     .cc-btn--prefs { background: transparent; color: #f3eee4; border: 1px solid rgba(243,238,228,.3); }
@@ -62,14 +62,53 @@
       border-radius: 50%;
       transition: .25s;
     }
-    .cc-toggle input:checked + .cc-slider { background: #c9a96e; }
-    .cc-toggle input:checked + .cc-slider::before { transform: translateX(16px); background: #1a1a1a; }
+    .cc-toggle input:checked + .cc-slider { background: var(--cc-accent, #c9a96e); }
+    .cc-toggle input:checked + .cc-slider::before { transform: translateX(16px); background: var(--cc-accent-ink, #1a1a1a); }
     .cc-toggle input:disabled + .cc-slider { opacity: .5; cursor: not-allowed; }
     @media (max-width: 560px) {
       .cc-banner { padding: 18px 20px; left: 8px; right: 8px; bottom: 8px; }
       .cc-banner__title { font-size: 16px; }
     }
   `;
+  /* Tema palette del banner: su pagine brand/linea/prodotto il banner assume
+     i colori della linea (accento + sfondo scuro coordinato, come i footer).
+     Sulle pagine generiche resta il default scuro/oro. Il colore-linea viene
+     letto da --footer-accent (colore-linea dei brand hub / linea / prodotto),
+     con fallback a --gold; risolto via sonda CSS. */
+  function _ccRgb(str) {
+    const m = (str || '').match(/[\d.]+/g);
+    if (!m || m.length < 3) return null;
+    return [Math.round(+m[0]), Math.round(+m[1]), Math.round(+m[2])];
+  }
+  function _ccScale(rgb, k) { return rgb.map(c => Math.round(c * k)); }
+  function _ccLighten(rgb, f) { return rgb.map(c => Math.round(c + (255 - c) * f)); }
+  function _ccLum(rgb) { return (0.299 * rgb[0] + 0.587 * rgb[1] + 0.114 * rgb[2]) / 255; }
+  function resolveCookieTheme() {
+    const path = window.location.pathname.replace(/\\/g, '/');
+    const themed = /\/prodotto\.html$/.test(path) || /\/linee\//.test(path);
+    if (!themed || !document.body) return null;
+    const probe = document.createElement('span');
+    probe.style.cssText = 'position:absolute;left:-9999px;top:-9999px;color:var(--footer-accent, var(--gold))';
+    document.body.appendChild(probe);
+    const accent = _ccRgb(getComputedStyle(probe).color);
+    document.body.removeChild(probe);
+    if (!accent) return null;
+    const rgb = a => 'rgb(' + a.join(', ') + ')';
+    return {
+      accent: rgb(accent),
+      accentHover: rgb(_ccLighten(accent, 0.12)),
+      accentInk: _ccLum(accent) > 0.5 ? '#1a1a1a' : '#f7f3ec',
+      bg: 'rgba(' + _ccScale(accent, 0.4).join(', ') + ', .97)',
+    };
+  }
+  function applyCookieTheme(banner) {
+    const theme = resolveCookieTheme();
+    if (!theme) return;
+    banner.style.setProperty('--cc-bg', theme.bg);
+    banner.style.setProperty('--cc-accent', theme.accent);
+    banner.style.setProperty('--cc-accent-hover', theme.accentHover);
+    banner.style.setProperty('--cc-accent-ink', theme.accentInk);
+  }
   function loadConsent() {
     try {
       const raw = _ls.get(LS_CONSENT);
@@ -98,6 +137,7 @@
     banner.className = 'cc-banner';
     banner.setAttribute('role', 'dialog');
     banner.setAttribute('aria-label', 'Cookie consent');
+    applyCookieTheme(banner);
     const isIt = (window.ATH && window.ATH.lang) === 'it' || !window.ATH;
     const t = isIt ? {
       title: 'Rispetto della tua privacy',
@@ -461,7 +501,6 @@
       <a href="${r}linee.html" data-i18n="nav_brands" class="${activeKey==='brands'?'active':''}">Linee</a>
       <a href="${r}laboratorio.html" data-i18n="nav_lab" class="${activeKey==='lab'?'active':''}">Laboratorio</a>
       <a href="${r}sostenibilita.html" data-i18n="nav_eco" class="${activeKey==='eco'?'active':''}">Sostenibilità </a>
-      <a href="${r}catalogo.html" data-i18n="nav_catalog" class="${activeKey==='catalog'?'active':''}">Catalogo</a>
       <a href="${r}terzisti.html" data-i18n="nav_terzisti" class="${activeKey==='terzisti'?'active':''}">Terzisti</a>
       <a href="${r}contatti.html" data-i18n="nav_contact" class="${activeKey==='contact'?'active':''}">Contatti</a>`;
     el.innerHTML = `
@@ -577,7 +616,7 @@
           </div>
           <div>
             <div class="footer__title" data-it="B2B" data-en="B2B">B2B</div>
-            <a class="footer__link" href="${r}catalogo.html" data-it="Catalogo prodotti" data-en="Product catalogue">Catalogo prodotti</a>
+            <a class="footer__link" href="${r}linee.html" data-it="Catalogo prodotti" data-en="Product catalogue">Catalogo prodotti</a>
             <a class="footer__link" href="${r}contatti.html#partner" data-it="Diventa partner" data-en="Become a partner">Diventa partner</a>
             <a class="footer__link" href="${r}contatti.html" data-it="Contatti" data-en="Contact">Contatti</a>
           </div>
@@ -591,7 +630,7 @@
           </div>
         </div>
         <div class="footer__contact">
-          <span data-it="Via del Lavoro, 32 — 40065 Pianoro (BO) — Italy" data-en="Via del Lavoro, 32 — 40065 Pianoro (BO) — Italy">Via del Lavoro, 32 — 40065 Pianoro (BO) — Italy</span>
+          <span data-it="Via del Lavoro, 32 · 40065 Pianoro (BO) · Italy" data-en="Via del Lavoro, 32 · 40065 Pianoro (BO) · Italy">Via del Lavoro, 32 · 40065 Pianoro (BO) · Italy</span>
           <span>Tel <a href="tel:+390510925111">051 0925111</a></span>
           <span>Fax 051 0925122</span>
           <a href="mailto:info@athenas.it">info@athenas.it</a>
@@ -602,7 +641,7 @@
           </span>
         </div>
         <div class="footer__bottom">
-          <div data-it="© 2026 Athena's s.r.l. — P.IVA 01457020392 — R.E.A. BO 404236 — Cap. soc. € 52.000 i.v." data-en="© 2026 Athena's s.r.l. — VAT 01457020392 — R.E.A. BO 404236 — Share cap. € 52,000 paid-up">© 2026 Athena's s.r.l. — P.IVA 01457020392 — R.E.A. BO 404236 — Cap. soc. € 52.000 i.v.</div>
+          <div data-it="© 2026 Athena's s.r.l. · P.IVA 01457020392 · R.E.A. BO 404236 · Cap. soc. € 52.000 i.v." data-en="© 2026 Athena's s.r.l. · VAT 01457020392 · R.E.A. BO 404236 · Share cap. € 52,000 paid-up">© 2026 Athena's s.r.l. · P.IVA 01457020392 · R.E.A. BO 404236 · Cap. soc. € 52.000 i.v.</div>
           <div style="display:flex; gap:24px; flex-wrap:wrap;">
             <a href="${r}privacy.html" data-it="Privacy" data-en="Privacy">Privacy</a>
             <a href="${r}cookie-policy.html" data-it="Cookie Policy" data-en="Cookie Policy">Cookie Policy</a>

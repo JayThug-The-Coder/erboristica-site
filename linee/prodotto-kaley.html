@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Kaley — Scheda prodotto</title>
+<title>Kaley · Scheda prodotto</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;1,9..144,200;1,9..144,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
@@ -580,7 +580,7 @@ const KALEY_DATA = {
     name: 'Golden Hour',
     family: 'Solare · Floreale',
     desc: 'La fragranza dell\'ora d\'oro. Arancio dolce, note solari e bergamotto aprono con una luce agrumata; note fruttate, mughetto, violetta, vaniglia e caramello compongono un cuore goloso; ambra, legno di cashmere, muschio e sandalo avvolgono in un finale morbido, indimenticabile come un tramonto.',
-    character: 'Solare, gioiosa, accogliente. Golden Hour è ottimismo in una boccetta. La sua progressione dalla freschezza agrumata alla dolcezza vanigliata racconta la transizione dal giorno alla sera — quel momento di luce che tutto trasforma. Versatile, adatta a ogni stagione.',
+    character: 'Solare, gioiosa, accogliente. Golden Hour è ottimismo in una boccetta. La sua progressione dalla freschezza agrumata alla dolcezza vanigliata racconta la transizione dal giorno alla sera, quel momento di luce che tutto trasforma. Versatile, adatta a ogni stagione.',
     mood: ['Diurna e serale', 'Primavera-Estate', 'Solare', 'Dolce'],
     pyramid: {
       top:   ['Arancio dolce', 'Note solari', 'Bergamotto'],
@@ -595,7 +595,7 @@ const KALEY_DATA = {
     name: 'Moka Rose',
     family: 'Gourmand · Floreale',
     desc: 'Un incontro irresistibile tra la rosa e il caffè. Caffè, rosa e nocciola aprono con un accordo floreale-gourmand inaspettato; vaniglia e muschio bianco chiudono con una dolcezza seducente che resta sulla pelle per ore.',
-    character: 'Romantica e gourmand. Moka Rose è la fragranza che racconta un mattino in un caffè parigino: fiori sul tavolo, tazza calda tra le mani. Un contrasto che funziona — la femminilità della rosa e il calore del caffè si bilanciano in un\'olfazione originale e indimenticabile.',
+    character: 'Romantica e gourmand. Moka Rose è la fragranza che racconta un mattino in un caffè parigino: fiori sul tavolo, tazza calda tra le mani. Un contrasto che funziona, la femminilità della rosa e il calore del caffè si bilanciano in un\'olfazione originale e indimenticabile.',
     mood: ['Mattina e sera', 'Autunno-Inverno', 'Romantica', 'Gourmand'],
     pyramid: {
       top:   ['Caffè', 'Rosa', 'Nocciola'],
@@ -625,7 +625,7 @@ const KALEY_DATA = {
     name: 'Spring Symphony',
     family: 'Fruttata · Floreale',
     desc: 'La primavera in una boccetta. Bergamotto, cassis e mandarino aprono con luce agrumata e fruttata; rosa, gelsomino e pepe rosa compongono un cuore floreale vivace; patchouli e muschio bianco concludono con pulizia e leggerezza.',
-    character: 'Leggera, fresca, ottimista. Spring Symphony è la fragranza della rinascita — adatta a ogni momento del giorno, è compagna ideale della bella stagione. Delicata ma presente, racconta il profumo di un giardino in fiore sotto il sole di aprile.',
+    character: 'Leggera, fresca, ottimista. Spring Symphony è la fragranza della rinascita, adatta a ogni momento del giorno, è compagna ideale della bella stagione. Delicata ma presente, racconta il profumo di un giardino in fiore sotto il sole di aprile.',
     mood: ['Diurna', 'Primavera-Estate', 'Fresca', 'Floreale'],
     pyramid: {
       top:   ['Bergamotto', 'Cassis', 'Mandarino'],
@@ -686,7 +686,7 @@ const KP_THEME = {
   'sweet-whisper':   ['#142113', '#0d160d'],
 };
 const KP_ACCENT = {
-  'crystal-rouge':   '#b02a3c',
+  'crystal-rouge':   '#c0795c',
   'dark-sea':        '#2a6f8c',
   'golden-hour':     '#c08327',
   'moka-rose':       '#a83a4e',
@@ -716,7 +716,7 @@ document.getElementById('kpBg').style.background =
 const slug = id.replace(/-/g, '_');
 const kpPhoto = document.getElementById('kpPhoto');
 kpPhoto.src = `../immagini/kaley/${slug}/pack-gradiente.webp`;
-kpPhoto.alt = `${data.name} — Kaley profumo roll-on`;
+kpPhoto.alt = `${data.name} · Kaley profumo roll-on`;
 kpPhoto.addEventListener('load', () => kpPhoto.classList.add('is-loaded'));
 kpPhoto.addEventListener('error', () => kpPhoto.remove());
 
@@ -729,8 +729,8 @@ function setAmbient(imgId, file, altText) {
   img.addEventListener('error', () => img.remove());
   img.src = `../immagini/kaley/${slug}/${file}`;
 }
-setAmbient('kpCharPhoto', 'ambient-2.webp', `${data.name} — Kaley mood`);
-setAmbient('kpFormulaPhoto', 'ambient-1.webp', `${data.name} — Kaley dettaglio`);
+setAmbient('kpCharPhoto', 'ambient-2.webp', `${data.name} · Kaley mood`);
+setAmbient('kpFormulaPhoto', 'ambient-1.webp', `${data.name} · Kaley dettaglio`);
 
 document.getElementById('kpName').textContent = data.name;
 document.getElementById('kpDesc').textContent = data.desc;
@@ -763,7 +763,7 @@ renderNotes(document.getElementById('kpBase'),  data.pyramid.base);
 const grid = document.getElementById('kpRelated');
 ALL_FRAGRANCES.filter(f => f.id !== id).forEach(f => {
   const visual = f.img
-    ? `<img src="${f.img}" alt="${f.name} — Kaley profumo roll-on" loading="lazy">`
+    ? `<img src="${f.img}" alt="${f.name} · Kaley profumo roll-on" loading="lazy">`
     : `<span>Foto · ${f.name}</span>`;
   grid.insertAdjacentHTML('beforeend', `
     <a class="kp-rel-card" href="prodotto-kaley.html?id=${f.id}" style="--rc:${KP_ACCENT[f.id] || 'var(--gold)'};--rc-bg:${(KP_THEME[f.id] && KP_THEME[f.id][0]) || 'var(--pg)'}">
@@ -790,7 +790,7 @@ toggle.addEventListener('click', () => {
 const obs = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); } }); }, { threshold: 0.08 });
 document.querySelectorAll('[data-reveal]').forEach(el => obs.observe(el));
 
-document.title = `${data.name} — Kaley · Athena's`;
+document.title = `${data.name} · Kaley · Athena's`;
 </script>
 </body>
 </html>

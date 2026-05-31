@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Le nostre linee — Athena's</title>
+<title>Le nostre linee · Athena's</title>
 <link rel="preload" href="assets/fonts/fraunces-200-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="stylesheet" href="assets/fonts.css"/>
 <link rel="stylesheet" href="assets/tokens.css"/>
@@ -170,6 +170,19 @@
   margin-bottom: 16px;
   font-family: var(--sans);
 }
+.line-logo {
+  display: block;
+  height: clamp(58px, 7.4vw, 110px);
+  width: auto;
+  max-width: min(82%, 480px);
+  object-fit: contain;
+  object-position: left center;
+  margin-bottom: clamp(16px, 2vw, 26px);
+}
+.line-section[data-brand="sphea"] .line-logo {
+  height: clamp(72px, 9vw, 138px);
+  max-width: min(90%, 560px);
+}
 .line-name {
   font-family: var(--display);
   font-size: clamp(32px,4vw,60px);
@@ -279,12 +292,12 @@
 <meta property="og:locale:alternate" content="en_GB"/>
 <meta property="og:site_name" content="Athena's"/>
 <meta property="og:url" content="https://athenas.it/linee.html"/>
-<meta property="og:title" content="Le nostre linee — Athena's"/>
+<meta property="og:title" content="Le nostre linee · Athena's"/>
 <meta property="og:description" content="L'Erboristica, Sphea, Everby, Kaley: il portfolio di cosmetica naturale di Athena's. Quattro brand, una sola filosofia."/>
 <meta property="og:image" content="https://athenas.it/immagini/og/linee.jpg"/>
-<meta property="og:image:alt" content="Le nostre linee — Athena's"/>
+<meta property="og:image:alt" content="Le nostre linee · Athena's"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Le nostre linee — Athena's"/>
+<meta name="twitter:title" content="Le nostre linee · Athena's"/>
 <meta name="twitter:description" content="L'Erboristica, Sphea, Everby, Kaley: il portfolio di cosmetica naturale di Athena's. Quattro brand, una sola filosofia."/>
 <meta name="twitter:image" content="https://athenas.it/immagini/og/linee.jpg"/>
 <script type="application/ld+json">
@@ -384,15 +397,14 @@
 
   <div class="scroll-hint" aria-hidden="true">
     <div class="scroll-hint__line"></div>
-    <span>Scroll</span>
+    <span data-it="Scorri" data-en="Scroll">Scorri</span>
   </div>
 </section>
 
 <!-- ── 01 · SPHEA ───────────────────────────────────────────── -->
 <a id="sphea" href="linee/sphea.html" class="line-section ls-cream" data-brand="sphea" style="background: linear-gradient(135deg, #f5f8fc 0%, #dde6f3 55%, #aebfdc 100%);">
   <div class="line-info">
-    <div class="line-n" style="color: #4a6aa0; opacity:.15;">S</div>
-    <div class="line-brand-tag" style="color: #4a6aa0;">Sphea</div>
+    <img class="line-logo" src="immagini/brand-sphea/logo.png" alt="Sphea" loading="lazy">
     <div class="line-name" data-it="Alta Gamma — Perle Biopolimeriche" data-en="Premium — Biopolymer Pearls">Alta Gamma — Perle Biopolimeriche</div>
     <div class="line-tag" data-it="Attivi incapsulati. Rilascio mirato. Massima efficacia." data-en="Encapsulated actives. Targeted release. Maximum efficacy.">Attivi incapsulati. Rilascio mirato. Massima efficacia.</div>
     <p class="line-desc" data-it="Il brand di alta gamma di Athena's. Sieri multi-trattamento con texture setosa e principi attivi incapsulati in preziose perle di biopolimeri marini: si rompono sotto pressione delle dita, rilasciando l'attivo al momento dell'applicazione. Argireline® Amplified, Uplevity® E-Lift, Actigym®, Nocturshape®: ingredienti brevettati per risultati clinicamente testati." data-en="Athena's premium brand. Multi-treatment serums with silky texture and active ingredients encapsulated in precious marine biopolymer pearls: they break under finger pressure, releasing the active at application. Argireline® Amplified, Uplevity® E-Lift, Actigym®, Nocturshape®: patented ingredients for clinically tested results.">Il brand di alta gamma di Athena's. Sieri multi-trattamento con texture setosa e principi attivi incapsulati in preziose perle di biopolimeri marini: si rompono sotto pressione delle dita, rilasciando l'attivo al momento dell'applicazione. Argireline® Amplified, Uplevity® E-Lift, Actigym®, Nocturshape®: ingredienti brevettati per risultati clinicamente testati.</p>
@@ -400,7 +412,7 @@
     <span class="link-arrow" data-it="Scopri Sphea" data-en="Discover Sphea">Scopri Sphea</span>
   </div>
   <div class="line-visual">
-    <img src="immagini/sphea/linea.jpg" alt="Sphea — Athena's sieri premium" class="cover-img" loading="lazy">
+    <img src="immagini/sphea/linea.jpg" alt="Sphea · Athena's sieri premium" class="cover-img" loading="lazy">
     <div class="line-visual__overlay"></div>
   </div>
 </a>
@@ -408,16 +420,15 @@
 <!-- ── 02 · EVERBY ──────────────────────────────────────────── -->
 <a id="everby" href="linee/everby.html" class="line-section ls-cream" data-brand="everby" style="background: linear-gradient(135deg, #f0faf7 0%, #d4ede9 55%, #74d0c4 100%);">
   <div class="line-info">
-    <div class="line-n" style="color: #2e8a82; opacity:.15;">E</div>
-    <div class="line-brand-tag" style="color: #2e8a82;">Everby</div>
+    <img class="line-logo" src="immagini/brand-everby/logo.png" alt="Everby" loading="lazy">
     <div class="line-name" data-it="Clean Beauty Gen Z" data-en="Gen Z Clean Beauty">Clean Beauty Gen Z</div>
     <div class="line-tag" data-it="Skincare innovativa con l'etica naturale di Athena's." data-en="Innovative skincare with Athena's natural ethics.">Skincare innovativa con l'etica naturale di Athena's.</div>
-    <p class="line-desc" data-it="Everby unisce Clean Beauty innovativa alla qualità italiana di Athena's. Texture innovative — gel-cream, bifasici, sieri waterless — e attivi naturali come Centella asiatica, niacinamide, peptidi biomimetici. Packaging iridescente teal, comunicazione diretta: pensata per la Gen Z, efficace per ogni età." data-en="Everby combines innovative Clean Beauty with Athena's Italian quality. Innovative textures — gel-cream, bi-phase, waterless serums — and natural actives like Centella asiatica, niacinamide, biomimetic peptides. Iridescent teal packaging, direct communication: designed for Gen Z, effective at any age.">Everby unisce Clean Beauty innovativa alla qualità italiana di Athena's. Texture innovative — gel-cream, bifasici, sieri waterless — e attivi naturali come Centella asiatica, niacinamide, peptidi biomimetici. Packaging iridescente teal, comunicazione diretta: pensata per la Gen Z, efficace per ogni età.</p>
+    <p class="line-desc" data-it="Everby unisce Clean Beauty innovativa alla qualità italiana di Athena's. Texture innovative, gel-cream, bifasici, sieri waterless, e attivi naturali come Centella asiatica, niacinamide, peptidi biomimetici. Packaging iridescente teal, comunicazione diretta: pensata per la Gen Z, efficace per ogni età." data-en="Everby combines innovative Clean Beauty with Athena's Italian quality. Innovative textures, gel-cream, bi-phase, waterless serums, and natural actives like Centella asiatica, niacinamide, biomimetic peptides. Iridescent teal packaging, direct communication: designed for Gen Z, effective at any age.">Everby unisce Clean Beauty innovativa alla qualità italiana di Athena's. Texture innovative, gel-cream, bifasici, sieri waterless, e attivi naturali come Centella asiatica, niacinamide, peptidi biomimetici. Packaging iridescente teal, comunicazione diretta: pensata per la Gen Z, efficace per ogni età.</p>
     <div class="line-count"><b style="color:#2e8a82;">10</b><span data-it="prodotti" data-en="products">prodotti</span></div>
     <span class="link-arrow" data-it="Scopri Everby" data-en="Discover Everby">Scopri Everby</span>
   </div>
   <div class="line-visual">
-    <img src="immagini/everby/cover-generale.jpg" alt="Everby — Clean Beauty by Athena's" class="cover-img" loading="lazy">
+    <img src="immagini/everby/cover-generale.jpg" alt="Everby · Clean Beauty by Athena's" class="cover-img" loading="lazy">
     <div class="line-visual__overlay"></div>
   </div>
 </a>
@@ -425,8 +436,7 @@
 <!-- ── 03 · KALEY ───────────────────────────────────────────── -->
 <a id="kaley" href="linee/kaley.html" class="line-section ls-dark" data-brand="kaley" style="background: linear-gradient(135deg, #1e0610 0%, #380c20 60%, #521230 100%); color: var(--cream);">
   <div class="line-info">
-    <div class="line-n" style="color: var(--gold); opacity:.15;">K</div>
-    <div class="line-brand-tag" style="color: var(--gold);">Kaley</div>
+    <img class="line-logo" src="immagini/brand-kaley/logo.png" alt="Kaley" loading="lazy">
     <div class="line-name" data-it="Profumi Roll-on Concentrati" data-en="Concentrated Roll-on Perfumes">Profumi Roll-on Concentrati</div>
     <div class="line-tag" data-it="Fragranze in olio, senza alcol — 10 ml" data-en="Oil fragrances, alcohol-free — 10 ml">Fragranze in olio, senza alcol — 10 ml</div>
     <p class="line-desc" data-it="Sette profumi roll-on concentrati in olio puro. Senza alcol, delicati sulla pelle, con una persistenza superiore ai tradizionali eau de toilette. Ogni fragranza ha una personalità distinta: dalla speziatura ambrata di Crystal Rouge alle note marine di Dark Sea." data-en="Seven concentrated roll-on perfumes in pure oil. Alcohol-free, gentle on the skin, with lasting power superior to traditional eau de toilette. Each fragrance has a distinct character: from the amber spice of Crystal Rouge to the marine notes of Dark Sea.">Sette profumi roll-on concentrati in olio puro. Senza alcol, delicati sulla pelle, con una persistenza superiore ai tradizionali eau de toilette. Ogni fragranza ha una personalità distinta: dalla speziatura ambrata di Crystal Rouge alle note marine di Dark Sea.</p>
@@ -434,7 +444,7 @@
     <span class="link-arrow" data-it="Scopri Kaley" data-en="Discover Kaley">Scopri Kaley</span>
   </div>
   <div class="line-visual">
-    <img src="immagini/kaley/cover-2-rose.jpg" alt="Kaley — profumi roll-on by Athena's" class="cover-img" loading="lazy">
+    <img src="immagini/kaley/cover-2-rose.jpg" alt="Kaley · profumi roll-on by Athena's" class="cover-img" loading="lazy">
     <div class="line-visual__overlay"></div>
   </div>
 </a>
@@ -442,8 +452,7 @@
 <!-- ── 04 · L'ERBORISTICA ───────────────────────────────────── -->
 <a id="erboristica" href="linee/erboristica.html" class="line-section ls-cream" data-brand="erboristica">
   <div class="line-info">
-    <div class="line-n" style="color: var(--gold-deep); opacity:.14;">L</div>
-    <div class="line-brand-tag" style="color: var(--gold-deep);">l'Erboristica</div>
+    <img class="line-logo" src="immagini/brand-erboristica/logo.png" alt="l'Erboristica" loading="lazy">
     <div class="line-name" data-it="Cosmetica naturale, dal 1969" data-en="Natural cosmetics, since 1969">Cosmetica naturale, dal 1969</div>
     <div class="line-tag" data-it="Il pilastro della casa: viso, capelli, corpo." data-en="The house pillar: face, hair, body.">Il pilastro della casa: viso, capelli, corpo.</div>
     <p class="line-desc" data-it="Dieci linee di trattamento, oltre 250 referenze. Formule a base di estratti botanici, oli vegetali, attivi brevettati. 95%+ ingredienti di origine naturale, certificato Plant Based Bioagricert. Dalla linea Argan alla skincare innovativa con perle e bifasici." data-en="Ten treatment lines, over 250 references. Formulas based on botanical extracts, plant oils, patented actives. 95%+ natural-origin ingredients, Bioagricert Plant Based certified. From the Argan line to innovative skincare with pearls and biphasic sprays.">Dieci linee di trattamento, oltre 250 referenze. Formule a base di estratti botanici, oli vegetali, attivi brevettati. 95%+ ingredienti di origine naturale, certificato Plant Based Bioagricert. Dalla linea Argan alla skincare innovativa con perle e bifasici.</p>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Sostenibilità — Athena's</title>
+<title>Sostenibilità · Athena's</title>
 <link rel="preload" href="assets/fonts/fraunces-200-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="stylesheet" href="assets/fonts.css"/>
 <link rel="stylesheet" href="assets/tokens.css"/>
@@ -241,8 +241,8 @@
 /* ghost watermark */
 .impact-item__ghost {
   position: absolute;
-  right: -0.1em;
-  bottom: -0.15em;
+  right: 0.04em;
+  bottom: 0;
   font-family: var(--display);
   font-size: clamp(80px,10vw,160px);
   font-weight: 300;
@@ -532,20 +532,14 @@
 }
 .certs-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: clamp(10px,1.4vw,18px);
 }
-.certs-grid .cert-card--big {
-  grid-column: span 2;
-  grid-row: span 2;
-}
-@media (max-width: 900px) {
+@media (max-width: 760px) {
   .certs-grid { grid-template-columns: repeat(2, 1fr); }
-  .certs-grid .cert-card--big { grid-column: span 2; grid-row: span 1; }
 }
-@media (max-width: 660px) {
+@media (max-width: 520px) {
   .certs-grid { grid-template-columns: 1fr; }
-  .certs-grid .cert-card--big { grid-column: span 1; }
 }
 
 .cert-card {
@@ -571,6 +565,7 @@
   display: flex; align-items: center; justify-content: center;
   margin: 0 auto 24px;
   overflow: hidden;
+  transition: transform .4s var(--ease);
 }
 @media (max-width: 660px) { .cert-card__logo { width: 80px; height: 80px; } }
 .cert-card__logo-mark {
@@ -578,9 +573,11 @@
   background-color: var(--gold);
   -webkit-mask: var(--logo) center / contain no-repeat;
           mask: var(--logo) center / contain no-repeat;
-  transition: transform .4s var(--ease);
 }
-.cert-card:hover .cert-card__logo-mark { transform: scale(1.05); }
+.cert-card__logo--icon svg { width: 54px; height: 54px; opacity: .9; }
+.cert-card__logo--img { width: 100%; }
+.cert-card__logo--img img { max-width: 240px; max-height: 72px; object-fit: contain; }
+.cert-card:hover .cert-card__logo { transform: scale(1.05); }
 
 .cert-card__icon { width: 24px; height: 24px; flex-shrink: 0; }
 .cert-card__name {
@@ -820,12 +817,6 @@
   display: block;
 }
 
-/* ── CERT CARD 3D TILT ────────────────────────────────────── */
-.cert-card {
-  transform-style: preserve-3d;
-  will-change: transform;
-}
-
 /* ── REGEN SVG draw-on-scroll ─────────────────────────────── */
 .regen-svg-wrap {
   position: absolute;
@@ -890,12 +881,12 @@
 <meta property="og:locale:alternate" content="en_GB"/>
 <meta property="og:site_name" content="Athena's"/>
 <meta property="og:url" content="https://athenas.it/sostenibilita.html"/>
-<meta property="og:title" content="Sostenibilità — Athena's"/>
+<meta property="og:title" content="Sostenibilità · Athena's"/>
 <meta property="og:description" content="Ingredienti rispettosi, packaging consapevole, formule vegan. L'impegno Athena's per una cosmetica responsabile."/>
 <meta property="og:image" content="https://athenas.it/immagini/og/sostenibilita.jpg"/>
-<meta property="og:image:alt" content="Sostenibilità — Athena's"/>
+<meta property="og:image:alt" content="Sostenibilità · Athena's"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Sostenibilità — Athena's"/>
+<meta name="twitter:title" content="Sostenibilità · Athena's"/>
 <meta name="twitter:description" content="Ingredienti rispettosi, packaging consapevole, formule vegan. L'impegno Athena's per una cosmetica responsabile."/>
 <meta name="twitter:image" content="https://athenas.it/immagini/og/sostenibilita.jpg"/>
 <script type="application/ld+json">
@@ -930,11 +921,11 @@
       <span data-it="La terra" data-en="The earth">La terra</span><br/>
       <em data-it="prima di tutto." data-en="above all.">prima di tutto.</em>
     </h1>
-    <p class="sh__lead" data-it="Non è una scelta di marketing. È il motivo per cui siamo nati. Ogni formula che produciamo rispetta la pianta, il suolo e chi verrà dopo di noi." data-en="This is not a marketing choice. It's the reason we were born. Every formula we produce respects the plant, the soil and those who will come after us.">Non è una scelta di marketing. È il motivo per cui siamo nati. Ogni formula che produciamo rispetta la pianta, il suolo e chi verrà dopo di noi.</p>
+    <p class="sh__lead" data-it="È il motivo per cui siamo nati, prima ancora che diventasse una tendenza. Ogni formula che produciamo rispetta la pianta, il suolo e chi verrà dopo di noi." data-en="It's the reason we were born, long before it became a trend. Every formula we produce respects the plant, the soil and those who will come after us.">È il motivo per cui siamo nati, prima ancora che diventasse una tendenza. Ogni formula che produciamo rispetta la pianta, il suolo e chi verrà dopo di noi.</p>
   </div>
   <div class="scroll-hint" aria-hidden="true">
     <div class="scroll-hint__line"></div>
-    <span>Scroll</span>
+    <span data-it="Scorri" data-en="Scroll">Scorri</span>
   </div>
 </section>
 
@@ -964,7 +955,7 @@
       <div class="impact-line"></div>
       <div class="impact-n">8</div>
       <div class="impact-unit" data-it="audit indipendenti" data-en="independent audits">audit indipendenti</div>
-      <div class="impact-label" data-it="annui da enti terzi — ogni formula, ogni processo, ogni claim verificato" data-en="annual third-party — every formula, every process, every claim verified">annui da enti terzi — ogni formula, ogni processo, ogni claim verificato</div>
+      <div class="impact-label" data-it="annui da enti terzi, ogni formula, ogni processo, ogni claim verificato" data-en="annual third-party, every formula, every process, every claim verified">annui da enti terzi, ogni formula, ogni processo, ogni claim verificato</div>
     </div>
   </div>
 </section>
@@ -987,7 +978,7 @@
 <div class="pillar-block pillar-block--alt">
   <div class="pillar-block__inner" style="direction:rtl;">
     <div class="pillar-block__text" style="direction:ltr;">
-      <div class="pillar-block__index">— Pilastro 01</div>
+      <div class="pillar-block__index" data-it="— Pilastro 01" data-en="— Pillar 01">— Pilastro 01</div>
       <h3 class="pillar-block__title">
         <span data-it="Ingredienti " data-en="Respectful ">Ingredienti </span><em data-it="rispettosi." data-en="ingredients.">rispettosi.</em>
       </h3>
@@ -1028,7 +1019,7 @@
 <div class="pillar-block">
   <div class="pillar-block__inner">
     <div class="pillar-block__text">
-      <div class="pillar-block__index">— Pilastro 02</div>
+      <div class="pillar-block__index" data-it="— Pilastro 02" data-en="— Pillar 02">— Pilastro 02</div>
       <h3 class="pillar-block__title">
         <span data-it="Packaging " data-en="Conscious ">Packaging </span><em data-it="consapevole." data-en="packaging.">consapevole.</em>
       </h3>
@@ -1060,7 +1051,7 @@
   <div class="container">
     <div style="display:flex; gap:16px; align-items:center; margin-bottom:0;">
       <span class="num">— 03</span>
-      <div class="eyebrow" data-it="— 03 / Le nostre certificazioni" data-en="— 03 / Our certifications">— 03 / Le nostre certificazioni</div>
+      <div class="eyebrow" data-it="Le nostre certificazioni" data-en="Our certifications">Le nostre certificazioni</div>
     </div>
     <p style="font-family:var(--serif); font-size:clamp(18px,1.5vw,22px); line-height:1.65; opacity:.75; max-width:64ch; margin: 24px 0 clamp(40px,5vw,60px);" data-it="Clicca su ogni certificazione per leggere cosa significa concretamente per i nostri prodotti e la nostra produzione." data-en="Click on each certification to read what it concretely means for our products and production.">Clicca su ogni certificazione per leggere cosa significa concretamente per i nostri prodotti e la nostra produzione.</p>
     <div class="certs-grid" id="certsGrid"></div>
@@ -1140,7 +1131,7 @@ const CERTS = [
     id: 'bioagricert',
     name: 'Plant Based',
     badge: 'Bioagricert',
-    tagline: 'La certificazione di terza parte sulla naturalità delle formule',
+    tagline: 'L\'unica certificazione di terza parte esposta in etichetta: garantisce la naturalità vegetale di ogni nostra formula.',
     lead: 'Bioagricert (www.bioagricert.org) è l\'ente certificatore terzo che rilascia la certificazione "Plant Based": garantisce che le nostre formule siano costituite prevalentemente da ingredienti vegetali e altre sostanze naturali, escluse materie prime di origine animale.',
     desc: 'È l\'unica certificazione di terza parte presente sui nostri prodotti L\'Erboristica con ente certificatore esplicitamente dichiarato in etichetta. Bioagricert verifica la composizione di ogni formula sia in fase di formulazione che attraverso audit periodici sullo stabilimento. La certificazione "Plant Based" è esposta su 70 dei 87 prodotti L\'Erboristica e copre integralmente anche la linea EVERBY.',
     facts: [
@@ -1165,7 +1156,7 @@ const CERTS = [
       { label: 'Linea EVERBY', val: 'Vegan completo' },
       { label: 'Verifica', val: 'Per singolo prodotto' },
     ],
-    quote: '"Mettere il logo Vegan dove serve davvero — non ovunque, non come moda — è la nostra forma di rispetto per chi lo cerca."',
+    quote: '"Mettere il logo Vegan dove serve davvero, non ovunque, non come moda, è la nostra forma di rispetto per chi lo cerca."',
     bg: 'linear-gradient(155deg, #1a3010 0%, #2a5020 50%, #4a8040 100%)',
   },
   {
@@ -1189,7 +1180,7 @@ const CERTS = [
     name: 'Test Nichel · Cromo · Cobalto',
     badge: 'Allergeni da contatto',
     tagline: 'Formulati per ridurre al minimo il rischio di allergie da contatto.',
-    lead: 'Tutti i prodotti della linea "L\'Erboristica di Athena\'s dal 1969" sono testati per Nichel, Cromo e Cobalto — i tre metalli pesanti più comunemente responsabili di reazioni allergiche da contatto cutaneo.',
+    lead: 'Tutti i prodotti della linea "L\'Erboristica di Athena\'s dal 1969" sono testati per Nichel, Cromo e Cobalto, i tre metalli pesanti più comunemente responsabili di reazioni allergiche da contatto cutaneo.',
     desc: 'I test misurano la presenza residua di tracce di metalli derivanti da materie prime, attrezzature di produzione o packaging primario. La soglia di tolleranza adottata da Athena\'s è inferiore ai limiti regolatori europei. Sui 87 prodotti L\'Erboristica esposti, 67 (77%) riportano il claim "test metalli pesanti"; il claim si applica integralmente anche a EVERBY.',
     facts: [
       { label: 'Metalli testati', val: 'Nichel · Cromo · Cobalto' },
@@ -1226,7 +1217,7 @@ const CERTS = [
     name: '100% Made in Italy',
     badge: 'Produzione Italiana',
     tagline: 'Tutto in Italia, sotto lo stesso tetto.',
-    lead: 'Il claim 100% Made in Italy per Athena\'s significa che ogni fase — ricerca, formulazione, produzione, riempimento, etichettatura e confezionamento primario — avviene sotto lo stesso tetto, nello stabilimento di Via del Lavoro 32, a Pianoro (BO), in Emilia-Romagna.',
+    lead: 'Il claim 100% Made in Italy per Athena\'s significa che ogni fase, ricerca, formulazione, produzione, riempimento, etichettatura e confezionamento primario, avviene sotto lo stesso tetto, nello stabilimento di Via del Lavoro 32, a Pianoro (BO), in Emilia-Romagna.',
     desc: 'Il modello produttivo verticalmente integrato di Athena\'s è una rarità nel cosmetico moderno: non utilizziamo produttori conto terzi per i nostri brand. Ogni prodotto viene ideato nel laboratorio R&S, formulato dai nostri chimici, prodotto nei nostri impianti e confezionato dalle nostre linee. Lavoriamo anche per private label, ma sempre nello stesso stabilimento e con gli stessi standard.',
     facts: [
       { label: 'Stabilimento', val: 'Via del Lavoro 32, Pianoro (BO)' },
@@ -1268,7 +1259,7 @@ const CERT_NAMES_EN = {
   'metalli-pesanti': 'Heavy Metal Test',
 };
 const CERT_TAGLINES_EN = {
-  bioagricert: 'Third-party certification of formula naturalness.',
+  bioagricert: 'The only third-party certification shown on the label: it guarantees the plant-based naturalness of every formula.',
   vegan: 'For every product bearing the logo, no animal ingredients.',
   dermatologico: 'In collaboration with the Department of Cosmetology.',
   'metalli-pesanti': 'Formulated to minimise the risk of contact allergies.',
@@ -1276,9 +1267,19 @@ const CERT_TAGLINES_EN = {
   madeinitaly: 'Everything in Italy, under one roof.',
 };
 
-// In sostenibilità mostriamo solo il logo dermatologico (gli altri restano card testuali).
+// Loghi reali (mask oro). OPIMM e Made in Italy non hanno ancora un file logo:
+// restano con l'icona finché non arrivano i PNG (poi basta aggiungere la riga qui).
 const CERT_LOGOS = {
+  bioagricert: 'var(--cert-plant-based)',
+  vegan: 'var(--cert-vegan)',
   dermatologico: 'var(--cert-dermatologicamente)',
+  'metalli-pesanti': 'var(--cert-nickel-cobalto)',
+  opimm: 'var(--cert-opimm)',
+};
+
+// Loghi a COLORI (img reale, NON mask oro) — Made in Italy mantiene il tricolore.
+const CERT_LOGO_IMG = {
+  madeinitaly: 'immagini/certificazioni/made-in-italy.png',
 };
 
 const certsGrid = document.getElementById('certsGrid');
@@ -1290,9 +1291,8 @@ function renderCertsGrid() {
   const lang = (typeof ATH !== 'undefined') ? ATH.lang : 'it';
   certsGrid.innerHTML = '';
   CERTS.forEach((c, i) => {
-    const isBig = i === 0;
     const card = document.createElement('article');
-    card.className = 'cert-card' + (isBig ? ' cert-card--big' : '');
+    card.className = 'cert-card';
     card.setAttribute('data-cert', c.id || '');
     if (c.id) card.id = c.id;
     card.style.setProperty('--d', (i * 60) + 'ms');
@@ -1301,12 +1301,14 @@ function renderCertsGrid() {
     const badge = lang === 'en' ? (CERT_BADGES_EN[c.id] || c.badge) : (CERT_BADGES_IT[c.id] || c.badge);
     const cta = lang === 'en' ? '→ Learn more' : '→ Approfondisci';
     const logoSrc = CERT_LOGOS[c.id];
-    const logoHTML = logoSrc
+    const imgSrc = CERT_LOGO_IMG[c.id];
+    const markHTML = logoSrc
       ? `<div class="cert-card__logo"><span class="cert-card__logo-mark" style="--logo:${logoSrc}"></span></div>`
-      : '';
+      : imgSrc
+      ? `<div class="cert-card__logo cert-card__logo--img"><img src="${imgSrc}" alt="${name}" loading="lazy"></div>`
+      : `<div class="cert-card__logo cert-card__logo--icon">${CERT_ICONS[c.id] || ''}</div>`;
     card.innerHTML = `
-      ${logoHTML}
-      <div class="cert-card__icon">${CERT_ICONS[c.id] || ''}</div>
+      ${markHTML}
       <h3 class="cert-card__name">${name}</h3>
       <span class="cert-card__badge">${badge}</span>
       <p class="cert-card__tagline">${tagline}</p>
@@ -1523,23 +1525,6 @@ function closeCert() {
     }
   }, { threshold: .3 });
   regenObs.observe(wrap);
-})();
-
-// ── CERT CARD 3D TILT ─────────────────────────────────────────────
-(function() {
-  document.querySelectorAll('.cert-card').forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const rect = card.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top  + rect.height / 2;
-      const rx = ((e.clientY - cy) / (rect.height / 2)) * -5;
-      const ry = ((e.clientX - cx) / (rect.width  / 2)) *  5;
-      card.style.transform = `perspective(700px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.02)`;
-    }, { passive: true });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-    });
-  });
 })();
 </script>
 </body>

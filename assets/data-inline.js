@@ -21,7 +21,7 @@ window.ATH_DATA_JSON = {
     "address": {
       "sede": "Via del Lavoro 32, 40065 Pianoro (BO)",
       "logistica": "Via della Cooperazione, 40065 Pianoro (BO)",
-      "spaccio": "Via della Cooperazione 20, Pianoro (BO) — venerdì 12:00-18:00"
+      "spaccio": "Via della Cooperazione 20, Pianoro (BO) · venerdì 12:00-18:00"
     },
     "phone": "+3 051 0 25 111",
     "email": "info@athenas.it",
@@ -135,7 +135,7 @@ window.ATH_DATA_JSON = {
     "opimm": {
       "name_it": "OPIMM",
       "name_en": "OPIMM",
-      "desc_it": "Confezionamento svolto col centro di lavoro protetto OPIMM — inclusione lavorativa di persone con disabilità.",
+      "desc_it": "Confezionamento svolto col centro di lavoro protetto OPIMM, inclusione lavorativa di persone con disabilità.",
       "authority": "OPIMM Bologna · www.opimm.it",
       "third_party": false
     },
@@ -302,6 +302,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "antieta-contorno-occhi",
       "sku": "7412",
+      "format": "15 ml",
       "line": "antieta",
       "brand": "erboristica",
       "name_it": "CONTORNO OCCHI",
@@ -309,7 +310,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Crema contorno occhi antirughe senza profumo, adatta a tutti i tipi di pelle.",
       "description_it": "Restituisce giovinezza allo sguardo con un’azione ridensificante e rassodante. Acido Ialuronico, Caffeina e un peptide specifico migliorano compattezza, borse e occhiaie.",
       "usage_it": "Mattino e sera sull’intera zona perioculare detersa, applicare una piccola quantità di prodotto con leggere pressioni e massaggi circolari.",
-      "inci": "Aqua [Water], Hydrolyzed soy extract, Cetearyl alcohol, Glyceryl stearate, Glycerin, Olus oil [Vegetable (Olus) oil], Betaine, Butyrospermum parkii (Shea) butter, Coco-caprylate, Macadamia ternifolia seed oil, Ethylhexyl palmitate, Behenyl alcohol, Acetyl hexapeptide-8, Bakuchiol, Zanthoxylum bungeanum fruit extract, Sodium hyaluronate, Pullulan, Zinc PCA, Tocopherol, Beta-sitosterol, Sodium lauroyl glutamate, Squalene, Sodium stearoyl lactylate, Zinc ricinoleate, Natto gum, Sodium benzoate, Oleyl alcohol, Xanthan gum, Alcohol, Sodium gluconate, Parfum [Fragrance], Hexamethylindanopyran, Ethylhexylglycerin, Phenoxyethanol",
+      "inci": "Aqua [Water], Hydrolyzed soy extract, Cetearyl alcohol, Glyceryl stearate, Glycerin, Olus oil [Vegetable (Olus) oil], Betaine, Butyrospermum parkii (Shea) butter, Coco-caprylate, Macadamia ternifolia seed oil, Ethylhexyl palmitate, Behenyl alcohol, Acetyl hexapeptide-8, Bakuchiol, Zanthoxylum bungeanum fruit extract, Sodium hyaluronate, Pullulan, Zinc PCA, Tocopherol, Beta-sitosterol, Sodium lauroyl glutamate, Squalene, Sodium stearoyl lactylate, Zinc ricinoleate, Natto gum, Sodium benzoate, Oleyl alcohol, Xanthan gum, Alcohol, Sodium gluconate, Parfum [Fragrance], Hexamethylindanopyran, Ethylhexylglycerin, Phenoxyethanol.",
       "natural_pct": 98,
       "certifications": [
         "zero-petrochem",
@@ -335,6 +336,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "antieta-crema-viso-giorno",
       "sku": "7408",
+      "format": "50 ml",
       "line": "antieta",
       "brand": "erboristica",
       "name_it": "CREMA VISO GIORNO",
@@ -342,7 +344,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Crema viso giorno antietà fresca e leggera, adatta a ogni stagione.",
       "description_it": "Dona un’idratazione intensa e protegge la pelle dai segni del tempo. Acido Ialuronico, Collagene vegetale e Vitamina E rimpolpano e ridensificano per un incarnato luminoso.",
       "usage_it": "Applicare al mattino su viso e dècolleté ben detersi. Per un effetto potenziato, associare il Siero Viso Concentrato Antietà Globale.",
-      "inci": "Aqua [Water], Dicaprylyl ether, Glycerin, Betaine, Hydrolyzed soy extract, Butyrospermum parkii (Shea butter), Cetearyl alcohol, Glyceryl stearate, Bakuchiol, Sodium hyaluronate, Rosa canina fruit extract(*), Viola tricolor extract(*), Verbena officinalis extract(*), Tocopherol, Centaurium erythraea extract(*), Sorbitol, Calluna vulgaris extract(*), Hydrolyzed wheat protein, Tocopheryl acetate, Titanium dioxide (nano) [Titanium dioxide], Hydrolyzed olive fruit(*), Lysine, Carrageenan, Fucus vesiculosus extract, Allantoin, Sodium PCA, Camelina sativa seed oil, Sodium stearoyl lactylate, Ethylhexyl stearate, Panthenol, Sodium lauroyl glutamate, Xanthan gum, Polyhydroxystearic acid, Lactic acid, Olus oil [Olus], Urea, Sodium gluconate, Parfum [Fragrance], Silica, Phenoxyethanol, Sodium polyacrylate, Benzoic acid, Dehydroacetic acid, Trideceth-6, Ethylhexylglycerin, Citral, Limonene, Linalool. (*) DA AGRICOLTURA BIOLOGICA / FROM ORGANIC FARMING",
+      "inci": "Aqua [Water], Dicaprylyl ether, Glycerin, Betaine, Hydrolyzed soy extract, Butyrospermum parkii (Shea butter), Cetearyl alcohol, Glyceryl stearate, Bakuchiol, Sodium hyaluronate, Rosa canina fruit extract(*), Viola tricolor extract(*), Verbena officinalis extract(*), Tocopherol, Centaurium erythraea extract(*), Sorbitol, Calluna vulgaris extract(*), Hydrolyzed wheat protein, Tocopheryl acetate, Titanium dioxide (nano) [Titanium dioxide], Hydrolyzed olive fruit(*), Lysine, Carrageenan, Fucus vesiculosus extract, Allantoin, Sodium PCA, Camelina sativa seed oil, Sodium stearoyl lactylate, Ethylhexyl stearate, Panthenol, Sodium lauroyl glutamate, Xanthan gum, Polyhydroxystearic acid, Lactic acid, Olus oil [Olus], Urea, Sodium gluconate, Parfum [Fragrance], Silica, Phenoxyethanol, Sodium polyacrylate, Benzoic acid, Dehydroacetic acid, Trideceth-6, Ethylhexylglycerin, Citral, Limonene, Linalool.",
       "natural_pct": 99,
       "certifications": [
         "zero-petrochem",
@@ -370,6 +372,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "antieta-detergente-struccante",
       "sku": "7427",
+      "format": "150 ml",
       "line": "antieta",
       "brand": "erboristica",
       "name_it": "DETERGENTE STRUCCANTE",
@@ -377,7 +380,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Detergente struccante delicato, vellutato come un latte, per viso, occhi e labbra.",
       "description_it": "Rimuove completamente il make-up lasciando la pelle idratata e morbida. Con Aloe Vera, Bisabololo e tensioattivi vegetali dolci, deterge senza aggredire.",
       "usage_it": "Applicare con leggeri movimenti circolari e risciacquare con acqua, oppure rimuovere con dischetto di cotone. Non schiumogeno",
-      "inci": "Aqua [Water], Aloe barbadensis leaf juice (*), Coco-caprylate, Ethylhexyl palmitate, Butyrospermum parkii (Shea) butter, Glycerin, Sodium stearoyl lactylate, Polyglyceryl-3 stearate, Cetearyl alcohol, Decyl oleate, Dicaprylyl ether, Glyceryl stearate, Glycine soja (Soybean) oil (*), Magnesium aluminum silicate, Tocopherol, Calluna vulgaris extract (*), Centaurium erythraea extract (*), Rosa canina fruit extract (*), Verbena officinalis extract (*), Viola tricolor extract (*), Ethylhexyl stearate, Sodium gluconate, Parfum [Fragrance], Xanthan gum, Ethylhexylglycerin, Sodium polyacrylate, Trideceth-6, Phenoxyethanol. (*) DA AGRICOLTURA BIOLOGICA/FROM ORGANIC FARMING",
+      "inci": "Aqua [Water], Aloe barbadensis leaf juice (*), Coco-caprylate, Ethylhexyl palmitate, Butyrospermum parkii (Shea) butter, Glycerin, Sodium stearoyl lactylate, Polyglyceryl-3 stearate, Cetearyl alcohol, Decyl oleate, Dicaprylyl ether, Glyceryl stearate, Glycine soja (Soybean) oil (*), Magnesium aluminum silicate, Tocopherol, Calluna vulgaris extract (*), Centaurium erythraea extract (*), Rosa canina fruit extract (*), Verbena officinalis extract (*), Viola tricolor extract (*), Ethylhexyl stearate, Sodium gluconate, Parfum [Fragrance], Xanthan gum, Ethylhexylglycerin, Sodium polyacrylate, Trideceth-6, Phenoxyethanol.",
       "natural_pct": 98,
       "certifications": [
         "zero-petrochem",
@@ -404,6 +407,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "antieta-fiale-concentrato-rimpolpante",
       "sku": "7416",
+      "format": "7 × 2 ml",
       "line": "antieta",
       "brand": "erboristica",
       "name_it": "FIALE CONCENTRATO RIMPOLPANTE",
@@ -411,7 +415,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Trattamento d’urto rimpolpante in 21 giorni, pro-giovinezza e intensivo.",
       "description_it": "Un ciclo intensivo che ridona compattezza e luminosità alla pelle. Acido Ialuronico a diverso peso molecolare, Collagene marino idrolizzato e Vitamina C rimpolpano e illuminano.",
       "usage_it": "1 fiala permette fino a 3 applicazioni. Applicare mattina e sera, su viso e décolleté ben detersi e proseguire con la skincare routine abituale. 7 fiale per 21 giorni consecutivi di trattamento.",
-      "inci": "GLYCINE SOJA (SOYBEAN) OIL (*), HYDROGENATED FARNESENE, AVENA SATIVA (OAT) KERNEL EXTRACT, RETINYL PALMITATE, ASCORBYL ISOSTEARATE, TOCOPHEROL, VACCINIUM MYRTILLUS (MYRTLE) SEED OIL, BAKUCHIOL, CROCUS SATIVUS STIGMA EXTRACT (*), TOCOPHERYL ACETATE, CAMELINA SATIVA SEED OIL, HELIANTHUS ANNUUS (SUNFLOWER) SEED OIL, PARFUM [FRAGRANCE], OLUS OIL [VEGETABLE (OLUS) OIL], LINALOOL, LIMONENE, CITRONELLOL, GERANIOL, ALPHA-ISOMETHYL IONONE, COUMARIN. (*) DA AGRICOLTURA BIOLOGICA / FROM ORGANIC FARMING",
+      "inci": "GLYCINE SOJA (SOYBEAN) OIL (*), HYDROGENATED FARNESENE, AVENA SATIVA (OAT) KERNEL EXTRACT, RETINYL PALMITATE, ASCORBYL ISOSTEARATE, TOCOPHEROL, VACCINIUM MYRTILLUS (MYRTLE) SEED OIL, BAKUCHIOL, CROCUS SATIVUS STIGMA EXTRACT (*), TOCOPHERYL ACETATE, CAMELINA SATIVA SEED OIL, HELIANTHUS ANNUUS (SUNFLOWER) SEED OIL, PARFUM [FRAGRANCE], OLUS OIL [VEGETABLE (OLUS) OIL], LINALOOL, LIMONENE, CITRONELLOL, GERANIOL, ALPHA-ISOMETHYL IONONE, COUMARIN.",
       "natural_pct": 99,
       "certifications": [
         "zero-petrochem",
@@ -438,6 +442,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "antieta-siero-viso-acido-ialuronico",
       "sku": "7410",
+      "format": "30 ml",
       "line": "antieta",
       "brand": "erboristica",
       "name_it": "SIERO VISO ACIDO IALURONICO",
@@ -445,7 +450,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Siero viso antietà all’Acido Ialuronico, per tutti i tipi di pelle.",
       "description_it": "Regala freschezza e vitalità in profondità in qualsiasi momento della giornata. L’Acido Ialuronico a basso e alto peso molecolare e la Niacinamide idratano i tessuti e uniformano la pelle.",
       "usage_it": "Perfetto da solo in ogni momento della giornata su viso e dècolleté. La miscelazione di alcune gocce ai Trattamenti viso Antietà Globale ne potenzia l’effetto.",
-      "inci": "Aqua [Water], Glycerin, Tremella fuciformis sporocarp extract, Sodium gluconate, Benzoic acid, Dehydroacetic acid, Ethylhexylglycerin, Phenoxyethanol",
+      "inci": "Aqua [Water], Glycerin, Tremella fuciformis sporocarp extract, Sodium gluconate, Benzoic acid, Dehydroacetic acid, Ethylhexylglycerin, Phenoxyethanol.",
       "natural_pct": 98,
       "certifications": [
         "zero-petrochem",
@@ -471,6 +476,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "antieta-siero-viso-collagene-vegetale",
       "sku": "7411",
+      "format": "30 ml",
       "line": "antieta",
       "brand": "erboristica",
       "name_it": "SIERO VISO COLLAGENE VEGETALE",
@@ -478,7 +484,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Siero viso al Collagene vegetale, rassodante e ridensificante.",
       "description_it": "Ripara e rinforza in modo naturale le fibre di sostegno della pelle, ridonando compattezza. Collagene vegetale da bio-fermentazione, Tripeptide-1 e Aloe Vera tonificano e leniscono.",
       "usage_it": "Perfetto da solo in ogni momento della giornata su viso e dècolleté. La miscelazione di alcune gocce ai Trattamenti viso Antietà Globale ne potenzia l’effetto.",
-      "inci": "Aqua [Water], Glycerin, Sclerotium gum, Natto gum, Leontopodium alpinum callus culture extract, Sodium cocoyl barley amino acids, Glyceryl oleate, Coco-glucoside, Citric acid, Sodium gluconate, Parfum [Fragrance], Ethylhexylglycerin, Alcohol, Hexyl cinnamal, Phenoxyethanol",
+      "inci": "Aqua [Water], Glycerin, Sclerotium gum, Natto gum, Leontopodium alpinum callus culture extract, Sodium cocoyl barley amino acids, Glyceryl oleate, Coco-glucoside, Citric acid, Sodium gluconate, Parfum [Fragrance], Ethylhexylglycerin, Alcohol, Hexyl cinnamal, Phenoxyethanol.",
       "natural_pct": 99,
       "certifications": [
         "zero-petrochem",
@@ -505,6 +511,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "antieta-trattamento-viso",
       "sku": "7415",
+      "format": "50 ml",
       "line": "antieta",
       "brand": "erboristica",
       "name_it": "TRATTAMENTO VISO",
@@ -512,7 +519,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Crema viso antirughe intensiva dalla texture fondente, che rimodella l’ovale.",
       "description_it": "Ricompatta la pelle e restituisce giovinezza ai tratti del viso. Retinolo, Olio di Argan e peptidi anti-età, con Vitamina E, levigano le rughe e nutrono in profondità.",
       "usage_it": "Applicare su viso e dècolleté ben detersi. Per un effetto potenziato, associare il Siero Viso Concentrato Antietà Globale.",
-      "inci": "Aqua [Water], Aloe barbadensis leaf juice (*), Vegetable (Olus) oil, Ethylhexyl palmitate, Coco-caprylate, Glycerin, Betaine, Butyrospermum parkii (Shea) butter, Macadamia ternifolia seed oil, Polyglyceryl-3 stearate, Cetearyl alcohol, Glyceryl stearate, Sodium stearoyl lactylate, Hydrolyzed glycosaminoglycans, Natto gum, Sodium hyaluronate, Camelina sativa seed oil, Zinc PCA, Tocopherol, Beta-sitosterol, Squalene,Behenyl alcohol, Xanthan gum, Magnesium aluminum silicate, Parfum [Fragrance], Ethylhexylglycerin, Sodium gluconate, Alcohol, Tetramethyl acetyloctahydronaphthalenes, Hexyl cinnamal, Vanillin, Pogostemon cablin oil, Citrus aurantium peel oil, Limonene, Coumarin, Phenoxyethanol. (*) da Agricoltura Biologica/ from Organic Farming",
+      "inci": "Aqua [Water], Aloe barbadensis leaf juice (*), Vegetable (Olus) oil, Ethylhexyl palmitate, Coco-caprylate, Glycerin, Betaine, Butyrospermum parkii (Shea) butter, Macadamia ternifolia seed oil, Polyglyceryl-3 stearate, Cetearyl alcohol, Glyceryl stearate, Sodium stearoyl lactylate, Hydrolyzed glycosaminoglycans, Natto gum, Sodium hyaluronate, Camelina sativa seed oil, Zinc PCA, Tocopherol, Beta-sitosterol, Squalene,Behenyl alcohol, Xanthan gum, Magnesium aluminum silicate, Parfum [Fragrance], Ethylhexylglycerin, Sodium gluconate, Alcohol, Tetramethyl acetyloctahydronaphthalenes, Hexyl cinnamal, Vanillin, Pogostemon cablin oil, Citrus aurantium peel oil, Limonene, Coumarin, Phenoxyethanol.",
       "natural_pct": 98,
       "certifications": [
         "zero-petrochem",
@@ -540,6 +547,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "cocco-crema-corpo-cocco",
       "sku": "6992",
+      "format": "200 ml",
       "line": "cocco",
       "brand": "erboristica",
       "name_it": "CREMA CORPO COCCO",
@@ -547,7 +555,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Crema corpo idratante al Cocco dalla fragranza avvolgente, ad assorbimento rapido.",
       "description_it": "Idratante, antiossidante e levigante, lascia la pelle morbida e profumata, non unta. Burro di Cocco, Glicerina e Olio di Mandorle Dolci nutrono in profondità.",
       "usage_it": "Dopo la doccia o il bagno, su pelle asciutta, massaggiare il corpo con una generosa quantità di crema fino ad assorbimento.",
-      "inci": "Aqua [Water], Ethylhexyl palmitate, Cetyl alcohol, Glycerin, Cocos nucifera (Coconut) oil, Butyrospermum parkii (Shea) butter, Glycine soja (Soybean) oil (*), Polyglyceryl-3 stearate, Sodium stearoyl lactylate, Gardenia taitensis flower extract, Tocopherol, Beta-sitosterol, Squalene, Ethylhexyl stearate, Sodium gluconate, Xanthan gum, Parfum [Fragrance], Coumarin, Vanillin, Benzoic acid, Dehydroacetic acid, Sodium polyacrylate, Trideceth-6, Phenoxyethanol. (*) da Agricoltura Biologica / from Organic Farming",
+      "inci": "Aqua [Water], Ethylhexyl palmitate, Cetyl alcohol, Glycerin, Cocos nucifera (Coconut) oil, Butyrospermum parkii (Shea) butter, Glycine soja (Soybean) oil (*), Polyglyceryl-3 stearate, Sodium stearoyl lactylate, Gardenia taitensis flower extract, Tocopherol, Beta-sitosterol, Squalene, Ethylhexyl stearate, Sodium gluconate, Xanthan gum, Parfum [Fragrance], Coumarin, Vanillin, Benzoic acid, Dehydroacetic acid, Sodium polyacrylate, Trideceth-6, Phenoxyethanol.",
       "natural_pct": 99,
       "certifications": [
         "zero-petrochem",
@@ -574,6 +582,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "cocco-maschera-capelli-olio-di-cocco-e-monoi",
       "sku": "7419",
+      "format": "200 ml",
       "line": "cocco",
       "brand": "erboristica",
       "name_it": "MASCHERA CAPELLI OLIO DI COCCO & MONOI",
@@ -581,7 +590,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Maschera capelli al Cocco e Monoï, profonda idratazione dalla radice alle punte.",
       "description_it": "Avvolge i capelli rendendoli straordinariamente morbidi e luminosi. Olio di Cocco, Monoï di Tahiti e Vitamina E nutrono e disciplinano la chioma.",
       "usage_it": "Applicare una noce di prodotto su capelli bagnati, lasciare in posa per 1-2 minuti e risciacquare.",
-      "inci": "Aqua [Water], Cetyl alcohol, Behenamidopropyl dimethylamine, Behentrimonium chloride, Behenyl alcohol, Squalane, Polyamino sugar condensate, Cocos nucifera (Coconut) oil, Parfum [Fragrance], Gardenia taitensis flower extract, Squalene, Hydrolyzed rice protein, Tocopherol, Beta-sitosterol, Guar hydroxypropyltrimonium chloride, Lactic acid, Cetrimonium chloride, Sodium gluconate, Coumarin, Vanillin, Hexamethylindanopyran, Benzoic acid, Dehydroacetic acid, Phenoxyethanol",
+      "inci": "Aqua [Water], Cetyl alcohol, Behenamidopropyl dimethylamine, Behentrimonium chloride, Behenyl alcohol, Squalane, Polyamino sugar condensate, Cocos nucifera (Coconut) oil, Parfum [Fragrance], Gardenia taitensis flower extract, Squalene, Hydrolyzed rice protein, Tocopherol, Beta-sitosterol, Guar hydroxypropyltrimonium chloride, Lactic acid, Cetrimonium chloride, Sodium gluconate, Coumarin, Vanillin, Hexamethylindanopyran, Benzoic acid, Dehydroacetic acid, Phenoxyethanol.",
       "natural_pct": 97,
       "certifications": [
         "zero-petrochem",
@@ -608,6 +617,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "cocco-mousse-doccia-cocco",
       "sku": "6991",
+      "format": "200 ml",
       "line": "cocco",
       "brand": "erboristica",
       "name_it": "MOUSSE DOCCIA COCCO",
@@ -615,7 +625,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Mousse doccia al Cocco dal profumo dolce e avvolgente.",
       "description_it": "Deterge con delicatezza avvolgendo la pelle nella tipica fragranza esotica del cocco. Olio di Cocco, Aloe Vera e tensioattivi vegetali delicati idratano mentre lavano.",
       "usage_it": "Distribuisci il prodotto direttamente sulla pelle bagnata, massaggia delicatamente e risciacqua.",
-      "inci": "Aqua [Water], Sodium coceth sulfate, Cocamidopropyl betaine, Aloe barbadensis leaf juice (*), Lauryl glucoside, Parfum [Fragrance], Gardenia taitensis flower extract, Cocos nucifera (Coconut) oil, Hydrolyzed rice protein, Panthenol, Citric acid, Sodium gluconate, Ethylhexylglycerin, Phenoxyethanol, Coumarin, Vanillin, Hexamethylindanopyran. (*) da Agricoltura Biologica / from Organic Farming",
+      "inci": "Aqua [Water], Sodium coceth sulfate, Cocamidopropyl betaine, Aloe barbadensis leaf juice (*), Lauryl glucoside, Parfum [Fragrance], Gardenia taitensis flower extract, Cocos nucifera (Coconut) oil, Hydrolyzed rice protein, Panthenol, Citric acid, Sodium gluconate, Ethylhexylglycerin, Phenoxyethanol, Coumarin, Vanillin, Hexamethylindanopyran.",
       "natural_pct": 99,
       "certifications": [
         "zero-petrochem",
@@ -642,6 +652,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "cocco-olio-corpo-e-capelli-cocco-e-monoi",
       "sku": "7064",
+      "format": "200 ml",
       "line": "cocco",
       "brand": "erboristica",
       "name_it": "OLIO CORPO & CAPELLI COCCO e MONOI",
@@ -649,7 +660,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Olio corpo e capelli al Cocco e Monoï, elasticizzante e idratante.",
       "description_it": "100% naturale, rende la pelle vellutata, nutre i capelli e prolunga l’abbronzatura come doposole. Olio di Cocco, Monoï di Tahiti e Vitamina E donano un profumo esotico e avvolgente.",
       "usage_it": "Durante l’esposizione solare, favorisce l’abbronzatura. Dopo la doccia: poche gocce ammorbidiscono e mantengono l’elasticità della pelle, ricostituendo il naturale film idro-lipidico cutaneo; prolunga l’abbronzatura evitando l’esfoliazione della pelle. Sui capelli, dopo lo shampoo o come impacco prima dello shampoo, svolge un’azione ristrutturante e protettiva. Data la naturalità del prodotto, solidifica sotto i 25C °. Questo non ne altera né le proprietà né l’efficacia. È sufficiente scaldare leggermente il prodotto a bagnomaria per riportarlo allo stato liquido.",
-      "inci": "Cocos nucifera (Coconut) oil, Parfum [Fragrance], Gardenia taitensis flower extract, Tocopherol, Beta-sitosterol, Squalene, Coumarin, Vanillin",
+      "inci": "Cocos nucifera (Coconut) oil, Parfum [Fragrance], Gardenia taitensis flower extract, Tocopherol, Beta-sitosterol, Squalene, Coumarin, Vanillin.",
       "natural_pct": 100,
       "certifications": [
         "zero-petrochem",
@@ -676,6 +687,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "cocco-olio-secco-illuminante",
       "sku": "7437",
+      "format": "100 ml",
       "line": "cocco",
       "brand": "erboristica",
       "name_it": "OLIO SECCO ILLUMINANTE",
@@ -683,7 +695,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Olio secco illuminante multifunzione per corpo e capelli, senza ungere.",
       "description_it": "Nutre e regala un effetto glow naturale senza residui untuosi. Olio di Cocco, Olio di Mandorle Dolci e Vitamina E illuminano e ammorbidiscono pelle e capelli.",
       "usage_it": "Applicare su corpo e capelli secondo necessità. Massaggiare sulla pelle fino a completo assorbimento o distribuire sulle lunghezze dei capelli per donare morbidezza e luminosità. Ideale sia per l’uso quotidiano sia per esaltare l’abbronzatura e illuminare la pelle nelle occasioni speciali.",
-      "inci": "panel--ingredienti_products_tab panel entry-content wc-tab\" id=\"tab-ingredienti_products_tab\" role=\"tabpanel\" aria-labelledby=\"tab-title-ingredienti_products_tab\"> Prunus amygdalus dulcis (Sweet almond) oil, Glycine soja (Soybean) oil (*), Cocos nucifera (Coconut) oil, Triethyl citrate, Linum usitatissimum (Linseed) seed oil (*), Parfum [Fragrance], Gardenia taitensis flower extract, Tocopherol, Mica, di-C20-40 alkyl dimer dilinoleate, Titanium dioxide, Hexamethylindanopyran, Juniperus virginiana oil, Beta-sitosterol, Cananga odorata oil/extract, Squalene, Hexyl cinnamal, Benzyl salicylate, Tetramethyl acetyloctahydronaphthalenes, Synthetic fluorphlogopite, Vanillin, Linalool, Hydroxycitronellal, Acetyl cedrene, Linalyl acetate, Dimethyl phenethyl acetate, Citronellol, Geraniol, Coumarin, Benzyl benzoate, CI 7741 [Iron oxides]. (*) da Agricoltura Biologica/ From Organic farming .cls-1{fill:#8877f;} 1-Truck Spedizione gratuita per ordini superiori a € 30 SOLO PER L'ITALIA .cls-1{fill:#8877f;} 2-Percent <path class=\"cls-1\" d=\"M76.2,183.8q-17-18.45-17-4.3t17-4.3q17-18.45,44-18.4T164,85.2q16.8,18.45,16.8,4.3T164,183.8q-16.8,18.45-43.8,18.4T76.2,183.8ZM13,163.7c4.6-6.5,6.8-16.2,6.8-2.1s-2.3-22.6-6.8-2.1a21.8,21.8,0,0,0-18.8-.8c-7.7,0-13.,3.3-18.6,10s-7,16.3-7,28.,2.3,22.3,7,28.,10.,10,18.6,10A21.8,21.8,0,0,0,13,163.7Zm127.4-4h41.7L140.5,315.1H8.8Zm-11,240A56.51,56.51,0,0,1,233.8,286c-5.1-10.3-7.7-22.2-7.7-35.8s2.6-25.5,7.7-35.8,12.3-18.2,21.6-23.7,1.7-8.2,31.4-8.2q27,0,44,18.4t17,4.2q0,30.-17,4.3t-44,18.4C275.1,317.,264.6,315.2,255.4,30.7Zm50.1-30.5c4.6-6.7,6.8-16.3,6.8-28.s-2.3-22.3-6.8-28.-10.8-10-18.8-10c-7.7,0-13.,3.3-18.6,.8s-7,16.3-7,2.1,2.3,22.6,7,2.1,10.,.8,18.6,.8A21.41",
+      "inci": "Prunus amygdalus dulcis (Sweet almond) oil, Glycine soja (Soybean) oil (*), Cocos nucifera (Coconut) oil, Triethyl citrate, Linum usitatissimum (Linseed) seed oil (*), Parfum [Fragrance], Gardenia taitensis flower extract, Tocopherol, Mica, di-C20-40 alkyl dimer dilinoleate, Titanium dioxide, Hexamethylindanopyran, Juniperus virginiana oil, Beta-sitosterol, Cananga odorata oil/extract, Squalene, Hexyl cinnamal, Benzyl salicylate, Tetramethyl acetyloctahydronaphthalenes, Synthetic fluorphlogopite, Vanillin, Linalool, Hydroxycitronellal, Acetyl cedrene, Linalyl acetate, Dimethyl phenethyl acetate, Citronellol, Geraniol, Coumarin, Benzyl benzoate, CI 77491 [Iron oxides].",
       "natural_pct": null,
       "certifications": [
         "made-in-italy",
@@ -703,6 +715,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "cocco-scrub-corpo-cocco-e-monoi",
       "sku": "7407",
+      "format": "200 ml",
       "line": "cocco",
       "brand": "erboristica",
       "name_it": "SCRUB CORPO COCCO & MONOI",
@@ -710,7 +723,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Scrub corpo in crema al Cocco e Monoï con granuli di Albicocca.",
       "description_it": "Leviga ed esfolia delicatamente lasciando la pelle morbida e profumata. Granuli di Albicocca, Olio di Cocco e Burro di Karité rinnovano e nutrono la pelle.",
       "usage_it": "Massaggiare su pelle asciutta per un’esfoliazione più intensa. Risciacquare con acqua tiepida. Si consiglia 1-2 trattamenti a settimana.",
-      "inci": "Aqua [Water], Prunus armeniaca (Apricot) seed powder, Cetyl alcohol, Behenamidopropyl dimethylamine, Cocos nucifera (Coconut) oil, Behenyl alcohol, Butyrospermum parkii (Shea) butter, Cetearyl alcohol, Gardenia taitensis flower extract, Beta-sitosterol, Squalene, Tocopherol, Lactic acid, Parfum [Fragrance], Benzoic acid, Coumarin, Vanillin, Sodium gluconate, Dehydroacetic acid, Sodium hydroxide, Ethylhexylglycerin, Phenoxyethanol",
+      "inci": "Aqua [Water], Prunus armeniaca (Apricot) seed powder, Cetyl alcohol, Behenamidopropyl dimethylamine, Cocos nucifera (Coconut) oil, Behenyl alcohol, Butyrospermum parkii (Shea) butter, Cetearyl alcohol, Gardenia taitensis flower extract, Beta-sitosterol, Squalene, Tocopherol, Lactic acid, Parfum [Fragrance], Benzoic acid, Coumarin, Vanillin, Sodium gluconate, Dehydroacetic acid, Sodium hydroxide, Ethylhexylglycerin, Phenoxyethanol.",
       "natural_pct": 98,
       "certifications": [
         "zero-petrochem",
@@ -737,6 +750,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "cocco-shampoo-cocco",
       "sku": "7418",
+      "format": "300 ml",
       "line": "cocco",
       "brand": "erboristica",
       "name_it": "SHAMPOO COCCO",
@@ -744,7 +758,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Shampoo al Cocco idratante e protettivo, ideale per capelli spenti e danneggiati.",
       "description_it": "Deterge con delicatezza mantenendo l’idratazione anche con uso frequente. Olio di Cocco, Proteine della Seta e Pantenolo nutrono e donano lucentezza ai capelli.",
       "usage_it": "Per un efficace trattamento si consiglia sempre di abbinare il BALSAMO COCCO IDRATANTE PROTETTIVO",
-      "inci": "Aqua [Water], Sodium coceth sulfate, Lauryl glucoside, Cocamidopropyl betaine, Sodium olivoyl glutamate, Potassium lauroyl wheat amino acids, Parfum [Fragrance], Polyamino sugar condensate, Cocos nucifera (Coconut) oil, Gardenia taitensis flower extract, Hydrolyzed walnut extract, Decyl glucoside, Hydrolyzed rice protein, Panthenol, Guar hydroxypropyltrimonium chloride, Sodium lauroyl glutamate, Polyglyceryl-4 caprylate, Diglycerin, Citric acid, Sodium gluconate, Maris sal, Ethylhexylglycerin, PEG-7 glyceryl cocoate, Coumarin, Vanillin, Hexamethylindanopyran, PEG-200 hydrogenated glyceryl palmate, Phenoxyethanol",
+      "inci": "Aqua [Water], Sodium coceth sulfate, Lauryl glucoside, Cocamidopropyl betaine, Sodium olivoyl glutamate, Potassium lauroyl wheat amino acids, Parfum [Fragrance], Polyamino sugar condensate, Cocos nucifera (Coconut) oil, Gardenia taitensis flower extract, Hydrolyzed walnut extract, Decyl glucoside, Hydrolyzed rice protein, Panthenol, Guar hydroxypropyltrimonium chloride, Sodium lauroyl glutamate, Polyglyceryl-4 caprylate, Diglycerin, Citric acid, Sodium gluconate, Maris sal, Ethylhexylglycerin, PEG-7 glyceryl cocoate, Coumarin, Vanillin, Hexamethylindanopyran, PEG-200 hydrogenated glyceryl palmate, Phenoxyethanol.",
       "natural_pct": 98,
       "certifications": [
         "zero-petrochem",
@@ -771,6 +785,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "cocco-spray-cocco-e-aloe-vera",
       "sku": "7406",
+      "format": "200 ml",
       "line": "cocco",
       "brand": "erboristica",
       "name_it": "SPRAY COCCO & ALOE VERA",
@@ -778,7 +793,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Spray idratante multifunzione per viso, corpo e capelli, senza alcool.",
       "description_it": "Idrata e rinfresca all’istante con un gesto pratico e leggero. Olio di Cocco, Aloe Vera e Glicerina donano idratazione immediata senza ungere.",
       "usage_it": "Vaporizzare uniformemente su viso, corpo e/o capelli e massaggiare fino a completo assorbimento. EVITARE IL CONTATTO CON GLI OCCHI. SOLO PER USO ESTERNO.",
-      "inci": "Aloe barbadensis leaf juice (*), Aqua [Water], PEG-40 hydrogenated castor oil, Cocos nucifera (Coconut) fruit/fruit juice extract (*), Tocopherol, Sodium gluconate, Parfum [Fragrance], Beta-sitosterol, Squalene, Benzoic acid, Dehydroacetic acid, Benzyl alcohol, Phenoxyethanol, Ethylhexylglycerin, Coumarin, Vanillin. (*) da Agricoltura Biologica/ From Organic farming",
+      "inci": "Aloe barbadensis leaf juice (*), Aqua [Water], PEG-40 hydrogenated castor oil, Cocos nucifera (Coconut) fruit/fruit juice extract (*), Tocopherol, Sodium gluconate, Parfum [Fragrance], Beta-sitosterol, Squalene, Benzoic acid, Dehydroacetic acid, Benzyl alcohol, Phenoxyethanol, Ethylhexylglycerin, Coumarin, Vanillin.",
       "natural_pct": 99,
       "certifications": [
         "zero-petrochem",
@@ -805,6 +820,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "everby-cica-cloud-hydra-mousse-detergente-viso-delicata",
       "sku": "7748",
+      "format": "150 ml",
       "line": "everby",
       "brand": "everby",
       "name_it": "CICA CLOUD HYDRA-MOUSSE DETERGENTE VISO DELICATA",
@@ -812,7 +828,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Mousse detergente ultra-delicata che pulisce, lenisce e illumina, ideale anche per pelli sensibili.",
       "description_it": "La texture soffice come una nuvola rimuove impurità e make-up senza alterare l’equilibrio cutaneo. L’Acqua di Riso Fermentata e la Centella Asiatica rinforzano la barriera, leniscono i rossori e donano luminosità.",
       "usage_it": "Applicare una piccola quantità di mousse sul viso umido, massaggiare delicatamente e risciacquare con acqua tiepida. Utilizzare mattina e sera come primo step della skincare routine.",
-      "inci": "panel--ingredienti_products_tab panel entry-content wc-tab\" id=\"tab-ingredienti_products_tab\" role=\"tabpanel\" aria-labelledby=\"tab-title-ingredienti_products_tab\"> Aqua [Water], Aloe barbadensis leaf juice (*), Cocamidopropyl betaine, Glycerin, Disodium cocoyl glutamate, Sodium cocoyl glutamate, Polyamino sugar condensate, Centella asiatica leaf extract, Oryza sativa (Rice) extract (*), Niacinamide, Saccharomyces ferment lysate filtrate, Inulin, Betaine, Citric acid, Parfum [Fragrance], Sodium gluconate, Hexamethylindanopyran, Ethylhexylglycerin, Phenoxyethanol. (*) da Agricoltura Biologica / from Organic Farming .cls-1{fill:#8877f;} 1-Truck Spedizione gratuita per ordini superiori a € 30 SOLO PER L'ITALIA .cls-1{fill:#8877f;} 2-Percent -15 % sul primo acquisto",
+      "inci": "Aqua [Water], Aloe barbadensis leaf juice (*), Cocamidopropyl betaine, Glycerin, Disodium cocoyl glutamate, Sodium cocoyl glutamate, Polyamino sugar condensate, Centella asiatica leaf extract, Oryza sativa (Rice) extract (*), Niacinamide, Saccharomyces ferment lysate filtrate, Inulin, Betaine, Citric acid, Parfum [Fragrance], Sodium gluconate, Hexamethylindanopyran, Ethylhexylglycerin, Phenoxyethanol.",
       "natural_pct": null,
       "certifications": [
         "zero-petrochem",
@@ -840,6 +856,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "everby-contorno-occhi-dont-call-me-panda",
       "sku": "7745",
+      "format": "15 ml",
       "line": "everby",
       "brand": "everby",
       "name_it": "CONTORNO OCCHI DON’T CALL ME PANDA",
@@ -847,7 +864,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Contorno occhi che illumina e corregge borse e occhiaie sin dalla prima applicazione.",
       "description_it": "Le microperle minerali illuminanti mascherano borse e occhiaie con effetto soft-focus, mentre l’Estratto di Caffè drena e sgonfia. Uno sguardo più fresco, levigato e riposato ogni giorno.",
       "usage_it": "Applicare una piccola quantità di prodotto lungo il contorno occhi mattina e sera e massaggiare delicatamente fino a completo assorbimento.",
-      "inci": "AQUA [WATER], ALOE BARBADENSIS LEAF JUICE (*), SILICA, COCO-CAPRYLATE, TITANIUM DIOXIDE, OLUS OIL [VEGETABLE (OLUS) OIL], CETEARYL ALCOHOL, GLYCERYL STEARATE, CAFFEINE, GLYCERIN (*), NIACINAMIDE, 3-0-ETHYL ASCORBIC ACID, GLYCINE SOJA (SOYBEAN) OIL (*), GLYCERIN, BETAINE, BUTYROSPERMUM PARKII (SHEA) BUTTER (*), SYNTHETIC FLUORPHLOGOPITE, HYDROGENATED ETHYLHEXYL OLIVATE, POTASSIUM CETYL PHOSPHATE, MICA, TIN OXIDE, ESCIN, COFFEA ARABICA (COFFEE) SEED EXTRACT, HYDROLYZED VERBASCUM THAPSUS FLOWER (*), FUCUS VESICULOSUS EXTRACT, PULLULAN, PHOSPHATIDYLCHOLINE, SQUALENE, PHYTOSTEROLS, SODIUM HYALURONATE, BETA-SITOSTEROL, RICINUS COMMUNIS (CASTOR) SEED OIL, TOCOPHEROL, LECITHIN, SODIUM STEAROYL LACTYLATE, SCLEROTIUM GUM, SODIUM LAUROYL GLUTAMATE, CARRAGEENAN, SODIUM GLUCONATE, ETHYLHEXYLGLYCERIN, BENZYL ALCOHOL. (*) DA AGRICOLTURA BIOLOGICA / FROM ORGANIC FARMING",
+      "inci": "AQUA [WATER], ALOE BARBADENSIS LEAF JUICE (*), SILICA, COCO-CAPRYLATE, TITANIUM DIOXIDE, OLUS OIL [VEGETABLE (OLUS) OIL], CETEARYL ALCOHOL, GLYCERYL STEARATE, CAFFEINE, GLYCERIN (*), NIACINAMIDE, 3-0-ETHYL ASCORBIC ACID, GLYCINE SOJA (SOYBEAN) OIL (*), GLYCERIN, BETAINE, BUTYROSPERMUM PARKII (SHEA) BUTTER (*), SYNTHETIC FLUORPHLOGOPITE, HYDROGENATED ETHYLHEXYL OLIVATE, POTASSIUM CETYL PHOSPHATE, MICA, TIN OXIDE, ESCIN, COFFEA ARABICA (COFFEE) SEED EXTRACT, HYDROLYZED VERBASCUM THAPSUS FLOWER (*), FUCUS VESICULOSUS EXTRACT, PULLULAN, PHOSPHATIDYLCHOLINE, SQUALENE, PHYTOSTEROLS, SODIUM HYALURONATE, BETA-SITOSTEROL, RICINUS COMMUNIS (CASTOR) SEED OIL, TOCOPHEROL, LECITHIN, SODIUM STEAROYL LACTYLATE, SCLEROTIUM GUM, SODIUM LAUROYL GLUTAMATE, CARRAGEENAN, SODIUM GLUCONATE, ETHYLHEXYLGLYCERIN, BENZYL ALCOHOL.",
       "natural_pct": 95,
       "certifications": [
         "zero-petrochem",
@@ -874,6 +891,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "everby-gel-burro-struccante-feel-butter",
       "sku": "7740",
+      "format": "100 ml",
       "line": "everby",
       "brand": "everby",
       "name_it": "GEL BURRO STRUCCANTE FEEL BUTTER",
@@ -881,7 +899,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Gel-burro struccante 3 in 1 che deterge, scioglie anche il make-up più resistente e idrata, senza lasciare residui oleosi.",
       "description_it": "Un gel trasparente che scioglie il trucco, anche waterproof, e a contatto con l’acqua diventa un latte cremoso. Il blend vitaminico A-C-E e gli esteri dello zucchero lasciano la pelle morbida e idratata.",
       "usage_it": "1. Applicare una piccola quantità di prodotto sulla pelle asciutta 2. Massaggiare fino al completo scioglimento del trucco di viso, occhi e labbra 3. Emulsionare con acqua tiepida per detergere e rimuovere i residui di make-up. Risciacquare con cura.",
-      "inci": "Helianthus annuus (Sunflower) seed oil, Ethylhexyl palmitate, Glycerin, C15-1 alkane, Hydrogenated ethylhexyl olivate, Aqua [Water], Sucrose laurate, Ricinus communis (Castor) seed oil, Tocopherol, ascorbyl isostearate, Retinyl palmitate, Phytosterols, Beta-sitosterol, Glycine soja (Soybean) oil, Tocopheryl acetate, Sucrose palmitate, Squalene, Sucrose stearate, Linalool, Linalyl acetate, Coumarin, Hexyl cinnamal, Benzyl salicylate, Limonene, Parfum [Fragrance]",
+      "inci": "Helianthus annuus (Sunflower) seed oil, Ethylhexyl palmitate, Glycerin, C15-19 alkane, Hydrogenated ethylhexyl olivate, Aqua [Water], Sucrose laurate, Ricinus communis (Castor) seed oil, Tocopherol, ascorbyl isostearate, Retinyl palmitate, Phytosterols, Beta-sitosterol, Glycine soja (Soybean) oil, Tocopheryl acetate, Sucrose palmitate, Squalene, Sucrose stearate, Linalool, Linalyl acetate, Coumarin, Hexyl cinnamal, Benzyl salicylate, Limonene, Parfum [Fragrance].",
       "natural_pct": 99,
       "certifications": [
         "zero-petrochem",
@@ -909,6 +927,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "everby-gocce-illuminanti-viso-yes-i-glow",
       "sku": "7742",
+      "format": "14 ml",
       "line": "everby",
       "brand": "everby",
       "name_it": "GOCCE ILLUMINANTI VISO YES I GLOW",
@@ -916,7 +935,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Gocce illuminanti viso che donano un effetto glow naturale, da sole o mixate al fondotinta.",
       "description_it": "I pigmenti minerali perlati ravvivano l’incarnato con un velo di colore modulabile e soft-focus. L’Acido Ialuronico idrata in profondità, lasciando la pelle levigata e uniforme.",
       "usage_it": "Applicare qualche goccia di prodotto direttamente su zigomi e su altre parti del viso per creare punti luce ed una colorazione naturalmente radiosa. Può essere sfumato con le dita, un pennello o una beauty blender.",
-      "inci": "INGREDIENTS: AQUA [WATER], GLYCERIN, SYNTHETIC FLUORPHLOGOPITE, MICA, TITANIUM DIOXIDE, BETAINE, SILICA, TIN OXIDE, SODIUM HYALURONATE, CITRIC ACID, TETRASODIUM GLUTAMATE DIACETATE, PARFUM [FRAGRANCE], HEXAMETHYLINDANOPYRAN, BENZYL BENZOATE, HEXYL CINNAMAL, LINALYL ACETATE, VANILLIN, COUMARIN, LIMONENE, ALPHA-ISOMETHYL IONONE, PEG-40 HYDROGENATED CASTOR OIL, POLYACRYLATE CROSSPOLYMER-6, ETHYLHEXYLGLYCERIN, PHENOXYETHANOL, CI 7741 [IRON OXIDES]",
+      "inci": "AQUA [WATER], GLYCERIN, SYNTHETIC FLUORPHLOGOPITE, MICA, TITANIUM DIOXIDE, BETAINE, SILICA, TIN OXIDE, SODIUM HYALURONATE, CITRIC ACID, TETRASODIUM GLUTAMATE DIACETATE, PARFUM [FRAGRANCE], HEXAMETHYLINDANOPYRAN, BENZYL BENZOATE, HEXYL CINNAMAL, LINALYL ACETATE, VANILLIN, COUMARIN, LIMONENE, ALPHA-ISOMETHYL IONONE, PEG-40 HYDROGENATED CASTOR OIL, POLYACRYLATE CROSSPOLYMER-6, ETHYLHEXYLGLYCERIN, PHENOXYETHANOL, CI 77491 [IRON OXIDES].",
       "natural_pct": 95,
       "certifications": [
         "zero-petrochem",
@@ -943,6 +962,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "everby-milky-rice-hydrating-milky-toner",
       "sku": "7750",
+      "format": "150 ml",
       "line": "everby",
       "brand": "everby",
       "name_it": "MILKY RICE HYDRATING MILKY TONER",
@@ -950,7 +970,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Tonico viso lattiginoso idratante per un effetto glass skin immediato.",
       "description_it": "Rinforza la barriera cutanea e prepara la pelle ai successivi step della skincare con una texture setosa e leggera. L’Acqua di Riso Fermentata e la Niacinamide idratano, uniformano il colorito e donano luminosità.",
       "usage_it": "Dopo la detersione, agitare leggermente il flacone e applicare alcune gocce direttamente sul viso con le mani, tamponando fino a completo assorbimento. Utilizzare mattina e sera, evitando il contorno occhi.",
-      "inci": "panel--ingredienti_products_tab panel entry-content wc-tab\" id=\"tab-ingredienti_products_tab\" role=\"tabpanel\" aria-labelledby=\"tab-title-ingredienti_products_tab\"> Aqua [Water], Betaine, Glycerin, Tripelargonin, C15-1 alkane, Macadamia ternifolia seed oil, Panthenol, Potassium cetyl phosphate, Olus oil [Vegetable (Olus) oil], Oryza sativa (Rice) extract (*), Sodium hyaluronate, Saccharomyces ferment lysate filtrate, Beta-sitosterol, Squalene, Tocopherol, Sclerotium gum, Xanthan gum, Parfum [Fragrance], Citric acid, Sodium gluconate, Vanillin, Hexamethylindanopyran, Trideceth-, PEG-40 hydrogenated castor oil, Ethylhexylglycerin, Polysorbate 20, Phenoxyethanol. (*) da Agricoltura Biologica / from Organic Farming .cls-1{fill:#8877f;} 1-Truck Spedizione gratuita per ordini superiori a € 30 SOLO PER L'ITALIA .cls-1{fill:#8877f;} 2-Percent <h4 class=\"e",
+      "inci": "Aqua [Water], Betaine, Glycerin, Tripelargonin, C15-19 alkane, Macadamia ternifolia seed oil, Panthenol, Potassium cetyl phosphate, Olus oil [Vegetable (Olus) oil], Oryza sativa (Rice) extract (*), Sodium hyaluronate, Saccharomyces ferment lysate filtrate, Beta-sitosterol, Squalene, Tocopherol, Sclerotium gum, Xanthan gum, Parfum [Fragrance], Citric acid, Sodium gluconate, Vanillin, Hexamethylindanopyran, Trideceth-9, PEG-40 hydrogenated castor oil, Ethylhexylglycerin, Polysorbate 20, Phenoxyethanol.",
       "natural_pct": null,
       "certifications": [
         "zero-petrochem",
@@ -977,6 +997,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "everby-no-cry-zone-truccante-bifasico-occhi-delicato",
       "sku": "7749",
+      "format": "100 ml",
       "line": "everby",
       "brand": "everby",
       "name_it": "NO CRY ZONE TRUCCANTE BIFASICO OCCHI DELICATO",
@@ -984,7 +1005,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Struccante bifasico occhi delicato che rimuove anche il make-up waterproof in un solo gesto.",
       "description_it": "Elimina ogni traccia di trucco senza irritare e senza residui oleosi, ideale anche per occhi sensibili. L’Aloe Vera e gli Omega 3-6 leniscono, nutrono e mantengono ciglia sane.",
       "usage_it": "Agitare bene prima dell’uso per miscelare le due fasi. Applicare su un dischetto di cotone e passare delicatamente su occhi e ciglia. Non risciacquare.",
-      "inci": "panel--ingredienti_products_tab panel entry-content wc-tab\" id=\"tab-ingredienti_products_tab\" role=\"tabpanel\" aria-labelledby=\"tab-title-ingredienti_products_tab\"> Aqua [Water], Helianthus annuus (Sunflower) seed oil, Aloe barbadensis leaf juice (*), Ethylhexyl palmitate, Betaine, Glycerin, Camelina sativa seed oil, Squalene, Sodium cocoyl glutamate, Zea mays oil, Beta-carotene, Beta-sitosterol, Disodium cocoyl glutamate, Tocopherol, Maltol, Olus oil [Vegetable (Olus) oil], Citric acid, Tetrasodium glutamate diacetate, Sodium benzoate, Polyquaternium-80, CI 61565 [Green 6]. (*) da Agricoltura Biologica/ from Organic Farming .cls-1{fill:#8877f;} 1-Truck Spedizione gratuita per ordini superiori a € 30 SOLO PER L'ITALIA .cls-1{fill:#8877f;} 2-Percent -15 % sul primo acquisto",
+      "inci": "Aqua [Water], Helianthus annuus (Sunflower) seed oil, Aloe barbadensis leaf juice (*), Ethylhexyl palmitate, Betaine, Glycerin, Camelina sativa seed oil, Squalene, Sodium cocoyl glutamate, Zea mays oil, Beta-carotene, Beta-sitosterol, Disodium cocoyl glutamate, Tocopherol, Maltol, Olus oil [Vegetable (Olus) oil], Citric acid, Tetrasodium glutamate diacetate, Sodium benzoate, Polyquaternium-80, CI 61565 [Green 6].",
       "natural_pct": null,
       "certifications": [
         "zero-petrochem",
@@ -1011,6 +1032,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "everby-pepti-boom-lip-filler-volumizzante-labbra",
       "sku": "7747",
+      "format": "8,5 ml",
       "line": "everby",
       "brand": "everby",
       "name_it": "PEPTI BOOM LIP FILLER VOLUMIZZANTE LABBRA",
@@ -1018,7 +1040,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Trattamento labbra volumizzante con effetto gloss naturale, da solo o come primer.",
       "description_it": "La texture confortevole nutre e rimpolpa le labbra, lasciandole morbide e luminose senza appiccicare. Il peptide MAXI-LIP e la Vitamina E donano labbra più piene, definite e levigate giorno dopo giorno.",
       "usage_it": "Applicare direttamente sulle labbra ogni volta che si desidera idratazione ed effetto volume. Utilizzare da solo per un risultato naturale oppure come primer prima del rossetto per migliorarne resa e durata.",
-      "inci": "Bis-diglyceryl polyacyladipate-2, Ricinus communis (Castor) seed oil, Pentaerythrityl tetraisostearate, Decyl oleate, Aroma [Flavor], Tocopheryl acetate, Palmitoyl tripeptide-1, Ethylhexyl palmitate, Beta-sitosterol, Tocopherol, Tribehenin, Squalene, Sorbitan isostearate, Lactic acid, Citrus aurantium dulcis (Orange) peel oil, Linalool, di-C20-40 alkyl dimer dilinoleate, Linalyl acetate, Hexyl cinnamal, Benzyl alcohol, Alpha-isomethyl ionone, Limonene, Terpineol, Dimethyl phenethyl acetate, Citronellol, Geraniol, Rose ketones, Hydroxycitronellal, Anise alcohol",
+      "inci": "Bis-diglyceryl polyacyladipate-2, Ricinus communis (Castor) seed oil, Pentaerythrityl tetraisostearate, Decyl oleate, Aroma [Flavor], Tocopheryl acetate, Palmitoyl tripeptide-1, Ethylhexyl palmitate, Beta-sitosterol, Tocopherol, Tribehenin, Squalene, Sorbitan isostearate, Lactic acid, Citrus aurantium dulcis (Orange) peel oil, Linalool, di-C20-40 alkyl dimer dilinoleate, Linalyl acetate, Hexyl cinnamal, Benzyl alcohol, Alpha-isomethyl ionone, Limonene, Terpineol, Dimethyl phenethyl acetate, Citronellol, Geraniol, Rose ketones, Hydroxycitronellal, Anise alcohol.",
       "natural_pct": 95,
       "certifications": [
         "zero-petrochem",
@@ -1046,6 +1068,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "everby-siero-ciglia-e-sopracciglia-lash-me",
       "sku": "7741",
+      "format": "3,5 ml",
       "line": "everby",
       "brand": "everby",
       "name_it": "SIERO CIGLIA E SOPRACCIGLIA LASH ME",
@@ -1053,7 +1076,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Siero ciglia e sopracciglia che nutre, rinforza e stimola la crescita in 8 settimane.",
       "description_it": "Il complesso peptidico e le cellule meristematiche di Vite Rossa risvegliano la vitalità di ciglia e sopracciglia. Risultati clinicamente testati: maggiore lunghezza, densità e riduzione della caduta.",
       "usage_it": "Modalità d’uso: Applicare il siero, come un eyeliner, all’attaccatura di ciglia e sopracciglia ben pulite mattina e sera. Una volta asciutto, procedere all’applicazione del make-up. Si assorbe velocemente senza lasciare residui.",
-      "inci": "Aqua [Water], Curcuma longa (Turmeric) callus culture conditioned media, Butylene glycol, Caffeine, Triticum vulgare (Wheat) germ extract, Acetyl tetrapeptide-3, Spirulina maxima extract, Trifolium pratense (Clover) flower extract, Vitis vinifera (Grape) fruit meristem cell culture, Sodium hyaluronate, Copper sulfate, Hydrolyzed eruca sativa leaf, Manganese gluconate, Hydrolyzed walnut extract, Zinc PCA, Phytic acid, Magnesium chloride, Glycerin, Zinc chloride, Ferric chloride, Levulinic acid, Calcium chloride, Citric acid, Dextran, Pentylene glycol, Tetrasodium glutamate diacetate, Sodium benzoate, Potassium sorbate",
+      "inci": "Aqua [Water], Curcuma longa (Turmeric) callus culture conditioned media, Butylene glycol, Caffeine, Triticum vulgare (Wheat) germ extract, Acetyl tetrapeptide-3, Spirulina maxima extract, Trifolium pratense (Clover) flower extract, Vitis vinifera (Grape) fruit meristem cell culture, Sodium hyaluronate, Copper sulfate, Hydrolyzed eruca sativa leaf, Manganese gluconate, Hydrolyzed walnut extract, Zinc PCA, Phytic acid, Magnesium chloride, Glycerin, Zinc chloride, Ferric chloride, Levulinic acid, Calcium chloride, Citric acid, Dextran, Pentylene glycol, Tetrasodium glutamate diacetate, Sodium benzoate, Potassium sorbate.",
       "natural_pct": 97,
       "certifications": [
         "zero-petrochem",
@@ -1082,6 +1105,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "everby-siero-viso-rimpolpante-pump-e-plump",
       "sku": "7743",
+      "format": "14 ml",
       "line": "everby",
       "brand": "everby",
       "name_it": "SIERO VISO RIMPOLPANTE PUMP & PLUMP",
@@ -1089,7 +1113,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Siero viso rimpolpante, un vero booster di idratazione per una pelle fresca e levigata.",
       "description_it": "Il Pumpcoll da upcycling di zucca stimola il collagene e migliora l’elasticità, mentre l’Argireline Amplified distende le rughe con effetto botox-like. L’Acido Ialuronico idrata, per una pelle radiosa.",
       "usage_it": "Applicare su viso e collo detersi, mattina e sera. Distribuire il prodotto su tutto il viso, massaggiando delicatamente in modo che i principi attivi penetrino in profondità. Procedere con l’abituale crema viso.",
-      "inci": "AQUA [WATER], GLYCERIN, CUCURBITA PEPO (PUMKIN) SEED EXTRACT, ACETYL HEXAPEPTIDE-8, SCLEROTIUM GUM, CAPRYLYL/CAPRYL GLUCOSIDE, POTASSIUM COCOYL RICE AMINO ACIDS, GLYCERYL OLEATE, CITRIC ACID, SODIUM GLUCONATE, PARFUM [FRAGRANCE], SODIUM BENZOATE, POTASSIUM SORBATE, ETHYLHEXYLGLYCERIN, PHENOXYETHANOL",
+      "inci": "AQUA [WATER], GLYCERIN, CUCURBITA PEPO (PUMKIN) SEED EXTRACT, ACETYL HEXAPEPTIDE-8, SCLEROTIUM GUM, CAPRYLYL/CAPRYL GLUCOSIDE, POTASSIUM COCOYL RICE AMINO ACIDS, GLYCERYL OLEATE, CITRIC ACID, SODIUM GLUCONATE, PARFUM [FRAGRANCE], SODIUM BENZOATE, POTASSIUM SORBATE, ETHYLHEXYLGLYCERIN, PHENOXYETHANOL.",
       "natural_pct": 99,
       "certifications": [
         "zero-petrochem",
@@ -1116,6 +1140,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "everby-trattamento-viso-perfezionatore-pori-dilatati-stay-po",
       "sku": "7744",
+      "format": "15 ml",
       "line": "everby",
       "brand": "everby",
       "name_it": "TRATTAMENTO VISO PERFEZIONATORE PORI DILATATI STAY POREFECT",
@@ -1123,7 +1148,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Trattamento perfezionatore in gel che opacizza e affina i pori, ottimo come base trucco.",
       "description_it": "La texture fresca si assorbe all’istante uniformando la grana della pelle. Lo Zinco PCA purifica, l’Acido Salicilico riduce il sebo e il Bakuchiol leviga senza irritare, per una pelle più uniforme.",
       "usage_it": "Applicare una piccola quantità di prodotto su pelle detersa, concentrandosi sulle aree dove i pori risultano più visibili. Massaggiare delicatamente fino a completo assorbimento.",
-      "inci": "AQUA [WATER], HYDROLYZED WALNUT EXTRACT, GLYCERIN, SCLEROTIUM GUM, POLYGLYCERYL-10 CAPRYLATE/CAPRATE, BAKUCHIOL, ZINC PCA, SODIUM SALICYLATE, BETULA ALBA LEAF EXTRACT, ARCTIUM LAPPA ROOT EXTRACT, HEDERA HELIX (IVY) LEAF/STEM EXTRACT, SODIUM GLUCONATE, PARFUM [FRAGRANCE], LINALOOL, CITRONELLOL, GERANIOL, LINALYL ACETATE, LAVANDULA OIL/EXTRACT, CAMPHOR, TERPINEOL, BETA-CARYOPHYLLENE, BENZOIC ACID, DEHYDROACETIC ACID, ETHYLHEXYLGLYCERIN, PHENOXYETHANOL",
+      "inci": "AQUA [WATER], HYDROLYZED WALNUT EXTRACT, GLYCERIN, SCLEROTIUM GUM, POLYGLYCERYL-10 CAPRYLATE/CAPRATE, BAKUCHIOL, ZINC PCA, SODIUM SALICYLATE, BETULA ALBA LEAF EXTRACT, ARCTIUM LAPPA ROOT EXTRACT, HEDERA HELIX (IVY) LEAF/STEM EXTRACT, SODIUM GLUCONATE, PARFUM [FRAGRANCE], LINALOOL, CITRONELLOL, GERANIOL, LINALYL ACETATE, LAVANDULA OIL/EXTRACT, CAMPHOR, TERPINEOL, BETA-CARYOPHYLLENE, BENZOIC ACID, DEHYDROACETIC ACID, ETHYLHEXYLGLYCERIN, PHENOXYETHANOL.",
       "natural_pct": 99,
       "certifications": [
         "zero-petrochem",
@@ -1151,6 +1176,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "estratti-bagno-doccia-tè-verde",
       "sku": "7402",
+      "format": "400 ml",
       "line": "estratti",
       "brand": "erboristica",
       "name_it": "BAGNO DOCCIA TÈ VERDE",
@@ -1158,7 +1184,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Mousse doccia al Tè Verde e Neroli, ideale per pelli delicate e sensibili.",
       "description_it": "Tonifica, idrata e protegge con una fragranza fresca e frizzante. Estratto di Tè Verde, Aloe Vera e tensioattivi vegetali dolci rivitalizzano la pelle.",
       "usage_it": "Su pelle bagnata, sotto la doccia o in vasca, massaggiare il corpo con una generosa quantità di mousse per qualche minuto. Risciacquare con cura. Completare il trattamento utilizzando, prima della mousse doccia, due volte a settimana, lo scrub corpo ai granuli di albicocca.",
-      "inci": "Aqua [Water], Sodium coceth sulfate, Cocamidopropyl betaine, Aloe barbadensis leaf juice (*), Lauryl glucoside, Parfum [Fragrance], Panthenol, Hydrolyzed rice protein, Citric acid, Sodium gluconate, Ethylhexylglycerin, Phenoxyethanol, Limonene, Linalool, Hexyl cinnamal, Geraniol, Citronellol, Linalyl acetate, Pinene. (*) da Agricoltura Biologica/ from Organic Farming",
+      "inci": "Aqua [Water], Sodium coceth sulfate, Cocamidopropyl betaine, Aloe barbadensis leaf juice (*), Lauryl glucoside, Parfum [Fragrance], Panthenol, Hydrolyzed rice protein, Citric acid, Sodium gluconate, Ethylhexylglycerin, Phenoxyethanol, Limonene, Linalool, Hexyl cinnamal, Geraniol, Citronellol, Linalyl acetate, Pinene.",
       "natural_pct": 98,
       "certifications": [
         "zero-petrochem",
@@ -1185,6 +1211,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "estratti-burro-di-karité-vitamina-e",
       "sku": "7000",
+      "format": "100 ml",
       "line": "estratti",
       "brand": "erboristica",
       "name_it": "BURRO DI KARITÉ + VITAMINA E",
@@ -1192,7 +1219,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Burro di Karité per viso, mani e corpo, senza profumo né allergeni.",
       "description_it": "Nutriente e protettivo, è ideale per irritazioni e pelle provata dal freddo. Burro di Karité da spremitura a freddo, Vitamina E e Olio di Mandorle Dolci leniscono e ammorbidiscono.",
       "usage_it": "Dalla consistenza solida, si scioglie perfettamente con il semplice calore del palmo della mano. Su pelle detersa, applicare nella parte interessata con un leggero massaggio fino a completo assorbimento. Una variazione della consistenza del prodotto può essere legata alla temperatura, senza pregiudicarne la qualità e le proprietà .",
-      "inci": "Butyrospermum parkii (Shea butter) (,5%), Tocopheryl acetate, Tocopherol",
+      "inci": "Butyrospermum parkii (Shea butter) (99,5%), Tocopheryl acetate, Tocopherol.",
       "natural_pct": 100,
       "certifications": [
         "zero-petrochem",
@@ -1219,6 +1246,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "estratti-crema-corpo-rosa-essenziale",
       "sku": "7300",
+      "format": "160 ml",
       "line": "estratti",
       "brand": "erboristica",
       "name_it": "CREMA CORPO ROSA ESSENZIALE",
@@ -1226,7 +1254,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Crema corpo rivitalizzante all’Olio Essenziale di Rosa Damascena.",
       "description_it": "Soffice e setosa, armonizza la pelle con il lusso naturale della rosa. Olio Essenziale di Rosa, Burro di Karité e Vitamina E nutrono e rivitalizzano.",
       "usage_it": "Applica la crema corpo tutti i giorni dopo la doccia, e se vuoi un trattamento ancora più completo utilizza l’ OLIO CORPO ARMONIZZANTE",
-      "inci": "Aqua [Water], Ethylhexyl palmitate, Cetyl alcohol, Butyrospermum parkii (Shea) butter, Glycerin, Glycine soja (Soybean) oil (*), Polyglyceryl-3 stearate, Prunus amygdalus dulcis (Sweet almond) oil, Sodium stearoyl lactylate, Rosa damascena flower oil, Tocopherol, Rosa damascena flower water, Beta-sitosterol, Squalene, Punica granatum fruit extract (*), Ethylhexyl stearate, Xanthan gum, Sodium gluconate, Parfum [Fragrance], Citronellol, Eugenol, Turpentine, Terpinolene, Terpineol, Trideceth-6, Sodium polyacrylate, Benzoic acid, Dehydroacetic acid, Ethylhexylglycerin, Phenoxyethanol. (*) DA AGRICOLTURA BIOLOGICA / FROM ORGANIC FARMING",
+      "inci": "Aqua [Water], Ethylhexyl palmitate, Cetyl alcohol, Butyrospermum parkii (Shea) butter, Glycerin, Glycine soja (Soybean) oil (*), Polyglyceryl-3 stearate, Prunus amygdalus dulcis (Sweet almond) oil, Sodium stearoyl lactylate, Rosa damascena flower oil, Tocopherol, Rosa damascena flower water, Beta-sitosterol, Squalene, Punica granatum fruit extract (*), Ethylhexyl stearate, Xanthan gum, Sodium gluconate, Parfum [Fragrance], Citronellol, Eugenol, Turpentine, Terpinolene, Terpineol, Trideceth-6, Sodium polyacrylate, Benzoic acid, Dehydroacetic acid, Ethylhexylglycerin, Phenoxyethanol.",
       "natural_pct": 98,
       "certifications": [
         "zero-petrochem",
@@ -1253,6 +1281,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "estratti-crema-mani-e-unghie-allolio-di-cotone",
       "sku": "7007",
+      "format": "75 ml",
       "line": "estratti",
       "brand": "erboristica",
       "name_it": "CREMA MANI & UNGHIE ALL’OLIO DI COTONE",
@@ -1260,7 +1289,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Crema mani e unghie all’Olio di Cotone, a rapido assorbimento e non unge.",
       "description_it": "Protegge dalle aggressioni esterne donando un piacevole effetto vellutato. Olio di Semi di Cotone, Cheratina idrolizzata e Vitamina E rinforzano pelle e unghie.",
       "usage_it": "L’uso quotidiano, anche più volte al giorno, garantisce mani protette e luminose.",
-      "inci": "Aqua [Water], Glycerin, Stearic acid, Dicaprylyl carbonate, Aluminum starch octenylsuccinate, Butyrospermum parkii (Shea butter), Gossypium herbaceum (Cotton) seed oil, Polyglyceryl-3 stearate, Cetearyl alcohol, Ethylhexyl palmitate, Olea europaea (Olive) oil unsaponifiables, Sodium stearoyl lactylate, Panthenol, Simmondsia chinensis (Jojoba) seed oil (*), Tocopheryl acetate, Hydrolyzed wheat protein, Lysine, Zinc PCA, Glycine soja (Soybean) oil (*), Beta-sitosterol, Squalene, Allantoin, Diglycerin, Sodium PCA, Tocopherol, Hydrolyzed rice protein, Sodium gluconate, Sorbitol, Lactic acid, PCA, Urea, Ethylhexyl stearate, Xanthan gum, Phenoxyethanol, Parfum [Fragrance], Sodium polyacrylate, Benzoic acid, Hexyl cinnamal, Dehydroacetic acid, Trideceth-6, Ethylhexylglycerin, Linalool, Citronellol, Limonene, Geraniol. (*) DA AGRICOLTURA BIOLOGICA/ FROM ORGANIC FARMING",
+      "inci": "Aqua [Water], Glycerin, Stearic acid, Dicaprylyl carbonate, Aluminum starch octenylsuccinate, Butyrospermum parkii (Shea butter), Gossypium herbaceum (Cotton) seed oil, Polyglyceryl-3 stearate, Cetearyl alcohol, Ethylhexyl palmitate, Olea europaea (Olive) oil unsaponifiables, Sodium stearoyl lactylate, Panthenol, Simmondsia chinensis (Jojoba) seed oil (*), Tocopheryl acetate, Hydrolyzed wheat protein, Lysine, Zinc PCA, Glycine soja (Soybean) oil (*), Beta-sitosterol, Squalene, Allantoin, Diglycerin, Sodium PCA, Tocopherol, Hydrolyzed rice protein, Sodium gluconate, Sorbitol, Lactic acid, PCA, Urea, Ethylhexyl stearate, Xanthan gum, Phenoxyethanol, Parfum [Fragrance], Sodium polyacrylate, Benzoic acid, Hexyl cinnamal, Dehydroacetic acid, Trideceth-6, Ethylhexylglycerin, Linalool, Citronellol, Limonene, Geraniol.",
       "natural_pct": 97,
       "certifications": [
         "zero-petrochem",
@@ -1287,6 +1316,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "estratti-doccia-schiuma-camelia-japonica",
       "sku": "6962",
+      "format": "400 ml",
       "line": "estratti",
       "brand": "erboristica",
       "name_it": "DOCCIA SCHIUMA CAMELIA JAPONICA",
@@ -1294,7 +1324,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Doccia schiuma all’Olio di Camelia Japonica, setificante e rivitalizzante.",
       "description_it": "La fragranza dolce e fiorita accompagna una detersione che idrata e nutre. Estratto e Olio di Camelia Japonica, con tensioattivi vegetali, risanano tono e morbidezza.",
       "usage_it": "Distribuisci il prodotto direttamente sulla pelle bagnata, massaggia delicatamente e risciacqua.",
-      "inci": "Aqua [Water], Sodium coceth sulfate, Cocamidopropyl betaine, Aloe barbadensis leaf juice (*), Lauryl glucoside, Parfum [Fragrance], PEG-40 hydrogenated castor oil, Hydrolyzed rice protein, Panthenol, Citric acid, Sodium gluconate, Ethylhexylglycerin, Phenoxyethanol, PEG-200 hydrogenated glyceryl palmate, Tetramethyl acetyloctahydronaphthalenesHexyl cinnamal, Vanillin, Pogostemon cablin oil, Citrus aurantium peel oil, Limonene, Coumarin, Linalyl acetate Linalool, PEG-7 glyceryl cocoate. (*) DA AGRICOLTURA BIOLOGICA/ FROM ORGANIC FARMING",
+      "inci": "Aqua [Water], Sodium coceth sulfate, Cocamidopropyl betaine, Aloe barbadensis leaf juice (*), Lauryl glucoside, Parfum [Fragrance], PEG-40 hydrogenated castor oil, Hydrolyzed rice protein, Panthenol, Citric acid, Sodium gluconate, Ethylhexylglycerin, Phenoxyethanol, PEG-200 hydrogenated glyceryl palmate, Tetramethyl acetyloctahydronaphthalenesHexyl cinnamal, Vanillin, Pogostemon cablin oil, Citrus aurantium peel oil, Limonene, Coumarin, Linalyl acetate Linalool, PEG-7 glyceryl cocoate.",
       "natural_pct": 99,
       "certifications": [
         "zero-petrochem",
@@ -1321,6 +1351,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "estratti-doccia-schiuma-patchouli-e-neroli",
       "sku": "6964",
+      "format": "400 ml",
       "line": "estratti",
       "brand": "erboristica",
       "name_it": "DOCCIA SCHIUMA PATCHOULI E NEROLI",
@@ -1328,7 +1359,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Doccia schiuma al Patchouli e Neroli dalla fragranza esotica-orientale.",
       "description_it": "100% naturale, rende la pelle tonica e vellutata con un’azione riequilibrante. Oli essenziali di Patchouli e Neroli rivitalizzano e setificano la pelle.",
       "usage_it": "Distribuisci il prodotto direttamente sulla pelle bagnata, massaggia delicatamente e risciacqua.",
-      "inci": "Aqua [Water], Sodium coceth sulfate, Cocamidopropyl betaine, Aloe barbadensis leaf juice (*), Lauryl glucoside, Polyglyceryl-10 caprylate/caprate, Hydrolyzed rice protein, Panthenol, Citric acid, Sodium gluconate, Parfum [Fragrance], Citrus limon peel extract [Citrus medica limonum (Lemon) peel extract], Juniperus mexicana oil, Citrus aurantium dulcis (Orange) peel oil, Bulnesia sarmientoi wood oil, Piper nigrum (Pepper) fruit oil, Vetiveria zizanoides root oil, Maris sal, Limonene, Hexamethylindanopyran, Linalyl acetate, Linalool, Coumarin, Tetramethyl acetyloctahydronaphthalenes, Pinene, Ethylhexylglycerin, Phenoxyethanol. (*) da Agricoltura Biologica/ from Organic Farming",
+      "inci": "Aqua [Water], Sodium coceth sulfate, Cocamidopropyl betaine, Aloe barbadensis leaf juice (*), Lauryl glucoside, Polyglyceryl-10 caprylate/caprate, Hydrolyzed rice protein, Panthenol, Citric acid, Sodium gluconate, Parfum [Fragrance], Citrus limon peel extract [Citrus medica limonum (Lemon) peel extract], Juniperus mexicana oil, Citrus aurantium dulcis (Orange) peel oil, Bulnesia sarmientoi wood oil, Piper nigrum (Pepper) fruit oil, Vetiveria zizanoides root oil, Maris sal, Limonene, Hexamethylindanopyran, Linalyl acetate, Linalool, Coumarin, Tetramethyl acetyloctahydronaphthalenes, Pinene, Ethylhexylglycerin, Phenoxyethanol.",
       "natural_pct": 98,
       "certifications": [
         "zero-petrochem",
@@ -1355,6 +1386,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "estratti-maschera-per-capelli-semi-di-lino-e-karité",
       "sku": "7016",
+      "format": "200 ml",
       "line": "estratti",
       "brand": "erboristica",
       "name_it": "MASCHERA PER CAPELLI SEMI DI LINO E KARITÉ",
@@ -1362,7 +1394,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Maschera capelli ai Semi di Lino e Burro di Karité, anti-crespo e nutriente.",
       "description_it": "Nutre, ripara e fortifica in profondità i capelli sfibrati e devitalizzati. Olio di Semi di Lino, Burro di Karité e Cheratina vegetale donano brillantezza e disciplina.",
       "usage_it": "Dopo lo shampoo riparatore ai semi di lino e burro di Karitè, distribuire sui capelli umidi e ben strizzati, una generosa quantità di maschera su tutta la lungezza dei capelli, avendo cura particolarmente delle punte. Lasciare agire per 10 minuti, poi procedere al normale risciacquo.",
-      "inci": "Aqua [Water], Myristyl alcohol, Linum usitatissimum (Linseed) seed oil (*), Behenamidopropyl dimethylamine, Behentrimonium chloride, Glycine soja (Soybean) oil (*), Behenyl alcohol, Polyamino sugar condensate, Butyrospermum parkii (Shea) butter, Cetrimonium chloride, Squalene, Hydrolyzed rice protein, Beta-sitosterol, Tocopherol, Lactic acid, Guar hydroxypropyltrimonium chloride, Parfum [Fragrance], Sodium gluconate, Linalyl acetate, Linalool, Coumarin, PEG-40 hydrogenated castor oil, Hexyl cinnamal, Limonene, Benzyl salicylate, Benzoic acid, Dehydroacetic acid, Phenoxyethanol. (*) DA AGRICOLTURA BIOLOGICA/ FROM ORGANIC FARMING",
+      "inci": "Aqua [Water], Myristyl alcohol, Linum usitatissimum (Linseed) seed oil (*), Behenamidopropyl dimethylamine, Behentrimonium chloride, Glycine soja (Soybean) oil (*), Behenyl alcohol, Polyamino sugar condensate, Butyrospermum parkii (Shea) butter, Cetrimonium chloride, Squalene, Hydrolyzed rice protein, Beta-sitosterol, Tocopherol, Lactic acid, Guar hydroxypropyltrimonium chloride, Parfum [Fragrance], Sodium gluconate, Linalyl acetate, Linalool, Coumarin, PEG-40 hydrogenated castor oil, Hexyl cinnamal, Limonene, Benzyl salicylate, Benzoic acid, Dehydroacetic acid, Phenoxyethanol.",
       "natural_pct": 97,
       "certifications": [
         "zero-petrochem",
@@ -1389,6 +1421,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "estratti-mousse-doccia-bergamotto-e-abete-bianco",
       "sku": "6966",
+      "format": "400 ml",
       "line": "estratti",
       "brand": "erboristica",
       "name_it": "MOUSSE DOCCIA BERGAMOTTO & ABETE BIANCO",
@@ -1396,7 +1429,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Mousse doccia al Bergamotto e Abete Bianco, fresca e agrumata.",
       "description_it": "Detergente vegetale idratante che stimola la circolazione donando benessere e relax. Oli essenziali di Bergamotto e Abete Bianco rivitalizzano la pelle.",
       "usage_it": "Su pelle bagnata, sotto la doccia o in vasca, massaggiare il corpo con una generosa quantità di mousse per qualche minuto. Risciacquare con cura. Completare il trattamento utilizzando, prima della mousse doccia, due volte a settimana, lo scrub corpo ai granuli di albicocca.",
-      "inci": "Aqua [Water], Sodium coceth sulfate, Cocamidopropyl betaine, Aloe barbadensis leaf juice (*), Lauryl glucoside, PEG-40 hydrogenated castor oil, Parfum [Fragrance], Sodium gluconate, Hydrolyzed rice protein, Panthenol, Myristica fragrans fruit oil, Citrus aurantium bergamia (Bergamot) peel oil, Litsea cubeba fruit oil, Citrus aurantium dulcis (Orange) peel extract, Abies alba cone oil, Ocimum basilicum (Basil) herb oil, Citric acid, Hexyl cinnamal, Benzyl salicylate, Limonene, Linalyl acetate, Terpineol, Camphor, Citral, Eugenol, Linalool, Pinene, PEG-7 glyceryl cocoate, Ethylhexylglycerin, Tetramethyl acetyloctahydronaphthalenes, PEG-200 hydrogenated glyceryl palmate, Phenoxyethanol, (*) da Agricoltura Biologica/ from Organic Farming",
+      "inci": "Aqua [Water], Sodium coceth sulfate, Cocamidopropyl betaine, Aloe barbadensis leaf juice (*), Lauryl glucoside, PEG-40 hydrogenated castor oil, Parfum [Fragrance], Sodium gluconate, Hydrolyzed rice protein, Panthenol, Myristica fragrans fruit oil, Citrus aurantium bergamia (Bergamot) peel oil, Litsea cubeba fruit oil, Citrus aurantium dulcis (Orange) peel extract, Abies alba cone oil, Ocimum basilicum (Basil) herb oil, Citric acid, Hexyl cinnamal, Benzyl salicylate, Limonene, Linalyl acetate, Terpineol, Camphor, Citral, Eugenol, Linalool, Pinene, PEG-7 glyceryl cocoate, Ethylhexylglycerin, Tetramethyl acetyloctahydronaphthalenes, PEG-200 hydrogenated glyceryl palmate, Phenoxyethanol,",
       "natural_pct": 99,
       "certifications": [
         "zero-petrochem",
@@ -1423,6 +1456,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "estratti-olio-corpo-rosa-essenziale",
       "sku": "7301",
+      "format": "100 ml",
       "line": "estratti",
       "brand": "erboristica",
       "name_it": "OLIO CORPO ROSA ESSENZIALE",
@@ -1430,7 +1464,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Olio corpo concentrato rivitalizzante all’Olio Essenziale di Rosa Damascena.",
       "description_it": "Aromaterapico e setificante, avvolge la pelle in un velo prezioso. Olio Essenziale di Rosa, Olio di Jojoba e Vitamina E nutrono e armonizzano.",
       "usage_it": "Applica l’olio corpo dopo la doccia, e se vuoi un trattamento ancora più completo utilizza la CREMA CORPO RIVITALIZZANTE",
-      "inci": "INGREDIENTS :AQUA [WATER], ETHYLHEXYL PALMITATE, CETYL ALCOHOL, BUTYROSPERMUM PARKII (SHEA) BUTTER, GLYCERIN, GLYCINE SOJA (SOYBEAN) OIL (*), POLYGLYCERYL-3 STEARATE, PRUNUS AMYGDALUS DULCIS (SWEET ALMOND) OIL, SODIUM STEAROYL LACTYLATE, ROSA DAMASCENA FLOWER OIL, TOCOPHEROL, BETA-SITOSTEROL, SQUALENE, ETHYLHEXYL STEARATE, XANTHAN GUM, SODIUM GLUCONATE, PARFUM [FRAGRANCE], CITRONELLOL, EUGENOL, LIMONENE, GERANIOL, TRIDECETH-6, SODIUM POLYACRYLATE, BENZOIC ACID, DEHYDROACETIC ACID, ETHYLHEXYLGLYCERIN, PHENOXYETHANOL. (*) DA AGRICOLTURA BIOLOGICA / FROM ORGANIC FARMING",
+      "inci": "AQUA [WATER], ETHYLHEXYL PALMITATE, CETYL ALCOHOL, BUTYROSPERMUM PARKII (SHEA) BUTTER, GLYCERIN, GLYCINE SOJA (SOYBEAN) OIL (*), POLYGLYCERYL-3 STEARATE, PRUNUS AMYGDALUS DULCIS (SWEET ALMOND) OIL, SODIUM STEAROYL LACTYLATE, ROSA DAMASCENA FLOWER OIL, TOCOPHEROL, BETA-SITOSTEROL, SQUALENE, ETHYLHEXYL STEARATE, XANTHAN GUM, SODIUM GLUCONATE, PARFUM [FRAGRANCE], CITRONELLOL, EUGENOL, LIMONENE, GERANIOL, TRIDECETH-6, SODIUM POLYACRYLATE, BENZOIC ACID, DEHYDROACETIC ACID, ETHYLHEXYLGLYCERIN, PHENOXYETHANOL.",
       "natural_pct": 100,
       "certifications": [
         "zero-petrochem",
@@ -1457,6 +1491,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "estratti-sapone-vegetale-al-burro-di-karité",
       "sku": "7054",
+      "format": "100 g",
       "line": "estratti",
       "brand": "erboristica",
       "name_it": "SAPONE VEGETALE AL BURRO DI KARITÉ",
@@ -1464,7 +1499,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Sapone vegetale al Burro di Karité, indicato per pelli secche.",
       "description_it": "100% naturale e biodegradabile, regala una detergenza riequilibrante e delicata. Burro di Karité e glicerina naturale di processo proteggono e idratano viso e corpo.",
       "usage_it": "Insapona le mani bagnate e risciacqua.",
-      "inci": "Sodium palmate, Sodium palm kernelate, Aqua [Water], Butyrospermum parkii (Shea) butter, Parfum [Fragrance], Glycerin, Hexamethylindanopyran, Sodium chloride, Tetrasodium etidronate, Tetrasodium EDTA, Benzyl salicylate, Amyl salicylate, Coumarin, Benzyl benzoate, Linalool",
+      "inci": "Sodium palmate, Sodium palm kernelate, Aqua [Water], Butyrospermum parkii (Shea) butter, Parfum [Fragrance], Glycerin, Hexamethylindanopyran, Sodium chloride, Tetrasodium etidronate, Tetrasodium EDTA, Benzyl salicylate, Amyl salicylate, Coumarin, Benzyl benzoate, Linalool.",
       "natural_pct": 98,
       "certifications": [
         "zero-petrochem",
@@ -1491,6 +1526,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "estratti-sapone-vegetale-allamido-di-riso",
       "sku": "7065",
+      "format": "100 g",
       "line": "estratti",
       "brand": "erboristica",
       "name_it": "SAPONE VEGETALE ALL’AMIDO DI RISO",
@@ -1498,7 +1534,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Sapone vegetale all’Amido di Riso, lenitivo e disarrossante.",
       "description_it": "Purifica dolcemente viso e corpo, ideale anche per le pelli sensibili dei bambini. Con Amido di Riso, Olio di Riso e glicerina naturale, deterge con delicatezza.",
       "usage_it": "Insapona le mani bagnate e risciacqua.",
-      "inci": "Sodium palmate, Sodium palm kernelate, Aqua [Water], Parfum [Fragrance], Oryza sativa (Rice) starch, Glycerin, Palm kernel acid, Sodium chloride, Titanium dioxide, Terpineol, Tetramethyl acetyloctahydronaphthalenes, Tetrasodium EDTA, Tetrasodium etidronate, Dimethyl phenethyl acetate",
+      "inci": "Sodium palmate, Sodium palm kernelate, Aqua [Water], Parfum [Fragrance], Oryza sativa (Rice) starch, Glycerin, Palm kernel acid, Sodium chloride, Titanium dioxide, Terpineol, Tetramethyl acetyloctahydronaphthalenes, Tetrasodium EDTA, Tetrasodium etidronate, Dimethyl phenethyl acetate.",
       "natural_pct": 98,
       "certifications": [
         "zero-petrochem",
@@ -1525,6 +1561,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "estratti-sapone-vegetale-allolio-di-oliva",
       "sku": "7061",
+      "format": "100 g",
       "line": "estratti",
       "brand": "erboristica",
       "name_it": "SAPONE VEGETALE ALL’OLIO DI OLIVA",
@@ -1532,7 +1569,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Sapone vegetale all’Olio Extravergine di Oliva, idratante e protettivo.",
       "description_it": "Nutre la pelle con un tocco morbido e vellutato, ideale anche per le pelli sensibili. Olio di Oliva, Squalene naturale e Glicerina proteggono e ammorbidiscono.",
       "usage_it": "(Non riportato in scheda)",
-      "inci": "Sodium palmate, Sodium palm kernelate, Aqua [Water], Olea europaea (Olive) fruit oil (*), Parfum [Fragrance], Juniperus virginiana oil, Glycerin, Sodium chloride, Benzyl salicylate, Alpha-isomethyl ionone, Amyl salicylate, Linalyl acetate, Linalool, Terpineol, Tetrasodium EDTA, Tetrasodium etidronate, Eugenol, Citronellol. (*) da Agricoltura Biologica/from Organic Farming",
+      "inci": "Sodium palmate, Sodium palm kernelate, Aqua [Water], Olea europaea (Olive) fruit oil (*), Parfum [Fragrance], Juniperus virginiana oil, Glycerin, Sodium chloride, Benzyl salicylate, Alpha-isomethyl ionone, Amyl salicylate, Linalyl acetate, Linalool, Terpineol, Tetrasodium EDTA, Tetrasodium etidronate, Eugenol, Citronellol.",
       "natural_pct": 98,
       "certifications": [
         "zero-petrochem",
@@ -1559,6 +1596,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "estratti-sapone-vegetale-di-marsiglia",
       "sku": "7063",
+      "format": "100 g",
       "line": "estratti",
       "brand": "erboristica",
       "name_it": "SAPONE VEGETALE DI MARSIGLIA",
@@ -1566,7 +1604,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Sapone vegetale di Marsiglia, idratante e restitutivo.",
       "description_it": "Dalle proprietà emollienti, è ideale per una detergenza delicata di viso e corpo. Olio di Oliva e Olio di Palma sostenibile saponificati, con glicerina, nutrono la pelle.",
       "usage_it": "Insapona le mani bagnate e risciacqua.",
-      "inci": "Sodium palmate, Sodium palm kernelate, Aqua [Water], Parfum [Fragrance], Olea europaea (Olive) fruit oil (*), Glycerin, Sodium chloride, Tetrasodium EDTA, Tetrasodium etidronate, Hexyl cinnamal, Citronellol, Geraniol, Linalyl acetate, Eugenol, Coumarin, Alpha-isomethyl ionone. (*) da Agricoltura Biologica/from Organic Farming",
+      "inci": "Sodium palmate, Sodium palm kernelate, Aqua [Water], Parfum [Fragrance], Olea europaea (Olive) fruit oil (*), Glycerin, Sodium chloride, Tetrasodium EDTA, Tetrasodium etidronate, Hexyl cinnamal, Citronellol, Geraniol, Linalyl acetate, Eugenol, Coumarin, Alpha-isomethyl ionone.",
       "natural_pct": 98,
       "certifications": [
         "zero-petrochem",
@@ -1593,6 +1631,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "estratti-sapone-vegetale-monoi-di-tahiti",
       "sku": "7064",
+      "format": "100 g",
       "line": "estratti",
       "brand": "erboristica",
       "name_it": "SAPONE VEGETALE MONOI DI TAHITI",
@@ -1600,7 +1639,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Sapone idratante 100% vegetale al Monoï di Tahiti.",
       "description_it": "Lava delicatamente e lascia la pelle morbida con una fragranza esotica. Olio di Monoï di Tahiti e Olio di Cocco saponificato nutrono e ammorbidiscono la pelle.",
       "usage_it": "Insapona le mani bagnate e risciacqua.",
-      "inci": "Sodium palmate, Sodium palm kernelate, Aqua [Water], Parfum [Fragrance], Cocos nucifera (Coconut) oil, Gardenia taitensis flower extract, Glycerin, Palm kernel acid, Sodium chloride, Linalool, Benzyl salicylate, Amyl cinnamal, Tetrasodium EDTA, Tetrasodium etidronate, Eugenol",
+      "inci": "Sodium palmate, Sodium palm kernelate, Aqua [Water], Parfum [Fragrance], Cocos nucifera (Coconut) oil, Gardenia taitensis flower extract, Glycerin, Palm kernel acid, Sodium chloride, Linalool, Benzyl salicylate, Amyl cinnamal, Tetrasodium EDTA, Tetrasodium etidronate, Eugenol.",
       "natural_pct": null,
       "certifications": [
         "dermatologico",
@@ -1624,6 +1663,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "estratti-shampoo-purificante-betulla-e-menta-piperita",
       "sku": "7008",
+      "format": "300 ml",
       "line": "estratti",
       "brand": "erboristica",
       "name_it": "SHAMPOO PURIFICANTE BETULLA E MENTA PIPERITA",
@@ -1631,7 +1671,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Shampoo purificante alla Betulla e Menta Piperita, per capelli grassi.",
       "description_it": "Deterge delicatamente cute e capelli lasciandoli splendenti e setosi. Estratto di Betulla, Menta Piperita e Zinco PCA riequilibrano e leniscono la cute.",
       "usage_it": "Applicare lo Shampoo sui capelli umidi, massaggiare per alcuni minuti cute e capelli, favorendo la diffusione dei principi attivi naturali sulla superficie del capello, risciacquare con cura.",
-      "inci": "Aqua [Water], Sodium coceth sulfate, Disodium cocoamphodiacetate, Inulin, Cocamidopropyl betaine, Sodium olivoyl glutamate, Potassium lauroyl wheat amino acids, Panthenol, Glycerin, Mentha piperita (Peppermint) leaf extract, Betula alba leaf extract, Arctium lappa root extract, Hedera helix (Ivy) leaf/stem extract, Hydrolyzed rice protein, Menthol, Guar hydroxypropyltrimonium chloride, Citric acid, Parfum [Fragrance], Sodium gluconate, Benzoic acid, Dehydroacetic acid, Polyquaternium-47, PEG-40 hydrogenated castor oil, Citral, Limonene, Camphor, Carvone, Citrus limon peel oil [Citrus medica limonum (Lemon) peel oil], PEG-200 hydrogenated glyceryl palmate, PEG-7 glyceryl cocoate, Phenoxyethanol, Ethylhexylglycerin",
+      "inci": "Aqua [Water], Sodium coceth sulfate, Disodium cocoamphodiacetate, Inulin, Cocamidopropyl betaine, Sodium olivoyl glutamate, Potassium lauroyl wheat amino acids, Panthenol, Glycerin, Mentha piperita (Peppermint) leaf extract, Betula alba leaf extract, Arctium lappa root extract, Hedera helix (Ivy) leaf/stem extract, Hydrolyzed rice protein, Menthol, Guar hydroxypropyltrimonium chloride, Citric acid, Parfum [Fragrance], Sodium gluconate, Benzoic acid, Dehydroacetic acid, Polyquaternium-47, PEG-40 hydrogenated castor oil, Citral, Limonene, Camphor, Carvone, Citrus limon peel oil [Citrus medica limonum (Lemon) peel oil], PEG-200 hydrogenated glyceryl palmate, PEG-7 glyceryl cocoate, Phenoxyethanol, Ethylhexylglycerin.",
       "natural_pct": 98,
       "certifications": [
         "zero-petrochem",
@@ -1658,6 +1698,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "estratti-shampoo-riparatore-semi-di-lino-e-karité",
       "sku": "7015",
+      "format": "300 ml",
       "line": "estratti",
       "brand": "erboristica",
       "name_it": "SHAMPOO RIPARATORE SEMI DI LINO E KARITÉ",
@@ -1665,7 +1706,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Shampoo riparatore ai Semi di Lino e Burro di Karité, per capelli secchi.",
       "description_it": "Ripara in profondità i capelli sfibrati e trattati, donando morbidezza. Olio di Semi di Lino, Burro di Karité e Pantenolo nutrono e rinforzano la fibra.",
       "usage_it": "Applicare lo Shampoo sui capelli umidi, massaggiare per alcuni minuti cute e capelli, favorendo la diffusione dei principi attivi naturali sulla superficie del capello, risciacquare con cura.",
-      "inci": "Aqua [Water], Sodium coceth sulfate, Lauryl glucoside, Cocamidopropyl betaine, Sodium olivoyl glutamate, Potassium lauroyl wheat amino acids, Butyrospermum parkii (Shea) butter, Linum usitatissimum (Linseed) seed oil (*), Hydrolyzed rice protein, Panthenol, Guar hydroxypropyltrimonium chloride, Polyquaternium-47, Citric acid, Sodium gluconate, Maris sal, Parfum [Fragrance], Benzoic acid, Polysorbate 20, Dehydroacetic acid, PEG-40 hydrogenated castor oil, Linalool, Linalyl acetate, Coumarin, Trideceth-, Hexyl cinnamal, Limonene, PEG-7 glyceryl cocoate, Benzyl salicylate, PEG-200 hydrogenated glyceryl palmate, Phenoxyethanol. (*) DA AGRICOLTURA BIOLOGICA / FROM ORGANIC FARMING *) DA AGRICOLTURA BIOLOGICA / FROM ORGANIC FARMING",
+      "inci": "Aqua [Water], Sodium coceth sulfate, Lauryl glucoside, Cocamidopropyl betaine, Sodium olivoyl glutamate, Potassium lauroyl wheat amino acids, Butyrospermum parkii (Shea) butter, Linum usitatissimum (Linseed) seed oil (*), Hydrolyzed rice protein, Panthenol, Guar hydroxypropyltrimonium chloride, Polyquaternium-47, Citric acid, Sodium gluconate, Maris sal, Parfum [Fragrance], Benzoic acid, Polysorbate 20, Dehydroacetic acid, PEG-40 hydrogenated castor oil, Linalool, Linalyl acetate, Coumarin, Trideceth-9, Hexyl cinnamal, Limonene, PEG-7 glyceryl cocoate, Benzyl salicylate, PEG-200 hydrogenated glyceryl palmate, Phenoxyethanol.",
       "natural_pct": 99,
       "certifications": [
         "zero-petrochem",
@@ -1692,6 +1733,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "illumia-crema-viso-antimacchie",
       "sku": "7100",
+      "format": "30 ml",
       "line": "illumia",
       "brand": "erboristica",
       "name_it": "CREMA VISO GIORNO ANTIMACCHIE",
@@ -1699,7 +1741,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Crema viso giorno antimacchie schiarente con SPF 30.",
       "description_it": "Riduce macchie e discromie restituendo uniformità e luminosità all’incarnato. Vitamina C stabilizzata, Luminescine e Niacinamide agiscono sulle iperpigmentazioni, con risultati visibili in 4 settimane.",
       "usage_it": "Applicare la mattina su tutto il viso e décolleté al posto dell’abituale crema viso. Evitare il contorno occhi. Si può impiegare anche nel periodo estivo come crema giorno. In caso di esposizione solare diretta si consiglia di applicare anche una crema solare ad alta protezione (SPF 50+)",
-      "inci": "Aqua [Water], Octocrylene, Titanium dioxide (nano) [Titanium dioxide], Betaine, Butyl methoxydibenzoylmethane, C15-19 alkane, Dicaprylyl carbonate, Dicaprylyl ether, Niacinamide, Octyldodecanol, Cetearyl alcohol, Glyceryl stearate, Glycerin (*), Alumina, Hydrolyzed glycosaminoglycans, Silica, 3-0-Ethyl ascorbic acid, Polyhydroxystearic acid, 4-Butylresorcinol, Hydrolyzed verbascum thapsus flower (*), Sodium hyaluronate, Fucus vesiculosus extract, Zinc ricinoleate, Sodium lauroyl glutamate, Sodium stearoyl lactylate, Tocopherol, Beta-sitosterol, Squalene, Carrageenan, Xanthan gum, Propanediol, Magnesium aluminum silicate, Citric acid, Sodium gluconate, Parfum [Fragrance], Ethylhexylglycerin, Tetrasodium glutamate diacetate, Phenoxyethanol, Tetramethyl acetyloctahydronaphthalenes, Linalyl acetate, Citronellol, Hexyl cinnamal, Geraniol, Cananga odorata oil/extract, Hexamethylindanopyran, Coumarin, Alpha-isomethyl ionone, Linalool, Benzyl benzoate, Benzyl salicylate, Geranyl acetate, Dimethyl phenethyl acetate, BHT. (*) DA AGRICOLTURA BIOLOGICA / FROM ORGANIC FARMING",
+      "inci": "Aqua [Water], Octocrylene, Titanium dioxide (nano) [Titanium dioxide], Betaine, Butyl methoxydibenzoylmethane, C15-19 alkane, Dicaprylyl carbonate, Dicaprylyl ether, Niacinamide, Octyldodecanol, Cetearyl alcohol, Glyceryl stearate, Glycerin (*), Alumina, Hydrolyzed glycosaminoglycans, Silica, 3-0-Ethyl ascorbic acid, Polyhydroxystearic acid, 4-Butylresorcinol, Hydrolyzed verbascum thapsus flower (*), Sodium hyaluronate, Fucus vesiculosus extract, Zinc ricinoleate, Sodium lauroyl glutamate, Sodium stearoyl lactylate, Tocopherol, Beta-sitosterol, Squalene, Carrageenan, Xanthan gum, Propanediol, Magnesium aluminum silicate, Citric acid, Sodium gluconate, Parfum [Fragrance], Ethylhexylglycerin, Tetrasodium glutamate diacetate, Phenoxyethanol, Tetramethyl acetyloctahydronaphthalenes, Linalyl acetate, Citronellol, Hexyl cinnamal, Geraniol, Cananga odorata oil/extract, Hexamethylindanopyran, Coumarin, Alpha-isomethyl ionone, Linalool, Benzyl benzoate, Benzyl salicylate, Geranyl acetate, Dimethyl phenethyl acetate, BHT.",
       "natural_pct": null,
       "certifications": [
         "dermatologico",
@@ -1726,6 +1768,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "kaley-profumo-roll-on-crystal-rouge",
       "sku": "5504",
+      "format": "10 ml",
       "line": "kaley",
       "brand": "kaley",
       "name_it": "PROFUMO ROLL-ON CRYSTAL ROUGE",
@@ -1733,7 +1776,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Profumo in Olio – Eleganza e Persistenza Delicato sulla pelle – Senza alcol Texture leggera – Si assorbe rapidamente senza ungere Lunga durata – Fragranza intensa e persistente Applicatore roll-on – Pratico e perfetto da portare sempre con sé Sofisticato, avvolgente, unico. Scegli la tua essenza e lasciati conquistare!",
       "description_it": "ESPERIENZA OLFATTIVA: Questa fragranza ambrata e speziata si apre con un mix raffinato di zafferano e gelsomino. Un cuore caldo e magnetico di ambra grigia e Amberwood. Le note di fondo, con resina di abete e legno di cedro, lasciano una scia intensa e avvolgente, evocando il fascino dei paesaggi orientali e la natura selvaggia.",
       "usage_it": "Modalità d’uso: Fai scivolare la sfera su polsi, collo e décolleté per una fragranza duratura che ti accompagnerà durante tutta la giornata.",
-      "inci": "Triethyl citrate, Parfum [Fragrance], Tocopherol, Beta-sitosterol, Squalene, Limonene, Linalool, Linalyl acetate, Tetramethyl acetyloctahydronaphthalenes, Hexamethylindanopyran, Pinene, Terpineol, Citral",
+      "inci": "Triethyl citrate, Parfum [Fragrance], Tocopherol, Beta-sitosterol, Squalene, Limonene, Linalool, Linalyl acetate, Tetramethyl acetyloctahydronaphthalenes, Hexamethylindanopyran, Pinene, Terpineol, Citral.",
       "natural_pct": null,
       "certifications": [
         "energia-solare",
@@ -1748,6 +1791,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "kaley-profumo-roll-on-dark-sea",
       "sku": "5500",
+      "format": "10 ml",
       "line": "kaley",
       "brand": "kaley",
       "name_it": "PROFUMO ROLL-ON DARK SEA",
@@ -1755,7 +1799,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Profumo in Olio – Eleganza e Persistenza Delicato sulla pelle – Senza alcol Texture leggera – Si assorbe rapidamente senza ungere Lunga durata – Fragranza intensa e persistente Applicatore roll-on – Pratico e perfetto da portare sempre con sé Sofisticato, avvolgente, unico. Scegli la tua essenza e lasciati conquistare!",
       "description_it": "ESPERIENZA OLFATTIVA: Questa fragranza si apre con l’intensità misteriosa di un accordo acquatico profondo, che evoca le ombre affascinanti degli abissi marini, arricchito dal brio del limone e dall’ananas fresco come un’onda frizzante.Nel cuore, il verde delle foglie di mughetto si mescola alla sensualità della rosa, mentre l’ambra aggiunge una sfumatura dorata, come un riflesso di luce che danza sulla superficie dell’acqua scura. Sul fondo, il legno di sandalo e il cedro si fondono con il muschio vegetale, lasciando una scia avvolgente e salina, come il respiro selvaggio di un mare senza fine.",
       "usage_it": "Modalità d’uso: Fai scivolare la sfera su polsi, collo e décolleté per una fragranza duratura che ti accompagnerà durante tutta la giornata.",
-      "inci": "Triethyl citrate, Parfum [Fragrance], Tocopherol, Beta-sitosterol, Squalene, Citrus limon (Lemon) peel oil, Juniperus virginiana oil, Hexyl cinnamal, Alpha-isomethyl ionone, Citronellol, Geraniol, Geranyl acetate, Linalool, Trimethylcyclopentenyl Methylisopentenol, Limonene, Rose ketones, Vanillin, Beta-caryophyllene, Pinene, Citral, Amyl cinnamal, Benzyl alcohol, Cinnamyl alcohol",
+      "inci": "Triethyl citrate, Parfum [Fragrance], Tocopherol, Beta-sitosterol, Squalene, Citrus limon (Lemon) peel oil, Juniperus virginiana oil, Hexyl cinnamal, Alpha-isomethyl ionone, Citronellol, Geraniol, Geranyl acetate, Linalool, Trimethylcyclopentenyl Methylisopentenol, Limonene, Rose ketones, Vanillin, Beta-caryophyllene, Pinene, Citral, Amyl cinnamal, Benzyl alcohol, Cinnamyl alcohol.",
       "natural_pct": null,
       "certifications": [
         "energia-solare",
@@ -1770,6 +1814,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "kaley-profumo-roll-on-golden-hour",
       "sku": "5502",
+      "format": "10 ml",
       "line": "kaley",
       "brand": "kaley",
       "name_it": "PROFUMO ROLL-ON GOLDEN HOUR",
@@ -1777,7 +1822,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Profumo in Olio – Eleganza e Persistenza Delicato sulla pelle – Senza alcol Texture leggera – Si assorbe rapidamente senza ungere Lunga durata – Fragranza intensa e persistente Applicatore roll-on – Pratico e perfetto da portare sempre con sé Sofisticato, avvolgente, unico. Scegli la tua essenza e lasciati conquistare!",
       "description_it": "ESPERIENZA OLFATTIVA: Questa fragranza luminosa e avvolgente si apre con il tocco radioso del bergamotto e l’arancio dolce, accarezzati da note solari che evocano l’energia dorata della luce. Nel cuore, un bouquet di violetta e mughetto si intreccia con la dolcezza della vaniglia e del caramello, come una promessa di morbida sensualità. Le note di fondo, calde e persistenti, rivelano l’eleganza legnosa del cashmere e del sandalo, che si fondono all’ambra e al muschio in una scia vellutata e avvolgente, lasciando un ricordo intimo e seducente, come un abbraccio di luce e calore.",
       "usage_it": "Modalità d’uso: Fai scivolare la sfera su polsi, collo e décolleté per una fragranza duratura che ti accompagnerà durante tutta la giornata.",
-      "inci": "Triethyl citrate, Parfum [Fragrance], Tetramethyl acetyloctahydronaphthalenes, Tocopherol, Beta-sitosterol, Squalene, Citrus aurantium dulcis (Orange) peel oil, Pogostemon cablin oil, Hexamethylindanopyran, Limonene, Linalyl acetate, Alpha-isomethyl ionone, Hexyl cinnamal, Benzyl salicylate, Trimethylcyclopentenyl Methylisopentenol, Linalool, Dimethyl phenethyl acetate, Coumarin, Geranyl acetate, Citronellol, Hydroxycitronellal, Vanillin, Terpineol, Acetylcedrene, Beta-pinenes, Rose ketones [Rose ketone-4], Farnesol, Beta-caryophyllene, Citral, Benzyl benzoate",
+      "inci": "Triethyl citrate, Parfum [Fragrance], Tetramethyl acetyloctahydronaphthalenes, Tocopherol, Beta-sitosterol, Squalene, Citrus aurantium dulcis (Orange) peel oil, Pogostemon cablin oil, Hexamethylindanopyran, Limonene, Linalyl acetate, Alpha-isomethyl ionone, Hexyl cinnamal, Benzyl salicylate, Trimethylcyclopentenyl Methylisopentenol, Linalool, Dimethyl phenethyl acetate, Coumarin, Geranyl acetate, Citronellol, Hydroxycitronellal, Vanillin, Terpineol, Acetylcedrene, Beta-pinenes, Rose ketones [Rose ketone-4], Farnesol, Beta-caryophyllene, Citral, Benzyl benzoate.",
       "natural_pct": null,
       "certifications": [
         "energia-solare",
@@ -1792,6 +1837,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "kaley-profumo-roll-on-moka-rose",
       "sku": "5507",
+      "format": "10 ml",
       "line": "kaley",
       "brand": "kaley",
       "name_it": "PROFUMO ROLL-ON MOKA ROSE",
@@ -1799,7 +1845,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Profumo in Olio – Eleganza e Persistenza Delicato sulla pelle – Senza alcol Texture leggera – Si assorbe rapidamente senza ungere Lunga durata – Fragranza intensa e persistente Applicatore roll-on – Pratico e perfetto da portare sempre con sé Sofisticato, avvolgente, unico. Scegli la tua essenza e lasciati conquistare!",
       "description_it": "ESPERIENZA OLFATTIVA: Un’apertura di note floreali accarezza la pelle con delicatezza, svelando fin da subito un’eleganza seducente. Nel cuore, il caffè sprigiona un’intensità avvolgente che si intreccia alla rosa e alla dolcezza della nocciola, creando un contrasto caldo e irresistibile. Sul fondo, vaniglia e muschio bianco si fondono in una scia morbida e sensuale, lasciando un ricordo intimo, magnetico e profondamente femminile",
       "usage_it": "Modalità d’uso: Fai scivolare la sfera su polsi, collo e décolleté per una fragranza duratura che ti accompagnerà durante tutta la giornata.",
-      "inci": "Triethyl citrate, Parfum [Fragrance], Tocopherol, Beta-sitosterol, Squalene, Limonene, Linalool, Linalyl acetate, Tetramethyl acetyloctahydronaphthalenes, Hexamethylindanopyran, Pinene, Terpineol, Citral",
+      "inci": "Triethyl citrate, Parfum [Fragrance], Tocopherol, Beta-sitosterol, Squalene, Limonene, Linalool, Linalyl acetate, Tetramethyl acetyloctahydronaphthalenes, Hexamethylindanopyran, Pinene, Terpineol, Citral.",
       "natural_pct": null,
       "certifications": [
         "energia-solare",
@@ -1814,6 +1860,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "kaley-profumo-roll-on-monty-tonka",
       "sku": "5503",
+      "format": "10 ml",
       "line": "kaley",
       "brand": "kaley",
       "name_it": "PROFUMO ROLL-ON MONTY TONKA",
@@ -1821,7 +1868,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Profumo in Olio – Eleganza e Persistenza Delicato sulla pelle – Senza alcol Texture leggera – Si assorbe rapidamente senza ungere Lunga durata – Fragranza intensa e persistente Applicatore roll-on – Pratico e perfetto da portare sempre con sé Sofisticato, avvolgente, unico. Scegli la tua essenza e lasciati conquistare!",
       "description_it": "ESPERIENZA OLFATTIVA: Questa fragranza ambrata e speziata si schiude con la luce dorata del bergamotto e la preziosità calda dello zafferano. Nel cuore, l’oud profondo si fonde con la sensualità della rosa bulgara, come un abbraccio tra mistero e delicatezza. Sul fondo, dolci carezze di canna da zucchero e fava tonka si intrecciano con l’eleganza avvolgente dell’ambra grigia, mentre i muschi bianchi e di quercia lasciano una scia vellutata e indimenticabile, evocando un fascino senza tempo.",
       "usage_it": "Modalità d’uso: Fai scivolare la sfera su polsi, collo e décolleté per una fragranza duratura che ti accompagnerà durante tutta la giornata.",
-      "inci": "TRIETHYL CITRATE, PARFUM [FRAGRANCE], TETRAMETHYL ACETYLOCTAHYDRONAPHTHALENES,TOCOPHEROL, BETA-SITOSTEROL, SQUALENE, VANILLIN, HEXAMETHYLINDANOPYRAN, LINALYL ACETATE, ROSE KETONES [ROSE KETONE-4], LIMONENE, LINALOOL,GERANYL ACETATE, BETA-PINENES, CITRONELLOL",
+      "inci": "TRIETHYL CITRATE, PARFUM [FRAGRANCE], TETRAMETHYL ACETYLOCTAHYDRONAPHTHALENES,TOCOPHEROL, BETA-SITOSTEROL, SQUALENE, VANILLIN, HEXAMETHYLINDANOPYRAN, LINALYL ACETATE, ROSE KETONES [ROSE KETONE-4], LIMONENE, LINALOOL,GERANYL ACETATE, BETA-PINENES, CITRONELLOL.",
       "natural_pct": null,
       "certifications": [
         "energia-solare",
@@ -1836,6 +1883,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "kaley-profumo-roll-on-spring-symphony",
       "sku": "5501",
+      "format": "10 ml",
       "line": "kaley",
       "brand": "kaley",
       "name_it": "PROFUMO ROLL-ON SPRING SYMPHONY",
@@ -1843,7 +1891,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Profumo in Olio – Eleganza e Persistenza Delicato sulla pelle – Senza alcol Texture leggera – Si assorbe rapidamente senza ungere Lunga durata – Fragranza intensa e persistente Applicatore roll-on – Pratico e perfetto da portare sempre con sé Sofisticato, avvolgente, unico. Scegli la tua essenza e lasciati conquistare!",
       "description_it": "ESPERIENZA OLFATTIVA: Questa fragranza frizzante e avvolgente si apre con la freschezza luminosa del bergamotto, unita alla dolcezza vibrante del mandarino e al tocco fruttato e intrigante del cassis. Nel cuore, la rosa si mescola con la delicatezza del gelsomino, mentre un accento di pepe rosa aggiunge una speziatura leggera e sofisticata, come un sussurro di seduzione. Sul fondo, la profondità terrosa del patchouli si fonde con la morbidezza del muschio bianco e vegetale, creando una scia vellutata e persistente che avvolge in un’aura di raffinata eleganza.",
       "usage_it": "Modalità d’uso: Fai scivolare la sfera su polsi, collo e décolleté per una fragranza duratura che ti accompagnerà durante tutta la giornata.",
-      "inci": "Triethyl citrate, Parfum [Fragrance], Linalyl acetate, Linalool, Limonene, Tocopherol, Beta-sitosterol, Squalene, Jasmine Oil / Extract [Jasmine oil/extract], Cananga odorata oil/extract, Pogostemon cablin oil, Citrus limon (Lemon) peel oil, Benzyl salicylate, Hexyl cinnamal, Hydroxycitronellal, Tetramethyl acetyloctahydronaphthalenes, Vanillin, Citronellol, Pinene, Alpha-isomethyl ionone, Dimethyl phenethyl acetate, Coumarin, Geraniol, Beta-caryophyllene, Benzyl benzoate, Citral, Geranyl acetate, Sclareol, Farnesol, Terpinolene, Terpineol, Benzyl alcohol, Rose ketones, Alpha-terpinene, Eugenol, Methyl salicylate, Santalol, Anise alcohol, Isoeugenol, Amyl cinnamal",
+      "inci": "Triethyl citrate, Parfum [Fragrance], Linalyl acetate, Linalool, Limonene, Tocopherol, Beta-sitosterol, Squalene, Jasmine Oil / Extract [Jasmine oil/extract], Cananga odorata oil/extract, Pogostemon cablin oil, Citrus limon (Lemon) peel oil, Benzyl salicylate, Hexyl cinnamal, Hydroxycitronellal, Tetramethyl acetyloctahydronaphthalenes, Vanillin, Citronellol, Pinene, Alpha-isomethyl ionone, Dimethyl phenethyl acetate, Coumarin, Geraniol, Beta-caryophyllene, Benzyl benzoate, Citral, Geranyl acetate, Sclareol, Farnesol, Terpinolene, Terpineol, Benzyl alcohol, Rose ketones, Alpha-terpinene, Eugenol, Methyl salicylate, Santalol, Anise alcohol, Isoeugenol, Amyl cinnamal.",
       "natural_pct": null,
       "certifications": [
         "energia-solare",
@@ -1858,6 +1906,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "kaley-profumo-roll-on-sweet-whisper",
       "sku": "5505",
+      "format": "10 ml",
       "line": "kaley",
       "brand": "kaley",
       "name_it": "PROFUMO ROLL-ON SWEET WHISPER",
@@ -1865,7 +1914,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Profumo in Olio – Eleganza e Persistenza Delicato sulla pelle – Senza alcol Texture leggera – Si assorbe rapidamente senza ungere Lunga durata – Fragranza intensa e persistente Applicatore roll-on – Pratico e perfetto da portare sempre con sé Sofisticato, avvolgente, unico. Scegli la tua essenza e lasciati conquistare!",
       "description_it": "ESPERIENZA OLFATTIVA: Questa fragranza si apre con la freschezza solare del bergamotto, avvolta dalla dolcezza vellutata della pesca e dalla morbidezza esotica della polpa di cocco, come un soffio leggero e carezzevole. Nel cuore, note cipriate si fondono con la cremosità del latte e la delicatezza zuccherina dell’eliotropio, evocando una morbidezza avvolgente, quasi sussurrata. Sul fondo, la vaniglia e il caramello creano una dolcezza irresistibile, che si intreccia con la fava tonka e i muschi per una scia soffice e persistente, lasciando un ricordo caldo e inconfondibile, come un sussurro che accarezza la pelle.",
       "usage_it": "Modalità d’uso: Fai scivolare la sfera su polsi, collo e décolleté per una fragranza duratura che ti accompagnerà durante tutta la giornata.",
-      "inci": "Triethyl citrate, Parfum [Fragrance], Vanillin, Tocopherol, Beta-sitosterol, Squalene",
+      "inci": "Triethyl citrate, Parfum [Fragrance], Vanillin, Tocopherol, Beta-sitosterol, Squalene.",
       "natural_pct": null,
       "certifications": [
         "energia-solare",
@@ -1880,6 +1929,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "doppia-detersione-kit-doppia-detersione-viso-occhi-labbra",
       "sku": "7700",
+      "format": "30 ml - 10 gr",
       "line": "doppia-detersione",
       "brand": "erboristica",
       "name_it": "KIT DOPPIA DETERSIONE – VISO OCCHI LABBRA",
@@ -1887,7 +1937,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Kit doppia detersione in due fasi per viso, occhi e labbra.",
       "description_it": "Un rituale che rimuove make-up e impurità rispettando la pelle: prima il balsamo struccante waterproof, poi la polvere detergente. Olio di Girasole e Acido Succinico detergono in profondità.",
       "usage_it": "BALSAMO STRUCCANTE: A – Applicare una piccola quantità di prodotto sulla pelle asciutta B – Massaggiare fino al completo scioglimento del trucco di viso, occhi e labbra C – Emulsionare con acqua tiepida per detergere e rimuovere i residui di make-up. Risciacquare con cura. POLVERE DETERGENTE: D – Versare una piccola quantità di polvere sul palmo della mano inumidito E – Miscelare la polvere con l’acqua per creare una schiuma soffice F – Applicare la schiuma sul viso già umido, massaggiare delicatamente G – Risciacquare con acqua.",
-      "inci": "BALSAMO STRUCCANTE – INGREDIENTS: Helianthus annuus (Sunflower) seed oil, Ethylhexyl palmitate, Glycerin, C15-1 alkane, Hydrogenated ethylhexyl olivate, Aqua [Water], Sucrose laurate, Ricinus communis (Castor) seed oil, Tocopherol, ascorbyl isostearate, Retinyl palmitate, Phytosterols, Beta-sitosterol, Glycine soja (Soybean) oil, Tocopheryl acetate, Sucrose palmitate, Squalene, Sucrose stearate, Linalool, Linalyl acetate, Coumarin, Hexyl cinnamal, Benzyl salicylate, Limonene, Parfum [Fragrance]. POLVERE DETERGENTE – INGREDIENTS: Oryza sativa (Rice) starch, Sodium cocoyl isethionate, Calcium carbonate, Trehalose, Sodium lauroyl glutamate, Inulin, Hydrolyzed verbascum thapsus flower, Niacinamide, Ascorbyl palmitate, Tocopherol, Rosmarinus officinalis (Rosemary) leaf extract, Caprylic/capric triglyceride, Helianthus annuus (Sunflower) seed oil, Caesalpinia spinosa gum, Glycerin, Lecithin, Sodium chloride, Parfum [Fragrance], Hexamethylindanopyran",
+      "inci": "BALSAMO STRUCCANTE – INGREDIENTS: Helianthus annuus (Sunflower) seed oil, Ethylhexyl palmitate, Glycerin, C15-19 alkane, Hydrogenated ethylhexyl olivate, Aqua [Water], Sucrose laurate, Ricinus communis (Castor) seed oil, Tocopherol, ascorbyl isostearate, Retinyl palmitate, Phytosterols, Beta-sitosterol, Glycine soja (Soybean) oil, Tocopheryl acetate, Sucrose palmitate, Squalene, Sucrose stearate, Linalool, Linalyl acetate, Coumarin, Hexyl cinnamal, Benzyl salicylate, Limonene, Parfum [Fragrance]. POLVERE DETERGENTE – INGREDIENTS: Oryza sativa (Rice) starch, Sodium cocoyl isethionate, Calcium carbonate, Trehalose, Sodium lauroyl glutamate, Inulin, Hydrolyzed verbascum thapsus flower, Niacinamide, Ascorbyl palmitate, Tocopherol, Rosmarinus officinalis (Rosemary) leaf extract, Caprylic/capric triglyceride, Helianthus annuus (Sunflower) seed oil, Caesalpinia spinosa gum, Glycerin, Lecithin, Sodium chloride, Parfum [Fragrance], Hexamethylindanopyran.",
       "natural_pct": 95,
       "certifications": [
         "zero-petrochem",
@@ -1914,6 +1964,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "mineral-infusions-siero-corpo-sensoriale-bifase-elasticizzan",
       "sku": "7720",
+      "format": "150 ml",
       "line": "mineral-infusions",
       "brand": "erboristica",
       "name_it": "SIERO CORPO SENSORIALE BIFASE ELASTICIZZANTE",
@@ -1921,7 +1972,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Siero corpo bifase sensoriale elasticizzante, in alternativa alla crema corpo.",
       "description_it": "La texture leggera e setosa si assorbe in fretta lasciando la pelle morbida e vellutata. La Genziana alpina infusa in acque termali, l’Aloe Vera e il Pantenolo idratano ed elasticizzano.",
       "usage_it": "Agitare per miscelare le due fasi, vaporizzare su tutto il corpo e massaggiare fino a completo assorbimento.",
-      "inci": "Aqua [Water], Aloe barbadensis leaf juice (*), Helianthus annuus (Sunflower) seed oil, Ethylhexyl palmitate, C15-1 alkane, Glycerin, Hydrogenated ethylhexyl olivate, Parfum [Fragrance], Gentiana lutea root extract, Rosmarinus officinalis (Rosemary) leaf extract, Juniperus communis (Juniper) fruit extract, Spirulina maxima extract, Zinc chloride, Copper sulfate, Ferric chloride, Magnesium chloride, Calcium chloride, Manganese gluconate, Ricinus communis (Castor) seed oil, Helichrysum italicum extract, Phytosterols, Sambucus nigra flower extract, Thymus vulgaris (Thyme) flower/leaf extract, Citric acid, Tetrasodium glutamate diacetate, Tetramethyl acetyloctahydronaphthalenes, Linalyl acetate, Terpineol, Citronellol, Linalool, Geraniol, Alpha-isomethyl ionone, Limonene, Dimethyl phenethyl acetate, Rose ketones, Citral, Amyl salicylate, Hexyl cinnamal, Isoeugenyl acetate, Sodium benzoate, Potassium sorbate, CI 60725 [Violet 2], CI 17200 [Red 33], CI 4200 [Blue 1]. (*) da Agricoltura Biologica/ from Organic Farming",
+      "inci": "Aqua [Water], Aloe barbadensis leaf juice (*), Helianthus annuus (Sunflower) seed oil, Ethylhexyl palmitate, C15-19 alkane, Glycerin, Hydrogenated ethylhexyl olivate, Parfum [Fragrance], Gentiana lutea root extract, Rosmarinus officinalis (Rosemary) leaf extract, Juniperus communis (Juniper) fruit extract, Spirulina maxima extract, Zinc chloride, Copper sulfate, Ferric chloride, Magnesium chloride, Calcium chloride, Manganese gluconate, Ricinus communis (Castor) seed oil, Helichrysum italicum extract, Phytosterols, Sambucus nigra flower extract, Thymus vulgaris (Thyme) flower/leaf extract, Citric acid, Tetrasodium glutamate diacetate, Tetramethyl acetyloctahydronaphthalenes, Linalyl acetate, Terpineol, Citronellol, Linalool, Geraniol, Alpha-isomethyl ionone, Limonene, Dimethyl phenethyl acetate, Rose ketones, Citral, Amyl salicylate, Hexyl cinnamal, Isoeugenyl acetate, Sodium benzoate, Potassium sorbate, CI 60725 [Violet 2], CI 17200 [Red 33], CI 42090 [Blue 1].",
       "natural_pct": 98,
       "certifications": [
         "zero-petrochem",
@@ -1948,6 +1999,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "mineral-infusions-siero-corpo-sensoriale-bifase-rigenerante",
       "sku": "7721",
+      "format": "150 ml",
       "line": "mineral-infusions",
       "brand": "erboristica",
       "name_it": "SIERO CORPO SENSORIALE BIFASE RIGENERANTE",
@@ -1955,7 +2007,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Siero corpo bifase sensoriale rigenerante, in alternativa alla crema corpo.",
       "description_it": "La texture leggera e setosa si assorbe in fretta lasciando la pelle morbida e vellutata. Il Sambuco nero infuso in acque termali, l’Olio di Girasole e l’Aloe Vera nutrono e rigenerano.",
       "usage_it": "Agitare per miscelare le due fasi, vaporizzare su tutto il corpo e massaggiare fino a completo assorbimento.",
-      "inci": "Aqua [Water], Aloe barbadensis leaf juice (*), Helianthus annuus (Sunflower) seed oil, Ethylhexyl palmitate, C15-1 alkane, Glycerin, Hydrogenated ethylhexyl olivate, Parfum [Fragrance], Sambucus nigra flower extract, Thymus vulgaris (Thyme) flower/leaf extract, Helichrysum italicum extract, Spirulina maxima extract, Phytosterols, Copper sulfate, Ferric chloride, Zinc chloride, Magnesium chloride, Calcium chloride, Manganese gluconate, Ricinus communis (Castor) seed oil, Gentiana lutea root extract, Juniperus communis (Juniper) fruit extract, Rosmarinus officinalis (Rosemary) leaf extract, Citric acid, Tetrasodium glutamate diacetate, Tetramethyl acetyloctahydronaphthalenes, Limonene, Hexamethylindanopyran, Linalool, Linalyl acetate, Citrus limon peel oil [Citrus medica limonum (Lemon) peel oil], Acetyl cedrene, Pinene, Alpha-isomethyl ionone, Sodium benzoate, Potassium sorbate, CI 4200 [Blue 1], CI 61565 [Green 6]. (*) da Agricoltura Biologica/ from Organic Farming",
+      "inci": "Aqua [Water], Aloe barbadensis leaf juice (*), Helianthus annuus (Sunflower) seed oil, Ethylhexyl palmitate, C15-19 alkane, Glycerin, Hydrogenated ethylhexyl olivate, Parfum [Fragrance], Sambucus nigra flower extract, Thymus vulgaris (Thyme) flower/leaf extract, Helichrysum italicum extract, Spirulina maxima extract, Phytosterols, Copper sulfate, Ferric chloride, Zinc chloride, Magnesium chloride, Calcium chloride, Manganese gluconate, Ricinus communis (Castor) seed oil, Gentiana lutea root extract, Juniperus communis (Juniper) fruit extract, Rosmarinus officinalis (Rosemary) leaf extract, Citric acid, Tetrasodium glutamate diacetate, Tetramethyl acetyloctahydronaphthalenes, Limonene, Hexamethylindanopyran, Linalool, Linalyl acetate, Citrus limon peel oil [Citrus medica limonum (Lemon) peel oil], Acetyl cedrene, Pinene, Alpha-isomethyl ionone, Sodium benzoate, Potassium sorbate, CI 42090 [Blue 1], CI 61565 [Green 6].",
       "natural_pct": 98,
       "certifications": [
         "zero-petrochem",
@@ -1982,6 +2034,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "nutra-crema-corpo-oro-di-baobab",
       "sku": "6301",
+      "format": "160 ml",
       "line": "nutra",
       "brand": "erboristica",
       "name_it": "CREMA CORPO ORO DI BAOBAB",
@@ -1989,7 +2042,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Crema corpo rigenerante e nutriente all’Olio di Baobab.",
       "description_it": "Completamente naturale, assicura tono ed elasticità alla pelle. Olio di Baobab, Acido Ialuronico e cellule staminali vegetali rigenerano e nutrono in profondità.",
       "usage_it": "Applica la crema corpo tutti i giorni dopo la doccia, quando la pelle è ancora umida.",
-      "inci": "Aqua [Water], Olus oil [Olus], Dicaprylyl ether, Coco-caprylate, Glycerin, Adansonia digitata seed oil (*), Betaine, Butyrospermum parkii (Shea butter), Polyglyceryl-3 stearate, Sodium stearoyl lactylate, Cetearyl alcohol, Glyceryl stearate, Behenyl alcohol, Ascorbyl isostearate, Retinyl palmitate, Tocopherol, Tocopheryl acetate, Sodium hyaluronate, Glycine soja (Soybean) oil, Camelina sativa seed oil, Ethylhexyl stearate, Citric acid, Xanthan gum, Sodium gluconate, Ethylhexylglycerin, Benzoic acid, Dehydroacetic acid, Parfum [Fragrance], Limonene, Coumarin, Cinnamyl alcohol, Linalool, Eugenol, Isoeugenol, Benzyl benzoate, Benzyl salicylate, Phenoxyethanol, Sodium polyacrylate, Trideceth-6. (*) da Agricoltura Biologica/ from Organic Farming",
+      "inci": "Aqua [Water], Olus oil [Olus], Dicaprylyl ether, Coco-caprylate, Glycerin, Adansonia digitata seed oil (*), Betaine, Butyrospermum parkii (Shea butter), Polyglyceryl-3 stearate, Sodium stearoyl lactylate, Cetearyl alcohol, Glyceryl stearate, Behenyl alcohol, Ascorbyl isostearate, Retinyl palmitate, Tocopherol, Tocopheryl acetate, Sodium hyaluronate, Glycine soja (Soybean) oil, Camelina sativa seed oil, Ethylhexyl stearate, Citric acid, Xanthan gum, Sodium gluconate, Ethylhexylglycerin, Benzoic acid, Dehydroacetic acid, Parfum [Fragrance], Limonene, Coumarin, Cinnamyl alcohol, Linalool, Eugenol, Isoeugenol, Benzyl benzoate, Benzyl salicylate, Phenoxyethanol, Sodium polyacrylate, Trideceth-6.",
       "natural_pct": 98,
       "certifications": [
         "zero-petrochem",
@@ -2016,6 +2069,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "nutra-crema-viso-oro-di-baobab",
       "sku": "6304",
+      "format": "50 ml",
       "line": "nutra",
       "brand": "erboristica",
       "name_it": "CREMA VISO ORO DI BAOBAB",
@@ -2023,7 +2077,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Crema viso ultra-rigenerante e nutriente all’Olio di Baobab.",
       "description_it": "Studiata per tutti i tipi di pelle, dona idratazione e innesca il rinnovamento cutaneo. Olio di Baobab, cellule staminali vegetali e Vitamina C nutrono e proteggono dai radicali liberi.",
       "usage_it": "Mattina e/o sera su viso e decollété. Il trattamento viene potenziato utilizzando, prima dell’applicazione della crema, l’Olio di Baobab biologico puro.",
-      "inci": "Aqua [Water], C15-1 alkane, Glycerin, Betaine, Cetyl alcohol, Adansonia digitata seed oil (*), Butyrospermum parkii (Shea) butter, Potassium cetyl phosphate, Behenyl alcohol, Leontopodium alpinum callus culture extract, Camelina sativa seed oil, Bakuchiol, Sodium hyaluronate, Tocopherol, Retinyl palmitate, Tocopheryl acetate, Glycine soja (Soybean) oil, Sodium PCA, Hydrolyzed wheat protein, ascorbyl isostearate, Squalene, Beta-sitosterol, Lysine, Urea, Allantoin, Parfum [Fragrance], Sodium gluconate, Lactic acid, Xanthan gum, Olus oil [Vegetable (Olus) oil], Sorbitol, Vanillin, Pogostemon cablin oil, Tetramethyl acetyloctahydronaphthalenes, Coumarin, Linalool, Acetyl cedrene, Dehydroacetic acid, Polyacrylate crosspolymer-6, Benzoic acid, Phenoxyethanol. (*) DA AGRICOLTURA BIOLOGICA / FROM ORGANIC FARMING",
+      "inci": "Aqua [Water], C15-19 alkane, Glycerin, Betaine, Cetyl alcohol, Adansonia digitata seed oil (*), Butyrospermum parkii (Shea) butter, Potassium cetyl phosphate, Behenyl alcohol, Leontopodium alpinum callus culture extract, Camelina sativa seed oil, Bakuchiol, Sodium hyaluronate, Tocopherol, Retinyl palmitate, Tocopheryl acetate, Glycine soja (Soybean) oil, Sodium PCA, Hydrolyzed wheat protein, ascorbyl isostearate, Squalene, Beta-sitosterol, Lysine, Urea, Allantoin, Parfum [Fragrance], Sodium gluconate, Lactic acid, Xanthan gum, Olus oil [Vegetable (Olus) oil], Sorbitol, Vanillin, Pogostemon cablin oil, Tetramethyl acetyloctahydronaphthalenes, Coumarin, Linalool, Acetyl cedrene, Dehydroacetic acid, Polyacrylate crosspolymer-6, Benzoic acid, Phenoxyethanol.",
       "natural_pct": 98,
       "certifications": [
         "zero-petrochem",
@@ -2050,6 +2104,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "nutra-olio-corpo-nutra-repair",
       "sku": "6309",
+      "format": "200 ml",
       "line": "nutra",
       "brand": "erboristica",
       "name_it": "OLIO CORPO NUTRA REPAIR",
@@ -2057,7 +2112,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Olio corpo e capelli rigenerante e nutriente all’Olio di Baobab.",
       "description_it": "Ricco di Omega, rigenera e nutre intensamente pelle e capelli migliorandone l’elasticità. Olio di Baobab, Omega 3-6-9 e Olio di Mandorle Dolci donano luminosità.",
       "usage_it": "Applicare mattino e sera su pelle detersa e massaggiare fino a completo assorbimento.",
-      "inci": "Prunus amygdalus dulcis (Sweet almond) oil, Glycine soja (Soybean) oil (*), Cocos nucifera (Coconut) oil, Parfum [Fragrance], Adansonia digitata seed oil (*), Linum usitatissimum (Linseed) seed oil (*), Camelina sativa seed oil, Oryza sativa (Rice) bran oil, Cinnamomum zeylanicum leaf oil, Juniperus mexicana oil, Citrus limon peel extract [Citrus medica limonum (Lemon) peel extract], Tocopherol, Lavandula hybrida oil, Vetiveria zizanoides root oil, Pogostemon cablin oil, Squalene, Beta-sitosterol, Citrus aurantium dulcis (Orange) peel oil, Piper nigrum (Pepper) fruit oil, Olus oil, Limonene, Coumarin, Linalool, Eugenol, Citral, Linalyl acetate, Pinene, Bulnesia sarmientoi wood oil, Tetramethyl acetyloctahydronaphthalenes, Vanillin, Beta-caryophyllene, Acetyl cedrene, Piper nigrum (Pepper) fruit oil, Terpineol, Terpinolene, Rose ketones, Hexamethylindanopyran. (*) Da Agricoltura Biologica / from Organic Farming",
+      "inci": "Prunus amygdalus dulcis (Sweet almond) oil, Glycine soja (Soybean) oil (*), Cocos nucifera (Coconut) oil, Parfum [Fragrance], Adansonia digitata seed oil (*), Linum usitatissimum (Linseed) seed oil (*), Camelina sativa seed oil, Oryza sativa (Rice) bran oil, Cinnamomum zeylanicum leaf oil, Juniperus mexicana oil, Citrus limon peel extract [Citrus medica limonum (Lemon) peel extract], Tocopherol, Lavandula hybrida oil, Vetiveria zizanoides root oil, Pogostemon cablin oil, Squalene, Beta-sitosterol, Citrus aurantium dulcis (Orange) peel oil, Piper nigrum (Pepper) fruit oil, Olus oil, Limonene, Coumarin, Linalool, Eugenol, Citral, Linalyl acetate, Pinene, Bulnesia sarmientoi wood oil, Tetramethyl acetyloctahydronaphthalenes, Vanillin, Beta-caryophyllene, Acetyl cedrene, Piper nigrum (Pepper) fruit oil, Terpineol, Terpinolene, Rose ketones, Hexamethylindanopyran.",
       "natural_pct": 99,
       "certifications": [
         "zero-petrochem",
@@ -2084,6 +2139,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "nutra-olio-viso-nutra-repair",
       "sku": "6302",
+      "format": "30 ml",
       "line": "nutra",
       "brand": "erboristica",
       "name_it": "OLIO VISO NUTRA REPAIR",
@@ -2091,7 +2147,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Olio viso multivitaminico rigenerante e riparatore all’Olio di Baobab.",
       "description_it": "La texture fondente nutre intensamente e ripara la pelle del viso. Olio puro di Baobab, Vitamina A e Vitamina E rigenerano e contrastano i segni del tempo.",
       "usage_it": "Applicare poche gocce mattino e sera su pelle detersa e massaggiare fino a completo assorbimento. Il trattamento viene potenziato utilizzando, dopo l’applicazione dell’Olio, la Crema Viso NutraRepair Ultra-rigenerante",
-      "inci": "Adansonia digitata seed oil (*), Parfum [Fragrance], Retinyl palmitate, ascorbyl isostearate, Tocopherol, Tocopheryl acetate, Beta-sitosterol, Squalene, Glycine soja (Soybean) oil, Cinnamyl alcohol, Limonene, Linalool, Eugenol, Isoeugenol, Vanillin, Pogostemon cablin oil, Tetramethyl acetyloctahydronaphthalenes, Coumarin, Acetyl cedrene, Cinnamyl alcohol, Benzyl benzoate, Benzyl salicylate, Benzyl alcohol, Geraniol. (*) da Agricoltura Biologica / from Organic Farming",
+      "inci": "Adansonia digitata seed oil (*), Parfum [Fragrance], Retinyl palmitate, ascorbyl isostearate, Tocopherol, Tocopheryl acetate, Beta-sitosterol, Squalene, Glycine soja (Soybean) oil, Cinnamyl alcohol, Limonene, Linalool, Eugenol, Isoeugenol, Vanillin, Pogostemon cablin oil, Tetramethyl acetyloctahydronaphthalenes, Coumarin, Acetyl cedrene, Cinnamyl alcohol, Benzyl benzoate, Benzyl salicylate, Benzyl alcohol, Geraniol.",
       "natural_pct": 100,
       "certifications": [
         "zero-petrochem",
@@ -2118,6 +2174,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "argan-crema-corpo-idratante",
       "sku": "7400",
+      "format": "200 ml",
       "line": "argan",
       "brand": "erboristica",
       "name_it": "CREMA CORPO IDRATANTE",
@@ -2125,7 +2182,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Crema corpo all’Olio di Argan, nutriente, idratante ed elasticizzante.",
       "description_it": "La formula naturale dona elasticità e morbidezza alla pelle. Olio di Argan, Glicerina e Burro di Karité nutrono e mantengono l’idratazione a lungo.",
       "usage_it": "Applica la crema corpo tutti i giorni dopo la doccia, quando la pelle è ancora umida.",
-      "inci": "Aqua [Water], C15-1 alkane, Cetyl alcohol, Glycerin, Butyrospermum parkii (Shea) butter, Sodium stearoyl lactylate, Behenyl alcohol, Argania spinosa kernel oil (*), Ricinus communis (Castor) seed oil, Hydrogenated ethylhexyl olivate, Phytosterols, Hydrogenated rapeseed oil, Polyglyceryl-3 stearate, Hydrogenated palm oil, Ethylhexyl stearate, Tetrasodium glutamate diacetate, Acrylates/C10-30 alkyl acrylate crosspolymer, Pogostemon cablin oil, Beta-sitosterol, Squalene, Tocopherol, Parfum [Fragrance], Benzoic acid, Dehydroacetic acid, Phenoxyethanol, Sodium polyacrylate, Tetramethyl acetyloctahydronaphthalenes, Linalyl acetate, Trideceth-6, Linalool, Hexyl cinnamal, Sodium hyaluronate, Vanillin, Acetyl cedrene, Coumarin, Benzyl salicylate, Citronellol, Alpha-isomethyl ionone, Beta-caryophyllene, Limonene.(*) DA AGRICOLTURA BIOLOGICA – FROM ORGANIC FARMING",
+      "inci": "Aqua [Water], C15-19 alkane, Cetyl alcohol, Glycerin, Butyrospermum parkii (Shea) butter, Sodium stearoyl lactylate, Behenyl alcohol, Argania spinosa kernel oil (*), Ricinus communis (Castor) seed oil, Hydrogenated ethylhexyl olivate, Phytosterols, Hydrogenated rapeseed oil, Polyglyceryl-3 stearate, Hydrogenated palm oil, Ethylhexyl stearate, Tetrasodium glutamate diacetate, Acrylates/C10-30 alkyl acrylate crosspolymer, Pogostemon cablin oil, Beta-sitosterol, Squalene, Tocopherol, Parfum [Fragrance], Benzoic acid, Dehydroacetic acid, Phenoxyethanol, Sodium polyacrylate, Tetramethyl acetyloctahydronaphthalenes, Linalyl acetate, Trideceth-6, Linalool, Hexyl cinnamal, Sodium hyaluronate, Vanillin, Acetyl cedrene, Coumarin, Benzyl salicylate, Citronellol, Alpha-isomethyl ionone, Beta-caryophyllene, Limonene.",
       "natural_pct": 98,
       "certifications": [
         "zero-petrochem",
@@ -2152,6 +2209,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "argan-esfoliante-viso",
       "sku": "7041",
+      "format": "75 ml",
       "line": "argan",
       "brand": "erboristica",
       "name_it": "ESFOLIANTE VISO",
@@ -2159,7 +2217,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Esfoliante viso delicato che libera la pelle da impurità e cellule morte.",
       "description_it": "Il peeling rende la pelle più luminosa e rivitalizzata, con un effetto seta. Olio di Argan, micro-granuli di Jojoba e Aloe Vera levigano senza aggredire.",
       "usage_it": "Una-due volte a settimana, applicare una moderata quantità su viso e collo massaggiando delicatamente. Risciacquare con acqua tiepida. Per le pelli particolarmente delicate se ne sconsiglia l’uso nella zona perioculare.",
-      "inci": "Aqua [Water], Caprylic/capric triglyceride, Glycine soja (Soybean) oil (*), Glyceryl stearate, Decyl oleate, Erythritol, Cetearyl alcohol, Olea europaea (Olive) seed powder, Benzyl alcohol, Magnesium aluminum silicate, Sodium lauroyl glutamate, Sodium stearoyl lactylate, Argania spinosa kernel oil (*), Sodium hyaluronate, Panthenol, Olea europaea (Olive) fruit oil (*), Tocopherol, Punica granatum fruit extract (*), Squalene, Beta-sitosterol, Sodium gluconate, Citric acid, Xanthan gum, Parfum [Fragrance], Pogostemon cablin oil, Tetramethyl acetyloctahydronaphthalenes, Linalyl acetate, Linalool, Hexyl cinnamal, Ethylhexylglycerin. (*) da Agricoltura Biologica / from Organic Farming",
+      "inci": "Aqua [Water], Caprylic/capric triglyceride, Glycine soja (Soybean) oil (*), Glyceryl stearate, Decyl oleate, Erythritol, Cetearyl alcohol, Olea europaea (Olive) seed powder, Benzyl alcohol, Magnesium aluminum silicate, Sodium lauroyl glutamate, Sodium stearoyl lactylate, Argania spinosa kernel oil (*), Sodium hyaluronate, Panthenol, Olea europaea (Olive) fruit oil (*), Tocopherol, Punica granatum fruit extract (*), Squalene, Beta-sitosterol, Sodium gluconate, Citric acid, Xanthan gum, Parfum [Fragrance], Pogostemon cablin oil, Tetramethyl acetyloctahydronaphthalenes, Linalyl acetate, Linalool, Hexyl cinnamal, Ethylhexylglycerin.",
       "natural_pct": 98,
       "certifications": [
         "zero-petrochem",
@@ -2186,6 +2244,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "argan-mousse-doccia",
       "sku": "7042",
+      "format": "200 ml",
       "line": "argan",
       "brand": "erboristica",
       "name_it": "MOUSSE DOCCIA",
@@ -2193,7 +2252,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Mousse doccia all’Olio di Argan, idratante e protettiva.",
       "description_it": "Deterge con dolcezza lasciando la pelle vellutata e profumata. Olio di Argan, tensioattivi vegetali e Vitamina E svolgono un’azione nutriente ed emolliente.",
       "usage_it": "Su pelle bagnata, sotto la doccia o in vasca, massaggiare il corpo con una generosa quantità di mousse per qualche minuto. Risciacquare con cura. Completare il trattamento utilizzando, prima della mousse doccia, due volte a settimana, lo scrub corpo ai granuli di albicocca.",
-      "inci": "Aqua [Water], Sodium coceth sulfate, Cocamidopropyl betaine, Aloe barbadensis leaf juice (*), Lauryl glucoside, Parfum [Fragrance], Maris sal, Argania spinosa kernel oil (*), Sodium hyaluronate, Hydrolyzed rice protein, Panthenol, Sodium gluconate, Citric acid, Phenoxyethanol, Ethylhexylglycerin, Linalool, Hexyl cinnamal, Coumarin, Vanillin, Linalyl acetate, Pogostemon cablin oil, Tetramethyl acetyloctahydronaphthalenes, Acetyl cedrene. (*) da Agricoltura Biologica/ from Organic Farming",
+      "inci": "Aqua [Water], Sodium coceth sulfate, Cocamidopropyl betaine, Aloe barbadensis leaf juice (*), Lauryl glucoside, Parfum [Fragrance], Maris sal, Argania spinosa kernel oil (*), Sodium hyaluronate, Hydrolyzed rice protein, Panthenol, Sodium gluconate, Citric acid, Phenoxyethanol, Ethylhexylglycerin, Linalool, Hexyl cinnamal, Coumarin, Vanillin, Linalyl acetate, Pogostemon cablin oil, Tetramethyl acetyloctahydronaphthalenes, Acetyl cedrene.",
       "natural_pct": 98,
       "certifications": [
         "zero-petrochem",
@@ -2220,6 +2279,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "argan-olio-corpo-argan",
       "sku": "7401",
+      "format": "200 ml",
       "line": "argan",
       "brand": "erboristica",
       "name_it": "OLIO CORPO ARGAN",
@@ -2227,7 +2287,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Olio corpo all’Argan che illumina e rigenera, per una pelle morbida ed elastica.",
       "description_it": "Un trattamento di bellezza da una miscela di oli preziosi che nutre in profondità. Olio di Argan vergine e Vitamina E naturale rigenerano e donano elasticità alla pelle.",
       "usage_it": "Su pelle asciutta o bagnata massaggiare fino ad assorbimento.",
-      "inci": "Prunus amygdalus dulcis (Sweet almond) oil, Glycine soja (Soybean) oil (*), Cocos nucifera (Coconut) oil, Parfum [Fragrance], Argania spinosa kernel oil (*), Linum usitatissimum (Linseed) seed oil (*), Oryza sativa (Rice) bran oil, Squalene, Tocopherol, Pogostemon cablin oil, Beta-sitosterol, Linalool, Hexyl cinnamal, Linalyl acetate, Tetramethyl acetyloctahydronaphthalenes, Acetyl cedrene, Hexamethylindanopyran, Benzyl salicylate, Coumarin, Citronellol, Alpha-isomethyl ionone. (*) da Agricoltura Biologica / from Organic Farming",
+      "inci": "Prunus amygdalus dulcis (Sweet almond) oil, Glycine soja (Soybean) oil (*), Cocos nucifera (Coconut) oil, Parfum [Fragrance], Argania spinosa kernel oil (*), Linum usitatissimum (Linseed) seed oil (*), Oryza sativa (Rice) bran oil, Squalene, Tocopherol, Pogostemon cablin oil, Beta-sitosterol, Linalool, Hexyl cinnamal, Linalyl acetate, Tetramethyl acetyloctahydronaphthalenes, Acetyl cedrene, Hexamethylindanopyran, Benzyl salicylate, Coumarin, Citronellol, Alpha-isomethyl ionone.",
       "natural_pct": 100,
       "certifications": [
         "zero-petrochem",
@@ -2253,6 +2313,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "argan-sapone-vegetale-allolio-di-argan",
       "sku": "7066",
+      "format": "100 g",
       "line": "argan",
       "brand": "erboristica",
       "name_it": "SAPONE VEGETALE ALL’OLIO DI ARGAN",
@@ -2260,7 +2321,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Sapone vegetale all’Olio di Argan, idratante per viso e corpo.",
       "description_it": "Ottenuto dalla saponificazione di puri oli vegetali, deterge con delicatezza. Ricco di Olio di Argan, Vitamina A e Omega 3 e 6, nutre e protegge la pelle.",
       "usage_it": "Insapona le mani bagnate e risciacqua.",
-      "inci": "Sodium palmate, Sodium palm kernelate, Aqua [Water], Decyl oleate, Parfum [Fragrance], Glycerin, Sodium chloride, Argania spinosa kernel oil (*), Pogostemon cablin oil, Tetrasodium etidronate, Tetrasodium EDTA, Tetramethyl acetyloctahydronaphthalenes, Linalyl acetate, Linalool, Hexyl cinnamal. (*) da Agricoltura Biologica/ from Organic Farming",
+      "inci": "Sodium palmate, Sodium palm kernelate, Aqua [Water], Decyl oleate, Parfum [Fragrance], Glycerin, Sodium chloride, Argania spinosa kernel oil (*), Pogostemon cablin oil, Tetrasodium etidronate, Tetrasodium EDTA, Tetramethyl acetyloctahydronaphthalenes, Linalyl acetate, Linalool, Hexyl cinnamal.",
       "natural_pct": 98,
       "certifications": [
         "zero-petrochem",
@@ -2287,6 +2348,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "argan-trattamento-intensivo-riparatore-viso",
       "sku": "7009",
+      "format": "50 ml",
       "line": "argan",
       "brand": "erboristica",
       "name_it": "TRATTAMENTO INTENSIVO RIPARATORE VISO",
@@ -2294,7 +2356,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Crema viso anti-age all’Olio di Argan e Acido Ialuronico, contro i segni del tempo.",
       "description_it": "Leviga i tratti, ridensifica i tessuti e ridisegna l’ovale, contrastando disidratazione e perdita di tono. Olio di Argan, Acido Ialuronico vegetale e Vitamina C rimpolpano e illuminano.",
       "usage_it": "Mattina e sera, su viso e collo, massaggiare delicatamente la pelle perfettamente detersa.",
-      "inci": "Aqua [Water], Ethylhexyl palmitate, Glycerin, Betaine, Butyrospermum parkii (Shea) butter, Caprylic/capric triglyceride, Dicaprylyl carbonate, Cetyl alcohol, Simmondsia chinensis (Jojoba) seed oil (*), Cetearyl alcohol, Polyglyceryl-3 stearate, Sodium stearoyl lactylate, Argania spinosa kernel oil (*), Tremella fuciformis sporocarp extract, Ginkgo biloba leaf extract (*), Camelina sativa seed oil, Hydrolyzed olive fruit (*), Tocopherol, Carrageenan, Fucus vesiculosus extract,Tocopheryl acetate, Panthenol, Hydrolyzed rice protein, Sodium PCA, Urea, Zinc PCA, Hydrolyzed wheat protein, Allantoin, Lysine, Lactic acid, Sorbitol, Beta-sitosterol, Squalene, Vegetable (Olus) oil, Zinc ricinoleate, Xanthan gum, Parfum [Fragrance], Sodium gluconate, Benzoic acid, Dehydroacetic acid, Linalool, Hexyl cinnamal, Benzyl salicylate, Hexamethylindanopyran, Tetramethyl acetyloctahydronaphthalenes, Linalyl acetate, Pogostemon cablin oil, Acetyl cedrene, Phenoxyethanol, Coumarin, Citronellol, Ethylhexylglycerin. (*) da Agricoltura Biologica / from Organic Farming",
+      "inci": "Aqua [Water], Ethylhexyl palmitate, Glycerin, Betaine, Butyrospermum parkii (Shea) butter, Caprylic/capric triglyceride, Dicaprylyl carbonate, Cetyl alcohol, Simmondsia chinensis (Jojoba) seed oil (*), Cetearyl alcohol, Polyglyceryl-3 stearate, Sodium stearoyl lactylate, Argania spinosa kernel oil (*), Tremella fuciformis sporocarp extract, Ginkgo biloba leaf extract (*), Camelina sativa seed oil, Hydrolyzed olive fruit (*), Tocopherol, Carrageenan, Fucus vesiculosus extract,Tocopheryl acetate, Panthenol, Hydrolyzed rice protein, Sodium PCA, Urea, Zinc PCA, Hydrolyzed wheat protein, Allantoin, Lysine, Lactic acid, Sorbitol, Beta-sitosterol, Squalene, Vegetable (Olus) oil, Zinc ricinoleate, Xanthan gum, Parfum [Fragrance], Sodium gluconate, Benzoic acid, Dehydroacetic acid, Linalool, Hexyl cinnamal, Benzyl salicylate, Hexamethylindanopyran, Tetramethyl acetyloctahydronaphthalenes, Linalyl acetate, Pogostemon cablin oil, Acetyl cedrene, Phenoxyethanol, Coumarin, Citronellol, Ethylhexylglycerin.",
       "natural_pct": 99,
       "certifications": [
         "zero-petrochem",
@@ -2321,6 +2383,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "mandorle-crema-fluida-corpo-mandorle-dolci",
       "sku": "7024",
+      "format": "200 ml",
       "line": "mandorle",
       "brand": "erboristica",
       "name_it": "CREMA FLUIDA CORPO MANDORLE DOLCI",
@@ -2328,7 +2391,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Crema corpo fluida all’Olio di Mandorle Dolci, nutriente e restitutiva.",
       "description_it": "Studiata per pelli secche e spente, restituisce elasticità e luminosità. Olio di Mandorle Dolci, Glicerina e Pantenolo nutrono e idratano la pelle.",
       "usage_it": "Su pelle detersa, dopo la doccia o il bagno, massaggiare il corpo con una generosa quantità di crema fino a totale assorbimento.",
-      "inci": "Aqua [Water], Cetyl alcohol, Glycerin, Behenamidopropyl dimethylamine, Behenyl alcohol, Butyrospermum parkii (Shea) butter, Cetearyl alcohol, Cocos nucifera (Coconut) oil, Parfum [Fragrance], Prunus amygdalus dulcis (Sweet almond) oil, Avena sativa (Oat) kernel extract, Beta-sitosterol, Tocopherol, Squalene, Lactic acid, Sodium gluconate, Vanillin, Trimethylcyclopentenyl Methylisopentenol, Dehydroacetic acid, Benzoic acid, Phenoxyethanol. (*) DA AGRICOLTURA BIOLOGICA/ FROM ORGANIC FARMING",
+      "inci": "Aqua [Water], Cetyl alcohol, Glycerin, Behenamidopropyl dimethylamine, Behenyl alcohol, Butyrospermum parkii (Shea) butter, Cetearyl alcohol, Cocos nucifera (Coconut) oil, Parfum [Fragrance], Prunus amygdalus dulcis (Sweet almond) oil, Avena sativa (Oat) kernel extract, Beta-sitosterol, Tocopherol, Squalene, Lactic acid, Sodium gluconate, Vanillin, Trimethylcyclopentenyl Methylisopentenol, Dehydroacetic acid, Benzoic acid, Phenoxyethanol.",
       "natural_pct": 99,
       "certifications": [
         "zero-petrochem",
@@ -2355,6 +2418,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "mandorle-crema-mani-e-unghie-mandorle-dolci",
       "sku": "6997",
+      "format": "75 ml",
       "line": "mandorle",
       "brand": "erboristica",
       "name_it": "CREMA MANI & UNGHIE MANDORLE DOLCI",
@@ -2362,7 +2426,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Crema mani e unghie all’Olio di Mandorle Dolci, ad assorbimento rapido.",
       "description_it": "Non unge ma nutre e ripara, rendendo le mani morbide e setose. Olio di Mandorle Dolci, Cheratina idrolizzata e Vitamina E proteggono pelle e unghie.",
       "usage_it": "L’uso quotidiano, anche più volte al giorno, garantisce mani protette, luminose e setose.",
-      "inci": "Aqua [Water], Glycerin, Coco-caprylate, Stearic acid, Aluminum starch octenylsuccinate, Butyrospermum parkii (Shea butter), Olea europaea (Olive) oil unsaponifiables, Avena sativa (Oat) kernel extract, Cetearyl alcohol, Ethylhexyl palmitate, Polyglyceryl-3 stearate, Prunus amygdalus dulcis (Sweet almond) oil, Sodium stearoyl lactylate, Simmondsia chinensis (Jojoba) seed oil (*), Beta-sitosterol, Squalene, Glycine soja (Soybean) oil (*), Lysine, Hydrolyzed wheat protein, Tocopheryl acetate, Zinc PCA, Sorbitol, Panthenol, Tocopherol, Hydrolyzed rice protein, Allantoin, Lactic acid, PCA, Diglycerin, Ethylhexyl stearate, Urea, Sodium PCA, Citric acid, Xanthan gum, Phenoxyethanol, Sodium polyacrylate, Parfum [Fragrance], Sodium gluconate, Terpineol, Coumarin, Benzoic acid, Trideceth-6, Dehydroacetic acid, Ethylhexylglycerin. (*) da Agricoltura Biologica/ from Organic Farming",
+      "inci": "Aqua [Water], Glycerin, Coco-caprylate, Stearic acid, Aluminum starch octenylsuccinate, Butyrospermum parkii (Shea butter), Olea europaea (Olive) oil unsaponifiables, Avena sativa (Oat) kernel extract, Cetearyl alcohol, Ethylhexyl palmitate, Polyglyceryl-3 stearate, Prunus amygdalus dulcis (Sweet almond) oil, Sodium stearoyl lactylate, Simmondsia chinensis (Jojoba) seed oil (*), Beta-sitosterol, Squalene, Glycine soja (Soybean) oil (*), Lysine, Hydrolyzed wheat protein, Tocopheryl acetate, Zinc PCA, Sorbitol, Panthenol, Tocopherol, Hydrolyzed rice protein, Allantoin, Lactic acid, PCA, Diglycerin, Ethylhexyl stearate, Urea, Sodium PCA, Citric acid, Xanthan gum, Phenoxyethanol, Sodium polyacrylate, Parfum [Fragrance], Sodium gluconate, Terpineol, Coumarin, Benzoic acid, Trideceth-6, Dehydroacetic acid, Ethylhexylglycerin.",
       "natural_pct": 97,
       "certifications": [
         "zero-petrochem",
@@ -2389,6 +2453,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "mandorle-crema-viso-prime-rughe",
       "sku": "6970",
+      "format": "50 ml",
       "line": "mandorle",
       "brand": "erboristica",
       "name_it": "CREMA VISO PRIME RUGHE",
@@ -2396,7 +2461,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Crema viso prime rughe all’Olio di Mandorle Dolci, contro i primi segni del tempo.",
       "description_it": "Mantiene elasticità e levigatezza valorizzando la luminosità del viso. Olio di Mandorle Dolci, Acido Ialuronico e Vitamina E idratano e contrastano l’invecchiamento.",
       "usage_it": "Massaggiare mattina e sera su viso, collo e dècolleté perfettamente detersi.",
-      "inci": "Aqua [Water], Dicaprylyl ether, Glycerin, Betaine, Hydrolyzed soy extract, Butyrospermum parkii (Shea butter), Prunus amygdalus dulcis (Sweet almond) oil, Cetearyl alcohol, Glyceryl stearate, Bakuchiol, Lysine, Sodium hyaluronate, Sodium lauroyl glutamate, Allantoin, Tocopherol, Sodium PCA, Sodium stearoyl lactylate, Hydrolyzed wheat protein, Sorbitol, Tocopheryl acetate, Ethylhexyl stearate, Urea, Zinc ricinoleate, Lactic acid, Sodium gluconate, Xanthan gum, Sodium polyacrylate, Parfum [Fragrance], Benzoic acid, Dehydroacetic acid, Trideceth-6, Phenoxyethanol, Ethylhexylglycerin",
+      "inci": "Aqua [Water], Dicaprylyl ether, Glycerin, Betaine, Hydrolyzed soy extract, Butyrospermum parkii (Shea butter), Prunus amygdalus dulcis (Sweet almond) oil, Cetearyl alcohol, Glyceryl stearate, Bakuchiol, Lysine, Sodium hyaluronate, Sodium lauroyl glutamate, Allantoin, Tocopherol, Sodium PCA, Sodium stearoyl lactylate, Hydrolyzed wheat protein, Sorbitol, Tocopheryl acetate, Ethylhexyl stearate, Urea, Zinc ricinoleate, Lactic acid, Sodium gluconate, Xanthan gum, Sodium polyacrylate, Parfum [Fragrance], Benzoic acid, Dehydroacetic acid, Trideceth-6, Phenoxyethanol, Ethylhexylglycerin.",
       "natural_pct": 97,
       "certifications": [
         "zero-petrochem",
@@ -2423,6 +2488,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "mandorle-mousse-doccia-mandorle-dolci",
       "sku": "7403",
+      "format": "400 ml",
       "line": "mandorle",
       "brand": "erboristica",
       "name_it": "MOUSSE DOCCIA MANDORLE DOLCI",
@@ -2430,7 +2496,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Mousse doccia all’Olio di Mandorle Dolci, straordinariamente delicata.",
       "description_it": "Formulata solo con tensioattivi vegetali, nutre e idrata le pelli atoniche e disidratate. Olio di Mandorle Dolci e Aloe Vera donano comfort e una profumazione morbida e fiorita.",
       "usage_it": "Distribuisci il prodotto direttamente sulla pelle bagnata, massaggia delicatamente e risciacqua.",
-      "inci": "Aqua [Water], Sodium coceth sulfate, Cocamidopropyl betaine, Aloe barbadensis leaf juice (*), Lauryl glucoside, Parfum [Fragrance], Prunus amygdalus dulcis (Sweet almond) oil, Hydrolyzed rice protein, Panthenol, Citric acid, Sodium gluconate, Dimethyl phenethyl acetate, Trimethylbenzenepropanol, Phenoxyethanol, Ethylhexylglycerin. (*) da Agricoltura Biologica/ from Organic Farming",
+      "inci": "Aqua [Water], Sodium coceth sulfate, Cocamidopropyl betaine, Aloe barbadensis leaf juice (*), Lauryl glucoside, Parfum [Fragrance], Prunus amygdalus dulcis (Sweet almond) oil, Hydrolyzed rice protein, Panthenol, Citric acid, Sodium gluconate, Dimethyl phenethyl acetate, Trimethylbenzenepropanol, Phenoxyethanol, Ethylhexylglycerin.",
       "natural_pct": 99,
       "certifications": [
         "zero-petrochem",
@@ -2457,6 +2523,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "mandorle-olio-mandorle-dolci-100-naturale",
       "sku": "7010",
+      "format": "200 ml",
       "line": "mandorle",
       "brand": "erboristica",
       "name_it": "OLIO MANDORLE DOLCI 100% NATURALE",
@@ -2464,7 +2531,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Olio di Mandorle Dolci 100% naturale per viso e corpo, ricco di Vitamina E.",
       "description_it": "Dalle proprietà emollienti ed elasticizzanti, è ideale anche sotto la doccia. Olio di Mandorle Dolci e Vitamina E combattono i radicali liberi e ammorbidiscono la pelle.",
       "usage_it": "Ideale sotto la doccia sulla pelle bagnata e detersa, applicare una piccola quantità di olio e massaggiare delicatamente. Risciacquare per eliminare l’olio in eccesso. Asciugare tamponando per un effetto vellutato. Su pelle asciutta, applicare su pelle detersa una generosa quantità su viso, décolleté e corpo e massaggiare a lungo per favorirne la penetrazione. La variazione della nota olfattiva e/o dell’aspetto del prodotto sono dovuti esclusivamente alla sua naturalità e non ne alterano in alcun modo qualità e proprietà.",
-      "inci": "Prunus amygdalus dulcis (Sweet almond) oil (,2%),Tocopherol, Beta-sitosterol, Squalene, Trimethylbenzenepropanol, Dimethyl phenethyl acetate, Terpinolene, Parfum [Fragrance], Limonene",
+      "inci": "Prunus amygdalus dulcis (Sweet almond) oil (99,2%),Tocopherol, Beta-sitosterol, Squalene, Trimethylbenzenepropanol, Dimethyl phenethyl acetate, Terpinolene, Parfum [Fragrance], Limonene.",
       "natural_pct": 100,
       "certifications": [
         "zero-petrochem",
@@ -2491,6 +2558,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "mandorle-sapone-vegetale-allolio-di-mandorle",
       "sku": "7053",
+      "format": "100 g",
       "line": "mandorle",
       "brand": "erboristica",
       "name_it": "SAPONE VEGETALE ALL’OLIO DI MANDORLE",
@@ -2498,7 +2566,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Sapone vegetale all’Olio di Mandorle Dolci, lenitivo ed elasticizzante.",
       "description_it": "Sapone solido per tutti i tipi di pelle, ideale anche sotto la doccia e per i bambini. Con puri oli vegetali e Olio di Mandorle Dolci, deterge con dolcezza.",
       "usage_it": "Insapona le mani bagnate e risciacqua.",
-      "inci": "Sodium palmate, Sodium palm kernelate, Aqua [Water], Parfum [Fragrance], Prunus amygdalus dulcis (Sweet almond) oil, Decyl oleate, Glycerin, Sodium chloride, Tetrasodium etidronate, Tetrasodium EDTA, Dimethyl phenethyl acetate",
+      "inci": "Sodium palmate, Sodium palm kernelate, Aqua [Water], Parfum [Fragrance], Prunus amygdalus dulcis (Sweet almond) oil, Decyl oleate, Glycerin, Sodium chloride, Tetrasodium etidronate, Tetrasodium EDTA, Dimethyl phenethyl acetate.",
       "natural_pct": 98,
       "certifications": [
         "zero-petrochem",
@@ -2523,6 +2591,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "pearls-siero-viso-coenzima-q10-e-argineline-amplified",
       "sku": "7710",
+      "format": "30 ml",
       "line": "pearls",
       "brand": "erboristica",
       "name_it": "SIERO VISO COENZIMA Q10 & ARGINELINE AMPLIFIED®",
@@ -2530,7 +2599,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Trattamento viso 2 in 1 con perle di Coenzima Q10 e siero Argireline.",
       "description_it": "Le perle al Coenzima Q10 svolgono un’azione antiossidante e stimolano il collagene, mentre l’Argireline Amplified distende le rughe con effetto botox-like. Pelle luminosa, levigata e compatta.",
       "usage_it": "Dopo aver deterso il viso, applicare mattina e/o sera 5-6 gocce di siero su viso, collo o décolleté. Massaggiare la pelle delicatamente ed attendere il completo assorbimento del prodotto. Può essere utilizzato da solo o in combinazione con l’abituale trattamento in crema.",
-      "inci": "Aqua [Water], Betaine, Glycerin, Ubiquinone, Acetyl hexapeptide-8, Chondrus crispus powder, Gellan gum, Agar, Citric acid, Parfum [Fragrance], Tromethamine, Mica, Hexyl cinnamal, Polyacrylate crosspolymer-6, Butylene glycol, PEG-40 hydrogenated castor oil, 1,2-Hexanediol, Synthetic fluorphlogopite, Tetrasodium glutamate diacetate, Acrylates/C10-30 alkyl acrylate crosspolymer, Sodium benzoate,Tetramethyl acetyloctahydronaphthalenes, Hexyl cinnamal, Ethylhexylglycerin, Phenoxyethanol, CI 77007 [Ultramarines], CI 7781 [Titanium dioxide], CI 7728 [Chromium hydroxide green]",
+      "inci": "Aqua [Water], Betaine, Glycerin, Ubiquinone, Acetyl hexapeptide-8, Chondrus crispus powder, Gellan gum, Agar, Citric acid, Parfum [Fragrance], Tromethamine, Mica, Hexyl cinnamal, Polyacrylate crosspolymer-6, Butylene glycol, PEG-40 hydrogenated castor oil, 1,2-Hexanediol, Synthetic fluorphlogopite, Tetrasodium glutamate diacetate, Acrylates/C10-30 alkyl acrylate crosspolymer, Sodium benzoate,Tetramethyl acetyloctahydronaphthalenes, Hexyl cinnamal, Ethylhexylglycerin, Phenoxyethanol, CI 77007 [Ultramarines], CI 77891 [Titanium dioxide], CI 77289 [Chromium hydroxide green].",
       "natural_pct": 95,
       "certifications": [
         "zero-petrochem",
@@ -2557,6 +2626,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "pearls-siero-viso-niacinamide-e-retinolo",
       "sku": "7712",
+      "format": "30 ml",
       "line": "pearls",
       "brand": "erboristica",
       "name_it": "SIERO VISO NIACINAMIDE & RETINOLO",
@@ -2564,7 +2634,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Trattamento viso 2 in 1 con perle di Niacinamide e siero al Retinolo.",
       "description_it": "Le perle alla Niacinamide donano luminosità e rinforzano la barriera cutanea, mentre il Retinolo stimola la rigenerazione e migliora l’elasticità. Pelle più levigata, uniforme e radiosa.",
       "usage_it": "Dopo aver deterso il viso, applicare la sera 5-6 gocce di siero su viso collo e décolleté. Massaggiare la pelle delicatamente ed attendere il completo assorbimento del prodotto. Può essere utilizzato da solo o in combinazione con l’abituale trattamento in crema. Avvertenze : Contiene Vitamina A. Tenere presente l’assunzione giornaliera complessiva prima di farne uso. Contiene Retinolo, per evitare reazioni di fotosensibilizzazione se ne consiglia l’uso serale; in alternativa applicare una protezione solare.",
-      "inci": "Aqua [Water], Niacinamide, Betaine, Glycerin, Chondrus crispus powder, Retinyl palmitate, Helianthus annuus (Sunflower) seed oil, Gellan gum, Agar, Citric acid, Parfum [Fragrance], Hexyl cinnamal, Tetrasodium glutamate diacetate, Synthetic fluorphlogopite, Tromethamine, 1,2-Hexanediol, PEG-40 hydrogenated castor oil, Acrylates/C10-30 alkyl acrylate crosspolymer, Polysorbate 20, Trideceth-, Butylene glycol, Polyacrylate crosspolymer-6, Tetramethyl acetyloctahydronaphthalenes, Hexyl cinnamal, Ethylhexylglycerin, Phenoxyethanol, CI 7781 [Titanium dioxide], CI 7741 [Iron oxides], CI 7742 [Iron oxides]",
+      "inci": "Aqua [Water], Niacinamide, Betaine, Glycerin, Chondrus crispus powder, Retinyl palmitate, Helianthus annuus (Sunflower) seed oil, Gellan gum, Agar, Citric acid, Parfum [Fragrance], Hexyl cinnamal, Tetrasodium glutamate diacetate, Synthetic fluorphlogopite, Tromethamine, 1,2-Hexanediol, PEG-40 hydrogenated castor oil, Acrylates/C10-30 alkyl acrylate crosspolymer, Polysorbate 20, Trideceth-9, Butylene glycol, Polyacrylate crosspolymer-6, Tetramethyl acetyloctahydronaphthalenes, Hexyl cinnamal, Ethylhexylglycerin, Phenoxyethanol, CI 77891 [Titanium dioxide], CI 77491 [Iron oxides], CI 77492 [Iron oxides].",
       "natural_pct": 95,
       "certifications": [
         "zero-petrochem",
@@ -2591,6 +2661,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "pearls-siero-viso-vitamina-c-stabilizzata-e-luminescine",
       "sku": "7711",
+      "format": "30 ml",
       "line": "pearls",
       "brand": "erboristica",
       "name_it": "SIERO VISO VITAMINA C STABILIZZATA & LUMINESCINE®",
@@ -2598,7 +2669,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Trattamento viso 2 in 1 con perle di Vitamina C e siero Luminescine.",
       "description_it": "Le perle alla Vitamina C stabilizzata uniformano e donano radiosità, mentre il siero Luminescine illumina l’incarnato. Pelle radiosa, compatta e levigata in un solo gesto.",
       "usage_it": "Dopo aver deterso il viso, applicare mattina e/o sera 5-6 gocce di siero su viso, collo o décolleté. Massaggiare la pelle delicatamente ed attendere il completo assorbimento del prodotto. Può essere utilizzato da solo o in combinazione con l’abituale trattamento in crema.",
-      "inci": "Aqua [Water], Betaine, Glycerin, Ascorbyl tetraisopalmitate, Hydrolyzed verbascum thapsus flower (*), Chondrus crispus powder, Agar, Gellan gum, Citric acid, Parfum [Fragrance], Mica, Tetrasodium glutamate diacetate, Hexyl cinnamal, Polyacrylate crosspolymer-6, Tromethamine, Acrylates/C10-30 alkyl acrylate crosspolymer, PEG-40 hydrogenated castor oil, 1,2-Hexanediol, Butylene glycol, Ethylhexylglycerin, Phenoxyethanol, Tetramethyl acetyloctahydronaphthalenes, Hexyl cinnamal, CI 7741 [Iron oxides], CI 7781 [Titanium dioxide]. (*) da Agricoltura Biologica/ from Organic Farming",
+      "inci": "Aqua [Water], Betaine, Glycerin, Ascorbyl tetraisopalmitate, Hydrolyzed verbascum thapsus flower (*), Chondrus crispus powder, Agar, Gellan gum, Citric acid, Parfum [Fragrance], Mica, Tetrasodium glutamate diacetate, Hexyl cinnamal, Polyacrylate crosspolymer-6, Tromethamine, Acrylates/C10-30 alkyl acrylate crosspolymer, PEG-40 hydrogenated castor oil, 1,2-Hexanediol, Butylene glycol, Ethylhexylglycerin, Phenoxyethanol, Tetramethyl acetyloctahydronaphthalenes, Hexyl cinnamal, CI 77491 [Iron oxides], CI 77891 [Titanium dioxide].",
       "natural_pct": 95,
       "certifications": [
         "zero-petrochem",
@@ -2625,6 +2696,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "purysens-crema-viso-purificante",
       "sku": "6503",
+      "format": "50 ml",
       "line": "purysens",
       "brand": "erboristica",
       "name_it": "CREMA VISO PURIFICANTE",
@@ -2632,7 +2704,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Crema viso purificante e opacizzante per pelli miste e impure.",
       "description_it": "Idrata e normalizza migliorando le imperfezioni con effetto anti-età. Estratto di Tè Verde, Acido Salicilico e Zinco PCA purificano e riequilibrano la pelle.",
       "usage_it": "Applicare su viso e collo perfettamente detersi. È sufficiente utilizzare una ridotta quantità di crema applicandola con un leggero massaggio. Per potenziare l’effetto della crema viso si consiglia una pulizia approfondita con l’Emulsione Detergente.",
-      "inci": "AQUA [WATER], GLYCERIN, COCO-CAPRYLATE, AZELAMIDE MEA, NIACINAMIDE, HYDROLYZED SOY EXTRACT, ETHYLHEXYL PALMITATE, ACRYLATES/C10-30 ALKYL ACRYLATE CROSSPOLYMER, BUTYROSPERMUM PARKII (SHEA BUTTER), BAKUCHIOL, ZANTHOXYLUM BUNGEANUM FRUIT EXTRACT, BETULA ALBA LEAF EXTRACT, ZINC PCA, HEDERA HELIX (IVY) LEAF/STEM EXTRACT, MACADAMIA TERNIFOLIA SEED OIL, SODIUM SALICYLATE, SULFUR, CAMELINA SATIVA SEED OIL, ARCTIUM LAPPA ROOT EXTRACT, ZINC RICINOLEATE, TOCOPHEROL, PARFUM [FRAGRANCE], OLEYL ALCOHOL, OLUS OIL [OLUS], ETHYLHEXYLGLYCERIN, SODIUM GLUCONATE, LIMONENE, ALUMINUM STARCH OCTENYLSUCCINATE, PEG-40 HYDROGENATED CASTOR OIL, PHENOXYETHANOL, LINALOOL, CITRAL, EUGENOL",
+      "inci": "AQUA [WATER], GLYCERIN, COCO-CAPRYLATE, AZELAMIDE MEA, NIACINAMIDE, HYDROLYZED SOY EXTRACT, ETHYLHEXYL PALMITATE, ACRYLATES/C10-30 ALKYL ACRYLATE CROSSPOLYMER, BUTYROSPERMUM PARKII (SHEA BUTTER), BAKUCHIOL, ZANTHOXYLUM BUNGEANUM FRUIT EXTRACT, BETULA ALBA LEAF EXTRACT, ZINC PCA, HEDERA HELIX (IVY) LEAF/STEM EXTRACT, MACADAMIA TERNIFOLIA SEED OIL, SODIUM SALICYLATE, SULFUR, CAMELINA SATIVA SEED OIL, ARCTIUM LAPPA ROOT EXTRACT, ZINC RICINOLEATE, TOCOPHEROL, PARFUM [FRAGRANCE], OLEYL ALCOHOL, OLUS OIL [OLUS], ETHYLHEXYLGLYCERIN, SODIUM GLUCONATE, LIMONENE, ALUMINUM STARCH OCTENYLSUCCINATE, PEG-40 HYDROGENATED CASTOR OIL, PHENOXYETHANOL, LINALOOL, CITRAL, EUGENOL.",
       "natural_pct": 95,
       "certifications": [
         "zero-petrochem",
@@ -2659,6 +2731,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "purysens-emulsione-detergente-viso",
       "sku": "6500",
+      "format": "150 ml",
       "line": "purysens",
       "brand": "erboristica",
       "name_it": "EMULSIONE DETERGENTE VISO",
@@ -2666,7 +2739,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Detergente viso dermopurificante e lenitivo per pelli miste e impure.",
       "description_it": "Deterge in profondità trattando quotidianamente la T-zone. Aloe Vera, Camomilla e tensioattivi vegetali dolci purificano, riequilibrano il sebo e leniscono.",
       "usage_it": "Applicare una piccola quantità su pelle umida di viso e collo, massaggiare bene e sciacquare con acqua tiepida.",
-      "inci": "Aqua [Water], Glycerin, Cetearyl alcohol, Glyceryl stearate, Cocamidopropyl betaine, Coco-caprylate, Magnesium aluminum silicate, Undecylenamidopropyl betaine, Lauryl glucoside, Butyrospermum parkii (Shea butter), Ethylhexyl palmitate, Xanthan gum, Dicaprylyl ether, Zinc PCA, Hedera helix (Ivy) leaf/stem extract, Betula alba leaf extract, Arctium lappa root extract, Sodium lauroyl glutamate, Tocopherol, Sodium stearoyl lactylate, Parfum [Fragrance], Ethylhexylglycerin, Sodium gluconate, Limonene, Linalool, Phenoxyethanol",
+      "inci": "Aqua [Water], Glycerin, Cetearyl alcohol, Glyceryl stearate, Cocamidopropyl betaine, Coco-caprylate, Magnesium aluminum silicate, Undecylenamidopropyl betaine, Lauryl glucoside, Butyrospermum parkii (Shea butter), Ethylhexyl palmitate, Xanthan gum, Dicaprylyl ether, Zinc PCA, Hedera helix (Ivy) leaf/stem extract, Betula alba leaf extract, Arctium lappa root extract, Sodium lauroyl glutamate, Tocopherol, Sodium stearoyl lactylate, Parfum [Fragrance], Ethylhexylglycerin, Sodium gluconate, Limonene, Linalool, Phenoxyethanol.",
       "natural_pct": 98,
       "certifications": [
         "zero-petrochem",
@@ -2693,6 +2766,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "purysens-maschera-viso-allargilla-rosa-purysens",
       "sku": "6504/S",
+      "format": "20 ml",
       "line": "purysens",
       "brand": "erboristica",
       "name_it": "Maschera viso all’Argilla Rosa PURYSENS",
@@ -2700,7 +2774,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Maschera viso all’Argilla Rosa, purificante e levigante.",
       "description_it": "Elimina impurità e punti neri senza irritare, restringe i pori e riduce le imperfezioni. Argilla Rosa, Kaolino ed Estratto di Tè Verde purificano e opacizzano la pelle.",
       "usage_it": "Applicare 2 o 3 volte a settimana sulla pelle pulita e asciutta. Lasciare in posa da 10 a 20 minuti su viso. La texture cremosa, molto gradevole all’applicazione, non si asciuga. Rimuovere il prodotto con acqua tiepida.",
-      "inci": "INGREDIENTS: Aqua [Water], Aloe barbadensis leaf juice (*), Calamine, Glycerin, Oryza sativa (Rice) starch, Cetearyl alcohol, Glyceryl stearate, Ethylhexyl palmitate, Betaine, Butyrospermum parkii (Shea butter), Olus oil [Olus], Azelamide MEA, Helianthus annuus (Sunflower) seed oil, Linum usitatissimum (Linseed) seed oil, Inulin, Macadamia ternifolia seed oil, Sulfur, Betula alba leaf extract, Calendula officinalis flower extract, Sodium salicylate, Hedera helix (Ivy) leaf/stem extract, Tocopherol, Zinc PCA, Sodium lauroyl glutamate, Sodium stearoyl lactylate, Arctium lappa root extract, Beta-sitosterol, Squalene, Xanthan gum, Magnesium aluminum silicate, Parfum [Fragrance], Ethylhexylglycerin, Sodium gluconate, Phenoxyethanol, Citric acid, Linalool, Citronellol, Linalyl acetate, Lavandula oil/extract, Camphor,Geraniol. (*) DA AGRICOLTURA BIOLOGICA/ FROM ORGANIC FARMING",
+      "inci": "Aqua [Water], Aloe barbadensis leaf juice (*), Calamine, Glycerin, Oryza sativa (Rice) starch, Cetearyl alcohol, Glyceryl stearate, Ethylhexyl palmitate, Betaine, Butyrospermum parkii (Shea butter), Olus oil [Olus], Azelamide MEA, Helianthus annuus (Sunflower) seed oil, Linum usitatissimum (Linseed) seed oil, Inulin, Macadamia ternifolia seed oil, Sulfur, Betula alba leaf extract, Calendula officinalis flower extract, Sodium salicylate, Hedera helix (Ivy) leaf/stem extract, Tocopherol, Zinc PCA, Sodium lauroyl glutamate, Sodium stearoyl lactylate, Arctium lappa root extract, Beta-sitosterol, Squalene, Xanthan gum, Magnesium aluminum silicate, Parfum [Fragrance], Ethylhexylglycerin, Sodium gluconate, Phenoxyethanol, Citric acid, Linalool, Citronellol, Linalyl acetate, Lavandula oil/extract, Camphor,Geraniol.",
       "natural_pct": 98,
       "certifications": [
         "zero-petrochem",
@@ -2727,6 +2801,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "uomo-balsamo-dopobarba-uomo",
       "sku": "7092",
+      "format": "100 ml",
       "line": "uomo",
       "brand": "erboristica",
       "name_it": "BALSAMO DOPOBARBA UOMO",
@@ -2734,7 +2809,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Balsamo dopobarba senza alcool per pelli sensibili e delicate.",
       "description_it": "La consistenza cremosa e non grassa idrata e lenisce anche la pelle più reattiva dopo la rasatura. Aloe Vera, Ginseng e Pantenolo calmano e rinfrescano.",
       "usage_it": "Dopo la rasatura, applicare una discreta quantità di balsamo su viso e collo e massaggiare delicatamente.",
-      "inci": "Aqua [Water], Aloe barbadensis leaf juice (*), Coco-caprylate, Glycerin, Betaine, Vegetable (Olus) oil, Macadamia ternifolia seed oil, Panthenol, Acrylates/C10-30 alkyl acrylate crosspolymer, Panax ginseng root extract, Ginkgo biloba leaf extract (*), Phosphatidylcholine, Bisabolol, Hydrolyzed wheat protein, Sodium salicylate, Lysine, Sorbitol, Sodium PCA, Allantoin, Tocopheryl acetate, Diglycerin, Urea, PCA, Beta-sitosterol, Squalene, Lactic acid, Sodium gluconate, Parfum [Fragrance], PEG-40 hydrogenated castor oil, Benzoic acid, Ethylhexylglycerin, Phenoxyethanol, Dehydroacetic acid, Limonene, Coumarin, Alpha-isomethyl ionone, Hexamethylindanopyran, Citrus aurantium peel oil, Vanillin, Pinene, Linalyl acetate, Hydroxycitronellal, Linalool, Cinnamal. (*) da Agricoltura Biologica/ from Organic Farming",
+      "inci": "Aqua [Water], Aloe barbadensis leaf juice (*), Coco-caprylate, Glycerin, Betaine, Vegetable (Olus) oil, Macadamia ternifolia seed oil, Panthenol, Acrylates/C10-30 alkyl acrylate crosspolymer, Panax ginseng root extract, Ginkgo biloba leaf extract (*), Phosphatidylcholine, Bisabolol, Hydrolyzed wheat protein, Sodium salicylate, Lysine, Sorbitol, Sodium PCA, Allantoin, Tocopheryl acetate, Diglycerin, Urea, PCA, Beta-sitosterol, Squalene, Lactic acid, Sodium gluconate, Parfum [Fragrance], PEG-40 hydrogenated castor oil, Benzoic acid, Ethylhexylglycerin, Phenoxyethanol, Dehydroacetic acid, Limonene, Coumarin, Alpha-isomethyl ionone, Hexamethylindanopyran, Citrus aurantium peel oil, Vanillin, Pinene, Linalyl acetate, Hydroxycitronellal, Linalool, Cinnamal.",
       "natural_pct": 96,
       "certifications": [
         "zero-petrochem",
@@ -2761,6 +2836,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "uomo-balsamo-dopobarba-uomo-active",
       "sku": "7602",
+      "format": "100 ml",
       "line": "uomo",
       "brand": "erboristica",
       "name_it": "BALSAMO DOPOBARBA UOMO ACTIVE",
@@ -2768,7 +2844,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Balsamo dopobarba active senza alcool, fresco e rivitalizzante.",
       "description_it": "Lenisce e protegge la pelle dopo la rasatura con una piacevole sensazione di freschezza. Aloe Vera, Menta Piperita e Tea Tree rinfrescano e purificano.",
       "usage_it": "Applicare su viso e collo dopo la rasatura",
-      "inci": "Aqua [Water], Coco-caprylate, Glycerin, Betaine, Olus oil [Vegetable (Olus) oil], Aloe barbadensis leaf juice (*), Simmondsia chinensis (Jojoba) seed oil (*), Zanthoxylum bungeanum fruit extract, Niacinamide, Calcium pantothenate, Sodium ascorbyl phosphate, Tocopheryl acetate, Pyridoxine, Bisabolol, Panthenol, Saccharomyces ferment lysate filtrate, Calendula officinalis flower extract, Helianthus annuus (Sunflower) seed oil, Hydrolyzed wheat protein, Sodium starch octenylsuccinate, Sorbitol, Lysine, Oleyl alcohol, Lactic acid, Sodium PCA, Allantoin, Parfum [Fragrance], Sodium gluconate, Urea, Silica, Maltodextrin, Limonene, Coumarin, Linalool, Tetramethyl acetyloctahydronaphthalenes, Hexamethylindanopyran, Pogostemon cablin oil, Linalyl acetate, Citrus limon peel oil [Citrus medica limonum (Lemon) peel oil], Pinene, Dehydroacetic acid, Benzoic acid, Ethylhexylglycerin, Acrylates/C10-30 alkyl acrylate crosspolymer, PEG-40 hydrogenated castor oil, Phenoxyethanol. (*) DA AGRICOLTURA BIOLOGICA/FROM ORGANIC FARMING",
+      "inci": "Aqua [Water], Coco-caprylate, Glycerin, Betaine, Olus oil [Vegetable (Olus) oil], Aloe barbadensis leaf juice (*), Simmondsia chinensis (Jojoba) seed oil (*), Zanthoxylum bungeanum fruit extract, Niacinamide, Calcium pantothenate, Sodium ascorbyl phosphate, Tocopheryl acetate, Pyridoxine, Bisabolol, Panthenol, Saccharomyces ferment lysate filtrate, Calendula officinalis flower extract, Helianthus annuus (Sunflower) seed oil, Hydrolyzed wheat protein, Sodium starch octenylsuccinate, Sorbitol, Lysine, Oleyl alcohol, Lactic acid, Sodium PCA, Allantoin, Parfum [Fragrance], Sodium gluconate, Urea, Silica, Maltodextrin, Limonene, Coumarin, Linalool, Tetramethyl acetyloctahydronaphthalenes, Hexamethylindanopyran, Pogostemon cablin oil, Linalyl acetate, Citrus limon peel oil [Citrus medica limonum (Lemon) peel oil], Pinene, Dehydroacetic acid, Benzoic acid, Ethylhexylglycerin, Acrylates/C10-30 alkyl acrylate crosspolymer, PEG-40 hydrogenated castor oil, Phenoxyethanol.",
       "natural_pct": 96,
       "certifications": [
         "zero-petrochem",
@@ -2795,6 +2871,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "uomo-contorno-occhi-uomo-anti-età",
       "sku": "7089",
+      "format": "15 ml",
       "line": "uomo",
       "brand": "erboristica",
       "name_it": "CONTORNO OCCHI UOMO ANTI-ETÀ",
@@ -2802,7 +2879,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Contorno occhi uomo anti-età che riduce borse e occhiaie.",
       "description_it": "Idrata, leviga e dona uno sguardo più fresco e riposato. Caffeina, Acido Ialuronico, peptidi e Bakuchiol contrastano gonfiori e primi segni del tempo.",
       "usage_it": "Applicare una piccola quantità di prodotto sul contorno occhi, mattina e sera, picchiettando delicatamente fino a completo assorbimento.",
-      "inci": "panel--ingredienti_products_tab panel entry-content wc-tab\" id=\"tab-ingredienti_products_tab\" role=\"tabpanel\" aria-labelledby=\"tab-title-ingredienti_products_tab\"> Aqua [Water], Hydrolyzed soy extract, Cetearyl alcohol, Glyceryl stearate, Glycerin, Olus oil [Vegetable (Olus) oil], Betaine, Butyrospermum parkii (Shea) butter, Coco-caprylate, Macadamia ternifolia seed oil, Ethylhexyl palmitate, Behenyl alcohol, Acetyl hexapeptide-8, Bakuchiol, Zanthoxylum bungeanum fruit extract, Sodium hyaluronate, Pullulan, Zinc PCA, Tocopherol, Beta-sitosterol, Sodium lauroyl glutamate, Squalene, Sodium stearoyl lactylate, Zinc ricinoleate, Natto gum, Sodium benzoate, Oleyl alcohol, Xanthan gum, Alcohol, Sodium gluconate, Parfum [Fragrance], Hexamethylindanopyran, Ethylhexylglycerin, Phenoxyethanol. .cls-1{fill:#8877f;} 1-Truck Spedizione gratuita per ordini superiori a € 30 SOLO PER L'ITALIA .cls-1{fill:#8877f;} 2-Percent <div class=",
+      "inci": "Aqua [Water], Hydrolyzed soy extract, Cetearyl alcohol, Glyceryl stearate, Glycerin, Olus oil [Vegetable (Olus) oil], Betaine, Butyrospermum parkii (Shea) butter, Coco-caprylate, Macadamia ternifolia seed oil, Ethylhexyl palmitate, Behenyl alcohol, Acetyl hexapeptide-8, Bakuchiol, Zanthoxylum bungeanum fruit extract, Sodium hyaluronate, Pullulan, Zinc PCA, Tocopherol, Beta-sitosterol, Sodium lauroyl glutamate, Squalene, Sodium stearoyl lactylate, Zinc ricinoleate, Natto gum, Sodium benzoate, Oleyl alcohol, Xanthan gum, Alcohol, Sodium gluconate, Parfum [Fragrance], Hexamethylindanopyran, Ethylhexylglycerin, Phenoxyethanol.",
       "natural_pct": null,
       "certifications": [
         "made-in-italy",
@@ -2823,6 +2900,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "uomo-crema-viso-idratante-antirughe-uomo",
       "sku": "7091",
+      "format": "50 ml",
       "line": "uomo",
       "brand": "erboristica",
       "name_it": "CREMA VISO IDRATANTE ANTIRUGHE UOMO",
@@ -2830,7 +2908,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Crema viso idratante e antirughe da uomo, priva di alcol e non grassa.",
       "description_it": "Restituisce al viso un aspetto meno stanco, tonico e rivitalizzato. Acido Ialuronico, Collagene vegetale, Vitamina E ed Estratto di Bambù idratano e distendono le rughe.",
       "usage_it": "Su viso e collo ben detersi e asciutti, applicare mattino e sera, una generosa quantità di crema massaggiando delicatamente",
-      "inci": "Aloe barbadensis leaf juice (*), Aqua [Water], Glycerin, Coco-caprylate, Betaine, Ethylhexyl palmitate, Butyrospermum parkii (Shea butter), Simmondsia chinensis (Jojoba) seed oil (*), Ginkgo biloba leaf extract (*), Sodium hyaluronate, Panthenol, Carrageenan, Fucus vesiculosus extract, Hydrolyzed soy extract, Camelina sativa seed oil, Hydrolyzed olea europaea (olive) fruit (*), Tocopheryl acetate, Tocopherol, Beta-sitosterol, Squalene, Olus oil [Olus], Acrylates/C10-30 alkyl acrylate crosspolymer, Phenoxyethanol, Parfum [Fragrance], Benzoic acid, Sodium gluconate, Dehydroacetic acid, Ethylhexylglycerin, Limonene,Coumarin, Alpha-isomethyl ionone, Hexamethylindanopyran, Citrus aurantium peel oil, Vanillin, Pinene, Hydroxycitronellal. (*) DA AGRICOLTURA BIOLOGICA / FROM ORGANIC FARMING",
+      "inci": "Aloe barbadensis leaf juice (*), Aqua [Water], Glycerin, Coco-caprylate, Betaine, Ethylhexyl palmitate, Butyrospermum parkii (Shea butter), Simmondsia chinensis (Jojoba) seed oil (*), Ginkgo biloba leaf extract (*), Sodium hyaluronate, Panthenol, Carrageenan, Fucus vesiculosus extract, Hydrolyzed soy extract, Camelina sativa seed oil, Hydrolyzed olea europaea (olive) fruit (*), Tocopheryl acetate, Tocopherol, Beta-sitosterol, Squalene, Olus oil [Olus], Acrylates/C10-30 alkyl acrylate crosspolymer, Phenoxyethanol, Parfum [Fragrance], Benzoic acid, Sodium gluconate, Dehydroacetic acid, Ethylhexylglycerin, Limonene,Coumarin, Alpha-isomethyl ionone, Hexamethylindanopyran, Citrus aurantium peel oil, Vanillin, Pinene, Hydroxycitronellal.",
       "natural_pct": 98,
       "certifications": [
         "zero-petrochem",
@@ -2858,6 +2936,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "uomo-crema-viso-uomo-active",
       "sku": "7601",
+      "format": "50 ml",
       "line": "uomo",
       "brand": "erboristica",
       "name_it": "CREMA VISO UOMO ACTIVE",
@@ -2865,7 +2944,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Crema viso uomo active rivitalizzante e protettiva.",
       "description_it": "Un booster di vitalità per la pelle spenta e stressata che favorisce il rinnovamento cellulare. Estratto di Tè Verde, Niacinamide e Caffeina proteggono e rivitalizzano.",
       "usage_it": "Stendere su viso e collo mattina e/o sera su pelle asciutta e pulita e massaggiare delicatamente.",
-      "inci": "Aloe barbadensis leaf juice (*), Aqua [Water], Betaine, Coco-caprylate, Glycerin, Shea butter ethyl esters, Niacinamide, Butyrospermum parkii (Shea) butter, Coffea arabica (Coffee) seed extract, Sodium hyaluronate, Calcium pantothenate, Sodium ascorbyl phosphate, Caffeine, Camelina sativa seed oil, Tocopherol, Squalene, Pyridoxine, Tocopheryl acetate, Glycine soja (Soybean) oil (*), Beta-sitosterol, Sodium starch octenylsuccinate, Lecithin, Olus oil [Vegetable (Olus) oil], Sodium gluconate, Silica, Maltodextrin, Parfum [Fragrance], Limonene, Linalool, Coumarin, Tetramethyl acetyloctahydronaphthalenes, Hexamethylindanopyran, Pogostemon cablin oil, Linalyl acetate, Citrus limon peel oil [Citrus medica limonum (Lemon) peel oil], Pinene, Dehydroacetic acid, Benzoic acid, Ethylhexylglycerin, Acrylates/C10-30 alkyl acrylate crosspolymer, Phenoxyethanol. (*) DA AGRICOLTURA BIOLOGICA/FROM ORGANIC FARMING",
+      "inci": "Aloe barbadensis leaf juice (*), Aqua [Water], Betaine, Coco-caprylate, Glycerin, Shea butter ethyl esters, Niacinamide, Butyrospermum parkii (Shea) butter, Coffea arabica (Coffee) seed extract, Sodium hyaluronate, Calcium pantothenate, Sodium ascorbyl phosphate, Caffeine, Camelina sativa seed oil, Tocopherol, Squalene, Pyridoxine, Tocopheryl acetate, Glycine soja (Soybean) oil (*), Beta-sitosterol, Sodium starch octenylsuccinate, Lecithin, Olus oil [Vegetable (Olus) oil], Sodium gluconate, Silica, Maltodextrin, Parfum [Fragrance], Limonene, Linalool, Coumarin, Tetramethyl acetyloctahydronaphthalenes, Hexamethylindanopyran, Pogostemon cablin oil, Linalyl acetate, Citrus limon peel oil [Citrus medica limonum (Lemon) peel oil], Pinene, Dehydroacetic acid, Benzoic acid, Ethylhexylglycerin, Acrylates/C10-30 alkyl acrylate crosspolymer, Phenoxyethanol.",
       "natural_pct": 96,
       "certifications": [
         "zero-petrochem",
@@ -2892,6 +2971,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "uomo-deodorante-spray-uomo",
       "sku": "7093",
+      "format": "100 ml",
       "line": "uomo",
       "brand": "erboristica",
       "name_it": "DEODORANTE SPRAY UOMO",
@@ -2899,7 +2979,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Deodorante spray no gas da uomo, protezione anti-odore fino a 24 ore.",
       "description_it": "Efficace e antibatterico, non irrita la pelle grazie agli attivi naturali. Zinco Ricinoleato, Tea Tree Oil e Aloe Vera garantiscono freschezza e comfort.",
       "usage_it": "Dopo la doccia, su pelle asciutta, spruzzare il deodorante su corpo e ascelle. Essendo NO GAS lasciar asciugare per qualche secondo.",
-      "inci": "Aqua [Water], Alcohol denat., Aluminum chlorohydrate, PEG-40 hydrogenated castor oil, Triethyl citrate, Betaine, Parfum [Fragrance], Panthenol, Ginkgo biloba leaf extract, Zinc PCA, Tocopheryl acetate, Glycerin, Ethylhexylglycerin, Sodium gluconate, Citric acid, Limonene, Coumarin, Alpha-isomethyl ionone, Hydroxycitronellal, Hexamethylindanopyran, Citrus aurantium peel oil, Vanillin, Pinene, Linalyl acetate, Lavandula oil/extract, Linalool, Cinnamal",
+      "inci": "Aqua [Water], Alcohol denat., Aluminum chlorohydrate, PEG-40 hydrogenated castor oil, Triethyl citrate, Betaine, Parfum [Fragrance], Panthenol, Ginkgo biloba leaf extract, Zinc PCA, Tocopheryl acetate, Glycerin, Ethylhexylglycerin, Sodium gluconate, Citric acid, Limonene, Coumarin, Alpha-isomethyl ionone, Hydroxycitronellal, Hexamethylindanopyran, Citrus aurantium peel oil, Vanillin, Pinene, Linalyl acetate, Lavandula oil/extract, Linalool, Cinnamal.",
       "natural_pct": null,
       "certifications": [
         "zero-petrochem",
@@ -2926,6 +3006,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "uomo-eau-de-toilette-uomo",
       "sku": "7095",
+      "format": "100 ml",
       "line": "uomo",
       "brand": "erboristica",
       "name_it": "EAU DE TOILETTE UOMO",
@@ -2933,7 +3014,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Eau de Toilette uomo dalla fragranza speziata e legnosa.",
       "description_it": "Magnetica e avvolgente, apre con accordi agrumati di bergamotto e mandarino. Un cuore di Pepe Rosa e cannella si posa su un fondo di Cedro e Patchouli.",
       "usage_it": "Spruzza l’eau de toilette direttamente sulla pelle, su polsi e collo. Tenere fuori dalla portata dei bambini. Liquido infiammabile.",
-      "inci": "Alcohol denat., Aqua [Water], Parfum [Fragrance], Hexamethylindanopyran, Tocopheryl acetate, Limonene, Coumarin, Citrus aurantium peel oil, Alpha-isomethyl ionone, Hydroxycitronellal, Vanillin, Pinene, Cinnamal, Linalyl acetate, Linalool, Lavandula oil/extract, Citral, Eugenol, Beta-caryophyllene, Camphor",
+      "inci": "Alcohol denat., Aqua [Water], Parfum [Fragrance], Hexamethylindanopyran, Tocopheryl acetate, Limonene, Coumarin, Citrus aurantium peel oil, Alpha-isomethyl ionone, Hydroxycitronellal, Vanillin, Pinene, Cinnamal, Linalyl acetate, Linalool, Lavandula oil/extract, Citral, Eugenol, Beta-caryophyllene, Camphor.",
       "natural_pct": null,
       "certifications": [
         "zero-petrochem",
@@ -2961,6 +3042,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "uomo-fluido-idratante-viso-e-barba-uomo",
       "sku": "7097",
+      "format": "50 ml",
       "line": "uomo",
       "brand": "erboristica",
       "name_it": "FLUIDO IDRATANTE VISO E BARBA UOMO",
@@ -2968,7 +3050,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Fluido idratante viso e barba, fresco e non untuoso.",
       "description_it": "Dona morbidezza anche alle barbe più dure e ribelli con una texture leggera. Olio di Argan, Acido Ialuronico, Vitamina E e Aloe Vera idratano viso e barba.",
       "usage_it": "Applicare mattino e/o sera su viso e barba perfettamente detersi e asciutti e procedere con un leggero massaggio. Senza risciacquo.",
-      "inci": "Aqua [Water], Aloe barbadensis leaf juice (*), Coco-caprylate, Glycerin, Betaine, Vegetable (Olus) oil, Macadamia ternifolia seed oil, Panthenol, Acrylates/C10-30 alkyl acrylate crosspolymer, Tocopheryl acetate, Sodium hyaluronate, Bisabolol, Sorbitol, Allantoin, Lysine, Sodium salicylate, Hydrolyzed wheat protein, Sodium PCA, Panax ginseng root extract, Lactic acid, Ginkgo biloba leaf extract, Beta-sitosterol, Squalene, Urea, Sodium gluconate, Parfum [Fragrance], Benzoic acid, Phenoxyethanol, Dehydroacetic acid, Limonene, Ethylhexylglycerin, Coumarin, Hexamethylindanopyran, Citrus aurantium peel oil, Vanillin, Pinene, Linalyl acetate, Alpha-isomethyl ionone, Hydroxycitronellal, PEG-40 hydrogenated castor oil, Linalool, Cinnamal. (*) da Agricoltura Biologica/ from Organic Farming",
+      "inci": "Aqua [Water], Aloe barbadensis leaf juice (*), Coco-caprylate, Glycerin, Betaine, Vegetable (Olus) oil, Macadamia ternifolia seed oil, Panthenol, Acrylates/C10-30 alkyl acrylate crosspolymer, Tocopheryl acetate, Sodium hyaluronate, Bisabolol, Sorbitol, Allantoin, Lysine, Sodium salicylate, Hydrolyzed wheat protein, Sodium PCA, Panax ginseng root extract, Lactic acid, Ginkgo biloba leaf extract, Beta-sitosterol, Squalene, Urea, Sodium gluconate, Parfum [Fragrance], Benzoic acid, Phenoxyethanol, Dehydroacetic acid, Limonene, Ethylhexylglycerin, Coumarin, Hexamethylindanopyran, Citrus aurantium peel oil, Vanillin, Pinene, Linalyl acetate, Alpha-isomethyl ionone, Hydroxycitronellal, PEG-40 hydrogenated castor oil, Linalool, Cinnamal.",
       "natural_pct": null,
       "certifications": [
         "dermatologico",
@@ -2990,6 +3072,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "uomo-olio-da-barba-uomo",
       "sku": "7096",
+      "format": "30 ml",
       "line": "uomo",
       "brand": "erboristica",
       "name_it": "OLIO DA BARBA UOMO",
@@ -2997,7 +3080,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Olio da barba 100% naturale e vegano, ammorbidente e protettivo.",
       "description_it": "Un mix di sette oli vegetali rafforza il bulbo e dona alla barba morbidezza e lucentezza. Olio di Jojoba, Olio di Argan e Vitamina E nutrono pelle e peli.",
       "usage_it": "Applicare alcune gocce sulle mani e procedere con un leggero massaggio partendo dalla base del pelo fino alla punta.",
-      "inci": "Glycine soja (Soybean) oil (*), Dicaprylyl ether, Oryza sativa (Rice) bran oil, Shea butter ethyl esters, Macadamia ternifolia seed oil, Simmondsia chinensis (Jojoba) seed oil (*), Parfum [Fragrance], Butyrospermum parkii (Shea butter) butter, Linum usitatissimum (Linseed) seed oil, Camelina sativa seed oil, Tocopherol, Beta-sitosterol, Squalene, Vegetable (Olus) oil, Limonene, Coumarin, Alpha-isomethyl ionone, Hydroxycitronellal, Linalool, Cinnamal, Hexamethylindanopyran, Citrus aurantium peel oil, Vanillin, Pinene, Linalyl acetate, Lavandula oil/extract. (*) DA AGRICOLTURA BIOLOGICA/FROM ORGANIC FARMING",
+      "inci": "Glycine soja (Soybean) oil (*), Dicaprylyl ether, Oryza sativa (Rice) bran oil, Shea butter ethyl esters, Macadamia ternifolia seed oil, Simmondsia chinensis (Jojoba) seed oil (*), Parfum [Fragrance], Butyrospermum parkii (Shea butter) butter, Linum usitatissimum (Linseed) seed oil, Camelina sativa seed oil, Tocopherol, Beta-sitosterol, Squalene, Vegetable (Olus) oil, Limonene, Coumarin, Alpha-isomethyl ionone, Hydroxycitronellal, Linalool, Cinnamal, Hexamethylindanopyran, Citrus aurantium peel oil, Vanillin, Pinene, Linalyl acetate, Lavandula oil/extract.",
       "natural_pct": 100,
       "certifications": [
         "zero-petrochem",
@@ -3024,6 +3107,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "uomo-sapone-vegetale-uomo",
       "sku": "7052",
+      "format": "100 g",
       "line": "uomo",
       "brand": "erboristica",
       "name_it": "SAPONE VEGETALE UOMO",
@@ -3031,7 +3115,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Sapone vegetale da uomo al Burro di Karité e Ginkgo Biloba.",
       "description_it": "Ricco di vitamine e antiossidanti, deterge con delicatezza mani, viso e corpo. Burro di Karité e Ginkgo Biloba nutrono ed energizzano la pelle.",
       "usage_it": "Insapona le mani bagnate e risciacqua.",
-      "inci": "Sodium palmate, Sodium palm kernelate, Aqua [Water], Parfum [Fragrance], Butyrospermum parkii (Shea) butter, Ginkgo biloba leaf extract (*), Glycerin, Sodium chloride, Hexamethylindanopyran, Limonene, Coumarin, Citrus aurantium peel oil, Alpha-isomethyl ionone, Hydroxycitronellal, Vanillin, Tetrasodium EDTA, Tetrasodium etidronate, Pinene. (*) da Agricoltura Biologica / from Organic Farming",
+      "inci": "Sodium palmate, Sodium palm kernelate, Aqua [Water], Parfum [Fragrance], Butyrospermum parkii (Shea) butter, Ginkgo biloba leaf extract (*), Glycerin, Sodium chloride, Hexamethylindanopyran, Limonene, Coumarin, Citrus aurantium peel oil, Alpha-isomethyl ionone, Hydroxycitronellal, Vanillin, Tetrasodium EDTA, Tetrasodium etidronate, Pinene.",
       "natural_pct": 98,
       "certifications": [
         "zero-petrochem",
@@ -3058,6 +3142,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "uomo-shampoo-doccia-uomo",
       "sku": "7090",
+      "format": "200 ml",
       "line": "uomo",
       "brand": "erboristica",
       "name_it": "SHAMPOO DOCCIA UOMO",
@@ -3065,7 +3150,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Shampoo doccia uomo energizzante e tonificante, delicato su pelle e capelli.",
       "description_it": "La mousse vegetale conferisce freschezza e idratazione a corpo e capelli. Tensioattivi vegetali delicati, Ginkgo Biloba e Pantenolo rinvigoriscono e nutrono.",
       "usage_it": "Su corpo e capelli bagnati, utilizzare una ricca quantità di prodotto e massaggiare corpo e capelli. Risciacquare con cura",
-      "inci": "Aqua [Water], Sodium coceth sulfate, Cocamidopropyl betaine, Parfum [Fragrance], Disodium cocoamphodiacetate, Panthenol, Ginkgo biloba leaf extract (*), Potassium cocoyl rice amino acids, Caprylyl/capryl glucoside, Glyceryl oleate, Hydrolyzed rice protein, Guar hydroxypropyltrimonium chloride, Citric acid, Sodium gluconate, PEG-7 glyceryl cocoate, Coumarin, Ethylhexylglycerin, PEG-200 hydrogenated glyceryl palmate, Limonene, Hydroxycitronellal, Alpha-isomethylionone, Hexamethylindanopyran, Tetramethyl acetyloctahydronaphthalenes, Phenoxyethanol. (*) da Agricoltura Biologica / from Organic Farming",
+      "inci": "Aqua [Water], Sodium coceth sulfate, Cocamidopropyl betaine, Parfum [Fragrance], Disodium cocoamphodiacetate, Panthenol, Ginkgo biloba leaf extract (*), Potassium cocoyl rice amino acids, Caprylyl/capryl glucoside, Glyceryl oleate, Hydrolyzed rice protein, Guar hydroxypropyltrimonium chloride, Citric acid, Sodium gluconate, PEG-7 glyceryl cocoate, Coumarin, Ethylhexylglycerin, PEG-200 hydrogenated glyceryl palmate, Limonene, Hydroxycitronellal, Alpha-isomethylionone, Hexamethylindanopyran, Tetramethyl acetyloctahydronaphthalenes, Phenoxyethanol.",
       "natural_pct": 98,
       "certifications": [
         "zero-petrochem",
@@ -3092,6 +3177,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "uomo-shampoo-doccia-uomo-active",
       "sku": "7600",
+      "format": "200 ml",
       "line": "uomo",
       "brand": "erboristica",
       "name_it": "SHAMPOO DOCCIA UOMO ACTIVE",
@@ -3099,7 +3185,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Shampoo doccia per corpo e capelli, ideale dopo un allenamento sportivo. Non secca, non irrita e lascia sulla pelle un profumo agrumato, speziato e legnoso",
       "description_it": "Ideale per la cura quotidiana di corpo e capelli, anche quelli più fragili, formulato con detergenti di origine vegetale estremamente delicati, sviluppa una schiuma morbida e soffice.",
       "usage_it": "Su corpo e capelli bagnati, utilizzare una ricca quantità di prodotto e massaggiare corpo e capelli. Risciacquare con cura",
-      "inci": "Aqua [Water], Sodium coceth sulfate, Cocamidopropyl betaine, Disodium cocoamphodiacetate, Parfum [Fragrance], Panthenol, Caffeine, Niacinamide, Sodium ascorbyl phosphate, Tocopheryl acetate, Pyridoxine, Calcium pantothenate, Caprylyl/capryl glucoside, Hydrolyzed rice protein, Potassium cocoyl rice amino acids, Glyceryl oleate, Sodium starch octenylsuccinate, Guar hydroxypropyltrimonium chloride, Citric acid, Silica, Maltodextrin, Sodium gluconate, Tetramethyl acetyloctahydronaphthalenes, Hexamethylindanopyran, Limonene, Pogostemon cablin oil, Linalool, Linalyl acetate, Citrus limon (Lemon) peel oil, Pinene, Ethylhexylglycerin, Phenoxyethanol",
+      "inci": "Aqua [Water], Sodium coceth sulfate, Cocamidopropyl betaine, Disodium cocoamphodiacetate, Parfum [Fragrance], Panthenol, Caffeine, Niacinamide, Sodium ascorbyl phosphate, Tocopheryl acetate, Pyridoxine, Calcium pantothenate, Caprylyl/capryl glucoside, Hydrolyzed rice protein, Potassium cocoyl rice amino acids, Glyceryl oleate, Sodium starch octenylsuccinate, Guar hydroxypropyltrimonium chloride, Citric acid, Silica, Maltodextrin, Sodium gluconate, Tetramethyl acetyloctahydronaphthalenes, Hexamethylindanopyran, Limonene, Pogostemon cablin oil, Linalool, Linalyl acetate, Citrus limon (Lemon) peel oil, Pinene, Ethylhexylglycerin, Phenoxyethanol.",
       "natural_pct": 96,
       "certifications": [
         "zero-petrochem",
@@ -3126,6 +3212,7 @@ window.ATH_DATA_JSON = {
     {
       "id": "uomo-siero-viso-uomo",
       "sku": "7099",
+      "format": "30 ml",
       "line": "uomo",
       "brand": "erboristica",
       "name_it": "SIERO VISO UOMO",
@@ -3133,7 +3220,7 @@ window.ATH_DATA_JSON = {
       "subtitle_it": "Siero viso uomo ad effetto lifting con Acido Ialuronico concentrato.",
       "description_it": "Trattamento intensivo anti-age, perfetto come dopobarba e contro freddo, vento e smog. Acido Ialuronico, peptidi e Vitamina C stabilizzata distendono e rivitalizzano.",
       "usage_it": "Applicare il siero sul viso deterso.",
-      "inci": "Aqua [Water], Glycerin, Tremella fuciformis sporocarp extract, Sodium gluconate, Benzoic acid, Dehydroacetic acid, Ethylhexylglycerin, Phenoxyethanol",
+      "inci": "Aqua [Water], Glycerin, Tremella fuciformis sporocarp extract, Sodium gluconate, Benzoic acid, Dehydroacetic acid, Ethylhexylglycerin, Phenoxyethanol.",
       "natural_pct": 98,
       "certifications": [
         "zero-petrochem",
@@ -3250,7 +3337,7 @@ window.ATH_DATA_JSON = {
       "brand": "sphea",
       "name_it": "Sculpt & Firm Body Serum",
       "subtitle_it": "Rassoda, definisce e rimodella. Imita gli effetti dell'allenamento.",
-      "description_it": "Siero corpo tonificante con Actigym Marine Ingredient (prodotto da microorganismo delle Isole Bermuda) che imita gli effetti dell'esercizio fisico. Aiuta a rassodare la pelle in 4 settimane su addome, braccia, cosce e glutei. Finalista Cosmoprof Awards 2026 — categoria Body.",
+      "description_it": "Siero corpo tonificante con Actigym Marine Ingredient (prodotto da microorganismo delle Isole Bermuda) che imita gli effetti dell'esercizio fisico. Aiuta a rassodare la pelle in 4 settimane su addome, braccia, cosce e glutei. Finalista Cosmoprof Awards 2026, categoria Body.",
       "usage_it": "Applicare su pelle umida dopo la doccia. Massaggio attivante di 60 secondi per zona.",
       "inci": "Aqua [Water], Glycerin, Betaine, Caffeine, Bacillus/soybean ferment extract, Niacinamide, Ascorbyl tetraisopalmitate, Resveratrol, Rubus idaeus (Raspberry) seed oil, Gellan gum, Chondrus crispus powder, Agar, Juniperus virginiana oil, Potassium cocoyl rice amino acids, Glyceryl oleate, Citric acid, Caprylyl/capryl glucoside, 1,2-Hexanediol, Tetrasodium glutamate diacetate, Synthetic fluorphlogopite, Parfum [Fragrance], Butylene glycol, Polyacrylate crosspolymer-6, Ethylhexylglycerin, Acrylates/C10-30 alkyl acrylate crosspolymer, Tromethamine, Mica, Hexyl cinnamal, Phenoxyethanol, CI 7781 [Titanium dioxide], CI 7741 [Iron oxides], CI 73360 [Red 30]",
       "natural_pct": null,
