@@ -31,18 +31,19 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
 
 /* ── HERO ─────────────────────────────────────────────────── */
 .sp-hero {
-  min-height: 100svh;
   display: grid;
   grid-template-columns: 1fr 1fr;
   position: relative;
   overflow: hidden;
   padding-top: 73px;            /* la foto parte sotto la topbar fissa */
+  align-items: stretch;
 }
-@media (max-width: 860px) { .sp-hero { grid-template-columns: 1fr; min-height: auto; padding-top: 64px; } }
+@media (max-width: 860px) { .sp-hero { grid-template-columns: 1fr; padding-top: 64px; } }
 
+/* Pannello = forma 3:4 della foto: la foto ci sta TUTTA, nessun taglio, banner adattato alla foto. */
 .sp-hero__visual {
   position: relative;
-  min-height: 55vmin;
+  aspect-ratio: 3 / 4;
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
 }
@@ -765,8 +766,8 @@ body.sp-modal-open { overflow: hidden; }
 .sp-rcard__body { padding: 22px 20px 26px; }
 .sp-rcard__cat { font-family: var(--display); font-style: italic; font-weight: 300; font-size: 21px; color: #4a6aa0; opacity: .92; line-height: 1.05; margin-bottom: 3px; }
 .sp-rcard__name { font-family: var(--display); font-style: italic; font-weight: 300; font-size: 27px; color: #1a1a1a; line-height: 1.04; margin-bottom: 12px; }
-.sp-rcard__desc { font-family: var(--serif); font-size: 15px; line-height: 1.55; color: rgba(26,26,26,.58); }
-.sp-rcard__active { font-family: var(--serif); font-style: italic; font-size: 14px; color: #4a6aa0; opacity: .9; margin-top: 14px; }
+.sp-rcard__desc { font-family: var(--serif); font-size: 16.5px; line-height: 1.55; color: rgba(26,26,26,.6); }
+.sp-rcard__active { font-family: var(--serif); font-style: italic; font-size: 18px; color: #4a6aa0; opacity: .95; margin-top: 16px; }
 </style>
 <meta name="description" content="Scheda prodotto Sphea: composizione, attivi, modalità d'uso e benefici."/>
 <meta name="robots" content="index, follow"/>
@@ -998,7 +999,7 @@ body.sp-modal-open { overflow: hidden; }
 
 <script src="../assets/vendor/lenis.min.js" defer></script><script src="../assets/data.js"></script>
 <script src="../assets/search-data.js" defer></script>
-<script src="../assets/app.js?v=6"></script>
+<script src="../assets/app.js?v=7"></script>
 <script>
 /* ═══════════════════════════════════════════════════════════
    SPHEA DATA
@@ -1258,16 +1259,150 @@ const ACTIVES_LIB = {
   },
 };
 
+/* ───── EN OVERLAY ─────
+   Solo i campi renderizzati (claim/intro/zone/benefits) + attivi + risultati.
+   I nomi propri (name), INCI, formato e i colori restano invariati. */
+const SPHEA_EN = {
+  'anti-pollution': {
+    claim: 'A biological shield against smog, fine dust and oxidative stress. The skin breathes again.',
+    intro: '<span class="sp-prod__hl">Ectoin</span> is an extremophile molecule produced by bio-fermentation: it wraps the cells in a shell of organised water that defends them from smog, <span class="sp-prod__hl">PM10</span>, <span class="sp-prod__hl">blue light</span> and <span class="sp-prod__hl">free radicals</span>. The protective film stays active for up to 12 hours after application and hydration remains measurable for days. The skin regains firmness, comfort and radiance, even in the city.',
+    zone: 'Face · Neck',
+    benefits: [
+      { icon: '◎', title: '-48% oxidative damage', text: 'In vivo study with 1% Ectoin: 48% reduction in oxidative damage (MDA content) after just 5 days of application, compared to placebo.' },
+      { icon: '◉', title: '100% cell protection', text: '100% protection of skin cells from UV-induced damage, documented in vivo compared to untreated cells.' },
+      { icon: '◈', title: '+7 days hydration', text: 'The moisturising effect remains measurable up to 7 days after stopping the treatment (in vivo study).' },
+      { icon: '○', title: 'Anti blue light & pollution', text: 'Ectoin, a 100% natural molecule, defends against PM10, cigarette smoke, blue light, visible light and free radicals.' },
+    ],
+  },
+  'radiant-up-lift': {
+    claim: 'Volumizes. Brightens. Redefines the contours. The serum that makes you forget filler.',
+    intro: '<span class="sp-prod__hl">Uplevity®</span> acts like a bioelectric microcurrent: it stimulates the fibroblast scaffolding and redefines the contours of the face with an immediate, progressive <span class="sp-prod__hl">tightening effect</span>. <span class="sp-prod__hl">Liposomal Vitamin C</span> adds radiance and antioxidant protection, neutralising free radicals. Day after day the face looks fuller, smoother and more radiant, without resorting to filler.',
+    zone: 'Face · Facial contour',
+    benefits: [
+      { icon: '◎', title: '+94.6% lifting', text: 'Upper cheekbone lifting effect +94.6% compared to placebo, thanks to Uplevity® E-Lift Peptide (in vivo study).' },
+      { icon: '◉', title: '-40% wrinkles', text: '40% reduction in wrinkle visibility with a 2% Uplevity solution, documented in vivo.' },
+      { icon: '◈', title: '10 days = 5 sessions', text: '10 days of treatment are equivalent to 5 sessions with a microcurrent beauty device.' },
+      { icon: '○', title: '+72% fibronectin', text: 'In vitro: +72% EDA-fibronectin, a key protein for cell contraction and adhesion.' },
+    ],
+  },
+  'eyelift-perfector': {
+    claim: 'Reduces expression lines, tightens drooping eyelids and erases bags. Eyes 20 years younger.',
+    intro: '<span class="sp-prod__hl">Argireline® Amplified</span> relaxes the micro-movements that etch expression lines around the eyes, with a <span class="sp-prod__hl">botox-like effect</span>. Uplevity® tightens the eyelid and softens bags, restoring an open, rested look. <span class="sp-prod__hl">Two drops</span> are enough: the formula is highly concentrated and progressive-release.',
+    zone: 'Eye contour · Eyelids',
+    benefits: [
+      { icon: '◎', title: '-20% wrinkles at 28 days', text: 'Wrinkle depth -12.3% in 5 days and -20% in 28 days with Argireline® Amplified Peptide at 5% (in vivo study).' },
+      { icon: '◉', title: '5 years in 5 days', text: 'The skin looks up to 5 years younger in just 5 days of application.' },
+      { icon: '◈', title: '-5.9% crow\'s feet', text: '5.9% reduction in crow\'s feet roughness after smiling, thanks to the relaxing botox-like effect.' },
+      { icon: '○', title: '+53.7% collagen', text: 'The peptide\'s ability to increase new collagen synthesis by 53.7% (in vitro).' },
+    ],
+  },
+  'sculpt-firm': {
+    claim: 'Firms, defines and reshapes. The personal trainer in serum form.',
+    intro: '<span class="sp-prod__hl">Actigym®</span>, a marine exopolysaccharide from Bermuda, signals to the muscle cells that a workout is underway and amplifies the results of movement. It stimulates <span class="sp-prod__hl">adiponectin</span> and mitochondrial metabolism, redensifying the tissue. With regular use the abdomen, thighs and arms look more <span class="sp-prod__hl">toned and sculpted</span>.',
+    zone: 'Body · Abdomen · Arms · Thighs',
+    benefits: [
+      { icon: '◎', title: '-1.2 cm thigh', text: 'Thigh circumference reduced by up to -1.2 cm at 56 days with Actigym® at 5% combined with physical activity (in vivo study).' },
+      { icon: '◉', title: 'Firmer in 4 weeks', text: 'A firmer, more sculpted appearance after just 4 weeks of use, on the abdomen, thighs and arms.' },
+      { icon: '◈', title: 'Mimics exercise', text: 'Actigym®, a marine ingredient from Bermuda, improves muscle tone by mimicking the effects of training.' },
+      { icon: '○', title: 'Density & tone', text: 'Increases the density of the skin tissue and counters sagging, with a revitalising, reshaping action.' },
+    ],
+  },
+  'slim-silhouette': {
+    claim: 'Acts on adipose tissue while you sleep. The night that redraws your silhouette.',
+    intro: '<span class="sp-prod__hl">Nocturshape®</span> works in sync with the <span class="sp-prod__hl">body clock</span>: at night it inhibits nocturnin, the protein that promotes fat storage, unlocking the metabolic window of sleep. Applied in the evening to thighs, hips and abdomen, it progressively redraws the <span class="sp-prod__hl">silhouette</span> and improves firmness. On waking, the skin is smoother and firmer.',
+    zone: 'Body · Thighs · Hips · Abdomen',
+    benefits: [
+      { icon: '◎', title: '-0.9 cm thigh in 15 days', text: 'Thigh circumference reduced by -0.9 cm after just 15 days with Nocturshape® (in vivo study).' },
+      { icon: '◉', title: '+23% firmness', text: '23% increase in skin firmness documented in vivo after the evening treatment.' },
+      { icon: '◈', title: '-39.4% uneven fat', text: '39.4% reduction in the unevenness of subcutaneous fat deposits, for smoother skin.' },
+      { icon: '○', title: '-22.3% nocturnin', text: 'In vitro: -22.3% nocturnin levels overnight, the protein that promotes lipid storage.' },
+    ],
+  },
+};
+const ACTIVES_EN = {
+  'ectoin': {
+    tag: 'Extremophile amino acid · biofermentation · bitop AG',
+    mechanism: 'Ectoin® natural is an amino acid produced by Halomonas elongata, an extremophile bacterium from the salt lakes of the Sahara, through a patented process of biofermentation and "bacterial milking" (extraction without killing the bacterium). Developed by bitop AG (Germany, 15+ active patents, COSMOS certified). It acts as a cosmotrope: it binds 4 water molecules for every Ectoin molecule, forming the Hydro-Complex, an organised water structure that wraps the cell membranes, creating a physical shield against PM2.5, PM10, ozone and UV radiation. The effect is direct, not receptor-mediated, and remains active 8-12h after application.',
+    efficacy: 'In vitro on keratinocytes: -48% oxidative damage from PM2.5 in 5 days. 100% cell survival under UV stress. 2020 clinical study: -32% expression wrinkles + +82% elasticity. The Ectoin protective film stays active 8-12 hours after application.',
+    claims: ['-48% PM2.5 oxidative damage in 5 days', '100% UV cell survival', '-32% wrinkles · +82% elasticity', 'Active shield 8-12h'],
+  },
+  'uplevity': {
+    tag: 'Tetrapeptide-1 · microcurrent effect · Lubrizol/Lipotec',
+    mechanism: 'Uplevity® E-Lift is a Tetrapeptide-1 developed by Lubrizol/Lipotec (patent WO2018071640A1). It mimics the action of a bioelectric microcurrent: it stimulates the MBNL1 protein (Muscleblind-like splicing regulator 1), increasing its expression by +72% in vitro. MBNL1 is an alternative-splicing regulator that favours the adult, structured form of fibronectin (EDA-fibronectin), a key component of the extracellular matrix scaffolding. At the same time it boosts the mitochondrial metabolism of fibroblasts, equivalent to the effect of 5 professional microcurrent sessions in 10 days.',
+    efficacy: 'Clinical study vs placebo: +94.6% lifting effect already at 10 days. -7.4% nasolabial fold depth in 28 days. -5.9% crow\'s feet in 28 days. In vitro: +72% EDA-fibronectin in dermal fibroblasts.',
+    claims: ['+94.6% lifting vs placebo in 10 days', '-7.4% nasolabial fold in 28 days', '-5.9% crow\'s feet in 28 days', '+72% EDA-Fibronectin in vitro'],
+  },
+  'argireline': {
+    tag: 'Acetyl Hexapeptide-8 · second generation · Lubrizol/Lipotec',
+    mechanism: 'Argireline® Amplified (Acetyl Hexapeptide-8) is the second generation of the world\'s first cosmetic anti-wrinkle peptide (2001, Lubrizol/Lipotec). Compared to the first generation, the Amplified formulation has a +33% enhanced binding affinity to the SNARE complex thanks to an optimised sequence. It blocks the SNARE complex by inhibiting the release of acetylcholine at the neuromuscular junction: less neurotransmitter = less muscle contraction = fewer expression lines. Active patents: US7015192B1 + US9079048B2 (until 2030). 2025 study (JAAD): it extends the effect of botulinum injections by +8 weeks.',
+    efficacy: 'Concentration 5%: -12.3% wrinkle depth in 5 days. -20% wrinkles in 28 days. In vitro: +53.7% collagen synthesis. 2025 study: +8 weeks of extended botulinum effect in treated patients.',
+    claims: ['-12.3% wrinkles in 5 days (5% conc.)', '-20% wrinkles in 28 days', '+53.7% collagen synthesis in vitro', '+8 weeks extended Botox (2025)'],
+  },
+  'vitamin-c': {
+    tag: 'Antioxidant · Evening · Anti-spot',
+    mechanism: 'Vitamin C (ascorbic acid) is the most powerful water-soluble antioxidant produced by nature. In the Sphea formulation it is encapsulated in liposomes, lipid vesicles identical to the structure of the cell membrane, which increase its oxidative stability (the classic problem of pure ascorbic acid) and trans-epidermal penetration up to 3× compared to the free form. It acts on three levels: tyrosinase inhibition (anti-spot), free-radical neutralisation and stimulation of collagen synthesis (an enzymatic co-factor).',
+    efficacy: 'Concentration 10%: +45% skin radiance in 8 weeks. -38% intensity of sun spots. +22% pro-collagen synthesis in fibroblast culture. The liposomal form retains 80% of its biological activity after 18 months at room temperature vs 12% for pure ascorbic acid.',
+    claims: ['+45% radiance', '-38% spot intensity', '+22% collagen', '18-month stability'],
+  },
+  'actigym': {
+    tag: 'Marine exopolysaccharide · Bacillus sp. · Bermuda · BIOINTEC',
+    mechanism: 'Actigym® is an exopolysaccharide (EPS) produced by Bacillus sp., a bacterium isolated in the deep waters of Bermuda, developed by BIOINTEC within marine blue biotechnology. It mimics aerobic endurance training at the cellular level: it stimulates adiponectin (+68.3% in vitro), a key hormone that activates AMPK and promotes lipolysis, and boosts the mitochondrial electron transport chain, increasing ATP production by +136%. It signals to the cells that "a workout is underway" even in the absence of physical movement. Synergistic effect with real physical activity: it amplifies the results of exercise when used in combination.',
+    efficacy: '56-day clinical study: -2.1 cm thigh and abdomen. -4.6 kg body weight. -19.2% fat panniculus. In vitro: +68.3% adiponectin, +136% mitochondrial ATP.',
+    claims: ['-2.1 cm thigh/abdomen in 56 days', '-4.6 kg body weight', '-19.2% fat panniculus', '+136% mitochondrial ATP in vitro'],
+  },
+  'nocturshape': {
+    tag: 'Marine EPS · lipolysis chronobiology · Lubrizol/Lipotec · SCC Award 2013',
+    mechanism: 'Nocturshape® is an exopolysaccharide produced by a planktonic microorganism from the Fuente de Piedra Lagoon (Malaga, Spain), developed by Lubrizol/Lipotec. SCC Award 2013 for cosmetic innovation. The molecular target is the Nocturnin protein (-22.3% in vitro), a circadian enzyme that during night-time hours promotes lipogenesis (fat storage). By inhibiting Nocturnin, Nocturshape® unlocks the night-time metabolic window, promoting lipolysis. In parallel it inhibits PPAR-γ and adipogenesis, and stimulates type I collagen synthesis (+38.1% in vitro), improving skin quality in the treated areas.',
+    efficacy: 'Clinical study: -0.9 cm thigh in 15 days, -1.5 cm in 30 days. +23% skin firmness. -39.4% evenness of fat deposits. In vitro: -22.3% Nocturnin, +38.1% type I collagen.',
+    claims: ['-0.9 cm thigh in 15 days · -1.5 cm in 30 days', '+23% skin firmness', '-39.4% even fat deposits', 'SCC Award 2013 · night use'],
+  },
+  'niacinamide': {
+    tag: 'Pore-refining · Evening · Barrier',
+    mechanism: 'Niacinamide (vitamin B3 amide) is one of the most versatile and scientifically validated cosmetic actives. It acts as a precursor of NAD+ and NADP+, coenzymes fundamental to cellular energy metabolism. At the skin level: it reduces the transfer of melanosomes from melanocytes to keratinocytes (anti-spot), inhibits inflammatory cytokines (anti-redness), stimulates ceramide synthesis (barrier strengthening) and reduces sebum production (pore-refining effect).',
+    efficacy: 'At 4-5% concentrations: -37% visible pores in 8 weeks. -29% sun spots. +24% ceramide content in the stratum corneum. -18% sebum production. Compatible with all skin types including sensitive and reactive skin.',
+    claims: ['-37% visible pores', '-29% spots', '+24% ceramides', 'Suitable for sensitive skin'],
+  },
+};
+const SP_META_EN = {
+  'anti-pollution':    { kind: 'Face Serum', card: 'A daily shield against smog and blue light. Protected, radiant skin.' },
+  'radiant-up-lift':   { kind: 'Face Serum', card: 'Immediate tightening and radiance. Redefined facial contours.' },
+  'eyelift-perfector': { kind: 'Eye Serum',  card: 'Reduces wrinkles, bags and drooping eyelids. A younger look.' },
+  'sculpt-firm':       { kind: 'Body Serum', card: 'Tones and reshapes the body. Firmer, more defined skin.' },
+  'slim-silhouette':   { kind: 'Body Serum', card: 'Acts overnight on adipose tissue. A redrawn silhouette.' },
+};
+const CLINICAL_EN = {
+  'anti-pollution':    { desc1: 'Skin exposed to pollution, free radicals, blue light.', desc2: 'Reduction in oxidative damage (MDA) after 5 days with 1% Ectoin, vs placebo.' },
+  'radiant-up-lift':   { desc1: 'Relaxation of the facial contours, reduced muscle tone.', desc2: 'Upper cheekbone lifting effect vs placebo, with Uplevity® E-Lift Peptide.' },
+  'eyelift-perfector': { desc1: 'Peri-orbital wrinkles, tired eye area, reduced skin tone.', desc2: 'Reduction in wrinkle depth at 28 days with Argireline® Amplified at 5%.' },
+  'sculpt-firm':       { desc1: 'Loss of tone in critical areas: abdomen, arms, thighs.', desc2: 'Reduction in thigh circumference at 56 days with Actigym® at 5% + physical activity.' },
+  'slim-silhouette':   { desc1: 'Visible cellulite, orange-peel effect, water retention.', desc2: 'Reduction in thigh circumference after 15 days with Nocturshape®.' },
+};
+const DOSSIER_EN = {
+  'anti-pollution': [
+    { img: 'img04', type: 'chartW',  cap: '−48% oxidative damage (MDA) from pollution in 5 days, vs placebo.' },
+    { img: 'img09', type: 'compare', cap: 'In vivo skin imaging Tivi®700: documented soothing effect, from D0 to D21.' },
+  ],
+};
+const LANG = (window.ATH && ATH.lang) || (document.documentElement.lang === 'en' ? 'en' : 'it');
+function getActive(key) {
+  const base = ACTIVES_LIB[key];
+  if (!base) return base;
+  return (LANG === 'en' && ACTIVES_EN[key]) ? { ...base, ...ACTIVES_EN[key] } : base;
+}
+
 /* ───── RENDER ───── */
 const params = new URLSearchParams(window.location.search);
 const id = params.get('id') || 'anti-pollution';
-const d = SPHEA_DATA[id];
+let d = SPHEA_DATA[id];
 
 if (!d) {
   document.body.innerHTML = '<div style="padding:80px;text-align:center;color:#4a6aa0;font-family:Inter">Siero non trovato</div>';
 } else {
+  if (LANG === 'en' && SPHEA_EN[id]) d = { ...d, ...SPHEA_EN[id] };
   renderPage(d, id);
 }
+// La scheda Sphea renderizza i dati in JS: al cambio lingua ricarica per ri-renderizzare in EN/IT.
+document.addEventListener('lang-change', () => location.reload());
 
 function renderPage(d, id) {
   document.title = `${d.name} · Sphea`;
@@ -1278,12 +1413,13 @@ function renderPage(d, id) {
   document.getElementById('heroBg').style.background = 'linear-gradient(145deg, #f5f8fc 0%, #dde6f3 45%, #aebfdc 100%)';
   document.getElementById('heroBg').innerHTML = `<div style="position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%, rgba(74,106,160,.16) 0%, transparent 60%)"></div>`;
   const SP_META = {
-    'anti-pollution':   { kind: 'Siero Viso',  proper: 'Anti Pollution',   card: 'Scudo quotidiano contro smog e luce blu. Pelle protetta e luminosa.' },
+    'anti-pollution':   { kind: 'Siero Viso',  proper: 'Anti Pollution',   card: 'Scudo quotidiano contro smog e luce blu. Pelle protetta e luminosa.', active: 'Ectoin® natural' },
     'radiant-up-lift':  { kind: 'Siero Viso',  proper: 'Radiant Up-Lift',  card: 'Effetto tensore e luminosità immediata. Contorni del viso ridefiniti.' },
     'eyelift-perfector':{ kind: 'Siero Occhi', proper: 'Eyelift Perfector',card: 'Riduce rughe, borse e palpebre cadenti. Sguardo più giovane.' },
     'sculpt-firm':      { kind: 'Siero Corpo', proper: 'Sculpt & Firm',     card: 'Tonifica e rimodella il corpo. Pelle più soda e definita.' },
     'slim-silhouette':  { kind: 'Siero Corpo', proper: 'Slim Silhouette',   card: 'Agisce di notte sul tessuto adiposo. Silhouette ridisegnata.' },
   };
+  if (LANG === 'en') Object.keys(SP_META_EN).forEach(k => { if (SP_META[k]) Object.assign(SP_META[k], SP_META_EN[k]); });
   const _meta = SP_META[id];
   document.getElementById('heroName').innerHTML = _meta
     ? `<span class="sp-hero__kind">${_meta.kind}</span>${_meta.proper}`
@@ -1326,10 +1462,12 @@ function renderPage(d, id) {
   heroPhoto.alt = d.name;
   heroPhoto.onload = () => {
     if (placeholder) placeholder.style.display = 'none';
+    // Il banner prende l'aspect-ratio reale della foto -> foto intera, zero tagli
+    if (heroPhoto.naturalWidth) visual.style.aspectRatio = heroPhoto.naturalWidth + ' / ' + heroPhoto.naturalHeight;
     heroPhoto.classList.add('is-on');
   };
   heroPhoto.onerror = () => { heroPhoto.remove(); buildOrbs(); };
-  heroPhoto.src = `../immagini/sphea/${id}/packaging.webp`;
+  heroPhoto.src = `../immagini/sphea/${id}/packaging.webp?v=2`;
   visual.appendChild(heroPhoto);
 
   /* actives — clic apre modal */
@@ -1340,8 +1478,8 @@ function renderPage(d, id) {
   const activeModalBody = document.getElementById('activeModalBody');
   const activeModalNum = document.getElementById('activeModalNum');
   const activeKeys = d.actives;
-  activesTitle.textContent = 'Attivi brevettati';
-  activesCount.textContent = `${activeKeys.length} principi attivi`;
+  activesTitle.textContent = LANG === 'en' ? 'Patented actives' : 'Attivi brevettati';
+  activesCount.textContent = `${activeKeys.length} ${LANG === 'en' ? 'active ingredients' : 'principi attivi'}`;
 
   function openActiveModal(a, idx) {
     activeModalNum.textContent = String(idx + 1).padStart(2, '0');
@@ -1374,7 +1512,7 @@ function renderPage(d, id) {
   });
 
   activeKeys.forEach((key, i) => {
-    const a = ACTIVES_LIB[key];
+    const a = getActive(key);
     if (!a) return;
     const row = document.createElement('button');
     row.type = 'button';
@@ -1403,6 +1541,7 @@ function renderPage(d, id) {
     'slim-silhouette': { stat1: 'T0', desc1: 'Cellulite visibile, effetto buccia d\'arancia, ritenzione idrica.', stat2: '-0,9 cm', desc2: 'Riduzione del contorno coscia dopo 15 giorni con Nocturshape®.' },
   };
   const cr = clinicalMap[id];
+  if (cr && LANG === 'en' && CLINICAL_EN[id]) Object.assign(cr, CLINICAL_EN[id]);
   if (cr) {
     const s1 = document.getElementById('resultStat1');
     const s2 = document.getElementById('resultStat2');
@@ -1423,7 +1562,7 @@ function renderPage(d, id) {
   };
   const dossierEl = document.getElementById('dossier');
   const panelsEl = document.getElementById('resultsPanels');
-  const figs = dossierMap[id];
+  const figs = (LANG === 'en' && DOSSIER_EN[id]) ? DOSSIER_EN[id] : dossierMap[id];
   if (dossierEl && figs && figs.length) {
     dossierEl.innerHTML = figs.map(f => {
       const src = `../immagini/sphea/${id}/clinico/${f.img}.webp`;
@@ -1500,7 +1639,8 @@ function renderPage(d, id) {
     const body = document.getElementById('inciBody');
     const open = body.style.display === 'block';
     body.style.display = open ? 'none' : 'block';
-    this.textContent = open ? 'Composizione INCI completa −' : 'Composizione INCI completa +';
+    const inciLabel = LANG === 'en' ? 'Full INCI composition' : 'Composizione INCI completa';
+    this.textContent = open ? inciLabel + ' −' : inciLabel + ' +';
   });
 
   /* b2b table — sezione rimossa, JS no-op con guard */
@@ -1529,7 +1669,7 @@ function renderPage(d, id) {
         <div class="sp-rcard__cat">${rm.kind}</div>
         <div class="sp-rcard__name">${rm.proper}</div>
         <div class="sp-rcard__desc">${rm.card}</div>
-        <div class="sp-rcard__active">${p.formulaPills[0]}</div>
+        <div class="sp-rcard__active">${rm.active || p.formulaPills[0]}</div>
       </div>`;
     relGrid.appendChild(a);
   });

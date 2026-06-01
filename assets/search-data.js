@@ -61,34 +61,34 @@
   // INDEX: documenti ricercabili (pagine principali)
   // ───────────────────────────────────────────────────────────────
   const PAGES = [
-    { type: 'page', title: "Athena's · l'azienda", url: '/', desc: 'Storia, fondatori, timeline, valori', tags: ['azienda', 'storia', 'home', 'chi siamo', 'about'] },
-    { type: 'page', title: 'I nostri brand', url: '/linee.html', desc: "L'Erboristica, Everby, Kaley, Sphea", tags: ['brand', 'linee', 'marchi', 'prodotti', 'catalogo', 'referenze'] },
-    { type: 'page', title: 'Laboratorio R&S', url: '/laboratorio.html', desc: 'Ricerca, innovazione, attivi cosmetici', tags: ['laboratorio'] },
-    { type: 'page', title: 'Sostenibilità', url: '/sostenibilita.html', desc: 'Energia rinnovabile, scelte etiche, formule vegan', tags: ['sostenibilita'] },
-    { type: 'page', title: 'Conto Terzi B2B', url: '/terzisti.html', desc: 'Manifattura private label per cosmetica naturale', tags: ['terzisti', 'b2b', 'private label'] },
-    { type: 'page', title: 'Contatti', url: '/contatti.html', desc: 'Sede, telefono, email, spaccio aziendale', tags: ['contatti', 'sede', 'spaccio'] }
+    { type: 'page', title: "Athena's · l'azienda", title_en: "Athena's · the company", url: '/', desc: 'Storia, fondatori, timeline, valori', desc_en: 'History, founders, timeline, values', tags: ['azienda', 'storia', 'home', 'chi siamo', 'about'] },
+    { type: 'page', title: 'I nostri brand', title_en: 'Our brands', url: '/linee.html', desc: "L'Erboristica, Everby, Kaley, Sphea", desc_en: "L'Erboristica, Everby, Kaley, Sphea", tags: ['brand', 'linee', 'marchi', 'prodotti', 'catalogo', 'referenze'] },
+    { type: 'page', title: 'Laboratorio R&S', title_en: 'R&D Lab', url: '/laboratorio.html', desc: 'Ricerca, innovazione, attivi cosmetici', desc_en: 'Research, innovation, cosmetic actives', tags: ['laboratorio'] },
+    { type: 'page', title: 'Sostenibilità', title_en: 'Sustainability', url: '/sostenibilita.html', desc: 'Energia rinnovabile, scelte etiche, formule vegan', desc_en: 'Renewable energy, ethical choices, vegan formulas', tags: ['sostenibilita'] },
+    { type: 'page', title: 'Conto Terzi B2B', title_en: 'B2B Private Label', url: '/terzisti.html', desc: 'Manifattura private label per cosmetica naturale', desc_en: 'Private-label manufacturing for natural cosmetics', tags: ['terzisti', 'b2b', 'private label'] },
+    { type: 'page', title: 'Contatti', title_en: 'Contact', url: '/contatti.html', desc: 'Sede, telefono, email, spaccio aziendale', desc_en: 'Address, phone, email, factory outlet', tags: ['contatti', 'sede', 'spaccio'] }
   ];
 
   const BRANDS = [
-    { type: 'brand', title: "l'Erboristica", url: '/linee/erboristica.html', desc: "Il brand storico Athena's, cosmetica naturale, 10 linee", tags: ['erboristica', 'naturale', 'erbe'] },
-    { type: 'brand', title: 'Everby', url: '/linee/everby.html', desc: 'K-beauty contemporanea Gen Z, texture innovative', tags: ['everby', 'k-beauty', 'gen z', 'glass skin'] },
-    { type: 'brand', title: 'Kaley', url: '/linee/kaley.html', desc: 'Profumi roll-on in olio concentrato, senza alcol', tags: ['kaley', 'profumo', 'fragranza', 'roll-on'] },
-    { type: 'brand', title: 'Sphea', url: '/linee/sphea.html', desc: 'Alta gamma, perle di biopolimeri marini, peptidi brevettati', tags: ['sphea', 'premium', 'perle', 'biopolimeri'] }
+    { type: 'brand', title: "l'Erboristica", title_en: "l'Erboristica", url: '/linee/erboristica.html', desc: "Il brand storico Athena's, cosmetica naturale, 10 linee", desc_en: "Athena's historic brand, natural cosmetics, 10 lines", tags: ['erboristica', 'naturale', 'erbe'] },
+    { type: 'brand', title: 'Everby', title_en: 'Everby', url: '/linee/everby.html', desc: 'K-beauty contemporanea Gen Z, texture innovative', desc_en: 'Contemporary Gen Z K-beauty, innovative textures', tags: ['everby', 'k-beauty', 'gen z', 'glass skin'] },
+    { type: 'brand', title: 'Kaley', title_en: 'Kaley', url: '/linee/kaley.html', desc: 'Profumi roll-on in olio concentrato, senza alcol', desc_en: 'Roll-on concentrated oil perfumes, alcohol-free', tags: ['kaley', 'profumo', 'fragranza', 'roll-on'] },
+    { type: 'brand', title: 'Sphea', title_en: 'Sphea', url: '/linee/sphea.html', desc: 'Alta gamma, perle di biopolimeri marini, peptidi brevettati', desc_en: 'Premium, marine biopolymer pearls, patented peptides', tags: ['sphea', 'premium', 'perle', 'biopolimeri'] }
   ];
 
   const LINES = [
-    { type: 'line', title: 'Antietà Globale', url: '/linee/linea.html?id=antieta', tags: ['antieta', 'rughe', 'rassodante', 'collagene', 'peptide'] },
-    { type: 'line', title: 'Argan', url: '/linee/linea.html?id=argan', tags: ['argan', 'olio argan'] },
-    { type: 'line', title: 'Cocco & Monoï', url: '/linee/linea.html?id=cocco', tags: ['cocco', 'monoi', 'tropicale'] },
-    { type: 'line', title: 'Mandorle Dolci', url: '/linee/linea.html?id=mandorle', tags: ['mandorle', 'emolliente'] },
-    { type: 'line', title: 'Estratti Botanici', url: '/linee/linea.html?id=estratti', tags: ['estratti', 'botanica', 'erbe officinali'] },
-    { type: 'line', title: 'Purysens', url: '/linee/linea.html?id=purysens', tags: ['purysens', 'pelle sensibile', 'parfum free'] },
-    { type: 'line', title: 'Illumià', url: '/linee/linea.html?id=illumia', tags: ['illumia', 'macchie', 'niacinamide', 'vitamina c'] },
-    { type: 'line', title: 'Nutra Repair', url: '/linee/linea.html?id=nutra', tags: ['nutra', 'pelle secca', 'baobab', 'karite'] },
-    { type: 'line', title: 'Pearls', url: '/linee/linea.html?id=pearls', tags: ['pearls', 'perle', 'microsfere'] },
-    { type: 'line', title: 'Mineral Infusions', url: '/linee/linea.html?id=mineral-infusions', tags: ['mineral', 'bifasici', 'spray'] },
-    { type: 'line', title: 'Doppia Detersione', url: '/linee/linea.html?id=doppia-detersione', tags: ['doppia detersione', 'k-beauty', 'olio detergente'] },
-    { type: 'line', title: 'Uomo', url: '/linee/linea.html?id=uomo', tags: ['uomo', 'rasatura', 'aftershave', 'barba'] }
+    { type: 'line', title: 'Antietà Globale', title_en: 'Global Anti-Aging', url: '/linee/linea.html?id=antieta', tags: ['antieta', 'rughe', 'rassodante', 'collagene', 'peptide'] },
+    { type: 'line', title: 'Argan', title_en: 'Argan', url: '/linee/linea.html?id=argan', tags: ['argan', 'olio argan'] },
+    { type: 'line', title: 'Cocco & Monoï', title_en: 'Coconut & Monoï', url: '/linee/linea.html?id=cocco', tags: ['cocco', 'monoi', 'tropicale'] },
+    { type: 'line', title: 'Mandorle Dolci', title_en: 'Sweet Almonds', url: '/linee/linea.html?id=mandorle', tags: ['mandorle', 'emolliente'] },
+    { type: 'line', title: 'Estratti Botanici', title_en: 'Botanical Extracts', url: '/linee/linea.html?id=estratti', tags: ['estratti', 'botanica', 'erbe officinali'] },
+    { type: 'line', title: 'Purysens', title_en: 'Purysens', url: '/linee/linea.html?id=purysens', tags: ['purysens', 'pelle sensibile', 'parfum free'] },
+    { type: 'line', title: 'Illumià', title_en: 'Illumià', url: '/linee/linea.html?id=illumia', tags: ['illumia', 'macchie', 'niacinamide', 'vitamina c'] },
+    { type: 'line', title: 'Nutra Repair', title_en: 'Nutra Repair', url: '/linee/linea.html?id=nutra', tags: ['nutra', 'pelle secca', 'baobab', 'karite'] },
+    { type: 'line', title: 'Pearls', title_en: 'Pearls', url: '/linee/linea.html?id=pearls', tags: ['pearls', 'perle', 'microsfere'] },
+    { type: 'line', title: 'Mineral Infusions', title_en: 'Mineral Infusions', url: '/linee/linea.html?id=mineral-infusions', tags: ['mineral', 'bifasici', 'spray'] },
+    { type: 'line', title: 'Doppia Detersione', title_en: 'Double Cleansing', url: '/linee/linea.html?id=doppia-detersione', tags: ['doppia detersione', 'k-beauty', 'olio detergente'] },
+    { type: 'line', title: 'Uomo', title_en: 'Men', url: '/linee/linea.html?id=uomo', tags: ['uomo', 'rasatura', 'aftershave', 'barba'] }
   ];
 
   // ───────────────────────────────────────────────────────────────
@@ -118,7 +118,7 @@
   }
   function scoreDoc(doc, queryTokens) {
     if (!queryTokens.length) return 0;
-    const haystack = normalize([doc.title, doc.desc, (doc.tags || []).join(' '), doc.name || '', doc.sub || '', (doc.actives || []).join(' '), doc.brand || '', doc.line || ''].join(' '));
+    const haystack = normalize([doc.title, doc.desc, (doc.tags || []).join(' '), doc.name || '', doc.sub || '', (doc.actives || []).join(' '), doc.brand || '', doc.line || '', doc.alt || ''].join(' '));
     let score = 0;
     queryTokens.forEach(t => {
       if (!t) return;
@@ -131,24 +131,35 @@
     return score;
   }
   function getIndex() {
-    const idx = [].concat(PAGES, BRANDS, LINES);
+    const en = !!(typeof window !== 'undefined' && window.ATH && window.ATH.lang === 'en');
+    // Pagine/brand/linee: risolvi titolo+descrizione nella lingua attiva, ma mantieni
+    // entrambe le lingue in `alt` così la ricerca trova sia in IT che in EN.
+    const idx = [].concat(PAGES, BRANDS, LINES).map(d => {
+      const title = (en && d.title_en) ? d.title_en : d.title;
+      const desc  = (en && d.desc_en)  ? d.desc_en  : d.desc;
+      const alt   = [d.title, d.title_en, d.desc, d.desc_en].filter(Boolean).join(' ');
+      return Object.assign({}, d, { title: title, desc: desc, alt: alt });
+    });
     try {
       const data = window.ATH_DATA_JSON;
       if (data && data.products) {
         data.products.forEach(p => {
           if (!p.id || !p.name_it) return;
-          const nice = (p.name_it || '').toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+          const rawName = (en && p.name_en) ? p.name_en : p.name_it;
+          const nice = (rawName || '').toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+          const desc = ((en && p.subtitle_en ? p.subtitle_en : p.subtitle_it) || '').slice(0, 100);
           idx.push({
             type: 'product',
             title: nice,
             lineName: p.line_name || '',
             url: p.url || ('/linee/linea.html?id=' + p.line),
             external: !!p.url,
-            desc: (p.subtitle_it || '').slice(0, 100),
+            desc: desc,
             brand: p.brand,
             line: p.line,
             name: p.name_it,
             sub: p.subtitle_it || '',
+            alt: [p.name_it, p.name_en, p.subtitle_it, p.subtitle_en].filter(Boolean).join(' '),
             actives: p.actives_main || [],
             tags: [p.brand, p.line].concat(p.actives_main || [])
           });

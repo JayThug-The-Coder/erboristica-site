@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Contatti · Athena's</title>
+<title data-it="Contatti · Athena's" data-en="Contact · Athena's">Contatti · Athena's</title>
 <link rel="preload" href="assets/fonts/fraunces-200-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="stylesheet" href="assets/fonts.css"/>
 <link rel="stylesheet" href="assets/tokens.css"/>
@@ -179,6 +179,61 @@
 .loc-map__caption {
   margin-top: 10px; font-family: var(--sans); font-size: 11px;
   letter-spacing: .2em; text-transform: uppercase; opacity: .45;
+}
+
+/* ── CATALOGO — banda download ────────────────────────────── */
+.cat-section {
+  background: var(--cream-2);
+  padding: clamp(56px,7vw,100px) 0;
+  border-top: 1px solid rgba(0,0,0,.06);
+}
+.cat-title {
+  font-family: var(--display);
+  font-size: clamp(36px,5vw,80px);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: .95;
+  max-width: 18ch;
+  margin-top: clamp(20px,2.5vw,32px);
+}
+.cat-title em { font-style: italic; color: var(--sage-deep); }
+.cat-sub {
+  font-family: var(--serif);
+  font-size: clamp(17px,1.6vw,22px);
+  line-height: 1.6;
+  opacity: .78;
+  max-width: 58ch;
+  margin-top: clamp(16px,2vw,26px);
+}
+.cat-actions {
+  margin-top: clamp(28px,3.5vw,44px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 24px;
+}
+.cat-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  padding: 16px 30px;
+  background: var(--gold);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background .25s var(--ease), transform .25s var(--ease);
+}
+.cat-btn:hover { background: var(--gold-deep); transform: translateY(-2px); }
+.cat-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+.cat-meta {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  opacity: .45;
 }
 
 /* ── FORM SECTION ─────────────────────────────────────────── */
@@ -484,11 +539,39 @@
   </div>
 </section>
 
-<!-- FORM -->
-<section class="form-section">
+<!-- CATALOGO -->
+<section class="cat-section" id="catalogo">
   <div class="container">
     <div style="display:flex; gap:16px; align-items:center; margin-bottom:0;">
       <span class="num">— 02</span>
+      <div class="eyebrow" data-it="Il catalogo" data-en="The catalogue">Il catalogo</div>
+    </div>
+    <h2 class="cat-title" data-reveal>
+      <span data-it="Scarica l'ultimo " data-en="Download our latest ">Scarica l'ultimo </span><em data-it="catalogo." data-en="catalogue.">catalogo.</em>
+    </h2>
+    <p class="cat-sub" data-reveal data-it="Tutte le nostre linee in un unico documento: i quattro brand, oltre 250 referenze con principi attivi e note di prodotto. Edizione 2026, bilingue." data-en="All our lines in a single document: the four brands, over 250 references with active ingredients and product notes. 2026 edition, bilingual.">Tutte le nostre linee in un unico documento: i quattro brand, oltre 250 referenze con principi attivi e note di prodotto. Edizione 2026, bilingue.</p>
+    <div class="cat-actions" data-reveal>
+      <a class="cat-btn" id="catalogDownload"
+         href="uploads/catalogo-athenas-2026.pdf"
+         data-href-it="uploads/catalogo-athenas-2026.pdf"
+         data-href-en="uploads/catalogo-athenas-2026.pdf"
+         data-dl-it="Catalogo Athena's 2026.pdf"
+         data-dl-en="Athena's Catalogue 2026.pdf"
+         download="Catalogo Athena's 2026.pdf"
+         target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
+        <span data-it="Scarica il catalogo" data-en="Download the catalogue">Scarica il catalogo</span>
+      </a>
+      <span class="cat-meta" data-it="PDF · Edizione 2026" data-en="PDF · 2026 edition">PDF · Edizione 2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-section" id="scrivici">
+  <div class="container">
+    <div style="display:flex; gap:16px; align-items:center; margin-bottom:0;">
+      <span class="num">— 03</span>
       <div class="eyebrow" data-it="Scrivici" data-en="Write to us">Scrivici</div>
     </div>
     <h2 style="font-family:var(--display); font-size:clamp(36px,5vw,80px); line-height:.95; font-weight:300; letter-spacing:-0.03em; max-width:16ch; margin-bottom:0;" data-reveal>
@@ -698,6 +781,19 @@ document.querySelectorAll('.loc-block, .person-block, [data-reveal]').forEach(el
       });
     });
   });
+})();
+
+// ── CATALOGO — link e nome file per lingua ───────────────────
+(function() {
+  const a = document.getElementById('catalogDownload');
+  if (!a) return;
+  function applyCatLang() {
+    const en = (typeof ATH !== 'undefined' && ATH.lang === 'en');
+    a.setAttribute('href', en ? a.dataset.hrefEn : a.dataset.hrefIt);
+    a.setAttribute('download', en ? a.dataset.dlEn : a.dataset.dlIt);
+  }
+  applyCatLang();
+  document.addEventListener('lang-change', applyCatLang);
 })();
 
 // ── FORM SUBMIT ──────────────────────────────────────────────

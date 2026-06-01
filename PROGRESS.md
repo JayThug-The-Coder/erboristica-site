@@ -4,6 +4,64 @@
 
 ---
 
+# 🛠️ Sessione 1 Giugno 2026 — i18n completo schede prodotto + libreria attivi + rimozione tag
+
+**Obiettivo utente:** completare la traduzione EN delle schede `prodotto.html` (linea L'Erboristica; Kaley/Everby/Sphea esclusi = nomi propri), tradurre anche le finestrelle attivi/ingredienti, rimuovere i tag riquadrati in fondo al modale attivi (Lenitiva/Cica/Riparatrice/Anti-rossori), confermare che il modale usi la palette della linea.
+
+**Se voglio cambiare X → Y:**
+- Testo statico scheda (heading sezioni, INCI, placeholder) → `prodotto.html`, attributi `data-it/data-en` (li gestisce `applyLang()` di `app.js`).
+- Nome/claim/descrizione/uso/specs + lista attivi + formula + correlati al **cambio lingua** → `renderLocalized()` in `prodotto.html` (richiamata su evento `lang-change`).
+- Testo libreria attivi (modale + righe) → `ACTIVES_LIB` (IT) + **`ACTIVES_EN`** (EN) in `prodotto.html`; fusione via `actLoc(key)`.
+- Nome/claim/descrizione/uso prodotto → `name_en/subtitle_en/description_en/usage_en` in **`assets/data.json` E `assets/data-inline.js`** (devono restare identici; `data-inline.js` è la fonte runtime). I 6 innovation legacy (`inn-*`) stanno in `assets/data.js` (oggetto `it`/`en` già completo).
+
+**Fatto (3 blocchi, tutti verificati in preview :8088):**
+1. **UI/tecnica** — listener `lang-change` + `renderLocalized()` (la scheda prima NON si ri-traduceva); chrome statico → `data-it/data-en`; label righe attivi lang-aware; **tag riquadrati rimossi** dal modale (`ki-modal__tags`) e dalla riga espansa (`ki-detail__tags`); palette modale = tint linea (confermato). Righe/card ricostruite con `.is-visible` (il reveal observer non le ri-osserva).
+2. **Libreria attivi** — `ACTIVES_EN` per 55 attivi (nome descrittivo tradotto, INCI/nomi propri invariati); `actLoc` rifattorizzato a chiave.
+3. **Dati prodotto** — `_en` (4 campi) aggiunti a tutti i **70 prodotti L'Erboristica** via script (insert dopo `_it`, round-trip JSON fedele, i 2 file restano identici: `files identical: true`).
+
+**Verifiche:** antietà/uomo/estratti — nome+claim+descrizione+correlati passano a EN; modale attivi (es. "Bergamot Essential Oil", "Hyaluronic Acid") con role/origine/meccanismo/evidenza EN; bg modale = tint linea. `node --check` script OK; nessun riferimento orfano (kiCount/kiModalTags/data.tags rimossi).
+
+**Bloccanti risolti (stessa sessione):**
+- `terzisti.html` (pagina pubblica): 3 `<h2>` + 6 `tz-cap__name` + 4 `tz-step__name` → `data-it/data-en` (erano IT hardcoded). Verificato EN.
+- `prodotto.html` card correlate: sottotitolo EN-aware (`firstSent(subtitle_en)` in EN, `DESC_SHORT` solo IT). Nome + claim card ora tradotti.
+
+**Residuo non bloccante:** `prodotto-kaley.html` L48 (redirect, brand Kaley escluso). **Push in sospeso.**
+
+---
+
+# 🛠️ Sessione 31 Maggio 2026 (round 5: banner B2B "Porta … nel tuo assortimento" su pagine linea)
+
+**Banner CTA B2B in fondo a tutte le pagine di linea (tranne Sphea).** Stessa struttura del `.ev-cta` di Everby (heading + sottotitolo + 2 bottoni: "Richiedi campioni" → `../contatti.html#scrivici`, "Scarica catalogo" → download diretto `../uploads/catalogo-athenas-2026.pdf` con nome file localizzato IT/EN via `data-dl-it/en` + script `apply()` su `lang-change`). Bilingue IT/EN.
+- **`linee/everby.html`**: già fatto (round precedente) — "Porta Everby nel tuo assortimento".
+- **`linee/kaley.html`**: gli stili `.kf-cta`/`.kf-btn` (bordeaux, in palette) c'erano ma mancava il markup → **aggiunto** ("Porta Kaley nel tuo assortimento" / "Bring Kaley to your assortment", `#kfCatalogDownload`). Padding ridotto `clamp(80,11vw,140)`→`clamp(48,7vw,88)`.
+- **`linee/linea.html`** (linee L'Erboristica dinamiche): aggiunta nuova `.line-cta` dopo la sezione prodotti. Heading **dinamico** col nome breve linea: `Porta la linea <em>${line.shortName}</em> nel tuo assortimento.` / `Bring the <em>${shortName}</em> line to your assortment.` (settato in JS via `setAttribute data-it/data-en` + `ATH.applyLang()`; `&`→`&amp;`). **Sfondo in palette della linea**: `--line-cta-bg` = `linear-gradient(150deg, dk(accent,0.6), dk(accent,0.4))` (riusa l'accento/`dk()` già calcolati per il footer). Bottoni: solid usa `var(--gold)` (=accento linea), ghost cream. `#lineCatalogDownload` con stessa logica nome-file. Verificato cocco (teal) e uomo (navy).
+- **Sphea**: escluso (come richiesto).
+- ⚠️ **Reveal non testabile nel preview**: l'IntersectionObserver headless del preview NON scatta (test minimale: `ioFired:null` su hero in viewport) → tutti i `[data-reveal]` (hero/prodotti/CTA) appaiono opacity:0 solo nel preview; in browser reale si rivelano (meccanismo `initReveal()` in app.js, identico al resto pagina). Contenuto/palette/bottoni/PDF 200 verificati via DOM.
+
+---
+
+# 🛠️ Sessione 31 Maggio 2026 (round 4: sedi laboratorio + AUDIT sito + i18n bande index)
+
+**Sedi card partner laboratorio (`laboratorio.html`):** aggiunta/corretta la riga "Sede" (bilingue IT/EN, città→`<span data-it/data-en>`): **Ferrara** (Università di Ferrara, "Italia"→bilingue), **Milano** (Complife, prima era solo "· Italia"), **Bologna** (Gelt International, prima NON aveva la riga Sede → aggiunta).
+
+**AUDIT approfondito sito (script una-tantum, poi rimossi):**
+- **URL puliti Netlify** (`.html`): oltre ad app.js (round 3), scansionati TUTTI gli `<script>` inline delle pagine → nessun altro controllo `.html` fragile. ✅
+- **Link interni `.html` rotti:** nessuno (il `/linee.html` in 404.html è root-relative, valido). ✅
+- **Path immagine nei dati vs disco:** Erboristica/Everby → tutti gli `hero`/`det-01` presenti (Stay Porefect era l'unico mancante, già fixato round 3). ⚠️ **Kaley (7) e Sphea (5)** hanno `hero`/`det-01` in `data.json` che puntano a file inesistenti — ma quei brand usano pagine custom (Kaley redirect erboristica.com; Sphea pagina dedicata) → da confermare che non vengano mai aperti via `prodotto.html` (mostrerebbe il mock). **92 `det-02`/still-life mancanti** = placeholder attesi (404 gestito).
+- **i18n HTML (`data-it` senza `data-en`):** con parsing robusto **0 gap reali** (i "24" di un primo scan erano falsi positivi: i `<em>`/`<br>` dentro i valori `data-it` confondevano il regex). Nota tecnica: `applyLang()` (app.js) fa `el.innerHTML/textContent` e **crasherebbe** su un `data-it` senza `data-en` → quindi il bilanciamento è di fatto garantito.
+- **Testo hardcoded senza i18n (pagine pubbliche):** trovate e **FIXATE** le 2 bande `index.html` "Territorio/Tra Toscana ed Emilia" e "Dentro/Le persone prima delle macchine" (eyebrow+titolo+corpo, prima solo IT → aggiunto `data-it`/`data-en`, verificato switch EN). `presentazione.html` (~35 stringhe IT) **esclusa** = pagina interna (robots disallow).
+
+**i18n COMPLETATO (questa parte):**
+- **Ricerca bilingue** (`assets/search-data.js`): aggiunti `title_en`/`desc_en` a PAGES/BRANDS/LINES; `getIndex()` risolve titolo+descrizione nella lingua attiva (`window.ATH.lang`) e tiene entrambe in `alt` per il match cross-lingua (query IT trova in EN e viceversa, `scoreDoc` include `alt`); prodotti usano `name_en`/`subtitle_en` dove presenti, fallback IT. Verificato: "lab"→"R&D Lab", "sustainability"→"Sustainability", "men"→"Men" (linea Uomo). ⚠️ Solo **24/116 prodotti hanno `name_en` e 0 hanno `subtitle_en`** → i nomi/sottotitoli prodotto senza EN restano IT (task dati a parte: tradurre 116 `name_en`/`subtitle_en` in data.json+data-inline.js).
+- **Titoli pagina bilingui** (`<title data-it data-en>` su 404/contatti/index/laboratorio/linee/sostenibilita/terzisti): `applyLang()` aggiorna `document.title` allo switch lingua. Verificato (IT↔EN). I titoli **dinamici** (prodotto/linea/brand hub, impostati via JS col nome prodotto/brand) lasciati invariati = parte del task traduzione prodotti.
+- **`presentazione.html` ELIMINATA** (pagina interna) + tolta la riga `Disallow` da `robots.txt` (nessun link reale vi puntava).
+
+**⚠️ i18n RESIDUO:** tradurre i 116 `name_en`/`subtitle_en` prodotto (per ricerca + titoli dinamici scheda/linea in EN); 1 nota hardcoded in `linee/prodotto-kaley.html` (redirect, minore).
+
+**Nota proattività:** creati 3 script di audit (i18n gap, path immagine, link/`.html`) riutilizzabili come QA gate prima di ogni push.
+
+---
+
 # 🛠️ Sessione 31 Maggio 2026 (round 3: laboratorio cleanup + i18n EN completo)
 
 **`laboratorio.html`:**
@@ -24,9 +82,36 @@
 
 **Logo l'Erboristica aggiornato (`immagini/brand-erboristica/logo.png`):** usato da `linee.html` (`.line-logo`, sezione `ls-cream`) e `linee/erboristica.html` (`<h1><img>`, hero verde scuro). Sorgente fornita era un export Higgsfield 2688×1520 con **sfondo checkerboard bakeato nei pixel** (no alpha) + molto margine. Processato via System.Drawing/LockBits: chroma-key per luminanza (trasparente >215, opaco <165, ramp anti-alias) + crop al bounding box → PNG 32bpp ARGB trasparente **2543×435** (ratio 5.85, vs 5.03 del vecchio). ⚠️ Logo marrone su hero verde scuro di erboristica.html = contrasto basso (stato preesistente, vecchio logo era anch'esso marrone); valutare versione chiara dedicata se serve più leggibilità.
 
+**Sezione download catalogo (`contatti.html`):** nuova banda `.cat-section` `#catalogo` inserita **tra il banner foto (`.loc-banner`, — 01) e il form (`.form-section`)**; form rinumerato **— 02 → — 03**, catalogo **— 02**. Titolo+sottotitolo bilingui ("Scarica l'ultimo catalogo." / "Download our latest catalogue.") + bottone gold con icona download. PDF copiato dal backup in **`uploads/catalogo-athenas-2026.pdf`** (5.26 MB). Link `#catalogDownload` con `data-href-it/en` + `data-dl-it/en` e piccolo script (`applyCatLang`, hook `lang-change`) che imposta `href` e **`download`** per lingua: il file salvato si chiama `Catalogo Athena's 2026.pdf` (IT) / `Athena's Catalogue 2026.pdf` (EN) — il nome interno reale non è mai mostrato. Verificato IT↔EN + PDF 200. ⚠️ `uploads/` è in **robots Disallow** → PDF non indicizzato (scaricabile comunque); il PNG sorgente `hf_...png` è opaco (vedi nota sopra). Anchor aggiunti: form `#scrivici`, catalogo `#catalogo`.
+
+**Everby CTA (`linee/everby.html`) — bottoni + banner:** sezione `.ev-cta` ("Porta Everby nel tuo assortimento"):
+- **"Richiedi campioni"** → `../contatti.html#scrivici` (atterra sul form).
+- **"Scarica catalogo"** → ora **download diretto** del PDF (`../uploads/catalogo-athenas-2026.pdf`, `target=_blank`), con nome file localizzato via `data-dl-it/en` + script `apply()` su `lang-change` (id `evCatalogDownload`): `Catalogo Athena's 2026.pdf` / `Athena's Catalogue 2026.pdf`.
+- **Banda meno alta**: padding `clamp(80px,11vw,140px)` → **`clamp(48px,7vw,88px)`** (troppo nero sopra/sotto). Verificato (EN/IT, PDF 200, padding-top 56px @viewport).
+
+---
+
+# 🛠️ Sessione 31 Maggio 2026 (round 3: bug URL puliti Netlify + etichette "Foto ·")
+
+**ROOT CAUSE discrepanze online/locale — Netlify serve URL SENZA `.html`** (`/prodotto` invece di `/prodotto.html`). Diversi controlli in `assets/app.js` facevano match su `.html` → si rompevano **solo online**:
+- **`getHierarchyParent`** (tasto **Indietro**): `if (file === 'prodotto.html')` → online `file` = `'prodotto'` → falliva → **nessun tasto Indietro** (es. scheda Stay Porefect). Fix: path normalizzato con `.replace(/\.html$/,'')`, confronto `=== 'prodotto'`, regex linea/brand rese estensione-agnostiche (`...sphea$`, `...linea$`, ecc.).
+- **`resolveCookieTheme`** (palette banner cookie): `/\/prodotto\.html$/` → `/\/prodotto(\.html)?$/`.
+- **`trackFunnelStep`** (GA analytics): tutti i `\.html$` → `$` con path normalizzato.
+- Verificato con simulazione node: `/prodotto` e `/prodotto.html` (everby) → entrambi `linee/everby.html`; sphea/linea/erboristica ok. Tasto Indietro visibile nel DOM (href `linee/everby.html`). `node --check app.js` OK, 0 errori console.
+
+**Etichette "Foto · …" sovrapposte alle foto reali (`index.html`):** rimosse le 3 `ve-zz__ph-tag` (Cosmetica naturale / Laboratorio R&S / La famiglia) che mostravano il titolo-placeholder SOPRA le foto vere nella sezione zig-zag. (La regola CSS `.ve-zz__ph-tag` resta inutilizzata/innocua.) Le altre `photo-slot__label` rimaste sono in slot SENZA foto reale (placeholder legittimi) → lasciati.
+
+**Nota "Tra Toscana ed Emilia":** l'immagine `immagini/azienda/panorama-appennini.webp` esiste (449 KB) — non è rotta; la differenza vista dall'amico era il deploy vecchio.
+
+**Stato deploy (verificato `git`):** `HEAD == origin/main` (0/0) — i round 1-2 sono **già committati e online** (video Sphea, loghi certificazioni, Made in Italy, footer→linee, ecc., incl. commit `9b7e6dd`). **NON ancora committate/online: solo le 5 modifiche di questo round 3** → `assets/app.js` (fix URL puliti / tasto Indietro), `assets/data-inline.js` + `assets/data.json` (path foto Stay Porefect `stay-porefect`→`stay-po`), `index.html` (etichette "Foto ·" rimosse), `PROGRESS.md`. **Ecco perché online il tasto Indietro manca e le foto Stay Porefect non si vedono.** Serve un `git push` per allinearle (Netlify auto-build).
+
 ---
 
 # 🛠️ Sessione 31 Maggio 2026 (round 2: footer/catalogo, video Sphea, loghi certificazioni)
+
+**Foto scheda Everby "Stay Porefect" (`prodotto.html?id=everby-...-stay-po`):** non comparivano per **mismatch di path** nei dati — `images.*` puntava a `immagini/everby/...-stay-porefect/` mentre la cartella reale (e lo slug = id senza prefisso `everby-`) è `...-stay-po/`. Corretto in `assets/data-inline.js` (sorgente runtime) **e** `assets/data.json` (mirror). Foto flat già presenti e corrette: `hero.webp` (pack mint) + `det-01.webp` (attivi: salice + zinco/sale + semi bakuchiol + gel), dai master in `immagini/_GALLERIA/everby/trattamento-viso-perfezionatore-pori-dilatati-stay-po/`. `det-02` (ambient/still-life) non disponibile → slot placeholder. Verificato: hero 200 + det-01 200 caricano, 0 errori console. **Mappa**: foto scheda = `images.hero/detail_1/detail_2` del prodotto in `data-inline.js`; lo slug cartella DEVE combaciare con l'`id` senza `everby-`/linea.
+
+
 
 **Footer "Catalogo prodotti" → Linee (`assets/app.js`):** il link B2B "Catalogo prodotti" puntava a `catalogo.html` (pagina obsoleta) → ora punta a **`linee.html`** (etichetta invariata, in futuro Linee verrà rinominata "Catalogo"). Stessa cosa nella ricerca (`assets/search-data.js`): rimossa la voce `/catalogo.html`, accorpati i tag `catalogo`/`referenze` nella voce `/linee.html`.
 

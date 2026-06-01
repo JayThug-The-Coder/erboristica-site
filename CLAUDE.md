@@ -174,6 +174,10 @@ Titolo: "ATHENA'S ITALY MANUFACTURER SINCE 1969"
 - Repo GitHub `JayThug-The-Coder/erboristica-site` con **deploy automatico** ad ogni push
 - Vedi `PROGRESS.md` → sezione "SESSIONE Maggio 2026" per dettaglio deploy/cleanup/UI
 
+> ⚠️ **NETLIFY SERVE URL "PULITI" SENZA `.html`** (`/prodotto` non `/prodotto.html`). Causa discrepanze online↔locale: ogni JS che fa match sul path (`pathname`, `=== 'x.html'`, regex `\.html$`) si **rompe SOLO online** (è così che sparivano il tasto Indietro e la palette cookie). REGOLA: qualunque controllo sul path deve essere **estensione-agnostico** (`.replace(/\.html$/,'')` o `(\.html)?$`). In locale (`file://`/dev) i bug non si vedono perché l'URL ha `.html`. Quindi: **se "sul file è giusto ma online no", sospettare (1) deploy non ancora pushato, (2) bug URL-puliti.**
+
+> 🔎 **PRIMA DI OGNI PUSH — audit rapido** (proattività richiesta dall'utente): controllare path immagine nei dati vs file su disco (refuso tipo `stay-porefect` vs `stay-po`), `data-it` senza `data-en` (l'i18n crasha in EN), controlli `.html` nel path, link interni. Vedi PROGRESS round 4 per gli script di audit usati.
+
 ### Completato
 - [x] Tutte le 15 pagine reali costruite e responsive (desktop + mobile)
 - [x] Pagine brand individuali `linee/erboristica.html`, `everby.html`, `kaley.html`, `sphea.html`
@@ -182,11 +186,25 @@ Titolo: "ATHENA'S ITALY MANUFACTURER SINCE 1969"
 - [x] SEO completa, Schema.org, GA4, cookie banner
 - [x] Infrastruttura deploy (GitHub + Netlify, auto-publish)
 
-### Da fare
-- [ ] Inserire foto/video reali (placeholder `<!-- SOSTITUIRE -->`)
+### Da fare (agg. 31 mag, round 4)
+- [ ] **PUSH**: round 3-4 sono ancora **solo locali** (round 1-2 già online). `git push` per allineare Netlify (back-button, foto Stay Porefect, etichette, ricerca+titoli EN, sedi lab, ecc.).
+- [ ] **i18n prodotti**: tradurre i **116 `name_en` + `subtitle_en`** in `assets/data.json` + `assets/data-inline.js` (solo 24 hanno `name_en`, 0 hanno `subtitle_en`). Sblocca: ricerca prodotti in EN + titoli dinamici scheda/linea in EN.
+- [ ] **Verificare Kaley/Sphea**: i path `images.*` in `data.json` puntano a file inesistenti (ma pagine custom) → confermare che non si aprano mai via `prodotto.html` (mostrerebbe il mock).
+- [ ] 1 nota hardcoded in `linee/prodotto-kaley.html` (redirect, minore).
+- [ ] Still-life `det-02` mancanti (92) — generare o lasciare placeholder.
+- [ ] Inserire foto/video reali rimanenti (placeholder `<!-- SOSTITUIRE -->`)
 - [ ] Form contatti: endpoint Brevo reale (vedi action items)
-- [ ] Redirect 301 dai vecchi URL WordPress
-- [ ] Foto Open Graph (`immagini/og/`)
+- [ ] Redirect 301 dai vecchi URL WordPress · Foto Open Graph (`immagini/og/`)
+
+### Fatto in sessione 31 mag (sintesi; dettaglio in PROGRESS round 1-4)
+- [x] Sphea: hero **video** + poster = primo frame (niente flash foto vecchia)
+- [x] Sostenibilità: **6 loghi certificazioni** (5 mask oro: Plant Based/Vegan/Dermatologico/Nichel/OPIMM + Made in Italy **img tricolore** generata su Higgsfield, sfondo trasparente). Griglia 3-col uniforme. Fix bug logo "quadrato" al click (rimosso tilt 3D che rompeva il CSS-mask).
+- [x] Footer "Catalogo prodotti" → `linee.html`; `catalogo.html` eliminata.
+- [x] Foto scheda **Stay Porefect** (fix path `stay-porefect`→`stay-po`).
+- [x] **Fix URL puliti Netlify** (tasto Indietro, cookie, GA) — vedi caveat sopra.
+- [x] Rimosse etichette "Foto · …" sovrapposte alle foto reali (home).
+- [x] **i18n**: bande home Territorio/Dentro tradotte; **ricerca bilingue**; **titoli `<title>` bilingui** (7 pagine statiche); `presentazione.html` eliminata.
+- [x] Laboratorio: sedi card partner (Ferrara · **Complife Milano** · **Gelt Bologna**), bilingui.
 
 ---
 
@@ -194,16 +212,14 @@ Titolo: "ATHENA'S ITALY MANUFACTURER SINCE 1969"
 
 ### Pagine top-level
 - `index.html` — HOME (era `azienda.html`, rinominata). Contiene storia + timeline + brand showcase + quote + banner conto terzi.
-- `linee.html` — Editorial Presence dei 4 brand (sostituisce vecchia `brand.html`)
-- `catalogo.html` — Catalogo 10 linee L'Erboristica
+- `linee.html` — Editorial Presence dei 4 brand (sostituisce vecchia `brand.html`). Nel footer il link "Catalogo prodotti" punta QUI (in futuro "Linee" verrà rinominata "Catalogo").
 - `laboratorio.html` — R&S, attivi, tecnologie
-- `sostenibilita.html` — Pilastri eco + certificazioni
+- `sostenibilita.html` — Pilastri eco + certificazioni (griglia 6 card 3-col; loghi: 5 mask oro + Made in Italy img tricolore)
 - `terzisti.html` — Conto terzi B2B
 - `contatti.html` — Sede + form + spaccio
 - `privacy.html` — Privacy policy
-- `cookie-policy.html` — Cookie policy (nuova)
+- `cookie-policy.html` — Cookie policy
 - `404.html` — Errore branded
-- `presentazione.html` — Brand presentation 2026 (uso interno)
 
 ### Pagine linee/*
 - `erboristica.html`, `everby.html`, `kaley.html`, `sphea.html` — hub brand
@@ -215,6 +231,8 @@ Titolo: "ATHENA'S ITALY MANUFACTURER SINCE 1969"
 - ❌ `brand.html` (sostituita da `linee.html`)
 - ❌ `home.html` (obsoleta)
 - ❌ vecchio `index.html` (era indice dev)
+- ❌ `catalogo.html` (31 mag — funzione assorbita da `linee.html`; footer ripuntato, tolta da sitemap/search)
+- ❌ `presentazione.html` (31 mag — pagina interna, eliminata su richiesta; tolta da robots)
 
 ---
 
@@ -222,7 +240,7 @@ Titolo: "ATHENA'S ITALY MANUFACTURER SINCE 1969"
 
 ### File di configurazione root
 - `sitemap.xml` — 12 URL pubblici con priorità
-- `robots.txt` — Allow / + Sitemap + Disallow private (data.json, uploads/, presentazione.html)
+- `robots.txt` — Allow / + Sitemap + Disallow private (data.json, uploads/, _dev/)
 - `.htaccess` — Apache config (DirectoryIndex, force HTTPS, security headers HSTS+X-Frame+CSP, Gzip, Cache, block file sensibili)
 
 ### Meta tags

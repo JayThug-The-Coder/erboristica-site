@@ -3,6 +3,5 @@ Allow: /
 Disallow: /assets/data.json
 Disallow: /uploads/
 Disallow: /_dev/
-Disallow: /presentazione.html
 
 Sitemap: https://athenas.it/sitemap.xml

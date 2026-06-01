@@ -85,7 +85,7 @@
   function _ccLum(rgb) { return (0.299 * rgb[0] + 0.587 * rgb[1] + 0.114 * rgb[2]) / 255; }
   function resolveCookieTheme() {
     const path = window.location.pathname.replace(/\\/g, '/');
-    const themed = /\/prodotto\.html$/.test(path) || /\/linee\//.test(path);
+    const themed = /\/prodotto(\.html)?$/.test(path) || /\/linee\//.test(path);
     if (!themed || !document.body) return null;
     const probe = document.createElement('span');
     probe.style.cssText = 'position:absolute;left:-9999px;top:-9999px;color:var(--footer-accent, var(--gold))';
@@ -384,23 +384,23 @@
     //   TODO: aggiungere step 4 per prodotti Everby/Kaley quando avranno pagine dedicate
     // Step 5 (purchase intent) → click_acquista (event già definito sopra)
     (function trackFunnelStep(){
-      const path = location.pathname;
-      const isHome = path === '/' || /\/index\.html$/.test(path);
+      const path = location.pathname.replace(/\.html$/, '');
+      const isHome = path === '/' || /\/index$/.test(path);
       let step = null, brand = null;
       if (isHome)                                step = { num: 1, name: 'home' };
-      else if (/\/linee\.html$/.test(path))      step = { num: 2, name: 'brand_overview' };
-      else if (/\/catalogo\.html$/.test(path))   step = { num: 2, name: 'catalog' };
-      else if (/\/linee\/erboristica\.html/.test(path)) { step = { num: 3, name: 'brand_hub' }; brand = 'erboristica'; }
-      else if (/\/linee\/everby\.html/.test(path))      { step = { num: 3, name: 'brand_hub' }; brand = 'everby'; }
-      else if (/\/linee\/kaley\.html/.test(path))       { step = { num: 3, name: 'brand_hub' }; brand = 'kaley'; }
-      else if (/\/linee\/sphea\.html/.test(path))       { step = { num: 3, name: 'brand_hub' }; brand = 'sphea'; }
-      else if (/\/linee\/linea\.html/.test(path)) {
+      else if (/\/linee$/.test(path))            step = { num: 2, name: 'brand_overview' };
+      else if (/\/catalogo$/.test(path))         step = { num: 2, name: 'catalog' };
+      else if (/\/linee\/erboristica$/.test(path)) { step = { num: 3, name: 'brand_hub' }; brand = 'erboristica'; }
+      else if (/\/linee\/everby$/.test(path))      { step = { num: 3, name: 'brand_hub' }; brand = 'everby'; }
+      else if (/\/linee\/kaley$/.test(path))       { step = { num: 3, name: 'brand_hub' }; brand = 'kaley'; }
+      else if (/\/linee\/sphea$/.test(path))       { step = { num: 3, name: 'brand_hub' }; brand = 'sphea'; }
+      else if (/\/linee\/linea$/.test(path)) {
         step = { num: 3, name: 'line_detail' };
         brand = 'erboristica';
         const lineId = new URLSearchParams(location.search).get('id');
         if (lineId) step.line_id = lineId;
       }
-      else if (/\/linee\/prodotto-sphea\.html/.test(path)) {
+      else if (/\/linee\/prodotto-sphea$/.test(path)) {
         step = { num: 4, name: 'product_detail' };
         brand = 'sphea';
         const pid = new URLSearchParams(location.search).get('id');
@@ -443,19 +443,18 @@
 
   /* ---- Site hierarchy back navigation ---- */
   window.getHierarchyParent = function () {
-    const p = window.location.pathname.replace(/\\/g, '/');
-    const file = p.split('/').pop() || 'index.html';
+    const p = window.location.pathname.replace(/\\/g, '/').replace(/\.html$/, '');
+    const file = p.split('/').pop() || 'index';
     // brand product pages â†’ brand page
-    if (/\/linee\/prodotto-sphea\.html/.test(p))   return 'sphea.html';
-    if (/\/linee\/prodotto-kaley\.html/.test(p))   return 'kaley.html';
-    if (/\/linee\/prodotto-everby\.html/.test(p))  return 'everby.html';
+    if (/\/linee\/prodotto-sphea$/.test(p))   return 'sphea.html';
+    if (/\/linee\/prodotto-kaley$/.test(p))   return 'kaley.html';
     if (/\/linee\/prodotto[-_]/.test(p))           return 'erboristica.html';
     // linea.html â†’ pagina brand erboristica
-    if (/\/linee\/linea\.html/.test(p)) return 'erboristica.html';
+    if (/\/linee\/linea$/.test(p)) return 'erboristica.html';
     // brand pages â†’ brand overview
     if (/\/linee\//.test(p)) return '../linee.html';
     // erboristica product page (root level) â†’ linea della linea del prodotto
-    if (file === 'prodotto.html') {
+    if (file === 'prodotto') {
       try {
         const pid = new URLSearchParams(window.location.search).get('id');
         if (pid) {

@@ -372,7 +372,7 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
 /* ── B2B CTA ──────────────────────────────────────────────── */
 .kf-cta {
   background: #330d1e;
-  padding: clamp(80px, 11vw, 140px) 0;
+  padding: clamp(48px, 7vw, 88px) 0;
   text-align: center;
   border-top: 1px solid rgba(229,138,168,.14);
 }
@@ -753,6 +753,27 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
   </div>
 </section>
 
+<!-- ── B2B CTA ────────────────────────────────────────────── -->
+<section class="kf-cta">
+  <div class="container">
+    <h2 data-reveal>
+      <span data-it="Porta " data-en="Bring ">Porta </span><em data-it="Kaley" data-en="Kaley">Kaley</em><br>
+      <span data-it="nel tuo assortimento." data-en="to your assortment.">nel tuo assortimento.</span>
+    </h2>
+    <p data-reveal data-it="Profumeria roll-on in olio, senza alcol. Campioni e listino su richiesta." data-en="Oil-based roll-on perfumery, alcohol-free. Samples and pricing on request.">Profumeria roll-on in olio, senza alcol. Campioni e listino su richiesta.</p>
+    <div class="kf-cta__btns" data-reveal>
+      <a class="kf-btn kf-btn--gold" href="../contatti.html#scrivici" data-it="Richiedi campioni" data-en="Request samples">Richiedi campioni</a>
+      <a class="kf-btn kf-btn--ghost" id="kfCatalogDownload"
+         href="../uploads/catalogo-athenas-2026.pdf"
+         data-dl-it="Catalogo Athena's 2026.pdf"
+         data-dl-en="Athena's Catalogue 2026.pdf"
+         download="Catalogo Athena's 2026.pdf"
+         target="_blank" rel="noopener"
+         data-it="Scarica catalogo" data-en="Download catalogue">Scarica catalogo</a>
+    </div>
+  </div>
+</section>
+
 <div id="footer"></div>
 
 <script src="../assets/vendor/lenis.min.js" defer></script><script src="../assets/data.js"></script>
@@ -760,6 +781,15 @@ body { background: #f9eef2; color: #1a1a1a; font-family: var(--sans); overflow-x
 <script src="../assets/app.js?v=6"></script>
 <script>
 initAthenas('brands');
+
+// Catalogo: nome file scaricato per lingua (stesso PDF bilingue)
+(function(){
+  const a = document.getElementById('kfCatalogDownload');
+  if (!a) return;
+  function apply(){ const en = (typeof ATH !== 'undefined' && ATH.lang === 'en'); a.setAttribute('download', en ? a.dataset.dlEn : a.dataset.dlIt); }
+  apply();
+  document.addEventListener('lang-change', apply);
+})();
 
 // Footer scuro vinaccia (come le sezioni dark del brand) per staccare dallo
 // sfondo chiaro. Testo chiaro, titoli/link nel rosa del brand.

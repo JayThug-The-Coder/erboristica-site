@@ -639,6 +639,44 @@ body.theme-line-antieta {
 }
 .mini-card__cta:hover { gap: 12px; opacity: 1; }
 
+/* ── B2B CTA — palette della linea ────────────────────────── */
+.line-cta {
+  background: var(--line-cta-bg, var(--ink));
+  padding: clamp(48px,7vw,88px) 0;
+  text-align: center;
+  position: relative;
+}
+.line-cta h2 {
+  font-family: var(--display);
+  font-size: clamp(34px,4.5vw,68px);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+  color: var(--cream);
+  margin-bottom: 14px;
+}
+.line-cta h2 em { font-style: italic; color: var(--gold); }
+.line-cta p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(16px,1.4vw,19px);
+  color: rgba(243,238,228,.6);
+  max-width: 60ch;
+  margin: 0 auto clamp(30px,3.5vw,46px);
+}
+.line-cta__btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.line-cta__btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--sans);
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  text-decoration: none; padding: 16px 32px;
+  transition: background .3s, color .3s, transform .2s, border-color .3s, filter .3s;
+}
+.line-cta__btn--solid { background: var(--gold); color: var(--ink); font-weight: 600; }
+.line-cta__btn--solid:hover { transform: translateY(-2px); filter: brightness(1.08); }
+.line-cta__btn--ghost { background: transparent; color: rgba(243,238,228,.7); border: 1px solid rgba(243,238,228,.25); }
+.line-cta__btn--ghost:hover { color: var(--cream); border-color: rgba(243,238,228,.55); transform: translateY(-2px); }
+
 </style>
 <meta name="description" content="Dettaglio della linea l'Erboristica selezionata: prodotti, attivi e benefici di cosmetica naturale Athena's."/>
 <meta name="robots" content="index, follow"/>
@@ -699,6 +737,24 @@ body.theme-line-antieta {
       </h2>
     </div>
     <div class="lp__grid" id="prodGrid"></div>
+  </div>
+</section>
+
+<!-- ── B2B CTA ────────────────────────────────────────────── -->
+<section class="line-cta" data-reveal>
+  <div class="container">
+    <h2 id="lineCtaTitle"></h2>
+    <p data-it="Sviluppata e prodotta nel nostro stabilimento di Pianoro, dal 1969. Campioni e listino su richiesta." data-en="Developed and produced in our Pianoro facility, since 1969. Samples and pricing on request.">Sviluppata e prodotta nel nostro stabilimento di Pianoro, dal 1969. Campioni e listino su richiesta.</p>
+    <div class="line-cta__btns">
+      <a class="line-cta__btn line-cta__btn--solid" href="../contatti.html#scrivici" data-it="Richiedi campioni" data-en="Request samples">Richiedi campioni</a>
+      <a class="line-cta__btn line-cta__btn--ghost" id="lineCatalogDownload"
+         href="../uploads/catalogo-athenas-2026.pdf"
+         data-dl-it="Catalogo Athena's 2026.pdf"
+         data-dl-en="Athena's Catalogue 2026.pdf"
+         download="Catalogo Athena's 2026.pdf"
+         target="_blank" rel="noopener"
+         data-it="Scarica catalogo" data-en="Download catalogue">Scarica catalogo</a>
+    </div>
   </div>
 </section>
 
@@ -872,7 +928,24 @@ body.theme-line-antieta {
       document.body.classList.add('footer-brand');
       document.body.style.setProperty('--footer-bg', dk(accent, 0.6));
       document.body.style.setProperty('--footer-accent', accent);
+      // Banda CTA B2B: gradiente scuro della stessa palette-linea
+      document.body.style.setProperty('--line-cta-bg', `linear-gradient(150deg, ${dk(accent, 0.6)} 0%, ${dk(accent, 0.4)} 100%)`);
     }
+
+    // B2B CTA — heading dinamico col nome linea + nome file catalogo per lingua
+    const ctaTitle = document.getElementById('lineCtaTitle');
+    if (ctaTitle) {
+      const nm = (line.shortName || line.name || '').replace(/&/g, '&amp;');
+      ctaTitle.setAttribute('data-it', `Porta la linea <em>${nm}</em> nel tuo assortimento.`);
+      ctaTitle.setAttribute('data-en', `Bring the <em>${nm}</em> line to your assortment.`);
+    }
+    const lineCatBtn = document.getElementById('lineCatalogDownload');
+    if (lineCatBtn) {
+      const applyCat = () => { const en = (window.ATH && ATH.lang === 'en'); lineCatBtn.setAttribute('download', en ? lineCatBtn.dataset.dlEn : lineCatBtn.dataset.dlIt); };
+      applyCat();
+      document.addEventListener('lang-change', applyCat);
+    }
+    if (window.ATH && typeof ATH.applyLang === 'function') ATH.applyLang();
 
     const HERO_IMGS = {
       argan:      '../immagini/argan/hero.jpg',
@@ -1090,7 +1163,7 @@ body.theme-line-antieta {
         article.innerHTML = `
           <div class="mini-card__visual">
             ${cardImg
-              ? `<img loading="lazy" decoding="async" src="${cardImg}" alt="${locData.name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;">`
+              ? `<img loading="lazy" decoding="async" src="${cardImg}?v=2" alt="${locData.name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;">`
               : `<div class="pm">${productMock(line.palette, '', shape)}</div>`
             }
           </div>

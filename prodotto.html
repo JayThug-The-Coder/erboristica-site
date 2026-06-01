@@ -35,19 +35,20 @@
 
     /* ── HERO 2-COL ─────────────────────────────────────────── */
     .pd-hero {
-      min-height: 100svh;
       display: grid;
       grid-template-columns: 1fr 1fr;
       position: relative;
+      align-items: stretch;
     }
     @media (max-width: 800px) {
-      .pd-hero { grid-template-columns: 1fr; min-height: auto; }
-      .pd-hero__visual { aspect-ratio: 4 / 5; min-height: auto; }
+      .pd-hero { grid-template-columns: 1fr; }
     }
 
+    /* Il pannello foto prende la forma 3:4 della foto: la foto ci sta TUTTA,
+       nessun taglio, nessuno sfondo, niente sfocato. Il banner adatta la sua altezza alla foto. */
     .pd-hero__visual {
       position: relative;
-      min-height: 55vmin;
+      aspect-ratio: 3 / 4;
       overflow: hidden;
       display: flex;
       align-items: center;
@@ -885,7 +886,7 @@
     .pr-card[data-brand="sphea"]  { --accent: #c9a96e; }
 
     .pr-card__visual {
-      aspect-ratio: 1;
+      aspect-ratio: 3 / 4;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1011,12 +1012,11 @@
 <!-- ── SEZIONE 1: ATTIVI (foto sx + lista attivi dx) ─────────── -->
 <section class="pd-row pd-row--photo-left">
   <div class="pd-row__fig" id="pdFig1" data-reveal>
-    <div class="pd-photo-ph"><span>Ingrediente<br>chiave</span></div>
+    <div class="pd-photo-ph"><span data-it="Ingrediente<br>chiave" data-en="Key<br>ingredient">Ingrediente<br>chiave</span></div>
   </div>
   <div class="pd-row__txt" data-reveal style="--d:120ms">
-    <h2 class="pd-row__h">
+    <h2 class="pd-row__h" data-it="Ingredienti attivi <em>e benefici.</em>" data-en="Active ingredients <em>and benefits.</em>">
       Ingredienti attivi <em>e benefici.</em>
-      <span class="pd-ingredients__count" id="kiCount"></span>
     </h2>
     <div id="kiRows"></div>
   </div>
@@ -1025,16 +1025,16 @@
 <!-- ── SEZIONE 2: FORMULA + CERTIFICAZIONI + INCI (testo sx + foto dx) ── -->
 <section class="pd-row pd-row--photo-right">
   <div class="pd-row__txt" data-reveal>
-    <div class="pd-block__label">Formula clean</div>
-    <h2 class="pd-row__h">Cosa <em>non c'è.</em></h2>
+    <div class="pd-block__label" data-it="Formula clean" data-en="Clean formula">Formula clean</div>
+    <h2 class="pd-row__h" data-it="Cosa <em>non c'è.</em>" data-en="What's <em>not inside.</em>">Cosa <em>non c'è.</em></h2>
     <div class="pd-formula__pills" id="formulaPills"></div>
 
-    <div class="pd-block__label" style="margin-top:48px">Certificazioni</div>
+    <div class="pd-block__label" style="margin-top:48px" data-it="Certificazioni" data-en="Certifications">Certificazioni</div>
     <div class="pd-certs" id="pdCerts2"></div>
 
     <div class="pd-inci-wrap" style="margin-top:48px">
       <div class="pd-inci-toggle" id="inciToggle">
-        <span>INCI completo</span>
+        <span data-it="INCI completo" data-en="Full INCI">INCI completo</span>
         <svg class="pd-inci-chevron" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
       <div class="pd-inci-body" id="inciBody">
@@ -1043,14 +1043,14 @@
     </div>
   </div>
   <div class="pd-row__fig" id="pdFig2" data-reveal style="--d:120ms">
-    <div class="pd-photo-ph"><span>Ambient<br>still-life</span></div>
+    <div class="pd-photo-ph"><span data-it="Ambient<br>still-life" data-en="Ambient<br>still-life">Ambient<br>still-life</span></div>
   </div>
 </section>
 
 <!-- ── PRODOTTI CORRELATI ──────────────────────────────────────── -->
 <section class="pd-related" id="relatedSection">
   <div class="container">
-    <h3>Dalla stessa <em>linea.</em></h3>
+    <h3 data-it="Dalla stessa <em>linea.</em>" data-en="From the same <em>line.</em>">Dalla stessa <em>linea.</em></h3>
     <div class="pd-related-grid" id="relatedGrid"></div>
   </div>
 </section>
@@ -1074,7 +1074,6 @@
       <div class="ki-modal__label" data-it="Evidenza clinica" data-en="Clinical evidence">Evidenza clinica</div>
       <div class="ki-modal__text" id="kiModalEfficacia"></div>
     </div>
-    <div class="ki-modal__tags" id="kiModalTags"></div>
   </div>
 </div>
 
@@ -1150,8 +1149,8 @@ if (!product) {
 
 function initProductPage(product) {
 
-const lang = document.documentElement.lang === 'en' ? 'en' : 'it';
-const loc  = product[lang] || product.it;
+let lang = document.documentElement.lang === 'en' ? 'en' : 'it';
+let loc  = product[lang] || product.it;
 
 // Palette per linea — grad: sfondo hero dietro foto (dal catalogo) · tint: sfondo chiaro pannelli/sezioni · glow: alone · accent: colore-linea
 const palettes = {
@@ -1247,7 +1246,7 @@ document.body.style.setProperty('--footer-accent', pal.accent);
 // Foto reali: inietta hero + dettagli quando presenti, fallback al placeholder/mock se mancano o non caricano
 (function injectPhotos() {
   const imgs = product.images || {};
-  function place(container, src, alt, hideSel, fit, objpos) {
+  function place(container, src, alt, hideSel, fit, objpos, matchAspect) {
     if (!container || !src) return;
     const img = new Image();
     img.loading = 'lazy';
@@ -1256,19 +1255,21 @@ document.body.style.setProperty('--footer-accent', pal.accent);
     img.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:' + (fit || 'cover') + ';object-position:' + (objpos || 'center') + ';z-index:2;opacity:0;transition:opacity .5s';
     img.onload = () => {
       img.style.opacity = '1';
+      // Il banner prende l'aspect-ratio REALE della foto -> la foto si vede tutta, zero tagli, per qualsiasi formato
+      if (matchAspect && img.naturalWidth) container.style.aspectRatio = img.naturalWidth + ' / ' + img.naturalHeight;
       hideSel.forEach(s => { const el = container.querySelector(s); if (el) el.style.display = 'none'; });
     };
     img.onerror = () => img.remove();
-    img.src = src;
+    img.src = src + (src.includes('?') ? '&' : '?') + 'v=2';
     container.appendChild(img);
   }
   // Hero: tutte le foto sorgente sono normalizzate a 3:4 (sfondo esteso ai bordi),
   // quindi cover taglia in modo uniforme e lieve come nel riferimento approvato
   // (uomo shampoo-active). Default 'center 18%' (alto), override per-linea e per-prodotto.
-  const HERO_OBJ_POS_LINE = { cocco: 'center 62%', nutra: 'center 50%', purysens: 'center 50%' };  // cocco: flacone basso nel frame -> mostra la base; nutra/purysens: pack centrato verticalmente
+  const HERO_OBJ_POS_LINE = { nutra: 'center 50%', purysens: 'center 50%' };  // cocco rimosso: usa il default 'center 18%' come Argan (stesse identiche impostazioni)
   const HERO_OBJ_POS = { 'inn-kit': 'center 38%' };
   const heroPos = HERO_OBJ_POS[product.id] || HERO_OBJ_POS_LINE[lineId] || 'center 18%';
-  place(document.querySelector('.pd-hero__visual'), imgs.hero, loc.name, ['.pd-hero__photo-ph', '#pdMock'], 'cover', heroPos);
+  place(document.querySelector('.pd-hero__visual'), imgs.hero, loc.name, ['.pd-hero__photo-ph', '#pdMock'], 'cover', heroPos, true);
   place(document.getElementById('pdFig1'), imgs.detail_1, loc.name, ['.pd-photo-ph']);
   place(document.getElementById('pdFig2'), imgs.detail_2, loc.name, ['.pd-photo-ph']);
 })();
@@ -1283,25 +1284,8 @@ document.getElementById('pdBrandTag').textContent = [brandLabel, lineLabel].filt
 const catEl = document.getElementById('pdCat');
 if (catEl && line) catEl.textContent = line.shortName || line.name || '';
 
-document.getElementById('pdName').textContent = loc.name;
-const subRaw = loc.sub || '';
-const subShort = subRaw.split(/\.(?:\s|$)/)[0].trim().replace(/\.?$/, '.');
-document.getElementById('pdSub').textContent  = subShort;
-const descRaw   = loc.desc || '';
-const descSents = descRaw.split(/\.(?:\s|$)/).map(s => s.trim()).filter(s => s.length > 3);
-document.getElementById('pdDesc').textContent = descSents.slice(0, 2).join('. ').replace(/\.?$/, '.');
-
-// hero specs
-const specsEl = document.getElementById('pdSpecs');
-if (specsEl) {
-  [
-    product.size ? { l: lang === 'it' ? 'Formato' : 'Size', v: product.size } : null,
-    product.code ? { l: lang === 'it' ? 'Codice' : 'SKU', v: product.code } : null,
-  ].filter(Boolean).forEach(m => {
-    specsEl.insertAdjacentHTML('beforeend',
-      `<div><div class="pd-spec__label">${m.l}</div><div class="pd-spec__val">${m.v}</div></div>`);
-  });
-}
+// Testo hero (nome/claim/descrizione) e specs: renderizzati in renderLocalized() (vedi fondo),
+// cosi' si ri-traducono al cambio lingua (evento lang-change).
 
 // CTA Acquista — popolato con product.url o nascosto se assente
 const ctaEl = document.getElementById('pdCta');
@@ -1401,6 +1385,79 @@ const ACTIVES_LIB = {
   'micelle-acqua-girasole': { name: 'Olio di Girasole (Omega 3-6)', role: 'Emolliente · Struccante', origine: 'Olio vergine spremuto a freddo dai semi di Helianthus annuus (girasole). Ricco di acido linoleico (omega-6, 65%) e oleico (omega-9).', meccanismo: 'Affinità lipidica con il sebo: scioglie make-up waterproof e impurità lipofile per solubilizzazione. Riparativo della barriera cutanea.', efficacia: 'Rimozione mascara waterproof: 96% in un singolo passaggio (panel n=30). Non comedogenico (0/5).', tags: ['Struccante','Lipofilo','Omega 3-6','Non comedogenico'] },
 };
 
+// Traduzione EN della libreria attivi. Stesse chiavi di ACTIVES_LIB; i nomi propri / INCI
+// restano invariati, i nomi descrittivi sono tradotti. Fallback a IT per i campi assenti.
+const ACTIVES_EN = {
+  'acido-ialuronico': { name: 'Hyaluronic Acid', role: 'Moisturizing · Volumizing', origine: 'Biotechnological, produced by bacterial fermentation from Streptococcus equi. Identical to endogenous hyaluronic acid.', meccanismo: 'Hygroscopic glycosaminoglycan: binds up to 1,000× its weight in water. Low MW penetrates the deeper layers, high MW forms a hydrating film on the surface.', efficacia: 'Clinical study (n=34): 27% reduction in wrinkle depth in 4 weeks. 43% increase in skin hydration.' },
+  'collagene-vegetale': { name: 'Hydrolysed Plant Collagen', role: 'Firming · Plumping', origine: 'Derived from the hydrolysis of plant proteins (wheat, oat, soy). Low-MW peptides able to penetrate the skin barrier.', meccanismo: 'The collagen-like peptides stimulate the synthesis of endogenous type I and III collagen in fibroblasts. Immediate mechanical tightening effect.', efficacia: '19% reduction in skin laxity in 8 weeks (cutometry). Visible lifting effect in 30 minutes.' },
+  'collagene-marino': { name: 'Hydrolysed Marine Collagen', role: 'Plumping · Restructuring', origine: 'Extracted from fish scales by enzymatic hydrolysis. MW < 5 kDa for maximum skin bioavailability.', meccanismo: 'Gly-Pro-Hyp peptides activate dermal fibroblasts, increasing the production of endogenous collagen and hyaluronic acid.', efficacia: 'Meta-analysis of 11 RCTs: 23% wrinkle reduction and 22% increase in elasticity in 12 weeks.' },
+  'vitamina-c': { name: 'Vitamin C (Ascorbyl Glucoside)', role: 'Antioxidant · Brightening', origine: 'Stable form of vitamin C hydrolysed by skin α-glucosidases, releasing pure ascorbic acid into the dermis.', meccanismo: 'Competitive tyrosinase inhibitor (IC50 ~0.1 mM). Cofactor for collagen synthesis. Powerful electron donor against free radicals.', efficacia: '8% reduction in melanin index in 4 weeks (2% concentration). 33% increase in type I collagen in vitro.' },
+  'vitamina-e': { name: 'Vitamin E (Tocopheryl Acetate)', role: 'Antioxidant · Nourishing', origine: 'Plant-derived tocopheryl acetate (sunflower, wheat germ). Converted by the skin into free tocopherol via esterases.', meccanismo: 'The main lipid-soluble antioxidant of the cell membrane: it interrupts lipid peroxidation by capturing the peroxyl radical (ROO•). Synergy with Vitamin C.', efficacia: '34% reduction in UV-induced erythema. 14% decrease in TEWL on dry skin in 6 weeks.' },
+  'retinolo': { name: 'Retinol (Retinyl Palmitate)', role: 'Cell renewal · Anti-ageing', origine: 'Stable ester of retinol with palmitic acid. The skin releases it by hydrolysis, then oxidises it to retinoic acid (the bioactive form).', meccanismo: 'Binds to nuclear RAR/RXR receptors: upregulates procollagen I/III synthesis, downregulates MMP-1 and MMP-3. Accelerates keratinocyte turnover.', efficacia: '36% reduction in fine wrinkles in 12 weeks (n=53). 14% increase in epidermal thickness in 6 months.' },
+  'peptidi': { name: 'Biomimetic Peptides', role: 'Cell stimulant · Lifting', origine: 'Synthetic (Palmitoyl Tripeptide-1, Tetrapeptide-7, Argireline®). The palmitoyl group increases lipophilicity to penetrate the corneal barrier.', meccanismo: 'Tripeptide-1 activates fibroblasts → collagen synthesis. Tetrapeptide-7 reduces IL-6 and TNF-α. Argireline mimics the N-terminal fragment of SNAP-25, reducing muscle contraction.', efficacia: 'Matrixyl 3000: 44% reduction in deep wrinkles in 2 months (n=28). Argireline: 17% reduction in expression lines in 4 weeks.' },
+  'caffeina': { name: 'Caffeine', role: 'Draining · Decongestant', origine: 'Xanthine alkaloid from Coffea arabica, Camellia sinensis, Theobroma cacao.', meccanismo: 'Phosphodiesterase inhibitor: blocks cAMP breakdown → activates lipase → lipolysis of adipocytes. Vasoconstriction by adenosine antagonism → reduced puffiness.', efficacia: '1.9 cm reduction in thigh circumference in 4 weeks (3% caffeine). Under-eye bags -22% in 6 weeks.' },
+  'niacinamide': { name: 'Niacinamide (Vitamin B3)', role: 'Evening · Sebum-regulating', origine: 'Amide form of vitamin B3. Stable in aqueous formulas at pH 4–7.', meccanismo: '1) Inhibits melanosome transfer → depigmenting effect. 2) Stimulates ceramide synthesis. 3) Downregulates pro-inflammatory cytokines. 4) Inhibits bacterial lipase → reduces oxidised sebum.', efficacia: '35–68% reduction in dark spots in 8 weeks (5%). Pores -16% in 4 weeks. Sebum output -24% (n=50).' },
+  'aloe-vera': { name: 'Aloe Vera (Aloe Barbadensis)', role: 'Moisturizing · Soothing', origine: 'Gel from the leaves of Aloe barbadensis. Contains acemannan, amino acids, enzymes (bradykinase), anthraquinones, vitamins A/C/E.', meccanismo: 'Acemannan forms an occlusive film (reduces TEWL). Inhibits bradykinin. Galacturonan stimulates fibroblast proliferation. Antimicrobial activity.', efficacia: '32% reduction in xerosis in 2 weeks. Healing of first-degree burns accelerated by 9 days vs. sulfadiazine (Cochrane).' },
+  'bisabololo': { name: 'α-Bisabolol', role: 'Anti-inflammatory · Soothing', origine: 'Monocyclic terpene extracted from chamomile (Matricaria chamomilla) or synthetic.', meccanismo: 'Inhibits COX-2, reducing pro-inflammatory prostaglandins. Fe³⁺/Cu²⁺ chelator → inhibition of •OH radicals. Increases the penetration of other actives.', efficacia: '28% reduction in SDS-induced erythema in 24h. Synergistic effect with Vitamin E: -45% lipid peroxidation in vitro.' },
+  'olio-argan': { name: 'Argan Oil (Argania spinosa)', role: 'Nourishing · Antioxidant', origine: 'Cold-pressed from kernels of Moroccan organic argan. Preserves all bioactive components.', meccanismo: 'Unsaturated fatty acids (oleic 43–49%, linoleic 29–36%) repair the skin barrier. γ-Tocopherol antioxidant. Squalene and β-sitosterol anti-inflammatory.', efficacia: '26% reduction in TEWL in 4 weeks. Skin elasticity +9.5% in 60 days (menopause).' },
+  'olio-cocco': { name: 'Coconut Oil (Cocos nucifera)', role: 'Moisturizing · Protective', origine: 'Virgin oil from dried coconut pulp. Medium-chain saturated fatty acids (MCFA) with protein affinity.', meccanismo: 'Lauric acid (48–52%) integrates into intercellular lipids. Antimicrobial activity against gram+ bacteria and fungi (P. acnes). Reduces TEWL.', efficacia: 'Non-inferior to mineral oil on paediatric atopic dermatitis (SCORAD -68% vs -38%, RCT Manila 2014).' },
+  'olio-monoi': { name: 'Tahitian Monoï Oil PDO', role: 'Brightening · Elasticising', origine: 'Maceration of Gardenia Tahitensis (Tiare) flowers in coconut oil. The PDO guarantees Tahitian origin (maceration ≥10 days).', meccanismo: 'Elasticising protective film on skin and hair. Floral terpenes (geraniol, linalool) with antioxidant and anti-irritant action.', efficacia: '31% reduction in TEWL and +23% hair shine compared to untreated (tribological study).' },
+  'olio-mandorle': { name: 'Sweet Almond Oil (Prunus amygdalus)', role: 'Emollient · Soothing', origine: 'Cold-pressed from the seed of Prunus amygdalus dulcis. Odourless, with very high tolerability on sensitive and paediatric skin.', meccanismo: 'Oleic (64–82%) and linoleic (7–30%) acids mimic intercorneocyte lipids. Vitamin E antioxidant. β-sitosterol anti-inflammatory.', efficacia: '34% reduction in itching and 41% in xerosis in children with atopic dermatitis in 4 weeks (RCT, n=56).' },
+  'ceramidi': { name: 'Plant Ceramides', role: 'Skin barrier · Anti-TEWL', origine: 'Ceramide NP and AP from wheat, rice, konjac. Structurally identical to human skin ceramides.', meccanismo: 'They incorporate into the lamellar structures of the stratum corneum, repairing barrier defects. They modulate keratinocyte differentiation by upregulating filaggrin.', efficacia: '15–30% reduction in TEWL in 4 weeks. Efficacy comparable to cholesterol in lamellar repair.' },
+  'zinco-pca': { name: 'Zinc PCA (Pyrrolidone Carboxylate)', role: 'Sebum-regulating · Purifying', origine: 'Zinc salt with pyrrolidone carboxylic acid (a natural NMF of the skin). Chelated, bioavailable form.', meccanismo: 'Zinc inhibits type I 5α-reductase (reduces DHT, reduces sebum). PCA is a natural humectant. Antibacterial effect against C. acnes.', efficacia: '37% reduction in sebum in 28 days (3%, n=35). Visible blackheads -41% in 6 weeks. Visibly reduced enlarged pores.' },
+  'bakuchiol': { name: 'Bakuchiol', role: 'Retinol alternative · Renewing', origine: 'Phenolic meroterpene from Psoralea corylifolia seeds. 100% plant-based, with a safety profile superior to retinol.', meccanismo: 'Activates the same genes as retinol (RAR/RXR), stimulating collagen I/III/IV, fibronectin and elastin, without retinoic-acid irritation.', efficacia: 'Comparative study (n=44, 12 wks): bakuchiol 0.5% = retinol 0.5% on wrinkles (-19.7% vs -20.1%) with significantly less irritation.' },
+  'isoflavoni-soia': { name: 'Soy Isoflavones', role: 'Sebum-regulating · Phytoestrogen', origine: 'Polyphenols (genistein, daidzein) from Glycine max. Structure similar to endogenous estrogens.', meccanismo: 'They bind to cutaneous ERβ receptors → less inflammation, more barrier. Type 1 5α-reductase inhibition → reduced sebum.', efficacia: 'Wrinkles -14% in 24 weeks on perimenopausal skin. Sebum -18% in 8 weeks.' },
+  'olio-baobab': { name: 'Baobab Oil (Adansonia digitata)', role: 'Regenerating · Nourishing', origine: 'Organic fair-trade, cold-pressed from African baobab seeds. A source of vitamins B2, C, calcium, iron, zinc, manganese.', meccanismo: 'Unique composition: palmitoleic, linoleic, linolenic. Penetrates quickly. Omega-3 and Omega-6 in a 1:2 ratio → reduced skin inflammation.', efficacia: 'Flaking -43%, epidermal hydration +52% in 4 weeks on very dry skin (n=30).' },
+  'cellule-staminali-leontopodium': { name: 'Edelweiss Stem Cells', role: 'Anti-ageing · UV protection', origine: 'Biotechnological extract (PhytoCellTec™) from Leontopodium alpinum cultivated in vitro. It produces leontopodic acid to survive Alpine UV.', meccanismo: 'Protects epithelial stem cells from UV-induced apoptosis. Stimulates p63 (a stem marker) in keratinocytes. Reduces mitochondrial oxidative damage.', efficacia: 'Wrinkles -15% in 4 weeks (profilometry). Epidermal stem-cell viability +63% after UVB irradiation in vitro.' },
+  'luminescine': { name: 'Luminescine® (Verbascum thapsus)', role: 'Brightening · Photoluminescent', origine: 'Patented Silab® extract from French organic Verbascum thapsus. COSMOS ORGANIC certified.', meccanismo: 'Photoluminescent glycoiridoids: they absorb UV and re-emit it as visible light. Inhibits tyrosinase and melanogenesis (CRTC1/MITF). Reduces melanosome transfer.', efficacia: 'Melanin index -24% in 56 days (n=25). Perceived radiance +31% in 4 weeks.' },
+  'butylresorcinol': { name: '4-Butylresorcinol', role: 'Depigmenting · Anti-spot', origine: 'Synthetic resorcinol derivative, developed as a new-generation depigmenting agent.', meccanismo: 'Dual mechanism: inhibits tyrosinase (TYR) with IC50 ~0.5 µM (80× more potent than arbutin) and TYRP-1/TYRP-2, blocking melanogenesis in two steps.', efficacia: 'Hyperpigmentation spots -41% in 8 weeks (0.1%, vs. hydroquinone 4%). No rebound risk.' },
+  'karite': { name: 'Shea Butter (Vitellaria paradoxa)', role: 'Nourishing · Regenerating', origine: 'Fat from Vitellaria paradoxa seeds (Sahel). Rich in unsaponifiables (7–11%) with unique biological activities.', meccanismo: 'Stearic (43–48%) + oleic (43–55%). Unsaponifiable triterpenes anti-inflammatory via 5-LOX. Stimulation of collagen synthesis. Natural ceramides.', efficacia: 'TEWL -48% in 4 weeks on chronically dry skin. Anti-inflammatory comparable to 0.5% hydrocortisone on SDS erythema.' },
+  'pantenolo': { name: 'Panthenol (Pro-Vitamin B5)', role: 'Moisturizing · Soothing', origine: 'Alcohol of D-pantothenic acid. The skin converts it into pantothenic acid (B5), a cofactor of Coenzyme A.', meccanismo: 'Humectant: attracts water molecules (5 g H₂O / g). Stimulates fibroblast proliferation and fibronectin synthesis. Accelerates re-epithelialisation.', efficacia: 'TEWL -8% and xerosis -21% in 4 weeks (5%). Re-epithelialisation +42% on ex-vivo wound healing.' },
+  'estratto-te-verde': { name: 'Green Tea Extract (Camellia sinensis)', role: 'Antioxidant · Anti-inflammatory', origine: 'Standardised in EGCG (epigallocatechin gallate) from unfermented leaves. EGCG = 60–65% of total catechins.', meccanismo: 'EGCG inhibits MMP-9 (which degrades collagen). Downregulates NF-κB. Absorbs UV-B (280–320 nm). Chelates Fe²⁺ and Cu²⁺.', efficacia: 'UV-B erythema -27% (EGCG 1% pre-exposure). MMP-9 -62% in irradiated keratinocytes (in vitro).' },
+  'jojoba': { name: 'Jojoba Oil (Simmondsia chinensis)', role: 'Sebum-balancing · Emollient', origine: 'Liquid wax from Simmondsia chinensis seeds. 97% long-chain wax esters, a structure unique in the plant kingdom.', meccanismo: 'Structure identical to skin sebum → non-comedogenic balancing. Extremely stable to oxidation. Low viscosity with no greasy effect.', efficacia: 'Non-comedogenic (0/5 in vitro). Sebum -12% in 4 weeks. Excellent tolerability with acne (n=40).' },
+  'allantoina': { name: 'Allantoin', role: 'Soothing · Keratoplastic', origine: 'From Symphytum officinale or by synthesis (oxidation of uric acid). FDA GRAS.', meccanismo: 'Keratoplastic (low conc.) / keratolytic (high conc.). Antagonises pro-inflammatory prostaglandins. Forms complexes with irritant proteins, neutralising them.', efficacia: 'Skin healing +39% vs control (allantoin 2%). SDS irritation -26% (0.5%).' },
+  'bamboo': { name: 'Bamboo Extract (Bambusa vulgaris)', role: 'Strengthening · Mineral', origine: 'From the bamboo internode. Rich in plant silica (70% of dry content), flavonoids and amino acids.', meccanismo: 'Bioavailable organic silica → cofactor of prolyl hydroxylase → hydroxyproline synthesis in collagen. Stimulates fibroblast proliferation.', efficacia: 'Collagen +18% in fibroblast culture (0.5%). Wrinkles -12% in 6 weeks on male skin (n=28).' },
+  'tea-tree': { name: 'Tea Tree Oil (Melaleuca alternifolia)', role: 'Antibacterial · Purifying', origine: 'Essential oil from Melaleuca alternifolia leaves. Standardised in terpinen-4-ol (>30%) per ISO 4730.', meccanismo: 'Terpinen-4-ol alters bacterial membrane permeability. Activity against C. acnes, S. aureus MRSA, Candida. Inhibits inflammatory mediators from monocytes.', efficacia: 'TTO 5% = benzoyl peroxide 5% on acne (RCT n=124, 3 months) with less irritation. Acne lesions -44%.' },
+  'camomilla': { name: 'Chamomile Extract (Matricaria chamomilla)', role: 'Soothing · Anti-erythema', origine: 'From flower heads of Matricaria chamomilla. Standardised in apigenin and α-bisabolol.', meccanismo: 'Apigenin inhibits COX-2 and LOX-5 → reduction of PGE2 and leukotrienes. α-Bisabolol anti-inflammatory. Chamazulene antioxidant and antihistamine.', efficacia: 'Erythema and itching -60% vs placebo in allergic dermatitis (2%, n=20). Comparable to 0.25% hydrocortisone on mild chronic eczema.' },
+  'rosa': { name: 'Rose Extract (Rosa damascena)', role: 'Antioxidant · Moisturizing', origine: 'From petals of Rosa damascena (Bulgaria, Morocco). Essential oil (citronellol, geraniol) and polyphenols (quercetin, anthocyanins).', meccanismo: 'The essential oil inhibits neutrophil elastase. Antioxidant polyphenols (ORAC ~22,000 µmol TE/g). Galloyl glucosides inhibit MMP-1/2.', efficacia: 'TEWL -11%, hydration +25% in 4 weeks (2%). Antioxidant activity 10× higher than vitamin E (DPPH).' },
+  'ginkgo-biloba': { name: 'Ginkgo Biloba Extract', role: 'Antioxidant · Microcirculatory', origine: 'Leaves of Ginkgo biloba (a living fossil). Standardised in flavonoids (quercetin, kaempferol) and terpene lactones (bilobalide, ginkgolides A/B).', meccanismo: 'Free-radical scavenger (ROS). Improves skin microcirculation by inhibiting PAF (platelet-activating factor). Increases tissue oxygenation and protects the capillary endothelium.', efficacia: '35% reduction in signs of skin fatigue in 4 weeks (1%). 18% increase in microcirculation (laser-Doppler).' },
+  'ginseng': { name: 'Ginseng Extract (Panax ginseng)', role: 'Toning · Revitalising', origine: 'Root of Korean Panax ginseng. Triterpene saponins (ginsenosides Rb1, Rg1, Re) with adaptogenic action.', meccanismo: 'Rg1 stimulates fibroblast proliferation and procollagen I synthesis. Rb1 protects against UV-induced apoptosis. Adaptogenic effect: it improves the skin response to stress.', efficacia: 'Skin elasticity +18% in 12 weeks (3%, n=23). 22% reduction in signs of skin fatigue.' },
+  'bergamotto': { name: 'Bergamot Essential Oil (Citrus bergamia)', role: 'Toning · Refreshing', origine: 'Cold-pressed from the peel of the Citrus bergamia fruit (Calabria PDO). Limonene (37%), linalyl acetate (30%), linalool (10%).', meccanismo: 'Fresh citrus aroma with a psychophysical toning effect. Broad-spectrum antimicrobial (S. aureus, E. coli). Bergamottin and bergapten: used in a bergapten-free formula to avoid phototoxicity.', efficacia: 'Antibacterial activity MIC 0.25% on S. aureus. Refreshing effect perceived 30 sec after application.' },
+  'pepe-rosa': { name: 'Pink Pepper (Schinus molle)', role: 'Stimulating · Toning', origine: 'Dried berries of Schinus molle (false pepper). Essential oil rich in α-pinene, β-pinene, limonene and sesquiterpenes.', meccanismo: 'A spicy-floral note that opens the olfactory composition. Local toning, mild vasoactive effect. Antioxidant thanks to polyphenols.', efficacia: 'Antioxidant capacity DPPH IC50 = 35 µg/mL. Perceived skin tone +15% (sensory panel).' },
+  'cedro': { name: 'Cedarwood (Cedrus atlantica)', role: 'Rebalancing · Soothing', origine: 'Distillation of Cedrus atlantica wood (Moroccan Atlas). Sesquiterpenes (cedrol, atlantol, cedrenes) with warm balsamic notes.', meccanismo: 'Cedrol: mild sedative action via GABA and toning of capillary microcirculation. Antibacterial against S. aureus and P. acnes.', efficacia: 'Perceived relaxing effect (HRV +8%) within 5 minutes. Antibacterial activity MIC 0.5%.' },
+  'patchouli': { name: 'Patchouli (Pogostemon cablin)', role: 'Regenerating · Sensory', origine: 'Distillation of the dried, fermented leaves of Pogostemon cablin (Indonesia). Patchoulol (35-40%), α-bulnesene, α-guaiene.', meccanismo: 'Patchoulol stimulates cell turnover and has anti-elastase activity. Recognised regenerating and healing action. Olfactory fixative in compositions.', efficacia: 'Elastase inhibition -42% (in vitro, 0.5%). Effect on epidermal cell cohesion +12%.' },
+  'glicerina': { name: 'Natural Plant Glycerin', role: 'Moisturizing · Humectant', origine: 'Glycerol obtained from the saponification of vegetable oils (olive, coconut, palm) or by fermentation of sugars. Identical to endogenous glycerin.', meccanismo: 'The ultimate humectant: it binds water molecules from the atmosphere and retains them in the stratum corneum. Substrate for AQP3 (skin aquaporins). Non-occlusive.', efficacia: '11% reduction in TEWL and +28% stratum-corneum hydration in 4 weeks (5%). Effect comparable to urea without irritation.' },
+  'tensioattivi-vegetali': { name: 'Gentle Plant Surfactants', role: 'Cleansing · Gentle', origine: 'Derived from coconut and sugars (cocoyl glutamate, coco-glucoside, decyl glucoside, sodium coceth sulfate). Biodegradable, non eco-toxic.', meccanismo: 'Anionic/non-ionic surfactants with low CMC: effective cleansing while respecting the hydrolipidic film. pH-compatible with the skin (5.5-6.5).', efficacia: 'Post-wash TEWL +3% (vs +15% for SLS). Ocular and skin tolerability superior to traditional synthetic surfactants.' },
+  'acqua-riso-fermentata': { name: 'Fermented Rice Water', role: 'Moisturizing · Brightening', origine: 'Obtained from the fermentation of rice (Oryza sativa) by yeasts, a K-beauty cosmetic tradition. Rich in amino acids, peptides, B vitamins, gamma-oryzanol.', meccanismo: 'The ferments produce lactic acid (gentle exfoliation + hydration), allantoin (soothing), inositol (a cell cofactor). Amino acids maintain the hydrolipidic film.', efficacia: 'Skin radiance +21% in 28 days (n=30). Even texture, glass-skin effect documented in K-beauty studies.' },
+  'centella': { name: 'Centella Asiatica (Cica)', role: 'Soothing · Repairing', origine: 'Asian medicinal plant (Centella asiatica). Standardised triterpenes (madecassoside, asiaticoside, madecassic and asiatic acids).', meccanismo: 'Madecassoside activates the synthesis of collagen I/III and fibronectin. Asiaticoside accelerates re-epithelialisation. Anti-inflammatory via NF-κB inhibition.', efficacia: 'Skin erythema -38% in 14 days (n=42). Epidermal barrier repair accelerated by 40% in clinical studies.' },
+  'estratto-caffe': { name: 'Coffee Extract (Coffea arabica)', role: 'Draining · Decongestant', origine: 'Hydroglyceric extract from Coffea arabica beans. Rich in caffeine, chlorogenic acids, trigonelline, polyphenols.', meccanismo: 'Caffeine inhibits phosphodiesterase → local vasoconstriction and lipolysis. Antioxidant chlorogenic acids. Reduces puffiness and dark circles through lymphatic drainage.', efficacia: 'Under-eye bags -22% and dark circles -16% in 6 weeks (3% extract, n=28). Skin microcirculation +18%.' },
+  'microperle-minerali': { name: 'Illuminating Mineral Microspheres', role: 'Illuminating · Corrective', origine: 'Pearlescent mineral pigments (mica coated with titanium and iron oxides). Spheroidal, with high diffuse optical reflectance.', meccanismo: 'They reflect light in a diffuse, uniform way, optically masking imperfections (soft-focus effect). Not iridescent but luminescent pearlescent.', efficacia: 'Immediate corrective effect on the under-eye area: bags and dark circles less visible from the first application (sensory test n=25, 89% approval).' },
+  'pigmenti-perlati': { name: 'Pearlescent Mineral Pigments', role: 'Radiance · Glow', origine: 'Natural mica coated with titanium dioxide (CI 77891) and iron oxides. Micronised particle size for a delicate pearlescent finish.', meccanismo: 'They reflect light at a specific Bragg angle, creating a multicolour-white luminous effect. Natural glow with no visible glitter.', efficacia: 'Perceived skin radiance +34% (sensory panel n=30). Safe for sensitive skin, no FD&C dyes.' },
+  'pumpcoll': { name: 'Pumpcoll® (Upcycled Pumpkin)', role: 'Collagen stimulant · Elasticising', origine: 'Hydrolysed extract from pumpkin (Cucurbita pepo) obtained from supply-chain by-products (upcycling). Italian bioactive patent.', meccanismo: 'Pumpkin peptides + cucurbitins stimulate dermal fibroblasts, increasing the synthesis of collagen I and fibronectin. Improves skin elasticity.', efficacia: 'Skin elasticity +14% in 28 days (cutometry, n=22). Collagen synthesis +27% in fibroblast culture.' },
+  'argireline-amplified': { name: 'Argireline Amplified® (Acetyl Hexapeptide-8)', role: 'Anti-wrinkle · Botox-like effect', origine: 'Second-generation synthetic hexapeptide (Lucas Meyer Cosmetics), an evolution of classic Argireline, with +6× skin penetration.', meccanismo: 'Mimics the N-terminal fragment of SNAP-25, blocking the formation of the SNARE complex → reduced acetylcholine release → less mimic muscle contraction.', efficacia: '30% reduction in expression wrinkles in 28 days (10%, n=25). Effect comparable to topical botulinum toxin.' },
+  'capixyl': { name: 'Capixyl® (Biomimetic Peptide)', role: 'Hair-growth stimulant · Anti-loss', origine: 'Lipotec® biomimetic complex: Acetyl Tetrapeptide-3 + extract of Trifolium pratense (red clover) rich in biochanin A.', meccanismo: 'Tetrapeptide-3 stimulates the synthesis of follicular extracellular-matrix proteins (laminin, collagen XVII). Biochanin A inhibits 5α-reductase (reduces DHT, anti-loss).', efficacia: 'Lash/brow density +46% in 56 days (5%, n=44). Lash length +24%. Significant reduction in loss.' },
+  'capilia-longa': { name: 'Capilia Longa (Curcuma Longa Callus)', role: 'Anti-loss · Strengthening', origine: 'Meristematic stem cells of Curcuma longa cultivated in vitro (Vytrus Biotech, Spain). They contain curcuminoids and PIE (polyphenols).', meccanismo: 'Inhibits the transition from the anagen to catagen phase of the hair follicle, prolonging the growth phase. Reduces follicle oxidative stress.', efficacia: '89% reduction in hair/lash loss in 150 days (RCT n=30). Density increase +52% in subjects with mild androgenetic alopecia.' },
+  'vite-rossa': { name: 'Red Vine Meristem Cells', role: 'Antioxidant · Protective', origine: 'Plant stem cells of Vitis vinifera (red vine) cultivated in vitro. Resveratrol, anthocyanins, viniferins.', meccanismo: 'Resveratrol activates sirtuin-1 (cell longevity). Anthocyanins neutralise ROS. Viniferins inhibit tyrosinase (tone evenness).', efficacia: 'Protection from oxidative stress +28% in keratinocytes (in vitro). Documented epigenetic anti-ageing effect.' },
+  'maxi-lip': { name: 'MAXI-LIP® (Palmitoyl Tripeptide-1)', role: 'Lip-volumizing · Moisturizing', origine: 'Biomimetic tripeptide (Sederma, France) conjugated with palmitic acid to increase lipid penetration.', meccanismo: 'Stimulates the synthesis of collagen and hyaluronic acid in lip fibroblasts. Increases volume and hydration progressively and physiologically.', efficacia: 'Lip volume +40% in 28 days (videomicroscopy, n=30). Hydration +60%, defined contour.' },
+  'olio-ricino': { name: 'Castor Oil (Ricinus communis)', role: 'Nourishing · Glossing', origine: 'Cold-pressed from Ricinus communis seeds. Rich in ricinoleic acid (90%), unique in the plant kingdom.', meccanismo: 'Ricinoleic acid has emollient and anti-inflammatory properties (PGE2 inhibition). Low viscosity, high glossing and nourishing power.', efficacia: 'Lip gloss +52% (long-lasting glossy effect). Hydration 8 hours after a single application.' },
+  'acido-salicilico': { name: 'Salicylic Acid (BHA)', role: 'Exfoliating · Anti-blemish', origine: 'Beta-hydroxy acid (BHA) obtained from willow bark (Salix alba) or by synthesis. Lipophilic, it penetrates the sebaceous pores.', meccanismo: 'Dissolves the corneocytes of the pilosebaceous duct (intracanalicular exfoliation). Anti-inflammatory via COX/LOX inhibition. Comedolytic.', efficacia: 'Comedones -47% in 8 weeks (2%, n=40). Less visible pores, even skin texture. A dermatology standard for mild acne.' },
+  'micelle-acqua-girasole': { name: 'Sunflower Oil (Omega 3-6)', role: 'Emollient · Make-up removing', origine: 'Virgin oil cold-pressed from Helianthus annuus (sunflower) seeds. Rich in linoleic acid (omega-6, 65%) and oleic (omega-9).', meccanismo: 'Lipid affinity with sebum: it dissolves waterproof make-up and lipophilic impurities by solubilisation. Repairs the skin barrier.', efficacia: 'Waterproof mascara removal: 96% in a single pass (panel n=30). Non-comedogenic (0/5).' },
+};
+
+// Localizza un attivo della libreria per chiave: in EN usa ACTIVES_EN[key] (definito sopra)
+// con fallback ai campi IT. I nomi descrittivi sono tradotti, INCI / nomi propri restano.
+function actLoc(key) {
+  const d = ACTIVES_LIB[key] || {};
+  const en = (lang === 'en' && typeof ACTIVES_EN !== 'undefined') ? (ACTIVES_EN[key] || {}) : {};
+  return {
+    name:       en.name       || d.name,
+    role:       en.role       || d.role,
+    origine:    en.origine    || d.origine,
+    meccanismo: en.meccanismo || d.meccanismo,
+    efficacia:  en.efficacia  || d.efficacia,
+  };
+}
+
 const ING_KEY_MAP = {
   'acido ialuronico': 'acido-ialuronico','hyaluronic acid': 'acido-ialuronico',
   'sodium hyaluronate': 'acido-ialuronico','hydrolyzed hyaluronic': 'acido-ialuronico','sodium acetylated hyaluronate': 'acido-ialuronico',
@@ -1469,117 +1526,100 @@ function findLibKey(text) {
   return null;
 }
 
-// bold keywords in description
-(function() {
-  const el = document.getElementById('pdDesc');
-  const raw = el.textContent;
-  const kws = Object.keys(ING_KEY_MAP).filter(k => k.length > 5).sort((a,b) => b.length - a.length);
-  let html = raw.replace(/&/g,'&amp;').replace(/</g,'&lt;');
-  kws.forEach(kw => {
-    html = html.replace(new RegExp('(' + kw.replace(/[-]/g,'[-]') + ')', 'gi'), '<strong>$1</strong>');
-  });
-  el.innerHTML = html;
-})();
-
-const actives = loc.actives || [];
-
-// ── KEY INGREDIENTS — build activesDisplay con INCI fallback ──
-let activesDisplay = actives.slice();
-if (product.inci) {
-  const inciParts = product.inci.split(',').map(s => s.trim());
-  const seen = new Set();
-  inciParts.forEach(part => {
-    const key = findLibKey(part);
-    if (key && !seen.has(key)) {
-      seen.add(key);
-      const lib = ACTIVES_LIB[key];
-      if (lib && !activesDisplay.some(a => a.startsWith(lib.name))) {
-        activesDisplay.push(lib.name + ' — ' + lib.role);
-      }
-    }
-  });
-  // Se ancora vuoto o pochi attivi riconosciuti, integra con INCI grezzo
-  if (activesDisplay.length === 0) {
-    const skipWords = ['aqua','water','parfum','fragrance','phenoxyethanol','ethylhexylglycerin',
-                       'sodium hydroxide','citric acid','benzyl','linalool','limonene',
-                       'sodium benzoate','potassium sorbate','dehydroacetic acid'];
-    inciParts
-      .filter(s => s.length > 4 && !skipWords.some(w => s.toLowerCase().startsWith(w)))
-      .slice(0, 7)
-      .forEach(ing => activesDisplay.push(ing + ' — Ingrediente attivo'));
-  }
-}
-document.getElementById('kiCount').textContent = '';
+// ── KEY INGREDIENTS — render lista attivi (richiamato anche al cambio lingua) ──
 const kiRows = document.getElementById('kiRows');
 
-activesDisplay.forEach((active, i) => {
-  const sep     = active.indexOf('—');
-  const rawName = sep > -1 ? active.slice(0, sep).trim() : active;
-  const shortDesc = sep > -1 ? active.slice(sep + 1).trim() : '';
-  const key  = findLibKey(rawName);
-  const data = key ? ACTIVES_LIB[key] : null;
+function renderActives() {
+  const T = lang === 'en'
+    ? { origine: 'Origin', mecc: 'Mechanism', eff: 'Clinical evidence', active: 'Active ingredient' }
+    : { origine: 'Origine', mecc: "Meccanismo d'azione", eff: 'Evidenza clinica', active: 'Ingrediente attivo' };
 
-  const row = document.createElement('div');
-  row.className = 'ki-row' + (data ? '' : ' ki-row--no-data');
-  row.setAttribute('data-reveal', '');
-  row.style.setProperty('--d', Math.min(i, 5) * 60 + 'ms');
+  const actives = loc.actives || [];
+  let activesDisplay = actives.slice();
+  if (product.inci) {
+    const inciParts = product.inci.split(',').map(s => s.trim());
+    const seen = new Set();
+    inciParts.forEach(part => {
+      const key = findLibKey(part);
+      if (key && !seen.has(key)) {
+        seen.add(key);
+        const lib = ACTIVES_LIB[key];
+        if (lib && !activesDisplay.some(a => a.startsWith(lib.name))) {
+          activesDisplay.push(lib.name + ' — ' + actLoc(key).role);
+        }
+      }
+    });
+    if (activesDisplay.length === 0) {
+      const skipWords = ['aqua','water','parfum','fragrance','phenoxyethanol','ethylhexylglycerin',
+                         'sodium hydroxide','citric acid','benzyl','linalool','limonene',
+                         'sodium benzoate','potassium sorbate','dehydroacetic acid'];
+      inciParts
+        .filter(s => s.length > 4 && !skipWords.some(w => s.toLowerCase().startsWith(w)))
+        .slice(0, 7)
+        .forEach(ing => activesDisplay.push(ing + ' — ' + T.active));
+    }
+  }
 
-  row.innerHTML = `
-    <div class="ki-row__head">
-      <div class="ki-row__num">${String(i + 1).padStart(2, '0')}</div>
-      <div class="ki-row__main">
-        <div class="ki-row__name">${data ? data.name : rawName}</div>
-        <div class="ki-row__tag">${data ? data.role : (shortDesc || 'Ingrediente attivo')}</div>
+  kiRows.innerHTML = '';
+  activesDisplay.forEach((active, i) => {
+    const sep     = active.indexOf('—');
+    const rawName = sep > -1 ? active.slice(0, sep).trim() : active;
+    const shortDesc = sep > -1 ? active.slice(sep + 1).trim() : '';
+    const key  = findLibKey(rawName);
+    const data = key ? actLoc(key) : null;
+
+    const row = document.createElement('div');
+    row.className = 'ki-row' + (data ? '' : ' ki-row--no-data');
+    row.setAttribute('data-reveal', '');
+    row.classList.add('is-visible');
+    row.style.setProperty('--d', Math.min(i, 5) * 60 + 'ms');
+
+    row.innerHTML = `
+      <div class="ki-row__head">
+        <div class="ki-row__num">${String(i + 1).padStart(2, '0')}</div>
+        <div class="ki-row__main">
+          <div class="ki-row__name">${data ? data.name : rawName}</div>
+          <div class="ki-row__tag">${data ? data.role : (shortDesc || T.active)}</div>
+        </div>
+        <div class="ki-row__toggle">${data ? '+' : '—'}</div>
       </div>
-      <div class="ki-row__toggle">${data ? '+' : '—'}</div>
-    </div>
-    ${data ? `
-    <div class="ki-row__body">
-      <div class="ki-detail">
-        <div class="ki-detail__block">
-          <div class="ki-detail__label">Origine</div>
-          <div class="ki-detail__text">${data.origine}</div>
-        </div>
-        <div class="ki-detail__block">
-          <div class="ki-detail__label">Meccanismo d'azione</div>
-          <div class="ki-detail__text">${data.meccanismo}</div>
-        </div>
-        <div class="ki-detail__block">
-          <div class="ki-detail__label">Evidenza clinica</div>
-          <div class="ki-detail__text">${data.efficacia}</div>
-        </div>
-      </div>
-      <div class="ki-detail" style="margin-top:-1px; margin-bottom: clamp(20px,3vw,32px);">
-        <div class="ki-detail__block ki-detail__block--wide">
-          <div class="ki-detail__tags">
-            ${data.tags.map(t => `<span class="ki-detail__tag">${t}</span>`).join('')}
+      ${data ? `
+      <div class="ki-row__body">
+        <div class="ki-detail">
+          <div class="ki-detail__block">
+            <div class="ki-detail__label">${T.origine}</div>
+            <div class="ki-detail__text">${data.origine}</div>
+          </div>
+          <div class="ki-detail__block">
+            <div class="ki-detail__label">${T.mecc}</div>
+            <div class="ki-detail__text">${data.meccanismo}</div>
+          </div>
+          <div class="ki-detail__block">
+            <div class="ki-detail__label">${T.eff}</div>
+            <div class="ki-detail__text">${data.efficacia}</div>
           </div>
         </div>
-      </div>
-    </div>` : ''}
-  `;
+      </div>` : ''}
+    `;
 
-  if (data) {
-    row.addEventListener('click', () => openKiModal(data, i + 1));
-  }
-  kiRows.appendChild(row);
-});
+    if (key) {
+      row.addEventListener('click', () => openKiModal(key, i + 1));
+    }
+    kiRows.appendChild(row);
+  });
+}
 
 // ── MODALE INGREDIENTE ────────────────────────────────────────
-function openKiModal(data, num) {
+function openKiModal(key, num) {
   const modal = document.getElementById('kiModal');
   if (!modal) return;
+  const data = actLoc(key);
   document.getElementById('kiModalNum').textContent = String(num).padStart(2, '0');
   document.getElementById('kiModalName').textContent = data.name || '';
   document.getElementById('kiModalRole').textContent = data.role || '';
   document.getElementById('kiModalOrigine').textContent = data.origine || '';
   document.getElementById('kiModalMeccanismo').textContent = data.meccanismo || '';
   document.getElementById('kiModalEfficacia').textContent = data.efficacia || '';
-  const tagsEl = document.getElementById('kiModalTags');
-  tagsEl.innerHTML = '';
-  (data.tags || []).forEach(t => {
-    tagsEl.insertAdjacentHTML('beforeend', `<span class="ki-modal__tag">${t}</span>`);
-  });
   // Blocca lo scroll di sfondo senza spostare la pagina (niente rewind alla chiusura)
   if (window.lenis && typeof window.lenis.stop === 'function') window.lenis.stop();
   document.body.classList.add('ki-modal-open');
@@ -1620,25 +1660,34 @@ if (stepsEl && useText) {
   }
 }
 
-// ── FORMULA PILLS ─────────────────────────────────────────
+// ── FORMULA PILLS — render (richiamato anche al cambio lingua) ──
 const formulaPills = document.getElementById('formulaPills');
-if (formulaPills) [
-  { l: '0% Petrolchimici · 0% Siliconi · 0% Coloranti sintetici', v: 'Formula pulita' },
-  { l: '0% Parabeni · 0% Oli minerali', v: 'Senza ingredienti controversi' },
-  { l: '0% Test su animali', v: 'Cruelty free' },
-  { l: '0% Ingredienti di origine animale', v: 'Vegan' },
-].forEach(pill => {
-  formulaPills.insertAdjacentHTML('beforeend', `
-    <div class="pd-formula__pill">
-      <span class="pd-formula__pill-label">${pill.l}</span>
-      <span class="pd-formula__pill-val">${pill.v}</span>
-    </div>`);
-});
+function renderFormula() {
+  if (!formulaPills) return;
+  const pills = lang === 'en' ? [
+    { l: '0% Petrochemicals · 0% Silicones · 0% Synthetic dyes', v: 'Clean formula' },
+    { l: '0% Parabens · 0% Mineral oils', v: 'No controversial ingredients' },
+    { l: '0% Animal testing', v: 'Cruelty free' },
+    { l: '0% Animal-derived ingredients', v: 'Vegan' },
+  ] : [
+    { l: '0% Petrolchimici · 0% Siliconi · 0% Coloranti sintetici', v: 'Formula pulita' },
+    { l: '0% Parabeni · 0% Oli minerali', v: 'Senza ingredienti controversi' },
+    { l: '0% Test su animali', v: 'Cruelty free' },
+    { l: '0% Ingredienti di origine animale', v: 'Vegan' },
+  ];
+  formulaPills.innerHTML = '';
+  pills.forEach(pill => {
+    formulaPills.insertAdjacentHTML('beforeend', `
+      <div class="pd-formula__pill">
+        <span class="pd-formula__pill-label">${pill.l}</span>
+        <span class="pd-formula__pill-val">${pill.v}</span>
+      </div>`);
+  });
+}
 
 // ── META ROW rimossa dal layout (sezione pdMetaRow non più presente) ────
 
 // ── INCI ─────────────────────────────────────────────────────
-document.getElementById('pdInci').textContent = product.inci || (lang === 'it' ? 'INCI non disponibile.' : 'INCI not available.');
 const inciToggle = document.getElementById('inciToggle');
 const inciBody   = document.getElementById('inciBody');
 inciToggle.addEventListener('click', () => {
@@ -1667,9 +1716,9 @@ if (window.ATH_DATA && product.line) {
 if (!masterUsed && !siblings.length) {
   siblings = (window.PRODUCTS || []).filter(p => p.line && p.line === product.line && p.id !== product.id);
 }
-if (!siblings.length) {
-  relatedSection.style.display = 'none';
-} else {
+function renderRelated() {
+  if (!siblings.length) { relatedSection.style.display = 'none'; return; }
+  relatedGrid.innerHTML = '';
   /* Descrizioni brevi — identiche alle mini-card di linee/linea.html */
   const DESC_SHORT = {
     'antieta-contorno-occhi':                    'Contorno occhi rimpolpante che riduce visibilmente rughe e gonfiore.',
@@ -1817,20 +1866,20 @@ if (!siblings.length) {
     } else {
       cat = sibLine ? sibLine.shortName : '';
       name = sloc.name;
-      sub = DESC_SHORT[sib.id] || firstSent(sloc.desc || sloc.sub);
+      sub = (lang === 'en')
+        ? firstSent(sloc.sub || sloc.desc)
+        : (DESC_SHORT[sib.id] || firstSent(sloc.desc || sloc.sub));
       actives = (sloc.actives || []).slice(0,3).map(a => a.split('—')[0].split('(')[0].trim()).join(' · ');
     }
-    /* Visual: per Everby la foto lifestyle; altri brand: foto pack con fallback al mock SVG */
+    /* Visual: foto packaging per-prodotto (Everby incluso); fallback al mock SVG */
     let visualHtml;
-    if (sibBrand === 'everby') {
-      visualHtml = `<div class="pr-card__visual"><img src="immagini/everby/lifestyle-01.jpg" alt="${name}" loading="lazy"></div>`;
-    } else if (sib.images && sib.images.hero) {
-      visualHtml = `<div class="pr-card__visual" style="background:${sibBg}"><img src="${sib.images.hero}" alt="${name}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:${CARD_OBJ_POS[sib.id] || 'center'}" onerror="this.style.display='none';this.insertAdjacentHTML('afterend',this.dataset.fallback)" data-fallback='${sibSvg.replace(/'/g, "&#39;")}'></div>`;
+    if (sib.images && sib.images.hero) {
+      visualHtml = `<div class="pr-card__visual" style="background:${sibBg}"><img src="${sib.images.hero}?v=2" alt="${name}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:${CARD_OBJ_POS[sib.id] || 'center'}" onerror="this.style.display='none';this.insertAdjacentHTML('afterend',this.dataset.fallback)" data-fallback='${sibSvg.replace(/'/g, "&#39;")}'></div>`;
     } else {
       visualHtml = `<div class="pr-card__visual" style="background:${sibBg}">${sibSvg}</div>`;
     }
     relatedGrid.insertAdjacentHTML('beforeend', `
-      <a class="pr-card" data-brand="${sibBrand}" href="prodotto.html?id=${sib.id}" data-reveal style="--d:${i * 80}ms">
+      <a class="pr-card is-visible" data-brand="${sibBrand}" href="prodotto.html?id=${sib.id}" data-reveal style="--d:${i * 80}ms">
         ${visualHtml}
         <div class="pr-card__info">
           <div class="pr-card__cat">${cat}</div>
@@ -1843,6 +1892,50 @@ if (!siblings.length) {
   });
 }
 
+// ── RENDER LOCALIZZATO — testo lang-dipendente, ri-eseguito al cambio lingua ──
+function renderLocalized() {
+  lang = document.documentElement.lang === 'en' ? 'en' : 'it';
+  loc  = product[lang] || product.it;
+
+  // Hero: nome + claim + descrizione (con bold attivi)
+  document.getElementById('pdName').textContent = loc.name;
+  const subRaw = loc.sub || '';
+  const subShort = subRaw.split(/\.(?:\s|$)/)[0].trim().replace(/\.?$/, '.');
+  document.getElementById('pdSub').textContent = subShort;
+  const descRaw = loc.desc || '';
+  const descSents = descRaw.split(/\.(?:\s|$)/).map(s => s.trim()).filter(s => s.length > 3);
+  const descEl = document.getElementById('pdDesc');
+  descEl.textContent = descSents.slice(0, 2).join('. ').replace(/\.?$/, '.');
+  const kws = Object.keys(ING_KEY_MAP).filter(k => k.length > 5).sort((a,b) => b.length - a.length);
+  let dhtml = descEl.textContent.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  kws.forEach(kw => { dhtml = dhtml.replace(new RegExp('(' + kw.replace(/[-]/g,'[-]') + ')', 'gi'), '<strong>$1</strong>'); });
+  descEl.innerHTML = dhtml;
+
+  // Specs (Formato/Codice)
+  const specsEl = document.getElementById('pdSpecs');
+  if (specsEl) {
+    specsEl.innerHTML = '';
+    [ product.size ? { l: lang === 'it' ? 'Formato' : 'Size', v: product.size } : null,
+      product.code ? { l: lang === 'it' ? 'Codice' : 'SKU', v: product.code } : null,
+    ].filter(Boolean).forEach(m => {
+      specsEl.insertAdjacentHTML('beforeend',
+        `<div><div class="pd-spec__label">${m.l}</div><div class="pd-spec__val">${m.v}</div></div>`);
+    });
+  }
+
+  // INCI (testo lang-dipendente solo nel fallback)
+  const inciEl = document.getElementById('pdInci');
+  if (inciEl) inciEl.textContent = product.inci || (lang === 'it' ? 'INCI non disponibile.' : 'INCI not available.');
+
+  renderFormula();
+  renderActives();
+  renderRelated();
+
+  document.title = `${loc.name} · Athena's`;
+}
+renderLocalized();
+document.addEventListener('lang-change', renderLocalized);
+
 // ── SCROLL REVEAL ─────────────────────────────────────────────
 const revealObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
@@ -1850,8 +1943,6 @@ const revealObs = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.08 });
 document.querySelectorAll('[data-reveal]').forEach(el => revealObs.observe(el));
-
-document.title = `${loc.name} · Athena's`;
 } /* end initProductPage() */
 </script>
 </body>
