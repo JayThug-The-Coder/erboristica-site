@@ -826,20 +826,20 @@ body.sp-modal-open { overflow: hidden; }
     <div id="cosmoprofBadge" style="display:none; margin-bottom:28px;">
       <span class="sp-cosmoprof-badge">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
-        Finalista Cosmoprof Awards 2026
+        <span data-it="Finalista Cosmoprof Awards 2026" data-en="Cosmoprof Awards 2026 Finalist">Finalista Cosmoprof Awards 2026</span>
       </span>
     </div>
     <div class="sp-specs">
       <div class="sp-spec">
-        <span class="sp-spec__label">Formato</span>
+        <span class="sp-spec__label" data-it="Formato" data-en="Size">Formato</span>
         <span class="sp-spec__val" id="specFormat">—</span>
       </div>
       <div class="sp-spec">
-        <span class="sp-spec__label">Tecnologia</span>
+        <span class="sp-spec__label" data-it="Tecnologia" data-en="Technology">Tecnologia</span>
         <span class="sp-spec__val">Pearl Biopolymer</span>
       </div>
       <div class="sp-spec">
-        <span class="sp-spec__label">Zona</span>
+        <span class="sp-spec__label" data-it="Zona" data-en="Area">Zona</span>
         <span class="sp-spec__val" id="specZone">—</span>
       </div>
     </div>
@@ -862,19 +862,19 @@ body.sp-modal-open { overflow: hidden; }
       <div class="sp-pearl__steps">
         <div class="sp-pearl__step">
           <div class="sp-pearl__step-n">1</div>
-          <p class="sp-pearl__step-text"><strong style="color:#4a6aa0">Incapsulamento</strong>: L'attivo viene inserito nella perla durante la produzione, a temperatura controllata e senza solventi.</p>
+          <p class="sp-pearl__step-text" data-it="<strong style=&quot;color:#4a6aa0&quot;>Incapsulamento</strong>: L'attivo viene inserito nella perla durante la produzione, a temperatura controllata e senza solventi." data-en="<strong style=&quot;color:#4a6aa0&quot;>Encapsulation</strong>: The active is inserted into the pearl during production, at controlled temperature and without solvents."><strong style="color:#4a6aa0">Incapsulamento</strong>: L'attivo viene inserito nella perla durante la produzione, a temperatura controllata e senza solventi.</p>
         </div>
         <div class="sp-pearl__step">
           <div class="sp-pearl__step-n">2</div>
-          <p class="sp-pearl__step-text"><strong style="color:#4a6aa0">Protezione fino all'uso</strong>: La capsula di biopolimero marino mantiene l'attivo stabile per tutta la shelf life del prodotto.</p>
+          <p class="sp-pearl__step-text" data-it="<strong style=&quot;color:#4a6aa0&quot;>Protezione fino all'uso</strong>: La capsula di biopolimero marino mantiene l'attivo stabile per tutta la shelf life del prodotto." data-en="<strong style=&quot;color:#4a6aa0&quot;>Protection until use</strong>: The marine biopolymer capsule keeps the active stable throughout the product's shelf life."><strong style="color:#4a6aa0">Protezione fino all'uso</strong>: La capsula di biopolimero marino mantiene l'attivo stabile per tutta la shelf life del prodotto.</p>
         </div>
         <div class="sp-pearl__step">
           <div class="sp-pearl__step-n">3</div>
-          <p class="sp-pearl__step-text"><strong style="color:#4a6aa0">Rilascio per pressione</strong>: Il massaggio rompe la perla e libera istantaneamente l'attivo sulla cute, nella concentrazione ottimale.</p>
+          <p class="sp-pearl__step-text" data-it="<strong style=&quot;color:#4a6aa0&quot;>Rilascio per pressione</strong>: Il massaggio rompe la perla e libera istantaneamente l'attivo sulla cute, nella concentrazione ottimale." data-en="<strong style=&quot;color:#4a6aa0&quot;>Release on pressure</strong>: The massage breaks the pearl and instantly releases the active onto the skin, at the optimal concentration."><strong style="color:#4a6aa0">Rilascio per pressione</strong>: Il massaggio rompe la perla e libera istantaneamente l'attivo sulla cute, nella concentrazione ottimale.</p>
         </div>
         <div class="sp-pearl__step">
           <div class="sp-pearl__step-n">4</div>
-          <p class="sp-pearl__step-text"><strong style="color:#4a6aa0">Assorbimento immediato</strong>: L'attivo libero penetra lo strato corneo senza la barriera della capsulazione, con efficacia superiore agli emulsionati tradizionali.</p>
+          <p class="sp-pearl__step-text" data-it="<strong style=&quot;color:#4a6aa0&quot;>Assorbimento immediato</strong>: L'attivo libero penetra lo strato corneo senza la barriera della capsulazione, con efficacia superiore agli emulsionati tradizionali." data-en="<strong style=&quot;color:#4a6aa0&quot;>Immediate absorption</strong>: The free active penetrates the stratum corneum without the barrier of encapsulation, with efficacy superior to traditional emulsions."><strong style="color:#4a6aa0">Assorbimento immediato</strong>: L'attivo libero penetra lo strato corneo senza la barriera della capsulazione, con efficacia superiore agli emulsionati tradizionali.</p>
         </div>
       </div>
     </div>
@@ -1530,11 +1530,11 @@ function renderPage(id) {
       <span class="sp-modal__tag">${a.tag}</span>
       <h3 class="sp-modal__title" id="activeModalTitle">${a.name}</h3>
       <div class="sp-modal__block">
-        <div class="sp-modal__label" data-it="Meccanismo d'azione" data-en="Mechanism of action">Meccanismo d'azione</div>
+        <div class="sp-modal__label">${LANG === 'en' ? 'Mechanism of action' : "Meccanismo d'azione"}</div>
         <p class="sp-modal__text">${a.mechanism}</p>
       </div>
       <div class="sp-modal__block">
-        <div class="sp-modal__label" data-it="Efficacia clinica" data-en="Clinical efficacy">Efficacia clinica</div>
+        <div class="sp-modal__label">${LANG === 'en' ? 'Clinical efficacy' : 'Efficacia clinica'}</div>
         <p class="sp-modal__text">${a.efficacy}</p>
       </div>
       <div class="sp-modal__claims">
