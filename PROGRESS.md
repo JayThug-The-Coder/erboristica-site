@@ -25,7 +25,14 @@
 - `terzisti.html` (pagina pubblica): 3 `<h2>` + 6 `tz-cap__name` + 4 `tz-step__name` → `data-it/data-en` (erano IT hardcoded). Verificato EN.
 - `prodotto.html` card correlate: sottotitolo EN-aware (`firstSent(subtitle_en)` in EN, `DESC_SHORT` solo IT). Nome + claim card ora tradotti.
 
-**Residuo non bloccante:** `prodotto-kaley.html` L48 (redirect, brand Kaley escluso). **Push in sospeso.**
+**EN esteso a Kaley / Everby / Sphea (NON esclusi — solo i nomi propri restano):**
+- Datastore `data.json`+`data-inline.js`: `_en` per everby 10 + kaley 7 + sphea 5 (file identici). Everby → `prodotto.html`, EN completo.
+- `linee/prodotto-sphea.html`: `SPHEA_EN` (5 sieri) + `ACTIVES_EN` (7) + meta/clinical/dossier EN; **re-render in-place su `lang-change`, niente reload** (`renderPage(id)` idempotente, flag `_spheaOnce` per i listener una-tantum, `curLang()` a runtime).
+- `linee/prodotto-kaley.html`: `KALEY_EN` (7 fragranze) + card EN + tutti i statici (piramide, spec, formula, INCI, "Altre fragranze"); **re-render in-place** (`paintKaley()` + `renderRelated(lang)`), niente reload.
+- Hub `everby/kaley/sphea.html`: già bilingui (0 gap).
+- **Audit:** 0 gap `data-it`/`data-en`; `data.json`≡`data-inline.js`; 0 prodotti senza `_en`.
+
+**Push in sospeso.**
 
 ---
 

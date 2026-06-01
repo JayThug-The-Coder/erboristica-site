@@ -791,9 +791,9 @@ body.theme-line-antieta {
 
 <script src="../assets/vendor/lenis.min.js" defer></script><script src="../assets/data.js"></script>
 <script src="../assets/data-inline.js"></script>
-<script src="../assets/datastore.js"></script>
+<script src="../assets/datastore.js?v=9"></script>
 <script src="../assets/search-data.js" defer></script>
-<script src="../assets/app.js?v=7"></script>
+<script src="../assets/app.js?v=9"></script>
 <script>
   /* Adapter master JSON → formato compatibile data.js (PRODUCTS legacy) */
   function adaptJsonProductForLinea(p) {
@@ -1147,7 +1147,8 @@ body.theme-line-antieta {
         const descFull = locData.desc || subFull;
         const activeChips = (locData.actives || []).slice(0, 3)
           .map(a => a.split('—')[0].split('(')[0].trim())
-          .filter(Boolean);
+          .filter(Boolean)
+          .map(a => translateActive(a, l));
         const ctaHref = `../prodotto.html?id=${p.id}`;
         const ctaLabel = l === 'en' ? 'Discover product →' : 'Scopri il prodotto →';
         const heroImg = (p.images && p.images.hero) ? ('../' + p.images.hero) : null;
@@ -1163,14 +1164,14 @@ body.theme-line-antieta {
         article.innerHTML = `
           <div class="mini-card__visual">
             ${cardImg
-              ? `<img loading="lazy" decoding="async" src="${cardImg}?v=2" alt="${locData.name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;">`
+              ? `<img loading="lazy" decoding="async" src="${cardImg}?v=3" alt="${locData.name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;">`
               : `<div class="pm">${productMock(line.palette, '', shape)}</div>`
             }
           </div>
           <div class="mini-card__body">
             <div class="mini-card__category">${line.shortName}</div>
             <h3 class="mini-card__name">${toTitleCase(locData.name)}</h3>
-            <p class="mini-card__desc">${DESC_SHORT[p.id] || firstSent(descFull)}</p>
+            <p class="mini-card__desc">${(l === 'it' ? DESC_SHORT[p.id] : '') || firstSent(descFull)}</p>
             <div class="mini-card__actives">${activeChips.join(' · ')}</div>
             <a class="mini-card__cta" href="${ctaHref}" data-it="Scopri il prodotto &rarr;" data-en="Discover product &rarr;">${ctaLabel}</a>
           </div>`;

@@ -466,6 +466,32 @@
   text-align: right;
 }
 
+.pillar-block__notes {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  padding-top: 22px;
+}
+.pillar-block__note {
+  display: flex;
+  gap: 14px;
+  font-family: var(--serif);
+  font-size: clamp(15px,1.2vw,18px);
+  line-height: 1.55;
+  color: var(--cream);
+  opacity: .8;
+}
+.pillar-block__note::before {
+  content: '';
+  width: 16px;
+  height: 1px;
+  margin-top: .7em;
+  background: var(--gold);
+  opacity: .6;
+  flex-shrink: 0;
+}
+
 /* visual side */
 .pillar-block__visual {
   position: relative;
@@ -993,19 +1019,9 @@
         </div>
       </div>
       <p class="pillar-block__body" data-it="Una lista di rifiuti più che di scelte. Sul cosa non entra in formula non discutiamo da sempre." data-en="A list of refusals more than choices. What does not go into formula has never been up for discussion.">Una lista di rifiuti più che di scelte. Sul cosa non entra in formula non discutiamo da sempre.</p>
-      <div class="pillar-block__facts">
-        <div class="pillar-block__fact">
-          <span class="pillar-block__fact-label" data-it="Ingredienti naturali" data-en="Natural ingredients">Ingredienti naturali</span>
-          <span class="pillar-block__fact-val">95%+</span>
-        </div>
-        <div class="pillar-block__fact">
-          <span class="pillar-block__fact-label" data-it="Petrolchimici, siliconi" data-en="Petrochemicals, silicones">Petrolchimici, siliconi</span>
-          <span class="pillar-block__fact-val">0%</span>
-        </div>
-        <div class="pillar-block__fact">
-          <span class="pillar-block__fact-label" data-it="Fornitori certificati" data-en="Certified suppliers">Fornitori certificati</span>
-          <span class="pillar-block__fact-val" data-it="100% tracciati" data-en="100% traced">100% tracciati</span>
-        </div>
+      <div class="pillar-block__notes">
+        <p class="pillar-block__note" data-it="Ogni materia prima è scelta per origine e purezza, mai per il solo costo." data-en="Every raw material is chosen for origin and purity, never for cost alone.">Ogni materia prima è scelta per origine e purezza, mai per il solo costo.</p>
+        <p class="pillar-block__note" data-it="I fornitori sono qualificati e documentati, lotto dopo lotto." data-en="Suppliers are qualified and documented, batch after batch.">I fornitori sono qualificati e documentati, lotto dopo lotto.</p>
       </div>
     </div>
     <div class="pillar-block__visual" style="direction:ltr;">
@@ -1069,7 +1085,6 @@
       <div class="cert-panel__hero-label" id="cpHeroLabel"></div>
     </div>
     <div class="cert-panel__body">
-      <div class="cert-panel__badge" id="cpBadge"></div>
       <div class="cert-panel__title" id="cpTitle"></div>
       <div class="cert-panel__lead" id="cpLead"></div>
       <div id="cpStory"></div>
@@ -1090,7 +1105,7 @@
 
 <script src="assets/vendor/lenis.min.js" defer></script><script src="assets/data.js"></script>
 <script src="assets/search-data.js" defer></script>
-<script src="assets/app.js?v=6"></script>
+<script src="assets/app.js?v=9"></script>
 <script>
 initAthenas('eco');
 document.querySelector('.topbar').classList.add('topbar--light');
@@ -1148,7 +1163,7 @@ const CERTS = [
     name: 'Vegan',
     badge: 'Etica Animale',
     tagline: 'Per ogni prodotto che riporta il logo, nessun ingrediente animale.',
-    lead: 'Athena\'s, in linea con il Regolamento Europeo, si oppone alla sperimentazione sugli animali. Il logo Vegan viene apposto sui prodotti che non contengono materie prime di origine animale, né ottenute attraverso lo sfruttamento di animali.',
+    lead: 'Il logo Vegan viene apposto sui prodotti che non contengono materie prime di origine animale, né ottenute attraverso lo sfruttamento di animali.',
     desc: 'Il claim Vegan è prodotto-per-prodotto, non aziendale: solo i prodotti che riportano esplicitamente il logo sono vegani certificati. Sui 87 prodotti L\'Erboristica esposti su erboristica.com, 64 espongono il logo Vegan; le linee EVERBY (10 prodotti) sono certificate Vegan in modo completo, anche dove il badge non è ancora visibile sulla scheda online.',
     facts: [
       { label: 'Riferimento', val: 'Regolamento UE' },
@@ -1266,6 +1281,69 @@ const CERT_TAGLINES_EN = {
   opimm: 'Packaging carried out by workers with disabilities.',
   madeinitaly: 'Everything in Italy, under one roof.',
 };
+// Contenuto pannello di dettaglio in EN (lead/desc/quote/facts). Le chiavi sono gli id cert.
+const CERT_LEAD_EN = {
+  bioagricert: 'Bioagricert (www.bioagricert.org) is the third-party certification body that issues the "Plant Based" certification: it guarantees that our formulas are made up predominantly of plant ingredients and other natural substances, excluding raw materials of animal origin.',
+  vegan: 'The Vegan logo is applied to products that contain no raw materials of animal origin, nor any obtained through the exploitation of animals.',
+  dermatologico: 'Athena\'s works with the Department of Cosmetology of the University of Ferrara to carry out studies assessing efficacy, skin and eye tolerability, and the microbiological control of products.',
+  'metalli-pesanti': 'All products in the "L\'Erboristica di Athena\'s dal 1969" line are tested for Nickel, Chromium and Cobalt, the three heavy metals most commonly responsible for allergic skin-contact reactions.',
+  opimm: 'A significant part of Athena\'s packaging activities is carried out by OPIMM (www.opimm.it), a protected work centre, a Bologna-based organisation that has promoted the working inclusion of people with disabilities for decades.',
+  madeinitaly: 'For Athena\'s, the 100% Made in Italy claim means that every stage, research, formulation, production, filling, labelling and primary packaging, takes place under one roof, at the plant on Via del Lavoro 32, in Pianoro (BO), Emilia-Romagna.',
+};
+const CERT_DESC_EN = {
+  bioagricert: 'It is the only third-party certification on our L\'Erboristica products with the certifying body explicitly stated on the label. Bioagricert verifies the composition of every formula both at the formulation stage and through periodic audits of the plant. The "Plant Based" certification appears on 70 of the 87 L\'Erboristica products and also fully covers the EVERBY line.',
+  vegan: 'The Vegan claim is product-by-product, not company-wide: only products that explicitly bear the logo are certified vegan. Of the 87 L\'Erboristica products listed on erboristica.com, 64 display the Vegan logo; the EVERBY lines (10 products) are fully Vegan certified, even where the badge is not yet visible on the online listing.',
+  dermatologico: 'The tests are conducted by dermatologists and university researchers on controlled panels. The protocol includes instrumental measurements and clinical evaluations under standardised conditions. Of the 87 L\'Erboristica products listed, 75 (86%) carry the "dermatologically tested" claim; those that do not are mainly the Kaley roll-on perfumes and some plant-based soaps.',
+  'metalli-pesanti': 'The tests measure the residual presence of metal traces from raw materials, production equipment or primary packaging. The tolerance threshold adopted by Athena\'s is below European regulatory limits. Of the 87 L\'Erboristica products listed, 67 (77%) carry the "heavy metal test" claim; the claim also applies in full to EVERBY.',
+  opimm: 'It is neither a product certification nor a commercial trademark: it is an ethical and social choice that we believe is important to declare. The relationship with OPIMM has been ongoing for many years and covers stages of the secondary packaging of selected lines. It is cited on the institutional pages of both websites (athenas.it and erboristica.com) as part of our commitment to supply-chain ethics.',
+  madeinitaly: 'Athena\'s vertically integrated production model is a rarity in modern cosmetics: we do not use third-party manufacturers for our own brands. Every product is conceived in the R&D laboratory, formulated by our chemists, produced in our facilities and packaged on our lines. We also work for private label, but always in the same plant and to the same standards.',
+};
+const CERT_QUOTE_EN = {
+  bioagricert: '"Plant Based is not a slogan: it is a documented, audit-driven certification, shown on every label that carries it."',
+  vegan: '"Placing the Vegan logo where it truly matters, not everywhere, not as a trend, is our way of respecting those who look for it."',
+  dermatologico: '"Entrusting the tests to a university means accepting that the results are public, replicable, and independent of our own opinion."',
+  'metalli-pesanti': '"For those with metal-reactive skin, every detail matters. Our tests go where regulation does not require us to go."',
+  opimm: '"OPIMM is not a supplier: it is a community we have worked with for years. The most important choice, on the label, is the name of those who put their hands on that product."',
+  madeinitaly: '"Doing everything in Italy, in the same place as always, is not nostalgia: it is the choice most consistent with who we are and what we want to continue to be."',
+};
+const CERT_FACTS_EN = {
+  bioagricert: [
+    { label: 'Certifying body', val: 'Bioagricert' },
+    { label: 'Type', val: 'Independent third party' },
+    { label: 'Product coverage', val: '70/87 L\'Erboristica' },
+    { label: 'Lines covered', val: 'L\'Erboristica + EVERBY' },
+  ],
+  vegan: [
+    { label: 'Reference', val: 'EU Regulation' },
+    { label: 'Coverage', val: '64/87 L\'Erboristica' },
+    { label: 'EVERBY line', val: 'Fully vegan' },
+    { label: 'Verification', val: 'Per individual product' },
+  ],
+  dermatologico: [
+    { label: 'Partner', val: 'University of Ferrara' },
+    { label: 'Department', val: 'Cosmetology' },
+    { label: 'Scope', val: 'Efficacy + tolerability' },
+    { label: 'Product coverage', val: '75/87 L\'Erboristica' },
+  ],
+  'metalli-pesanti': [
+    { label: 'Metals tested', val: 'Nickel · Chromium · Cobalt' },
+    { label: 'Internal threshold', val: '< EU limits' },
+    { label: 'Lines covered', val: 'L\'Erboristica + EVERBY' },
+    { label: 'Product coverage', val: '67/87 L\'Erboristica' },
+  ],
+  opimm: [
+    { label: 'Type', val: 'Ethical · social choice' },
+    { label: 'Partner', val: 'OPIMM (Bologna)' },
+    { label: 'Scope', val: 'Secondary packaging' },
+    { label: 'Continuity', val: 'Many years' },
+  ],
+  madeinitaly: [
+    { label: 'Plant', val: 'Via del Lavoro 32, Pianoro (BO)' },
+    { label: 'Founded', val: '1969' },
+    { label: 'Model', val: '100% vertically integrated' },
+    { label: 'Brands produced', val: 'L\'Erboristica · EVERBY · Kaley · Sphea' },
+  ],
+};
 
 // Loghi reali (mask oro). OPIMM e Made in Italy non hanno ancora un file logo:
 // restano con l'icona finché non arrivano i PNG (poi basta aggiungere la riga qui).
@@ -1329,15 +1407,16 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCert();
 
 function openCert(c) {
   if (window.lenis) window.lenis.stop();
+  const en = typeof ATH !== 'undefined' && ATH.lang === 'en';
   document.getElementById('cpHeroBg').style.background = c.bg;
-  document.getElementById('cpHeroLabel').textContent = c.name;
-  document.getElementById('cpBadge').textContent = c.badge;
-  document.getElementById('cpTitle').textContent = c.tagline;
-  document.getElementById('cpLead').textContent = c.lead;
-  document.getElementById('cpDesc').textContent = c.desc;
-  document.getElementById('cpQuote').textContent = c.quote;
+  document.getElementById('cpHeroLabel').textContent = en ? (CERT_NAMES_EN[c.id] || c.name) : c.name;
+  document.getElementById('cpTitle').textContent = en ? (CERT_TAGLINES_EN[c.id] || c.tagline) : c.tagline;
+  document.getElementById('cpLead').textContent = en ? (CERT_LEAD_EN[c.id] || c.lead) : c.lead;
+  document.getElementById('cpDesc').textContent = en ? (CERT_DESC_EN[c.id] || c.desc) : c.desc;
+  document.getElementById('cpQuote').textContent = en ? (CERT_QUOTE_EN[c.id] || c.quote) : c.quote;
   const facts = document.getElementById('cpFacts');
-  facts.innerHTML = c.facts.map(f => `<div class="cert-panel__fact"><label>${f.label}</label><span>${f.val}</span></div>`).join('');
+  const factList = (en && CERT_FACTS_EN[c.id]) ? CERT_FACTS_EN[c.id] : c.facts;
+  facts.innerHTML = factList.map(f => `<div class="cert-panel__fact"><label>${f.label}</label><span>${f.val}</span></div>`).join('');
   const storyEl = document.getElementById('cpStory');
   if (c.story) {
     const isEn = typeof ATH !== 'undefined' && ATH.lang === 'en';

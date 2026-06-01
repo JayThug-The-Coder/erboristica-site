@@ -38,7 +38,7 @@
     'shampoo':   ['shampoo', 'sciampo'],
     'contorno':  ['contorno occhi', 'eye contour', 'occhiaie', 'borse', 'eye cream', 'crema occhi'],
     'naturale':  ['naturale', 'natural', 'vegetale', 'plant-based', 'origine vegetale', 'green'],
-    'vegan':     ['vegan', 'vegano', 'vegana', 'cruelty free', 'cruelty-free', 'animal free'],
+    'vegan':     ['vegan', 'vegano', 'vegana'],
     'spf':       ['spf', 'solare', 'protezione', 'sole', 'sun', 'sunscreen', 'antisolare'],
     'idratante': ['idratante', 'moisturizer', 'idratazione', 'hydra', 'umidita'],
     'nutriente': ['nutriente', 'nutrizione', 'nourishing', 'nutritivo'],

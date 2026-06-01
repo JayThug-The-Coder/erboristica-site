@@ -10,7 +10,7 @@
       position: fixed; left: 16px; right: 16px; bottom: 16px;
       max-width: 720px; margin: 0 auto;
       background: var(--cc-bg, rgba(26,26,26,.97));
-      color: #f3eee4;
+      color: var(--cc-fg, #f3eee4);
       padding: 22px 26px;
       z-index: 9998;
       font-family: var(--sans, system-ui, sans-serif);
@@ -35,11 +35,11 @@
     }
     .cc-btn--accept { background: var(--cc-accent, #c9a96e); color: var(--cc-accent-ink, #1a1a1a); }
     .cc-btn--accept:hover { background: var(--cc-accent-hover, #d5b97e); }
-    .cc-btn--reject { background: transparent; color: #f3eee4; border: 1px solid rgba(243,238,228,.3); }
-    .cc-btn--reject:hover { border-color: rgba(243,238,228,.6); }
-    .cc-btn--prefs { background: transparent; color: #f3eee4; border: 1px solid rgba(243,238,228,.3); }
-    .cc-btn--prefs:hover { border-color: rgba(243,238,228,.6); }
-    .cc-prefs { display: none; margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(243,238,228,.12); }
+    .cc-btn--reject { background: transparent; color: var(--cc-fg, #f3eee4); border: 1px solid var(--cc-line, rgba(243,238,228,.3)); }
+    .cc-btn--reject:hover { border-color: var(--cc-line-strong, rgba(243,238,228,.6)); }
+    .cc-btn--prefs { background: transparent; color: var(--cc-fg, #f3eee4); border: 1px solid var(--cc-line, rgba(243,238,228,.3)); }
+    .cc-btn--prefs:hover { border-color: var(--cc-line-strong, rgba(243,238,228,.6)); }
+    .cc-prefs { display: none; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--cc-line, rgba(243,238,228,.12)); }
     .cc-prefs.is-open { display: block; }
     .cc-pref-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; padding: 8px 0; }
     .cc-pref-info { font-size: 12px; }
@@ -49,7 +49,7 @@
     .cc-toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
     .cc-toggle .cc-slider {
       position: absolute; inset: 0;
-      background: rgba(255,255,255,.2);
+      background: var(--cc-slider, rgba(255,255,255,.2));
       border-radius: 999px;
       cursor: pointer;
       transition: .25s;
@@ -58,7 +58,7 @@
       content: ''; position: absolute;
       width: 16px; height: 16px;
       left: 3px; top: 3px;
-      background: #f3eee4;
+      background: var(--cc-fg, #f3eee4);
       border-radius: 50%;
       transition: .25s;
     }
@@ -70,41 +70,57 @@
       .cc-banner__title { font-size: 16px; }
     }
   `;
-  /* Tema palette del banner: su pagine brand/linea/prodotto il banner assume
-     i colori della linea (accento + sfondo scuro coordinato, come i footer).
-     Sulle pagine generiche resta il default scuro/oro. Il colore-linea viene
-     letto da --footer-accent (colore-linea dei brand hub / linea / prodotto),
-     con fallback a --gold; risolto via sonda CSS. */
+  /* Tema palette del banner: il banner adotta lo SFONDO della pagina su cui si
+     trova. Pagina chiara (crema) -> banner chiaro con testo scuro; pagina scura
+     -> banner scuro con testo chiaro. L'accento usa --footer-accent (colore-linea
+     su brand/linea/prodotto) con fallback a --gold. Tutto risolto via sonda CSS. */
   function _ccRgb(str) {
     const m = (str || '').match(/[\d.]+/g);
     if (!m || m.length < 3) return null;
     return [Math.round(+m[0]), Math.round(+m[1]), Math.round(+m[2])];
   }
-  function _ccScale(rgb, k) { return rgb.map(c => Math.round(c * k)); }
   function _ccLighten(rgb, f) { return rgb.map(c => Math.round(c + (255 - c) * f)); }
   function _ccLum(rgb) { return (0.299 * rgb[0] + 0.587 * rgb[1] + 0.114 * rgb[2]) / 255; }
-  function resolveCookieTheme() {
-    const path = window.location.pathname.replace(/\\/g, '/');
-    const themed = /\/prodotto(\.html)?$/.test(path) || /\/linee\//.test(path);
-    if (!themed || !document.body) return null;
+  function _ccProbeColor(expr, fallback) {
     const probe = document.createElement('span');
-    probe.style.cssText = 'position:absolute;left:-9999px;top:-9999px;color:var(--footer-accent, var(--gold))';
+    probe.style.cssText = 'position:absolute;left:-9999px;top:-9999px;color:' + expr;
     document.body.appendChild(probe);
-    const accent = _ccRgb(getComputedStyle(probe).color);
+    const c = _ccRgb(getComputedStyle(probe).color);
     document.body.removeChild(probe);
-    if (!accent) return null;
+    return c || fallback;
+  }
+  function resolveCookieTheme() {
+    if (!document.body) return null;
+    // Sfondo effettivo della pagina; se trasparente (es. gradiente inline) usa --cream.
+    let bg = _ccRgb(getComputedStyle(document.body).backgroundColor);
+    if (!bg || (bg[0] === 0 && bg[1] === 0 && bg[2] === 0
+                && /rgba\(.+,\s*0\)/.test(getComputedStyle(document.body).backgroundColor))) {
+      bg = _ccProbeColor('var(--cream, #f3eee4)', [243, 238, 228]);
+    }
+    const accent = _ccProbeColor('var(--footer-accent, var(--gold, #c9a96e))', [201, 169, 110]);
+    const light = _ccLum(bg) > 0.5;
+    const fg = light ? [26, 26, 26] : [243, 238, 228];
     const rgb = a => 'rgb(' + a.join(', ') + ')';
+    const rgba = (a, al) => 'rgba(' + a.join(', ') + ', ' + al + ')';
     return {
+      bg: rgba(bg, 0.985),
+      fg: rgb(fg),
+      line: rgba(fg, 0.28),
+      lineStrong: rgba(fg, 0.6),
+      slider: rgba(fg, 0.22),
       accent: rgb(accent),
       accentHover: rgb(_ccLighten(accent, 0.12)),
       accentInk: _ccLum(accent) > 0.5 ? '#1a1a1a' : '#f7f3ec',
-      bg: 'rgba(' + _ccScale(accent, 0.4).join(', ') + ', .97)',
     };
   }
   function applyCookieTheme(banner) {
     const theme = resolveCookieTheme();
     if (!theme) return;
     banner.style.setProperty('--cc-bg', theme.bg);
+    banner.style.setProperty('--cc-fg', theme.fg);
+    banner.style.setProperty('--cc-line', theme.line);
+    banner.style.setProperty('--cc-line-strong', theme.lineStrong);
+    banner.style.setProperty('--cc-slider', theme.slider);
     banner.style.setProperty('--cc-accent', theme.accent);
     banner.style.setProperty('--cc-accent-hover', theme.accentHover);
     banner.style.setProperty('--cc-accent-ink', theme.accentInk);
@@ -428,11 +444,17 @@
     },
     t(k) { if (!window.I18N) return k; return (window.I18N[this.lang] || window.I18N.it)[k] || k; },
     applyLang() {
+      // Allinea <html lang> alla lingua attiva anche al primo caricamento: pagine
+      // come prodotto.html generano i contenuti dinamici leggendo document.documentElement.lang.
+      document.documentElement.lang = this.lang;
       document.querySelectorAll('[data-i18n]').forEach(el => {
         el.textContent = this.t(el.dataset.i18n);
       });
       document.querySelectorAll('[data-it]').forEach(el => {
-        const val = this.lang === 'it' ? el.dataset.it : (el.dataset.en || el.dataset.it);
+        // data-en assente => fallback all'italiano; data-en="" (esplicito) => vuoto in EN
+        const val = this.lang === 'it'
+          ? el.dataset.it
+          : (el.hasAttribute('data-en') ? el.dataset.en : el.dataset.it);
         if (val.includes('<')) el.innerHTML = val; else el.textContent = val;
       });
       document.querySelectorAll('.lang-switch button').forEach(b => {

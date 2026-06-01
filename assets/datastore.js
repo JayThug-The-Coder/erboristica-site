@@ -190,3 +190,134 @@
   // Auto-load on script include
   load();
 })();
+
+/* ── Glossario attivi IT → EN ───────────────────────────────────────────────
+ * actives_main nel master JSON e' solo in italiano. Questo glossario traduce i
+ * nomi descrittivi degli attivi per card e liste in lingua EN. I termini gia
+ * inglesi / INCI / latini e i nomi propri di brand (Aloe Vera, Niacinamide,
+ * Bakuchiol, Ectoin, Argireline, Capixyl, MAXI-LIP, Luminescine, Pumpcoll,
+ * Centella Asiatica, Ginkgo Biloba, Tea Tree, ecc.) non sono mappati: ricadono
+ * sul fallback che mantiene il valore originale. */
+window.ATH_ATTIVI_EN = {
+  'Acidi grassi Omega-9': 'Omega-9 Fatty Acids',
+  'Acido Ialuronico': 'Hyaluronic Acid',
+  'Acido Ialuronico HMW': 'High Molecular Weight Hyaluronic Acid',
+  'Acido Ialuronico LMW': 'Low Molecular Weight Hyaluronic Acid',
+  'Acido Ialuronico a diverso peso molecolare': 'Multi-weight Hyaluronic Acid',
+  'Acido Salicilico': 'Salicylic Acid',
+  'Acido Succinico': 'Succinic Acid',
+  'Acqua di Riso Fermentata': 'Fermented Rice Water',
+  'Amido di Riso': 'Rice Starch',
+  'Argilla Rosa': 'Pink Clay',
+  'Bergamotto': 'Bergamot',
+  'Bisabololo': 'Bisabolol',
+  'Burri Vegetali': 'Plant Butters',
+  'Burro di Cocco': 'Coconut Butter',
+  'Burro di Karité': 'Shea Butter',
+  'Caffeina': 'Caffeine',
+  'Camomilla': 'Chamomile',
+  'Cedro': 'Cedar',
+  'Cellule Meristematiche di Vite Rossa': 'Red Vine Meristem Cells',
+  'Cellule Meristematiche Vite Rossa': 'Red Vine Meristem Cells',
+  'Cellule Staminali Vegetali': 'Plant Stem Cells',
+  'Cellule Staminali Curcuma': 'Turmeric Stem Cells',
+  'Cheratina idrolizzata': 'Hydrolysed Keratin',
+  'Cheratina vegetale': 'Plant Keratin',
+  'Coenzima Q10': 'Coenzyme Q10',
+  'Collagene marino idrolizzato': 'Hydrolysed Marine Collagen',
+  'Collagene vegetale': 'Plant Collagen',
+  'Collagene vegetale idrolizzato': 'Hydrolysed Plant Collagen',
+  'Estratto di Abete Bianco': 'White Fir Extract',
+  'Estratto di Agrumi': 'Citrus Extract',
+  'Estratto di Bambù': 'Bamboo Extract',
+  'Estratto di Betulla': 'Birch Extract',
+  'Estratto di Caffè': 'Coffee Extract',
+  'Estratto di Camelia Japonica': 'Camellia Japonica Extract',
+  'Estratto di Tè Verde': 'Green Tea Extract',
+  'Fitosteroli': 'Phytosterols',
+  'Genziana alpina': 'Alpine Gentian',
+  'Glicerina': 'Glycerin',
+  'Glicerina naturale': 'Natural Glycerin',
+  'Glicerina naturale di processo': 'Natural Process Glycerin',
+  'Granuli di Albicocca': 'Apricot Granules',
+  'Kaolino': 'Kaolin',
+  'Menta Piperita': 'Peppermint',
+  'Micro-granuli di Jojoba': 'Jojoba Micro-granules',
+  'Microperle Minerali Illuminanti': 'Illuminating Mineral Micro-pearls',
+  'Microperle Illuminanti': 'Illuminating Micro-pearls',
+  'Monoï di Tahiti': 'Tahitian Monoï',
+  'Olio Essenziale di Bergamotto': 'Bergamot Essential Oil',
+  'Olio Essenziale di Neroli': 'Neroli Essential Oil',
+  'Olio Essenziale di Patchouli': 'Patchouli Essential Oil',
+  'Olio Essenziale di Rosa': 'Rose Essential Oil',
+  'Olio Puro di Baobab Biologico': 'Pure Organic Baobab Oil',
+  'Olio di Argan': 'Argan Oil',
+  'Olio di Argan Virgin 100%': '100% Virgin Argan Oil',
+  'Olio di Argan biologico': 'Organic Argan Oil',
+  'Olio di Baobab Biologico': 'Organic Baobab Oil',
+  'Olio di Camelia': 'Camellia Oil',
+  'Olio di Cocco': 'Coconut Oil',
+  'Olio di Cocco Virgin': 'Virgin Coconut Oil',
+  'Olio di Cocco saponificato': 'Saponified Coconut Oil',
+  'Olio di Girasole': 'Sunflower Oil',
+  'Olio di Girasole biologico': 'Organic Sunflower Oil',
+  'Olio di Jojoba': 'Jojoba Oil',
+  'Olio di Lampone': 'Raspberry Oil',
+  'Olio di Mandorle Dolci': 'Sweet Almond Oil',
+  'Olio di Mandorle Dolci Virgin': 'Virgin Sweet Almond Oil',
+  'Olio di Monoi di Tahiti': 'Tahitian Monoï Oil',
+  'Olio di Oliva': 'Olive Oil',
+  'Olio di Oliva saponificato': 'Saponified Olive Oil',
+  'Olio di Palma sostenibile saponificato': 'Saponified Sustainable Palm Oil',
+  'Olio di Ricino': 'Castor Oil',
+  'Olio di Riso': 'Rice Oil',
+  'Olio di Semi di Cotone': 'Cottonseed Oil',
+  'Olio di Semi di Lino': 'Linseed Oil',
+  'Olio essenziale di Arancio dolce': 'Sweet Orange Essential Oil',
+  'Pantenolo': 'Panthenol',
+  'Pepe Rosa': 'Pink Pepper',
+  'Peptidi': 'Peptides',
+  'Peptidi anti-età': 'Anti-ageing Peptides',
+  'Peptidi anti-rughe': 'Anti-wrinkle Peptides',
+  'Peptidi vegetali': 'Plant Peptides',
+  'Pigmenti Minerali Perlati': 'Pearlescent Mineral Pigments',
+  'Pigmenti ottici riflettenti': 'Reflective Optical Pigments',
+  'Polvere detergente vegetale': 'Plant Cleansing Powder',
+  'Proteine della seta': 'Silk Proteins',
+  'Resveratrolo': 'Resveratrol',
+  'Retinolo': 'Retinol',
+  'Sambuco nero': 'Black Elderberry',
+  'Saponificazione a freddo': 'Cold Saponification',
+  'Squalene naturale': 'Natural Squalene',
+  'Tensioattivi dolci di origine vegetale': 'Gentle Plant-derived Surfactants',
+  'Tensioattivi vegetali': 'Plant Surfactants',
+  'Tensioattivi vegetali delicati': 'Gentle Plant Surfactants',
+  'Tensioattivi vegetali dolci': 'Mild Plant Surfactants',
+  'Vitamina A': 'Vitamin A',
+  'Vitamina A-C-E': 'Vitamin A-C-E',
+  'Vitamina C': 'Vitamin C',
+  'Vitamina C Stabilizzata': 'Stabilised Vitamin C',
+  'Vitamina C stabilizzata': 'Stabilised Vitamin C',
+  'Vitamina E': 'Vitamin E',
+  'Vitamina E naturale': 'Natural Vitamin E',
+  'Zinco PCA': 'Zinc PCA',
+  'Zinco Ricinoleato': 'Zinc Ricinoleate',
+};
+
+/* Traduce il nome di un singolo attivo. Se lang != 'en' o il termine non e' nel
+ * glossario, ritorna il valore originale. Ripulisce eventuali suffissi ' — ...'
+ * e '(...)' prima del lookup. */
+window.translateActive = function (name, lang) {
+  if (lang !== 'en' || !name) return name;
+  const clean = String(name).split('—')[0].split('(')[0].trim();
+  return window.ATH_ATTIVI_EN[clean] || name;
+};
+
+/* Traduce una stringa di chip "A · B · C". I segmenti che contengono <strong>
+ * (nomi propri di brand) restano invariati. */
+window.translateActivesString = function (str, lang) {
+  if (lang !== 'en' || !str) return str;
+  return str.split('·')
+    .map(s => /<strong/i.test(s) ? s.trim() : window.translateActive(s.trim(), 'en'))
+    .join(' · ');
+};

@@ -853,7 +853,7 @@ body.sp-modal-open { overflow: hidden; }
 <section class="sp-row sp-row--photo-left sp-row--bleed" data-reveal>
   <div class="sp-row__grid">
     <div class="sp-row__visual">
-      <div class="sp-row__photo" id="techPhoto"><span data-it="Foto tecnologia · 800×1000" data-en="Technology photo · 800×1000">FOTO TECNOLOGIA · 800×1000</span></div>
+      <div class="sp-row__photo" id="techPhoto"><span data-it="Foto tecnologia" data-en="Technology photo">FOTO TECNOLOGIA</span></div>
     </div>
     <div class="sp-row__content">
       <span class="sp-pearl__label" data-it="Tecnologia esclusiva Sphea" data-en="Exclusive Sphea technology">Tecnologia esclusiva Sphea</span>
@@ -894,10 +894,10 @@ body.sp-modal-open { overflow: hidden; }
 </section>
 
 <!-- ──── ROW 3 — Foto SX + Attivi brevettati DX (con modal) ───── -->
-<section class="sp-row sp-row--photo-left" id="activesSection" data-reveal>
-  <div class="container sp-row__grid">
+<section class="sp-row sp-row--photo-left sp-row--bleed" id="activesSection" data-reveal>
+  <div class="sp-row__grid">
     <div class="sp-row__visual">
-      <div class="sp-row__photo"><span data-it="Foto attivi · 800×1000" data-en="Actives photo · 800×1000">FOTO ATTIVI · 800×1000</span></div>
+      <div class="sp-row__photo" id="activesPhoto"><span data-it="Foto attivi" data-en="Actives photo">FOTO ATTIVI</span></div>
     </div>
     <div class="sp-row__content">
       <span class="sp-pearl__label" id="activesCount"></span>
@@ -999,7 +999,7 @@ body.sp-modal-open { overflow: hidden; }
 
 <script src="../assets/vendor/lenis.min.js" defer></script><script src="../assets/data.js"></script>
 <script src="../assets/search-data.js" defer></script>
-<script src="../assets/app.js?v=7"></script>
+<script src="../assets/app.js?v=9"></script>
 <script>
 /* ═══════════════════════════════════════════════════════════
    SPHEA DATA
@@ -1382,29 +1382,69 @@ const DOSSIER_EN = {
     { img: 'img04', type: 'chartW',  cap: '−48% oxidative damage (MDA) from pollution in 5 days, vs placebo.' },
     { img: 'img09', type: 'compare', cap: 'In vivo skin imaging Tivi®700: documented soothing effect, from D0 to D21.' },
   ],
+  'radiant-up-lift': [
+    { img: 'dos1', type: 'chartW', cap: 'Upper cheekbone lifting +94.6% vs placebo and visibly reduced peri-orbital wrinkles at 7 days (in vivo study).' },
+    { img: 'dos2', type: 'chartW', cap: 'In vitro mechanism: +72% EDA-fibronectin and activation of dermal fibroblasts (Uplevity® E-Lift Peptide).' },
+  ],
+  'eyelift-perfector': [
+    { img: 'dos1', type: 'chartW', cap: 'Type I collagen +53.7% in vitro; wrinkle depth −12.3% at 5 days and −20% at 28 days (Argireline® Amplified 5%).' },
+    { img: 'dos2', type: 'chartW', cap: 'In vivo imaging: peri-orbital wrinkles and skin roughness reduced from T0 to T28, a more relaxed look.' },
+  ],
+  'sculpt-firm': [
+    { img: 'dos1', type: 'chartW', cap: 'Centimetric measurements · abdomen contour: up to −3.1 cm with Actigym® Marine 5% combined with physical activity.' },
+    { img: 'dos2', type: 'chartW', cap: 'Centimetric measurements · thigh contour: progressive reduction at 28 and 56 days with Actigym® Marine.' },
+  ],
+  'slim-silhouette': [
+    { img: 'dos1', type: 'chartW', cap: 'Thigh contour up to −1.5 cm at 30 days and improved cellulite appearance (in vivo study).' },
+    { img: 'dos2', type: 'chartW', cap: 'Mechanism: −22.3% Nocturnin protein overnight and +38.1% type I collagen.' },
+  ],
 };
-const LANG = (window.ATH && ATH.lang) || (document.documentElement.lang === 'en' ? 'en' : 'it');
-function getActive(key) {
+function curLang() { return (window.ATH && ATH.lang) || (document.documentElement.lang === 'en' ? 'en' : 'it'); }
+function getActive(key, lang) {
   const base = ACTIVES_LIB[key];
   if (!base) return base;
-  return (LANG === 'en' && ACTIVES_EN[key]) ? { ...base, ...ACTIVES_EN[key] } : base;
+  return (lang === 'en' && ACTIVES_EN[key]) ? { ...base, ...ACTIVES_EN[key] } : base;
 }
+
+// Foto full-bleed (tecnologia / attivi): il banner prende l'aspect-ratio reale della
+// foto caricata -> altezza del banner = altezza della foto, niente crop, niente bordi.
+function setBleedPhoto(containerEl, src, alt) {
+  if (!containerEl || !src) return;
+  const img = new Image();
+  img.decoding = 'async';   // NB: niente loading="lazy" — su img staccata + onload-append
+                            // alcuni browser (Edge/file://) non scatterebbero mai il load.
+  img.alt = alt || '';
+  const apply = () => {
+    if (img.naturalWidth && img.naturalHeight) {
+      containerEl.style.aspectRatio = img.naturalWidth + ' / ' + img.naturalHeight;
+    }
+    containerEl.innerHTML = '';
+    containerEl.appendChild(img);
+  };
+  img.onload = apply;
+  img.onerror = () => { /* lascia il placeholder */ };
+  img.src = src;
+  if (img.complete && img.naturalWidth) apply();  // immagine gia' in cache
+}
+
 
 /* ───── RENDER ───── */
+let _spheaOnce = false;
 const params = new URLSearchParams(window.location.search);
 const id = params.get('id') || 'anti-pollution';
-let d = SPHEA_DATA[id];
 
-if (!d) {
+if (!SPHEA_DATA[id]) {
   document.body.innerHTML = '<div style="padding:80px;text-align:center;color:#4a6aa0;font-family:Inter">Siero non trovato</div>';
 } else {
-  if (LANG === 'en' && SPHEA_EN[id]) d = { ...d, ...SPHEA_EN[id] };
-  renderPage(d, id);
+  renderPage(id);
+  // Cambio lingua: ri-renderizza in-place, senza ricaricare la pagina.
+  document.addEventListener('lang-change', () => renderPage(id));
 }
-// La scheda Sphea renderizza i dati in JS: al cambio lingua ricarica per ri-renderizzare in EN/IT.
-document.addEventListener('lang-change', () => location.reload());
 
-function renderPage(d, id) {
+function renderPage(id) {
+  const LANG = curLang();
+  const base = SPHEA_DATA[id];
+  const d = (LANG === 'en' && SPHEA_EN[id]) ? { ...base, ...SPHEA_EN[id] } : base;
   document.title = `${d.name} · Sphea`;
   const bcEl = document.getElementById('bcProduct');
   if (bcEl) bcEl.textContent = d.name;
@@ -1419,8 +1459,9 @@ function renderPage(d, id) {
     'sculpt-firm':      { kind: 'Siero Corpo', proper: 'Sculpt & Firm',     card: 'Tonifica e rimodella il corpo. Pelle più soda e definita.' },
     'slim-silhouette':  { kind: 'Siero Corpo', proper: 'Slim Silhouette',   card: 'Agisce di notte sul tessuto adiposo. Silhouette ridisegnata.' },
   };
-  if (LANG === 'en') Object.keys(SP_META_EN).forEach(k => { if (SP_META[k]) Object.assign(SP_META[k], SP_META_EN[k]); });
-  const _meta = SP_META[id];
+  const META = {};
+  Object.keys(SP_META).forEach(k => { META[k] = (LANG === 'en' && SP_META_EN[k]) ? { ...SP_META[k], ...SP_META_EN[k] } : SP_META[k]; });
+  const _meta = META[id];
   document.getElementById('heroName').innerHTML = _meta
     ? `<span class="sp-hero__kind">${_meta.kind}</span>${_meta.proper}`
     : d.name;
@@ -1439,7 +1480,8 @@ function renderPage(d, id) {
   }
 
 
-  /* hero visual: foto packaging per-siero, orb astratti come fallback */
+  /* hero visual: foto packaging per-siero, orb astratti come fallback (una-tantum) */
+  if (!_spheaOnce) {
   const visual = document.getElementById('heroVisual');
   const placeholder = visual.querySelector('.sp-hero__photo-placeholder');
 
@@ -1469,6 +1511,7 @@ function renderPage(d, id) {
   heroPhoto.onerror = () => { heroPhoto.remove(); buildOrbs(); };
   heroPhoto.src = `../immagini/sphea/${id}/packaging.webp?v=2`;
   visual.appendChild(heroPhoto);
+  } /* fine blocco una-tantum hero visual */
 
   /* actives — clic apre modal */
   const activesContainer = document.getElementById('activesContainer');
@@ -1504,15 +1547,18 @@ function renderPage(d, id) {
     activeModal.hidden = true;
     document.body.classList.remove('sp-modal-open');
   }
-  activeModal.querySelectorAll('[data-modal-close]').forEach(el => {
-    el.addEventListener('click', closeActiveModal);
-  });
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && !activeModal.hidden) closeActiveModal();
-  });
+  if (!_spheaOnce) {
+    activeModal.querySelectorAll('[data-modal-close]').forEach(el => {
+      el.addEventListener('click', closeActiveModal);
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && !activeModal.hidden) closeActiveModal();
+    });
+  }
 
+  activesContainer.innerHTML = '';
   activeKeys.forEach((key, i) => {
-    const a = getActive(key);
+    const a = getActive(key, LANG);
     if (!a) return;
     const row = document.createElement('button');
     row.type = 'button';
@@ -1559,6 +1605,22 @@ function renderPage(d, id) {
       { img: 'img04', type: 'chartW',  cap: '−48% danno ossidativo (MDA) da inquinamento in 5 giorni, vs placebo.' },
       { img: 'img09', type: 'compare', cap: 'Imaging cutaneo in vivo Tivi®700: effetto lenitivo documentato, da D0 a D21.' },
     ],
+    'radiant-up-lift': [
+      { img: 'dos1', type: 'chartW', cap: 'Effetto lifting dello zigomo +94,6% vs placebo e rughe perioculari visibilmente ridotte a 7 giorni (studio in vivo).' },
+      { img: 'dos2', type: 'chartW', cap: 'Meccanismo in vitro: +72% di EDA-fibronectina e attivazione dei fibroblasti dermici (Uplevity® E-Lift Peptide).' },
+    ],
+    'eyelift-perfector': [
+      { img: 'dos1', type: 'chartW', cap: 'Collagene di tipo I +53,7% in vitro; profondità delle rughe −12,3% a 5 giorni e −20% a 28 giorni (Argireline® Amplified 5%).' },
+      { img: 'dos2', type: 'chartW', cap: 'Imaging in vivo: rughe perioculari e rugosità cutanea ridotte da T0 a T28, sguardo più disteso.' },
+    ],
+    'sculpt-firm': [
+      { img: 'dos1', type: 'chartW', cap: 'Misure centimetriche · contorno addome: fino a −3,1 cm con Actigym® Marine 5% abbinato ad attività fisica.' },
+      { img: 'dos2', type: 'chartW', cap: 'Misure centimetriche · contorno coscia: riduzione progressiva a 28 e 56 giorni con Actigym® Marine.' },
+    ],
+    'slim-silhouette': [
+      { img: 'dos1', type: 'chartW', cap: 'Contorno coscia fino a −1,5 cm a 30 giorni e aspetto della cellulite migliorato (studio in vivo).' },
+      { img: 'dos2', type: 'chartW', cap: 'Meccanismo: −22,3% della proteina Nocturnin di notte e +38,1% di collagene di tipo I.' },
+    ],
   };
   const dossierEl = document.getElementById('dossier');
   const panelsEl = document.getElementById('resultsPanels');
@@ -1581,36 +1643,40 @@ function renderPage(d, id) {
     dossierEl.querySelectorAll('.sp-dossier__cell').forEach(c => {
       c.addEventListener('click', () => { lbImg.src = c.getAttribute('data-full'); lb.hidden = false; });
     });
-    lb.addEventListener('click', closeLb);
-    document.getElementById('lightboxClose').addEventListener('click', closeLb);
-    document.addEventListener('keydown', e => { if (e.key === 'Escape' && !lb.hidden) closeLb(); });
+    if (!_spheaOnce) {
+      lb.addEventListener('click', closeLb);
+      document.getElementById('lightboxClose').addEventListener('click', closeLb);
+      document.addEventListener('keydown', e => { if (e.key === 'Escape' && !lb.hidden) closeLb(); });
+    }
   }
 
-  /* benefits — integrati nel pearl come efficacy stat cards */
-  /* foto TECNOLOGIA (Pearl Biopolymer) — mock "One Drop" verticale, fit cover */
-  const techPhotoMap = {
-    'anti-pollution': { src: 'tech.webp', alt: 'Pearl Technology · perle di biopolimeri marini' },
-  };
-  const techPhoto = document.getElementById('techPhoto');
-  const tp = techPhotoMap[id];
-  if (techPhoto && tp) {
-    techPhoto.innerHTML = `<img loading="lazy" decoding="async" src="../immagini/sphea/${id}/${tp.src}" alt="${tp.alt}">`;
+  /* foto TECNOLOGIA (dropper) + foto ATTIVI — full-bleed, banner adattivo all'altezza
+     della foto. Una-tantum (non dipendono dalla lingua). */
+  if (!_spheaOnce) {
+    const proper = (typeof _meta !== 'undefined' && _meta) ? _meta.proper : d.name;
+    setBleedPhoto(document.getElementById('techPhoto'),    `../immagini/sphea/${id}/tech.webp`,   `${proper} · ${LANG === 'en' ? 'Pearl technology' : 'tecnologia Pearl'}`);
+    setBleedPhoto(document.getElementById('activesPhoto'), `../immagini/sphea/${id}/attivi.webp`, `${proper} · ${LANG === 'en' ? 'patented actives' : 'attivi brevettati'}`);
   }
 
   /* foto editoriale nella sezione "Efficacia clinica documentata" — slot lasciato vuoto
      (placeholder) in attesa di selezione foto definitiva. resultsPhotoMap: id → {img,alt}. */
   const resultsPhotoMap = {
-    'anti-pollution': { src: 'efficacia.webp', alt: 'Effetto idratante a lungo termine con Ectoin (studio in vivo)' },
+    'anti-pollution':    { src: 'efficacia.webp', alt: 'Effetto idratante a lungo termine con Ectoin (studio in vivo)' },
+    'radiant-up-lift':   { src: 'efficacia.webp', alt: 'Contrazione del gel di collagene · Uplevity E-Lift Peptide' },
+    'eyelift-perfector': { src: 'efficacia.webp', alt: 'Rughe ridotte in 5 giorni · Argireline Amplified' },
+    'sculpt-firm':       { src: 'efficacia.webp', alt: 'Addome e cosce a 0, 28 e 56 giorni · Actigym Marine' },
+    'slim-silhouette':   { src: 'efficacia.webp', alt: 'Termografia gambe a 0, 15 e 30 giorni · Nocturshape' },
   };
   const efficacyPhoto = document.getElementById('efficacyPhoto');
   const rp = resultsPhotoMap[id];
-  if (efficacyPhoto && rp) {
-    efficacyPhoto.innerHTML = `<img loading="lazy" decoding="async" src="../immagini/sphea/${id}/${rp.src}" alt="${rp.alt}">`;
+  if (efficacyPhoto && rp && !_spheaOnce) {
+    setBleedPhoto(efficacyPhoto, `../immagini/sphea/${id}/${rp.src}`, rp.alt);
   }
 
   const efficacyWrap = document.getElementById('pearlEfficacy');
   const efficacyGrid = document.getElementById('efficacyGrid');
   if (efficacyWrap && efficacyGrid && d.benefits && d.benefits.length) {
+    efficacyGrid.innerHTML = '';
     d.benefits.forEach(b => {
       /* Estrai il numero/dato dal titolo, sia in testa che in coda */
       let numStr = '', restStr = b.title;
@@ -1635,13 +1701,15 @@ function renderPage(d, id) {
 
   /* inci */
   document.getElementById('inciBody').textContent = d.inci;
-  document.getElementById('inciToggle').addEventListener('click', function() {
-    const body = document.getElementById('inciBody');
-    const open = body.style.display === 'block';
-    body.style.display = open ? 'none' : 'block';
-    const inciLabel = LANG === 'en' ? 'Full INCI composition' : 'Composizione INCI completa';
-    this.textContent = open ? inciLabel + ' −' : inciLabel + ' +';
-  });
+  if (!_spheaOnce) {
+    document.getElementById('inciToggle').addEventListener('click', function() {
+      const body = document.getElementById('inciBody');
+      const open = body.style.display === 'block';
+      body.style.display = open ? 'none' : 'block';
+      const inciLabel = curLang() === 'en' ? 'Full INCI composition' : 'Composizione INCI completa';
+      this.textContent = open ? inciLabel + ' −' : inciLabel + ' +';
+    });
+  }
 
   /* b2b table — sezione rimossa, JS no-op con guard */
   const table = document.getElementById('b2bTable');
@@ -1655,12 +1723,13 @@ function renderPage(d, id) {
 
   /* related */
   const relGrid = document.getElementById('relatedGrid');
+  relGrid.innerHTML = '';
   Object.entries(SPHEA_DATA).forEach(([slug, p]) => {
     if (slug === id) return;
     const a = document.createElement('a');
     a.className = 'sp-rcard';
     a.href = `prodotto-sphea.html?id=${slug}`;
-    const rm = SP_META[slug] || { kind: p.cat, proper: p.name, card: '' };
+    const rm = META[slug] || { kind: p.cat, proper: p.name, card: '' };
     a.innerHTML = `
       <div class="sp-rcard__visual">
         <img loading="lazy" decoding="async" src="../immagini/sphea/${slug}/packaging.webp" alt="${rm.proper}">
@@ -1673,6 +1742,8 @@ function renderPage(d, id) {
       </div>`;
     relGrid.appendChild(a);
   });
+
+  _spheaOnce = true;
 }
 
 if (typeof initAthenas === 'function') initAthenas('sphea');

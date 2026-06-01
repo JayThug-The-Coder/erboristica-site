@@ -455,10 +455,10 @@ body { background: var(--pg, #0e0a06); color: #e8d8c0; font-family: var(--sans);
     <p class="kp-hero__desc" id="kpDesc"></p>
     <div class="kp-hero__mood" id="kpMood"></div>
     <div class="kp-hero__specs">
-      <div><div class="kp-spec__label">Formato</div><div class="kp-spec__val">10 ml · Roll-on</div></div>
-      <div><div class="kp-spec__label">Base</div><div class="kp-spec__val">Olio</div></div>
-      <div><div class="kp-spec__label">Alcol</div><div class="kp-spec__val">0%</div></div>
-      <div><div class="kp-spec__label">Codice</div><div class="kp-spec__val" id="kpSku">—</div></div>
+      <div><div class="kp-spec__label" data-it="Formato" data-en="Size">Formato</div><div class="kp-spec__val">10 ml · Roll-on</div></div>
+      <div><div class="kp-spec__label" data-it="Base" data-en="Base">Base</div><div class="kp-spec__val" data-it="Olio" data-en="Oil">Olio</div></div>
+      <div><div class="kp-spec__label" data-it="Alcol" data-en="Alcohol">Alcol</div><div class="kp-spec__val">0%</div></div>
+      <div><div class="kp-spec__label" data-it="Codice" data-en="SKU">Codice</div><div class="kp-spec__val" id="kpSku">—</div></div>
     </div>
   </div>
 </section>
@@ -466,8 +466,8 @@ body { background: var(--pg, #0e0a06); color: #e8d8c0; font-family: var(--sans);
 <!-- PIRAMIDE OLFATTIVA -->
 <section class="kp-pyramid">
   <div class="kp-pyramid__text" data-reveal>
-    <h2><span>Piramide </span><em>olfattiva.</em></h2>
-    <p id="kpPyrDesc">Ogni fragranza Kaley è costruita su tre livelli di note che si rivelano nel tempo, fondendosi con il calore naturale della pelle per creare un'olfazione unica e personale.</p>
+    <h2><span data-it="Piramide " data-en="Olfactory ">Piramide </span><em data-it="olfattiva." data-en="pyramid.">olfattiva.</em></h2>
+    <p id="kpPyrDesc" data-it="Ogni fragranza Kaley è costruita su tre livelli di note che si rivelano nel tempo, fondendosi con il calore naturale della pelle per creare un'olfazione unica e personale." data-en="Every Kaley fragrance is built on three layers of notes that unfold over time, blending with the natural warmth of the skin to create a unique, personal scent.">Ogni fragranza Kaley è costruita su tre livelli di note che si rivelano nel tempo, fondendosi con il calore naturale della pelle per creare un'olfazione unica e personale.</p>
   </div>
   <div class="kp-pyramid__photo" data-reveal style="--d:120ms">
     <span data-it="Foto piramide olfattiva · 4:5" data-en="Olfactory pyramid photo · 4:5">FOTO PIRAMIDE OLFATTIVA · 4:5</span>
@@ -494,14 +494,14 @@ body { background: var(--pg, #0e0a06); color: #e8d8c0; font-family: var(--sans);
     <div class="kp-block__label" data-it="Formula" data-en="Formula">Formula</div>
     <h3><em data-it="Formula." data-en="Formula.">Formula.</em></h3>
     <div class="kp-formula__pills">
-      <div class="kp-formula__pill"><span class="kp-formula__pill-label">Base olio concentrato</span><span class="kp-formula__pill-val">0% Alcol</span></div>
-      <div class="kp-formula__pill"><span class="kp-formula__pill-label">Tocopherolo (Vitamina E)</span><span class="kp-formula__pill-val">Antiossidante</span></div>
-      <div class="kp-formula__pill"><span class="kp-formula__pill-label">Beta-sitosterolo · Squalene</span><span class="kp-formula__pill-val">Emolliente naturale</span></div>
-      <div class="kp-formula__pill"><span class="kp-formula__pill-label">Triethyl citrate</span><span class="kp-formula__pill-val">Veicolante</span></div>
-      <div class="kp-formula__pill"><span class="kp-formula__pill-label">Vegan · Cruelty Free · Made in Italy</span><span class="kp-formula__pill-val">Certificato</span></div>
+      <div class="kp-formula__pill"><span class="kp-formula__pill-label" data-it="Base olio concentrato" data-en="Concentrated oil base">Base olio concentrato</span><span class="kp-formula__pill-val" data-it="0% Alcol" data-en="0% Alcohol">0% Alcol</span></div>
+      <div class="kp-formula__pill"><span class="kp-formula__pill-label" data-it="Tocopherolo (Vitamina E)" data-en="Tocopherol (Vitamin E)">Tocopherolo (Vitamina E)</span><span class="kp-formula__pill-val" data-it="Antiossidante" data-en="Antioxidant">Antiossidante</span></div>
+      <div class="kp-formula__pill"><span class="kp-formula__pill-label" data-it="Beta-sitosterolo · Squalene" data-en="Beta-sitosterol · Squalene">Beta-sitosterolo · Squalene</span><span class="kp-formula__pill-val" data-it="Emolliente naturale" data-en="Natural emollient">Emolliente naturale</span></div>
+      <div class="kp-formula__pill"><span class="kp-formula__pill-label">Triethyl citrate</span><span class="kp-formula__pill-val" data-it="Veicolante" data-en="Carrier">Veicolante</span></div>
+      <div class="kp-formula__pill"><span class="kp-formula__pill-label">Vegan · Made in Italy</span><span class="kp-formula__pill-val" data-it="Certificato" data-en="Certified">Certificato</span></div>
     </div>
     <div class="kp-certs" data-reveal>
-      <div class="kp-block__label">Certificazioni</div>
+      <div class="kp-block__label" data-it="Certificazioni" data-en="Certifications">Certificazioni</div>
       <div class="kp-certs__row">
         <span class="kp-cert-logo" role="img" aria-label="Vegan" title="Vegan" style="--logo:var(--cert-vegan)"></span>
         <span class="kp-cert-logo" role="img" aria-label="Testato al Nickel, Cromo e Cobalto" title="Testato al Nickel, Cromo e Cobalto" style="--logo:var(--cert-nickel-cobalto)"></span>
@@ -509,9 +509,9 @@ body { background: var(--pg, #0e0a06); color: #e8d8c0; font-family: var(--sans);
       </div>
     </div>
     <div class="kp-formula__inci">
-      <div class="kp-block__label">INCI — Ingredienti completi</div>
+      <div class="kp-block__label" data-it="INCI — Ingredienti completi" data-en="INCI — Full ingredients">INCI — Ingredienti completi</div>
       <div class="kp-inci-toggle" id="inciToggle">
-        <span>Mostra INCI</span>
+        <span data-it="Mostra INCI" data-en="Show INCI">Mostra INCI</span>
         <svg class="kp-inci-chevron" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
       <div class="kp-inci-body" id="inciBody">
@@ -528,7 +528,7 @@ body { background: var(--pg, #0e0a06); color: #e8d8c0; font-family: var(--sans);
 <!-- ALTRE FRAGRANZE -->
 <section class="kp-related">
   <div class="container">
-    <h3><span>Altre </span><em>fragranze.</em></h3>
+    <h3><span data-it="Altre " data-en="Other ">Altre </span><em data-it="fragranze." data-en="fragrances.">fragranze.</em></h3>
     <div class="kp-related-grid" id="kpRelated"></div>
   </div>
 </section>
@@ -536,7 +536,7 @@ body { background: var(--pg, #0e0a06); color: #e8d8c0; font-family: var(--sans);
 <div id="footer"></div>
 
 <script src="../assets/vendor/lenis.min.js"></script><script src="../assets/data.js"></script>
-<script src="../assets/app.js?v=6"></script>
+<script src="../assets/app.js?v=9"></script>
 <script>
 initAthenas('brands');
 
@@ -663,10 +663,66 @@ const ALL_FRAGRANCES = [
   { id: 'sweet-whisper',   n: '07', name: 'Sweet Whisper',   family: 'Dolce · Vanigliata',  desc: 'Dolcezza che non urla.',              img: '../immagini/kaley/sweet_whisper/pack-gradiente.webp' },
 ];
 
+// ── EN OVERLAY (nomi fragranza = nomi propri, restano; INCI invariato) ──
+const KALEY_EN = {
+  'crystal-rouge': {
+    desc: 'A bold, seductive olfactory signature. Saffron opens with a spicy, precious warmth, jasmine brings unexpected floral softness, while amberwood and ambergris build a precious heart; fir resin and cedar close with a deep, tenacious, unforgettable finish.',
+    character: 'Enveloping and self-assured. Crystal Rouge is the fragrance of someone who walks into a room and leaves a mark. The spicy-amber accord recalls gold, resin, discreet luxury. Suited to special occasions and important evenings, it develops beautifully on the warmth of the skin.',
+    mood: ['Evening', 'Autumnal', 'Bold', 'Luxurious'],
+    pyramid: { top: ['Saffron', 'Jasmine'], heart: ['Amberwood', 'Ambergris'], base: ['Fir resin', 'Cedarwood'] },
+  },
+  'dark-sea': {
+    desc: 'A sensory journey towards the open ocean. The aquatic accord, pineapple and lemon open with absolute freshness; lily of the valley and rose introduce an unexpected floral heart; sandalwood, cedar and plant musk close with a deep, mysterious warmth.',
+    character: 'Fresh and mysterious. Dark Sea captures the contrast of the ocean: the luminous surface and the dark depths. A scent that changes through the day, evolving from fresh and marine to warm and enveloping. Ideal for those who love sophisticated simplicity and the winter sea.',
+    mood: ['Daytime', 'Summer & autumn', 'Fresh', 'Mysterious'],
+    pyramid: { top: ['Aquatic accord', 'Pineapple', 'Lemon'], heart: ['Lily of the valley', 'Rose', 'Amber'], base: ['Sandalwood', 'Cedar', 'Plant musk'] },
+  },
+  'golden-hour': {
+    desc: 'The fragrance of the golden hour. Sweet orange, solar notes and bergamot open with a citrus light; fruity notes, lily of the valley, violet, vanilla and caramel make up an indulgent heart; amber, cashmere wood, musk and sandalwood wrap up in a soft finish, unforgettable as a sunset.',
+    character: 'Sunny, joyful, welcoming. Golden Hour is optimism in a bottle. Its progression from citrus freshness to vanilla sweetness tells the transition from day to evening, that moment of light that transforms everything. Versatile, suited to every season.',
+    mood: ['Day & evening', 'Spring-Summer', 'Solar', 'Sweet'],
+    pyramid: { top: ['Sweet orange', 'Solar notes', 'Bergamot'], heart: ['Fruity notes', 'Lily of the valley', 'Violet', 'Vanilla', 'Caramel'], base: ['Amber', 'Cashmere wood', 'Musk', 'Sandalwood'] },
+  },
+  'moka-rose': {
+    desc: 'An irresistible meeting of rose and coffee. Coffee, rose and hazelnut open with an unexpected floral-gourmand accord; vanilla and white musk close with a seductive sweetness that lingers on the skin for hours.',
+    character: 'Romantic and gourmand. Moka Rose is the fragrance that tells of a morning in a Parisian café: flowers on the table, a warm cup in your hands. A contrast that works, the femininity of the rose and the warmth of the coffee balance in an original, unforgettable scent.',
+    mood: ['Morning & evening', 'Autumn-Winter', 'Romantic', 'Gourmand'],
+    pyramid: { top: ['Coffee', 'Rose', 'Hazelnut'], heart: [], base: ['Vanilla', 'White musk'] },
+  },
+  'monty-tonka': {
+    desc: 'An olfactory odyssey between East and West. Saffron and bergamot open with class and spice; oud and Bulgarian rose build a royal, precious heart; sugarcane, tonka bean, ambergris and musks wrap up in a warm, persistent Eastern finish.',
+    character: 'Regal, spicy, enveloping. Monty Tonka is the fragrance for those who are not afraid to be noticed. Oud gives it a rare depth; tonka bean a sophisticated boisé sweetness. An olfactory signature that tells stories of faraway places and precious moments.',
+    mood: ['Evening', 'Autumn-Winter', 'Regal', 'Spicy'],
+    pyramid: { top: ['Saffron', 'Bergamot'], heart: ['Oud', 'Bulgarian rose'], base: ['Sugarcane', 'Tonka bean', 'Ambergris', 'White musk', 'Oak moss'] },
+  },
+  'spring-symphony': {
+    desc: 'Spring in a bottle. Bergamot, cassis and mandarin open with citrus and fruity light; rose, jasmine and pink pepper make up a lively floral heart; patchouli and white musk conclude with cleanness and lightness.',
+    character: 'Light, fresh, optimistic. Spring Symphony is the fragrance of rebirth, suited to every moment of the day, the ideal companion for the warm season. Delicate yet present, it tells the scent of a garden in bloom under the April sun.',
+    mood: ['Daytime', 'Spring-Summer', 'Fresh', 'Floral'],
+    pyramid: { top: ['Bergamot', 'Cassis', 'Mandarin'], heart: ['Rose', 'Jasmine', 'Pink pepper'], base: ['Patchouli', 'White musk', 'Plant musk'] },
+  },
+  'sweet-whisper': {
+    desc: 'An olfactory caress. Bergamot, peach and coconut pulp open with an almost edible sweetness; powdery notes, milk, sugar and heliotrope bring a powdery, romantic heart; vanilla, caramel, tonka bean and musks wrap up in a velvety finish, warm as skin on skin. A fragrance that whispers.',
+    character: 'Intimate, sensual, comforting. Sweet Whisper is the fragrance to wear close to the skin, for those who love scents that speak only to whoever is close enough to sense them. Its sweet, powdery character evolves through the day into something ever more personal.',
+    mood: ['Evening', 'All year', 'Sensual', 'Romantic'],
+    pyramid: { top: ['Bergamot', 'Peach', 'Coconut pulp'], heart: ['Powdery notes', 'Milk', 'Sugar', 'Heliotrope'], base: ['Vanilla', 'Caramel', 'Tonka bean', 'Musks'] },
+  },
+};
+const ALL_FRAG_EN = {
+  'crystal-rouge':   { family: 'Woody · Amber',    desc: 'Seduction on a silk thread.' },
+  'dark-sea':        { family: 'Woody · Marine',   desc: 'Brine and deep secrets.' },
+  'golden-hour':     { family: 'Solar · Floral',   desc: 'The golden hour you never want to end.' },
+  'moka-rose':       { family: 'Gourmand · Floral',desc: 'A coffee among rose petals.' },
+  'monty-tonka':     { family: 'Amber · Spicy',    desc: 'Ancient spices, warm skin.' },
+  'spring-symphony': { family: 'Fruity · Floral',  desc: 'The first morning of April.' },
+  'sweet-whisper':   { family: 'Sweet · Vanilla',  desc: 'Sweetness that never shouts.' },
+};
+function curLang() { return (window.ATH && ATH.lang) || (document.documentElement.lang === 'en' ? 'en' : 'it'); }
+
 // ── RENDER ─────────────────────────────────────────────────
 const params = new URLSearchParams(location.search);
 const id = params.get('id') || 'crystal-rouge';
-const data = KALEY_DATA[id];
+const data = KALEY_DATA[id]; // base IT (nome/INCI/foto lang-independent); testi tradotti in paintKaley()
 
 if (!data) {
   document.body.innerHTML = '<div style="padding:120px 40px;text-align:center;opacity:.4">Fragranza non trovata.</div>';
@@ -732,18 +788,26 @@ function setAmbient(imgId, file, altText) {
 setAmbient('kpCharPhoto', 'ambient-2.webp', `${data.name} · Kaley mood`);
 setAmbient('kpFormulaPhoto', 'ambient-1.webp', `${data.name} · Kaley dettaglio`);
 
-document.getElementById('kpName').textContent = data.name;
-document.getElementById('kpDesc').textContent = data.desc;
-document.getElementById('kpCharacter').textContent = data.character;
+document.getElementById('kpName').textContent = data.name;   // nome proprio, invariato
 document.getElementById('kpInci').textContent = data.inci;
 document.getElementById('kpSku').textContent = KP_SKU[id] || '—';
 
-data.mood.forEach(m => {
-  const el = document.createElement('span');
-  el.className = 'kp-mood-tag';
-  el.textContent = m;
-  document.getElementById('kpMood').appendChild(el);
-});
+// Testi lang-dipendenti: ridipinti al cambio lingua (in-place, niente reload).
+function paintKaley() {
+  const lang = curLang();
+  const dl = (lang === 'en' && KALEY_EN[id]) ? { ...data, ...KALEY_EN[id] } : data;
+  document.getElementById('kpDesc').textContent = dl.desc;
+  document.getElementById('kpCharacter').textContent = dl.character;
+  const moodEl = document.getElementById('kpMood');
+  moodEl.innerHTML = '';
+  dl.mood.forEach(m => {
+    const el = document.createElement('span');
+    el.className = 'kp-mood-tag';
+    el.textContent = m;
+    moodEl.appendChild(el);
+  });
+  renderRelated(lang);
+}
 
 // Piramide
 function renderNotes(el, arr) {
@@ -759,23 +823,31 @@ renderNotes(document.getElementById('kpTop'),   data.pyramid.top);
 renderNotes(document.getElementById('kpHeart'), data.pyramid.heart);
 renderNotes(document.getElementById('kpBase'),  data.pyramid.base);
 
-// Related
+// Related (ridipinta al cambio lingua)
 const grid = document.getElementById('kpRelated');
-ALL_FRAGRANCES.filter(f => f.id !== id).forEach(f => {
-  const visual = f.img
-    ? `<img src="${f.img}" alt="${f.name} · Kaley profumo roll-on" loading="lazy">`
-    : `<span>Foto · ${f.name}</span>`;
-  grid.insertAdjacentHTML('beforeend', `
-    <a class="kp-rel-card" href="prodotto-kaley.html?id=${f.id}" style="--rc:${KP_ACCENT[f.id] || 'var(--gold)'};--rc-bg:${(KP_THEME[f.id] && KP_THEME[f.id][0]) || 'var(--pg)'}">
-      <div class="kp-rel-card__visual">${visual}</div>
-      <div class="kp-rel-card__info">
-        <div class="kp-rel-card__n">${f.n}</div>
-        <div class="kp-rel-card__name">${f.name}</div>
-        <div class="kp-rel-card__desc">${f.desc || ''}</div>
-        <div class="kp-rel-card__family">${f.family}</div>
-      </div>
-    </a>`);
-});
+function renderRelated(lang) {
+  grid.innerHTML = '';
+  ALL_FRAGRANCES.filter(f => f.id !== id).forEach(f => {
+    const fl = (lang === 'en' && ALL_FRAG_EN[f.id]) ? ALL_FRAG_EN[f.id] : f;
+    const visual = f.img
+      ? `<img src="${f.img}" alt="${f.name} · Kaley profumo roll-on" loading="lazy">`
+      : `<span>Foto · ${f.name}</span>`;
+    grid.insertAdjacentHTML('beforeend', `
+      <a class="kp-rel-card" href="prodotto-kaley.html?id=${f.id}" style="--rc:${KP_ACCENT[f.id] || 'var(--gold)'};--rc-bg:${(KP_THEME[f.id] && KP_THEME[f.id][0]) || 'var(--pg)'}">
+        <div class="kp-rel-card__visual">${visual}</div>
+        <div class="kp-rel-card__info">
+          <div class="kp-rel-card__n">${f.n}</div>
+          <div class="kp-rel-card__name">${f.name}</div>
+          <div class="kp-rel-card__desc">${fl.desc || ''}</div>
+          <div class="kp-rel-card__family">${fl.family}</div>
+        </div>
+      </a>`);
+  });
+}
+
+// Primo render + ridipingi al cambio lingua (in-place, niente reload)
+paintKaley();
+document.addEventListener('lang-change', paintKaley);
 
 // INCI accordion
 const toggle = document.getElementById('inciToggle');
@@ -783,7 +855,9 @@ const body   = document.getElementById('inciBody');
 toggle.addEventListener('click', () => {
   const open = body.classList.toggle('open');
   toggle.classList.toggle('open', open);
-  toggle.querySelector('span').textContent = open ? 'Nascondi INCI' : 'Mostra INCI';
+  toggle.querySelector('span').textContent = open
+    ? (curLang() === 'en' ? 'Hide INCI' : 'Nascondi INCI')
+    : (curLang() === 'en' ? 'Show INCI' : 'Mostra INCI');
 });
 
 // Reveal

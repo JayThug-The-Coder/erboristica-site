@@ -104,10 +104,27 @@
 }
 .cp-cta:hover { background: var(--forest); }
 .iub-wrap {
-  max-width: 880px;
+  max-width: 1120px;
   margin: 0 auto;
-  padding: clamp(40px, 6vw, 80px) clamp(24px, 5vw, 80px) clamp(80px, 10vw, 140px);
+  padding: clamp(40px, 6vw, 72px) clamp(24px, 5vw, 48px) clamp(72px, 9vw, 120px);
 }
+/* ── Iubenda embed — armonizzato con palette/tipografia del sito ──────── */
+.iub-wrap, .iub-wrap * { box-sizing: border-box; }
+.iub-wrap [id^="iub"] { max-width: 100%; overflow-wrap: anywhere; font-family: var(--sans) !important; }
+.iub-wrap [id^="iub"] .container { max-width: 100% !important; width: 100% !important; padding: 0 !important; margin: 0 !important; }
+.iub-wrap [id^="iub"] p,
+.iub-wrap [id^="iub"] li,
+.iub-wrap [id^="iub"] span,
+.iub-wrap [id^="iub"] td { color: rgba(26,26,26,.8) !important; }
+.iub-wrap [id^="iub"] h1,
+.iub-wrap [id^="iub"] h2,
+.iub-wrap [id^="iub"] h3,
+.iub-wrap [id^="iub"] h4 { font-family: var(--display) !important; font-weight: 300 !important; color: var(--ink) !important; letter-spacing: -0.01em; }
+.iub-wrap [id^="iub"] a { color: var(--gold-deep) !important; }
+.iub-wrap [id^="iub"] .summary__card { background: #fff !important; border: 1px solid rgba(0,0,0,.07) !important; box-shadow: none !important; }
+.iub-wrap [id^="iub"] .pill,
+.iub-wrap [id^="iub"] .third-parties-item { background: var(--cream-2) !important; color: var(--ink) !important; border: none !important; }
+.iub-wrap [id^="iub"] .table-of-content-list a { color: rgba(26,26,26,.6) !important; }
 </style>
 <script type="application/ld+json">
 {
@@ -130,13 +147,13 @@
 </section>
 
 <div class="iub-wrap">
-  <a href="https://www.iubenda.com/privacy-policy/85420717/cookie-policy" class="iubenda-white iubenda-noiframe iubenda-embed" title="Cookie Policy">Cookie Policy</a>
+  <a href="https://www.iubenda.com/privacy-policy/85420717/cookie-policy" class="iubenda-white no-brand iubenda-noiframe iubenda-embed iub-body-embed" title="Cookie Policy">Cookie Policy</a>
   <script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
 </div>
 
 <script src="assets/data.js"></script>
 <script src="assets/search-data.js" defer></script>
-<script src="assets/app.js" defer></script>
+<script src="assets/app.js?v=9" defer></script>
 <script>initAthenas('privacy');</script>
 </body>
 </html>

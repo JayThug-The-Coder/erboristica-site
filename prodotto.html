@@ -421,6 +421,15 @@
       line-height: 1.2;
       margin-bottom: 4px;
     }
+    /* parte tra parentesi (INCI/nome latino): a capo, più piccola e tenue */
+    .ki-name-paren {
+      display: block;
+      font-size: .62em;
+      font-weight: 400;
+      letter-spacing: 0;
+      opacity: .6;
+      margin-top: 3px;
+    }
     .ki-row__tag {
       font-size: 9px;
       letter-spacing: 0.2em;
@@ -1070,10 +1079,6 @@
       <div class="ki-modal__label" data-it="Meccanismo d'azione" data-en="Mechanism">Meccanismo d'azione</div>
       <div class="ki-modal__text" id="kiModalMeccanismo"></div>
     </div>
-    <div class="ki-modal__block">
-      <div class="ki-modal__label" data-it="Evidenza clinica" data-en="Clinical evidence">Evidenza clinica</div>
-      <div class="ki-modal__text" id="kiModalEfficacia"></div>
-    </div>
   </div>
 </div>
 
@@ -1081,8 +1086,8 @@
 
 <script src="assets/vendor/lenis.min.js"></script><script src="assets/data.js?v=7"></script>
 <script src="assets/data-inline.js?v=7"></script>
-<script src="assets/datastore.js?v=7"></script>
-<script src="assets/app.js?v=8"></script>
+<script src="assets/datastore.js?v=9"></script>
+<script src="assets/app.js?v=9"></script>
 <script>
 initAthenas('prodotto');
 const _topbar = document.querySelector('.topbar');
@@ -1260,7 +1265,7 @@ document.body.style.setProperty('--footer-accent', pal.accent);
       hideSel.forEach(s => { const el = container.querySelector(s); if (el) el.style.display = 'none'; });
     };
     img.onerror = () => img.remove();
-    img.src = src + (src.includes('?') ? '&' : '?') + 'v=2';
+    img.src = src + (src.includes('?') ? '&' : '?') + 'v=3';
     container.appendChild(img);
   }
   // Hero: tutte le foto sorgente sono normalizzate a 3:4 (sfondo esteso ai bordi),
@@ -1277,12 +1282,28 @@ document.body.style.setProperty('--footer-accent', pal.accent);
 const brand = window.BRANDS && BRANDS.find(b => b.id === (product.brand || lineId));
 const line  = window.LINES  && LINES.find(l => l.id === lineId);
 
-document.getElementById('pdWatermark').textContent = brand ? brand.name : (line ? (line.name || '') : '');
-const brandLabel = brand ? brand.name.toUpperCase() : '';
-const lineLabel  = line  ? (line.shortName || line.name || '') : '';
-document.getElementById('pdBrandTag').textContent = [brandLabel, lineLabel].filter(Boolean).join(' · ');
-const catEl = document.getElementById('pdCat');
-if (catEl && line) catEl.textContent = line.shortName || line.name || '';
+// Etichetta breve della linea in EN (la shortName legacy e' solo IT). I nomi propri
+// (Illumià, Purysens, Nutra Repair, Innovation, Argan) restano invariati.
+const LINE_SHORT_EN = {
+  argan: 'Argan', cocco: 'Coconut & Monoï', mandorle: 'Sweet Almonds',
+  antieta: 'Global Anti-aging', illumia: 'Illumià', purysens: 'Purysens',
+  nutra: 'Nutra Repair', estratti: 'Botanical Extracts', uomo: 'Men',
+  innovation: 'Innovation',
+};
+function lineShortLabel(lineObj, lid) {
+  if (!lineObj) return '';
+  const en = document.documentElement.lang === 'en';
+  return (en && LINE_SHORT_EN[lid]) ? LINE_SHORT_EN[lid] : (lineObj.shortName || lineObj.name || '');
+}
+function applyLineLabels() {
+  document.getElementById('pdWatermark').textContent = brand ? brand.name : (line ? (line.name || '') : '');
+  const brandLabel = brand ? brand.name.toUpperCase() : '';
+  const lineLabel  = lineShortLabel(line, lineId);
+  document.getElementById('pdBrandTag').textContent = [brandLabel, lineLabel].filter(Boolean).join(' · ');
+  const catEl = document.getElementById('pdCat');
+  if (catEl && line) catEl.textContent = lineLabel;
+}
+applyLineLabels();
 
 // Testo hero (nome/claim/descrizione) e specs: renderizzati in renderLocalized() (vedi fondo),
 // cosi' si ri-traducono al cambio lingua (evento lang-change).
@@ -1458,6 +1479,12 @@ function actLoc(key) {
   };
 }
 
+// Nome attivo: la parte tra parentesi (es. nome INCI/latino) va a capo, più piccola.
+function fmtActiveName(name) {
+  const safe = String(name || '').replace(/&/g, '&amp;').replace(/</g, '&lt;');
+  return safe.replace(/\s*\(([^)]*)\)\s*$/, '<span class="ki-name-paren">($1)</span>');
+}
+
 const ING_KEY_MAP = {
   'acido ialuronico': 'acido-ialuronico','hyaluronic acid': 'acido-ialuronico',
   'sodium hyaluronate': 'acido-ialuronico','hydrolyzed hyaluronic': 'acido-ialuronico','sodium acetylated hyaluronate': 'acido-ialuronico',
@@ -1519,9 +1546,10 @@ const ING_KEY_MAP = {
 };
 
 function findLibKey(text) {
-  const lower = text.toLowerCase();
+  const norm = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  const lower = norm(text);
   for (const [k, v] of Object.entries(ING_KEY_MAP)) {
-    if (lower.includes(k)) return v;
+    if (lower.includes(norm(k))) return v;
   }
   return null;
 }
@@ -1578,7 +1606,7 @@ function renderActives() {
       <div class="ki-row__head">
         <div class="ki-row__num">${String(i + 1).padStart(2, '0')}</div>
         <div class="ki-row__main">
-          <div class="ki-row__name">${data ? data.name : rawName}</div>
+          <div class="ki-row__name">${fmtActiveName(data ? data.name : translateActive(rawName, lang))}</div>
           <div class="ki-row__tag">${data ? data.role : (shortDesc || T.active)}</div>
         </div>
         <div class="ki-row__toggle">${data ? '+' : '—'}</div>
@@ -1593,10 +1621,6 @@ function renderActives() {
           <div class="ki-detail__block">
             <div class="ki-detail__label">${T.mecc}</div>
             <div class="ki-detail__text">${data.meccanismo}</div>
-          </div>
-          <div class="ki-detail__block">
-            <div class="ki-detail__label">${T.eff}</div>
-            <div class="ki-detail__text">${data.efficacia}</div>
           </div>
         </div>
       </div>` : ''}
@@ -1615,11 +1639,10 @@ function openKiModal(key, num) {
   if (!modal) return;
   const data = actLoc(key);
   document.getElementById('kiModalNum').textContent = String(num).padStart(2, '0');
-  document.getElementById('kiModalName').textContent = data.name || '';
+  document.getElementById('kiModalName').innerHTML = fmtActiveName(data.name || '');
   document.getElementById('kiModalRole').textContent = data.role || '';
   document.getElementById('kiModalOrigine').textContent = data.origine || '';
   document.getElementById('kiModalMeccanismo').textContent = data.meccanismo || '';
-  document.getElementById('kiModalEfficacia').textContent = data.efficacia || '';
   // Blocca lo scroll di sfondo senza spostare la pagina (niente rewind alla chiusura)
   if (window.lenis && typeof window.lenis.stop === 'function') window.lenis.stop();
   document.body.classList.add('ki-modal-open');
@@ -1667,12 +1690,10 @@ function renderFormula() {
   const pills = lang === 'en' ? [
     { l: '0% Petrochemicals · 0% Silicones · 0% Synthetic dyes', v: 'Clean formula' },
     { l: '0% Parabens · 0% Mineral oils', v: 'No controversial ingredients' },
-    { l: '0% Animal testing', v: 'Cruelty free' },
     { l: '0% Animal-derived ingredients', v: 'Vegan' },
   ] : [
     { l: '0% Petrolchimici · 0% Siliconi · 0% Coloranti sintetici', v: 'Formula pulita' },
     { l: '0% Parabeni · 0% Oli minerali', v: 'Senza ingredienti controversi' },
-    { l: '0% Test su animali', v: 'Cruelty free' },
     { l: '0% Ingredienti di origine animale', v: 'Vegan' },
   ];
   formulaPills.innerHTML = '';
@@ -1802,52 +1823,82 @@ function renderRelated() {
     'everby-no-cry-zone-truccante-bifasico-occhi-delicato': {
       cat: 'Struccante Occhi', name: 'No Cry Zone',
       sub: 'Struccante bifasico occhi waterproof, senza irritazioni',
-      actives: 'Aloe Vera · Omega 3-6 · Formula bifasica'
+      actives: 'Aloe Vera · Omega 3-6 · Formula bifasica',
+      cat_en: 'Eye Make-up Remover',
+      sub_en: 'Biphase waterproof eye make-up remover, no irritation',
+      actives_en: 'Aloe Vera · Omega 3-6 · Biphase Formula'
     },
     'everby-cica-cloud-hydra-mousse-detergente-viso-delicata': {
       cat: 'Detergente', name: 'Cica Cloud',
       sub: 'Hydra-Mousse detergente quotidiana, glass skin effect',
-      actives: 'Acqua di Riso Fermentata · Centella Asiatica'
+      actives: 'Acqua di Riso Fermentata · Centella Asiatica',
+      cat_en: 'Cleanser',
+      sub_en: 'Daily Hydra-Mousse cleanser, glass skin effect',
+      actives_en: 'Fermented Rice Water · Centella Asiatica'
     },
     'everby-gel-burro-struccante-feel-butter': {
       cat: 'Struccante', name: 'Feel Butter',
       sub: 'Gel burro struccante 3-in-1 anche waterproof',
-      actives: 'Blend Vitaminico A-C-E · Fitosteroli · 3 Oli Vegetali'
+      actives: 'Blend Vitaminico A-C-E · Fitosteroli · 3 Oli Vegetali',
+      cat_en: 'Make-up Remover',
+      sub_en: '3-in-1 cleansing butter gel, waterproof too',
+      actives_en: 'A-C-E Vitamin Blend · Phytosterols · 3 Plant Oils'
     },
     'everby-milky-rice-hydrating-milky-toner': {
       cat: 'Toner', name: 'Milky Rice',
       sub: 'Hydrating Milky Toner, glass skin effect, pH-friendly',
-      actives: 'Acqua di Riso Fermentata · Niacinamide'
+      actives: 'Acqua di Riso Fermentata · Niacinamide',
+      cat_en: 'Toner',
+      sub_en: 'Hydrating Milky Toner, glass skin effect, pH-friendly',
+      actives_en: 'Fermented Rice Water · Niacinamide'
     },
     'everby-trattamento-viso-perfezionatore-pori-dilatati-stay-po': {
       cat: 'Siero Viso', name: 'Stay Porefect',
       sub: 'Siero perfezionatore opacizzante, pori ridotti, base trucco perfetta',
-      actives: 'Zinco PCA · Acido Salicilico · Niacinamide · Tè Verde'
+      actives: 'Zinco PCA · Acido Salicilico · Niacinamide · Tè Verde',
+      cat_en: 'Face Serum',
+      sub_en: 'Mattifying perfecting serum, reduced pores, perfect make-up base',
+      actives_en: 'Zinc PCA · Salicylic Acid · Niacinamide · Green Tea'
     },
     'everby-siero-viso-rimpolpante-pump-e-plump': {
       cat: 'Siero Viso', name: 'Pump & Plump',
       sub: 'Siero rimpolpante intensivo con peptide botox-like',
-      actives: '<strong>Pumpcoll®</strong> (zucca, upcycling) · <strong>Argireline Amplified®</strong> · Acido Ialuronico'
+      actives: '<strong>Pumpcoll®</strong> (zucca, upcycling) · <strong>Argireline Amplified®</strong> · Acido Ialuronico',
+      cat_en: 'Face Serum',
+      sub_en: 'Intensive plumping serum with botox-like peptide',
+      actives_en: '<strong>Pumpcoll®</strong> (upcycled pumpkin) · <strong>Argireline Amplified®</strong> · Hyaluronic Acid'
     },
     'everby-gocce-illuminanti-viso-yes-i-glow': {
       cat: 'Gocce Viso', name: 'Yes I Glow',
       sub: 'Gocce illuminanti per un glow immediato e modulabile',
-      actives: 'Pigmenti perlati · Acido Ialuronico · Vitamina C stabilizzata'
+      actives: 'Pigmenti perlati · Acido Ialuronico · Vitamina C stabilizzata',
+      cat_en: 'Face Drops',
+      sub_en: 'Illuminating drops for an instant, buildable glow',
+      actives_en: 'Pearlescent Pigments · Hyaluronic Acid · Stabilised Vitamin C'
     },
     'everby-contorno-occhi-dont-call-me-panda': {
       cat: 'Contorno Occhi', name: "Don't Call Me Panda",
       sub: 'Contorno occhi 2-in-1 per borse e occhiaie',
-      actives: 'Microperle Illuminanti · Estratto di Caffè · <strong>Luminescine®</strong> · Niacinamide'
+      actives: 'Microperle Illuminanti · Estratto di Caffè · <strong>Luminescine®</strong> · Niacinamide',
+      cat_en: 'Eye Contour',
+      sub_en: '2-in-1 eye contour for bags and dark circles',
+      actives_en: 'Illuminating Micro-pearls · Coffee Extract · <strong>Luminescine®</strong> · Niacinamide'
     },
     'everby-pepti-boom-lip-filler-volumizzante-labbra': {
       cat: 'Lip Filler', name: 'Pepti Boom',
       sub: 'Lip filler volumizzante, +40% volume clinicamente testato',
-      actives: '<strong>MAXI-LIP® Peptide</strong> · Vitamina E · Olio di Ricino'
+      actives: '<strong>MAXI-LIP® Peptide</strong> · Vitamina E · Olio di Ricino',
+      cat_en: 'Lip Filler',
+      sub_en: 'Volumising lip filler, +40% volume clinically tested',
+      actives_en: '<strong>MAXI-LIP® Peptide</strong> · Vitamin E · Castor Oil'
     },
     'everby-siero-ciglia-e-sopracciglia-lash-me': {
       cat: 'Siero Ciglia & Sopracciglia', name: 'Lash Me',
       sub: 'Siero rinforzante e allungante, risultati visibili in 8 settimane',
-      actives: '<strong>Capixyl®</strong> · Cellule Meristematiche Vite Rossa · Cellule Staminali Curcuma'
+      actives: '<strong>Capixyl®</strong> · Cellule Meristematiche Vite Rossa · Cellule Staminali Curcuma',
+      cat_en: 'Lash & Brow Serum',
+      sub_en: 'Strengthening, lengthening serum, visible results in 8 weeks',
+      actives_en: '<strong>Capixyl®</strong> · Red Vine Meristem Cells · Turmeric Stem Cells'
     },
   };
   siblings.slice(0, 4).forEach((sib, i) => {
@@ -1862,19 +1913,24 @@ function renderRelated() {
     let cat, name, sub, actives;
     const evCopy = sibBrand === 'everby' ? EVERBY_COPY[sib.id] : null;
     if (evCopy) {
-      cat = evCopy.cat; name = evCopy.name; sub = evCopy.sub; actives = evCopy.actives;
+      name = evCopy.name;
+      cat     = (lang === 'en' && evCopy.cat_en)     ? evCopy.cat_en     : evCopy.cat;
+      sub     = (lang === 'en' && evCopy.sub_en)     ? evCopy.sub_en     : evCopy.sub;
+      actives = (lang === 'en' && evCopy.actives_en) ? evCopy.actives_en : evCopy.actives;
     } else {
-      cat = sibLine ? sibLine.shortName : '';
+      cat = lineShortLabel(sibLine, sib.line);
       name = sloc.name;
       sub = (lang === 'en')
         ? firstSent(sloc.sub || sloc.desc)
         : (DESC_SHORT[sib.id] || firstSent(sloc.desc || sloc.sub));
-      actives = (sloc.actives || []).slice(0,3).map(a => a.split('—')[0].split('(')[0].trim()).join(' · ');
+      actives = (sloc.actives || []).slice(0,3)
+        .map(a => translateActive(a.split('—')[0].split('(')[0].trim(), lang))
+        .join(' · ');
     }
     /* Visual: foto packaging per-prodotto (Everby incluso); fallback al mock SVG */
     let visualHtml;
     if (sib.images && sib.images.hero) {
-      visualHtml = `<div class="pr-card__visual" style="background:${sibBg}"><img src="${sib.images.hero}?v=2" alt="${name}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:${CARD_OBJ_POS[sib.id] || 'center'}" onerror="this.style.display='none';this.insertAdjacentHTML('afterend',this.dataset.fallback)" data-fallback='${sibSvg.replace(/'/g, "&#39;")}'></div>`;
+      visualHtml = `<div class="pr-card__visual" style="background:${sibBg}"><img src="${sib.images.hero}?v=3" alt="${name}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:${CARD_OBJ_POS[sib.id] || 'center'}" onerror="this.style.display='none';this.insertAdjacentHTML('afterend',this.dataset.fallback)" data-fallback='${sibSvg.replace(/'/g, "&#39;")}'></div>`;
     } else {
       visualHtml = `<div class="pr-card__visual" style="background:${sibBg}">${sibSvg}</div>`;
     }
@@ -1896,6 +1952,9 @@ function renderRelated() {
 function renderLocalized() {
   lang = document.documentElement.lang === 'en' ? 'en' : 'it';
   loc  = product[lang] || product.it;
+
+  // Etichette linea (brand-tag + categoria) nella lingua attiva
+  applyLineLabels();
 
   // Hero: nome + claim + descrizione (con bold attivi)
   document.getElementById('pdName').textContent = loc.name;
