@@ -75,8 +75,8 @@ body { background: var(--pg, #0e0a06); color: #e8d8c0; font-family: var(--sans);
   color: var(--gold); opacity: .45; margin-bottom: 28px;
 }
 .kp-hero__desc {
-  font-family: var(--serif); font-size: clamp(17px,1.4vw,19px);
-  line-height: 1.75; color: rgba(232,216,192,.6); max-width: 52ch;
+  font-family: var(--serif); font-size: clamp(18px,1.6vw,22px);
+  line-height: 1.8; color: rgba(232,216,192,.6); max-width: 52ch;
   margin-bottom: 32px; margin-left: auto;
   text-align: right; text-wrap: pretty;
 }
@@ -87,7 +87,7 @@ body { background: var(--pg, #0e0a06); color: #e8d8c0; font-family: var(--sans);
 }
 .kp-mood-tag {
   font-family: var(--serif); font-style: italic;
-  font-size: clamp(16px,1.4vw,20px); letter-spacing: 0;
+  font-size: clamp(17px,1.5vw,21px); letter-spacing: 0;
   text-transform: none; border: 0; padding: 0;
   color: var(--accent, var(--gold)); opacity: .85;
 }
@@ -101,12 +101,13 @@ body { background: var(--pg, #0e0a06); color: #e8d8c0; font-family: var(--sans);
   padding-top: 28px; border-top: 1px solid rgba(201,169,110,.1);
 }
 .kp-spec__label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(232,216,192,.3); margin-bottom: 4px; }
-.kp-spec__val { font-family: var(--serif); font-size: 17px; color: rgba(232,216,192,.75); }
+.kp-spec__val { font-family: var(--serif); font-size: 19px; color: rgba(232,216,192,.75); }
 
 /* ── PIRAMIDE OLFATTIVA ────────────────────────────────────── */
 .kp-pyramid {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  align-items: center;
   min-height: clamp(480px, 80vh, 760px);
   background: var(--pg2, #080603);
   border-top: 1px solid rgba(201,169,110,.07);
@@ -135,49 +136,34 @@ body { background: var(--pg, #0e0a06); color: #e8d8c0; font-family: var(--sans);
 
 /* Piramide visuale */
 .kp-pyr-visual {
-  display: flex; flex-direction: column; gap: 2px;
+  display: flex; flex-direction: column; gap: clamp(24px,2.8vw,36px);
 }
-.kp-pyr-tier {
-  display: flex; align-items: stretch; gap: 0;
-  position: relative;
-}
-.kp-pyr-tier__bar {
-  flex-shrink: 0;
-  width: 4px;
-  background: var(--gold);
-  opacity: .2;
-  transition: opacity .3s;
-}
-.kp-pyr-tier:hover .kp-pyr-tier__bar { opacity: .6; }
-.kp-pyr-tier__content {
-  flex: 1;
-  background: rgba(255,255,255,.03);
-  padding: clamp(18px,2vw,24px) clamp(20px,2.5vw,28px);
-  transition: background .3s;
-}
-.kp-pyr-tier:hover .kp-pyr-tier__content { background: rgba(255,255,255,.055); }
+.kp-pyr-tier { display: block; }
+.kp-pyr-tier__bar { display: none; }
+.kp-pyr-tier__content { padding: 0; background: none; }
 .kp-pyr-tier__label {
-  font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase;
-  color: var(--gold); opacity: .5; margin-bottom: 10px;
+  font-family: var(--sans);
+  font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase;
+  color: var(--gold); opacity: .85; margin-bottom: 14px;
 }
 .kp-pyr-tier__notes {
-  display: flex; flex-wrap: wrap; gap: 8px;
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 24px;
 }
 .kp-note-pill {
-  font-family: var(--serif); font-style: italic; font-size: 15px;
-  color: rgba(232,216,192,.75);
-  padding: 4px 12px;
-  border: 1px solid rgba(201,169,110,.12);
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(18px,1.6vw,22px);
+  color: rgba(232,216,192,.92);
+  padding: 0; border: 0;
 }
 
 /* ── Foto piramide olfattiva (zig-zag — foto a destra) ────── */
 .kp-pyramid__photo {
   position: relative;
   overflow: hidden;
-  min-height: clamp(380px, 55vh, 760px);
+  aspect-ratio: 3/4;            /* forma di partenza; al load il banner prende il ratio reale della foto -> foto intera */
   display: flex; align-items: center; justify-content: center;
 }
-.kp-pyramid__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.kp-pyramid__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
 .kp-pyramid__photo span {
   font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
   color: rgba(201,169,110,.35); text-align: center; padding: 0 22px;
@@ -468,8 +454,31 @@ body { background: var(--pg, #0e0a06); color: #e8d8c0; font-family: var(--sans);
   <div class="kp-pyramid__text" data-reveal>
     <h2><span data-it="Piramide " data-en="Olfactory ">Piramide </span><em data-it="olfattiva." data-en="pyramid.">olfattiva.</em></h2>
     <p id="kpPyrDesc" data-it="Ogni fragranza Kaley è costruita su tre livelli di note che si rivelano nel tempo, fondendosi con il calore naturale della pelle per creare un'olfazione unica e personale." data-en="Every Kaley fragrance is built on three layers of notes that unfold over time, blending with the natural warmth of the skin to create a unique, personal scent.">Ogni fragranza Kaley è costruita su tre livelli di note che si rivelano nel tempo, fondendosi con il calore naturale della pelle per creare un'olfazione unica e personale.</p>
+    <div class="kp-pyr-visual" data-reveal style="--d:80ms">
+      <div class="kp-pyr-tier">
+        <div class="kp-pyr-tier__bar"></div>
+        <div class="kp-pyr-tier__content">
+          <div class="kp-pyr-tier__label" data-it="Note di testa" data-en="Top notes">Note di testa</div>
+          <div class="kp-pyr-tier__notes" id="kpTop"></div>
+        </div>
+      </div>
+      <div class="kp-pyr-tier">
+        <div class="kp-pyr-tier__bar"></div>
+        <div class="kp-pyr-tier__content">
+          <div class="kp-pyr-tier__label" data-it="Note di cuore" data-en="Heart notes">Note di cuore</div>
+          <div class="kp-pyr-tier__notes" id="kpHeart"></div>
+        </div>
+      </div>
+      <div class="kp-pyr-tier">
+        <div class="kp-pyr-tier__bar"></div>
+        <div class="kp-pyr-tier__content">
+          <div class="kp-pyr-tier__label" data-it="Note di fondo" data-en="Base notes">Note di fondo</div>
+          <div class="kp-pyr-tier__notes" id="kpBase"></div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="kp-pyramid__photo" data-reveal style="--d:120ms">
+  <div class="kp-pyramid__photo" id="kpPyrPhoto" data-reveal style="--d:120ms">
     <span data-it="Foto piramide olfattiva · 4:5" data-en="Olfactory pyramid photo · 4:5">FOTO PIRAMIDE OLFATTIVA · 4:5</span>
   </div>
 </section>
@@ -540,9 +549,11 @@ body { background: var(--pg, #0e0a06); color: #e8d8c0; font-family: var(--sans);
 <script>
 initAthenas('brands');
 
-// Footer brand: pagina scura -> footer vinaccia. L'accento segue la fragranza (impostato sotto).
+// Footer brand: pagina scura -> footer scuro per-fragranza. L'accento segue la fragranza (impostato sotto).
 document.body.classList.add('footer-brand');
-document.body.style.setProperty('--footer-bg', '#2a0a18');
+const KP_FOOTER_BG = {
+  'monty-tonka': '#1c0f2a',
+};
 
 // ── DATA ───────────────────────────────────────────────────
 const KALEY_DATA = {
@@ -737,7 +748,7 @@ const KP_THEME = {
   'dark-sea':        ['#0f2030', '#0a1622'],
   'golden-hour':     ['#2a1d0b', '#1d1407'],
   'moka-rose':       ['#2a1515', '#1d0e0e'],
-  'monty-tonka':     ['#251b0f', '#1a1209'],
+  'monty-tonka':     ['#231630', '#170d22'],
   'spring-symphony': ['#281522', '#1c0e17'],
   'sweet-whisper':   ['#142113', '#0d160d'],
 };
@@ -746,7 +757,7 @@ const KP_ACCENT = {
   'dark-sea':        '#2a6f8c',
   'golden-hour':     '#c08327',
   'moka-rose':       '#a83a4e',
-  'monty-tonka':     '#9a6a34',
+  'monty-tonka':     '#a884c6',
   'spring-symphony': '#c43d7a',
   'sweet-whisper':   '#5a7d4e',
 };
@@ -766,6 +777,7 @@ if (theme) {
 }
 document.documentElement.style.setProperty('--accent', KP_ACCENT[id] || 'var(--gold)');
 document.body.style.setProperty('--footer-accent', KP_ACCENT[id] || 'var(--gold)');
+document.body.style.setProperty('--footer-bg', KP_FOOTER_BG[id] || '#2a0a18');
 document.getElementById('kpBg').style.background =
   'radial-gradient(120% 95% at 42% 60%, rgba(255,255,255,.05) 0%, transparent 58%)';
 
@@ -788,6 +800,26 @@ function setAmbient(imgId, file, altText) {
 setAmbient('kpCharPhoto', 'ambient-2.webp', `${data.name} · Kaley mood`);
 setAmbient('kpFormulaPhoto', 'ambient-1.webp', `${data.name} · Kaley dettaglio`);
 
+// Piramide olfattiva: foto intera, banner adattato al ratio reale (come Sphea/erboristica).
+function setBleedPhoto(containerEl, src, alt) {
+  if (!containerEl || !src) return;
+  const img = new Image();
+  img.decoding = 'async';
+  img.alt = alt || '';
+  const apply = () => {
+    if (img.naturalWidth && img.naturalHeight) {
+      containerEl.style.aspectRatio = img.naturalWidth + ' / ' + img.naturalHeight;
+    }
+    containerEl.innerHTML = '';
+    containerEl.appendChild(img);
+  };
+  img.onload = apply;
+  img.onerror = () => { /* lascia il placeholder */ };
+  img.src = src;
+  if (img.complete && img.naturalWidth) apply();
+}
+setBleedPhoto(document.getElementById('kpPyrPhoto'), `../immagini/kaley/${slug}/piramide-olfattiva.webp`, `${data.name} · Piramide olfattiva`);
+
 document.getElementById('kpName').textContent = data.name;   // nome proprio, invariato
 document.getElementById('kpInci').textContent = data.inci;
 document.getElementById('kpSku').textContent = KP_SKU[id] || '—';
@@ -796,7 +828,7 @@ document.getElementById('kpSku').textContent = KP_SKU[id] || '—';
 function paintKaley() {
   const lang = curLang();
   const dl = (lang === 'en' && KALEY_EN[id]) ? { ...data, ...KALEY_EN[id] } : data;
-  document.getElementById('kpDesc').textContent = dl.desc;
+  document.getElementById('kpDesc').innerHTML = dl.desc.replace(/\.\s+/, '.<br><br>');
   document.getElementById('kpCharacter').textContent = dl.character;
   const moodEl = document.getElementById('kpMood');
   moodEl.innerHTML = '';
@@ -807,11 +839,22 @@ function paintKaley() {
     moodEl.appendChild(el);
   });
   renderRelated(lang);
+  renderNotes(document.getElementById('kpTop'),   dl.pyramid.top);
+  renderNotes(document.getElementById('kpHeart'), dl.pyramid.heart);
+  renderNotes(document.getElementById('kpBase'),  dl.pyramid.base);
 }
 
 // Piramide
 function renderNotes(el, arr) {
   if (!el) return;
+  el.innerHTML = '';
+  if (!arr || !arr.length) {
+    const tier = el.closest('.kp-pyr-tier');
+    if (tier) tier.style.display = 'none';
+    return;
+  }
+  const tier = el.closest('.kp-pyr-tier');
+  if (tier) tier.style.display = '';
   arr.forEach(n => {
     const span = document.createElement('span');
     span.className = 'kp-note-pill';
@@ -819,9 +862,6 @@ function renderNotes(el, arr) {
     el.appendChild(span);
   });
 }
-renderNotes(document.getElementById('kpTop'),   data.pyramid.top);
-renderNotes(document.getElementById('kpHeart'), data.pyramid.heart);
-renderNotes(document.getElementById('kpBase'),  data.pyramid.base);
 
 // Related (ridipinta al cambio lingua)
 const grid = document.getElementById('kpRelated');

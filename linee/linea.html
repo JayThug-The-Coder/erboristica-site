@@ -223,6 +223,18 @@ body.theme-line-antieta {
 }
 @media (max-width: 1000px) { .lp__grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px) { .lp__grid { grid-template-columns: 1fr; } }
+.lp-group-head {
+  grid-column: 1 / -1;
+  font-family: var(--display);
+  font-size: clamp(19px, 2.2vw, 28px);
+  font-weight: 300;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  margin: clamp(18px,2.6vw,36px) 0 2px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(26,26,26,.12);
+}
+.lp-group-head:first-child { margin-top: 0; }
 
 /* ── PRODUCT CARD ─────────────────────────────────── */
 .pc {
@@ -1012,6 +1024,26 @@ body.theme-line-antieta {
     // Prodotti — i prodotti "Active" vanno come prime card
     const products = PRODUCTS.filter(p => p.line === lineId);
     products.sort((a, b) => (/-active$/.test(a.id) ? 0 : 1) - (/-active$/.test(b.id) ? 0 : 1));
+
+    // Estratti Botanici: raggruppa per categoria funzionale con intestazioni
+    const ESTRATTI_GROUPS = [
+      { it: 'Saponi', en: 'Soaps' },
+      { it: 'Doccia', en: 'Shower' },
+      { it: 'Creme corpo e mani', en: 'Body & hand care' },
+      { it: 'Shampoo', en: 'Shampoo' },
+      { it: 'Maschera capelli', en: 'Hair mask' },
+    ];
+    const estrattiGroup = (p) => {
+      const n = ((p.it && p.it.name) || p.name || p.id || '').toLowerCase();
+      if (/sapone/.test(n)) return 0;
+      if (/doccia|bagno|mousse/.test(n)) return 1;
+      if (/shampoo/.test(n)) return 3;
+      if (/maschera/.test(n)) return 4;
+      return 2;
+    };
+    if (lineId === 'estratti') {
+      products.sort((a, b) => estrattiGroup(a) - estrattiGroup(b));
+    }
     const countEl = document.getElementById('prodCountLabel');
     countEl.textContent = products.length + (lang() === 'it' ? ' prodotti' : ' products');
 
@@ -1140,7 +1172,18 @@ body.theme-line-antieta {
       const l = lang();
       grid.innerHTML = '';
       const cardImgs = CARD_IMGS[lineId] || [];
+      let lastGroup = -1;
       products.forEach((p, i) => {
+        if (lineId === 'estratti') {
+          const g = estrattiGroup(p);
+          if (g !== lastGroup) {
+            lastGroup = g;
+            const head = document.createElement('div');
+            head.className = 'lp-group-head';
+            head.textContent = ESTRATTI_GROUPS[g][l];
+            grid.appendChild(head);
+          }
+        }
         const shape = shapeFor(p.category);
         const locData = p[l] || p.it;
         const subFull = locData.sub || '';

@@ -33,6 +33,27 @@ body { background: var(--cream); color: var(--ink); font-family: var(--sans); ov
     linear-gradient(170deg, #050505 0%, #0f0f0f 60%, #080808 100%);
 }
 
+/* foto botanica di sfondo */
+.lh__photo {
+  position: absolute; inset: 0; z-index: 1;
+  background-image:
+    linear-gradient(105deg, #060606 0%, rgba(8,8,8,.92) 22%, rgba(10,10,10,.55) 45%, rgba(10,10,10,.2) 70%, rgba(10,10,10,.4) 100%),
+    linear-gradient(0deg, rgba(6,6,6,.55) 0%, transparent 35%, transparent 70%, rgba(6,6,6,.45) 100%),
+    url('immagini/laboratorio/hero-petri.webp');
+  background-size: cover, cover, cover;
+  background-position: center, center, center right;
+  opacity: .85;
+}
+@media (max-width: 900px) {
+  .lh__photo {
+    background-image:
+      linear-gradient(180deg, rgba(6,6,6,.75) 0%, rgba(8,8,8,.55) 40%, rgba(10,10,10,.7) 100%),
+      url('immagini/laboratorio/hero-petri.webp');
+    background-size: cover, cover;
+    background-position: center, center;
+  }
+}
+
 /* particle field */
 .lh__particles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
 .lh__particle {
@@ -203,7 +224,7 @@ body { background: var(--cream); color: var(--ink); font-family: var(--sans); ov
   color: rgba(201,169,110,.2); text-align: center; padding: 0 20px;
 }
 .lab-phase__svg { position: relative; z-index: 1; }
-.lab-phase__visual img { position: absolute; inset: 0; }
+.lab-phase__visual img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
 
 /* ── PARTNER LABS (fase 04 — full-width row) ─────────────── */
 .lab-phase__partners {
@@ -767,6 +788,7 @@ body { background: var(--cream); color: var(--ink); font-family: var(--sans); ov
   </div>
 <!-- SOSTITUIRE OPZIONALE: aggiungere video autoplay muted loop di sfondo (laboratorio, banco lavoro, pipette macro) per dare profondità al hero. File da copiare in immagini/laboratorio/hero-video.mp4 quando disponibile. Per ora il diagramma SVG resta da solo. -->
   <div class="lh__bg"></div>
+  <div class="lh__photo" aria-hidden="true"></div>
   <div class="lh__particles" id="particles" aria-hidden="true"></div>
   <div class="lh__wm" aria-hidden="true">LAB</div>
 
@@ -776,68 +798,6 @@ body { background: var(--cream); color: var(--ink); font-family: var(--sans); ov
       <span data-it="Dove nasce" data-en="Where every">Dove nasce</span><br>
       <em data-it="ogni formula." data-en="formula is born.">ogni formula.</em>
     </h1>
-  </div>
-
-  <!-- right: SVG molecular diagram -->
-  <div class="lh__right">
-    <div class="lh__diagram">
-      <svg viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <!-- outer rings -->
-        <circle cx="250" cy="250" r="230" stroke="rgba(201,169,110,.06)" stroke-width="1"/>
-        <circle cx="250" cy="250" r="195" stroke="rgba(201,169,110,.09)" stroke-width="1" stroke-dasharray="4 6"/>
-        <circle cx="250" cy="250" r="155" stroke="rgba(201,169,110,.12)" stroke-width="1"/>
-        <circle cx="250" cy="250" r="110" stroke="rgba(201,169,110,.18)" stroke-width="1.5" stroke-dasharray="2 4"/>
-        <circle cx="250" cy="250" r="68"  stroke="rgba(201,169,110,.25)" stroke-width="1.5"/>
-
-        <!-- core -->
-        <circle cx="250" cy="250" r="32"
-          fill="url(#lcore)"
-          filter="url(#lglow)"/>
-        <defs>
-          <radialGradient id="lcore" cx="35%" cy="35%">
-            <stop offset="0%" stop-color="rgba(201,169,110,.9)"/>
-            <stop offset="60%" stop-color="rgba(120,90,40,.6)"/>
-            <stop offset="100%" stop-color="rgba(20,20,20,.95)"/>
-          </radialGradient>
-          <filter id="lglow"><feGaussianBlur stdDeviation="3"/></filter>
-        </defs>
-        <text x="250" y="245" text-anchor="middle" font-family="Fraunces,serif" font-size="9" fill="rgba(201,169,110,.7)" font-style="italic">formula</text>
-        <text x="250" y="258" text-anchor="middle" font-family="sans-serif" font-size="5" fill="rgba(201,169,110,.4)" letter-spacing="2">ACTIVE</text>
-
-        <!-- satellite nodes: 6 around ring 155 -->
-        <circle cx="250" cy="95"  r="14" fill="rgba(201,169,110,.12)" stroke="rgba(201,169,110,.3)" stroke-width="1"/>
-        <circle cx="384" cy="173" r="10" fill="rgba(201,169,110,.10)" stroke="rgba(201,169,110,.25)" stroke-width="1"/>
-        <circle cx="384" cy="327" r="16" fill="rgba(201,169,110,.14)" stroke="rgba(201,169,110,.3)" stroke-width="1"/>
-        <circle cx="250" cy="405" r="11" fill="rgba(201,169,110,.1)"  stroke="rgba(201,169,110,.22)" stroke-width="1"/>
-        <circle cx="116" cy="327" r="13" fill="rgba(201,169,110,.12)" stroke="rgba(201,169,110,.28)" stroke-width="1"/>
-        <circle cx="116" cy="173" r="9"  fill="rgba(201,169,110,.09)" stroke="rgba(201,169,110,.2)"  stroke-width="1"/>
-
-        <!-- connector lines -->
-        <line x1="250" y1="218" x2="250" y2="109" stroke="rgba(201,169,110,.15)" stroke-width="1" stroke-dasharray="3 4"/>
-        <line x1="272" y1="226" x2="376" y2="179" stroke="rgba(201,169,110,.12)" stroke-width="1" stroke-dasharray="3 4"/>
-        <line x1="272" y1="274" x2="370" y2="321" stroke="rgba(201,169,110,.15)" stroke-width="1" stroke-dasharray="3 4"/>
-        <line x1="250" y1="282" x2="250" y2="394" stroke="rgba(201,169,110,.12)" stroke-width="1" stroke-dasharray="3 4"/>
-        <line x1="228" y1="274" x2="130" y2="321" stroke="rgba(201,169,110,.15)" stroke-width="1" stroke-dasharray="3 4"/>
-        <line x1="228" y1="226" x2="124" y2="179" stroke="rgba(201,169,110,.12)" stroke-width="1" stroke-dasharray="3 4"/>
-
-        <!-- satellite labels -->
-        <text x="250" y="92"  text-anchor="middle" font-family="sans-serif" font-size="5.5" fill="rgba(201,169,110,.5)" letter-spacing="1">PEPTIDI</text>
-        <text x="388" y="170" text-anchor="start"  font-family="sans-serif" font-size="5.5" fill="rgba(201,169,110,.5)" letter-spacing="1">BIOPOLIM.</text>
-        <text x="388" y="324" text-anchor="start"  font-family="sans-serif" font-size="5.5" fill="rgba(201,169,110,.5)" letter-spacing="1">ESTRATTI</text>
-        <text x="250" y="424" text-anchor="middle" font-family="sans-serif" font-size="5.5" fill="rgba(201,169,110,.5)" letter-spacing="1">FERMENT.</text>
-        <text x="112" y="340" text-anchor="end"    font-family="sans-serif" font-size="5.5" fill="rgba(201,169,110,.5)" letter-spacing="1">OLI PURI</text>
-        <text x="112" y="170" text-anchor="end"    font-family="sans-serif" font-size="5.5" fill="rgba(201,169,110,.5)" letter-spacing="1">ATTIVI</text>
-
-        <!-- slow rotating outer dashed ring animation -->
-        <circle cx="250" cy="250" r="230" stroke="rgba(201,169,110,.04)" stroke-width="1" stroke-dasharray="12 20"
-          style="transform-origin:250px 250px; animation: lab-rot 40s linear infinite;"/>
-        <circle cx="250" cy="250" r="155" stroke="rgba(90,107,78,.08)" stroke-width="1" stroke-dasharray="5 10"
-          style="transform-origin:250px 250px; animation: lab-rot 25s linear infinite reverse;"/>
-        <style>
-          @keyframes lab-rot { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        </style>
-      </svg>
-    </div>
   </div>
 
   <div class="scroll-hint" aria-hidden="true">
@@ -876,8 +836,8 @@ body { background: var(--cream); color: var(--ink); font-family: var(--sans); ov
     </div>
   </div>
   <div class="lab-phase__visual">
-    <img src="immagini/laboratorio/selezione-materie-prime.jpg" alt="Pesatura di precisione di una materia prima su bilancia analitica nel laboratorio Athena's" class="cover-img" loading="lazy">
-    <div class="lab-phase__svg">
+    <img src="immagini/laboratorio/selezione-materie-prime.webp" alt="Selezione delle materie prime nel laboratorio Athena's" class="cover-img" loading="lazy">
+    <div class="lab-phase__svg" hidden>
       <svg width="160" height="160" viewBox="0 0 160 160" fill="none" aria-hidden="true">
         <circle cx="80" cy="80" r="70" stroke="rgba(201,169,110,.1)" stroke-width="1" stroke-dasharray="4 6"/>
         <circle cx="80" cy="80" r="50" stroke="rgba(201,169,110,.15)" stroke-width="1"/>
@@ -907,11 +867,8 @@ body { background: var(--cream); color: var(--ink); font-family: var(--sans); ov
     </div>
   </div>
   <div class="lab-phase__visual">
-    <!-- SOSTITUIRE: poster="immagini/laboratorio/reel-creazione-crema-poster.jpg" quando disponibile -->
-    <video class="bg-video" autoplay muted loop playsinline preload="metadata">
-      <source src="immagini/laboratorio/reel-creazione-crema.mp4" type="video/mp4">
-    </video>
-    <div class="lab-phase__svg">
+    <img src="immagini/laboratorio/formulazione-test.webp" alt="Formulazione e test · batch di laboratorio" loading="lazy">
+    <div class="lab-phase__svg" hidden>
       <svg width="160" height="160" viewBox="0 0 160 160" fill="none" aria-hidden="true">
         <!-- beaker shape -->
         <path d="M55 30 L55 90 L30 140 L130 140 L105 90 L105 30 Z" stroke="rgba(201,169,110,.2)" stroke-width="1.5" fill="rgba(201,169,110,.04)"/>
@@ -931,7 +888,7 @@ body { background: var(--cream); color: var(--ink); font-family: var(--sans); ov
     <div class="lab-phase__wm" aria-hidden="true">03</div>
     <div class="lab-phase__n" data-it="— Fase 03" data-en="— Phase 03">— Fase 03</div>
     <h2 data-it="Validazione<br><em>clinica.</em>" data-en="Clinical<br><em>validation.</em>">Validazione<br><em>clinica.</em></h2>
-    <p class="lab-phase__body" data-it="Ogni claim sul packaging è supportato da dati reali. Test dermatologici su panelist volontari, test strumentali (cutometro, tewameter, corneometro), panel test percettivi. Se il dato non lo supporta, il claim non va in etichetta." data-en="Every packaging claim is supported by real data. Dermatological tests on volunteer panellists, instrumental tests (cutometer, tewameter, corneometer), perceptual panel tests. If the data doesn't support it, the claim doesn't go on the label.">Ogni claim sul packaging è supportato da dati reali. Test dermatologici su panelist volontari, test strumentali, panel test percettivi. Se il dato non lo supporta, il claim non va in etichetta.</p>
+    <p class="lab-phase__body" data-it="Ogni claim sul packaging è supportato da dati reali. Test dermatologici su panelist volontari, test strumentali (cutometro, tewameter, corneometro), panel test percettivi." data-en="Every packaging claim is supported by real data. Dermatological tests on volunteer panellists, instrumental tests (cutometer, tewameter, corneometer), perceptual panel tests.">Ogni claim sul packaging è supportato da dati reali. Test dermatologici su panelist volontari, test strumentali, panel test percettivi.</p>
     <div class="lab-phase__details">
       <div class="lab-phase__detail" data-it="Patch test su 20+ volontari · test di tollerabilità cutanea" data-en="Patch test on 20+ volunteers · skin tolerability testing">Patch test su 20+ volontari · test di tollerabilità cutanea</div>
       <div class="lab-phase__detail" data-it="Cutometro (elasticità), Tewameter (barriera), Corneometro (idratazione)" data-en="Cutometer (elasticity), Tewameter (barrier), Corneometer (hydration)">Cutometro, Tewameter, Corneometro</div>
@@ -939,13 +896,8 @@ body { background: var(--cream); color: var(--ink); font-family: var(--sans); ov
     </div>
   </div>
   <div class="lab-phase__visual">
-    <!-- SOSTITUIRE: foto test strumentale su pelle, cutometro -->
-    <div class="photo-slot photo-slot--4x5" data-slot-label="fase-03-test-clinico">
-      <svg class="photo-slot__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
-      <span class="photo-slot__label">Test clinico strumentale</span>
-      <span class="photo-slot__sub">4:5 · 1600 × 2000 px</span>
-    </div>
-    <div class="lab-phase__svg">
+    <img src="immagini/laboratorio/validazione-clinica.webp" alt="Validazione clinica · test strumentale su pelle" loading="lazy">
+    <div class="lab-phase__svg" hidden>
       <svg width="160" height="160" viewBox="0 0 160 160" fill="none" aria-hidden="true">
         <rect x="40" y="50" width="80" height="80" rx="4" stroke="rgba(201,169,110,.2)" stroke-width="1.5" fill="rgba(201,169,110,.03)"/>
         <polyline points="55,110 70,80 85,95 100,65 115,75" stroke="rgba(201,169,110,.5)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
@@ -964,7 +916,7 @@ body { background: var(--cream); color: var(--ink); font-family: var(--sans); ov
     <div class="lab-phase__wm" aria-hidden="true">04</div>
     <div class="lab-phase__n" data-it="— Fase 04" data-en="— Phase 04">— Fase 04</div>
     <h2 data-it="Produzione<br><em>&amp; controllo qualità.</em>" data-en="Production<br><em>&amp; quality control.</em>">Produzione<br><em>&amp; controllo qualità.</em></h2>
-    <p class="lab-phase__body" data-it="La produzione avviene interamente nello stabilimento di Pianoro, a pochi metri dal laboratorio che ha sviluppato la formula. Controllo qualità in process e su prodotto finito: ogni lotto è tracciato, campionato e conservato per 36 mesi in archivio." data-en="Production takes place entirely in the Pianoro facility, metres from the lab that developed the formula. In-process and finished product quality control: every batch is traced, sampled and stored for 36 months in archive.">La produzione avviene interamente nello stabilimento di Pianoro, a pochi metri dal laboratorio. Controllo qualità in process e su prodotto finito: ogni lotto è tracciato e campionato per 36 mesi.</p>
+    <p class="lab-phase__body" data-it="La produzione avviene interamente nello stabilimento di Pianoro. Controllo qualità in process e su prodotto finito: ogni lotto è tracciato, campionato e conservato per 36 mesi in archivio." data-en="Production takes place entirely in the Pianoro facility. In-process and finished product quality control: every batch is traced, sampled and stored for 36 months in archive.">La produzione avviene interamente nello stabilimento di Pianoro. Controllo qualità in process e su prodotto finito: ogni lotto è tracciato e campionato per 36 mesi.</p>
     <div class="lab-phase__details">
       <div class="lab-phase__detail" data-it="Riempimento automatizzato senza contatto con operatori o ambiente esterno" data-en="Automated filling with no contact with operators or external environment">Riempimento automatizzato · linee dedicate per formato</div>
       <div class="lab-phase__detail" data-it="Campione di retention per ogni lotto · archivio 36 mesi" data-en="Retention sample for every batch · 36-month archive">Campione retention per ogni lotto · 36 mesi</div>
@@ -1044,90 +996,9 @@ body { background: var(--cream); color: var(--ink); font-family: var(--sans); ov
 <!-- ════════════════════════════════════════════════════════
      ORIGINE INGREDIENTI
 ════════════════════════════════════════════════════════ -->
-<section class="lab-origin">
-  <div class="container">
-    <div class="lab-origin__header" data-reveal>
-      <h2 class="lab-origin__title" data-it="Dove cerchiamo<br><em>gli ingredienti.</em>" data-en="Where we source<br><em>our ingredients.</em>">
-        Dove cerchiamo<br><em>gli ingredienti.</em>
-      </h2>
-    </div>
-    <div class="lab-origin__globe-layout" data-reveal>
-      <div class="lab-origin__globe-col">
-        <canvas id="labGlobe"></canvas>
-      </div>
-      <div class="lab-origin__panel">
-        <div class="lop-toolbar">
-          <span class="lop-counter" id="lopCounter">15 origini · 14 ingredienti</span>
-          <div class="lop-chips">
-            <button class="lop-chip active" data-brand="all" data-it="Tutti" data-en="All">Tutti</button>
-            <button class="lop-chip" data-brand="erboristica">l'Erboristica</button>
-            <button class="lop-chip" data-brand="everby">Everby</button>
-            <button class="lop-chip" data-brand="kaley">Kaley</button>
-            <button class="lop-chip" data-brand="sphea">Sphea</button>
-          </div>
-        </div>
-        <div class="lop-accordion" id="lopAccordion">
-          <div class="lop-continent open" data-continent="europa">
-            <div class="lop-continent__head">
-              <span class="lop-continent__name" data-it="Mediterraneo &amp; Europa" data-en="Mediterranean &amp; Europe">Mediterraneo &amp; Europa</span>
-              <span class="lop-continent__count">6</span>
-              <span class="lop-continent__chev">▾</span>
-            </div>
-            <div class="lop-continent__rows" id="rows-europa"></div>
-          </div>
-          <div class="lop-continent" data-continent="africa">
-            <div class="lop-continent__head">
-              <span class="lop-continent__name" data-it="Africa" data-en="Africa">Africa</span>
-              <span class="lop-continent__count">2</span>
-              <span class="lop-continent__chev">▾</span>
-            </div>
-            <div class="lop-continent__rows" id="rows-africa"></div>
-          </div>
-          <div class="lop-continent" data-continent="asia">
-            <div class="lop-continent__head">
-              <span class="lop-continent__name" data-it="Asia" data-en="Asia">Asia</span>
-              <span class="lop-continent__count">4</span>
-              <span class="lop-continent__chev">▾</span>
-            </div>
-            <div class="lop-continent__rows" id="rows-asia"></div>
-          </div>
-          <div class="lop-continent" data-continent="pacifico">
-            <div class="lop-continent__head">
-              <span class="lop-continent__name" data-it="Pacifico" data-en="Pacific">Pacifico</span>
-              <span class="lop-continent__count">1</span>
-              <span class="lop-continent__chev">▾</span>
-            </div>
-            <div class="lop-continent__rows" id="rows-pacifico"></div>
-          </div>
-          <div class="lop-continent" data-continent="oceani">
-            <div class="lop-continent__head">
-              <span class="lop-continent__name" data-it="Oceani &amp; coste" data-en="Oceans &amp; coasts">Oceani &amp; coste</span>
-              <span class="lop-continent__count">2</span>
-              <span class="lop-continent__chev">▾</span>
-            </div>
-            <div class="lop-continent__rows" id="rows-oceani"></div>
-          </div>
-        </div>
-        <div class="lop-footer">
-          <a href="sostenibilita.html" data-it="Filiera etica e sostenibilità →" data-en="Ethical supply chain &amp; sustainability →">Filiera etica e sostenibilità →</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- (sezione "Dove cerchiamo gli ingredienti" rimossa) -->
 
-<div class="lab-origin__detail-overlay" id="labDetailOverlay"></div>
-<div class="lab-origin__detail" id="labDetail" role="dialog" aria-modal="true" data-lenis-prevent>
-  <button class="lod-close" id="lodClose" aria-label="Chiudi">✕</button>
-  <div class="lod-eyebrow" id="lodEyebrow"></div>
-  <h3 class="lod-name" id="lodName"></h3>
-  <div class="lod-place" id="lodPlace"></div>
-  <span class="lod-brand-tag" id="lodBrand"></span>
-  <div class="lod-divider"></div>
-  <div class="lod-label" data-it="Origine &amp; impiego" data-en="Origin &amp; use">Origine &amp; impiego</div>
-  <p class="lod-desc" id="lodDesc"></p>
-  <div class="lod-botanical" id="lodBotanical"></div>
-</div>
+<!-- (modal origine ingredienti rimosso) -->
 
 <!-- ════════════════════════════════════════════════════════
      GMP + CERTIFICAZIONI
