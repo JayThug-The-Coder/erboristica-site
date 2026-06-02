@@ -4,6 +4,24 @@
 
 ---
 
+# 🛠️ Sessione 2 Giugno 2026 — doc correzioni + fix foto stirate + archivio galleria
+
+**Vedi `HANDOFF.md` (blocco "SESSIONE 2 giugno") per il dettaglio completo.** Sintesi:
+- **Doc correzioni** applicate e **pushate** su 11 pagine/file: Home, `linee.html`, Sphea (scheda: testi ingranditi+breathing+arricchimento brochure), Everby (filosofia/routine/Cityblock 365/Lash Me clinico/fix Pump&Plump-HA/Pepti Boom clinico), Kaley (piramidi olfattive ora renderizzate + restyle, testi hero ingranditi), Erboristica (Argan/Antietà "Skin Longevity"/Estratti raggruppati con intestazioni/Uomo + descr. siero), Laboratorio (rimozioni + blocco "Dove cerchiamo gli ingredienti"), Sostenibilità (rimosse statistiche X/87 + descr. lunghe cert), Contatti (referenti reali).
+- **Fix foto stirate** (pushato): 17 hero Everby+Uomo forzati a 3:4 (stiramento orizzontale) → ripristinati a 0.664 da `_GALLERIA/.../prodotto-pack/`. Cache-buster card `linea.html` → `?v=5`.
+- **Archivio galleria unico** (SOLO LOCALE, `_GALLERIA` è gitignored): consolidate le foto del sito nella galleria (pack/attivi + Kaley/Sphea `pagina-prodotto/` + `_pagine/`). Rimossa `illumia/siero-viso-antimacchie` (obsoleta).
+- **Pulizia dati**: rimossi 12 blocchi `images` morti Kaley/Sphea da `data.json`+`data-inline.js`.
+
+**Se voglio cambiare X → Y (foto):**
+- Foto prodotto Erboristica/Everby/Uomo (hero scheda + card linea) → `immagini/<linea>/<prodotto>/hero.webp`; 2ª foto → `det-01.webp`; 3ª → `det-02.webp` (mancante per tutti).
+- Foto Kaley → `immagini/kaley/<frag>/pack-gradiente.webp` (pagina custom `prodotto-kaley.html`). Foto Sphea → `immagini/sphea/<slug>/packaging.webp`+`attivi.webp` (pagina custom `prodotto-sphea.html`).
+- Cambiata una foto e online resta vecchia? → bump `?v=N` in `linee/linea.html` (card) / cache CDN.
+- Archivio master di tutte le foto (NON online) → `immagini/_GALLERIA/` (gitignored).
+
+**Aperto:** terza foto `det-02` tutti i prodotti; foto reali pagine principali; cocco/scrub pack landscape in galleria.
+
+---
+
 # 🛠️ Sessione 1 Giugno 2026 — i18n completo schede prodotto + libreria attivi + rimozione tag
 
 **Obiettivo utente:** completare la traduzione EN delle schede `prodotto.html` (linea L'Erboristica; Kaley/Everby/Sphea esclusi = nomi propri), tradurre anche le finestrelle attivi/ingredienti, rimuovere i tag riquadrati in fondo al modale attivi (Lenitiva/Cica/Riparatrice/Anti-rossori), confermare che il modale usi la palette della linea.

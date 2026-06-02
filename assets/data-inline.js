@@ -1953,12 +1953,7 @@ window.ATH_DATA_JSON = {
       "certifications": [
         "energia-solare",
         "made-in-italy"
-      ],
-      "images": {
-        "hero": "immagini/kaley/profumo-roll-on-crystal-rouge/hero.webp",
-        "detail_1": "immagini/kaley/profumo-roll-on-crystal-rouge/det-01.webp",
-        "detail_2": "immagini/kaley/profumo-roll-on-crystal-rouge/det-02.webp"
-      }
+      ]
     },
     {
       "id": "kaley-profumo-roll-on-dark-sea",
@@ -1980,12 +1975,7 @@ window.ATH_DATA_JSON = {
       "certifications": [
         "energia-solare",
         "made-in-italy"
-      ],
-      "images": {
-        "hero": "immagini/kaley/profumo-roll-on-dark-sea/hero.webp",
-        "detail_1": "immagini/kaley/profumo-roll-on-dark-sea/det-01.webp",
-        "detail_2": "immagini/kaley/profumo-roll-on-dark-sea/det-02.webp"
-      }
+      ]
     },
     {
       "id": "kaley-profumo-roll-on-golden-hour",
@@ -2007,12 +1997,7 @@ window.ATH_DATA_JSON = {
       "certifications": [
         "energia-solare",
         "made-in-italy"
-      ],
-      "images": {
-        "hero": "immagini/kaley/profumo-roll-on-golden-hour/hero.webp",
-        "detail_1": "immagini/kaley/profumo-roll-on-golden-hour/det-01.webp",
-        "detail_2": "immagini/kaley/profumo-roll-on-golden-hour/det-02.webp"
-      }
+      ]
     },
     {
       "id": "kaley-profumo-roll-on-moka-rose",
@@ -2034,12 +2019,7 @@ window.ATH_DATA_JSON = {
       "certifications": [
         "energia-solare",
         "made-in-italy"
-      ],
-      "images": {
-        "hero": "immagini/kaley/profumo-roll-on-moka-rose/hero.webp",
-        "detail_1": "immagini/kaley/profumo-roll-on-moka-rose/det-01.webp",
-        "detail_2": "immagini/kaley/profumo-roll-on-moka-rose/det-02.webp"
-      }
+      ]
     },
     {
       "id": "kaley-profumo-roll-on-monty-tonka",
@@ -2061,12 +2041,7 @@ window.ATH_DATA_JSON = {
       "certifications": [
         "energia-solare",
         "made-in-italy"
-      ],
-      "images": {
-        "hero": "immagini/kaley/profumo-roll-on-monty-tonka/hero.webp",
-        "detail_1": "immagini/kaley/profumo-roll-on-monty-tonka/det-01.webp",
-        "detail_2": "immagini/kaley/profumo-roll-on-monty-tonka/det-02.webp"
-      }
+      ]
     },
     {
       "id": "kaley-profumo-roll-on-spring-symphony",
@@ -2088,12 +2063,7 @@ window.ATH_DATA_JSON = {
       "certifications": [
         "energia-solare",
         "made-in-italy"
-      ],
-      "images": {
-        "hero": "immagini/kaley/profumo-roll-on-spring-symphony/hero.webp",
-        "detail_1": "immagini/kaley/profumo-roll-on-spring-symphony/det-01.webp",
-        "detail_2": "immagini/kaley/profumo-roll-on-spring-symphony/det-02.webp"
-      }
+      ]
     },
     {
       "id": "kaley-profumo-roll-on-sweet-whisper",
@@ -2115,12 +2085,7 @@ window.ATH_DATA_JSON = {
       "certifications": [
         "energia-solare",
         "made-in-italy"
-      ],
-      "images": {
-        "hero": "immagini/kaley/profumo-roll-on-sweet-whisper/hero.webp",
-        "detail_1": "immagini/kaley/profumo-roll-on-sweet-whisper/det-01.webp",
-        "detail_2": "immagini/kaley/profumo-roll-on-sweet-whisper/det-02.webp"
-      }
+      ]
     },
     {
       "id": "doppia-detersione-kit-doppia-detersione-viso-occhi-labbra",
@@ -3616,12 +3581,7 @@ window.ATH_DATA_JSON = {
         "Niacinamide"
       ],
       "format": "30 ml",
-      "cosmoprof_finalist": false,
-      "images": {
-        "hero": "immagini/sphea/anti-pollution/hero.webp",
-        "detail_1": "immagini/sphea/anti-pollution/det-01.webp",
-        "detail_2": "immagini/sphea/anti-pollution/det-02.webp"
-      }
+      "cosmoprof_finalist": false
     },
     {
       "id": "sphea-radiant-up-lift",
@@ -3648,12 +3608,7 @@ window.ATH_DATA_JSON = {
         "Niacinamide"
       ],
       "format": "30 ml",
-      "cosmoprof_finalist": false,
-      "images": {
-        "hero": "immagini/sphea/radiant-up-lift/hero.webp",
-        "detail_1": "immagini/sphea/radiant-up-lift/det-01.webp",
-        "detail_2": "immagini/sphea/radiant-up-lift/det-02.webp"
-      }
+      "cosmoprof_finalist": false
     },
     {
       "id": "sphea-eyelift-perfector",
@@ -3683,12 +3638,7 @@ window.ATH_DATA_JSON = {
       ],
       "format": "Astuccio + flacone vetro + contagocce",
       "pao": "6 mesi dopo apertura",
-      "cosmoprof_finalist": false,
-      "images": {
-        "hero": "immagini/sphea/eyelift-perfector/hero.webp",
-        "detail_1": "immagini/sphea/eyelift-perfector/det-01.webp",
-        "detail_2": "immagini/sphea/eyelift-perfector/det-02.webp"
-      }
+      "cosmoprof_finalist": false
     },
     {
       "id": "sphea-sculpt-firm",
@@ -3721,12 +3671,7 @@ window.ATH_DATA_JSON = {
       ],
       "format": "[da verificare]",
       "cosmoprof_finalist": true,
-      "cosmoprof_category": "Body",
-      "images": {
-        "hero": "immagini/sphea/sculpt-firm/hero.webp",
-        "detail_1": "immagini/sphea/sculpt-firm/det-01.webp",
-        "detail_2": "immagini/sphea/sculpt-firm/det-02.webp"
-      }
+      "cosmoprof_category": "Body"
     },
     {
       "id": "sphea-slim-silhouette",
@@ -3763,12 +3708,7 @@ window.ATH_DATA_JSON = {
         "Galaxolide"
       ],
       "format": "[da verificare]",
-      "cosmoprof_finalist": false,
-      "images": {
-        "hero": "immagini/sphea/slim-silhouette/hero.webp",
-        "detail_1": "immagini/sphea/slim-silhouette/det-01.webp",
-        "detail_2": "immagini/sphea/slim-silhouette/det-02.webp"
-      }
+      "cosmoprof_finalist": false
     }
   ]
 };
