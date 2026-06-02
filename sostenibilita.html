@@ -60,9 +60,19 @@
   pointer-events: none;
 }
 
+.sh__photo {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: 28% 45%;
+  z-index: 0;
+}
 .sh__overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,.25) 0%, transparent 35%, rgba(0,0,0,.55) 100%);
+  z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.30) 0%, transparent 32%, rgba(0,0,0,.55) 100%),
+    linear-gradient(90deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.12) 45%, transparent 70%);
 }
 
 /* particelle botaniche */
@@ -220,10 +230,10 @@
 
 .impact-grid {
   display: grid;
-  grid-template-columns: repeat(4,1fr);
+  grid-template-columns: repeat(3,1fr);
   gap: 0;
 }
-@media (max-width: 900px) { .impact-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 760px) { .impact-grid { grid-template-columns: 1fr; } }
 
 .impact-item {
   background: rgba(45,58,46,.6);
@@ -241,10 +251,10 @@
 /* ghost watermark */
 .impact-item__ghost {
   position: absolute;
-  right: 0.04em;
-  bottom: 0;
+  right: clamp(14px,1.6vw,30px);
+  bottom: clamp(14px,1.6vw,26px);
   font-family: var(--display);
-  font-size: clamp(80px,10vw,160px);
+  font-size: clamp(72px,9vw,140px);
   font-weight: 300;
   font-style: italic;
   color: rgba(255,255,255,.04);
@@ -301,8 +311,8 @@
 
 /* ── PILASTRI ─────────────────────────────────────────────── */
 .pillar-section-header {
-  background: var(--ink);
-  color: var(--cream);
+  background: var(--panna);
+  color: var(--ink);
   padding: clamp(80px,10vw,130px) 0 0;
 }
 .pillar-section-header .container {
@@ -319,18 +329,18 @@
   letter-spacing: -0.03em;
   max-width: 16ch;
   padding-bottom: clamp(60px,8vw,100px);
-  border-bottom: 1px solid rgba(255,255,255,.08);
+  border-bottom: 1px solid rgba(0,0,0,.08);
 }
 .pillar-sec-title em { font-style: italic; color: var(--gold); }
 
 /* singolo pilastro */
 .pillar-block {
-  background: var(--ink);
-  color: var(--cream);
+  background: var(--panna);
+  color: var(--ink);
   position: relative;
   overflow: hidden;
 }
-.pillar-block--alt { background: #0e1510; }
+.pillar-block--alt { background: #efe8da; }
 
 .pillar-block__inner {
   max-width: var(--max-w);
@@ -387,8 +397,8 @@
   gap: clamp(20px,3vw,44px);
   margin-bottom: 32px;
   padding: clamp(20px,2.5vw,36px) 0;
-  border-top: 1px solid rgba(255,255,255,.07);
-  border-bottom: 1px solid rgba(255,255,255,.07);
+  border-top: 1px solid rgba(0,0,0,.07);
+  border-bottom: 1px solid rgba(0,0,0,.07);
 }
 .pillar-zero__num {
   font-family: var(--display);
@@ -397,7 +407,7 @@
   font-style: italic;
   line-height: 1;
   letter-spacing: -0.04em;
-  color: var(--cream);
+  color: var(--ink);
   flex-shrink: 0;
 }
 .pillar-zero__num span {
@@ -408,7 +418,7 @@
 .pillar-zero__divider {
   width: 1px;
   height: clamp(60px,8vw,100px);
-  background: rgba(255,255,255,.12);
+  background: rgba(0,0,0,.12);
   flex-shrink: 0;
 }
 .pillar-zero__list {
@@ -424,7 +434,7 @@
   font-size: clamp(10px,1vw,12px);
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--cream);
+  color: var(--ink);
   opacity: .55;
 }
 .pillar-zero__item::before {
@@ -440,14 +450,14 @@
   display: flex;
   flex-direction: column;
   gap: 0;
-  border-top: 1px solid rgba(255,255,255,.08);
+  border-top: 1px solid rgba(0,0,0,.08);
 }
 .pillar-block__fact {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   padding: 14px 0;
-  border-bottom: 1px solid rgba(255,255,255,.06);
+  border-bottom: 1px solid rgba(0,0,0,.06);
   gap: 20px;
 }
 .pillar-block__fact-label {
@@ -462,7 +472,7 @@
   font-size: 18px;
   font-weight: 300;
   font-style: italic;
-  color: var(--cream);
+  color: var(--ink);
   text-align: right;
 }
 
@@ -470,7 +480,7 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
-  border-top: 1px solid rgba(255,255,255,.08);
+  border-top: 1px solid rgba(0,0,0,.08);
   padding-top: 22px;
 }
 .pillar-block__note {
@@ -479,7 +489,7 @@
   font-family: var(--serif);
   font-size: clamp(15px,1.2vw,18px);
   line-height: 1.55;
-  color: var(--cream);
+  color: var(--ink);
   opacity: .8;
 }
 .pillar-block__note::before {
@@ -496,8 +506,8 @@
 .pillar-block__visual {
   position: relative;
   aspect-ratio: 4/5;
-  background: rgba(255,255,255,.03);
-  border: 1px solid rgba(255,255,255,.06);
+  background: rgba(0,0,0,.03);
+  border: 1px solid rgba(0,0,0,.06);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -514,7 +524,7 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
   opacity: .2;
-  color: var(--cream);
+  color: var(--ink);
 }
 
 .pillar-block__svg-deco {
@@ -523,20 +533,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  pointer-events: none;
-}
-
-/* ghost number su visual */
-.pillar-block__visual-n {
-  position: absolute;
-  bottom: -0.1em;
-  right: -0.05em;
-  font-family: var(--display);
-  font-size: clamp(100px,14vw,220px);
-  font-weight: 300;
-  font-style: italic;
-  color: rgba(255,255,255,.04);
-  line-height: 1;
   pointer-events: none;
 }
 
@@ -718,13 +714,14 @@
 }
 .cert-panel__hero-label {
   position: absolute;
-  bottom: 28px; left: 36px;
+  bottom: 32px; left: 36px; right: 36px;
   font-family: var(--display);
-  font-size: clamp(36px,5vw,64px);
+  font-size: clamp(34px,4.2vw,46px);
   font-weight: 300;
-  letter-spacing: -0.03em;
-  line-height: .9;
+  letter-spacing: -0.02em;
+  line-height: 1.04;
   color: #fff;
+  text-shadow: 0 2px 18px rgba(0,0,0,.45);
 }
 .cert-panel__hero-label em { font-style: italic; color: var(--gold); }
 .cert-panel__body { padding: 36px 36px 60px; flex: 1; }
@@ -930,16 +927,7 @@
 
 <!-- HERO -->
 <section class="sh" data-mood-fallback="dark">
-  <div class="photo-slot photo-slot--video-overlay photo-slot--fullbleed" style="z-index:0;pointer-events:none;" data-slot-label="FOTO natura/pianta · paesaggio Appennino da ORGANIZZATO">
-    <span class="photo-slot__label" style="pointer-events:none;">Foto · Natura</span>
-  </div>
-  <div class="sh__bg">
-    <!-- SOSTITUIRE OPZIONALE: foto natura/pianta o paesaggio dell'Appennino bolognese · 16:9 · giorno chiaro · 3000px+ · sostituirebbe il gradient CSS verde dell'hero. Da reperire. -->
-  </div>
-  <div class="sh__grid"></div>
-  <div class="sh__mark" aria-hidden="true">eco.</div>
-
-
+  <img src="immagini/sostenibilita/hero-eco.webp" alt="" class="sh__photo" loading="eager" decoding="async"/>
   <div class="sh__overlay"></div>
   <div class="sh__content container">
     <div class="eyebrow" style="color:rgba(201,169,110,.6); margin-bottom:28px; font-size:9px; letter-spacing:0.32em; text-transform:uppercase; display:inline-flex; align-items:center; gap:14px;"><span style="display:inline-block; width:28px; height:1px; background:rgba(201,169,110,.4); flex-shrink:0;"></span><span data-it="Sostenibilità" data-en="Sustainability">Sostenibilità</span></div>
@@ -1026,7 +1014,6 @@
     </div>
     <div class="pillar-block__visual" style="direction:ltr;">
       <img src="immagini/sostenibilita/controllo-laboratorio.jpg" alt="Controllo del pH di una formula in laboratorio Athena's, con soluzioni tampone tarate" class="cover-img" loading="lazy">
-      <div class="pillar-block__visual-n" aria-hidden="true">01</div>
     </div>
   </div>
 </div>
@@ -1057,7 +1044,6 @@
     </div>
     <div class="pillar-block__visual">
       <img src="immagini/sostenibilita/packaging-vuoti.jpg" alt="Vasetti in vetro vuoti sulla giostra di riempimento, packaging dei prodotti Athena's" class="cover-img" loading="lazy">
-      <div class="pillar-block__visual-n" aria-hidden="true">02</div>
     </div>
   </div>
 </div>
@@ -1110,24 +1096,6 @@
 initAthenas('eco');
 document.querySelector('.topbar').classList.add('topbar--light');
 
-// particelle hero
-(function() {
-  const sh = document.querySelector('.sh');
-  for (let i = 0; i < 28; i++) {
-    const p = document.createElement('div');
-    p.className = 'sh__particle';
-    const size = 2 + Math.random() * 3;
-    p.style.cssText = `
-      left: ${10 + Math.random() * 80}%;
-      top: ${20 + Math.random() * 70}%;
-      width: ${size}px; height: ${size}px;
-      --dx: ${(Math.random() - .5) * 60}px;
-      animation: eco-particle ${6 + Math.random() * 10}s ease-in-out ${Math.random() * 8}s infinite;
-      opacity: 0;
-    `;
-    sh.appendChild(p);
-  }
-})();
 
 // IntersectionObserver
 const obs = new IntersectionObserver((entries) => {
@@ -1146,8 +1114,8 @@ const CERTS = [
     id: 'bioagricert',
     name: 'Plant Based',
     badge: 'Bioagricert',
-    tagline: 'L\'unica certificazione di terza parte esposta in etichetta: garantisce la naturalità vegetale di ogni nostra formula.',
-    lead: 'Bioagricert (www.bioagricert.org) è l\'ente certificatore terzo che rilascia la certificazione "Plant Based": garantisce che le nostre formule siano costituite prevalentemente da ingredienti vegetali e altre sostanze naturali, escluse materie prime di origine animale.',
+    tagline: 'Naturalità vegetale, garantita in etichetta.',
+    lead: 'L\'unica certificazione di terza parte che esponiamo direttamente in etichetta. Rilasciata da Bioagricert (www.bioagricert.org), garantisce che ogni formula sia costituita prevalentemente da ingredienti vegetali e altre sostanze naturali, escluse le materie prime di origine animale.',
     desc: '',
     facts: [
       { label: 'Ente certificatore', val: 'Bioagricert' },
@@ -1161,11 +1129,16 @@ const CERTS = [
     id: 'vegan',
     name: 'Vegan',
     badge: 'Etica Animale',
-    tagline: 'Per ogni prodotto che riporta il logo, nessun ingrediente animale.',
-    lead: 'Il logo Vegan viene apposto sui prodotti che non contengono materie prime di origine animale, né ottenute attraverso lo sfruttamento di animali.',
-    desc: '',
-    facts: [],
-    quote: '',
+    tagline: 'Per ogni prodotto col logo, nessun ingrediente animale.',
+    lead: 'La certificazione VEGANOK garantisce l\'assenza totale di materie prime di origine animale o derivate dallo sfruttamento di animali — nella formula e in tutto il packaging.',
+    desc: 'Sono esclusi rigorosamente i derivati animali più comuni in cosmetica — cera d\'api, lanolina, latte e derivati, miele e pappa reale, cocciniglia (carminio) — così come acido ialuronico, collagene o cheratina di origine animale, ammessi solo nelle versioni vegetali o biotecnologiche. Il controllo si estende a tutto il confezionamento: le colle non contengono caseina o gelatine animali e gli inchiostri non usano coloranti animali. Nessuna sostanza impiegata può aver comportato test sugli animali. Sul piano normativo (ISO 14021) è una certificazione di tipo II, basata sull\'autodichiarazione del produttore sotto la verifica del Comitato Scientifico dell\'Associazione Vegani Italiani Onlus.',
+    facts: [
+      { label: 'Standard', val: 'VEGANOK' },
+      { label: 'Formula', val: 'Zero derivati animali' },
+      { label: 'Packaging', val: 'Vegan, colle e inchiostri inclusi' },
+      { label: 'Supervisione', val: 'Comitato Scientifico AVI Onlus' },
+    ],
+    quote: '"VEGANOK non si ferma alla formula: arriva fino alla colla dell\'etichetta e all\'inchiostro della confezione."',
     bg: 'linear-gradient(155deg, #1a3010 0%, #2a5020 50%, #4a8040 100%)',
   },
   {
@@ -1267,8 +1240,8 @@ const CERT_NAMES_EN = {
   'metalli-pesanti': 'Heavy Metal Test',
 };
 const CERT_TAGLINES_EN = {
-  bioagricert: 'The only third-party certification shown on the label: it guarantees the plant-based naturalness of every formula.',
-  vegan: 'For every product bearing the logo, no animal ingredients.',
+  bioagricert: 'Plant-based naturalness, guaranteed on the label.',
+  vegan: 'For every product with the logo, no animal ingredients.',
   dermatologico: 'In collaboration with the Department of Cosmetology.',
   'metalli-pesanti': 'Formulated to minimise the risk of contact allergies.',
   opimm: 'Packaging carried out by workers with disabilities.',
@@ -1276,8 +1249,8 @@ const CERT_TAGLINES_EN = {
 };
 // Contenuto pannello di dettaglio in EN (lead/desc/quote/facts). Le chiavi sono gli id cert.
 const CERT_LEAD_EN = {
-  bioagricert: 'Bioagricert (www.bioagricert.org) is the third-party certification body that issues the "Plant Based" certification: it guarantees that our formulas are made up predominantly of plant ingredients and other natural substances, excluding raw materials of animal origin.',
-  vegan: 'The Vegan logo is applied to products that contain no raw materials of animal origin, nor any obtained through the exploitation of animals.',
+  bioagricert: 'The only third-party certification we show directly on the label. Issued by Bioagricert (www.bioagricert.org), it guarantees that every formula is made up predominantly of plant ingredients and other natural substances, excluding raw materials of animal origin.',
+  vegan: 'VEGANOK certification guarantees the total absence of raw materials of animal origin or derived from the exploitation of animals — in the formula and across all packaging.',
   dermatologico: 'Athena\'s works with the Department of Cosmetology of the University of Ferrara to carry out studies assessing efficacy, skin and eye tolerability, and the microbiological control of products.',
   'metalli-pesanti': 'All products in the "L\'Erboristica di Athena\'s dal 1969" line are tested for Nickel, Chromium and Cobalt, the three heavy metals most commonly responsible for allergic skin-contact reactions.',
   opimm: 'A significant part of Athena\'s packaging activities is carried out by OPIMM (www.opimm.it), a protected work centre, a Bologna-based organisation that has promoted the working inclusion of people with disabilities for decades.',
@@ -1285,7 +1258,7 @@ const CERT_LEAD_EN = {
 };
 const CERT_DESC_EN = {
   bioagricert: '',
-  vegan: '',
+  vegan: 'The most common animal derivatives in cosmetics are strictly excluded — beeswax, lanolin, milk and its derivatives, honey and royal jelly, cochineal (carmine) — as well as hyaluronic acid, collagen or keratin of animal origin, allowed only in their plant or biotech versions. The check extends to all packaging: glues contain no casein or animal gelatines and inks use no animal-derived colourants. No substance used may have involved animal testing. In regulatory terms (ISO 14021) it is a Type II certification, based on the manufacturer\'s self-declaration under the verification of the Scientific Committee of the Italian Vegans Association (AVI Onlus).',
   dermatologico: 'The tests are conducted by dermatologists and university researchers on controlled panels. The protocol includes instrumental measurements and clinical evaluations under standardised conditions.',
   'metalli-pesanti': 'The tests measure the residual presence of metal traces from raw materials, production equipment or primary packaging. The tolerance threshold adopted by Athena\'s is below European regulatory limits.',
   opimm: 'It is neither a product certification nor a commercial trademark: it is an ethical and social choice that we believe is important to declare. The relationship with OPIMM has been ongoing for many years and covers stages of the secondary packaging of selected lines. It is cited on the institutional pages of both websites (athenas.it and erboristica.com) as part of our commitment to supply-chain ethics.',
@@ -1293,7 +1266,7 @@ const CERT_DESC_EN = {
 };
 const CERT_QUOTE_EN = {
   bioagricert: '"Plant Based is not a slogan: it is a documented, audit-driven certification, shown on every label that carries it."',
-  vegan: '',
+  vegan: '"VEGANOK doesn\'t stop at the formula: it reaches the glue on the label and the ink on the box."',
   dermatologico: '"Entrusting the tests to a university means accepting that the results are public, replicable, and independent of our own opinion."',
   'metalli-pesanti': '"For those with metal-reactive skin, every detail matters. Our tests go where regulation does not require us to go."',
   opimm: '"OPIMM is not a supplier: it is a community we have worked with for years. The most important choice, on the label, is the name of those who put their hands on that product."',
@@ -1305,7 +1278,12 @@ const CERT_FACTS_EN = {
     { label: 'Type', val: 'Independent third party' },
     { label: 'Lines covered', val: 'L\'Erboristica · Everby' },
   ],
-  vegan: [],
+  vegan: [
+    { label: 'Standard', val: 'VEGANOK' },
+    { label: 'Formula', val: 'Zero animal derivatives' },
+    { label: 'Packaging', val: 'Vegan, glues and inks included' },
+    { label: 'Oversight', val: 'AVI Onlus Scientific Committee' },
+  ],
   dermatologico: [
     { label: 'Partner', val: 'University of Ferrara' },
     { label: 'Department', val: 'Cosmetology' },
@@ -1432,104 +1410,6 @@ function closeCert() {
   document.body.style.overflow = '';
   if (window.lenis) window.lenis.start();
 }
-
-// ── CANVAS PARTICELLE BOTANICHE HERO ──────────────────────────────
-(function() {
-  const sh = document.querySelector('.sh');
-  if (!sh) return;
-  const canvas = document.createElement('canvas');
-  canvas.className = 'eco-canvas';
-  sh.insertBefore(canvas, sh.querySelector('.sh__grid'));
-  const ctx = canvas.getContext('2d');
-  const mouse = { x: null, y: null };
-  const COLORS = [
-    [138,154,123], [201,169,110], [255,255,255]
-  ];
-  let particles = [], rafId, W, H;
-
-  function resize() {
-    W = canvas.width = sh.offsetWidth;
-    H = canvas.height = sh.offsetHeight;
-  }
-  window.addEventListener('resize', resize, { passive: true });
-  resize();
-
-  function Particle() { this.reset(true); }
-  Particle.prototype.reset = function(init) {
-    this.x = Math.random() * W;
-    this.y = init ? Math.random() * H : H + 5;
-    this.vx = (Math.random() - .5) * .28;
-    this.vy = -(Math.random() * .25 + .08);
-    this.r  = .6 + Math.random() * 1.6;
-    this.c  = COLORS[Math.floor(Math.random() * COLORS.length)];
-    this.a  = .15 + Math.random() * .35;
-    this.life = 0;
-    this.maxLife = 250 + Math.random() * 350;
-  };
-  Particle.prototype.update = function() {
-    this.life++;
-    if (this.life > this.maxLife || this.y < -10) { this.reset(false); return; }
-    if (mouse.x !== null) {
-      const dx = this.x - mouse.x, dy = this.y - mouse.y;
-      const d = Math.sqrt(dx*dx + dy*dy);
-      if (d < 110) {
-        const f = (110 - d) / 110 * .45;
-        this.vx += dx/d * f;
-        this.vy += dy/d * f;
-      }
-    }
-    this.vx *= .97; this.vy *= .97;
-    this.x += this.vx; this.y += this.vy;
-    if (this.x < 0) this.x = W; if (this.x > W) this.x = 0;
-  };
-  Particle.prototype.draw = function() {
-    const fade = Math.min(this.life/50, 1, (this.maxLife-this.life)/50);
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.r, 0, Math.PI*2);
-    ctx.fillStyle = `rgba(${this.c[0]},${this.c[1]},${this.c[2]},${this.a*fade})`;
-    ctx.fill();
-  };
-
-  const N = Math.min(Math.floor(W*H/11000), 90);
-  for (let i=0; i<N; i++) { particles.push(new Particle()); }
-
-  function drawLines() {
-    const D = 95;
-    for (let a=0; a<particles.length; a++) {
-      for (let b=a+1; b<particles.length; b++) {
-        const dx = particles[a].x-particles[b].x, dy = particles[a].y-particles[b].y;
-        const d = Math.sqrt(dx*dx+dy*dy);
-        if (d < D) {
-          ctx.beginPath();
-          ctx.moveTo(particles[a].x, particles[a].y);
-          ctx.lineTo(particles[b].x, particles[b].y);
-          ctx.strokeStyle = `rgba(201,169,110,${(1-d/D)*.055})`;
-          ctx.lineWidth = .4; ctx.stroke();
-        }
-      }
-    }
-  }
-
-  function animate() {
-    ctx.clearRect(0,0,W,H);
-    drawLines();
-    particles.forEach(p => { p.update(); p.draw(); });
-    rafId = requestAnimationFrame(animate);
-  }
-
-  const visObs = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting) { animate(); }
-    else { cancelAnimationFrame(rafId); }
-  });
-  visObs.observe(sh);
-
-  sh.addEventListener('mousemove', e => {
-    const rect = sh.getBoundingClientRect();
-    mouse.x = e.clientX - rect.left;
-    mouse.y = e.clientY - rect.top;
-  }, { passive: true });
-  sh.addEventListener('mouseleave', () => { mouse.x = mouse.y = null; });
-})();
 
 // ── CONTATORI ANIMATI NUMERI IMPATTO ──────────────────────────────
 (function() {

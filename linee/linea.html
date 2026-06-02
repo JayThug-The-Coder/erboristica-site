@@ -978,9 +978,9 @@ body.theme-line-antieta {
       heroBg.appendChild(img);
     }
 
-    // Watermark (numero linea)
-    const lineIdx = LINES.filter(l => l.brand === 'erboristica').indexOf(line) + 1;
-    document.getElementById('heroWatermark').textContent = String(lineIdx).padStart(2, '0');
+    // Numero linea rimosso (su richiesta): watermark nascosto
+    const _wm = document.getElementById('heroWatermark');
+    if (_wm) _wm.style.display = 'none';
 
     // Testi hero
     const lang = () => (typeof ATH !== 'undefined' ? ATH.lang : 'it');
@@ -1011,7 +1011,6 @@ body.theme-line-antieta {
       meta.innerHTML = '';
       const metaItems = [
         { label: l === 'it' ? 'Pelle' : 'Skin', val: line[l].skin || '—' },
-        { label: l === 'it' ? 'Linea' : 'Line', val: `L.${String(lineIdx).padStart(2,'0')}` },
         { label: l === 'it' ? 'Prodotti' : 'Products', val: PRODUCTS.filter(p => p.line === lineId).length },
       ];
       metaItems.forEach(m => {
@@ -1076,7 +1075,7 @@ body.theme-line-antieta {
     };
 
     /* Override inquadratura per foto in cui il prodotto verrebbe tagliato in alto */
-    const toTitleCase = s => s.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+    const toTitleCase = s => s.toLowerCase().replace(/(^|[\s\-–/])([a-zà-ÿ])/g, (_, sep, ch) => sep + ch.toUpperCase());
 
     const firstSent = txt => {
       if (!txt) return '';
@@ -1207,7 +1206,7 @@ body.theme-line-antieta {
         article.innerHTML = `
           <div class="mini-card__visual">
             ${cardImg
-              ? `<img loading="lazy" decoding="async" src="${cardImg}?v=5" alt="${locData.name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;">`
+              ? `<img loading="lazy" decoding="async" src="${cardImg}?v=6" alt="${locData.name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;">`
               : `<div class="pm">${productMock(line.palette, '', shape)}</div>`
             }
           </div>

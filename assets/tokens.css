@@ -3,6 +3,8 @@
   /* Palette madre — ricorrente dal catalogo */
   --cream: #f3eee4;
   --cream-2: #ede6d7;
+  /* Panna chiaro/neutro — sostituisce gli sfondi scuri (sezioni non-hero) */
+  --panna: #f6f2ea;
   --ink: #1a1a1a;
   --ink-soft: #2a2a2a;
   --sage: #8a9a7b;

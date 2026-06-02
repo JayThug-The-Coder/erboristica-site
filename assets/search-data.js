@@ -146,7 +146,7 @@
         data.products.forEach(p => {
           if (!p.id || !p.name_it) return;
           const rawName = (en && p.name_en) ? p.name_en : p.name_it;
-          const nice = (rawName || '').toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+          const nice = (rawName || '').toLowerCase().replace(/(^|[\s\-–/])([a-zà-ÿ])/g, (_, sep, ch) => sep + ch.toUpperCase());
           const desc = ((en && p.subtitle_en ? p.subtitle_en : p.subtitle_it) || '').slice(0, 100);
           idx.push({
             type: 'product',

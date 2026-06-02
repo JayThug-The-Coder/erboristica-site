@@ -148,6 +148,7 @@
       font-family: var(--display);
       font-size: clamp(36px, 5.5vw, 72px);
       font-weight: 300;
+      font-style: italic;
       letter-spacing: -0.025em;
       line-height: 1.0;
       color: var(--ink);
@@ -1117,6 +1118,7 @@ function adaptJsonProduct(p) {
     images: p.images,
     it: {
       name: p.name_it || '',
+      short: p.short_it || '',
       sub: p.subtitle_it || '',
       desc: p.description_it || '',
       use: p.usage_it || '',
@@ -1124,6 +1126,7 @@ function adaptJsonProduct(p) {
     },
     en: {
       name: p.name_en || p.name_it || '',
+      short: p.short_en || p.short_it || '',
       sub: p.subtitle_en || p.subtitle_it || '',
       desc: p.description_en || p.description_it || '',
       use: p.usage_en || p.usage_it || '',
@@ -1957,7 +1960,8 @@ function renderLocalized() {
   applyLineLabels();
 
   // Hero: nome + claim + descrizione (con bold attivi)
-  document.getElementById('pdName').textContent = loc.name;
+  const toTitleCase = s => s.toLowerCase().replace(/(^|[\s\-–/])([a-zà-ÿ])/g, (_, sep, ch) => sep + ch.toUpperCase());
+  document.getElementById('pdName').textContent = toTitleCase(loc.short || loc.name);
   const subRaw = loc.sub || '';
   const subShort = subRaw.split(/\.(?:\s|$)/)[0].trim().replace(/\.?$/, '.');
   document.getElementById('pdSub').textContent = subShort;
