@@ -985,15 +985,7 @@ body.theme-line-antieta {
       img.alt = line.name;
       img.fetchPriority = 'high';
       img.decoding = 'async';
-      // Dissolvenza: se in cache (refresh) compare subito; altrimenti entra
-      // morbida sopra il gradiente palette, senza "scatto".
-      const reveal = () => { img.style.opacity = '1'; };
-      img.style.opacity = '0';
-      img.style.transition = 'opacity .5s var(--ease)';
-      img.addEventListener('load', reveal);
-      img.addEventListener('error', reveal);
       img.src = heroImgUrl;
-      if (img.complete && img.naturalWidth) reveal();
       heroBg.appendChild(img);
     }
 
