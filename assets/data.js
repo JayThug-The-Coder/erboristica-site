@@ -12,9 +12,6 @@ window.I18N = {
     format: 'Formato', category: 'Categoria', code: 'Codice',
     related: 'Dalla stessa linea', other_lines: 'Altre linee', other_brands: 'Altri brand',
     certifications: 'Certificazioni',
-    newsletter: 'Newsletter',
-    newsletter_sub: 'Resta aggiornato su novità, ricerca e innovazione.',
-    your_email: 'La tua email', subscribe: 'Iscriviti',
     // hero
     home_eyebrow: 'Manufacturer since 1969',
     home_title_1: 'La natura che', home_title_2: 'si prende cura', home_title_3: 'di te',
@@ -22,7 +19,7 @@ window.I18N = {
   },
   en: {
     nav_home: 'Athena\'s', nav_company: 'Company', nav_brands: 'Lines',
-    nav_lab: 'Laboratory', nav_eco: 'Sustainability', nav_catalog: 'Catalogue', nav_terzisti: 'Contract', nav_contact: 'Contact',
+    nav_lab: 'Laboratory', nav_eco: 'Sustainability', nav_catalog: 'Catalogue', nav_terzisti: 'Contract Manufacturing', nav_contact: 'Contact',
     since: 'Manufacturer since 1969', made_in: '100% Made in Italy',
     discover: 'Discover', read_more: 'Read more', all_products: 'All products',
     active_ingredients: 'Active ingredients', benefits: 'Benefits',
@@ -30,9 +27,6 @@ window.I18N = {
     format: 'Size', category: 'Category', code: 'Code',
     related: 'From the same line', other_lines: 'Other lines', other_brands: 'Other brands',
     certifications: 'Certifications',
-    newsletter: 'Newsletter',
-    newsletter_sub: 'Stay updated on news, research and innovation.',
-    your_email: 'Your email', subscribe: 'Subscribe',
     home_eyebrow: 'Manufacturer since 1969',
     home_title_1: 'Nature that', home_title_2: 'takes care', home_title_3: 'of you',
     home_lead: 'Development, innovation, and continuous botanical research, combined with over fifty-five years of experience, are the foundation of our company. A family passion and a truly Italian story.',
@@ -336,7 +330,7 @@ window.PRODUCTS = [
       use: 'Morning and evening on damp face, rinse with lukewarm water.' },
     inci: 'Aqua [Water], Glycerin, Cetearyl alcohol, Glyceryl stearate, Cocamidopropyl betaine, Coco-caprylate, Magnesium aluminum silicate, Undecylenamidopropyl betaine, Lauryl glucoside, Butyrospermum parkii (Shea butter), Ethylhexyl palmitate, Xanthan gum, Dicaprylyl ether, Zinc PCA, Hedera helix (Ivy) leaf/stem extract, Betula alba leaf extract, Arctium lappa root extract, Sodium lauroyl glutamate, Tocopherol, Sodium stearoyl lactylate, Parfum [Fragrance], Ethylhexylglycerin, Sodium gluconate, Limonene, Linalool, Phenoxyethanol.',
     images: {
-      hero: 'immagini/purysens/emulsione-detergente-viso/hero.webp',
+      hero: 'immagini/purysens/emulsione-detergente-viso/hero.jpg',
       detail_1: 'immagini/purysens/emulsione-detergente-viso/det-01.webp' } },
   { id: 'pury-mask', line: 'purysens', code: '6504/S', size: '20 ml', category: 'Viso — Maschera',
     it: { name: 'Maschera Viso all\'Argilla Rosa', sub: 'Purificante delicata',

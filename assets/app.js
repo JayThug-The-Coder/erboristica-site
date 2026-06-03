@@ -641,14 +641,6 @@
             <a class="footer__link" href="${r}contatti.html#partner" data-it="Diventa partner" data-en="Become a partner">Diventa partner</a>
             <a class="footer__link" href="${r}contatti.html" data-it="Contatti" data-en="Contact">Contatti</a>
           </div>
-          <div>
-            <div class="footer__title" data-i18n="newsletter">Newsletter</div>
-            <p style="margin-top:6px; margin-bottom:14px; font-family:var(--serif); font-style:italic; font-size:16px; opacity:.45; line-height:1.5;" data-it="Ricevi aggiornamenti sui nostri prodotti e le novità  Athena's." data-en="Stay updated on our products and Athena's news.">Ricevi aggiornamenti sui nostri prodotti e le novità  Athena's.</p>
-            <form onsubmit="event.preventDefault(); this.querySelector('button').textContent='✓“';" style="display:flex; gap:8px;">
-              <input type="email" required placeholder="email" style="flex:1; min-width:0; padding:7px 0; background:transparent; border:0; border-bottom:1px solid rgba(255,255,255,.3); color:inherit; font-size:13px; font-family:inherit; outline:none;"/>
-              <button type="submit" style="padding:7px 16px; border:1px solid rgba(255,255,255,.4); font-size:9px; letter-spacing:.18em; text-transform:uppercase; color:inherit; white-space:nowrap; transition:.3s;" onmouseover="this.style.background='rgba(255,255,255,.1)'" onmouseout="this.style.background='transparent'" data-i18n="subscribe">Iscriviti</button>
-            </form>
-          </div>
         </div>
         <div class="footer__contact">
           <span data-it="Via del Lavoro, 32 · 40065 Pianoro (BO) · Italy" data-en="Via del Lavoro, 32 · 40065 Pianoro (BO) · Italy">Via del Lavoro, 32 · 40065 Pianoro (BO) · Italy</span>
@@ -855,7 +847,14 @@
   function initLenis() {
     if (window.innerWidth <= 860) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    if (typeof Lenis === 'undefined') return;
+    if (window.lenis) return;
+    // lenis.min.js e' caricato in `defer`: quando initAthenas gira (in fase di
+    // parsing) la libreria non e' ancora definita. Ritento al DOMContentLoaded,
+    // quando gli script deferred sono gia' stati eseguiti.
+    if (typeof Lenis === 'undefined') {
+      document.addEventListener('DOMContentLoaded', initLenis, { once: true });
+      return;
+    }
 
     const lenis = new Lenis({
       duration: 1.05,

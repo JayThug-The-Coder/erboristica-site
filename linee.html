@@ -3,8 +3,15 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=2"/>
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=2"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2"/>
 <title data-it="Le nostre linee · Athena's" data-en="Our lines · Athena's">Le nostre linee · Athena's</title>
 <link rel="preload" href="assets/fonts/fraunces-200-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="assets/fonts/fraunces-300-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="assets/fonts/fraunces-300-italic-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="assets/fonts/cormorant-garamond-400-italic-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="assets/fonts/fraunces-200-italic-latin.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="stylesheet" href="assets/fonts.css"/>
 <link rel="stylesheet" href="assets/tokens.css"/>
 
@@ -66,10 +73,10 @@
 
 .lh__lead {
   font-family: var(--serif);
-  font-size: clamp(20px,1.8vw,26px);
-  line-height: 1.55; max-width: 56ch;
+  font-size: clamp(17px,1.5vw,21px);
+  line-height: 1.6; max-width: 70ch;
   color: rgba(232,224,212,.62);
-  margin-bottom: 40px;
+  margin-bottom: 0;
 }
 
 .lh__specbar {
@@ -294,12 +301,12 @@
 <meta property="og:url" content="https://athenas.it/linee.html"/>
 <meta property="og:title" content="Le nostre linee · Athena's"/>
 <meta property="og:description" content="L'Erboristica, Sphea, Everby, Kaley: il portfolio di cosmetica naturale di Athena's. Quattro brand, una sola filosofia."/>
-<meta property="og:image" content="https://athenas.it/immagini/og/linee.jpg"/>
+<meta property="og:image" content="https://athenas.it/immagini/og/athenas-share.jpg"/>
 <meta property="og:image:alt" content="Le nostre linee · Athena's"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="Le nostre linee · Athena's"/>
 <meta name="twitter:description" content="L'Erboristica, Sphea, Everby, Kaley: il portfolio di cosmetica naturale di Athena's. Quattro brand, una sola filosofia."/>
-<meta name="twitter:image" content="https://athenas.it/immagini/og/linee.jpg"/>
+<meta name="twitter:image" content="https://athenas.it/immagini/og/athenas-share.jpg"/>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -316,8 +323,6 @@
 <!-- ── HERO ─────────────────────────────────────────────────── -->
 <section class="lh" data-mood-fallback="dark">
   <div class="lh__bg"></div>
-  <div class="lh__particles" id="particles" aria-hidden="true"></div>
-  <div class="lh__wm" aria-hidden="true">LINEE</div>
 
   <div class="lh__left">
     <div class="lh__eyebrow" data-it="Le linee" data-en="Our lines">Le linee</div>
@@ -326,24 +331,6 @@
       <em data-it="racconta una storia." data-en="tells a story.">racconta una storia.</em>
     </h1>
     <p class="lh__lead" data-it="Ricerca, innovazione ed efficacia guidano ogni nostra formula. Dalla cosmetica naturale con attivi di ultima generazione e ingredienti biotecnologici, alle fragranze roll-on senza alcol e long-lasting, fino ai trattamenti con ingredienti brevettati ad azione mirata: una proposta completa che coniuga performance, qualità e posizionamento premium." data-en="Research, innovation and efficacy guide every formula we make. From natural cosmetics with latest-generation actives and biotechnological ingredients, to alcohol-free, long-lasting roll-on fragrances, to treatments with patented, targeted-action ingredients: a complete range combining performance, quality and premium positioning.">Ricerca, innovazione ed efficacia guidano ogni nostra formula. Dalla cosmetica naturale con attivi di ultima generazione e ingredienti biotecnologici, alle fragranze roll-on senza alcol e long-lasting, fino ai trattamenti con ingredienti brevettati ad azione mirata: una proposta completa che coniuga performance, qualità e posizionamento premium.</p>
-    <div class="lh__specbar">
-      <div class="lh__spec">
-        <span class="lh__spec-n">10</span>
-        <span class="lh__spec-l" data-it="linee di trattamento" data-en="treatment lines">linee di trattamento</span>
-      </div>
-      <div class="lh__spec">
-        <span class="lh__spec-n">250+</span>
-        <span class="lh__spec-l" data-it="referenze" data-en="references">referenze</span>
-      </div>
-      <div class="lh__spec">
-        <span class="lh__spec-n">4</span>
-        <span class="lh__spec-l" data-it="brand sviluppati" data-en="brands developed">brand sviluppati</span>
-      </div>
-      <div class="lh__spec">
-        <span class="lh__spec-n">95%+</span>
-        <span class="lh__spec-l" data-it="ingredienti naturali" data-en="natural ingredients">ingredienti naturali</span>
-      </div>
-    </div>
   </div>
 
   <div class="lh__right">
@@ -428,7 +415,7 @@
     <span class="link-arrow" data-it="Scopri Everby" data-en="Discover Everby">Scopri Everby</span>
   </div>
   <div class="line-visual">
-    <img src="immagini/everby/cover-generale.jpg" alt="Everby · Clean Beauty by Athena's" class="cover-img" loading="lazy">
+    <img src="immagini/everby/cover-linee.jpg" alt="Everby · Clean Beauty by Athena's" class="cover-img" loading="lazy">
     <div class="line-visual__overlay"></div>
   </div>
 </a>
@@ -455,7 +442,7 @@
     <img class="line-logo" src="immagini/brand-erboristica/logo.png" alt="l'Erboristica" loading="lazy">
     <div class="line-name" data-it="Cosmetica naturale, dal 1969" data-en="Natural cosmetics, since 1969">Cosmetica naturale, dal 1969</div>
     <div class="line-tag" data-it="Il pilastro della casa: viso, capelli, corpo." data-en="The house pillar: face, hair, body.">Il pilastro della casa: viso, capelli, corpo.</div>
-    <p class="line-desc" data-it="Dieci linee di trattamento, oltre 250 referenze. Formule a base di estratti botanici, oli vegetali, attivi brevettati. 95%+ ingredienti di origine naturale, certificato Plant Based Bioagricert." data-en="Ten treatment lines, over 250 references. Formulas based on botanical extracts, plant oils, patented actives. 95%+ natural-origin ingredients, Bioagricert Plant Based certified.">Dieci linee di trattamento, oltre 250 referenze. Formule a base di estratti botanici, oli vegetali, attivi brevettati. 95%+ ingredienti di origine naturale, certificato Plant Based Bioagricert.</p>
+    <p class="line-desc" data-it="Dieci linee di trattamento. Formule a base di estratti botanici, oli vegetali, attivi brevettati. 95%+ ingredienti di origine naturale, certificato Plant Based Bioagricert." data-en="Ten treatment lines. Formulas based on botanical extracts, plant oils, patented actives. 95%+ natural-origin ingredients, Bioagricert Plant Based certified.">Dieci linee di trattamento. Formule a base di estratti botanici, oli vegetali, attivi brevettati. 95%+ ingredienti di origine naturale, certificato Plant Based Bioagricert.</p>
     <div class="line-count"><b>10</b><span data-it="linee" data-en="lines">linee</span></div>
     <span class="link-arrow" data-it="Esplora le linee" data-en="Explore the lines">Esplora le linee</span>
   </div>
@@ -471,7 +458,7 @@
 <script src="assets/vendor/lenis.min.js" defer></script>
 <script src="assets/data.js"></script>
 <script src="assets/search-data.js" defer></script>
-<script src="assets/app.js?v=9"></script>
+<script src="assets/app.js?v=10"></script>
 <script>
 initAthenas('brands');
 document.querySelector('.topbar').classList.add('topbar--light');

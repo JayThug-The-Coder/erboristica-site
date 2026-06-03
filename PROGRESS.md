@@ -899,6 +899,12 @@ location.reload();
 - [x] `assets/tokens.css` — topbar logo: `font-weight 400→300`, `.topbar .dot { display:none }` (punto rimosso solo dalla topbar, resta nel footer)
 
 ### Da fare — prossimi task
+
+#### Pulizia pre-consegna tecnico (3 giu — segnalato, da fare dopo)
+- [ ] Rimuovere i file di backup `*-OLD.*` creati durante le sostituzioni foto (es. `immagini/contatti/hero-OLD?`, `immagini/argan/hero-OLD.jpg`, `immagini/kaley/lifestyle-01-OLD.jpg`, `immagini/azienda/hero-laghetto-OLD.jpg`, `immagini/brand-erboristica/logo-OLD.png`, `immagini/purysens/.../hero-OLD.webp`, ecc.)
+- [ ] Escludere dal deploy le cartelle sorgente pesanti (~2.3 GB): `immagini/_GALLERIA`, `immagini/higgsfield`, `immagini/_inbox`, e altre `_backup*` / `_orphan` / `_concept` / `_reambient`
+- [ ] Verificare/eliminare le foto prodotto `.png` enormi non servite (il sito usa le `.webp`): es. `immagini/uomo/*/det-01.png` (6.7MB), `immagini/pearls/*/hero.png`, `immagini/mineral-infusions/*/hero.png`, `immagini/kaley/_ecommerce/*.png`
+
 - [ ] Pagina `linee/erboristica.html` — da creare (analoga a everby.html e sphea.html)
 - [ ] Pagina `linee/kaley.html` — da creare
 - [ ] Pagine linee prodotto `catalogo/argan.html` ecc.

@@ -155,13 +155,6 @@
               <p style="opacity:.7; font-size:13px; line-height:1.6; max-width:340px;">
                 [ Claim brand · "0% derivati petrolchimici, siliconi, coloranti, 100% attivi di origine naturale". Sostituire con copy definitivo. ]
               </p>
-              <div style="margin-top:28px;">
-                <div style="font-family: var(--font-mono); font-size:10px; letter-spacing:0.18em; text-transform:uppercase; opacity:0.6; margin-bottom:12px;">Iscriviti alla newsletter</div>
-                <div style="display:flex; border-bottom:1px solid oklch(0.5 0.02 130); max-width:340px; padding-bottom:4px;">
-                  <input placeholder="la-tua@email.it" style="flex:1; background:transparent; border:none; color:inherit; outline:none; padding: 10px 0; font-family: var(--font-sans); font-size: 14px;"/>
-                  <button style="font-family:var(--font-mono); font-size:10px; letter-spacing:0.2em; text-transform:uppercase; opacity:0.9;">Iscriviti →</button>
-                </div>
-              </div>
             </div>
             <div>
               <h5>Shop</h5>

@@ -51,3 +51,9 @@ immagini/_hero_backup_prenorm/
 immagini/_hero_backup_prezoom/
 immagini/_hero_backup_*/
 immagini/_backup_*/
+
+# Backup foto creati durante le sostituzioni (non per il sito)
+*-OLD.jpg
+*-OLD.jpeg
+*-OLD.png
+*-OLD.webp

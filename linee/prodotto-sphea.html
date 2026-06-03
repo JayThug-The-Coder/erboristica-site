@@ -1,10 +1,17 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="it">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=2"/>
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=2"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2"/>
 <title>Sphea · Scheda prodotto · Athena's</title>
 <link rel="preload" href="../assets/fonts/fraunces-200-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="../assets/fonts/fraunces-300-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="../assets/fonts/fraunces-300-italic-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="../assets/fonts/cormorant-garamond-400-italic-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="../assets/fonts/fraunces-200-italic-latin.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="stylesheet" href="../assets/fonts.css"/>
 <link rel="stylesheet" href="../assets/tokens.css"/>
 <link rel="stylesheet" href="../assets/cert-masks.css"/>
@@ -779,12 +786,12 @@ body.sp-modal-open { overflow: hidden; }
 <meta property="og:url" content="https://athenas.it/linee/prodotto-sphea.html"/>
 <meta property="og:title" content="Sphea · Scheda prodotto · Athena's"/>
 <meta property="og:description" content="Scheda prodotto Sphea: composizione, attivi, modalità d'uso e benefici."/>
-<meta property="og:image" content="https://athenas.it/../immagini/og/sphea.jpg"/>
+<meta property="og:image" content="https://athenas.it/immagini/og/athenas-share.jpg"/>
 <meta property="og:image:alt" content="Sphea · Scheda prodotto · Athena's"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="Sphea · Scheda prodotto · Athena's"/>
 <meta name="twitter:description" content="Scheda prodotto Sphea: composizione, attivi, modalità d'uso e benefici."/>
-<meta name="twitter:image" content="https://athenas.it/../immagini/og/sphea.jpg"/>
+<meta name="twitter:image" content="https://athenas.it/immagini/og/athenas-share.jpg"/>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -999,7 +1006,7 @@ body.sp-modal-open { overflow: hidden; }
 
 <script src="../assets/vendor/lenis.min.js" defer></script><script src="../assets/data.js"></script>
 <script src="../assets/search-data.js" defer></script>
-<script src="../assets/app.js?v=9"></script>
+<script src="../assets/app.js?v=10"></script>
 <script>
 /* ═══════════════════════════════════════════════════════════
    SPHEA DATA
@@ -1418,8 +1425,12 @@ function setBleedPhoto(containerEl, src, alt) {
     if (img.naturalWidth && img.naturalHeight) {
       containerEl.style.aspectRatio = img.naturalWidth + ' / ' + img.naturalHeight;
     }
+    img.style.opacity = '0';
+    img.style.transition = 'opacity .5s var(--ease)';
     containerEl.innerHTML = '';
     containerEl.appendChild(img);
+    void img.offsetWidth;
+    img.style.opacity = '1';
   };
   img.onload = apply;
   img.onerror = () => { /* lascia il placeholder */ };

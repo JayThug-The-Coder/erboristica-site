@@ -84,6 +84,6 @@ Options -Indexes
 # ────────────────────────────────────────────────────────────────
 # Block sensitive files
 # ────────────────────────────────────────────────────────────────
-<FilesMatch "^(\.htaccess|\.git|\.env|\.DS_Store|CLAUDE\.md|PROGRESS\.md|AUDIT-.*\.md|README\.md|.*\.docx|.*\.zip)$">
+<FilesMatch "^(\.htaccess|\.git|\.env|\.DS_Store|CLAUDE\.md|PROGRESS\.md|HANDOFF\.md|KNOWLEDGE\.md|CONSEGNA-TECNICO\.md|AUDIT-.*\.md|README\.md|.*\.docx|.*\.zip)$">
   Require all denied
 </FilesMatch>

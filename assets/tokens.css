@@ -513,7 +513,7 @@ h1, h2, h3, h4, h5 {
 }
 .footer__grid {
   display: grid;
-  grid-template-columns: 1.3fr 1fr 1fr 1fr 1.2fr;
+  grid-template-columns: 1.3fr 1fr 1fr 1fr;
   gap: var(--s5);
   margin-bottom: 16px;
 }
@@ -532,7 +532,6 @@ h1, h2, h3, h4, h5 {
     align-items: center;
   }
   .footer__grid p { max-width: 34ch; }
-  .footer__grid form { width: 100%; max-width: 300px; }
   .footer__contact {
     justify-content: center;
     text-align: center;

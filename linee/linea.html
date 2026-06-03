@@ -1,10 +1,17 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="it">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=2"/>
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=2"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2"/>
 <title>Linea · l'Erboristica · Athena's</title>
 <link rel="preload" href="../assets/fonts/fraunces-200-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="../assets/fonts/fraunces-300-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="../assets/fonts/fraunces-300-italic-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="../assets/fonts/cormorant-garamond-400-italic-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="../assets/fonts/fraunces-200-italic-latin.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="stylesheet" href="../assets/fonts.css"/>
 <link rel="stylesheet" href="../assets/tokens.css"/>
 
@@ -26,7 +33,7 @@
   background: linear-gradient(155deg, #2d3a2e 0%, #3e4a3a 50%, #5a6b4e 100%);
   transition: background 0s;
 }
-.lh__bg img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.45; }
+.lh__bg img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
 
 .lh__noise {
   position: absolute;
@@ -40,7 +47,11 @@
 .lh__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,.05) 0%, rgba(0,0,0,.55) 100%);
+  /* Tutto il testo e a sinistra: scrim ancorato a sinistra (+ un filo in basso)
+     cosi la colonna di testo e leggibile su qualsiasi foto, chiara o scura. */
+  background:
+    linear-gradient(to right, rgba(0,0,0,.72) 0%, rgba(0,0,0,.44) 30%, rgba(0,0,0,.12) 58%, transparent 78%),
+    linear-gradient(to top, rgba(0,0,0,.34) 0%, transparent 30%);
 }
 
 .lh__watermark {
@@ -65,12 +76,9 @@
   max-width: var(--max-w);
   margin: 0 auto;
   width: 100%;
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 60px;
-  align-items: end;
 }
-@media (max-width: 900px) { .lh__inner { grid-template-columns: 1fr; } }
+/* Tutto il testo impilato a sinistra, in colonna ordinata. */
+.lh__inner > div { max-width: 560px; }
 
 .lh__breadcrumb {
   display: flex;
@@ -94,6 +102,7 @@
   line-height: .88;
   color: #fff;
   margin-bottom: 24px;
+  text-shadow: 0 2px 30px rgba(0,0,0,.45);
 }
 .lh h1 em { font-style: italic; color: var(--gold); }
 
@@ -101,9 +110,10 @@
   font-family: var(--serif);
   font-style: italic;
   font-size: clamp(18px, 1.8vw, 26px);
-  color: rgba(255,255,255,.85);
+  color: rgba(255,255,255,.9);
   line-height: 1.45;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
+  text-shadow: 0 1px 16px rgba(0,0,0,.4);
 }
 
 .lh__meta {
@@ -161,7 +171,7 @@
 .lh__benefits {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 28px 0 0;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -700,12 +710,12 @@ body.theme-line-antieta {
 <meta property="og:url" content="https://athenas.it/linee/linea.html"/>
 <meta property="og:title" content="Linea · l'Erboristica · Athena's"/>
 <meta property="og:description" content="Dettaglio della linea l'Erboristica selezionata: prodotti, attivi e benefici di cosmetica naturale Athena's."/>
-<meta property="og:image" content="https://athenas.it/../immagini/og/erboristica.jpg"/>
+<meta property="og:image" content="https://athenas.it/immagini/og/athenas-share.jpg"/>
 <meta property="og:image:alt" content="Linea · l'Erboristica · Athena's"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="Linea · l'Erboristica · Athena's"/>
 <meta name="twitter:description" content="Dettaglio della linea l'Erboristica selezionata: prodotti, attivi e benefici di cosmetica naturale Athena's."/>
-<meta name="twitter:image" content="https://athenas.it/../immagini/og/erboristica.jpg"/>
+<meta name="twitter:image" content="https://athenas.it/immagini/og/athenas-share.jpg"/>
 </head>
 <body>
 
@@ -725,11 +735,9 @@ body.theme-line-antieta {
       </div>
       <h1 id="heroTitle"></h1>
       <div class="lh__tagline" id="heroTagline"></div>
-      <div class="lh__meta" id="heroMeta"></div>
-    </div>
-    <div class="lh__right" data-reveal style="--d:120ms;">
       <span class="lh__desc-accent"></span>
       <p class="lh__desc" id="heroDesc"></p>
+      <div class="lh__meta" id="heroMeta"></div>
       <ul class="lh__benefits" id="heroBenefits"></ul>
     </div>
   </div>
@@ -805,7 +813,7 @@ body.theme-line-antieta {
 <script src="../assets/data-inline.js"></script>
 <script src="../assets/datastore.js?v=9"></script>
 <script src="../assets/search-data.js" defer></script>
-<script src="../assets/app.js?v=9"></script>
+<script src="../assets/app.js?v=10"></script>
 <script>
   /* Adapter master JSON → formato compatibile data.js (PRODUCTS legacy) */
   function adaptJsonProductForLinea(p) {
@@ -964,17 +972,28 @@ body.theme-line-antieta {
       cocco:      '../immagini/cocco/hero.jpg',
       mandorle:   '../immagini/mandorle/hero.jpg',
       antieta:    '../immagini/antieta/hero.jpg',
+      illumia:    '../immagini/illumia/hero.jpg',
       purysens:   '../immagini/purysens/hero.jpg',
       nutra:      '../immagini/nutra/hero.jpg',
-      estratti:   '../immagini/estratti/cover.jpg',
+      estratti:   '../immagini/estratti/hero.jpg',
       uomo:       '../immagini/uomo/hero.jpg',
       innovation: '../immagini/pearls/hero.jpg',
     };
     const heroImgUrl = HERO_IMGS[lineId];
     if (heroImgUrl) {
       const img = document.createElement('img');
-      img.src = heroImgUrl;
       img.alt = line.name;
+      img.fetchPriority = 'high';
+      img.decoding = 'async';
+      // Dissolvenza: se in cache (refresh) compare subito; altrimenti entra
+      // morbida sopra il gradiente palette, senza "scatto".
+      const reveal = () => { img.style.opacity = '1'; };
+      img.style.opacity = '0';
+      img.style.transition = 'opacity .5s var(--ease)';
+      img.addEventListener('load', reveal);
+      img.addEventListener('error', reveal);
+      img.src = heroImgUrl;
+      if (img.complete && img.naturalWidth) reveal();
       heroBg.appendChild(img);
     }
 

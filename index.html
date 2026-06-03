@@ -1,10 +1,17 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="it">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=2"/>
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=2"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2"/>
 <title data-it="Athena's · Manifattura di cosmetica naturale dal 1969" data-en="Athena's · Natural cosmetics manufacturer since 1969">Athena's · Manifattura di cosmetica naturale dal 1969</title>
 <link rel="preload" href="assets/fonts/fraunces-200-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="assets/fonts/fraunces-300-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="assets/fonts/fraunces-300-italic-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="assets/fonts/cormorant-garamond-400-italic-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="assets/fonts/fraunces-200-italic-latin.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="stylesheet" href="assets/fonts.css"/>
 <link rel="stylesheet" href="assets/tokens.css"/>
 
@@ -676,6 +683,14 @@
     pointer-events: none;
     z-index: 2;
   }
+}
+
+/* Spazio crema tra le bande foto-paragrafo: distanzia le foto come tra i
+   blocchi zigzag (ricerca/famiglia), ma leggermente meno. */
+.sec-divider {
+  height: clamp(16px, 2.2vw, 32px);
+  border: 0; margin: 0;
+  background: var(--cream);
 }
 
 /* ── AZ-BANDS — 3 bande full-bleed (Sez 02) ──────────────── */
@@ -1498,12 +1513,12 @@
 <meta property="og:url" content="https://athenas.it/"/>
 <meta property="og:title" content="Athena's · Manifattura di cosmetica naturale dal 1969"/>
 <meta property="og:description" content="Manifattura italiana di cosmetica naturale dal 1969. Famiglia, ricerca formulativa, formule vegan. 4 brand, sede a Pianoro (BO)."/>
-<meta property="og:image" content="https://athenas.it/immagini/og/azienda.jpg"/>
+<meta property="og:image" content="https://athenas.it/immagini/og/athenas-share.jpg"/>
 <meta property="og:image:alt" content="Athena's · Manifattura di cosmetica naturale dal 1969"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="Athena's · Manifattura di cosmetica naturale dal 1969"/>
 <meta name="twitter:description" content="Manifattura italiana di cosmetica naturale dal 1969. Famiglia, ricerca formulativa, formule vegan. 4 brand, sede a Pianoro (BO)."/>
-<meta name="twitter:image" content="https://athenas.it/immagini/og/azienda.jpg"/>
+<meta name="twitter:image" content="https://athenas.it/immagini/og/athenas-share.jpg"/>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -1521,7 +1536,7 @@
         "width": 600,
         "height": 200
       },
-      "image": "https://athenas.it/immagini/og/azienda.jpg",
+      "image": "https://athenas.it/immagini/og/athenas-share.jpg",
       "description": "Manifattura italiana di cosmetica naturale dal 1969. Quattro brand (l'Erboristica, Everby, Kaley, Sphea), formule vegan, produzione interna a Pianoro.",
       "slogan": "Cosmetica naturale italiana dal 1969",
       "foundingDate": "1969",
@@ -1610,7 +1625,7 @@
       "isPartOf": { "@id": "https://athenas.it/#website" },
       "about": { "@id": "https://athenas.it/#organization" },
       "inLanguage": "it-IT",
-      "primaryImageOfPage": "https://athenas.it/immagini/og/azienda.jpg"
+      "primaryImageOfPage": "https://athenas.it/immagini/og/athenas-share.jpg"
     }
   ]
 }
@@ -1694,6 +1709,8 @@
 <!-- ── TERRITORIO ─────────────────────────────────────────── -->
 <section class="az-bands">
 
+  <hr class="sec-divider" aria-hidden="true">
+
   <div class="az-band az-band--01 az-band--left" data-mood-fallback="dark">
     <div class="az-band__bg" data-az-band="1">
       <img class="az-band__img" src="immagini/azienda/panorama-appennini.webp" alt="Le colline tosco-emiliane dell'Appennino al tramonto, con casolare e cipressi" loading="lazy">
@@ -1704,6 +1721,8 @@
       <p class="az-band__body" data-it="Pianoro è un comune pedemontano, a quaranta minuti da Bologna, dove l'Appennino incontra la pianura. In questo contesto naturale, lontano dall'inquinamento ambientale, le risorse umane sono poste al centro. Un ambiente caratterizzato da serenità, collaborazione e armonia favorisce il benessere delle persone, offrendo alla mente lo spazio e la quiete necessari per esprimere pienamente il proprio potenziale." data-en="Pianoro is a foothill town, forty minutes from Bologna, where the Apennines meet the plain. In this natural setting, far from environmental pollution, people come first. An environment defined by serenity, collaboration and harmony nurtures the well-being of our people, giving the mind the space and quiet it needs to fully express its potential.">Pianoro è un comune pedemontano, a quaranta minuti da Bologna, dove l'Appennino incontra la pianura. In questo contesto naturale, lontano dall'inquinamento ambientale, le risorse umane sono poste al centro. Un ambiente caratterizzato da serenità, collaborazione e armonia favorisce il benessere delle persone, offrendo alla mente lo spazio e la quiete necessari per esprimere pienamente il proprio potenziale.</p>
     </div>
   </div>
+
+  <hr class="sec-divider" aria-hidden="true">
 
   <div class="az-band az-band--03 az-band--center" data-mood-fallback="dark">
     <div class="az-band__bg" data-az-band="3">
@@ -1745,7 +1764,7 @@
 
 <script src="assets/vendor/lenis.min.js" defer></script><script src="assets/data.js"></script>
 <script src="assets/search-data.js" defer></script>
-<script src="assets/app.js?v=9"></script>
+<script src="assets/app.js?v=10"></script>
 <script>
 
 // ── INIZIALIZZAZIONE ────────────────────────────────────────
