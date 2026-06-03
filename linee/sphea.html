@@ -1016,9 +1016,33 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
 
 <script src="../assets/vendor/lenis.min.js" defer></script><script src="../assets/data.js"></script>
 <script src="../assets/search-data.js" defer></script>
-<script src="../assets/app.js?v=10"></script>
+<script src="../assets/app.js?v=11"></script>
 <script>
 initAthenas('brands');
+
+// Hero video: forza l'autoplay su mobile. iOS/Android a volte ignorano il solo
+// attributo `autoplay` e mostrano il tasto play: impostiamo muted come PROPRIETA
+// + play() con retry sui gesti utente e quando l'hero torna in vista.
+(function heroVideoAutoplay() {
+  const v = document.querySelector('.sh .bg-video');
+  if (!v) return;
+  v.muted = true; v.defaultMuted = true; v.playsInline = true;
+  v.setAttribute('playsinline', ''); v.setAttribute('webkit-playsinline', '');
+  const gestures = ['touchstart', 'pointerdown', 'click', 'scroll', 'keydown'];
+  const removeGestureListeners = () => gestures.forEach(ev => window.removeEventListener(ev, onGesture));
+  function tryPlay() {
+    const p = v.play();
+    if (p && typeof p.then === 'function') p.then(removeGestureListeners).catch(() => {});
+  }
+  function onGesture() { tryPlay(); }
+  tryPlay();
+  v.addEventListener('loadeddata', tryPlay);
+  v.addEventListener('canplay', tryPlay);
+  gestures.forEach(ev => window.addEventListener(ev, onGesture, { passive: true }));
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) tryPlay(); }), { threshold: 0.1 }).observe(v);
+  }
+})();
 
 // Footer scuro premium blu-navy per staccare dallo sfondo chiaro (Sphea alta
 // gamma). Testo chiaro, titoli/link nel blu del brand.

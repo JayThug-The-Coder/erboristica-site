@@ -32,9 +32,17 @@
 .lh__bg {
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse 60% 70% at 80% 30%, rgba(90,107,78,.12) 0%, transparent 55%),
-    radial-gradient(ellipse 40% 50% at 15% 75%, rgba(201,169,110,.08) 0%, transparent 60%),
-    linear-gradient(170deg, #050505 0%, #0f0f0f 60%, #080808 100%);
+    linear-gradient(95deg, rgba(7,9,7,.92) 0%, rgba(7,9,7,.72) 26%, rgba(7,9,7,.40) 46%, rgba(7,9,7,.12) 64%, rgba(7,9,7,.06) 100%),
+    url('immagini/linee/hero-formula.webp') center right / cover no-repeat,
+    #0a0a0a;
+}
+@media (max-width: 900px) {
+  .lh__bg {
+    background:
+      linear-gradient(180deg, rgba(7,9,7,.68) 0%, rgba(7,9,7,.42) 32%, rgba(7,9,7,.82) 100%),
+      url('immagini/linee/hero-formula.webp') 32% center / cover no-repeat,
+      #0a0a0a;
+  }
 }
 
 .lh__particles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
@@ -65,7 +73,7 @@
 
 .lh h1 {
   font-family: var(--display);
-  font-size: clamp(56px,10vw,180px);
+  font-size: clamp(50px,9vw,160px);
   font-weight: 200; letter-spacing: -0.04em; line-height: .88;
   color: #e8e0d4; margin-bottom: clamp(24px,3vw,40px);
 }
@@ -96,10 +104,9 @@
 
 .lh__right {
   position: relative; z-index: 2;
-  display: flex; align-items: center; justify-content: center;
+  display: none; align-items: center; justify-content: center;
   overflow: hidden;
 }
-@media (max-width: 900px) { .lh__right { display: none; } }
 
 .lh__diagram {
   width: clamp(320px,45vw,600px);
@@ -330,7 +337,7 @@
       <span data-it="Ogni formula" data-en="Every formula">Ogni formula</span><br>
       <em data-it="racconta una storia." data-en="tells a story.">racconta una storia.</em>
     </h1>
-    <p class="lh__lead" data-it="Ricerca, innovazione ed efficacia guidano ogni nostra formula. Dalla cosmetica naturale con attivi di ultima generazione e ingredienti biotecnologici, alle fragranze roll-on senza alcol e long-lasting, fino ai trattamenti con ingredienti brevettati ad azione mirata: una proposta completa che coniuga performance, qualità e posizionamento premium." data-en="Research, innovation and efficacy guide every formula we make. From natural cosmetics with latest-generation actives and biotechnological ingredients, to alcohol-free, long-lasting roll-on fragrances, to treatments with patented, targeted-action ingredients: a complete range combining performance, quality and premium positioning.">Ricerca, innovazione ed efficacia guidano ogni nostra formula. Dalla cosmetica naturale con attivi di ultima generazione e ingredienti biotecnologici, alle fragranze roll-on senza alcol e long-lasting, fino ai trattamenti con ingredienti brevettati ad azione mirata: una proposta completa che coniuga performance, qualità e posizionamento premium.</p>
+    <p class="lh__lead" data-it="Ricerca, innovazione ed efficacia guidano ogni nostra formula.<br><br>Dalla cosmetica naturale con attivi di ultima generazione e ingredienti biotecnologici,<br>alle fragranze roll-on senza alcol e long-lasting,<br>fino ai trattamenti con ingredienti brevettati ad azione mirata:<br><br>una proposta completa che coniuga performance, qualità e posizionamento premium." data-en="Research, innovation and efficacy guide every formula we make.<br><br>From natural cosmetics with latest-generation actives and biotechnological ingredients,<br>to alcohol-free, long-lasting roll-on fragrances,<br>to treatments with patented, targeted-action ingredients:<br><br>a complete range combining performance, quality and premium positioning.">Ricerca, innovazione ed efficacia guidano ogni nostra formula.<br><br>Dalla cosmetica naturale con attivi di ultima generazione e ingredienti biotecnologici,<br>alle fragranze roll-on senza alcol e long-lasting,<br>fino ai trattamenti con ingredienti brevettati ad azione mirata:<br><br>una proposta completa che coniuga performance, qualità e posizionamento premium.</p>
   </div>
 
   <div class="lh__right">
@@ -456,7 +463,7 @@
 <script src="assets/vendor/lenis.min.js" defer></script>
 <script src="assets/data.js"></script>
 <script src="assets/search-data.js" defer></script>
-<script src="assets/app.js?v=10"></script>
+<script src="assets/app.js?v=11"></script>
 <script>
 initAthenas('brands');
 document.querySelector('.topbar').classList.add('topbar--light');

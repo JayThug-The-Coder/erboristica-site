@@ -4,6 +4,30 @@
 
 ---
 
+# 🛠️ Sessione 4 Giugno 2026 — LinkedIn footer, autoplay video Sphea, sezione "Ingredienti attivi" (dedup + fantasmi), legenda INCI
+
+**Vedi `HANDOFF.md` (blocco "SESSIONE 4 giugno") per il dettaglio.** Sintesi (verificato in preview :8088, NON pushato):
+- **LinkedIn footer** (`assets/app.js`): apostrofo grezzo nell'URL → `%27`; ora apre la pagina ufficiale.
+- **Video hero Sphea mobile** (`linee/sphea.html`): autoplay forzato via JS (`muted` proprietà + `play()` con retry su gesti/visibilità) → niente più tasto play su mobile.
+- **Ingredienti attivi**: (a) **duplicati** risolti via codice in `renderActives()` (dedup per chiave, tetto 6); (b) **fantasmi** (dichiarati ma non in INCI) rimossi/corretti nei dati dopo verifica voce-per-voce contro l'INCI + revisione utente (HA = Tremella, ecc.); aggiunta libreria **Natto Gum** + mapping `tremella`→HA; nomi brevettati (®/™) mostrati verbatim.
+- **Legenda INCI** (`prodotto.html`): "(\*) da Agricoltura Biologica" fuori dalla tendina, in palette, solo se l'INCI ha "(\*)".
+
+**Se voglio cambiare X → Y (sezione attivi scheda prodotto):**
+- Logica lista attivi (dedup, integrazione INCI, tetto, nomi brevettati) → `renderActives()` + `openKiModal()` in `prodotto.html`.
+- Quali attivi mostra un prodotto → `actives_main` in `assets/data.json` **e** `assets/data-inline.js` (identici; slug-id = L'Erboristica regular + Everby). Innovation = `it.actives`/`en.actives` in `assets/data.js` (`inn-*`).
+- Descrizione/benefici di un attivo (pannello + modale) → `ACTIVES_LIB` (IT) + `ACTIVES_EN` (EN) in `prodotto.html`; mapping nome→chiave in `ING_KEY_MAP`.
+- Legenda "(\*)" → elemento `#pdInciNote` in `prodotto.html` (mostrato se `product.inci` contiene "(\*)").
+
+**Agg. (2ª tranche):** rimossa "PURYSENS" dal nome Maschera Argilla; tolti "Oro di Baobab"/"Nutra Repair" dai TITOLI dei 4 prodotti Nutra (la LINEA resta "Nutra Repair"); ri-verifica video Sphea mobile (autoplay best-practice + fallback al primo tocco; emulazione preview più severa del device reale). Solo `data.json`+`data-inline.js` per i nomi → titolo = `toTitleCase(short || name)`.
+
+**Agg. (3ª tranche):** video Sphea compresso 12,4→1,8 MB (1600x800 CRF23, backup in `immagini/_hero_backup_sphea_video/` gitignored); Privacy+Cookie → topbar ora presente (fix `defer` su app.js) + tasto Indietro (`getHierarchyParent`→index.html) + topbar sempre visibile (CSS `transform:none`); hero Terzisti → foto `immagini/terzisti/hero.webp` con scrim, rimossi atomo/particelle/scritta "MADE".
+
+**Agg. (4ª tranche) — ONLINE:** testo hero Terzisti riscritto con interruzioni (EN+IT); form contatti confermato → info@athenas.it (fallback mailto, nessuna modifica); `app.js?v=10→v=11` su 16 pagine (avevo toccato app.js); CONSEGNA-TECNICO.md → nuova sezione "⭐ COSA CONSEGNARE" (consegnare il repo GitHub; cartelle foto-archivio gitignored = non online; form→info@athenas.it). **Push su origin/main** (Netlify auto-deploy).
+
+**Aperto:** legenda "(\*)" su Sphea/Kaley custom; fantasmi peptidi residui fuori List A (es. uomo-contorno); claim SPF/Omega/Pigmenti lasciati.
+
+---
+
 # 🛠️ Sessione 2 Giugno 2026 — doc correzioni + fix foto stirate + archivio galleria
 
 **Vedi `HANDOFF.md` (blocco "SESSIONE 2 giugno") per il dettaglio completo.** Sintesi:

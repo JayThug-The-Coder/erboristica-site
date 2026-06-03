@@ -1,127 +1,236 @@
 # Athena's — Consegna al tecnico per la messa online
 
-> Sito che sostituisce l'attuale **athenas.it**. Questo documento spiega **com'è fatto il sito**, **cosa è già pronto**, **cosa manca** e **cosa va fatto prima e dopo il go-live**, in ordine di priorità.
+> Sito che sostituisce l'attuale **athenas.it**. Questo documento spiega **com'è fatto il sito**, **cosa è già pronto**, **cosa manca**, **dove sono le foto** e **cosa NON toccare per non rompere il sito**.
+>
+> **Ultimo aggiornamento: giugno 2026.** Le novità di quest'ultima fase sono raccolte nella **Sezione 7** in fondo (favicon, immagine social, ottimizzazioni, e i punti critici da non rompere). Leggi quella per prima se conosci già il resto.
+
+---
+
+## ⭐ COSA CONSEGNARE (leggi prima questo)
+
+**In una frase:** consegna il **repository GitHub** `JayThug-The-Coder/erboristica-site`. Quello **è** il sito completo, già pulito e pronto da pubblicare. **Non serve preparare, copiare o selezionare cartelle a mano.**
+
+**Cosa dare:**
+1. **Il sito** = accesso al **repository GitHub** (oppure uno **ZIP del repository**). Contiene tutto ciò che serve: HTML, CSS, JavaScript, font self-hosted e **solo le foto effettivamente usate dal sito**.
+2. **Gli accessi (dal cliente):** DNS del dominio **athenas.it** + hosting attuale. (Il repo è già collegato a **Netlify** — URL di test: `https://creative-sunburst-9a3c92.netlify.app`.)
+3. **I dati che arriveranno più avanti** (NON bloccano la messa online): API key Brevo, Facebook Pixel ID, elenco vecchi URL per i redirect 301, eventuali credenziali Iubenda. → dettaglio in **Sezione 6**.
+
+**Come va online (due strade, sceglie il tecnico):**
+- **A)** Puntare il dominio **athenas.it** alla versione già su **Netlify** (la più semplice: il sito è già lì e si riaggiorna da solo a ogni modifica del repo).
+- **B)** Caricare i file del repo nella **web root** dell'hosting attuale (al posto del vecchio WordPress). È un sito statico: si pubblica copiando i file così come sono. Su Apache è già pronto `.htaccess`.
+
+### 📸 Le foto — la parte che preoccupa (tranquillo)
+- Il sito usa **soltanto** le immagini dentro `immagini/...` che sono **nel repository**. Sono già quelle giuste e bastano così.
+- Sul computer esistono **altre cartelle con foto simili o doppione** (archivi di lavorazione: `immagini/_GALLERIA/`, `_hero_backup_*`, `higgsfield/`, i sorgenti `.png` pesanti…). **NON fanno parte del sito**, sono **già escluse da Git** e **non devono andare online**.
+- 👉 **Non c'è niente da aprire, capire o spostare a mano in quelle cartelle.** Pubblicando dal repository, vengono ignorate automaticamente: la selezione "cosa va online / cosa no" l'ha già fatta il `.gitignore`.
+- (Elenco preciso di cosa è escluso: **Sezione 8**.)
+
+> ✅ **In pratica:** dai il repository al tecnico → lui lo pubblica → online finisce **solo ciò che serve**. Gli archivi di foto restano sul computer e non c'entrano con il sito.
+
+### ✉️ Form contatti
+La mail del **form** ("Scrivici") è indirizzata a **info@athenas.it**. Finché non c'è l'endpoint Brevo (Sezione 1), all'invio si apre il client di posta del visitatore già pre-compilato verso info@athenas.it. Quando si configurerà Brevo, impostarlo perché consegni **sempre a info@athenas.it**.
 
 ---
 
 ## 0. Cos'è il sito (in breve)
 
 - **Sito statico**: solo HTML, CSS e JavaScript. **Nessun build, nessun framework, nessun database, nessun backend.** Si pubblica copiando i file così come sono.
-- Una pagina = un file `.html`. Le parti condivise (barra in alto, footer, ricerca, banner cookie, traduzioni) sono iniettate da `assets/app.js`.
+- Una pagina = un file `.html`. Le parti condivise (barra in alto, footer, ricerca, banner cookie, traduzioni, smooth scroll) sono iniettate da `assets/app.js`.
 - I dati dei prodotti stanno in `assets/data.js` e `assets/data-inline.js` (caricati dal browser, niente server).
 - **Bilingue IT/EN**: il cambio lingua è lato browser (ogni testo ha `data-it="..."` e `data-en="..."`). Non esistono URL separati per l'inglese.
-- Font: self-hosted in `assets/fonts/` (nessuna dipendenza esterna a parte, eventualmente, Google Fonts come fallback).
+- **Font: tutti self-hosted** in `assets/fonts/` (caricati via `assets/fonts.css`). **Nessuna dipendenza esterna, niente Google Fonts.** (Vedi 7.4 — è importante.)
 
 ### Dove pubblicarlo
-La cartella va messa nella **root del dominio** (athenas.it punta a questa cartella). Due strade possibili:
+La cartella va messa nella **root del dominio** (athenas.it punta a questa cartella).
 
-L'attuale athenas.it è in **WordPress** (hosting Apache/PHP): questo nuovo sito è **HTML statico** e va sullo **stesso hosting**, sostituendo i file del vecchio sito nella web root. Userai l'ambiente che già gestisci — qui sotto solo ciò che è specifico di questo sito:
+L'attuale athenas.it è in **WordPress** (hosting Apache/PHP): questo nuovo sito è **HTML statico** e va sullo **stesso hosting**, sostituendo i file del vecchio sito nella web root.
 
-- **Su Apache** (caso tuo, stesso hosting di WordPress): il file **`.htaccess` è già pronto** (home, 404, HTTPS, header di sicurezza, gzip, cache, blocco file sensibili). Attenzione a non lasciare attivi i file/regole di WordPress che potrebbero interferire.
+- **Su Apache** (stesso hosting di WordPress): il file **`.htaccess` è già pronto** (home, 404, HTTPS, header di sicurezza, gzip, cache, blocco file sensibili). Attenzione a non lasciare attive le regole di WordPress che potrebbero interferire. ⚠️ **Vedi 7.3** sulla cache delle immagini.
 - **Su Netlify** (dove gira la versione di test): vale `netlify.toml` (già presente) e **il `.htaccess` viene ignorato**.
 
-> Versione di test attuale: `https://creative-sunburst-9a3c92.netlify.app`. I meta tag, la sitemap e i link interni puntano **già** a `https://athenas.it`, quindi non serve cambiare URL nel codice.
+> Versione di test attuale: `https://creative-sunburst-9a3c92.netlify.app`. I meta tag, la sitemap e i link interni puntano **già** a `https://athenas.it`.
 
 ---
 
 ## 1. ESSENZIALE — da fare prima del go-live
 
-Queste cose vanno sistemate **prima** o **al momento** della pubblicazione.
-
 | # | Cosa | Stato | Chi/come |
 |---|------|-------|----------|
-| 1 | **Redirect 301 dai vecchi URL WordPress** | ❌ Da fare | Esportare l'elenco dei vecchi URL da Google Search Console (l'accesso ce l'ha il cliente). Per ognuno aggiungere una regola 301 nel `.htaccess` (Apache) o in `_redirects`/`netlify.toml` (Netlify). **Importante per non perdere il posizionamento Google** e per non lasciare link rotti. |
-| 2 | **Favicon** (icona scheda browser) | ❌ Manca nel sito | Questo sito non include una favicon. Se non la gestisci già tu a livello di dominio, aggiungere `favicon.ico` + `apple-touch-icon.png` in root e i `<link rel="icon">` nelle pagine (o iniettarli da `app.js`). Operazione minima. |
-| 3 | **Foto anteprima link (Open Graph)** | ❌ Mancano | Sono le immagini che compaiono quando si condivide un link (WhatsApp, Facebook, LinkedIn). I meta tag esistono già e puntano a `immagini/og/*.jpg`, ma **i file non ci sono** (c'è solo `immagini/og/README.md` con l'elenco e le specifiche: 11 file, 1200×630px). Finché mancano, l'anteprima esce senza immagine. |
-| 4 | **Form contatti — invio reale** | ⚠️ Funziona in fallback | Oggi il form fa un POST a `BREVO_ENDPOINT = '/api/contact'` (`contatti.html`, riga ~825) che **non esiste ancora**: se fallisce, **ricade automaticamente su `mailto:` verso info@athenas.it** (apre il client email dell'utente). Per un invio server-side vero serve un endpoint che giri il messaggio a Brevo (API key Brevo lato cliente). Se non lo si fa, il form resta comunque usabile via mailto. |
-| 5 | **Facebook Pixel** | ⚠️ Codice pronto, ID mancante | In `assets/app.js` (riga ~271) la riga `const FB_PIXEL_ID` è **commentata**: finché non si inserisce il Pixel ID reale, il Pixel **non si carica**. Decommentare e mettere l'ID quando il cliente lo fornisce. Si attiva solo dopo consenso "marketing" del banner cookie. |
-| 6 | **Google Analytics 4** | ✅ Configurato — da verificare | L'ID `G-11CJ431D6Y` è già inserito (`app.js` riga ~255) e si carica **solo dopo consenso** "statistiche". Verificare che sia la property GA4 corretta del cliente e che i dati arrivino dopo il go-live. |
-| 7 | **HTTPS / certificato SSL** | ⚙️ Lato hosting | Il `.htaccess` forza già HTTPS (redirect 301). Assicurarsi che il certificato SSL sia attivo sul dominio (di solito incluso nell'hosting / Let's Encrypt). |
+| 1 | **Redirect 301 dai vecchi URL WordPress** | ❌ Da fare | Esportare l'elenco dei vecchi URL da Google Search Console (accesso lato cliente). Per ognuno una regola 301 in `.htaccess` (Apache) o `_redirects`/`netlify.toml` (Netlify). **Importante per non perdere il posizionamento Google.** |
+| 2 | **Favicon** (icona scheda browser) | ✅ **FATTA** | Aggiunta in questa fase: la **"A" di Athena's** su sfondo bianco, dimensionata per stare dentro un'icona tonda. File in **root**: `favicon-16.png`, `favicon-32.png`, `favicon-512.png`, `apple-touch-icon.png`. I `<link rel="icon">` sono in tutte le pagine, con `?v=2` per forzare l'aggiornamento. (Vedi 7.1.) |
+| 3 | **Foto anteprima link (WhatsApp/Facebook/Open Graph)** | ✅ **FATTA** (unica) | Aggiunta un'unica immagine social per **tutte** le pagine: `immagini/og/athenas-share.jpg` (1200×630, "ATHENA'S ITALY — Manufacturer since 1969"). Tutti i meta `og:image`/`twitter:image` puntano lì. ⚠️ **L'URL è `https://athenas.it/...` → l'anteprima si vede solo quando il sito è live su athenas.it** (sul link Netlify l'immagine non carica). Vedi 7.2. |
+| 4 | **Form contatti — invio reale** | ⚠️ Funziona in fallback | Il form fa POST a `BREVO_ENDPOINT = '/api/contact'` (`contatti.html`) che **non esiste ancora**: se fallisce, **ricade su `mailto:` verso info@athenas.it**. Per l'invio server-side vero serve un endpoint Brevo (API key lato cliente). |
+| 5 | **Facebook Pixel** | ⚠️ Codice pronto, ID mancante | In `assets/app.js` la riga `const FB_PIXEL_ID` è **commentata**: inserire l'ID quando arriva. Parte solo dopo consenso "marketing". |
+| 6 | **Google Analytics 4** | ✅ Configurato — da verificare | L'ID `G-11CJ431D6Y` è già inserito (`app.js`), si carica **solo dopo consenso** "statistiche". Verificare che sia la property GA4 corretta. |
+| 7 | **HTTPS / certificato SSL** | ⚙️ Lato hosting | Il `.htaccess` forza già HTTPS. Assicurarsi che l'SSL sia attivo sul dominio. |
 
 ---
 
 ## 2. COME FUNZIONA (da sapere per non rompere nulla)
 
-### 2a. Sistema foto prodotti
-- Il sito mostra **solo** i file `.webp` ai percorsi "piatti": `immagini/<linea>/<prodotto>/hero.webp`, `det-01.webp`, `det-02.webp`.
-- `hero.webp` = packaging (foto grande + mini-card); `det-01.webp` = ingrediente chiave; `det-02.webp` = foto ambient.
-- **La terza foto (`det-02`, "ambient") è stata volutamente disattivata**: quando manca, la scheda L'Erboristica/Everby non mostra alcun buco — la sezione "Cosa non c'è" si dispone elegantemente a tutta larghezza. È il comportamento desiderato, non un bug. (Se un giorno si vorranno reintrodurre foto ambient valide, ricompaiono da sole appena il file esiste.)
-- I percorsi sono dichiarati in `assets/data.json` / `assets/data-inline.js` (campo `images`). Se il file non c'è, compare un placeholder discreto (o il layout a tutta larghezza di cui sopra).
-- Esiste un archivio master `immagini/_GALLERIA/` ma **NON va pubblicato** (è pesante, ~1.6 GB, ed è già escluso dal repo Git). Il sito non lo usa: carica solo i file "piatti" qui sopra.
-- ⚠️ **La fonte di verità è ciò che si vede sul sito**, non l'archivio. I file effettivamente caricati dal sito sono quelli ai percorsi piatti (es. Everby e Uomo prendono il pack da una copia già verificata). Nell'archivio `_GALLERIA` (organizzato per tipo, es. `prodotto-pack/`) alcune versioni avevano **difetti**: foto **stirate ai lati** (proporzioni sbagliate) o **colore prodotto errato**. Quindi: se devi sostituire/aggiungere una foto, modifica il percorso piatto in `data.json`/`data-inline.js` e **verifica a occhio sul sito** (niente stiramento ai bordi, colore giusto) — non ricopiare alla cieca dall'archivio.
+### 2a. Sistema foto prodotti (schede `prodotto.html`)
+- Le schede prodotto mostrano i file ai percorsi "piatti": `immagini/<linea>/<prodotto>/hero.webp`, `det-01.webp`, `det-02.webp`.
+- `hero.webp` = packaging; `det-01.webp` = ingrediente chiave; `det-02.webp` = foto ambient (volutamente disattivata: quando manca, la sezione si dispone a tutta larghezza — è il comportamento desiderato).
+- I percorsi sono in `assets/data.json` / `assets/data-inline.js` (campo `images`).
+- ⚠️ **La fonte di verità è ciò che si vede sul sito.** Se sostituisci una foto, modifica il percorso e **verifica a occhio** (niente stiramenti, colore giusto).
 
 ### 2b. Bilingue (IT/EN)
-- Ogni testo ha `data-it` e `data-en`. Il cambio lingua è gestito da `app.js` lato browser e **salvato nel browser dell'utente** (localStorage).
-- **Regola d'oro se si aggiunge testo nuovo**: mettere SEMPRE sia `data-it` sia `data-en`, altrimenti la versione inglese resta vuota.
+- Ogni testo ha `data-it` e `data-en`. Cambio lingua via `app.js`, salvato nel browser (localStorage).
+- **Regola d'oro**: aggiungendo testo nuovo, mettere SEMPRE sia `data-it` sia `data-en`, altrimenti l'inglese resta vuoto.
 
 ### 2c. URL "puliti" — attenzione
-- Su **Netlify** gli URL funzionano anche senza `.html` (es. `/prodotto`). Su **Apache** no: lì valgono gli URL con `.html`.
-- **I link interni del sito usano sempre `.html`**, quindi funzionano su entrambi. Non serve attivare la riscrittura URL su Apache. (Se la si attiva comunque, testare bene perché alcuni controlli JS dipendono dal percorso.)
+- Su **Netlify** gli URL funzionano anche senza `.html`. Su **Apache** valgono gli URL con `.html`.
+- **I link interni usano sempre `.html`**, quindi funzionano su entrambi. (Se attivi la riscrittura URL su Apache, testa bene: alcuni controlli JS dipendono dal percorso.)
 
-### 2d. Pagina di errore 404
-- Esiste `404.html` brandizzato. Si attiva da sola: su Apache via `.htaccess` (`ErrorDocument 404 /404.html`), su Netlify in automatico.
-- Quando un utente sbaglia indirizzo (es. `athenas.it/percorso-inesistente`) vede questa pagina con HTTP 404 corretto e i pulsanti "Torna alla home" / "Scopri i brand". **Già testato e funzionante a qualsiasi profondità di URL.**
+### 2d. Pagina 404
+- `404.html` brandizzato. Su Apache via `.htaccess` (`ErrorDocument 404`), su Netlify automatico. Già testato a qualsiasi profondità.
 
 ### 2e. Banner cookie
-- Banner **GDPR self-hosted** (gratuito, in `app.js`), con 3 categorie e gestione del consenso. Gli analytics/Pixel partono **solo dopo** il consenso.
-- Il cliente ha un account **Iubenda**: se si vuole usare quello, va sostituito il banner attuale (le istruzioni sono nel codice/commenti). **Non obbligatorio**: l'attuale è già a norma.
+- Banner **GDPR self-hosted** (in `app.js`), 3 categorie. Analytics/Pixel partono **solo dopo** consenso. Il cliente ha un account **Iubenda** se vuole sostituirlo (non obbligatorio, l'attuale è a norma).
 
-### 2f. Header di sicurezza / CSP
-- Il `.htaccess` imposta header di sicurezza e una **Content-Security-Policy**. La CSP **già consente** Google Analytics, Google Tag Manager, Facebook e Brevo. Se si aggiungono altri servizi esterni (mappe, chat, ecc.), va aggiornata la CSP altrimenti vengono bloccati.
+### 2f. Smooth scroll (Lenis) — novità
+- Lo **smooth scroll Lenis** è ora attivo su tutto il sito (`assets/app.js`). Era caricato ma non partiva per un problema di timing; ora `initLenis` ritenta al `DOMContentLoaded`.
+- Si disattiva da solo su mobile (≤860px) e con `prefers-reduced-motion`. **Non è un problema se un giorno lo si vuole togliere** (basta non chiamarlo), ma sappi che è lui a gestire lo scroll fluido.
+
+### 2g. Header di sicurezza / CSP
+- Il `.htaccess` imposta header di sicurezza e una **CSP** che già consente GA, GTM, Facebook, Brevo. Aggiungendo servizi esterni (mappe, chat), aggiornare la CSP.
 
 ---
 
-## 3. COSA MANCA (contenuti, non codice)
+## 3. DOVE SONO LE FOTO (mappa rapida)
 
-**Foto di contenuto da aggiungere — circa 10**, le fornisce il cliente. Dove la foto manca, oggi compare un placeholder grafico discreto, quindi il sito resta a posto anche senza:
+> Tutte le immagini servite stanno in **`immagini/`**. Le foto si sostituiscono **mantenendo lo stesso nome file** (i percorsi sono cablati nel codice). ⚠️ Dopo aver sostituito una foto vedi la **Sezione 7.3** (cache) per non vederla "vecchia" online.
+
+**Hero pagine LINEA** (`linee/linea.html?id=<linea>`) — formato orizzontale 16:9:
+`immagini/<linea>/hero.jpg`
+→ linee: `argan, cocco, mandorle, antieta, illumia, purysens, nutra, estratti, uomo, pearls`
+⚠️ Mappature non ovvie: **`pearls` = Skincare Innovation** (foto Mineral Infusions) · **`estratti` = Estratti Botanici** (foto "Saponi") · **`uomo` = linea Uomo** (foto "Active").
+
+**Card linee** nella pagina L'Erboristica (`linee/erboristica.html`) — formato 7:5:
+`immagini/<linea>/card.jpg` (stesse linee qui sopra).
+
+**Hero pagine BRAND** (le 4 pagine marchio):
+- L'Erboristica (`linee/erboristica.html`) → `immagini/brand-erboristica/hero.jpg`
+- Everby (`linee/everby.html`) → `immagini/everby/hero-gruppo.jpg`
+- Kaley (`linee/kaley.html`) → `immagini/kaley/collection.jpg`
+- Sphea (`linee/sphea.html`) → foto interna alla pagina Sphea (non modificata in questa fase).
+
+**Portfolio brand** (`linee.html`, i 4 riquadri):
+- L'Erboristica → `immagini/brand-erboristica/cover-linee.jpg`
+- Everby → `immagini/everby/cover-linee.jpg`
+- Kaley / Sphea → foto interne dei rispettivi riquadri.
+
+**Altre foto chiave:**
+- Hero **Contatti** (`contatti.html`) → `immagini/contatti/hero.jpg` (con velo scuro a sinistra per leggere il titolo; il menu in alto è in versione chiara).
+- Intro **Kaley** ("Un profumo che appartiene solo a te") → `immagini/kaley/lifestyle-01.jpg`.
+- Banner fragranze Kaley → `immagini/kaley/<fragranza>/pack-gradiente.webp`.
+- **Sphea** "The science of pearls" → `immagini/sphea/stilllife.jpg`.
+- **Loghi brand** → `immagini/brand-<brand>/logo.png` (il logo L'Erboristica è stato ripulito, vedi 7.5).
+- **Immagine social WhatsApp/Facebook** → `immagini/og/athenas-share.jpg` (1200×630).
+- **Favicon** → in **root**: `favicon-16.png`, `favicon-32.png`, `favicon-512.png`, `apple-touch-icon.png`.
+- **Loghi certificazioni** (Sostenibilità + schede prodotto) → NON sono file immagine ma **maschere CSS in `assets/cert-masks.css`** (PNG in base64). Il "Plant Based" è il logo Bioagricert. Per cambiarli serve rigenerare la maschera.
+
+---
+
+## 4. COSA MANCA (contenuti, non codice)
+
+Dove la foto manca compare un placeholder discreto, quindi il sito resta a posto anche senza:
 
 - **1** foto squadra/famiglia in **home** (`index.html`).
-- **1** foto editoriale L'Erboristica (verticale) in **`linee.html`**.
-- **5** foto dei referenti in **`contatti.html`** (Cortinovis, Buratto, Verzani, Venturino, Lasagna).
-- **2-3** foto **Sphea** (foto prodotto + before/after clinica) in `linee/prodotto-sphea.html`.
-- **Foto Open Graph** (vedi punto 1.3): 11 immagini 1200×630 da creare — queste sono le "foto anteprima link", una categoria a sé.
+- **5** foto dei referenti in **`contatti.html`**.
+- **2-3** foto **Sphea** aggiuntive in `linee/prodotto-sphea.html`.
+- (Le foto delle linee, dei brand, dell'editoriale L'Erboristica e l'immagine social/favicon sono **già state inserite** in questa fase.)
 
 ---
 
-## 4. NON FONDAMENTALE — migliorie future (si possono fare dopo)
+## 5. NON FONDAMENTALE — migliorie future
 
-- **Anteprima link in inglese** (richiesta del cliente): **al momento non è possibile** con questa architettura. Le anteprime social (titolo "Manifattura italiana…" + descrizione) sono lette dai crawler di Facebook/WhatsApp/LinkedIn, che **non eseguono JavaScript** e quindi non sanno in che lingua stava navigando l'utente: leggono i meta tag statici, che sono in italiano. Per avere anteprime in inglese servirebbero **URL separati per l'inglese** (es. `/en/...`), ognuno con i propri meta tag statici — è un intervento strutturale. **Raccomandazione**: per il lancio tenere le anteprime in italiano (standard per un sito a dominio unico con cambio lingua lato browser); valutare gli URL inglesi solo se l'inglese diventa un canale importante.
-- **`hreflang`**: collegato al punto sopra. Senza URL separati per lingua non è applicabile. Da considerare insieme agli URL `/en/`.
-- **Tag `<title>` e meta description dinamici per le schede prodotto in inglese**: i titoli delle pagine statiche sono già bilingui; le schede prodotto dinamiche mostrano il titolo nella lingua scelta lato browser ma il `<title>` "di partenza" è IT (stesso motivo dei crawler).
-- **Ottimizzazione immagini**: le foto sono già in `.webp`; eventuale ulteriore compressione/`srcset` responsive è un plus, non un blocco.
-
----
-
-## 5. CHECKLIST — dati/credenziali che servono dal cliente
-
-Da raccogliere per chiudere i punti della Sezione 1:
-
-- [ ] **Elenco vecchi URL** del sito attuale (export da Google Search Console) → per i redirect 301.
-- [ ] **Facebook Pixel ID** → per attivare il Pixel.
-- [ ] **API key Brevo** (+ eventuale endpoint) → per l'invio reale del form contatti.
-- [ ] Conferma **property GA4** corretta (l'ID `G-11CJ431D6Y` è già nel codice).
-- [ ] **Foto Open Graph** (11 file 1200×630) e le **~10 foto di contenuto** della Sezione 3 (team, editoriale linee, 5 referenti contatti, Sphea).
-- [ ] Eventuali **credenziali Iubenda**, se si vuole sostituire il banner cookie.
-- [ ] Accesso **DNS del dominio** athenas.it (per puntarlo al nuovo hosting) e **certificato SSL** attivo.
+- **Anteprima link in inglese**: non possibile con questa architettura (i crawler social non eseguono JS → leggono i meta IT). Servirebbero **URL separati `/en/`**. Per il lancio tenere le anteprime in italiano.
+- **`hreflang`** / **`<title>` dinamici EN per le schede prodotto**: collegati al punto sopra.
+- **Mobile hero**: gli hero linea/prodotto si adattano (larghezza piena, si impilano), ma il layout mobile è **in corso di rifinitura**. Da rivedere su telefono reale.
 
 ---
 
-## 6. File/cartelle da NON pubblicare (pulizia consigliata)
+## 6. CHECKLIST — dati/credenziali dal cliente
 
-Se si consegna l'**intera cartella locale**, contiene materiale di lavoro che non serve al sito (ed è pesante). **Consigliato: pubblicare il contenuto del repository Git** (`JayThug-The-Coder/erboristica-site`), che esclude già tutto questo tramite `.gitignore`. Se invece si pubblica la cartella, escludere:
+- [ ] **Elenco vecchi URL** (export Search Console) → redirect 301.
+- [ ] **Facebook Pixel ID**.
+- [ ] **API key Brevo** (+ endpoint) → invio form.
+- [ ] Conferma **property GA4** (ID già nel codice).
+- [ ] **~6 foto di contenuto** rimanenti (team home, 5 referenti contatti, extra Sphea).
+- [ ] Eventuali **credenziali Iubenda**.
+- [ ] Accesso **DNS** athenas.it + **SSL** attivo.
 
-- `immagini/_GALLERIA/` e `immagini/_hero_backup_*` / `immagini/_backup_*` — archivi/backup foto (pesanti).
-- `_docs/`, file `*.docx`, `*.pdf`, `*.zip` — documenti sorgente.
-- `_preview/`, `immagini/kaley/index.html`, e i PNG di prova in `immagini/` con prefisso `_` (es. `_ing2_*`, `_new_*`, `_test_*`, `_prova_*`) — scarti di lavorazione.
-- File interni di documentazione: `CLAUDE.md`, `PROGRESS.md`, `HANDOFF.md`, `KNOWLEDGE.md`, `AUDIT-*.md`, questo stesso `CONSEGNA-TECNICO.md`.
-  - Su Apache il `.htaccess` **già blocca** la visualizzazione pubblica di molti di questi (CLAUDE/PROGRESS/AUDIT/README/docx/zip). Gli altri `.md` interni conviene comunque non caricarli o bloccarli.
+---
+
+## 7. ⚠️ AGGIORNAMENTI RECENTI (giugno 2026) — e COSA NON ROMPERE
+
+Questa fase ha sistemato molte cose e ne ha cambiate alcune **strutturali**. Leggi con attenzione: i punti contrassegnati ⚠️ sono **trappole** in cui è facile ricadere.
+
+### 7.1 Favicon
+- È la **"A"** di Athena's (file in root, vedi Sezione 1.2 e 3). Sostituibile mantenendo gli stessi nomi file. Se la cambi, **alza il numero in `?v=2`** nei `<link rel="icon">` (le favicon sono tenute in cache in modo molto aggressivo dai browser).
+
+### 7.2 Immagine social (Open Graph) — WhatsApp/Facebook
+- Unica per tutte le pagine: `immagini/og/athenas-share.jpg`. Tutti i meta puntano lì.
+- ⚠️ L'URL nei meta è **`https://athenas.it/immagini/og/athenas-share.jpg`** (assoluto). **L'anteprima funziona solo quando il sito è live su athenas.it.** Sul link di test Netlify l'immagine non si vede (è normale). Dopo il go-live, per forzare l'aggiornamento delle anteprime usare il **Facebook Sharing Debugger**.
+- I vecchi file per-pagina `immagini/og/<pagina>.jpg` **non sono più usati**.
+
+### 7.3 ⚠️⚠️ CACHE DELLE IMMAGINI (il punto più importante)
+- **Problema risolto in questa fase**: le immagini avevano `Cache-Control: max-age=31536000` (**1 anno**). Sostituendo una foto **con lo stesso nome file**, i browser dei visitatori continuavano a mostrare la **versione vecchia** anche dopo il deploy (online "sbagliato", in locale giusto).
+- **Fix applicato in `netlify.toml`**: le immagini (`jpg/jpeg/png/webp`) ora hanno `Cache-Control: public, max-age=0, must-revalidate` (come css/js). Così ad ogni cambio foto i browser prendono la versione nuova.
+- ⚠️ **NON rimettere la cache lunga (`max-age=31536000`) sulle immagini** se prevedi di sostituirle mantenendo lo stesso nome: torneresti al problema delle foto vecchie online.
+- ⚠️ **Su APACHE (`.htaccess`)**: lì c'è ancora `ExpiresByType image/... "access plus 1 year"`. Se pubblichi su Apache e sostituisci immagini per nome, **riduci quel valore** (o aggiungi `?v=N` ai percorsi immagine) per evitare lo stesso problema di foto stale.
+
+### 7.4 ⚠️ FONT (niente Google Fonts)
+- Tutti i font sono **self-hosted** (`assets/fonts.css` + file in `assets/fonts/`), con `font-display: optional`. Le pagine **precaricano** i font degli hero (Fraunces 200/300 normale+italico, Cormorant 400 italico).
+- ⚠️ **Non re-introdurre Google Fonts** (`fonts.googleapis.com`): causava un "lampo" di font sbagliato al caricamento (FOUT) che è stato eliminato proprio passando ai self-hosted.
+
+### 7.5 ⚠️ HERO PAGINE LINEA = `background-image`, NON un `<img>`
+- L'hero delle pagine linea (`linee/linea.html`) imposta la foto come **`background-image` del contenitore `#heroBg`** (via JS), non come un `<img>`.
+- **Perché**: un `<img>` iniettato via JS, pur essendo caricato e visibile nel DOM, **su alcuni render del sito live NON veniva ridipinto** → si vedeva solo il gradiente di sfondo (sembrava che le foto hero fossero "sbagliate" online ma giuste in locale). Il passaggio a `background-image` ha risolto.
+- ⚠️ **NON riconvertire l'hero linea in un `<img>` iniettato via JS**: tornerebbe il bug "hero non visibile online".
+- Nota: mentre la foto carica si vede un **fallback scuro neutro** (prima era verde per un bug: la mappa `palettes` è indicizzata per nome colore ma il codice cercava con l'id linea → ricadeva sempre su "sage"=verde. Ora fallback neutro).
+
+### 7.6 ⚠️ `app.js` ha una versione (`?v=10`)
+- `assets/app.js` è incluso come **`app.js?v=10`** in tutte le pagine (cache-busting).
+- ⚠️ **Se modifichi `app.js`, alza il numero** (`?v=11`, ecc.) in tutte le pagine, altrimenti i browser dei visitatori continuano a usare la versione vecchia in cache.
+
+### 7.7 Testi/etichette cambiati
+- **Terzisti → in inglese è "Contract Manufacturing"** (menu, titoli, ruolo di Gloria in Contatti, tab del form, ricerca). La pagina resta `terzisti.html` (i link non cambiano).
+- Rimosso ovunque il termine **"private label"** (→ contract manufacturing) e il claim **"250 referenze"** (numero e parola tolti).
+- Catalogo: niente "Edizione 2026" → "Ultima edizione".
+
+### 7.8 Ottimizzazione immagini pesanti
+- Ridotte le immagini più grosse servite: `immagini/azienda/hero-laghetto.jpg` (3.2MB→~400KB), loghi Sphea `brand-sphea/logo-clean.png` e `logo.png`, `mineral-infusions/*`. Logo L'Erboristica `brand-erboristica/logo.png` ripulito (829KB→40KB: era pieno di rumore/artefatti, si vedevano "puntini" da grande).
+
+### 7.9 Altri fix di questa fase
+- Eliminato il "lampo" del segnaposto a forma di boccetta sulle schede prodotto (la foto reale appare senza scatto).
+- Sistemati vari flash/scatti al refresh (immagini con decode asincrono, dissolvenze rimosse dove causavano scatti/jank).
+- Hero contatti con foto + menu chiaro; separatori in home; logo certificazione Plant Based (Bioagricert).
+
+---
+
+## 8. File/cartelle da NON pubblicare (pulizia consigliata)
+
+**Consigliato: pubblicare il contenuto del repository Git** (`JayThug-The-Coder/erboristica-site`), che esclude già tutto questo via `.gitignore`. Se pubblichi la cartella locale, escludi:
+
+- `immagini/_GALLERIA/`, `immagini/higgsfield/`, `immagini/_inbox/`, `immagini/_hero_backup_*`, `immagini/_backup_*`, `_orphan`, `_concept`, `_reambient`, `_ecommerce` — archivi/scarti di lavorazione foto (**molto pesanti, ~2.3 GB complessivi**, già esclusi da Git).
+- **Backup foto `*-OLD.jpg` / `*-OLD.png` / `*-OLD.webp`** — creati durante le sostituzioni (già esclusi da Git).
+- **Sorgenti PNG enormi delle foto prodotto** (es. `immagini/<linea>/<prodotto>/hero.png`, `det-*.png`): il sito usa le versioni `.webp`, questi `.png` sono solo sorgenti (già esclusi da Git via `immagini/**/hero.png` e `det-*.png`).
+- `_docs/`, `*.docx`, `*.pdf`, `*.zip` — documenti sorgente.
+- `_preview/`, `immagini/kaley/index.html`, PNG di prova con prefisso `_`.
+- Documentazione interna: `CLAUDE.md`, `PROGRESS.md`, `HANDOFF.md`, `KNOWLEDGE.md`, `AUDIT-*.md`, questo `CONSEGNA-TECNICO.md`.
+
+> ✅ Le cartelle sorgente pesanti e i backup **sono già nel `.gitignore`**, quindi **pubblicando dal repository Git non finiscono online** automaticamente.
 
 ---
 
 ## Riepilogo a colpo d'occhio
 
-**Pronto e funzionante:** tutte le pagine (IT/EN), schede prodotto, ricerca, 404, banner cookie GDPR, sitemap/robots, header di sicurezza, GA4 (post-consenso), form contatti (fallback mailto), meta tag e URL già su `athenas.it`.
+**Pronto e funzionante:** tutte le pagine (IT/EN), schede prodotto, ricerca, 404, banner cookie GDPR, sitemap/robots, header di sicurezza, GA4 (post-consenso), form contatti (fallback mailto), **favicon**, **immagine social unica**, font self-hosted, smooth scroll, foto linee/brand/contatti/Sphea inserite.
 
-**Da chiudere prima/al go-live (essenziale):** redirect 301 vecchi URL · favicon · foto anteprima link (OG) · endpoint form Brevo · Facebook Pixel ID · verifica GA4 · SSL.
+**Da chiudere prima/al go-live (essenziale):** redirect 301 vecchi URL · endpoint form Brevo · Facebook Pixel ID · verifica GA4 · SSL · **sito live su athenas.it perché l'anteprima social funzioni**.
 
-**Migliorie future (non bloccanti):** anteprime link in inglese (richiede URL `/en/` separati) · hreflang · ottimizzazioni immagini.
+**⚠️ NON rompere:** cache immagini = `must-revalidate` (non 1 anno) · niente Google Fonts · hero linea = `background-image` (non `<img>`) · alza `?v=` se modifichi `app.js` · sempre `data-it` + `data-en` sui testi nuovi.
+
+**Migliorie future (non bloccanti):** anteprime link in inglese (URL `/en/`) · hreflang · rifinitura mobile degli hero.

@@ -29,30 +29,29 @@ body { background: var(--cream); color: var(--ink); font-family: var(--sans); ov
   color: var(--cream);
   position: relative; overflow: clip;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
 }
 @media (max-width: 900px) { .lh { grid-template-columns: 1fr; } }
 
 .lh__bg {
   position: absolute; inset: 0;
-  background:
-    radial-gradient(ellipse 60% 70% at 80% 30%, rgba(90,107,78,.12) 0%, transparent 55%),
-    radial-gradient(ellipse 40% 50% at 15% 75%, rgba(201,169,110,.08) 0%, transparent 60%),
-    linear-gradient(170deg, #050505 0%, #0f0f0f 60%, #080808 100%);
+  background-image:
+    linear-gradient(100deg, rgba(8,8,8,.92) 0%, rgba(8,8,8,.8) 26%, rgba(8,8,8,.46) 50%, rgba(8,8,8,.12) 74%, rgba(8,8,8,.04) 100%),
+    linear-gradient(0deg, rgba(8,8,8,.6) 0%, rgba(8,8,8,.12) 28%, transparent 52%),
+    url("immagini/terzisti/hero.webp");
+  background-size: cover;
+  background-position: 70% center;
+}
+@media (max-width: 900px) {
+  .lh__bg {
+    background-image:
+      linear-gradient(0deg, rgba(8,8,8,.92) 0%, rgba(8,8,8,.6) 34%, rgba(8,8,8,.3) 64%, rgba(8,8,8,.45) 100%),
+      url("immagini/terzisti/hero.webp");
+    background-position: 65% center;
+  }
 }
 
-.lh__particles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
-.lh__particle {
-  position: absolute; border-radius: 50%;
-  background: rgba(201,169,110,.35);
-  animation: particle-drift linear infinite;
-}
-@keyframes particle-drift {
-  0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
-  10%  { opacity: 1; }
-  90%  { opacity: 1; }
-  100% { transform: translateY(-120vh) translateX(30px) scale(.5); opacity: 0; }
-}
+
 
 .lh__left {
   position: relative; z-index: 3;
@@ -98,27 +97,9 @@ body { background: var(--cream); color: var(--ink); font-family: var(--sans); ov
   color: rgba(232,224,212,.3);
 }
 
-.lh__right {
-  position: relative; z-index: 2;
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden;
-}
-@media (max-width: 900px) { .lh__right { display: none; } }
 
-.lh__diagram {
-  width: clamp(320px,45vw,600px);
-  height: clamp(320px,45vw,600px);
-  position: relative;
-}
-.lh__diagram svg { width: 100%; height: 100%; }
 
-.lh__wm {
-  position: absolute; bottom: -0.08em; left: 0; right: 0;
-  font-family: var(--display); font-size: clamp(120px,22vw,320px);
-  font-weight: 200; color: rgba(255,255,255,.025);
-  letter-spacing: -0.05em; line-height: 1;
-  pointer-events: none; white-space: nowrap; overflow: hidden;
-}
+
 
 .scroll-hint {
   position: absolute; bottom: clamp(24px,4vw,40px); right: clamp(20px,4vw,60px);
@@ -396,8 +377,6 @@ body { background: var(--cream); color: var(--ink); font-family: var(--sans); ov
 <!-- â”€â”€ HERO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
 <section class="lh" data-mood-fallback="dark">
   <div class="lh__bg"></div>
-  <div class="lh__particles" id="particles" aria-hidden="true"></div>
-  <div class="lh__wm" aria-hidden="true">MADE</div>
 
   <div class="lh__left">
     <div class="lh__eyebrow" data-it="Conto Terzi · Pianoro (BO)" data-en="Contract Manufacturing · Pianoro (BO)">Conto Terzi · Pianoro (BO)</div>
@@ -405,60 +384,9 @@ body { background: var(--cream); color: var(--ink); font-family: var(--sans); ov
       <span data-it="Produciamo" data-en="We manufacture">Produciamo</span><br>
       <em data-it="il tuo brand." data-en="your brand.">il tuo brand.</em>
     </h1>
-    <p class="lh__lead" data-it="Dal 1969 siamo la fabbrica che traduce le idee dei brand cosmetici in prodotti finiti. Formuliamo, produciamo, confezioniamo e certifichiamo nel nostro stabilimento di Pianoro." data-en="Since 1969 we are the factory translating cosmetic brand ideas into finished products. We formulate, manufacture, package and certify in our Pianoro facility.">Dal 1969 siamo la fabbrica che traduce le idee dei brand cosmetici in prodotti finiti. Formuliamo, produciamo, confezioniamo e certifichiamo nel nostro stabilimento di Pianoro.</p>
+    <p class="lh__lead" data-it="Dal 1969 siamo la fabbrica che traduce le idee dei brand cosmetici in prodotti finiti.<br><br>Formuliamo, produciamo, confezioniamo e certifichiamo<br>nel nostro stabilimento di Pianoro." data-en="Since 1969 we are the factory translating cosmetic brand ideas into finished products.<br><br>We formulate, manufacture, package and certify<br>in our Pianoro facility.">Dal 1969 siamo la fabbrica che traduce le idee dei brand cosmetici in prodotti finiti.<br><br>Formuliamo, produciamo, confezioniamo e certifichiamo<br>nel nostro stabilimento di Pianoro.</p>
   </div>
 
-  <div class="lh__right">
-    <div class="lh__diagram">
-      <svg viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <circle cx="250" cy="250" r="230" stroke="rgba(201,169,110,.06)" stroke-width="1"/>
-        <circle cx="250" cy="250" r="195" stroke="rgba(201,169,110,.09)" stroke-width="1" stroke-dasharray="4 6"/>
-        <circle cx="250" cy="250" r="155" stroke="rgba(201,169,110,.12)" stroke-width="1"/>
-        <circle cx="250" cy="250" r="110" stroke="rgba(201,169,110,.18)" stroke-width="1.5" stroke-dasharray="2 4"/>
-        <circle cx="250" cy="250" r="68"  stroke="rgba(201,169,110,.25)" stroke-width="1.5"/>
-        <circle cx="250" cy="250" r="32" fill="url(#tcore)" filter="url(#tglow)"/>
-        <defs>
-          <radialGradient id="tcore" cx="35%" cy="35%">
-            <stop offset="0%" stop-color="rgba(201,169,110,.9)"/>
-            <stop offset="60%" stop-color="rgba(120,90,40,.6)"/>
-            <stop offset="100%" stop-color="rgba(20,20,20,.95)"/>
-          </radialGradient>
-          <filter id="tglow"><feGaussianBlur stdDeviation="3"/></filter>
-        </defs>
-        <text x="250" y="245" text-anchor="middle" font-family="Fraunces,serif" font-size="9" fill="rgba(201,169,110,.7)" font-style="italic">brand</text>
-        <text x="250" y="258" text-anchor="middle" font-family="sans-serif" font-size="5" fill="rgba(201,169,110,.4)" letter-spacing="2">PARTNER</text>
-
-        <circle cx="250" cy="95"  r="14" fill="rgba(201,169,110,.12)" stroke="rgba(201,169,110,.3)" stroke-width="1"/>
-        <circle cx="384" cy="173" r="10" fill="rgba(201,169,110,.10)" stroke="rgba(201,169,110,.25)" stroke-width="1"/>
-        <circle cx="384" cy="327" r="16" fill="rgba(201,169,110,.14)" stroke="rgba(201,169,110,.3)" stroke-width="1"/>
-        <circle cx="250" cy="405" r="11" fill="rgba(201,169,110,.1)"  stroke="rgba(201,169,110,.22)" stroke-width="1"/>
-        <circle cx="116" cy="327" r="13" fill="rgba(201,169,110,.12)" stroke="rgba(201,169,110,.28)" stroke-width="1"/>
-        <circle cx="116" cy="173" r="9"  fill="rgba(201,169,110,.09)" stroke="rgba(201,169,110,.2)"  stroke-width="1"/>
-
-        <line x1="250" y1="218" x2="250" y2="109" stroke="rgba(201,169,110,.15)" stroke-width="1" stroke-dasharray="3 4"/>
-        <line x1="272" y1="226" x2="376" y2="179" stroke="rgba(201,169,110,.12)" stroke-width="1" stroke-dasharray="3 4"/>
-        <line x1="272" y1="274" x2="370" y2="321" stroke="rgba(201,169,110,.15)" stroke-width="1" stroke-dasharray="3 4"/>
-        <line x1="250" y1="282" x2="250" y2="394" stroke="rgba(201,169,110,.12)" stroke-width="1" stroke-dasharray="3 4"/>
-        <line x1="228" y1="274" x2="130" y2="321" stroke="rgba(201,169,110,.15)" stroke-width="1" stroke-dasharray="3 4"/>
-        <line x1="228" y1="226" x2="124" y2="179" stroke="rgba(201,169,110,.12)" stroke-width="1" stroke-dasharray="3 4"/>
-
-        <text x="250" y="92"  text-anchor="middle" font-family="sans-serif" font-size="5.5" fill="rgba(201,169,110,.5)" letter-spacing="1">FORMULA</text>
-        <text x="388" y="170" text-anchor="start"  font-family="sans-serif" font-size="5.5" fill="rgba(201,169,110,.5)" letter-spacing="1">PRODUZ.</text>
-        <text x="388" y="324" text-anchor="start"  font-family="sans-serif" font-size="5.5" fill="rgba(201,169,110,.5)" letter-spacing="1">CONFEZ.</text>
-        <text x="250" y="424" text-anchor="middle" font-family="sans-serif" font-size="5.5" fill="rgba(201,169,110,.5)" letter-spacing="1">REGOLAT.</text>
-        <text x="112" y="340" text-anchor="end"    font-family="sans-serif" font-size="5.5" fill="rgba(201,169,110,.5)" letter-spacing="1">QUALITA'</text>
-        <text x="112" y="170" text-anchor="end"    font-family="sans-serif" font-size="5.5" fill="rgba(201,169,110,.5)" letter-spacing="1">LOGISTICA</text>
-
-        <circle cx="250" cy="250" r="230" stroke="rgba(201,169,110,.04)" stroke-width="1" stroke-dasharray="12 20"
-          style="transform-origin:250px 250px; animation: lab-rot 40s linear infinite;"/>
-        <circle cx="250" cy="250" r="155" stroke="rgba(90,107,78,.08)" stroke-width="1" stroke-dasharray="5 10"
-          style="transform-origin:250px 250px; animation: lab-rot 25s linear infinite reverse;"/>
-        <style>
-          @keyframes lab-rot { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        </style>
-      </svg>
-    </div>
-  </div>
 
   <div class="scroll-hint" aria-hidden="true">
     <div class="scroll-hint__line"></div>
@@ -578,25 +506,11 @@ body { background: var(--cream); color: var(--ink); font-family: var(--sans); ov
 <script src="assets/vendor/lenis.min.js" defer></script>
 <script src="assets/data.js"></script>
 <script src="assets/search-data.js" defer></script>
-<script src="assets/app.js?v=10"></script>
+<script src="assets/app.js?v=11"></script>
 <script>
 initAthenas('terzisti');
 document.querySelector('.topbar').classList.add('topbar--light');
 
-// â”€â”€ PARTICLES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-const particlesContainer = document.getElementById('particles');
-if (particlesContainer) {
-  for (let i = 0; i < 22; i++) {
-    const p = document.createElement('div');
-    p.className = 'lh__particle';
-    const size = Math.random() * 3 + 1.5;
-    const dur  = Math.random() * 18 + 12;
-    const left = Math.random() * 100;
-    const delay = Math.random() * -dur;
-    p.style.cssText = `width:${size}px; height:${size}px; left:${left}%; bottom:-${size}px; animation-duration:${dur}s; animation-delay:${delay}s; opacity: ${Math.random() * 0.4 + 0.1};`;
-    particlesContainer.appendChild(p);
-  }
-}
 
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => {

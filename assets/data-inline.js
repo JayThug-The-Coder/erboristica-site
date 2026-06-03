@@ -332,7 +332,6 @@ window.ATH_DATA_JSON = {
         "detail_2": "immagini/antieta/contorno-occhi/det-02.webp"
       },
       "actives_main": [
-        "Caffeina",
         "Peptide Eye-Care",
         "Acido Ialuronico"
       ]
@@ -374,7 +373,7 @@ window.ATH_DATA_JSON = {
         "Collagene vegetale",
         "Acido Ialuronico",
         "Vitamina E",
-        "Peptidi vegetali"
+        "Bakuchiol"
       ]
     },
     {
@@ -412,7 +411,6 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Aloe Vera",
-        "Bisabololo",
         "Tensioattivi vegetali dolci"
       ]
     },
@@ -450,9 +448,9 @@ window.ATH_DATA_JSON = {
         "detail_2": "immagini/antieta/fiale-concentrato-rimpolpante/det-02.webp"
       },
       "actives_main": [
-        "Acido Ialuronico a diverso peso molecolare",
-        "Collagene marino idrolizzato",
-        "Vitamina C"
+        "Retinolo",
+        "Vitamina C",
+        "Bakuchiol"
       ]
     },
     {
@@ -489,8 +487,7 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Acido Ialuronico LMW (basso peso molecolare)",
-        "Acido Ialuronico HMW (alto peso molecolare)",
-        "Niacinamide"
+        "Acido Ialuronico HMW (alto peso molecolare)"
       ]
     },
     {
@@ -528,8 +525,7 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Collagene vegetale idrolizzato",
-        "Tripeptide-1",
-        "Aloe Vera"
+        "Cellule Staminali di Stella Alpina"
       ]
     },
     {
@@ -566,9 +562,7 @@ window.ATH_DATA_JSON = {
         "detail_2": "immagini/antieta/trattamento-viso/det-02.webp"
       },
       "actives_main": [
-        "Retinolo (Vitamina A)",
-        "Olio di Argan",
-        "Peptidi anti-età",
+        "Natto Gum (Acido Poliglutammico)",
         "Vitamina E"
       ]
     },
@@ -607,8 +601,7 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Burro di Cocco",
-        "Glicerina",
-        "Olio di Mandorle Dolci"
+        "Glicerina"
       ]
     },
     {
@@ -1080,8 +1073,7 @@ window.ATH_DATA_JSON = {
       },
       "cert_note": "Certificazioni allineate L'Erboristica (PARTE N docx, rilettura 01/05/2026)",
       "actives_main": [
-        "Acqua di Riso Fermentata",
-        "Niacinamide"
+        "Acqua di Riso Fermentata"
       ]
     },
     {
@@ -1327,7 +1319,6 @@ window.ATH_DATA_JSON = {
         "detail_2": "immagini/estratti/bagno-doccia-tè-verde/det-02.webp"
       },
       "actives_main": [
-        "Estratto di Tè Verde",
         "Tensioattivi vegetali dolci",
         "Aloe Vera"
       ]
@@ -1367,8 +1358,7 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Burro di Karité",
-        "Vitamina E",
-        "Olio di Mandorle Dolci"
+        "Vitamina E"
       ]
     },
     {
@@ -1522,7 +1512,6 @@ window.ATH_DATA_JSON = {
         "detail_2": "immagini/estratti/doccia-schiuma-patchouli-e-neroli/det-02.webp"
       },
       "actives_main": [
-        "Olio Essenziale di Patchouli",
         "Olio Essenziale di Neroli",
         "Tensioattivi vegetali"
       ]
@@ -1640,7 +1629,6 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Olio Essenziale di Rosa",
-        "Olio di Jojoba",
         "Vitamina E"
       ]
     },
@@ -1679,8 +1667,7 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Burro di Karité",
-        "Glicerina naturale di processo",
-        "Saponificazione a freddo"
+        "Glicerina naturale di processo"
       ]
     },
     {
@@ -1871,8 +1858,7 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Estratto di Betulla",
-        "Menta Piperita",
-        "Zinco PCA"
+        "Menta Piperita"
       ]
     },
     {
@@ -2181,8 +2167,7 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Genziana alpina (Water Infusion)",
-        "Aloe Vera",
-        "Pantenolo"
+        "Aloe Vera"
       ]
     },
     {
@@ -2230,8 +2215,8 @@ window.ATH_DATA_JSON = {
       "format": "160 ml",
       "line": "nutra",
       "brand": "erboristica",
-      "name_it": "CREMA CORPO ORO DI BAOBAB",
-      "name_en": "BAOBAB GOLD BODY CREAM",
+      "name_it": "CREMA CORPO",
+      "name_en": "BODY CREAM",
       "url": "https://www.erboristica.com/nutra-repair/crema-corpo/",
       "subtitle_it": "Crema corpo rigenerante e nutriente all’Olio di Baobab.",
       "subtitle_en": "Regenerating, nourishing Baobab Oil body cream.",
@@ -2269,8 +2254,8 @@ window.ATH_DATA_JSON = {
       "format": "50 ml",
       "line": "nutra",
       "brand": "erboristica",
-      "name_it": "CREMA VISO ORO DI BAOBAB",
-      "name_en": "BAOBAB GOLD FACE CREAM",
+      "name_it": "CREMA VISO",
+      "name_en": "FACE CREAM",
       "url": "https://www.erboristica.com/nutra-repair/crema-viso/",
       "subtitle_it": "Crema viso ultra-rigenerante e nutriente all’Olio di Baobab.",
       "subtitle_en": "Ultra-regenerating, nourishing Baobab Oil face cream.",
@@ -2308,8 +2293,8 @@ window.ATH_DATA_JSON = {
       "format": "200 ml",
       "line": "nutra",
       "brand": "erboristica",
-      "name_it": "OLIO CORPO NUTRA REPAIR",
-      "name_en": "NUTRA REPAIR BODY OIL",
+      "name_it": "OLIO CORPO",
+      "name_en": "BODY OIL",
       "url": "https://www.erboristica.com/nutra-repair/olio-corpo-oro-di-baobab/",
       "subtitle_it": "Olio corpo e capelli rigenerante e nutriente all’Olio di Baobab.",
       "subtitle_en": "Regenerating, nourishing Baobab Oil body and hair oil.",
@@ -2347,8 +2332,8 @@ window.ATH_DATA_JSON = {
       "format": "30 ml",
       "line": "nutra",
       "brand": "erboristica",
-      "name_it": "OLIO VISO NUTRA REPAIR",
-      "name_en": "NUTRA REPAIR FACE OIL",
+      "name_it": "OLIO VISO",
+      "name_en": "FACE OIL",
       "url": "https://www.erboristica.com/nutra-repair/olio-puro-viso/",
       "subtitle_it": "Olio viso multivitaminico rigenerante e riparatore all’Olio di Baobab.",
       "subtitle_en": "Regenerating, repairing multivitamin Baobab Oil face oil.",
@@ -2454,8 +2439,7 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Olio di Argan",
-        "Micro-granuli di Jojoba",
-        "Aloe Vera"
+        "Micro-granuli di Oliva"
       ]
     },
     {
@@ -2493,8 +2477,7 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Olio di Argan biologico",
-        "Tensioattivi vegetali",
-        "Vitamina E"
+        "Tensioattivi vegetali"
       ]
     },
     {
@@ -2570,7 +2553,6 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Olio di Argan",
-        "Saponificazione a freddo",
         "Glicerina naturale di processo"
       ]
     },
@@ -2609,8 +2591,7 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Olio di Argan",
-        "Acido Ialuronico",
-        "Vitamina C"
+        "Acido Ialuronico"
       ]
     },
     {
@@ -2648,8 +2629,7 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Olio di Mandorle Dolci",
-        "Glicerina",
-        "Pantenolo"
+        "Glicerina"
       ]
     },
     {
@@ -2880,8 +2860,7 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Coenzima Q10 (perle marine)",
-        "Argireline Amplified®",
-        "Acido Ialuronico"
+        "Argireline Amplified®"
       ]
     },
     {
@@ -2919,8 +2898,7 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Niacinamide (perle marine)",
-        "Retinolo (Vitamina A)",
-        "Acido Ialuronico"
+        "Retinolo (Vitamina A)"
       ]
     },
     {
@@ -2958,8 +2936,7 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Vitamina C stabilizzata (perle marine)",
-        "Luminescine®",
-        "Acido Ialuronico"
+        "Luminescine®"
       ]
     },
     {
@@ -2996,7 +2973,6 @@ window.ATH_DATA_JSON = {
         "detail_2": "immagini/purysens/crema-viso-purificante/det-02.webp"
       },
       "actives_main": [
-        "Estratto di Tè Verde",
         "Acido Salicilico",
         "Zinco PCA"
       ]
@@ -3035,8 +3011,6 @@ window.ATH_DATA_JSON = {
         "detail_2": "immagini/purysens/emulsione-detergente-viso/det-02.webp"
       },
       "actives_main": [
-        "Aloe Vera",
-        "Camomilla",
         "Tensioattivi dolci di origine vegetale"
       ]
     },
@@ -3046,8 +3020,8 @@ window.ATH_DATA_JSON = {
       "format": "20 ml",
       "line": "purysens",
       "brand": "erboristica",
-      "name_it": "Maschera viso all’Argilla Rosa PURYSENS",
-      "name_en": "PINK CLAY FACE MASK PURYSENS",
+      "name_it": "Maschera viso all’Argilla Rosa",
+      "name_en": "PINK CLAY FACE MASK",
       "url": "https://www.erboristica.com/purysens/maschera-viso-argilla-rosa/",
       "subtitle_it": "Maschera viso all’Argilla Rosa, purificante e levigante.",
       "subtitle_en": "Pink Clay face mask, purifying and smoothing.",
@@ -3075,8 +3049,7 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Argilla Rosa",
-        "Kaolino",
-        "Estratto di Tè Verde"
+        "Kaolino"
       ]
     },
     {
@@ -3153,8 +3126,7 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Aloe Vera",
-        "Menta Piperita",
-        "Tea Tree (Melaleuca)"
+        "Menta Piperita"
       ]
     },
     {
@@ -3184,7 +3156,6 @@ window.ATH_DATA_JSON = {
         "detail_2": "immagini/uomo/contorno-occhi-uomo-anti-età/det-02.webp"
       },
       "actives_main": [
-        "Caffeina",
         "Peptidi anti-rughe",
         "Acido Ialuronico",
         "Bakuchiol"
@@ -3226,8 +3197,7 @@ window.ATH_DATA_JSON = {
       "actives_main": [
         "Acido Ialuronico",
         "Collagene vegetale",
-        "Vitamina E",
-        "Estratto di Bambù"
+        "Vitamina E"
       ]
     },
     {
@@ -3264,7 +3234,6 @@ window.ATH_DATA_JSON = {
         "detail_2": "immagini/uomo/crema-viso-uomo-active/det-02.webp"
       },
       "actives_main": [
-        "Estratto di Tè Verde",
         "Niacinamide",
         "Caffeina"
       ]
@@ -3376,7 +3345,6 @@ window.ATH_DATA_JSON = {
         "detail_2": "immagini/uomo/fluido-idratante-viso-e-barba-uomo/det-02.webp"
       },
       "actives_main": [
-        "Olio di Argan",
         "Acido Ialuronico",
         "Vitamina E",
         "Aloe Vera"
@@ -3417,7 +3385,6 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Olio di Jojoba",
-        "Olio di Argan",
         "Vitamina E"
       ]
     },
@@ -3571,9 +3538,7 @@ window.ATH_DATA_JSON = {
         "detail_2": "immagini/uomo/siero-viso-uomo/det-02.webp"
       },
       "actives_main": [
-        "Acido Ialuronico",
-        "Peptidi",
-        "Vitamina C stabilizzata"
+        "Acido Ialuronico"
       ]
     },
     {

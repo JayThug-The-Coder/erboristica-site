@@ -498,6 +498,8 @@
       } catch(e) {}
       return 'linee/erboristica.html';
     }
+    // pagine legali (privacy / cookie policy) -> torna alla home
+    if (file === 'privacy' || file === 'cookie-policy') return 'index.html';
     return null;
   };
 
@@ -650,7 +652,7 @@
           <span class="footer__social">
             <a href="https://www.instagram.com/athenasitaly/" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
             <a href="https://www.facebook.com/athenasofficial/" target="_blank" rel="noopener" aria-label="Facebook">Facebook</a>
-            <a href="https://www.linkedin.com/company/athena's-srl/" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
+            <a href="https://www.linkedin.com/company/athena%27s-srl/" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
           </span>
         </div>
         <div class="footer__bottom">

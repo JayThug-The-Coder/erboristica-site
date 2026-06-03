@@ -781,6 +781,14 @@
       transition: transform .3s var(--ease);
     }
     .pd-inci-toggle.open .pd-inci-chevron { transform: rotate(180deg); }
+    .pd-inci-note {
+      margin: 12px 0 0;
+      font-size: 12.5px;
+      letter-spacing: 0.02em;
+      color: var(--pd-accent, var(--gold-deep));
+      font-weight: 500;
+    }
+    .pd-inci-note[hidden] { display: none; }
     .pd-inci-body {
       max-height: 0;
       overflow: hidden;
@@ -1095,6 +1103,7 @@
             <span data-it="INCI completo" data-en="Full INCI">INCI completo</span>
             <svg class="pd-inci-chevron" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
+          <p class="pd-inci-note" id="pdInciNote" hidden data-it="(*) da Agricoltura Biologica" data-en="(*) from Organic Farming">(*) da Agricoltura Biologica</p>
           <div class="pd-inci-body" id="inciBody">
             <p class="pd-inci-text" id="pdInci"></p>
           </div>
@@ -1138,7 +1147,7 @@
 <script src="assets/vendor/lenis.min.js"></script><script src="assets/data.js?v=7"></script>
 <script src="assets/data-inline.js?v=7"></script>
 <script src="assets/datastore.js?v=9"></script>
-<script src="assets/app.js?v=10"></script>
+<script src="assets/app.js?v=11"></script>
 <script>
 initAthenas('prodotto');
 const _topbar = document.querySelector('.topbar');
@@ -1501,6 +1510,7 @@ const ACTIVES_LIB = {
   'zinco-pca': { name: 'Zinco PCA (Pyrrolidone Carboxylate)', role: 'Sebo-regolatore · Purificante', origine: 'Sale di zinco con acido pirrolidonico carbossilico (NMF naturale della pelle). Forma chelata, biodisponibile.', meccanismo: 'Zinco inibisce la 5α-reduttasi tipo I (riduce DHT, riduce sebo). PCA è umettante naturale. Effetto antibatterico verso C. acnes.', efficacia: 'Sebo +37% di riduzione in 28 giorni (3%, n=35). Punti neri visibili -41% in 6 settimane. Pori dilatati visibilmente ridotti.', tags: ['Sebo-regolatore','Purificante','Pori','Anti-acne'] },
   'acido-salicilico': { name: 'Acido Salicilico (BHA)', role: 'Esfoliante · Anti-imperfezioni', origine: 'Beta-hydroxy acid (BHA) ottenuto da corteccia di salice (Salix alba) o per sintesi. Lipofilo, penetra nei pori sebacei.', meccanismo: 'Dissolve i corneociti del dotto pilosebaceo (esfoliazione intracanalicolare). Anti-infiammatorio via COX/LOX inhibition. Comedolitico.', efficacia: 'Comedoni -47% in 8 settimane (2%, n=40). Pori meno visibili, grana cutanea uniforme. Standard in dermatologia per acne lieve.', tags: ['Esfoliante','BHA','Anti-comedone','Pori'] },
   'micelle-acqua-girasole': { name: 'Olio di Girasole (Omega 3-6)', role: 'Emolliente · Struccante', origine: 'Olio vergine spremuto a freddo dai semi di Helianthus annuus (girasole). Ricco di acido linoleico (omega-6, 65%) e oleico (omega-9).', meccanismo: 'Affinità lipidica con il sebo: scioglie make-up waterproof e impurità lipofile per solubilizzazione. Riparativo della barriera cutanea.', efficacia: 'Rimozione mascara waterproof: 96% in un singolo passaggio (panel n=30). Non comedogenico (0/5).', tags: ['Struccante','Lipofilo','Omega 3-6','Non comedogenico'] },
+  'natto-gum': { name: 'Natto Gum (Acido Poliglutammico)', role: 'Rimpolpante · Tensore', origine: 'Polisaccaride ottenuto dalla fermentazione dei fagioli di soia (natto), ricchissimo di acido poliglutammico (PGA).', meccanismo: 'Trattiene l\'acqua con un potere idratante superiore all\'acido ialuronico e forma un film tensore che mima l\'effetto dei peptidi distendendo la superficie cutanea.', efficacia: 'Effetto rimpolpante e levigante immediato; idratazione prolungata e comfort cutaneo grazie al film protettivo.', tags: ['Rimpolpante','Idratante','Tensore','Film tensore'] },
 };
 
 // Traduzione EN della libreria attivi. Stesse chiavi di ACTIVES_LIB; i nomi propri / INCI
@@ -1560,6 +1570,7 @@ const ACTIVES_EN = {
   'olio-ricino': { name: 'Castor Oil (Ricinus communis)', role: 'Nourishing · Glossing', origine: 'Cold-pressed from Ricinus communis seeds. Rich in ricinoleic acid (90%), unique in the plant kingdom.', meccanismo: 'Ricinoleic acid has emollient and anti-inflammatory properties (PGE2 inhibition). Low viscosity, high glossing and nourishing power.', efficacia: 'Lip gloss +52% (long-lasting glossy effect). Hydration 8 hours after a single application.' },
   'acido-salicilico': { name: 'Salicylic Acid (BHA)', role: 'Exfoliating · Anti-blemish', origine: 'Beta-hydroxy acid (BHA) obtained from willow bark (Salix alba) or by synthesis. Lipophilic, it penetrates the sebaceous pores.', meccanismo: 'Dissolves the corneocytes of the pilosebaceous duct (intracanalicular exfoliation). Anti-inflammatory via COX/LOX inhibition. Comedolytic.', efficacia: 'Comedones -47% in 8 weeks (2%, n=40). Less visible pores, even skin texture. A dermatology standard for mild acne.' },
   'micelle-acqua-girasole': { name: 'Sunflower Oil (Omega 3-6)', role: 'Emollient · Make-up removing', origine: 'Virgin oil cold-pressed from Helianthus annuus (sunflower) seeds. Rich in linoleic acid (omega-6, 65%) and oleic (omega-9).', meccanismo: 'Lipid affinity with sebum: it dissolves waterproof make-up and lipophilic impurities by solubilisation. Repairs the skin barrier.', efficacia: 'Waterproof mascara removal: 96% in a single pass (panel n=30). Non-comedogenic (0/5).' },
+  'natto-gum': { name: 'Natto Gum (Polyglutamic Acid)', role: 'Plumping · Tightening', origine: 'Polysaccharide obtained from the fermentation of soybeans (natto), very rich in polyglutamic acid (PGA).', meccanismo: 'Holds water with a moisturising power higher than hyaluronic acid and forms a tightening film that mimics the effect of tensor peptides, smoothing the skin surface.', efficacia: 'Immediate plumping and smoothing effect; long-lasting hydration and skin comfort thanks to the protective film.' },
 };
 
 // Localizza un attivo della libreria per chiave: in EN usa ACTIVES_EN[key] (definito sopra)
@@ -1640,6 +1651,8 @@ const ING_KEY_MAP = {
   'zinco pca': 'zinco-pca','zinc pca': 'zinco-pca','pyrrolidone carboxylate': 'zinco-pca',
   'acido salicilico': 'acido-salicilico','salicylic acid': 'acido-salicilico','sodium salicylate': 'acido-salicilico','salix alba': 'acido-salicilico',
   'olio di girasole': 'micelle-acqua-girasole','helianthus annuus': 'micelle-acqua-girasole','sunflower oil': 'micelle-acqua-girasole','omega 3-6': 'micelle-acqua-girasole',
+  'tremella': 'acido-ialuronico','tremella fuciformis': 'acido-ialuronico',
+  'natto gum': 'natto-gum','acido poliglutammico': 'natto-gum','polyglutamic acid': 'natto-gum','polyglutamic': 'natto-gum','sodium polyglutamate': 'natto-gum',
 };
 
 function findLibKey(text) {
@@ -1659,31 +1672,53 @@ function renderActives() {
     ? { origine: 'Origin', mecc: 'Mechanism', eff: 'Clinical evidence', active: 'Active ingredient' }
     : { origine: 'Origine', mecc: "Meccanismo d'azione", eff: 'Evidenza clinica', active: 'Ingrediente attivo' };
 
+  // Lista attivi DEDUPLICATA per chiave canonica: lo stesso ingrediente non puo
+  // comparire due volte (es. "Aloe Vera" dichiarato + "Aloe Vera (Aloe Barbadensis)"
+  // aggiunto dall'INCI). Si parte dagli attivi curati (mantengono il nome scelto,
+  // es. MAXI-LIP®), poi si integra con gli attivi di libreria presenti nell'INCI.
+  // Tetto massimo per non affollare la sezione.
+  const MAX_ACTIVES = 6;
   const actives = loc.actives || [];
-  let activesDisplay = actives.slice();
-  if (product.inci) {
-    const inciParts = product.inci.split(',').map(s => s.trim());
-    const seen = new Set();
-    inciParts.forEach(part => {
-      const key = findLibKey(part);
-      if (key && !seen.has(key)) {
-        seen.add(key);
-        const lib = ACTIVES_LIB[key];
-        if (lib && !activesDisplay.some(a => a.startsWith(lib.name))) {
-          activesDisplay.push(lib.name + ' — ' + actLoc(key).role);
-        }
-      }
-    });
-    if (activesDisplay.length === 0) {
-      const skipWords = ['aqua','water','parfum','fragrance','phenoxyethanol','ethylhexylglycerin',
-                         'sodium hydroxide','citric acid','benzyl','linalool','limonene',
-                         'sodium benzoate','potassium sorbate','dehydroacetic acid'];
-      inciParts
-        .filter(s => s.length > 4 && !skipWords.some(w => s.toLowerCase().startsWith(w)))
-        .slice(0, 7)
-        .forEach(ing => activesDisplay.push(ing + ' — ' + T.active));
+  const inciParts = (product.inci || '').split(',').map(s => s.trim()).filter(Boolean);
+  const usedKeys = new Set();
+  const usedNames = new Set();
+  let activesDisplay = [];
+  const addActive = (raw) => {
+    const sep = raw.indexOf('—');
+    const rawName = (sep > -1 ? raw.slice(0, sep) : raw).trim();
+    const key = findLibKey(rawName);
+    if (key) {
+      if (usedKeys.has(key)) return;            // ingrediente gia presente
+      usedKeys.add(key);
+    } else {
+      const nk = rawName.toLowerCase();
+      if (usedNames.has(nk)) return;            // stesso nome (senza chiave libreria)
+      usedNames.add(nk);
     }
+    activesDisplay.push(raw);
+  };
+  // 1) attivi curati del prodotto
+  actives.forEach(a => addActive(a));
+  // 2) integrazione dall'INCI: attivi di libreria presenti ma non gia citati
+  //    (passano dalla stessa dedup -> niente doppioni con i curati)
+  inciParts.forEach(part => {
+    const key = findLibKey(part);
+    if (key) {
+      const lib = ACTIVES_LIB[key];
+      if (lib) addActive(lib.name + ' — ' + actLoc(key).role);
+    }
+  });
+  // 3) fallback: nessun attivo risolto -> elenca le voci salienti dell'INCI
+  if (activesDisplay.length === 0 && inciParts.length) {
+    const skipWords = ['aqua','water','parfum','fragrance','phenoxyethanol','ethylhexylglycerin',
+                       'sodium hydroxide','citric acid','benzyl','linalool','limonene',
+                       'sodium benzoate','potassium sorbate','dehydroacetic acid'];
+    inciParts
+      .filter(s => s.length > 4 && !skipWords.some(w => s.toLowerCase().startsWith(w)))
+      .slice(0, 7)
+      .forEach(ing => activesDisplay.push(ing + ' — ' + T.active));
   }
+  activesDisplay = activesDisplay.slice(0, MAX_ACTIVES);
 
   kiRows.innerHTML = '';
   activesDisplay.forEach((active, i) => {
@@ -1692,6 +1727,11 @@ function renderActives() {
     const shortDesc = sep > -1 ? active.slice(sep + 1).trim() : '';
     const key  = findLibKey(rawName);
     const data = key ? actLoc(key) : null;
+    // Nomi brevettati/proprietari (con ® o ™) = nomi propri lang-invarianti: vanno
+    // mostrati verbatim, non sostituiti dal nome generico di libreria (es. "Argireline
+    // Amplified®" non deve diventare "Peptidi Biomimetici").
+    const branded  = /®|™/.test(rawName);
+    const dispName = branded ? rawName : (data ? data.name : translateActive(rawName, lang));
 
     const row = document.createElement('div');
     row.className = 'ki-row' + (data ? '' : ' ki-row--no-data');
@@ -1703,7 +1743,7 @@ function renderActives() {
       <div class="ki-row__head">
         <div class="ki-row__num">${String(i + 1).padStart(2, '0')}</div>
         <div class="ki-row__main">
-          <div class="ki-row__name">${fmtActiveName(data ? data.name : translateActive(rawName, lang))}</div>
+          <div class="ki-row__name">${fmtActiveName(dispName)}</div>
           <div class="ki-row__tag">${data ? data.role : (shortDesc || T.active)}</div>
         </div>
         <div class="ki-row__toggle">${data ? '+' : '—'}</div>
@@ -1724,19 +1764,19 @@ function renderActives() {
     `;
 
     if (key) {
-      row.addEventListener('click', () => openKiModal(key, i + 1));
+      row.addEventListener('click', () => openKiModal(key, i + 1, branded ? rawName : null));
     }
     kiRows.appendChild(row);
   });
 }
 
 // ── MODALE INGREDIENTE ────────────────────────────────────────
-function openKiModal(key, num) {
+function openKiModal(key, num, name) {
   const modal = document.getElementById('kiModal');
   if (!modal) return;
   const data = actLoc(key);
   document.getElementById('kiModalNum').textContent = String(num).padStart(2, '0');
-  document.getElementById('kiModalName').innerHTML = fmtActiveName(data.name || '');
+  document.getElementById('kiModalName').innerHTML = fmtActiveName(name || data.name || '');
   document.getElementById('kiModalRole').textContent = data.role || '';
   document.getElementById('kiModalOrigine').textContent = data.origine || '';
   document.getElementById('kiModalMeccanismo').textContent = data.meccanismo || '';
@@ -2083,6 +2123,9 @@ function renderLocalized() {
   // INCI (testo lang-dipendente solo nel fallback)
   const inciEl = document.getElementById('pdInci');
   if (inciEl) inciEl.textContent = product.inci || (lang === 'it' ? 'INCI non disponibile.' : 'INCI not available.');
+  // Legenda asterisco: visibile (fuori dalla tendina) solo se l'INCI contiene "(*)"
+  const inciNote = document.getElementById('pdInciNote');
+  if (inciNote) inciNote.hidden = !(product.inci && product.inci.indexOf('(*)') > -1);
 
   renderFormula();
   renderActives();
