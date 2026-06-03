@@ -22,7 +22,7 @@
 
 **Agg. (3ª tranche):** video Sphea compresso 12,4→1,8 MB (1600x800 CRF23, backup in `immagini/_hero_backup_sphea_video/` gitignored); Privacy+Cookie → topbar ora presente (fix `defer` su app.js) + tasto Indietro (`getHierarchyParent`→index.html) + topbar sempre visibile (CSS `transform:none`); hero Terzisti → foto `immagini/terzisti/hero.webp` con scrim, rimossi atomo/particelle/scritta "MADE".
 
-**Agg. (4ª tranche) — ONLINE:** testo hero Terzisti riscritto con interruzioni (EN+IT); form contatti confermato → info@athenas.it (fallback mailto, nessuna modifica); `app.js?v=10→v=11` su 16 pagine (avevo toccato app.js); CONSEGNA-TECNICO.md → nuova sezione "⭐ COSA CONSEGNARE" (consegnare il repo GitHub; cartelle foto-archivio gitignored = non online; form→info@athenas.it). **Push su origin/main** (Netlify auto-deploy).
+**Agg. (4ª tranche) — ONLINE:** testo hero Terzisti riscritto con interruzioni (EN+IT); form contatti confermato → info@athenas.it (fallback mailto, nessuna modifica); `app.js?v=10→v=11` su 16 pagine (avevo toccato app.js); CONSEGNA-TECNICO.md → nuove sezioni "⭐ COSA CONSEGNARE" (consegnare il repo GitHub; cartelle foto-archivio gitignored = non online; form→info@athenas.it) e "🔌 COSA ABBIAMO GIÀ COLLEGATO" (GA4, banner cookie GDPR, Iubenda, `.htaccess`+`netlify.toml`, Facebook Pixel, SEO/Schema.org, form, font self-hosted, tutto spiegato con stato). **Push su origin/main** (Netlify auto-deploy).
 
 **Aperto:** legenda "(\*)" su Sphea/Kaley custom; fantasmi peptidi residui fuori List A (es. uomo-contorno); claim SPF/Omega/Pigmenti lasciati.
 

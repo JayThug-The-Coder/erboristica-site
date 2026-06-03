@@ -32,6 +32,41 @@ La mail del **form** ("Scrivici") è indirizzata a **info@athenas.it**. Finché 
 
 ---
 
+## 🔌 COSA ABBIAMO GIÀ COLLEGATO E CONFIGURATO (tutto spiegato)
+
+Riepilogo di **tutto ciò che è già impostato** nel sito, con lo stato di ciascuna cosa.
+**Legenda:** ✅ pronto e attivo · ⚠️ pronto, manca solo un dato dal cliente · ⚙️ dipende dall'hosting.
+
+### Analytics e tracciamento
+- ✅ **Google Analytics 4 (GA4)** — ID `G-11CJ431D6Y` (in `assets/app.js`), con **IP anonimizzato**. **Parte SOLO dopo il consenso ai cookie "statistiche"** (mai prima): è a norma GDPR. → Unica cosa da fare: verificare che sia la property GA4 corretta del cliente.
+- ⚠️ **Facebook Pixel** — il codice è **già pronto** in `assets/app.js`, ma l'**ID è da inserire** (riga oggi commentata, `FB_PIXEL_ID`). Parte solo dopo consenso "marketing". → Serve il **Pixel ID** dal cliente.
+- ✅ **Banner cookie (consenso GDPR)** — banner **self-hosted** (gestito da `app.js`), **3 categorie**: Necessari · Statistiche · Marketing. Le preferenze sono salvate nel browser del visitatore. **GA4 e Pixel non partono finché l'utente non acconsente.** Niente da fare.
+
+### Privacy e testi legali
+- ✅ **Iubenda** — le pagine **Privacy Policy** (`privacy.html`) e **Cookie Policy** (`cookie-policy.html`) **incorporano i testi legali presi da Iubenda** (account del cliente, documento ID `85420717`, script caricato da `cdn.iubenda.com`). I testi si aggiornano **da Iubenda**, non dal codice del sito.
+- ℹ️ Il **banner** di consenso, invece, è quello **self-hosted** (vedi sopra), non quello di Iubenda. Va benissimo così ed è a norma. Se il cliente preferisce usare il banner di Iubenda, si può sostituire (servono le **credenziali Iubenda** — vedi checklist Sezione 6).
+
+### Sicurezza e prestazioni
+- ✅ ⚙️ **File di sicurezza `.htaccess`** (per hosting **Apache**, com'è l'attuale WordPress) — già pronto. In pratica fa: **forza HTTPS**; **HSTS** (HTTPS obbligatorio per 1 anno); **X-Frame-Options** (anti-clickjacking); **X-Content-Type-Options** (anti MIME-sniffing); **Referrer-Policy**; **Permissions-Policy** (camera/microfono/geolocalizzazione disattivati di default); **CSP / Content-Security-Policy** (consente già Google Analytics, Tag Manager, Facebook, Brevo); **compressione Gzip**; **cache**; **niente elenco delle cartelle**; e **blocca i file sensibili** (`.git`, `.env`, i documenti interni `.md`, `.docx`, `.zip`). ⚠️ Vale **solo su Apache**: se il sito va su **Netlify**, il `.htaccess` viene **ignorato** (lì vale `netlify.toml`).
+- ✅ ⚙️ **`netlify.toml`** (per **Netlify**) — header di sicurezza equivalenti + **cache**: CSS/JS/immagini in `must-revalidate` (così gli aggiornamenti si vedono **subito**, niente foto "vecchie"), font 1 anno; redirect `/index.html` → `/`.
+- ✅ **HTTPS** — già forzato dalla configurazione. ⚙️ Va solo verificato che l'**SSL** sia attivo sul dominio (lato hosting).
+
+### SEO e condivisione social
+- ✅ **sitemap.xml** + **robots.txt** + **canonical** su tutte le pagine.
+- ✅ **Meta description** + **Open Graph** + **Twitter Card** su ogni pagina, con **un'unica immagine social** `immagini/og/athenas-share.jpg` (1200×630). ⚠️ L'anteprima social funziona **solo quando il sito è live su athenas.it** (vedi 7.2).
+- ✅ **Dati strutturati Schema.org** (JSON-LD): Organization / LocalBusiness / Manufacturer (P.IVA, indirizzo, orari spaccio, contatti, social) + WebSite + Breadcrumb sulle pagine interne.
+- ✅ **Favicon** (la "A" di Athena's) in root.
+
+### Contatti
+- ⚠️ **Form contatti** — indirizzato a **info@athenas.it**. Oggi l'invio avviene via `mailto` (apre il client di posta del visitatore, già pre-compilato). Per l'**invio automatico server-side** serve l'**endpoint Brevo** (API key dal cliente): vedi Sezione 1, punto 4. Quando si configura Brevo, impostarlo perché consegni **sempre a info@athenas.it**.
+
+### Base tecnica (già a posto, niente da fare)
+- ✅ **Font self-hosted** (niente Google Fonts) · ✅ **pagina 404** brandizzata · ✅ **bilingue IT/EN** lato browser · ✅ **smooth scroll** (si disattiva da solo su mobile/`reduced-motion`).
+
+> 🧾 **In sintesi per il cliente:** GA4, banner cookie, Iubenda, sicurezza, SEO e form sono **già collegati e funzionanti**. Dal cliente servono solo, quando disponibili: **Pixel ID**, **API key Brevo**, **elenco vecchi URL** (per i redirect), e l'attivazione **SSL/DNS**. Tutto il resto è pronto. (Dettaglio operativo nelle Sezioni 1 e 6.)
+
+---
+
 ## 0. Cos'è il sito (in breve)
 
 - **Sito statico**: solo HTML, CSS e JavaScript. **Nessun build, nessun framework, nessun database, nessun backend.** Si pubblica copiando i file così come sono.
