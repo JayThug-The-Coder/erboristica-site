@@ -981,12 +981,15 @@ body.theme-line-antieta {
     };
     const heroImgUrl = HERO_IMGS[lineId];
     if (heroImgUrl) {
-      const img = document.createElement('img');
-      img.alt = line.name;
-      img.fetchPriority = 'high';
-      img.decoding = 'async';
-      img.src = heroImgUrl;
-      heroBg.appendChild(img);
+      // Foto come background-image del contenitore (sopra il gradiente palette
+      // come fallback). I background CSS si dipingono in modo affidabile online,
+      // a differenza di un <img> iniettato via JS che su alcuni render non
+      // ridipinge (si vedeva solo il gradiente verde online).
+      heroBg.style.background = 'url("' + heroImgUrl + '") center / cover no-repeat, ' + bg;
+      // preload esplicito per priorita
+      const pre = new Image();
+      pre.fetchPriority = 'high';
+      pre.src = heroImgUrl;
     }
 
     // Numero linea rimosso (su richiesta): watermark nascosto
