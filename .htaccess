@@ -19,6 +19,183 @@ ErrorDocument 404 /404.html
 </IfModule>
 
 # ────────────────────────────────────────────────────────────────
+# Redirect 301 dal vecchio sito WordPress (athenas.it) al sito nuovo.
+# Target con estensione .html (su Apache gli URL puliti non esistono).
+# Le righe "DA RIVEDERE" mandano prodotti dismessi/ambigui alla pagina linea.
+# ════════════════════ NB: questo blocco e _redirects (Netlify) sono
+# equivalenti; su Siteground (Apache) vale SOLO questo .htaccess. ═══════
+# ────────────────────────────────────────────────────────────────
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # --- Pagine ---
+  RewriteRule "^about\-us\-athenas/?$" "/" [R=301,L]
+  RewriteRule "^contatta\-athenas/?$" "/contatti.html" [R=301,L]
+  RewriteRule "^ecosostenibilita\-2/?$" "/sostenibilita.html" [R=301,L]
+  RewriteRule "^laboratorio\-2/?$" "/laboratorio.html" [R=301,L]
+  RewriteRule "^privacy\-policy/?$" "/privacy.html" [R=301,L]
+
+  # --- Hub brand ---
+  RewriteRule "^brands/erboristica/?$" "/linee/erboristica.html" [R=301,L]
+  RewriteRule "^brands/everby/?$" "/linee/everby.html" [R=301,L]
+  RewriteRule "^brands/kaley/?$" "/linee/kaley.html" [R=301,L]
+  RewriteRule "^brands/sphea/?$" "/linee/sphea.html" [R=301,L]
+  RewriteRule "^brands/vintage/?$" "/linee.html" [R=301,L]
+
+  # --- Linee L'Erboristica ---
+  RewriteRule "^brands/erboristica/antieta\-globale/?$" "/linee/linea.html?id=antieta" [R=301,L]
+  RewriteRule "^brands/erboristica/estratti\-botanici/?$" "/linee/linea.html?id=estratti" [R=301,L]
+  RewriteRule "^brands/erboristica/illumia/?$" "/linee/linea.html?id=illumia" [R=301,L]
+  RewriteRule "^brands/erboristica/nutra\-repair/?$" "/linee/linea.html?id=nutra" [R=301,L]
+  RewriteRule "^brands/erboristica/olio\-di\-argan\-biologico/?$" "/linee/linea.html?id=argan" [R=301,L]
+  RewriteRule "^brands/erboristica/olio\-di\-cocco/?$" "/linee/linea.html?id=cocco" [R=301,L]
+  RewriteRule "^brands/erboristica/olio\-di\-mandorle\-dolci/?$" "/linee/linea.html?id=mandorle" [R=301,L]
+  RewriteRule "^brands/erboristica/purysens/?$" "/linee/linea.html?id=purysens" [R=301,L]
+  RewriteRule "^brands/erboristica/skincare\-innovation/?$" "/linee/linea.html?id=innovation" [R=301,L]
+  RewriteRule "^brands/erboristica/skincare\-innovation/kit\-doppia\-detersione/?$" "/linee/linea.html?id=innovation" [R=301,L]
+  RewriteRule "^brands/erboristica/skincare\-innovation/mineral\-infusions/?$" "/linee/linea.html?id=innovation" [R=301,L]
+  RewriteRule "^brands/erboristica/skincare\-innovation/pearls/?$" "/linee/linea.html?id=innovation" [R=301,L]
+  RewriteRule "^brands/erboristica/uomo/?$" "/linee/linea.html?id=uomo" [R=301,L]
+
+  # --- Prodotti Sphea ---
+  RewriteRule "^product/anti\-pollution\-face\-serum\-sphea/?$" "/prodotto-sphea.html?id=anti-pollution" [R=301,L]
+  RewriteRule "^product/eyelift\-perfector\-sphea/?$" "/prodotto-sphea.html?id=eyelift-perfector" [R=301,L]
+  RewriteRule "^product/radiant\-up\-lift\-face\-serum\-sphea/?$" "/prodotto-sphea.html?id=radiant-up-lift" [R=301,L]
+  RewriteRule "^product/sculpt\-firm\-body\-serum\-sphea/?$" "/prodotto-sphea.html?id=sculpt-firm" [R=301,L]
+  RewriteRule "^product/slim\-silhouette\-body\-serum\-sphea/?$" "/prodotto-sphea.html?id=slim-silhouette" [R=301,L]
+
+  # --- Prodotti Kaley (schede solo redirect -> hub) ---
+  RewriteRule "^product/crystal\-rouge\-kaley/?$" "/linee/kaley.html" [R=301,L]
+  RewriteRule "^product/dark\-sea\-kaley/?$" "/linee/kaley.html" [R=301,L]
+  RewriteRule "^product/golden\-hour\-kaley/?$" "/linee/kaley.html" [R=301,L]
+  RewriteRule "^product/moka\-rose\-kaley/?$" "/linee/kaley.html" [R=301,L]
+  RewriteRule "^product/monty\-tonka\-kaley/?$" "/linee/kaley.html" [R=301,L]
+  RewriteRule "^product/spring\-symphony\-kaley/?$" "/linee/kaley.html" [R=301,L]
+  RewriteRule "^product/sweet\-whisper\-kaley/?$" "/linee/kaley.html" [R=301,L]
+
+  # --- Prodotti Everby ---
+  RewriteRule "^product/cica\-cloud\-hydra\-mousse\-detergente\-viso\-delicata/?$" "/prodotto.html?id=everby-cica-cloud-hydra-mousse-detergente-viso-delicata" [R=301,L]
+  RewriteRule "^product/dont\-call\-me\-panda\-contorno\-occhi\-per\-borse\-e\-occhiaie/?$" "/prodotto.html?id=everby-contorno-occhi-dont-call-me-panda" [R=301,L]
+  RewriteRule "^product/feel\-butter\-gel\-burro\-struccante/?$" "/prodotto.html?id=everby-gel-burro-struccante-feel-butter" [R=301,L]
+  RewriteRule "^product/lash\-me\-siero\-ciglia\-e\-sopracciglia\-allungante\-e\-rinforzante/?$" "/prodotto.html?id=everby-siero-ciglia-e-sopracciglia-lash-me" [R=301,L]
+  RewriteRule "^product/milky\-rice\-hydrating\-milky\-toner/?$" "/prodotto.html?id=everby-milky-rice-hydrating-milky-toner" [R=301,L]
+  RewriteRule "^product/no\-cry\-zone\-struccante\-bifasico\-occhi\-delicato/?$" "/prodotto.html?id=everby-no-cry-zone-truccante-bifasico-occhi-delicato" [R=301,L]
+  RewriteRule "^product/pepti\-boom\-lip\-filler\-volumizzante/?$" "/prodotto.html?id=everby-pepti-boom-lip-filler-volumizzante-labbra" [R=301,L]
+  RewriteRule "^product/pump\-plump\-siero\-viso\-rimpolpante/?$" "/prodotto.html?id=everby-siero-viso-rimpolpante-pump-e-plump" [R=301,L]
+  RewriteRule "^product/stay\-porefect\-siero\-viso\-perfezionatore/?$" "/prodotto.html?id=everby-trattamento-viso-perfezionatore-pori-dilatati-stay-po" [R=301,L]
+  RewriteRule "^product/yes\-i\-glow\-gocce\-viso\-illuminanti/?$" "/prodotto.html?id=everby-gocce-illuminanti-viso-yes-i-glow" [R=301,L]
+
+  # --- Prodotti Antieta Globale ---
+  RewriteRule "^product/antieta\-globale\-concentrato\-rimpolpante\-in\-fiale/?$" "/prodotto.html?id=antieta-fiale-concentrato-rimpolpante" [R=301,L]
+  RewriteRule "^product/antieta\-globale\-contorno\-occhi/?$" "/prodotto.html?id=antieta-contorno-occhi" [R=301,L]
+  RewriteRule "^product/antieta\-globale\-crema\-viso\-giorno/?$" "/prodotto.html?id=antieta-crema-viso-giorno" [R=301,L]
+  RewriteRule "^product/antieta\-globale\-siero\-viso\-concentrato\-collagene\-vegetale/?$" "/prodotto.html?id=antieta-siero-viso-collagene-vegetale" [R=301,L]
+  RewriteRule "^product/antieta\-globale\-siero\-viso\-concentrato/?$" "/prodotto.html?id=antieta-siero-viso-acido-ialuronico" [R=301,L]
+  RewriteRule "^product/antieta\-globale\-trattamento\-viso/?$" "/prodotto.html?id=antieta-trattamento-viso" [R=301,L]
+  RewriteRule "^product/antieta\-globale\-hydrogel\-extra\-delicato/?$" "/prodotto.html?id=antieta-detergente-struccante" [R=301,L]
+
+  # --- Prodotti Argan ---
+  RewriteRule "^product/argan\-crema\-corpo\-idratante/?$" "/prodotto.html?id=argan-crema-corpo-idratante" [R=301,L]
+  RewriteRule "^product/argan\-mousse\-doccia/?$" "/prodotto.html?id=argan-mousse-doccia" [R=301,L]
+  RewriteRule "^product/argan\-scrub\-viso\-in\-crema/?$" "/prodotto.html?id=argan-esfoliante-viso" [R=301,L]
+  RewriteRule "^product/sapone\-vegetale\-allolio\-di\-argan/?$" "/prodotto.html?id=argan-sapone-vegetale-allolio-di-argan" [R=301,L]
+  RewriteRule "^product/trattamento\-intensivo\-riparatore\-viso/?$" "/prodotto.html?id=argan-trattamento-intensivo-riparatore-viso" [R=301,L]
+
+  # --- Prodotti Cocco & Monoi ---
+  RewriteRule "^product/cocco\-crema\-corpo/?$" "/prodotto.html?id=cocco-crema-corpo-cocco" [R=301,L]
+  RewriteRule "^product/cocco\-maschera\-capelli\-istantanea/?$" "/prodotto.html?id=cocco-maschera-capelli-olio-di-cocco-e-monoi" [R=301,L]
+  RewriteRule "^product/cocco\-mousse\-doccia/?$" "/prodotto.html?id=cocco-mousse-doccia-cocco" [R=301,L]
+  RewriteRule "^product/cocco\-olio\-corpo\-e\-capelli/?$" "/prodotto.html?id=cocco-olio-corpo-e-capelli-cocco-e-monoi" [R=301,L]
+  RewriteRule "^product/cocco\-shampoo\-protettivo/?$" "/prodotto.html?id=cocco-shampoo-cocco" [R=301,L]
+  RewriteRule "^product/cocco\-spray\-idrantante\-rinfrescante/?$" "/prodotto.html?id=cocco-spray-cocco-e-aloe-vera" [R=301,L]
+  RewriteRule "^product/olio\-secco\-illuminante/?$" "/prodotto.html?id=cocco-olio-secco-illuminante" [R=301,L]
+
+  # --- Prodotti Estratti Botanici ---
+  RewriteRule "^product/bagno\-doccia\-bergamotto\-abete\-bianco/?$" "/prodotto.html?id=estratti-mousse-doccia-bergamotto-e-abete-bianco" [R=301,L]
+  RewriteRule "^product/bagno\-doccia\-camelia\-japonica/?$" "/prodotto.html?id=estratti-doccia-schiuma-camelia-japonica" [R=301,L]
+  RewriteRule "^product/bagno\-doccia\-patchouli\-e\-neroli/?$" "/prodotto.html?id=estratti-doccia-schiuma-patchouli-e-neroli" [R=301,L]
+  RewriteRule "^product/bagno\-doccia\-te\-verde/?$" "/prodotto.html?id=estratti-bagno-doccia-t%C3%A8-verde" [R=301,L,NE]
+  RewriteRule "^product/burro\-di\-karite\-vitamina\-e/?$" "/prodotto.html?id=estratti-burro-di-karit%C3%A9-vitamina-e" [R=301,L,NE]
+  RewriteRule "^product/crema\-corpo\-rosa\-essenziale/?$" "/prodotto.html?id=estratti-crema-corpo-rosa-essenziale" [R=301,L]
+  RewriteRule "^product/olio\-corpo\-rosa\-essenziale/?$" "/prodotto.html?id=estratti-olio-corpo-rosa-essenziale" [R=301,L]
+  RewriteRule "^product/crema\-mani\-unghie\-allolio\-di\-cotone/?$" "/prodotto.html?id=estratti-crema-mani-e-unghie-allolio-di-cotone" [R=301,L]
+  RewriteRule "^product/maschera\-capelli\-semi\-di\-lino\-e\-burro\-di\-karite/?$" "/prodotto.html?id=estratti-maschera-per-capelli-semi-di-lino-e-karit%C3%A9" [R=301,L,NE]
+  RewriteRule "^product/sapone\-vegetale\-al\-burro\-di\-karite/?$" "/prodotto.html?id=estratti-sapone-vegetale-al-burro-di-karit%C3%A9" [R=301,L,NE]
+  RewriteRule "^product/sapone\-vegetale\-allamido\-di\-riso/?$" "/prodotto.html?id=estratti-sapone-vegetale-allamido-di-riso" [R=301,L]
+  RewriteRule "^product/sapone\-vegetale\-allolio\-di\-oliva/?$" "/prodotto.html?id=estratti-sapone-vegetale-allolio-di-oliva" [R=301,L]
+  RewriteRule "^product/sapone\-vegetale\-di\-marsiglia/?$" "/prodotto.html?id=estratti-sapone-vegetale-di-marsiglia" [R=301,L]
+  RewriteRule "^product/sapone\-vegetale\-monoi\-di\-tahiti/?$" "/prodotto.html?id=estratti-sapone-vegetale-monoi-di-tahiti" [R=301,L]
+  RewriteRule "^product/shampoo\-purificante\-betulla\-e\-menta\-piperita/?$" "/prodotto.html?id=estratti-shampoo-purificante-betulla-e-menta-piperita" [R=301,L]
+  RewriteRule "^product/shampoo\-riparatore\-semi\-di\-lino\-e\-burro\-di\-karite/?$" "/prodotto.html?id=estratti-shampoo-riparatore-semi-di-lino-e-karit%C3%A9" [R=301,L,NE]
+
+  # --- Prodotti Illumia / Mandorle / Nutra / Purysens / Mineral ---
+  RewriteRule "^product/illumia\-crema\-viso\-giorno\-antimacchie/?$" "/prodotto.html?id=illumia-crema-viso-antimacchie" [R=301,L]
+  RewriteRule "^product/bagno\-doccia\-allolio\-di\-mandorle\-dolci/?$" "/prodotto.html?id=mandorle-mousse-doccia-mandorle-dolci" [R=301,L]
+  RewriteRule "^product/crema\-fluida\-corpo/?$" "/prodotto.html?id=mandorle-crema-fluida-corpo-mandorle-dolci" [R=301,L]
+  RewriteRule "^product/crema\-mani\-e\-unghie/?$" "/prodotto.html?id=mandorle-crema-mani-e-unghie-mandorle-dolci" [R=301,L]
+  RewriteRule "^product/crema\-viso\-prime\-rughe/?$" "/prodotto.html?id=mandorle-crema-viso-prime-rughe" [R=301,L]
+  RewriteRule "^product/olio\-di\-mandorle\-dolci/?$" "/prodotto.html?id=mandorle-olio-mandorle-dolci-100-naturale" [R=301,L]
+  RewriteRule "^product/sapone\-vegetale\-olio\-di\-mandorle/?$" "/prodotto.html?id=mandorle-sapone-vegetale-allolio-di-mandorle" [R=301,L]
+  RewriteRule "^product/oro\-di\-baobab\-crema\-corpo/?$" "/prodotto.html?id=nutra-crema-corpo-oro-di-baobab" [R=301,L]
+  RewriteRule "^product/oro\-di\-baobab\-crema\-viso/?$" "/prodotto.html?id=nutra-crema-viso-oro-di-baobab" [R=301,L]
+  RewriteRule "^product/oro\-di\-baobab\-olio\-corpo/?$" "/prodotto.html?id=nutra-olio-corpo-nutra-repair" [R=301,L]
+  RewriteRule "^product/oro\-di\-baobab\-olio\-viso\-puro/?$" "/prodotto.html?id=nutra-olio-viso-nutra-repair" [R=301,L]
+  RewriteRule "^product/purysens\-crema\-viso\-purificante/?$" "/prodotto.html?id=purysens-crema-viso-purificante" [R=301,L]
+  RewriteRule "^product/purysens\-emulsione\-detergente\-viso/?$" "/prodotto.html?id=purysens-emulsione-detergente-viso" [R=301,L]
+  RewriteRule "^product/purysens\-maschera\-viso/?$" "/prodotto.html?id=purysens-maschera-viso-allargilla-rosa-purysens" [R=301,L]
+  RewriteRule "^product/siero\-corpo\-elasticizzante/?$" "/prodotto.html?id=inn-min-1" [R=301,L]
+  RewriteRule "^product/siero\-corpo\-rigenerante/?$" "/prodotto.html?id=inn-min-2" [R=301,L]
+
+  # --- Prodotti Uomo ---
+  RewriteRule "^product/balsamo\-dopobarba\-active/?$" "/prodotto.html?id=uomo-balsamo-dopobarba-uomo-active" [R=301,L]
+  RewriteRule "^product/shampoo\-doccia\-active/?$" "/prodotto.html?id=uomo-shampoo-doccia-uomo-active" [R=301,L]
+  RewriteRule "^product/uomo\-balsamo\-dopobarba/?$" "/prodotto.html?id=uomo-balsamo-dopobarba-uomo" [R=301,L]
+  RewriteRule "^product/uomo\-crema\-viso/?$" "/prodotto.html?id=uomo-crema-viso-idratante-antirughe-uomo" [R=301,L]
+  RewriteRule "^product/uomo\-deodorante\-spray/?$" "/prodotto.html?id=uomo-deodorante-spray-uomo" [R=301,L]
+  RewriteRule "^product/uomo\-eau\-de\-toilette/?$" "/prodotto.html?id=uomo-eau-de-toilette-uomo" [R=301,L]
+  RewriteRule "^product/uomo\-olio\-da\-barba/?$" "/prodotto.html?id=uomo-olio-da-barba-uomo" [R=301,L]
+  RewriteRule "^product/uomo\-sapone\-vegetale/?$" "/prodotto.html?id=uomo-sapone-vegetale-uomo" [R=301,L]
+  RewriteRule "^product/uomo\-shampoo\-doccia/?$" "/prodotto.html?id=uomo-shampoo-doccia-uomo" [R=301,L]
+  RewriteRule "^product/uomo\-siero\-viso/?$" "/prodotto.html?id=uomo-siero-viso-uomo" [R=301,L]
+  RewriteRule "^product/uomo\-fluido\-idratante/?$" "/prodotto.html?id=uomo-fluido-idratante-viso-e-barba-uomo" [R=301,L]
+
+  # --- Prodotti dismessi / ambigui -> pagina linea (DA RIVEDERE) ---
+  RewriteRule "^product/antieta\-globale\-trattamento\-notte\-viso\-e\-decollete/?$" "/linee/linea.html?id=antieta" [R=301,L]
+  RewriteRule "^product/siero\-viso\-antirughe/?$" "/prodotto.html?id=inn-pearls-q10" [R=301,L]
+  RewriteRule "^product/siero\-viso\-antirughe\-copia/?$" "/prodotto.html?id=inn-kit" [R=301,L]
+  RewriteRule "^product/siero\-viso\-rimpolpante/?$" "/prodotto.html?id=inn-pearls-niac" [R=301,L]
+  RewriteRule "^product/argan\-latte\-detergente\-viso/?$" "/linee/linea.html?id=argan" [R=301,L]
+  RewriteRule "^product/argan\-lozione\-tonica\-viso/?$" "/linee/linea.html?id=argan" [R=301,L]
+  RewriteRule "^product/detergente\-intimo\-calendula/?$" "/linee/linea.html?id=estratti" [R=301,L]
+  RewriteRule "^product/sapone\-vegetale\-alle\-proteine\-del\-latte/?$" "/linee/linea.html?id=estratti" [R=301,L]
+  RewriteRule "^product/maschera\-capelli\-istantanea\-miele\-e\-camomilla/?$" "/linee/linea.html?id=estratti" [R=301,L]
+  RewriteRule "^product/shampoo\-delicato\-miele\-e\-camomilla/?$" "/linee/linea.html?id=estratti" [R=301,L]
+  RewriteRule "^product/illumia\-siero\-viso\-antimacchie/?$" "/linee/linea.html?id=illumia" [R=301,L]
+  RewriteRule "^product/siero\-viso\-illuminante/?$" "/prodotto.html?id=inn-pearls-c" [R=301,L]
+  RewriteRule "^product/stop\-imperfection\-siero\-viso/?$" "/linee/linea.html?id=illumia" [R=301,L]
+  RewriteRule "^product/power\-c\-siero\-viso/?$" "/linee/linea.html?id=illumia" [R=301,L]
+  RewriteRule "^product/double\-express\-2\-in\-1\-maschera\-e\-scrub/?$" "/linee/linea.html?id=innovation" [R=301,L]
+  RewriteRule "^product/magic\-powder\-polvere\-detergente/?$" "/linee/linea.html?id=innovation" [R=301,L]
+  RewriteRule "^product/hydra\-5\-siero\-viso/?$" "/linee/linea.html?id=innovation" [R=301,L]
+  RewriteRule "^product/pore\-fection\-trattamento\-pori\-dilatati/?$" "/linee/linea.html?id=innovation" [R=301,L]
+  RewriteRule "^product/olio\-puro\-viso\-e\-decollete/?$" "/linee/linea.html?id=nutra" [R=301,L]
+  RewriteRule "^product/purysens\-tonico\-viso/?$" "/linee/linea.html?id=purysens" [R=301,L]
+  RewriteRule "^product/doccia\-schiuma\-energy/?$" "/linee/linea.html?id=uomo" [R=301,L]
+  RewriteRule "^product/scrub\-corpo\-vellutante/?$" "/prodotto.html?id=cocco-scrub-corpo-cocco-e-monoi" [R=301,L]
+  RewriteRule "^product/crema\-viso\-copia/?$" "/prodotto.html?id=uomo-crema-viso-uomo-active" [R=301,L]
+  RewriteRule "^product/olio\-corpo/?$" "/prodotto.html?id=argan-olio-corpo-argan" [R=301,L]
+  RewriteRule "^product/fast\-remover\-struccante\-occhi/?$" "/linee/erboristica.html" [R=301,L]
+  RewriteRule "^product/perfect\-glow\-crema\-viso/?$" "/linee/erboristica.html" [R=301,L]
+  RewriteRule "^product/pure\-skin\-tonico\-viso/?$" "/linee/erboristica.html" [R=301,L]
+  RewriteRule "^product/sapone\-fluido\-elimina\-odori\-deodorina/?$" "/linee/erboristica.html" [R=301,L]
+  RewriteRule "^product/tropical\-cleanser\-detergente\-struccante/?$" "/linee/erboristica.html" [R=301,L]
+
+  # --- Catch-all di sicurezza (qualsiasi vecchio URL non mappato sopra) ---
+  RewriteRule "^product/.*$" "/linee.html" [R=301,L]
+  RewriteRule "^brands/.*$" "/linee.html" [R=301,L]
+</IfModule>
+
+# ────────────────────────────────────────────────────────────────
 # Security headers
 # ────────────────────────────────────────────────────────────────
 <IfModule mod_headers.c>
