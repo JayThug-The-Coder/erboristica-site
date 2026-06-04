@@ -2,6 +2,8 @@
 
 > Questo file traccia tutto quello che è stato fatto sul sito e contiene la mappa **"Se voglio cambiare X, devo modificare Y"** — utile per modifiche future.
 
+> ✅ **4 giu — TUTTO ONLINE** (commit `7bcc940`, push su `origin/main`): parti 2ª-4ª (corsivo schede Sphea, testo blu peso 500, scroll trackpad, overlay ricerca per-pagina, font-display swap, ingrandimenti testi, ricerca sieri) + eyebrow hero rimossi (linee/sostenibilità/terzisti/contatti) + attivi brevettati in blu. `app.js` a **v=14**. Le note "NON pushato" / "PRE-PUSH" più sotto sono **superate**.
+
 ---
 
 # 🛠️ Sessione 4 Giugno 2026 (4ª parte) — Ricerca "siero" incompleta/incoerente — FIX recall + rumore
