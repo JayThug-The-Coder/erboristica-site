@@ -217,8 +217,9 @@ Questa fase ha sistemato molte cose e ne ha cambiate alcune **strutturali**. Leg
 - ⚠️ **Su APACHE (`.htaccess`)**: lì c'è ancora `ExpiresByType image/... "access plus 1 year"`. Se pubblichi su Apache e sostituisci immagini per nome, **riduci quel valore** (o aggiungi `?v=N` ai percorsi immagine) per evitare lo stesso problema di foto stale.
 
 ### 7.4 ⚠️ FONT (niente Google Fonts)
-- Tutti i font sono **self-hosted** (`assets/fonts.css` + file in `assets/fonts/`), con `font-display: optional`. Le pagine **precaricano** i font degli hero (Fraunces 200/300 normale+italico, Cormorant 400 italico).
-- ⚠️ **Non re-introdurre Google Fonts** (`fonts.googleapis.com`): causava un "lampo" di font sbagliato al caricamento (FOUT) che è stato eliminato proprio passando ai self-hosted.
+- Tutti i font sono **self-hosted** (`assets/fonts.css` + file in `assets/fonts/`), con **`font-display: swap`**. Le pagine **precaricano** i font degli hero (Fraunces 200/300 normale+italico, Cormorant 400 italico).
+- ⚠️ **Era `font-display: optional`** e va lasciato **`swap`**: con `optional`, se i font non arrivavano entro ~100ms (es. dopo un hard-reload o a cache vuota) il browser restava sul **font di sistema su TUTTO il sito** e non lo sostituiva più. Con `swap` il font del brand viene **sempre** mostrato appena caricato. **Non rimettere `optional`.**
+- ⚠️ **Non re-introdurre Google Fonts** (`fonts.googleapis.com`): i self-hosted servono a evitare dipendenze esterne e il "lampo" di font.
 
 ### 7.5 ⚠️ HERO PAGINE LINEA = `background-image`, NON un `<img>`
 - L'hero delle pagine linea (`linee/linea.html`) imposta la foto come **`background-image` del contenitore `#heroBg`** (via JS), non come un `<img>`.
@@ -226,9 +227,9 @@ Questa fase ha sistemato molte cose e ne ha cambiate alcune **strutturali**. Leg
 - ⚠️ **NON riconvertire l'hero linea in un `<img>` iniettato via JS**: tornerebbe il bug "hero non visibile online".
 - Nota: mentre la foto carica si vede un **fallback scuro neutro** (prima era verde per un bug: la mappa `palettes` è indicizzata per nome colore ma il codice cercava con l'id linea → ricadeva sempre su "sage"=verde. Ora fallback neutro).
 
-### 7.6 ⚠️ `app.js` ha una versione (`?v=10`)
-- `assets/app.js` è incluso come **`app.js?v=10`** in tutte le pagine (cache-busting).
-- ⚠️ **Se modifichi `app.js`, alza il numero** (`?v=11`, ecc.) in tutte le pagine, altrimenti i browser dei visitatori continuano a usare la versione vecchia in cache.
+### 7.6 ⚠️ `app.js` ha una versione (`?v=14`)
+- `assets/app.js` è incluso come **`app.js?v=14`** in tutte le **16** pagine (cache-busting).
+- ⚠️ **Se modifichi `app.js`, alza il numero** (`?v=15`, ecc.) in tutte le pagine, altrimenti i browser dei visitatori continuano a usare la versione vecchia in cache. (CSS e `search-data.js` non hanno `?v=` perché `netlify.toml` li serve in `must-revalidate`: si aggiornano da soli.)
 
 ### 7.7 Testi/etichette cambiati
 - **Terzisti → in inglese è "Contract Manufacturing"** (menu, titoli, ruolo di Gloria in Contatti, tab del form, ricerca). La pagina resta `terzisti.html` (i link non cambiano).
