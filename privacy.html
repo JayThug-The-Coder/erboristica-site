@@ -19,53 +19,20 @@
 
 /* ── HERO ───────────────────────────────────────────────── */
 .prv-hero {
-  min-height: 52svh;
+  min-height: 58svh;
   background: var(--cream);
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: flex-end;
+  /* padding-top: spazio per la topbar fissa (il titolo non viene coperto) */
+  padding: clamp(112px, 15vh, 165px) clamp(24px, 5vw, 80px) clamp(44px, 6vw, 72px);
 }
-
-.prv-hero__mark {
-  position: absolute;
-  right: -0.03em;
-  bottom: -0.14em;
-  font-family: var(--display);
-  font-size: clamp(120px, 20vw, 340px);
-  font-weight: 300;
-  font-style: italic;
-  color: var(--ink);
-  opacity: .035;
-  line-height: 1;
-  pointer-events: none;
-  white-space: nowrap;
-}
-
-.prv-hero__lines {
-  position: absolute;
-  top: 0; right: 0;
-  width: 38%;
-  height: 100%;
-  overflow: hidden;
-}
-@media (max-width: 860px) { .prv-hero__lines { display: none; } }
-.prv-hero__lines::before,
-.prv-hero__lines::after {
-  content: '';
-  position: absolute;
-  top: 0; bottom: 0;
-  width: 1px;
-  background: rgba(0,0,0,.06);
-}
-.prv-hero__lines::before { left: 22%; }
-.prv-hero__lines::after  { left: 55%; }
 
 .prv-hero__content {
   position: relative;
   z-index: 1;
   width: 100%;
-  padding: 0 clamp(24px, 5vw, 80px) clamp(44px, 6vw, 72px);
 }
 
 .prv-hero__label {
@@ -81,7 +48,7 @@
 .prv-hero h1 {
   font-family: var(--display);
   font-weight: 300;
-  font-size: clamp(56px, 10vw, 160px);
+  font-size: clamp(52px, 9vw, 132px);
   letter-spacing: -0.03em;
   line-height: .9;
   color: var(--ink);
@@ -228,8 +195,6 @@
 <body>
 
 <div class="prv-hero">
-  <div class="prv-hero__mark">Privacy</div>
-  <div class="prv-hero__lines"></div>
   <div class="prv-hero__content">
     <div class="prv-hero__label">Athena's s.r.l. · Informativa legale</div>
     <h1>Privacy<br><em>Policy</em></h1>
@@ -244,7 +209,7 @@
 
 <script src="assets/vendor/lenis.min.js" defer></script><script src="assets/data.js"></script>
 <script src="assets/search-data.js" defer></script>
-<script src="assets/app.js?v=11"></script>
+<script src="assets/app.js?v=14"></script>
 <script>initAthenas('privacy');</script>
 </body>
 </html>

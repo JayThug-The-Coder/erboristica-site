@@ -4,6 +4,70 @@
 
 ---
 
+# 🛠️ Sessione 4 Giugno 2026 (4ª parte) — Ricerca "siero" incompleta/incoerente — FIX recall + rumore
+
+**Verificato in preview :8088 via DOM. NON pushato.** L'utente: cercando "siero" comparivano solo 2 dei 5 sieri Sphea, più risultati incoerenti (Kaley, Olio Corpo).
+
+**Cause (3):**
+1. **La descrizione prodotto NON era indicizzata** (`search-data.js` `getIndex`): l'haystack usava nome + sottotitolo + tag + attivi, ma NON `description_*`. Tutti e 5 i sieri Sphea hanno "Siero…" come prima parola della descrizione → non venivano trovati da "siero" (Radiant Up-Lift / Eyelift non hanno "serum" nel nome né "siero" nel sottotitolo).
+2. **Sinonimi troppo larghi**: `'siero': [...,'concentrato','booster']` → "concentrato" pescava Kaley ("olio concentrato") e gli oli corpo; "booster" pescava la "Crema Viso Uomo Active" ("un booster di vitalità"). Rumore non-siero.
+3. **Tetto risultati a 8** (`app.js`) + ordine alfabetico → con molti sieri reali, i Sphea in fondo all'alfabeto (Radiant/Sculpt/Slim) venivano tagliati.
+
+**Fix:**
+- `search-data.js`: aggiunti `description_it`/`description_en` al campo `alt` del documento prodotto (campo solo-match, non mostrato) → la descrizione è ora cercabile. Sinonimo `'siero'` ridotto a `['siero','serum','fiale']` (tolti `concentrato` e `booster`).
+- `app.js`: tetto risultati overlay `search(q, 8)` → **`search(q, 20)`** (la lista scrolla; serve per query ampie come "siero" che matchano molti prodotti reali).
+
+**Risultato verificato (IT):** "siero" → **16 risultati, tutti sieri veri**, con **tutti e 5 i Sphea** (Anti Pollution, Eyelift, Radiant, Sculpt & Firm, Slim) + Antietà (Fiale + Acido Ialuronico + Collagene), Pearls (3), Mineral (2 corpo), Everby (Lash Me + Pump&Plump), Uomo (Siero Viso). Zero rumore (niente Kaley/olio/crema). 0 errori console.
+
+**Se voglio cambiare X → Y (ricerca):**
+- Campi indicizzati per i prodotti → `getIndex()` in `search-data.js` (doc: title/desc=sottotitolo, name, sub, **alt**=name+subtitle+**description** IT/EN, actives, tags=brand+line+actives).
+- Sinonimi/espansione query → oggetto `SYNONYMS` in `search-data.js` (attenzione a termini generici tipo "concentrato"/"booster" che pescano non-target).
+- Numero massimo risultati overlay → `search(q, 20)` in `app.js` (`render()` della ricerca).
+- Ordinamento risultati → alfabetico per titolo in `search()` (`search-data.js`).
+
+**⚠️ PRE-PUSH:** `search-data.js` e `app.js` non hanno `?v=` su tutte le pagine come app.js… in realtà `app.js` SÌ (`?v=13`): ricordare il bump `app.js?v=13 → v=14` (16 pagine) già segnato nelle parti 2-3. `search-data.js` è senza versione (must-revalidate).
+
+---
+
+# 🛠️ Sessione 4 Giugno 2026 (3ª parte) — FIX font globale (font-display swap) + ingrandimenti testi
+
+**Verificato in preview :8088 via DOM. NON pushato.**
+
+**⚠️ REGRESSIONE "font diverso su tutto il sito" — RISOLTA.** L'utente segnalava font cambiato su TUTTE le pagine (footer/linee/prodotto compresi). **Causa**: `assets/fonts.css` aveva `font-display: optional` su tutti i @font-face → se il font non arriva entro ~100ms il browser usa il fallback di sistema e **non lo sostituisce più** per quella sessione. L'**hard-reload** (suggerito a fine 2ª parte) ha svuotato la cache font → intero sito sul fallback (Inter→Arial, Cormorant→Times, Fraunces→Georgia). **NON era una modifica CSS/JS mia** (verificato: token `--serif/--display/--sans` intatti; mie modifiche limitate a `.search-overlay`/`.sp-*`). **Fix**: `font-display: optional → swap` (36 occorrenze in `fonts.css`) → il font del brand viene sempre mostrato appena caricato. Verificato: font caricati/resi su prodotto, prodotto-sphea, linee (H1 Fraunces 200 reso). Trade-off: `swap` può dare un breve FOUT al primo load freddo (vs `optional` che evitava il flash ma rischiava il fallback permanente); per un sito brand è preferibile mostrare sempre il font giusto. Reversibile a `optional`/`fallback`.
+
+**Ingrandimenti testi (richiesta utente):**
+- **Schede prodotto** (`prodotto.html`, vale erboristica + everby): `.pd-hero__sub` + `.pd-hero__desc` da `clamp(17,1.4vw,19)` → **`clamp(18,1.7vw,21)`** (+2px desktop). Es. "A hydrating plant cleanser…", "3-in-1 cleansing balm-gel…".
+- **Sphea intro** (`prodotto-sphea.html` `.sp-hero__intro`): `clamp(16,1.25vw,18)` → **`clamp(17,1.45vw,20)`** (+2.5px). Es. "Ectoin is an extremophile molecule…". Parole blu (`.sp-prod__hl`) ereditano la dimensione → uguale al testo (verificato 18.56=18.56, peso 500).
+
+**Se voglio cambiare X → Y:**
+- Strategia caricamento font (flash vs fallback) → `font-display` in `assets/fonts.css` (ora `swap`).
+- Dimensione sottotitolo/descrizione schede prodotto → `.pd-hero__sub` / `.pd-hero__desc` in `prodotto.html`.
+- Dimensione intro Sphea → `.sp-hero__intro` in `prodotto-sphea.html`.
+
+**⚠️ PRE-PUSH:** (1) `app.js?v=13 → v=14` su 16 pagine (app.js modificato in 2ª parte). (2) `fonts.css` cambiato ma senza `?v=`: online i visitatori di ritorno potrebbero avere la vecchia in cache → valutare cache-bust del link o affidarsi alla rivalidazione Netlify. In locale basta un reload (hard-reload una volta se resta la vecchia; con `swap` il font si vede comunque).
+
+---
+
+# 🛠️ Sessione 4 Giugno 2026 (2ª parte) — Schede Sphea: font corsivo, testo blu, scroll trackpad, overlay ricerca per-pagina
+
+**Verificato in preview :8088 via DOM (screenshot va in timeout per Lenis). NON pushato.** 5 richieste utente:
+
+1. **Font "cambiato" schede Sphea** — NON era un bug di caricamento (Cormorant upright E italic sono entrambi caricati, `document.fonts.status: loaded`). Su `sphea.html` i testi corpo sono **Cormorant corsivo**, su `prodotto-sphea.html` erano **dritti** → sembrava un altro font. Fix CSS: `.sp-hero__claim` + `.sp-hero__intro` → `font-style: italic` (vale per tutti e 5 i sieri, è un unico template). Le sezioni funzionali/cliniche (modale attivi, efficacia, B2B, INCI) restano dritte (testo tecnico, più leggibile; nessun equivalente su sphea.html).
+2. **Testo evidenziato blu "più grosso"** — misurato: stessa dimensione del corpo (era solo `font-weight:600` = faux-bold su Cormorant corsivo). Portato a **peso 500** (enfasi leggera, scelta utente), resta blu. Su **entrambe** le pagine: `linee/sphea.html` (`.sp-prod__hl` ×2: regola base + `.sp-pearl p`) + `linee/prodotto-sphea.html` (`.sp-hero__intro .sp-prod__hl`).
+3. **Scroll trackpad bloccato** (overlay ricerca + modale attivi Sphea) — era **Lenis** che dirottava il wheel. ⚠️ Il vecchio fix `lenis.stop()` in `openSearch` (round 8) NON basta: Lenis fa comunque `preventDefault` quando è stopped → niente scroll col pad. Soluzione corretta: **`data-lenis-prevent`** sull'elemento scrollabile (Lenis esce prima del preventDefault → scroll nativo). Aggiunto a `.search-overlay__results` (`app.js`) e `.sp-modal__panel` (`prodotto-sphea.html`, prima non fermava Lenis affatto).
+4. **Overlay ricerca per-pagina** — era palette fissa cream/oro su ogni pagina. Ora sfondo box/risultati = colore del `body` della pagina corrente + accenti (etichetta tipo, nome linea, hover) = `--footer-accent` della pagina (Sphea: #eef1f7 + #7da0d4). `tokens.css` usa `var(--so-bg, var(--cream))` / `var(--so-accent, var(--gold-deep))`; `app.js` (`openSearch`) valorizza i due var leggendo `body`. **Guard luminanza**: su pagine SCURE (es. `prodotto-kaley`, body #2c1311) NON adotta il colore (testo overlay è scuro) → resta cream/oro leggibile. I font dell'overlay erano già quelli della pagina (Fraunces/Cormorant/Inter), nessuna modifica tipografica.
+5. **Copy** — claim EN Eyelift "...Eyes 20 years younger." → **"Reduces expression lines, lifts drooping eyelids and erases bags. Eyes that look 20 again."** (allineato a `sphea.html`). IT già ok; gli altri 4 claim Sphea già nello stile corretto.
+
+**Se voglio cambiare X → Y:**
+- Stile testi corpo schede Sphea (corsivo/dritto) → `.sp-hero__claim` / `.sp-hero__intro` in `prodotto-sphea.html`.
+- Enfasi testo blu evidenziato → `.sp-prod__hl` (`sphea.html` + `prodotto-sphea.html`).
+- Scroll dentro overlay/modali con Lenis attivo → **`data-lenis-prevent`** sull'elemento scrollabile (NON `lenis.stop()`).
+- Palette overlay ricerca → var `--so-bg`/`--so-accent` (default in `tokens.css`, valorizzati in `openSearch` di `app.js` dal `body`/`--footer-accent`; guard luminanza per pagine scure).
+
+**⚠️ PRIMA DEL PUSH:** `app.js` modificato → bump `app.js?v=13 → v=14` su tutte le 16 pagine (altrimenti Netlify serve la versione vecchia in cache). `tokens.css` non ha `?v=` (must-revalidate, si aggiorna da sé).
+
+---
+
 # 🛠️ Sessione 4 Giugno 2026 — LinkedIn footer, autoplay video Sphea, sezione "Ingredienti attivi" (dedup + fantasmi), legenda INCI
 
 **Vedi `HANDOFF.md` (blocco "SESSIONE 4 giugno") per il dettaglio.** Sintesi (verificato in preview :8088, NON pushato):
@@ -24,7 +88,15 @@
 
 **Agg. (4ª tranche) — ONLINE:** testo hero Terzisti riscritto con interruzioni (EN+IT); form contatti confermato → info@athenas.it (fallback mailto, nessuna modifica); `app.js?v=10→v=11` su 16 pagine (avevo toccato app.js); CONSEGNA-TECNICO.md → nuove sezioni "⭐ COSA CONSEGNARE" (consegnare il repo GitHub; cartelle foto-archivio gitignored = non online; form→info@athenas.it) e "🔌 COSA ABBIAMO GIÀ COLLEGATO" (GA4, banner cookie GDPR, Iubenda, `.htaccess`+`netlify.toml`, Facebook Pixel, SEO/Schema.org, form, font self-hosted, tutto spiegato con stato). **Push su origin/main** (Netlify auto-deploy).
 
-**Aperto:** legenda "(\*)" su Sphea/Kaley custom; fantasmi peptidi residui fuori List A (es. uomo-contorno); claim SPF/Omega/Pigmenti lasciati.
+**Agg. (5ª tranche) — batch correzioni (NON ancora pushato):** ricerca (`search-data.js`) ora linka alle schede interne (non a erboristica.com) + prefisso linea/brand su ogni risultato; Privacy (rimossi watermark+righe verticali, fix titolo sotto topbar); Cookie hero allineato a Privacy; Linee lead ":"→"." + "Una" maiuscola + max-width 42ch (no overlap foto); Linea hero padding responsivo + titolo ridotto (titoli lunghi non più tagliati); preload immagine hero (linee+terzisti). ⚠️ overlap/clearance da confermare su desktop largo (preview 731px).
+
+**Agg. (6ª tranche) — ricerca rifatta (NON pushato):** ricerca ora lingua-aware (EN→nomi EN, IT→IT) + prodotti cercabili da ogni pagina (lazy-fetch `data.json`, 92 voci con name_en) + minimo 2 caratteri + etichetta tipo tradotta (Prodotto/Product…) + titoli linea/brand in corsivo (`search-data.js`+`app.js`). Card prodotto: titolo in corsivo title-case (non maiuscolo). Sphea pagina linea: testi target/desc ingranditi. Perf: preload hero su `linea.html` (inline, legge `?id`). `app.js?v=11→v=12`. ⚠️ cache immagini resta `must-revalidate` (round-trip per nav).
+
+**Agg. (7ª tranche, NON pushato):** card correlate "Dalla stessa linea" (`prodotto.html`) → corsivo title-case (era maiuscolo); risolta regressione mia (toTitleCase fuori scope in renderRelated → card sparite → inline title-case). Crop hero pagine Linea `center`→`right center` (prodotti a destra interi, era il problema Cocco). ⚠️ crop da confermare su desktop largo.
+
+**Agg. (8ª tranche, NON pushato):** ricerca da **1 carattere** + ordine **alfabetico** per titolo (`search-data.js` `search()`; `app.js` `render()` min-length 1) — coerenza ("a"→A-Z); **scroll trackpad** sui suggerimenti riparato (era Lenis che dirottava il wheel → `lenis.stop()` in `openSearch`/`start()` in `closeSearch` + `overscroll-behavior:contain` su `.search-overlay__results`; effetto solo su desktop >860px dove Lenis è attivo); **lentezza foto online** → `netlify.toml` immagini da `must-revalidate` a `stale-while-revalidate` (jpg/jpeg/png/webp 86400, mp4 604800): niente più round-trip bloccante per foto, serve la cache e rivalida in background (effetto solo online; primo load resta legato a rete/peso). `app.js?v=12→v=13` (16 pagine).
+
+**Aperto:** legenda "(\*)" su Sphea/Kaley custom; fantasmi peptidi residui fuori List A; claim SPF/Omega/Pigmenti lasciati. **Da pushare: blocco 5ª-8ª tranche.**
 
 ---
 

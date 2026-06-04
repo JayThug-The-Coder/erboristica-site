@@ -12,6 +12,7 @@
 <link rel="preload" href="assets/fonts/fraunces-300-italic-latin.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="preload" href="assets/fonts/cormorant-garamond-400-italic-latin.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="preload" href="assets/fonts/fraunces-200-italic-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" as="image" href="immagini/linee/hero-formula.webp" fetchpriority="high"/>
 <link rel="stylesheet" href="assets/fonts.css"/>
 <link rel="stylesheet" href="assets/tokens.css"/>
 
@@ -82,7 +83,7 @@
 .lh__lead {
   font-family: var(--serif);
   font-size: clamp(17px,1.5vw,21px);
-  line-height: 1.6; max-width: 70ch;
+  line-height: 1.6; max-width: 42ch;
   color: rgba(232,224,212,.62);
   margin-bottom: 0;
 }
@@ -332,12 +333,11 @@
   <div class="lh__bg"></div>
 
   <div class="lh__left">
-    <div class="lh__eyebrow" data-it="Le linee" data-en="Our lines">Le linee</div>
     <h1>
       <span data-it="Ogni formula" data-en="Every formula">Ogni formula</span><br>
       <em data-it="racconta una storia." data-en="tells a story.">racconta una storia.</em>
     </h1>
-    <p class="lh__lead" data-it="Ricerca, innovazione ed efficacia guidano ogni nostra formula.<br><br>Dalla cosmetica naturale con attivi di ultima generazione e ingredienti biotecnologici,<br>alle fragranze roll-on senza alcol e long-lasting,<br>fino ai trattamenti con ingredienti brevettati ad azione mirata:<br><br>una proposta completa che coniuga performance, qualità e posizionamento premium." data-en="Research, innovation and efficacy guide every formula we make.<br><br>From natural cosmetics with latest-generation actives and biotechnological ingredients,<br>to alcohol-free, long-lasting roll-on fragrances,<br>to treatments with patented, targeted-action ingredients:<br><br>a complete range combining performance, quality and premium positioning.">Ricerca, innovazione ed efficacia guidano ogni nostra formula.<br><br>Dalla cosmetica naturale con attivi di ultima generazione e ingredienti biotecnologici,<br>alle fragranze roll-on senza alcol e long-lasting,<br>fino ai trattamenti con ingredienti brevettati ad azione mirata:<br><br>una proposta completa che coniuga performance, qualità e posizionamento premium.</p>
+    <p class="lh__lead" data-it="Ricerca, innovazione ed efficacia guidano ogni nostra formula.<br><br>Dalla cosmetica naturale con attivi di ultima generazione e ingredienti biotecnologici,<br>alle fragranze roll-on senza alcol e long-lasting,<br>fino ai trattamenti con ingredienti brevettati ad azione mirata.<br><br>Una proposta completa che coniuga performance, qualità e posizionamento premium." data-en="Research, innovation and efficacy guide every formula we make.<br><br>From natural cosmetics with latest-generation actives and biotechnological ingredients,<br>to alcohol-free, long-lasting roll-on fragrances,<br>to treatments with patented, targeted-action ingredients.<br><br>A complete range combining performance, quality and premium positioning.">Ricerca, innovazione ed efficacia guidano ogni nostra formula.<br><br>Dalla cosmetica naturale con attivi di ultima generazione e ingredienti biotecnologici,<br>alle fragranze roll-on senza alcol e long-lasting,<br>fino ai trattamenti con ingredienti brevettati ad azione mirata.<br><br>Una proposta completa che coniuga performance, qualità e posizionamento premium.</p>
   </div>
 
   <div class="lh__right">
@@ -463,7 +463,7 @@
 <script src="assets/vendor/lenis.min.js" defer></script>
 <script src="assets/data.js"></script>
 <script src="assets/search-data.js" defer></script>
-<script src="assets/app.js?v=11"></script>
+<script src="assets/app.js?v=14"></script>
 <script>
 initAthenas('brands');
 document.querySelector('.topbar').classList.add('topbar--light');

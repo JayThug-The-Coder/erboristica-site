@@ -192,7 +192,7 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
   max-width: 60ch;
   margin-bottom: 22px;
 }
-.sp-pearl p .sp-prod__hl { color: #4a6aa0; font-weight: 600; }
+.sp-pearl p .sp-prod__hl { color: #4a6aa0; font-weight: 500; }
 
 .sp-pearl__steps {
   display: flex;
@@ -526,13 +526,13 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
 }
 .sp-prod__target {
   font-family: var(--serif); font-style: italic;
-  font-size: clamp(15px,1.3vw,19px); letter-spacing: 0; text-transform: none;
+  font-size: clamp(17px,1.5vw,22px); letter-spacing: 0; text-transform: none;
   color: #4a6aa0; opacity: .85; margin-bottom: 0;
 }
 .sp-prod__desc {
   font-family: var(--serif); font-style: italic;
-  font-size: clamp(15px,1.25vw,18px); line-height: 1.78;
-  color: rgba(26,26,26,.6); margin-bottom: 16px; max-width: 56ch;
+  font-size: clamp(17px,1.45vw,21px); line-height: 1.75;
+  color: rgba(26,26,26,.66); margin-bottom: 16px; max-width: 58ch;
 }
 /* 3 zone distribuite su tutta l'altezza: [titolo+claim+tag] / [descrizione] / [riga+attivi+cta]
    due margin-top:auto uguali riempiono la colonna in modo omogeneo */
@@ -543,7 +543,7 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
 .sp-prod__pills   { order: 6; }
 .sp-prod__cta,
 .sp-prod__link    { order: 7; }
-.sp-prod__hl { color: #4a6aa0; font-weight: 600; }
+.sp-prod__hl { color: #4a6aa0; font-weight: 500; }
 .sp-prod__pills {
   display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px;
   margin-top: 162px;                  /* 6 righe di stacco (descrizione → riga attivi) */
@@ -970,7 +970,7 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
       <div class="sp-prod__name"><span class="sp-prod__kicker" data-it="Siero Occhi" data-en="Eye Serum">Siero Occhi</span>Eyelift Perfector</div>
       <div class="sp-prod__claim" data-it="Riduce le rughe espressive, tende le palpebre cadenti e cancella le borse. Occhi da 20 anni." data-en="Reduces expression lines, lifts drooping eyelids and erases bags. Eyes that look 20 again.">Riduce le rughe espressive, tende le palpebre cadenti e cancella le borse. Occhi da 20 anni.</div>
       <div class="sp-prod__target" data-it="Rughe · Borse · Lifting occhi" data-en="Wrinkles · Bags · Eye lifting">Rughe · Borse · Lifting occhi</div>
-      <p class="sp-prod__desc" data-it="<span class='sp-prod__hl'>Argireline Amplified®</span> rilassa i micromovimenti che incidono le rughe d'espressione, con un <span class='sp-prod__hl'>effetto botox-like</span>. Uplevity® tende la palpebra e attenua le borse, per uno sguardo aperto e riposato. Bastano <span class='sp-prod__hl'>due gocce</span>: formula concentrata, a rilascio progressivo." data-en="<span class='sp-prod__hl'>Argireline Amplified®</span> relaxes the micro-movements that carve expression lines, with a <span class='sp-prod__hl'>botox-like effect</span>. Uplevity® tightens the eyelid and reduces bags, for an open, rested look. Just <span class='sp-prod__hl'>two drops</span>: a concentrated, progressive-release formula."><span class="sp-prod__hl">Argireline Amplified®</span> rilassa i micromovimenti che incidono le rughe d'espressione, con un <span class="sp-prod__hl">effetto botox-like</span>. Uplevity® tende la palpebra e attenua le borse, per uno sguardo aperto e riposato. Bastano <span class="sp-prod__hl">due gocce</span>: formula concentrata, a rilascio progressivo.</p>
+      <p class="sp-prod__desc" data-it="<span class='sp-prod__hl'>Argireline Amplified®</span> rilassa i micromovimenti che incidono le rughe d'espressione, con un <span class='sp-prod__hl'>effetto botox-like</span>. <span class='sp-prod__hl'>Uplevity®</span> tende la palpebra e attenua le borse, per uno sguardo aperto e riposato. Bastano <span class='sp-prod__hl'>due gocce</span>: formula concentrata, a rilascio progressivo." data-en="<span class='sp-prod__hl'>Argireline Amplified®</span> relaxes the micro-movements that carve expression lines, with a <span class='sp-prod__hl'>botox-like effect</span>. <span class='sp-prod__hl'>Uplevity®</span> tightens the eyelid and reduces bags, for an open, rested look. Just <span class='sp-prod__hl'>two drops</span>: a concentrated, progressive-release formula."><span class="sp-prod__hl">Argireline Amplified®</span> rilassa i micromovimenti che incidono le rughe d'espressione, con un <span class="sp-prod__hl">effetto botox-like</span>. <span class='sp-prod__hl'>Uplevity®</span> tende la palpebra e attenua le borse, per uno sguardo aperto e riposato. Bastano <span class="sp-prod__hl">due gocce</span>: formula concentrata, a rilascio progressivo.</p>
       <div class="sp-prod__pills"><span class="sp-prod__pill">Argireline Amplified®</span><span class="sp-prod__pill">Uplevity®</span></div>
       <a class="sp-prod__cta" href="prodotto-sphea.html?id=eyelift-perfector" data-it="Scopri il siero" data-en="Discover the serum">Scopri il siero</a>
     </div>
@@ -1016,7 +1016,7 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
 
 <script src="../assets/vendor/lenis.min.js" defer></script><script src="../assets/data.js"></script>
 <script src="../assets/search-data.js" defer></script>
-<script src="../assets/app.js?v=11"></script>
+<script src="../assets/app.js?v=14"></script>
 <script>
 initAthenas('brands');
 

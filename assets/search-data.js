@@ -27,7 +27,7 @@
     'corpo':     ['corpo', 'body', 'tronco'],
     'capelli':   ['capelli', 'capello', 'chioma', 'hair', 'tricologia', 'cuoio capelluto', 'scalp'],
     'crema':     ['crema', 'emulsione', 'lozione', 'cream'],
-    'siero':     ['siero', 'serum', 'concentrato', 'fiale', 'booster'],
+    'siero':     ['siero', 'serum', 'fiale'],
     'bagno':     ['bagno', 'bagnoschiuma', 'bagno schiuma', 'doccia', 'shower', 'gel doccia'],
     'detergente':['detergente', 'detergenza', 'cleanser', 'sapone', 'mousse', 'schiuma detergente', 'pulizia'],
     'maschera':  ['maschera', 'mask', 'impacco', 'face mask'],
@@ -130,6 +130,7 @@
     });
     return score;
   }
+  var _products = null; // dati completi prodotti (data.json: 92 voci con name_en), caricati on-demand
   function getIndex() {
     const en = !!(typeof window !== 'undefined' && window.ATH && window.ATH.lang === 'en');
     // Pagine/brand/linee: risolvi titolo+descrizione nella lingua attiva, ma mantieni
@@ -140,26 +141,40 @@
       const alt   = [d.title, d.title_en, d.desc, d.desc_en].filter(Boolean).join(' ');
       return Object.assign({}, d, { title: title, desc: desc, alt: alt });
     });
+    // Mappa id-linea -> titolo (per il prefisso mostrato nei risultati prodotto)
+    const LINE_TITLES = {};
+    LINES.forEach(l => { const m = (l.url || '').match(/id=([a-z-]+)/); if (m) LINE_TITLES[m[1]] = (en && l.title_en) ? l.title_en : l.title; });
+    const BRAND_TITLES = { erboristica: "l'Erboristica", everby: 'Everby', kaley: 'Kaley', sphea: 'Sphea' };
     try {
-      const data = window.ATH_DATA_JSON;
-      if (data && data.products) {
-        data.products.forEach(p => {
+      // Preferisci i dati completi di data.json (92 prodotti CON name_en); fallback ai
+      // prodotti già presenti nella pagina (window.ATH_DATA_JSON, che su alcune pagine è IT-only).
+      const products = _products || (window.ATH_DATA_JSON && window.ATH_DATA_JSON.products) || [];
+      if (products.length) {
+        products.forEach(p => {
           if (!p.id || !p.name_it) return;
           const rawName = (en && p.name_en) ? p.name_en : p.name_it;
           const nice = (rawName || '').toLowerCase().replace(/(^|[\s\-–/])([a-zà-ÿ])/g, (_, sep, ch) => sep + ch.toUpperCase());
           const desc = ((en && p.subtitle_en ? p.subtitle_en : p.subtitle_it) || '').slice(0, 100);
+          // Link INTERNO alla scheda del nuovo sito (NON al vecchio erboristica.com):
+          // L'Erboristica + Everby -> prodotto.html ; Sphea -> pagina custom ; Kaley -> hub (le schede rimandano allo shop)
+          let url;
+          if (p.brand === 'sphea')      url = '/linee/prodotto-sphea.html?id=' + p.id.replace(/^sphea-/, '');
+          else if (p.brand === 'kaley') url = '/linee/kaley.html';
+          else                          url = '/prodotto.html?id=' + p.id;
+          // Prefisso: nome linea per L'Erboristica, nome brand per gli altri
+          const lineName = (p.brand === 'erboristica') ? (LINE_TITLES[p.line] || "l'Erboristica") : (BRAND_TITLES[p.brand] || '');
           idx.push({
             type: 'product',
             title: nice,
-            lineName: p.line_name || '',
-            url: p.url || ('/linee/linea.html?id=' + p.line),
-            external: !!p.url,
+            lineName: lineName,
+            url: url,
+            external: false,
             desc: desc,
             brand: p.brand,
             line: p.line,
             name: p.name_it,
             sub: p.subtitle_it || '',
-            alt: [p.name_it, p.name_en, p.subtitle_it, p.subtitle_en].filter(Boolean).join(' '),
+            alt: [p.name_it, p.name_en, p.subtitle_it, p.subtitle_en, p.description_it, p.description_en].filter(Boolean).join(' '),
             actives: p.actives_main || [],
             tags: [p.brand, p.line].concat(p.actives_main || [])
           });
@@ -170,6 +185,7 @@
   }
   function search(query, maxResults) {
     maxResults = maxResults || 10;
+    // Basta 1 carattere per avere suggerimenti.
     if (!query || !query.trim()) return [];
     const tokens = expandQuery(query);
     const idx = getIndex();
@@ -178,9 +194,25 @@
       const s = scoreDoc(doc, tokens);
       if (s > 0) results.push({ doc: doc, score: s });
     });
-    results.sort((a, b) => b.score - a.score);
+    // Ordine ALFABETICO per coerenza (per titolo nella lingua attiva).
+    results.sort((a, b) => normalize(a.doc.title).localeCompare(normalize(b.doc.title)));
     return results.slice(0, maxResults).map(r => r.doc);
   }
 
-  window.ATH_SEARCH = { search: search, getIndex: getIndex };
+  // Carica i dati prodotto UNA volta, al primo uso della ricerca, così i prodotti
+  // sono trovabili da QUALSIASI pagina (non solo da quelle che includono data-inline.js).
+  // Lazy: non appesantisce il caricamento delle pagine (244 KB solo se si cerca).
+  function ensureData() {
+    if (typeof window === 'undefined') return Promise.resolve(false);
+    if (_products) return Promise.resolve(true);
+    if (ensureData._p) return ensureData._p;
+    var base = /\/linee\//.test(window.location.pathname) ? '../' : '';
+    ensureData._p = fetch(base + 'assets/data.json')
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) { if (j && j.products) { _products = j.products; } return !!_products; })
+      .catch(function () { return false; });
+    return ensureData._p;
+  }
+
+  window.ATH_SEARCH = { search: search, getIndex: getIndex, ensureData: ensureData };
 })();

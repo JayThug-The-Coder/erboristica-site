@@ -28,28 +28,43 @@
 <link rel="stylesheet" href="assets/tokens.css"/>
 
 <style>
+/* Hero allineato a quello della Privacy Policy (stesso layout) */
 .cp-hero {
-  min-height: 40svh;
+  min-height: 58svh;
   background: var(--cream);
+  position: relative;
+  overflow: hidden;
   display: flex;
   align-items: flex-end;
-  padding: clamp(120px, 14vw, 180px) clamp(24px, 5vw, 80px) clamp(36px, 5vw, 60px);
+  padding: clamp(112px, 15vh, 165px) clamp(24px, 5vw, 80px) clamp(44px, 6vw, 72px);
 }
 .cp-eyebrow {
+  font-family: var(--sans);
   font-size: 10px;
-  letter-spacing: 0.3em;
+  font-weight: 500;
+  letter-spacing: .22em;
   text-transform: uppercase;
-  opacity: .55;
-  margin-bottom: 16px;
+  opacity: .38;
+  margin-bottom: 18px;
 }
 .cp-hero h1 {
   font-family: var(--display);
-  font-size: clamp(40px, 6vw, 80px);
-  font-weight: 200;
-  line-height: 1;
+  font-weight: 300;
+  font-size: clamp(52px, 9vw, 132px);
   letter-spacing: -0.03em;
+  line-height: .9;
+  color: var(--ink);
+  margin-bottom: clamp(18px, 2.5vw, 32px);
 }
 .cp-hero h1 em { font-style: italic; color: var(--sage-deep); }
+.cp-hero__sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(14px, 1.3vw, 18px);
+  opacity: .5;
+  max-width: 58ch;
+  line-height: 1.65;
+}
 .cp-body {
   max-width: 880px;
   margin: 0 auto;
@@ -161,7 +176,8 @@
 <section class="cp-hero">
   <div>
     <div class="cp-eyebrow" data-it="Informativa" data-en="Notice">Informativa</div>
-    <h1 data-it="Cookie <em>Policy</em>" data-en="Cookie <em>Policy</em>">Cookie <em>Policy</em></h1>
+    <h1 data-it="Cookie<br><em>Policy</em>" data-en="Cookie<br><em>Policy</em>">Cookie<br><em>Policy</em></h1>
+    <p class="cp-hero__sub" data-it="Informativa sui cookie e sulle tecnologie di tracciamento utilizzate dal sito." data-en="Notice on the cookies and tracking technologies used by the site.">Informativa sui cookie e sulle tecnologie di tracciamento utilizzate dal sito.</p>
   </div>
 </section>
 
@@ -172,7 +188,7 @@
 
 <script src="assets/data.js"></script>
 <script src="assets/search-data.js" defer></script>
-<script src="assets/app.js?v=11"></script>
+<script src="assets/app.js?v=14"></script>
 <script>initAthenas('privacy');</script>
 </body>
 </html>

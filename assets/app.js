@@ -686,7 +686,7 @@
             <svg viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="9" cy="9" r="6"/><path d="m17 17-3.5-3.5"/></svg>
             <input class="search-overlay__input" type="text" placeholder="${t.placeholder}" autocomplete="off" spellcheck="false">
           </div>
-          <div class="search-overlay__results" aria-live="polite"></div>
+          <div class="search-overlay__results" aria-live="polite" data-lenis-prevent></div>
           <div class="search-overlay__empty" hidden>${t.empty}</div>
         </div>
       `;
@@ -695,18 +695,25 @@
       const resBox = ov.querySelector('.search-overlay__results');
       const empty  = ov.querySelector('.search-overlay__empty');
       function render(q){
-        if (!q.trim()) { resBox.innerHTML = ''; empty.hidden = true; return; }
-        const hits = (window.ATH_SEARCH && window.ATH_SEARCH.search(q, 8)) || [];
+        if (!q || !q.trim()) { resBox.innerHTML = ''; empty.hidden = true; return; }
+        const hits = (window.ATH_SEARCH && window.ATH_SEARCH.search(q, 20)) || [];
         if (!hits.length) { resBox.innerHTML = ''; empty.hidden = false; return; }
         empty.hidden = true;
+        // Etichetta tipo nella lingua attiva (PAGINA/PRODOTTO/LINEA o PAGE/PRODUCT/LINE)
+        const en = !!(window.ATH && window.ATH.lang === 'en');
+        const TYPE_LABELS = en
+          ? { page: 'Page', brand: 'Brand', line: 'Line', product: 'Product' }
+          : { page: 'Pagina', brand: 'Brand', line: 'Linea', product: 'Prodotto' };
         resBox.innerHTML = hits.map(h => {
           const r = /\/linee\//.test(location.pathname) && h.url.indexOf('/') === 0 && !h.external ? '..' + h.url : h.url;
           const target = h.external ? ' target="_blank" rel="noopener"' : '';
-          const titleHtml = (h.type === 'product' && h.lineName)
-            ? `<span class="search-result__line">${h.lineName}</span> — ${h.title}`
-            : h.title;
+          const typeLabel = TYPE_LABELS[h.type] || h.type;
+          let titleHtml;
+          if (h.type === 'product' && h.lineName) titleHtml = `<span class="search-result__line">${h.lineName}</span> — ${h.title}`;
+          else if (h.type === 'line' || h.type === 'brand') titleHtml = `<em>${h.title}</em>`;  // linee e brand in corsivo
+          else titleHtml = h.title;
           return `<a class="search-result" href="${r}"${target}>
-            <span class="search-result__type">${h.type}</span>
+            <span class="search-result__type">${typeLabel}</span>
             <span class="search-result__title">${titleHtml}</span>
             ${h.desc ? `<span class="search-result__desc">${h.desc}</span>` : ''}
           </a>`;
@@ -724,16 +731,38 @@
     }
     function openSearch(){
       const ov = buildSearchOverlay();
+      // Overlay = palette della pagina corrente: sfondo dal body (solo se chiaro,
+      // il testo dell'overlay e' scuro), accento da --footer-accent. Pagine scure
+      // (es. prodotto-kaley) restano sul fallback cream/oro.
+      const bodyCS = getComputedStyle(document.body);
+      const m = (bodyCS.backgroundColor || '').match(/\d+/g);
+      const isLightBg = m && m.length >= 3 && (0.299*+m[0] + 0.587*+m[1] + 0.114*+m[2]) > 150;
+      if (isLightBg) ov.style.setProperty('--so-bg', bodyCS.backgroundColor);
+      else ov.style.removeProperty('--so-bg');
+      const pageAccent = bodyCS.getPropertyValue('--footer-accent').trim();
+      if (pageAccent && isLightBg) ov.style.setProperty('--so-accent', pageAccent);
+      else ov.style.removeProperty('--so-accent');
       ov.classList.add('open');
       document.body.style.overflow = 'hidden';
+      // Ferma Lenis: altrimenti intercetta rotella/trackpad e scrolla la pagina dietro
+      // invece della lista dei suggerimenti.
+      if (window.lenis && typeof window.lenis.stop === 'function') window.lenis.stop();
       const inp = ov.querySelector('.search-overlay__input');
       inp.focus();
       setTimeout(() => inp.focus(), 100);
+      // Carica i dati prodotto al primo uso della ricerca, poi ri-renderizza
+      // (così i prodotti compaiono anche dalle pagine che non li includono).
+      if (window.ATH_SEARCH && window.ATH_SEARCH.ensureData) {
+        window.ATH_SEARCH.ensureData().then(() => {
+          if (inp.value.trim()) inp.dispatchEvent(new Event('input'));
+        });
+      }
       if (typeof window.gaEvent === 'function') window.gaEvent('search_open', {});
     }
     function closeSearch(){
       if (searchOverlay) searchOverlay.classList.remove('open');
       document.body.style.overflow = '';
+      if (window.lenis && typeof window.lenis.start === 'function') window.lenis.start();
     }
     document.querySelectorAll('[data-open-search]').forEach(b => b.addEventListener('click', openSearch));
     window.ATH_OPEN_SEARCH = openSearch;

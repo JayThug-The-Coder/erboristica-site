@@ -122,16 +122,16 @@ body { background: #eef1f7; color: #1a1a1a; font-family: var(--sans); overflow-x
   color: #4a6aa0; opacity: .9; line-height: 1.02; margin-bottom: 2px;
 }
 .sp-hero__claim {
-  font-family: var(--serif); font-size: clamp(20px,1.65vw,23px); line-height: 1.65;
+  font-family: var(--serif); font-style: italic; font-size: clamp(20px,1.65vw,23px); line-height: 1.65;
   color: rgba(26,26,26,.88); max-width: 42ch; margin-bottom: 20px; margin-left: auto;
   position: relative; z-index: 1; text-wrap: pretty;
 }
 .sp-hero__intro {
-  font-family: var(--serif); font-size: clamp(16px,1.25vw,18px); line-height: 1.8;
+  font-family: var(--serif); font-style: italic; font-size: clamp(17px,1.45vw,20px); line-height: 1.8;
   color: rgba(26,26,26,.6); max-width: 52ch; margin-left: auto; margin-bottom: 30px;
   position: relative; z-index: 1; text-wrap: pretty;
 }
-.sp-hero__intro .sp-prod__hl { color: #4a6aa0; font-weight: 600; }
+.sp-hero__intro .sp-prod__hl { color: #4a6aa0; font-weight: 500; }
 
 .sp-hero__cosmoprof {
   display: inline-flex; align-items: center; gap: 10px;
@@ -917,7 +917,7 @@ body.sp-modal-open { overflow: hidden; }
 <!-- ──── MODAL ATTIVO ─────────────────────────────────────────── -->
 <div class="sp-modal" id="activeModal" hidden>
   <div class="sp-modal__backdrop" data-modal-close></div>
-  <div class="sp-modal__panel" role="dialog" aria-modal="true" aria-labelledby="activeModalTitle">
+  <div class="sp-modal__panel" role="dialog" aria-modal="true" aria-labelledby="activeModalTitle" data-lenis-prevent>
     <button class="sp-modal__close" data-modal-close aria-label="Chiudi">×</button>
     <div class="sp-modal__grid">
       <div class="sp-modal__visual">
@@ -1006,7 +1006,7 @@ body.sp-modal-open { overflow: hidden; }
 
 <script src="../assets/vendor/lenis.min.js" defer></script><script src="../assets/data.js"></script>
 <script src="../assets/search-data.js" defer></script>
-<script src="../assets/app.js?v=11"></script>
+<script src="../assets/app.js?v=14"></script>
 <script>
 /* ═══════════════════════════════════════════════════════════
    SPHEA DATA
@@ -1056,7 +1056,7 @@ const SPHEA_DATA = {
     name: 'Radiant Up-Lift',
     cat: 'Siero Viso · Lifting · Luminosità',
     claim: 'Volumizza. Illumina. Ridefinisce i contorni. Il siero che fa dimenticare il filler.',
-    intro: '<span class="sp-prod__hl">Uplevity®</span> agisce come una microcorrente bioelettrica: stimola l\'impalcatura dei fibroblasti e ridefinisce i contorni del viso con un <span class="sp-prod__hl">effetto tensore</span> immediato e progressivo.<br><br>La <span class="sp-prod__hl">Vitamina C liposomiale</span> aggiunge luminosità e protezione antiossidante, neutralizzando i radicali liberi. L\'azione dell\'Uplevity® è paragonabile a quella di una seduta di radiofrequenza estetica e aumenta l\'energia delle cellule. Giorno dopo giorno il viso appare più pieno, disteso e luminoso, senza ricorrere al filler.',
+    intro: '<span class="sp-prod__hl">Uplevity®</span> agisce come una microcorrente bioelettrica: stimola l\'impalcatura dei fibroblasti e ridefinisce i contorni del viso con un <span class="sp-prod__hl">effetto tensore</span> immediato e progressivo.<br><br>La <span class="sp-prod__hl">Vitamina C liposomiale</span> aggiunge luminosità e protezione antiossidante, neutralizzando i radicali liberi. L\'azione dell\'<span class="sp-prod__hl">Uplevity®</span> è paragonabile a quella di una seduta di radiofrequenza estetica e aumenta l\'energia delle cellule. Giorno dopo giorno il viso appare più pieno, disteso e luminoso, senza ricorrere al filler.',
     format: '30 ml',
     zone: 'Viso · Contorno viso',
     cosmoprof: false,
@@ -1095,7 +1095,7 @@ const SPHEA_DATA = {
     name: 'Eyelift Perfector',
     cat: 'Siero Contorno Occhi · Lifting',
     claim: 'Riduce le rughe espressive, tende le palpebre cadenti e cancella le borse. Occhi da 20 anni.',
-    intro: '<span class="sp-prod__hl">Argireline® Amplified</span> rilassa i micromovimenti che incidono le rughe d\'espressione attorno agli occhi, con un <span class="sp-prod__hl">effetto botox-like</span>.<br><br>Uplevity® tende la palpebra e attenua le borse, restituendo uno sguardo aperto e riposato. Nelle perle, Resveratrolo e olio di lampone proteggono dai radicali liberi e nutrono la delicata pelle del contorno occhi. Bastano <span class="sp-prod__hl">due gocce</span>: la formula è altamente concentrata e a rilascio progressivo.',
+    intro: '<span class="sp-prod__hl">Argireline® Amplified</span> rilassa i micromovimenti che incidono le rughe d\'espressione attorno agli occhi, con un <span class="sp-prod__hl">effetto botox-like</span>.<br><br><span class="sp-prod__hl">Uplevity®</span> tende la palpebra e attenua le borse, restituendo uno sguardo aperto e riposato. Nelle perle, Resveratrolo e olio di lampone proteggono dai radicali liberi e nutrono la delicata pelle del contorno occhi. Bastano <span class="sp-prod__hl">due gocce</span>: la formula è altamente concentrata e a rilascio progressivo.',
     format: '15 ml',
     zone: 'Contorno occhi · Palpebre',
     cosmoprof: false,
@@ -1283,7 +1283,7 @@ const SPHEA_EN = {
   },
   'radiant-up-lift': {
     claim: 'Volumizes. Brightens. Redefines the contours. The serum that makes you forget filler.',
-    intro: '<span class="sp-prod__hl">Uplevity®</span> acts like a bioelectric microcurrent: it stimulates the fibroblast scaffolding and redefines the contours of the face with an immediate, progressive <span class="sp-prod__hl">tightening effect</span>.<br><br><span class="sp-prod__hl">Liposomal Vitamin C</span> adds radiance and antioxidant protection, neutralising free radicals. The Uplevity® action is comparable to an aesthetic radiofrequency session and boosts the cells\' energy. Day after day the face looks fuller, smoother and more radiant, without resorting to filler.',
+    intro: '<span class="sp-prod__hl">Uplevity®</span> acts like a bioelectric microcurrent: it stimulates the fibroblast scaffolding and redefines the contours of the face with an immediate, progressive <span class="sp-prod__hl">tightening effect</span>.<br><br><span class="sp-prod__hl">Liposomal Vitamin C</span> adds radiance and antioxidant protection, neutralising free radicals. The <span class="sp-prod__hl">Uplevity®</span> action is comparable to an aesthetic radiofrequency session and boosts the cells\' energy. Day after day the face looks fuller, smoother and more radiant, without resorting to filler.',
     zone: 'Face · Facial contour',
     benefits: [
       { icon: '◎', title: '+94.6% lifting', text: 'Upper cheekbone lifting effect +94.6% compared to placebo, thanks to Uplevity® E-Lift Peptide (in vivo study).' },
@@ -1293,8 +1293,8 @@ const SPHEA_EN = {
     ],
   },
   'eyelift-perfector': {
-    claim: 'Reduces expression lines, tightens drooping eyelids and erases bags. Eyes 20 years younger.',
-    intro: '<span class="sp-prod__hl">Argireline® Amplified</span> relaxes the micro-movements that etch expression lines around the eyes, with a <span class="sp-prod__hl">botox-like effect</span>.<br><br>Uplevity® tightens the eyelid and softens bags, restoring an open, rested look. Within the pearls, Resveratrol and Raspberry oil protect from free radicals and nourish the delicate eye-contour skin. <span class="sp-prod__hl">Two drops</span> are enough: the formula is highly concentrated and progressive-release.',
+    claim: 'Reduces expression lines, lifts drooping eyelids and erases bags. Eyes that look 20 again.',
+    intro: '<span class="sp-prod__hl">Argireline® Amplified</span> relaxes the micro-movements that etch expression lines around the eyes, with a <span class="sp-prod__hl">botox-like effect</span>.<br><br><span class="sp-prod__hl">Uplevity®</span> tightens the eyelid and softens bags, restoring an open, rested look. Within the pearls, Resveratrol and Raspberry oil protect from free radicals and nourish the delicate eye-contour skin. <span class="sp-prod__hl">Two drops</span> are enough: the formula is highly concentrated and progressive-release.',
     zone: 'Eye contour · Eyelids',
     benefits: [
       { icon: '◎', title: '-20% wrinkles at 28 days', text: 'Wrinkle depth -12.3% in 5 days and -20% in 28 days with Argireline® Amplified Peptide at 5% (in vivo study).' },

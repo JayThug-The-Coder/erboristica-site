@@ -24,25 +24,33 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# Immagini: stale-while-revalidate -> il browser serve SUBITO la copia in cache
+# (niente round-trip bloccante a ogni navigazione = foto istantanee sui ritorni)
+# e rivalida in background. Una foto sostituita si aggiorna al caricamento successivo.
 [[headers]]
   for = "*.jpg"
   [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
+    Cache-Control = "public, max-age=0, stale-while-revalidate=86400"
 
 [[headers]]
   for = "*.jpeg"
   [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
+    Cache-Control = "public, max-age=0, stale-while-revalidate=86400"
 
 [[headers]]
   for = "*.png"
   [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
+    Cache-Control = "public, max-age=0, stale-while-revalidate=86400"
 
 [[headers]]
   for = "*.webp"
   [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
+    Cache-Control = "public, max-age=0, stale-while-revalidate=86400"
+
+[[headers]]
+  for = "*.mp4"
+  [headers.values]
+    Cache-Control = "public, max-age=0, stale-while-revalidate=604800"
 
 [[redirects]]
   from = "/index.html"
