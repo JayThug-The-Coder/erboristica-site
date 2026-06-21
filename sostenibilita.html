@@ -971,11 +971,11 @@
       <div class="impact-label" data-it="Derivati petrolchimici, siliconi, coloranti sintetici fuori da sempre" data-en="Petrochemical derivatives, silicones, synthetic dyes out from the start">Derivati petrolchimici, siliconi, coloranti sintetici fuori da sempre</div>
     </div>
     <div class="impact-item" style="--d:160ms;">
-      <div class="impact-item__ghost" aria-hidden="true">8</div>
+      <div class="impact-item__ghost" aria-hidden="true">2</div>
       <div class="impact-line"></div>
-      <div class="impact-n">8</div>
-      <div class="impact-unit" data-it="audit indipendenti" data-en="independent audits">audit indipendenti</div>
-      <div class="impact-label" data-it="annui da enti terzi, ogni formula, ogni processo, ogni claim verificato" data-en="annual third-party, every formula, every process, every claim verified">annui da enti terzi, ogni formula, ogni processo, ogni claim verificato</div>
+      <div class="impact-n">2</div>
+      <div class="impact-unit" data-it="certificazioni di terza parte" data-en="third-party certifications">certificazioni di terza parte</div>
+      <div class="impact-label" data-it="Plant Based (Bioagricert) e ISO 22716 GMP, con verifica di enti terzi in stabilimento" data-en="Plant Based (Bioagricert) and ISO 22716 GMP, audited by third parties on site">Plant Based (Bioagricert) e ISO 22716 GMP, con verifica di enti terzi in stabilimento</div>
     </div>
   </div>
 </section>
@@ -1019,7 +1019,7 @@
       </div>
     </div>
     <div class="pillar-block__visual" style="direction:ltr;">
-      <img src="immagini/sostenibilita/controllo-laboratorio.jpg" alt="Controllo del pH di una formula in laboratorio Athena's, con soluzioni tampone tarate" class="cover-img" loading="lazy">
+      <img src="immagini/sostenibilita/controllo-laboratorio.jpg" alt="Controllo del pH di una formula in laboratorio Athena's, con soluzioni tampone tarate" data-alt-it="Controllo del pH di una formula in laboratorio Athena's, con soluzioni tampone tarate" data-alt-en="pH testing of a formula in the Athena's laboratory, with calibrated buffer solutions" class="cover-img" loading="lazy">
     </div>
   </div>
 </div>
@@ -1044,12 +1044,12 @@
         </div>
         <div class="pillar-block__fact">
           <span class="pillar-block__fact-label" data-it="Approccio" data-en="Approach">Approccio</span>
-          <span class="pillar-block__fact-val" data-it="Riduzione graduale certificata" data-en="Gradual certified reduction">Riduzione graduale certificata</span>
+          <span class="pillar-block__fact-val" data-it="Riduzione graduale documentata" data-en="Gradual documented reduction">Riduzione graduale documentata</span>
         </div>
       </div>
     </div>
     <div class="pillar-block__visual">
-      <img src="immagini/sostenibilita/packaging-vuoti.jpg" alt="Vasetti in vetro vuoti sulla giostra di riempimento, packaging dei prodotti Athena's" class="cover-img" loading="lazy">
+      <img src="immagini/sostenibilita/packaging-vuoti.jpg" alt="Vasetti in vetro vuoti sulla giostra di riempimento, packaging dei prodotti Athena's" data-alt-it="Vasetti in vetro vuoti sulla giostra di riempimento, packaging dei prodotti Athena's" data-alt-en="Empty glass jars on the filling carousel, Athena's product packaging" class="cover-img" loading="lazy">
     </div>
   </div>
 </div>
@@ -1059,9 +1059,9 @@
   <div class="container">
     <div style="display:flex; gap:16px; align-items:center; margin-bottom:0;">
       <span class="num">— 03</span>
-      <div class="eyebrow" data-it="Le nostre certificazioni" data-en="Our certifications">Le nostre certificazioni</div>
+      <div class="eyebrow" data-it="Certificazioni e garanzie" data-en="Certifications &amp; guarantees">Certificazioni e garanzie</div>
     </div>
-    <p style="font-family:var(--serif); font-size:clamp(18px,1.5vw,22px); line-height:1.65; opacity:.75; max-width:64ch; margin: 24px 0 clamp(40px,5vw,60px);" data-it="Clicca su ogni certificazione per leggere cosa significa concretamente per i nostri prodotti e la nostra produzione." data-en="Click on each certification to read what it concretely means for our products and production.">Clicca su ogni certificazione per leggere cosa significa concretamente per i nostri prodotti e la nostra produzione.</p>
+    <p style="font-family:var(--serif); font-size:clamp(18px,1.5vw,22px); line-height:1.65; opacity:.75; max-width:64ch; margin: 24px 0 clamp(40px,5vw,60px);" data-it="Certificazioni di terza parte, test di laboratorio e garanzie di filiera. Clicca su ogni voce per leggere cosa significa concretamente per i nostri prodotti e la nostra produzione." data-en="Third-party certifications, laboratory tests and supply-chain guarantees. Click each item to read what it concretely means for our products and production.">Certificazioni di terza parte, test di laboratorio e garanzie di filiera. Clicca su ogni voce per leggere cosa significa concretamente per i nostri prodotti e la nostra produzione.</p>
     <div class="certs-grid" id="certsGrid"></div>
   </div>
 </section>
@@ -1136,15 +1136,14 @@ const CERTS = [
     name: 'Vegan',
     badge: 'Etica Animale',
     tagline: 'Per ogni prodotto col logo, nessun ingrediente animale.',
-    lead: 'La certificazione VEGANOK garantisce l\'assenza totale di materie prime di origine animale o derivate dallo sfruttamento di animali — nella formula e in tutto il packaging.',
-    desc: 'Sono esclusi rigorosamente i derivati animali più comuni in cosmetica — cera d\'api, lanolina, latte e derivati, miele e pappa reale, cocciniglia (carminio) — così come acido ialuronico, collagene o cheratina di origine animale, ammessi solo nelle versioni vegetali o biotecnologiche. Il controllo si estende a tutto il confezionamento: le colle non contengono caseina o gelatine animali e gli inchiostri non usano coloranti animali. Nessuna sostanza impiegata può aver comportato test sugli animali. Sul piano normativo (ISO 14021) è una certificazione di tipo II, basata sull\'autodichiarazione del produttore sotto la verifica del Comitato Scientifico dell\'Associazione Vegani Italiani Onlus.',
+    lead: 'Tutte le nostre formule sono vegane: garantiamo l\'assenza totale di materie prime di origine animale o derivate dallo sfruttamento di animali, nella formula e in tutto il packaging.',
+    desc: 'Sono esclusi rigorosamente i derivati animali più comuni in cosmetica — cera d\'api, lanolina, latte e derivati, miele e pappa reale, cocciniglia (carminio) — così come acido ialuronico, collagene o cheratina di origine animale, ammessi solo nelle versioni vegetali o biotecnologiche. Il controllo si estende a tutto il confezionamento: le colle non contengono caseina o gelatine animali e gli inchiostri non usano coloranti animali. È una scelta di formulazione costante, applicata e documentata su ogni linea.',
     facts: [
-      { label: 'Standard', val: 'VEGANOK' },
+      { label: 'Tipo', val: 'Scelta di formulazione' },
       { label: 'Formula', val: 'Zero derivati animali' },
       { label: 'Packaging', val: 'Vegan, colle e inchiostri inclusi' },
-      { label: 'Supervisione', val: 'Comitato Scientifico AVI Onlus' },
     ],
-    quote: '"VEGANOK non si ferma alla formula: arriva fino alla colla dell\'etichetta e all\'inchiostro della confezione."',
+    quote: '"La scelta vegana non si ferma alla formula: arriva fino alla colla dell\'etichetta e all\'inchiostro della confezione."',
     bg: 'linear-gradient(155deg, #1a3010 0%, #2a5020 50%, #4a8040 100%)',
   },
   {
@@ -1256,7 +1255,7 @@ const CERT_TAGLINES_EN = {
 // Contenuto pannello di dettaglio in EN (lead/desc/quote/facts). Le chiavi sono gli id cert.
 const CERT_LEAD_EN = {
   bioagricert: 'The only third-party certification we show directly on the label. Issued by Bioagricert (www.bioagricert.org), it guarantees that every formula is made up predominantly of plant ingredients and other natural substances, excluding raw materials of animal origin.',
-  vegan: 'VEGANOK certification guarantees the total absence of raw materials of animal origin or derived from the exploitation of animals — in the formula and across all packaging.',
+  vegan: 'All our formulas are vegan: we guarantee the total absence of raw materials of animal origin or derived from the exploitation of animals, in the formula and across all packaging.',
   dermatologico: 'Athena\'s works with the Department of Cosmetology of the University of Ferrara to carry out studies assessing efficacy, skin and eye tolerability, and the microbiological control of products.',
   'metalli-pesanti': 'All products in the "L\'Erboristica di Athena\'s dal 1969" line are tested for Nickel, Chromium and Cobalt, the three heavy metals most commonly responsible for allergic skin-contact reactions.',
   opimm: 'A significant part of Athena\'s packaging activities is carried out by OPIMM (www.opimm.it), a protected work centre, a Bologna-based organisation that has promoted the working inclusion of people with disabilities for decades.',
@@ -1264,7 +1263,7 @@ const CERT_LEAD_EN = {
 };
 const CERT_DESC_EN = {
   bioagricert: '',
-  vegan: 'The most common animal derivatives in cosmetics are strictly excluded — beeswax, lanolin, milk and its derivatives, honey and royal jelly, cochineal (carmine) — as well as hyaluronic acid, collagen or keratin of animal origin, allowed only in their plant or biotech versions. The check extends to all packaging: glues contain no casein or animal gelatines and inks use no animal-derived colourants. No substance used may have involved animal testing. In regulatory terms (ISO 14021) it is a Type II certification, based on the manufacturer\'s self-declaration under the verification of the Scientific Committee of the Italian Vegans Association (AVI Onlus).',
+  vegan: 'The most common animal derivatives in cosmetics are strictly excluded — beeswax, lanolin, milk and its derivatives, honey and royal jelly, cochineal (carmine) — as well as hyaluronic acid, collagen or keratin of animal origin, allowed only in their plant or biotech versions. The check extends to all packaging: glues contain no casein or animal gelatines and inks use no animal-derived colourants. It is a consistent formulation choice of ours, applied and documented across every line.',
   dermatologico: 'The tests are conducted by dermatologists and university researchers on controlled panels. The protocol includes instrumental measurements and clinical evaluations under standardised conditions.',
   'metalli-pesanti': 'The tests measure the residual presence of metal traces from raw materials, production equipment or primary packaging. The tolerance threshold adopted by Athena\'s is below European regulatory limits.',
   opimm: 'It is neither a product certification nor a commercial trademark: it is an ethical and social choice that we believe is important to declare. The relationship with OPIMM has been ongoing for many years and covers stages of the secondary packaging of selected lines. It is cited on the institutional pages of both websites (athenas.it and erboristica.com) as part of our commitment to supply-chain ethics.',
@@ -1272,7 +1271,7 @@ const CERT_DESC_EN = {
 };
 const CERT_QUOTE_EN = {
   bioagricert: '"Plant Based is not a slogan: it is a documented, audit-driven certification, shown on every label that carries it."',
-  vegan: '"VEGANOK doesn\'t stop at the formula: it reaches the glue on the label and the ink on the box."',
+  vegan: '"Our vegan choice doesn\'t stop at the formula: it reaches the glue on the label and the ink on the box."',
   dermatologico: '"Entrusting the tests to a university means accepting that the results are public, replicable, and independent of our own opinion."',
   'metalli-pesanti': '"For those with metal-reactive skin, every detail matters. Our tests go where regulation does not require us to go."',
   opimm: '"OPIMM is not a supplier: it is a community we have worked with for years. The most important choice, on the label, is the name of those who put their hands on that product."',
@@ -1285,10 +1284,9 @@ const CERT_FACTS_EN = {
     { label: 'Lines covered', val: 'L\'Erboristica · Everby' },
   ],
   vegan: [
-    { label: 'Standard', val: 'VEGANOK' },
+    { label: 'Type', val: 'Formulation choice' },
     { label: 'Formula', val: 'Zero animal derivatives' },
     { label: 'Packaging', val: 'Vegan, glues and inks included' },
-    { label: 'Oversight', val: 'AVI Onlus Scientific Committee' },
   ],
   dermatologico: [
     { label: 'Partner', val: 'University of Ferrara' },

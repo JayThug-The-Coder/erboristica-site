@@ -63,7 +63,7 @@ HTML puro + CSS tokens, zero framework. Niente TypeScript, niente build step.
 - **Seconda generazione**: figli **Alessandro** e **Gloria** entrati in azienda fine anni '80 / inizio '90
 - **Vegan da sempre** — scelta dell'azienda da prima che diventasse trend
 - **Fotovoltaico**: copre oltre **80%** del fabbisogno energetico
-- **Certificazioni**: ISO 22716 (GMP), Vegan OK, Cruelty Free, ISO 14001, Dermatest, Made in Italy. **NON più certificati biologici** (lo erano in passato, oggi non lo sono più). Verificare quali sono ancora attive
+- **Certificazioni (chiarito da Athena's, giu 2026)**: si parla di "certificazione" SOLO per **Plant Based (Bioagricert)** e **ISO 22716 (GMP)** — le uniche con sistema di gestione + audit di terza parte in azienda. Tutto il resto NON è certificazione: Dermatologico/Nichel-Cromo-Cobalto = **test** di laboratorio; Made in Italy / OPIMM = **garanzie/collaborazioni**; Vegan = **scelta di formulazione dichiarata**. **NON più VeganOK** (non più iscritti), **NON più biologico**, **niente ISO 14001** sul sito (non sostanziata). Niente "CAPA" né "8 audit" (max 2). Un occhio del settore/estero nota subito i claim gonfiati.
 - **Spaccio aziendale**: ogni **venerdì 12:00–18:00**, ingresso libero senza appuntamento
 - **Formula**: 0% petrolchimici, siliconi, coloranti sintetici — 95%+ ingredienti naturali
 
@@ -266,7 +266,7 @@ Diversi file avevano caratteri rotti (`â€"`, `Ã `, ecc.) da decodifica errat
 ## DATI AZIENDA CONFERMATI (maggio 2026)
 
 - Capitale sociale: **€ 52.000 i.v.**
-- P.IVA / Cod. Fiscale: **01457020392**
+- P.IVA: **02002061204** (agg. giu 2026) · Cod. Fiscale: **01457020392**
 - R.E.A.: BO 404236
 - Tel: +39 051 0925111
 - Email: info@athenas.it
