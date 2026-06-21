@@ -457,6 +457,12 @@
           : (el.hasAttribute('data-en') ? el.dataset.en : el.dataset.it);
         if (val.includes('<')) el.innerHTML = val; else el.textContent = val;
       });
+      // alt bilingue immagini: stessa logica di data-it/data-en ma sull'attributo alt
+      document.querySelectorAll('[data-alt-it]').forEach(el => {
+        el.alt = this.lang === 'it'
+          ? el.dataset.altIt
+          : (el.hasAttribute('data-alt-en') ? el.dataset.altEn : el.dataset.altIt);
+      });
       document.querySelectorAll('.lang-switch button').forEach(b => {
         b.classList.toggle('active', b.dataset.lang === this.lang);
       });
@@ -502,6 +508,21 @@
     if (file === 'privacy' || file === 'cookie-policy') return 'index.html';
     return null;
   };
+
+  /* ---- Focus trap condiviso per overlay/dialog (menu mobile, ricerca) ---- */
+  function getFocusable(container) {
+    return Array.from(container.querySelectorAll(
+      'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    )).filter(el => el.offsetWidth > 0 || el.offsetHeight > 0 || el === document.activeElement);
+  }
+  function trapTab(container, e) {
+    if (e.key !== 'Tab') return;
+    const f = getFocusable(container);
+    if (!f.length) return;
+    const first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
 
   /* ---- Topbar ---- */
   window.renderTopbar = function (activeKey, opts) {
@@ -549,11 +570,44 @@
     `;
     document.body.prepend(el);
 
+    // Skip link: primo elemento navigabile da tastiera, salta il menu e porta
+    // il focus al contenuto principale. Il target viene risolto dinamicamente
+    // perche' le pagine non hanno un <main> coerente.
+    let skipTarget = document.querySelector('main, [role="main"]');
+    if (!skipTarget) {
+      skipTarget = Array.from(document.body.children).find(c =>
+        /^(SECTION|ARTICLE)$/.test(c.tagName) ||
+        /-hero/.test(c.className || '')
+      );
+    }
+    if (skipTarget) {
+      if (!skipTarget.id) skipTarget.id = 'main-content';
+      skipTarget.setAttribute('tabindex', '-1');
+      skipTarget.setAttribute('data-skip-target', '');
+      // Landmark principale per screen reader (se non e' gia' un <main>)
+      if (skipTarget.tagName !== 'MAIN') skipTarget.setAttribute('role', 'main');
+      const skip = document.createElement('a');
+      skip.className = 'skip-link';
+      skip.href = '#' + skipTarget.id;
+      skip.setAttribute('data-it', 'Salta al contenuto');
+      skip.setAttribute('data-en', 'Skip to content');
+      skip.textContent = 'Salta al contenuto';
+      skip.addEventListener('click', (e) => {
+        e.preventDefault();
+        skipTarget.focus();
+        skipTarget.scrollIntoView();
+      });
+      document.body.prepend(skip);
+    }
+
     // Mobile menu drawer
     const drawer = document.createElement('div');
     drawer.id = 'mobileMenu';
     drawer.className = 'mobile-menu';
     drawer.setAttribute('aria-hidden', 'true');
+    drawer.setAttribute('role', 'dialog');
+    drawer.setAttribute('aria-modal', 'true');
+    drawer.setAttribute('aria-label', 'Menu');
     drawer.innerHTML = `
       <nav class="mobile-menu__nav">${navLinks}</nav>
       <div class="mobile-menu__lang lang-switch">
@@ -570,6 +624,7 @@
       drawer.setAttribute('aria-hidden', 'true');
       burger.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
+      burger.focus();
     };
     const openMenu = () => {
       el.classList.add('topbar--menu-open');
@@ -577,11 +632,14 @@
       drawer.setAttribute('aria-hidden', 'false');
       burger.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
+      const firstLink = drawer.querySelector('a, button');
+      if (firstLink) setTimeout(() => firstLink.focus(), 60);
     };
     burger.addEventListener('click', () => {
       drawer.classList.contains('open') ? closeMenu() : openMenu();
     });
     drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+    drawer.addEventListener('keydown', (e) => trapTab(drawer, e));
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && drawer.classList.contains('open')) closeMenu();
     });
@@ -656,7 +714,7 @@
           </span>
         </div>
         <div class="footer__bottom">
-          <div data-it="© 2026 Athena's s.r.l. · P.IVA 01457020392 · R.E.A. BO 404236 · Cap. soc. € 52.000 i.v." data-en="© 2026 Athena's s.r.l. · VAT 01457020392 · R.E.A. BO 404236 · Share cap. € 52,000 paid-up">© 2026 Athena's s.r.l. · P.IVA 01457020392 · R.E.A. BO 404236 · Cap. soc. € 52.000 i.v.</div>
+          <div data-it="© 2026 Athena's s.r.l. · P.IVA 02002061204 · R.E.A. BO 404236 · Cap. soc. € 52.000 i.v." data-en="© 2026 Athena's s.r.l. · VAT 02002061204 · R.E.A. BO 404236 · Share cap. € 52,000 paid-up">© 2026 Athena's s.r.l. · P.IVA 02002061204 · R.E.A. BO 404236 · Cap. soc. € 52.000 i.v.</div>
           <div style="display:flex; gap:24px; flex-wrap:wrap;">
             <a href="${r}privacy.html" data-it="Privacy" data-en="Privacy">Privacy</a>
             <a href="${r}cookie-policy.html" data-it="Cookie Policy" data-en="Cookie Policy">Cookie Policy</a>
@@ -679,6 +737,8 @@
       const ov = document.createElement('div');
       ov.className = 'search-overlay';
       ov.setAttribute('role', 'dialog');
+      ov.setAttribute('aria-modal', 'true');
+      ov.setAttribute('aria-label', isIt ? 'Ricerca' : 'Search');
       ov.innerHTML = `
         <div class="search-overlay__inner">
           <button class="search-overlay__close" aria-label="${t.close}">×</button>
@@ -726,10 +786,13 @@
       });
       ov.addEventListener('click', e => { if (e.target === ov || e.target.closest('.search-overlay__close')) closeSearch(); });
       document.addEventListener('keydown', e => { if (e.key === 'Escape' && ov.classList.contains('open')) closeSearch(); });
+      ov.addEventListener('keydown', e => trapTab(ov, e));
       searchOverlay = ov;
       return ov;
     }
+    let searchTrigger = null;
     function openSearch(){
+      searchTrigger = document.activeElement;
       const ov = buildSearchOverlay();
       // Overlay = palette della pagina corrente: sfondo dal body (solo se chiaro,
       // il testo dell'overlay e' scuro), accento da --footer-accent. Pagine scure
@@ -763,6 +826,7 @@
       if (searchOverlay) searchOverlay.classList.remove('open');
       document.body.style.overflow = '';
       if (window.lenis && typeof window.lenis.start === 'function') window.lenis.start();
+      if (searchTrigger && typeof searchTrigger.focus === 'function') searchTrigger.focus();
     }
     document.querySelectorAll('[data-open-search]').forEach(b => b.addEventListener('click', openSearch));
     window.ATH_OPEN_SEARCH = openSearch;

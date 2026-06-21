@@ -1650,9 +1650,14 @@ function renderPage(id) {
 
     const lb = document.getElementById('lightbox');
     const lbImg = document.getElementById('lightboxImg');
-    const closeLb = () => { lb.hidden = true; lbImg.src = ''; };
+    const closeLb = () => { lb.hidden = true; lbImg.src = ''; lbImg.alt = ''; };
     dossierEl.querySelectorAll('.sp-dossier__cell').forEach(c => {
-      c.addEventListener('click', () => { lbImg.src = c.getAttribute('data-full'); lb.hidden = false; });
+      c.addEventListener('click', () => {
+        lbImg.src = c.getAttribute('data-full');
+        const thumb = c.querySelector('img');
+        lbImg.alt = thumb ? thumb.alt : '';
+        lb.hidden = false;
+      });
     });
     if (!_spheaOnce) {
       lb.addEventListener('click', closeLb);

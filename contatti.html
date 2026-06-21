@@ -494,7 +494,7 @@
 <!-- DOVE TROVARCI + DOVE SIAMO -->
 <section class="loc-banner">
   <div class="loc-banner__bg">
-    <img src="immagini/azienda/stabilimento-esterno.jpg" alt="La sede Athena's a Pianoro, vista frontale dell'edificio con il logo e l'insegna L'Erboristica" class="loc-banner__photo" loading="lazy">
+    <img src="immagini/azienda/stabilimento-esterno.jpg" alt="La sede Athena's a Pianoro, vista frontale dell'edificio con il logo e l'insegna L'Erboristica" data-alt-it="La sede Athena's a Pianoro, vista frontale dell'edificio con il logo e l'insegna L'Erboristica" data-alt-en="The Athena's headquarters in Pianoro, front view of the building with the L'Erboristica logo and sign" class="loc-banner__photo" loading="lazy">
   </div>
   <div class="loc-banner__overlay"></div>
   <div class="loc-banner__inner container">
@@ -592,11 +592,11 @@
       <div class="form-row" style="margin-top:clamp(32px,4vw,52px);">
         <div class="form-field">
           <label for="comune-nome" data-it="Nome" data-en="Name">Nome</label>
-          <input type="text" id="comune-nome" name="nome" autocomplete="given-name"/>
+          <input type="text" id="comune-nome" name="nome" autocomplete="given-name" aria-required="true"/>
         </div>
         <div class="form-field">
           <label for="comune-email" data-it="La tua email" data-en="Your email">La tua email</label>
-          <input type="email" id="comune-email" name="email" autocomplete="email"/>
+          <input type="email" id="comune-email" name="email" autocomplete="email" aria-required="true"/>
         </div>
       </div>
 
@@ -695,7 +695,7 @@
       <!-- MESSAGGIO -->
       <div class="form-field" style="margin-top:8px;">
         <label for="comune-messaggio" data-it="Messaggio" data-en="Message">Messaggio</label>
-        <textarea id="comune-messaggio" name="messaggio" rows="6" style="min-height:180px;"></textarea>
+        <textarea id="comune-messaggio" name="messaggio" rows="6" style="min-height:180px;" aria-required="true"></textarea>
       </div>
 
       <!-- Honeypot anti-spam (invisibile agli umani, riempito dai bot) -->
@@ -712,7 +712,7 @@
       </div>
 
       <!-- Stato submit (success/error) -->
-      <div id="formStatus" style="margin-top:14px; font-family:var(--sans); font-size:14px; line-height:1.5; min-height:1.5em;"></div>
+      <div id="formStatus" role="status" aria-live="polite" style="margin-top:14px; font-family:var(--sans); font-size:14px; line-height:1.5; min-height:1.5em;"></div>
 
       <div class="form-submit" style="margin-top:16px;">
         <button type="submit" class="btn" id="formSubmitBtn"
@@ -840,6 +840,11 @@ document.getElementById('contactForm').addEventListener('submit', async function
   const btn = document.getElementById('formSubmitBtn');
   const originalBtnText = btn.textContent;
 
+  // Reset stato di validazione accessibile a ogni invio
+  const reqFields = ['comune-nome', 'comune-email', 'comune-messaggio'].map(id => document.getElementById(id));
+  reqFields.forEach(f => f.removeAttribute('aria-invalid'));
+  document.getElementById('form-gdpr').removeAttribute('aria-invalid');
+
   // Honeypot — se compilato è un bot
   const honeypot = this.elements['website'];
   if (honeypot && honeypot.value) {
@@ -852,6 +857,8 @@ document.getElementById('contactForm').addEventListener('submit', async function
   if (!gdpr.checked) {
     status.style.color = '#c0392b';
     status.textContent = isEn ? '⚠ You must accept the privacy policy to send the message.' : '⚠ Devi accettare la privacy policy per inviare il messaggio.';
+    gdpr.setAttribute('aria-invalid', 'true');
+    gdpr.focus();
     return;
   }
 
@@ -863,6 +870,10 @@ document.getElementById('contactForm').addEventListener('submit', async function
   if (!nome || !email || !msg) {
     status.style.color = '#c0392b';
     status.textContent = isEn ? '⚠ Please fill in name, email and message.' : '⚠ Compila nome, email e messaggio.';
+    if (!nome) reqFields[0].setAttribute('aria-invalid', 'true');
+    if (!email) reqFields[1].setAttribute('aria-invalid', 'true');
+    if (!msg) reqFields[2].setAttribute('aria-invalid', 'true');
+    (!nome ? reqFields[0] : (!email ? reqFields[1] : reqFields[2])).focus();
     return;
   }
 

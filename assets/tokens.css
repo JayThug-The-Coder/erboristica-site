@@ -1048,3 +1048,47 @@ html.lenis, html.lenis body { height: auto; }
 .vanish-on-scroll[data-scroll-state="exiting"] {
   opacity: 0.25;
 }
+
+/* ── ACCESSIBILITA: navigazione da tastiera ───────────────── */
+/* Indicatore di focus visibile solo per chi naviga da tastiera (:focus-visible),
+   non al click del mouse. Doppio anello (oro + ombra scura) per restare
+   visibile sia sui fondi chiari crema sia sugli hero scuri. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px rgba(26, 26, 26, 0.35);
+  border-radius: 2px;
+}
+/* Il target dello skip link non deve mostrare l'anello quando riceve il focus
+   programmaticamente (non e' un controllo interattivo). */
+[data-skip-target]:focus,
+[data-skip-target]:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Skip link: nascosto finche' non riceve il focus da tastiera, poi compare
+   in alto a sinistra come primo elemento navigabile della pagina. */
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  transform: translateY(-120%);
+  padding: 12px 20px;
+  background: var(--ink);
+  color: var(--cream);
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  border-radius: 0 0 6px 0;
+  transition: transform 0.18s var(--ease);
+}
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 3px solid var(--gold);
+  outline-offset: -3px;
+  box-shadow: none;
+}
