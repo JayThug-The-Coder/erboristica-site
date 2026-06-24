@@ -526,7 +526,7 @@ Doppio clic su `C:\Users\jagio\Desktop\_athena_gallery\ricette.html`
 | **Indirizzo Pianoro** | `assets/app.js` | cerca `Via del Lavoro` |
 | **Telefono / Fax / Email** | `assets/app.js` | cerca `0510925111` |
 | **Link Instagram / Facebook / LinkedIn** | `assets/app.js` | cerca `footer__social` |
-| **Schema.org info Google** (orari spaccio, founders, geo) | `index.html` | cerca `application/ld+json` |
+| **Schema.org info Google** (founders, geo) | `index.html` | cerca `application/ld+json` |
 | **Voci del menu** (Azienda / Linee / Laboratorio / ecc.) | `assets/app.js` | cerca `navLinks` dentro `renderTopbar` |
 | **Newsletter form (footer)** | `assets/app.js` | dentro `renderFooter` cerca `Newsletter` |
 | **Banner cookie** (testo, categorie) | `assets/app.js` | cerca `buildBanner` |

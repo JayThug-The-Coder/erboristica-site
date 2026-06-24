@@ -56,13 +56,13 @@ Dopo il giro vero, restano questi problemi concreti.
 ### 2.1 BUG — link rotti
 - **`certificazioni.html` → 404**. È linkato dal footer di TUTTE le pagine ("Azienda → Certificazioni"). Click = pagina di errore. Va creata o il link va rediretto a `sostenibilita.html#certs`.
 
-### 2.2 BUG — sezione spaccio aziendale assente da contatti
-Nel CSS di `contatti.html` esistono le classi `.spaccio-card`, `.spaccio-title`, `.spaccio-tag`, `.spaccio-hours` (con anche il watermark "venerdì" decorativo) ma il body NON contiene markup che le usi. Lo spaccio del venerdì 12-18 in Via della Cooperazione 20 — uno degli asset più memorabili dell'azienda — semplicemente non si vede sul sito.
+### 2.2 SUPERATO (giu 2026)
+Decisione aggiornata dall'azienda: questo punto non è più valido — vedi nota nel resto del documento.
 
 ### 2.3 contatti.html — la pagina più povera del sito
-Oltre allo spaccio mancante:
+Punti deboli:
 - Mappa è ancora il **placeholder** SVG con la nota "sostituire con embed Google Maps".
-- **Via della Cooperazione 20** (logistica + spaccio) non è citata.
+- **Via della Cooperazione** (logistica) non è citata.
 - Il form ha un solo motivo di contatto in `<select>`. Per un sito B2B serve **multi-track** (rivenditore / distributore internazionale / private label / press / cliente privato), ognuno con campi specifici.
 - Manca foto + nome + email diretta del responsabile commerciale Italia / export EU / export world. I buyer cercano quello.
 - Manca social (LinkedIn esiste, Instagram, Facebook).
@@ -135,8 +135,8 @@ Architettura proposta:
 ### 3.3 Pagina (o sezione in azienda) `certificazioni.html`
 Per chiudere il 404. Può essere semplicemente un wrapper della sezione certs già in sostenibilità, o una pagina autonoma con dossier per ogni cert (PDF, ente, ambito, audit cycle, prodotti coperti, link a ente certificatore).
 
-### 3.4 In contatti — re-inserire spaccio + tab form
-Vedi §2.2 e §2.3.
+### 3.4 In contatti — tab form multi-track
+Vedi §2.3.
 
 ### 3.5 In sostenibilità — live impact dashboard + roadmap 2030
 - Aggiungere un blocco in cima all'impact-section che legge da `assets/impact.json` (creabile con valori statici aggiornabili a mano due volte l'anno): kWh fotovoltaico anno corrente, kg CO₂ compensati Impatto Zero® LifeGate, ore lavoro OPIMM, n. prodotti vegan, n. paesi export.
@@ -244,8 +244,8 @@ Proposta:
 
 Ognuno autonomo, da incollare in un terminale Claude Code aperto nella cartella `erboristica-site/`.
 
-### Prompt 1 — chiudere link rotti + spaccio
-> "Sul progetto Athena's: (a) la pagina `certificazioni.html` non esiste ma è linkata dal footer di tutte le pagine. Creare un wrapper che reindirizza a `sostenibilita.html#certs`, oppure se preferisci una pagina autonoma con un dossier breve per ogni delle 7 certificazioni (Plant Based, Vegan, Dermatologico, Energia Solare, Test Nichel, OPIMM, 100% Made in Italy) — usando lo stesso stile editorial della pagina sostenibilità. (b) In `contatti.html` esistono CSS per `.spaccio-card` ecc. ma manca il markup. Aggiungere una sezione subito dopo `.location-section` con eyebrow '— 04 / Spaccio aziendale', titolo 'Vienici a trovare il <em>venerdì</em>.', body bilingue IT/EN con indirizzo Via della Cooperazione 20, Pianoro (BO), orario 12:00-18:00, ingresso libero senza appuntamento. (c) Sostituire il placeholder mappa con un embed Google Maps reale, mostrando entrambi i pin (HQ Via del Lavoro 32 + spaccio Via della Cooperazione 20)."
+### Prompt 1 — chiudere link rotti
+> "Sul progetto Athena's: (a) la pagina `certificazioni.html` non esiste ma è linkata dal footer di tutte le pagine. Creare un wrapper che reindirizza a `sostenibilita.html#certs`, oppure se preferisci una pagina autonoma con un dossier breve per ogni delle 7 certificazioni (Plant Based, Vegan, Dermatologico, Energia Solare, Test Nichel, OPIMM, 100% Made in Italy) — usando lo stesso stile editorial della pagina sostenibilità. (b) Sostituire il placeholder mappa di `contatti.html` con un embed Google Maps reale, mostrando il pin della sede (HQ Via del Lavoro 32)."
 
 ### Prompt 2 — promuovere Cosmoprof Awards a livello globale
 > "Aggiungere a tutte le pagine principali (azienda, linee, sostenibilità, laboratorio, contatti) un piccolo 'ribbon' nel topbar appena sotto la nav: badge oro che dice 'Sphea — Finalista Cosmoprof Awards 2026 · categoria Body' bilingue, con link a `linee/sphea.html#cosmoprof`. Ribbon dismissable (X chiude per la sessione corrente, salva in sessionStorage). Inoltre aggiungere a `azienda.html` una nuova sezione `— 05 / Riconoscimenti` subito dopo i 4 pilastri, con il badge Cosmoprof a sinistra e quote stampa a destra (per ora placeholder)."
@@ -292,7 +292,7 @@ Ognuno autonomo, da incollare in un terminale Claude Code aperto nella cartella 
 
 ## 8. Ordine di esecuzione consigliato
 
-1. ⚙️ **Prompt 1** — chiudere link rotti + spaccio (bloccante per credibilità: oggi i visitatori atterrano su 404).
+1. ⚙️ **Prompt 1** — chiudere link rotti (bloccante per credibilità: oggi i visitatori atterrano su 404).
 2. 🏆 **Prompt 2** — Cosmoprof Awards in primo piano (asset PR del 2026, oggi nascosto).
 3. 🆕 **Prompt 3** — `terzisti.html` (la pagina che oggi manca davvero per il B2B).
 4. 📚 **Prompt 4** — `press.html` (sblocca il catalogo PDF).

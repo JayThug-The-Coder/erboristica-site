@@ -40,7 +40,7 @@ HTML puro + CSS tokens, zero framework. Niente TypeScript, niente build step.
 | `catalogo.html` | Linee prodotto | Split dark + 10 linee alternanti testo/immagine con filtri brand |
 | `sostenibilita.html` | Sostenibilità | Full-height verde foresta + numeri impatto + pilastri + 8 certificazioni |
 | `laboratorio.html` | Laboratorio R&S | Scuro scientifico con cerchi concentrici animati + 4 fasi processo |
-| `contatti.html` | Contatti | Minimal crema + form + spaccio aziendale + placeholder mappa |
+| `contatti.html` | Contatti | Minimal crema + form + placeholder mappa |
 
 ## Regole di sviluppo
 - Leggere sempre il file prima di modificarlo
@@ -64,7 +64,6 @@ HTML puro + CSS tokens, zero framework. Niente TypeScript, niente build step.
 - **Vegan da sempre** — scelta dell'azienda da prima che diventasse trend
 - **Fotovoltaico**: copre oltre **80%** del fabbisogno energetico
 - **Certificazioni (chiarito da Athena's, giu 2026)**: si parla di "certificazione" SOLO per **Plant Based (Bioagricert)** e **ISO 22716 (GMP)** — le uniche con sistema di gestione + audit di terza parte in azienda. Tutto il resto NON è certificazione: Dermatologico/Nichel-Cromo-Cobalto = **test** di laboratorio; Made in Italy / OPIMM = **garanzie/collaborazioni**; Vegan = **scelta di formulazione dichiarata**. **NON più VeganOK** (non più iscritti), **NON più biologico**, **niente ISO 14001** sul sito (non sostanziata). Niente "CAPA" né "8 audit" (max 2). Un occhio del settore/estero nota subito i claim gonfiati.
-- **Spaccio aziendale**: ogni **venerdì 12:00–18:00**, ingresso libero senza appuntamento
 - **Formula**: 0% petrolchimici, siliconi, coloranti sintetici — 95%+ ingredienti naturali
 
 ### Cose da NON dire sul sito (decisioni utente)
@@ -73,6 +72,7 @@ HTML puro + CSS tokens, zero framework. Niente TypeScript, niente build step.
 - Niente "mass market" né "grande distribuzione" / "GDO" (svaluta percezione)
 - Niente "era gourmand" (Mojito, biscotto, ecc. → evitare)
 - Tricobio (brand storico 2018, NON più attivo) — non menzionare
+- **Spaccio aziendale** (decisione giu 2026): questione chiusa, **non deve essere menzionato da nessuna parte** — né testi, né meta, né dati/Schema.org (rimosso da contatti.html, index.html JSON-LD, data.json, data-inline.js, search-data.js)
 
 ---
 
@@ -216,7 +216,7 @@ Titolo: "ATHENA'S ITALY MANUFACTURER SINCE 1969"
 - `laboratorio.html` — R&S, attivi, tecnologie
 - `sostenibilita.html` — Pilastri eco + certificazioni (griglia 6 card 3-col; loghi: 5 mask oro + Made in Italy img tricolore)
 - `terzisti.html` — Conto terzi B2B
-- `contatti.html` — Sede + form + spaccio
+- `contatti.html` — Sede + form
 - `privacy.html` — Privacy policy
 - `cookie-policy.html` — Cookie policy
 - `404.html` — Errore branded
@@ -249,7 +249,7 @@ Titolo: "ATHENA'S ITALY MANUFACTURER SINCE 1969"
 
 ### Schema.org JSON-LD
 Sulla home `index.html` c'è `@graph` con 3 nodi:
-- Organization + LocalBusiness + Manufacturer (con vatID, geo, openingHoursSpecification venerdì 12-18, brand, contactPoint, sameAs placeholder per social)
+- Organization + LocalBusiness + Manufacturer (con vatID, geo, brand, contactPoint, sameAs placeholder per social)
 - WebSite (publisher → Organization)
 - WebPage
 

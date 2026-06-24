@@ -52,7 +52,7 @@
     'sostenibilita': ['sostenibilita', 'sostenibile', 'green', 'eco', 'ambiente', 'pianeta'],
     'laboratorio':   ['laboratorio', 'r&s', 'ricerca', 'sviluppo', 'r&d', 'innovazione', 'attivi', 'principi attivi'],
     'terzisti':      ['terzisti', 'conto terzi', 'contract manufacturing', 'manifattura', 'manufacturer', 'contract', 'oem'],
-    'contatti':      ['contatti', 'contact', 'email', 'telefono', 'indirizzo', 'spaccio', 'sede'],
+    'contatti':      ['contatti', 'contact', 'email', 'telefono', 'indirizzo', 'sede'],
     'azienda':       ['azienda', 'storia', 'history', 'famiglia', 'familiare', 'venturino', 'sanguettoli', 'pianoro', 'about', 'chi siamo'],
     'catalogo':      ['catalogo', 'catalog', 'tutti i prodotti', 'lista', 'gamma', 'assortimento']
   };
@@ -66,7 +66,7 @@
     { type: 'page', title: 'Laboratorio R&S', title_en: 'R&D Lab', url: '/laboratorio.html', desc: 'Ricerca, innovazione, attivi cosmetici', desc_en: 'Research, innovation, cosmetic actives', tags: ['laboratorio'] },
     { type: 'page', title: 'Sostenibilità', title_en: 'Sustainability', url: '/sostenibilita.html', desc: 'Energia rinnovabile, scelte etiche, formule vegan', desc_en: 'Renewable energy, ethical choices, vegan formulas', tags: ['sostenibilita'] },
     { type: 'page', title: 'Conto Terzi B2B', title_en: 'B2B Contract Manufacturing', url: '/terzisti.html', desc: 'Manifattura conto terzi per cosmetica naturale', desc_en: 'Contract manufacturing for natural cosmetics', tags: ['terzisti', 'b2b', 'contract manufacturing'] },
-    { type: 'page', title: 'Contatti', title_en: 'Contact', url: '/contatti.html', desc: 'Sede, telefono, email, spaccio aziendale', desc_en: 'Address, phone, email, factory outlet', tags: ['contatti', 'sede', 'spaccio'] }
+    { type: 'page', title: 'Contatti', title_en: 'Contact', url: '/contatti.html', desc: 'Sede, telefono, email', desc_en: 'Address, phone, email', tags: ['contatti', 'sede'] }
   ];
 
   const BRANDS = [

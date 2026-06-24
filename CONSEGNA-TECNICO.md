@@ -54,7 +54,7 @@ Riepilogo di **tutto ciò che è già impostato** nel sito, con lo stato di cias
 ### SEO e condivisione social
 - ✅ **sitemap.xml** + **robots.txt** + **canonical** su tutte le pagine.
 - ✅ **Meta description** + **Open Graph** + **Twitter Card** su ogni pagina, con **un'unica immagine social** `immagini/og/athenas-share.jpg` (1200×630). ⚠️ L'anteprima social funziona **solo quando il sito è live su athenas.it** (vedi 7.2).
-- ✅ **Dati strutturati Schema.org** (JSON-LD): Organization / LocalBusiness / Manufacturer (P.IVA, indirizzo, orari spaccio, contatti, social) + WebSite + Breadcrumb sulle pagine interne.
+- ✅ **Dati strutturati Schema.org** (JSON-LD): Organization / LocalBusiness / Manufacturer (P.IVA, indirizzo, contatti, social) + WebSite + Breadcrumb sulle pagine interne.
 - ✅ **Favicon** (la "A" di Athena's) in root.
 
 ### Contatti
