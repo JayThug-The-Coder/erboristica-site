@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=2"/>
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=2"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2"/>
+<title>Saponi Artistici · Athena's</title>
+<meta name="description" content="Saponi artistici scolpiti a mano dal 1969. Piccole opere d'arte da custodire: base vegetale, profumatissimi, 100% Made in Italy."/>
+<link rel="preload" href="../assets/fonts/fraunces-200-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="../assets/fonts/fraunces-300-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="../assets/fonts/fraunces-300-italic-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="../assets/fonts/cormorant-garamond-400-italic-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="stylesheet" href="../assets/fonts.css"/>
+<link rel="stylesheet" href="../assets/tokens.css"/>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: #f6f5f2; }
+body { color: var(--ink); font-family: var(--sans); overflow-x: hidden; background: transparent; }
+/* sfondo marmo dietro a tutto, via div fisso dedicato (metodo robusto e cross-device) */
+.marble-bg {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    linear-gradient(rgba(250,249,247,.12), rgba(250,249,247,.12)),
+    url('../immagini/saponi/marmo.webp') center center / cover no-repeat;
+}
+.sa-container { max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px,4vw,60px); }
+img { display: block; max-width: 100%; }
+
+/* placeholder foto (in attesa degli scatti reali) */
+.sa-ph {
+  position: relative;
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 10px;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 38%, rgba(255,255,255,.7) 0%, transparent 60%),
+    linear-gradient(155deg, #efe7d6 0%, #e3d6bd 55%, #d8c39e 100%);
+  color: var(--gold-deep);
+  text-align: center;
+}
+.sa-ph svg { width: 38px; height: 38px; opacity: .55; }
+.sa-ph__label { font-size: 11px; letter-spacing: .26em; text-transform: uppercase; opacity: .7; }
+
+/* ── HERO ─────────────────────────────────────────────────── */
+.sa-hero {
+  min-height: 100svh;
+  position: relative;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: clamp(110px,13vw,170px) clamp(20px,4vw,60px) clamp(52px,7vw,88px);
+  overflow: hidden;
+  color: var(--cream);
+}
+.sa-hero__bg {
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 54% 60% at 76% 26%, rgba(201,169,110,.40) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 80% at 20% 92%, rgba(0,0,0,.42) 0%, transparent 60%),
+    linear-gradient(158deg, #2a231a 0%, #3c3020 46%, #5a4526 78%, #6b521f 100%);
+}
+.sa-hero__mono {
+  position: absolute; z-index: 0;
+  top: 50%; right: clamp(-40px,2vw,80px); transform: translateY(-50%);
+  font-family: var(--display); font-weight: 200;
+  font-size: clamp(360px,52vw,760px); line-height: .8;
+  color: rgba(201,169,110,.10);
+  pointer-events: none; user-select: none;
+}
+.sa-hero__content { position: relative; z-index: 2; max-width: 60ch; }
+.sa-eyebrow {
+  display: flex; align-items: center; gap: 16px;
+  font-size: 11px; letter-spacing: .32em; text-transform: uppercase;
+  color: rgba(255,255,255,.72); margin-bottom: 22px;
+}
+.sa-eyebrow::before { content: ''; width: 42px; height: 1px; background: var(--gold); opacity: .7; }
+.sa-hero__title {
+  font-family: var(--display); font-weight: 200;
+  font-size: clamp(52px,9vw,128px); line-height: .98; letter-spacing: -.01em;
+}
+.sa-hero__title em { font-style: italic; color: var(--gold); font-weight: 300; }
+.sa-hero__lead {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(20px,2.4vw,30px); line-height: 1.5;
+  color: rgba(255,255,255,.86); max-width: 30ch; margin-top: 26px;
+}
+.sa-scroll {
+  position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%);
+  z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 10px;
+  font-size: 10px; letter-spacing: .3em; text-transform: uppercase; color: rgba(255,255,255,.6);
+}
+.sa-scroll__line { width: 1px; height: 40px; background: linear-gradient(rgba(255,255,255,.6), transparent); }
+
+/* ── MANIFESTO ────────────────────────────────────────────── */
+.sa-manifesto { padding: clamp(74px,11vw,140px) 0; background: transparent; }
+.sa-manifesto__grid {
+  display: grid; grid-template-columns: 1.05fr .8fr; gap: clamp(40px,6vw,88px); align-items: start;
+}
+@media (max-width: 820px) { .sa-manifesto__grid { grid-template-columns: 1fr; gap: clamp(28px,5vw,44px); } }
+.sa-manifesto__quote {
+  font-family: var(--display); font-weight: 200;
+  font-size: clamp(30px,4.4vw,56px); line-height: 1.14; letter-spacing: -.01em;
+  max-width: 16ch; color: var(--ink);
+}
+.sa-manifesto__quote em { font-style: italic; color: var(--gold-deep); }
+.sa-manifesto__lead {
+  font-family: var(--serif); font-size: clamp(17px,1.5vw,21px); line-height: 1.62;
+  max-width: 48ch; opacity: .78; margin-top: clamp(22px,2.6vw,34px);
+}
+.sa-principles { display: flex; flex-direction: column; padding-top: 4px; }
+.sa-principle { padding: clamp(13px,1.5vw,18px) 0; border-top: 1px solid rgba(154,127,74,.26); }
+.sa-principle:last-child { border-bottom: 1px solid rgba(154,127,74,.26); }
+.sa-principle__head { display: flex; align-items: baseline; gap: 11px; }
+.sa-principle__n { font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--gold-deep); opacity: .5; }
+.sa-principle__k { font-family: var(--display); font-weight: 300; font-size: clamp(18px,1.5vw,21px); letter-spacing: .005em; color: var(--gold-deep); }
+.sa-principle__t { font-family: var(--serif); font-size: clamp(14.5px,1.05vw,16px); line-height: 1.5; opacity: .74; margin-top: 5px; }
+
+/* ── COLLEZIONE ───────────────────────────────────────────── */
+.sa-coll { padding: clamp(70px,9vw,120px) 0 clamp(90px,12vw,150px); background: rgba(255,255,255,.18); }
+.sa-coll__head { max-width: 62ch; margin-bottom: clamp(44px,6vw,72px); }
+.sa-coll__eyebrow { font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: var(--gold-deep); margin-bottom: 20px; }
+.sa-coll__title {
+  font-family: var(--display); font-weight: 200; font-size: clamp(34px,5.2vw,68px); line-height: 1.0; letter-spacing: -.015em;
+}
+.sa-coll__title em { font-style: italic; font-weight: 300; color: var(--gold-deep); }
+.sa-coll__intro { font-family: var(--serif); font-size: clamp(17px,1.6vw,21px); line-height: 1.65; opacity: .76; margin-top: 24px; max-width: 56ch; }
+
+.sa-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(40px,4.5vw,72px); }
+@media (max-width: 900px) { .sa-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .sa-grid { grid-template-columns: 1fr; } }
+
+.sa-card { display: block; text-decoration: none; color: inherit; }
+.sa-card__frame {
+  position: relative; aspect-ratio: 3/2; overflow: hidden; background: #fdfdfb;
+  border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(154,127,74,.25), 0 24px 50px -28px rgba(42,35,26,.5);
+  transition: transform .5s var(--ease), box-shadow .5s var(--ease);
+}
+.sa-card__img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.sa-card:hover .sa-card__frame { transform: translateY(-6px); box-shadow: 0 1px 0 rgba(154,127,74,.4), 0 34px 60px -26px rgba(42,35,26,.6); }
+.sa-card__num {
+  position: absolute; top: 14px; left: 16px; z-index: 2;
+  font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--gold-deep);
+  background: rgba(243,238,228,.8); padding: 2px 10px; border-radius: 20px;
+}
+.sa-card__body { padding: 22px 4px 4px; text-align: center; }
+.sa-card__name {
+  font-family: var(--display); font-weight: 300; font-size: clamp(24px,2.6vw,32px); letter-spacing: .01em;
+  color: var(--gold-deep);
+}
+.sa-card__art {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(16px,1.4vw,18px); line-height: 1.5; opacity: .82; margin-top: 11px;
+  max-width: 42ch; margin-left: auto; margin-right: auto;
+}
+.sa-card__meta {
+  font-family: var(--serif); font-style: italic; font-size: clamp(18px,1.5vw,21px); letter-spacing: .005em;
+  color: var(--gold-deep); opacity: .85; margin-top: 16px;
+  padding-top: 14px; border-top: 1px solid rgba(154,127,74,.22);
+}
+
+/* ── L'ARTE DELLA SCULTURA (full-bleed) ───────────────────── */
+.sa-craft {
+  display: grid; grid-template-columns: 1fr 1fr; align-items: stretch;
+  background: transparent; min-height: clamp(380px,44vw,540px);
+}
+@media (max-width: 860px) { .sa-craft { grid-template-columns: 1fr; } }
+.sa-craft__visual { position: relative; overflow: hidden; min-height: clamp(280px,40vw,540px); }
+.sa-craft__text {
+  padding: clamp(44px,5.5vw,82px) clamp(22px,5vw,76px);
+  display: flex; flex-direction: column; justify-content: center;
+}
+.sa-craft__eyebrow { font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: var(--gold-deep); margin-bottom: 18px; }
+.sa-craft__title { font-family: var(--display); font-weight: 200; font-size: clamp(28px,3.8vw,50px); line-height: 1.08; }
+.sa-craft__title em { font-style: italic; color: var(--gold-deep); }
+.sa-craft__body { font-family: var(--serif); font-size: clamp(17px,1.5vw,20px); line-height: 1.7; opacity: .8; margin-top: 22px; max-width: 46ch; }
+
+/* ── CTA (placeholder, in attesa di decisione) ────────────── */
+.sa-cta { padding: clamp(54px,7vw,90px) 0; background: #f4f2ec; color: var(--ink); text-align: center; }
+.sa-cta__title { font-family: var(--display); font-weight: 200; font-size: clamp(30px,4.6vw,58px); line-height: 1.08; max-width: 20ch; margin: 0 auto; }
+.sa-cta__title em { font-style: italic; color: var(--gold-deep); }
+.sa-cta__sub { font-family: var(--serif); font-style: italic; font-size: clamp(18px,1.8vw,24px); opacity: .86; margin-top: 20px; }
+.sa-cta__body { font-family: var(--serif); font-size: clamp(16px,1.3vw,19px); line-height: 1.66; opacity: .76; max-width: 56ch; margin: 18px auto 0; }
+.sa-cta__btn {
+  display: inline-block; position: relative; margin-top: 32px; padding-bottom: 11px;
+  font-family: var(--serif); font-style: italic; font-size: clamp(17px,1.5vw,20px);
+  color: var(--gold-deep); text-decoration: none;
+}
+/* linea: appare solo all'hover, crescendo da sinistra */
+.sa-cta__btn::after {
+  content: ''; position: absolute; left: 0; bottom: 6px; height: 1px; width: 0;
+  background: var(--gold-deep); transition: width .42s var(--ease);
+}
+.sa-cta__btn:hover::after { width: 100%; }
+/* punta della freccia all'estremità della linea, appare quando la linea è tracciata */
+.sa-cta__btn::before {
+  content: ''; position: absolute; right: -1px; bottom: 3.5px;
+  width: 6px; height: 6px; border-top: 1px solid var(--gold-deep); border-right: 1px solid var(--gold-deep);
+  transform: rotate(45deg); opacity: 0; transition: opacity .2s var(--ease) .34s;
+}
+.sa-cta__btn:hover::before { opacity: 1; }
+</style>
+</head>
+<body>
+<div class="marble-bg" aria-hidden="true"></div>
+
+<!-- ── HERO · l'origine ──────────────────────────────────────── -->
+<section class="sa-hero">
+  <div class="sa-hero__bg"></div>
+  <div class="sa-hero__mono" aria-hidden="true">S</div>
+  <!-- SOSTITUIRE: foto hero del bassorilievo scolpito / mano dell'artigiano, su fondo scuro caldo -->
+  <div class="sa-hero__content">
+    <div class="sa-eyebrow" data-it="Athena's · dal 1969" data-en="Athena's · since 1969">Athena's · dal 1969</div>
+    <h1 class="sa-hero__title" data-it="Saponi <em>Artistici</em>" data-en="Artistic <em>Soaps</em>">Saponi <em>Artistici</em></h1>
+    <p class="sa-hero__lead" data-it="Prima delle creme, prima dei sieri. C'erano le mani, il profumo e l'arte." data-en="Before the creams, before the serums. There were the hands, the scent and the art.">Prima delle creme, prima dei sieri. C'erano le mani, il profumo e l'arte.</p>
+  </div>
+  <div class="sa-scroll" aria-hidden="true">
+    <span data-it="Scorri" data-en="Scroll">Scorri</span>
+    <div class="sa-scroll__line"></div>
+  </div>
+</section>
+
+<!-- ── MANIFESTO ─────────────────────────────────────────────── -->
+<section class="sa-manifesto">
+  <div class="sa-container">
+    <div class="sa-manifesto__grid">
+      <div data-reveal>
+        <p class="sa-manifesto__quote" data-it="Una piccola <em>opera d'arte</em> da custodire." data-en="A small <em>work of art</em> to treasure.">Una piccola <em>opera d'arte</em> da custodire.</p>
+        <p class="sa-manifesto__lead" data-it="Non sono semplici saponi: sono oggetti da esporre, da regalare, quasi da non voler consumare. Sotto la bellezza dell'intaglio ci sono gli stessi quattro principi che Athena's segue dal primo giorno, nel 1969." data-en="They are not just soaps: they are objects to display, to give, almost too beautiful to use. Beneath the carved beauty lie the same four principles Athena's has followed since day one, in 1969.">Non sono semplici saponi: sono oggetti da esporre, da regalare, quasi da non voler consumare. Sotto la bellezza dell'intaglio ci sono gli stessi quattro principi che Athena's segue dal primo giorno, nel 1969.</p>
+      </div>
+      <div class="sa-principles" data-reveal style="--d:120ms">
+        <div class="sa-principle">
+          <div class="sa-principle__head"><span class="sa-principle__n">01</span><span class="sa-principle__k" data-it="Base vegetale" data-en="Plant-based">Base vegetale</span></div>
+          <div class="sa-principle__t" data-it="Formule pulite di origine vegetale, delicate anche sulle pelli più sensibili." data-en="Clean, plant-derived formulas, gentle even on the most sensitive skin.">Formule pulite di origine vegetale, delicate anche sulle pelli più sensibili.</div>
+        </div>
+        <div class="sa-principle">
+          <div class="sa-principle__head"><span class="sa-principle__n">02</span><span class="sa-principle__k" data-it="Profumatissimi" data-en="Intensely scented">Profumatissimi</span></div>
+          <div class="sa-principle__t" data-it="Fragranze intense che riempiono la stanza, il cassetto e, col tempo, il ricordo." data-en="Intense fragrances that fill the room, the drawer and, in time, the memory.">Fragranze intense che riempiono la stanza, il cassetto e, col tempo, il ricordo.</div>
+        </div>
+        <div class="sa-principle">
+          <div class="sa-principle__head"><span class="sa-principle__n">03</span><span class="sa-principle__k" data-it="Fatti a mano" data-en="Handmade">Fatti a mano</span></div>
+          <div class="sa-principle__t" data-it="Ogni pezzo rifinito a mano: nessuno identico, la firma dell'artigiano." data-en="Each piece hand-finished: no two alike, the artisan's signature.">Ogni pezzo rifinito a mano: nessuno identico, la firma dell'artigiano.</div>
+        </div>
+        <div class="sa-principle">
+          <div class="sa-principle__head"><span class="sa-principle__n">04</span><span class="sa-principle__k" data-it="100% Made in Italy" data-en="100% Made in Italy">100% Made in Italy</span></div>
+          <div class="sa-principle__t" data-it="Nati nella stessa fabbrica dal 1969, sull'Appennino bolognese." data-en="Born in the same factory since 1969, in the Bologna Apennines.">Nati nella stessa fabbrica dal 1969, sull'Appennino bolognese.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── LA COLLEZIONE ─────────────────────────────────────────── -->
+<section class="sa-coll" id="collezione">
+  <div class="sa-container">
+    <div class="sa-coll__head" data-reveal>
+      <div class="sa-coll__eyebrow" data-it="La Collezione · 7 opere" data-en="The Collection · 7 works">La Collezione · 7 opere</div>
+      <h2 class="sa-coll__title" data-it="Sette saponi, <em>sette storie.</em>" data-en="Seven soaps, <em>seven stories.</em>">Sette saponi, <em>sette storie.</em></h2>
+      <p class="sa-coll__intro" data-it="Ogni sapone è un bassorilievo bianco scolpito a mano, racchiuso in una confezione che è essa stessa un piccolo quadro. Dall'arte rinascimentale ai cherubini dell'amore: scegli la tua opera." data-en="Each soap is a hand-carved white bas-relief, set in packaging that is itself a small painting. From Renaissance art to the cherubs of love: choose your work.">Ogni sapone è un bassorilievo bianco scolpito a mano, racchiuso in una confezione che è essa stessa un piccolo quadro. Dall'arte rinascimentale ai cherubini dell'amore: scegli la tua opera.</p>
+    </div>
+
+    <div class="sa-grid">
+      <!-- 01 BOTTICELLI (unico con pagina prodotto in questo prototipo) -->
+      <a class="sa-card" href="prodotto-saponi.html?id=botticelli" data-reveal>
+        <div class="sa-card__frame">
+          <span class="sa-card__num">01 / 07</span>
+          <!-- SOSTITUIRE: foto Botticelli (sapone scolpito + scatola Primavera) -->
+          <img class="sa-card__img" src="../immagini/saponi/cards/botticelli.webp" alt="Botticelli, sapone artistico scolpito e confezione" data-alt-it="Botticelli, sapone artistico scolpito e confezione" data-alt-en="Botticelli, carved artistic soap and box" loading="lazy">
+        </div>
+        <div class="sa-card__body">
+          <div class="sa-card__name">Botticelli</div>
+          <div class="sa-card__art" data-it="Il volto della Primavera, scolpito nel sapone. L'eleganza del Rinascimento fiorentino portata sulla pelle, da custodire come un piccolo quadro." data-en="The face of Primavera, carved into soap. The elegance of the Florentine Renaissance brought to the skin, to keep like a small painting.">Il volto della Primavera, scolpito nel sapone. L'eleganza del Rinascimento fiorentino portata sulla pelle, da custodire come un piccolo quadro.</div>
+          <div class="sa-card__meta" data-it="Ispirazione Rinascimento · 100 g" data-en="Renaissance inspiration · 100 g">Ispirazione Rinascimento · 100 g</div>
+        </div>
+      </a>
+
+      <!-- 02 I SOGNI -->
+      <a class="sa-card" href="prodotto-saponi.html?id=i-sogni" data-reveal style="--d:60ms">
+        <div class="sa-card__frame">
+          <span class="sa-card__num">02</span>
+          <!-- SOSTITUIRE: foto I Sogni -->
+          <img class="sa-card__img" src="../immagini/saponi/cards/i-sogni.webp" alt="I Sogni, sapone artistico scolpito e confezione" data-alt-it="I Sogni, sapone artistico scolpito e confezione" data-alt-en="I Sogni, carved artistic soap and box" loading="lazy">
+        </div>
+        <div class="sa-card__body">
+          <div class="sa-card__name">I Sogni</div>
+          <div class="sa-card__art" data-it="Una dolcezza che avvolge i sensi. Fragranza intensa e anima romantica, per chi ama lasciarsi trasportare da un profumo." data-en="A sweetness that envelops the senses. An intense fragrance with a romantic soul, for those who love to be carried away by a scent.">Una dolcezza che avvolge i sensi. Fragranza intensa e anima romantica, per chi ama lasciarsi trasportare da un profumo.</div>
+          <div class="sa-card__meta" data-it="Anima romantica · 100 g" data-en="Romantic soul · 100 g">Anima romantica · 100 g</div>
+        </div>
+      </a>
+
+      <!-- 03 CAMEO -->
+      <a class="sa-card" href="prodotto-saponi.html?id=cameo" data-reveal style="--d:120ms">
+        <div class="sa-card__frame">
+          <span class="sa-card__num">03</span>
+          <!-- SOSTITUIRE: foto Cameo -->
+          <img class="sa-card__img" src="../immagini/saponi/cards/cameo.webp" alt="Cameo, sapone artistico scolpito e confezione" data-alt-it="Cameo, sapone artistico scolpito e confezione" data-alt-en="Cameo, carved artistic soap and box" loading="lazy">
+        </div>
+        <div class="sa-card__body">
+          <div class="sa-card__name">Cameo</div>
+          <div class="sa-card__art" data-it="L'eleganza della Belle Époque, scolpita come un cammeo antico. Un profilo senza tempo, da custodire o da donare a chi ama le cose belle." data-en="Belle Époque elegance, carved like an antique cameo. A timeless profile, to treasure or to give to those who love beautiful things.">L'eleganza della Belle Époque, scolpita come un cammeo antico. Un profilo senza tempo, da custodire o da donare a chi ama le cose belle.</div>
+          <div class="sa-card__meta" data-it="Ispirazione Art Nouveau · 100 g" data-en="Art Nouveau inspiration · 100 g">Ispirazione Art Nouveau · 100 g</div>
+        </div>
+      </a>
+
+      <!-- 04 AMORINI -->
+      <a class="sa-card" href="prodotto-saponi.html?id=amorini" data-reveal style="--d:60ms">
+        <div class="sa-card__frame">
+          <span class="sa-card__num">04</span>
+          <!-- SOSTITUIRE: foto Amorini -->
+          <img class="sa-card__img" src="../immagini/saponi/cards/amorini.webp" alt="Amorini, saponi artistici scolpiti e confezione" data-alt-it="Amorini, saponi artistici scolpiti e confezione" data-alt-en="Amorini, carved artistic soaps and box" loading="lazy">
+        </div>
+        <div class="sa-card__body">
+          <div class="sa-card__name">Amorini</div>
+          <div class="sa-card__art" data-it="Due piccoli capolavori da scoprire ogni giorno. Delicati sulla pelle e raffinati nello stile, un gesto d'affetto che si rinnova ogni mattina." data-en="Two little masterpieces to discover every day. Gentle on the skin and refined in style, a gesture of affection renewed each morning.">Due piccoli capolavori da scoprire ogni giorno. Delicati sulla pelle e raffinati nello stile, un gesto d'affetto che si rinnova ogni mattina.</div>
+          <div class="sa-card__meta" data-it="Set regalo · 2 x 50 g" data-en="Gift set · 2 x 50 g">Set regalo · 2 x 50 g</div>
+        </div>
+      </a>
+
+      <!-- 05 SERENATA -->
+      <a class="sa-card" href="prodotto-saponi.html?id=serenata" data-reveal style="--d:120ms">
+        <div class="sa-card__frame">
+          <span class="sa-card__num">05</span>
+          <!-- SOSTITUIRE: foto Serenata -->
+          <img class="sa-card__img" src="../immagini/saponi/cards/serenata.webp" alt="Serenata, saponi artistici scolpiti e confezione" data-alt-it="Serenata, saponi artistici scolpiti e confezione" data-alt-en="Serenata, carved artistic soaps and box" loading="lazy">
+        </div>
+        <div class="sa-card__body">
+          <div class="sa-card__name">Serenata</div>
+          <div class="sa-card__art" data-it="Poesia, musica e profumo in un solo gesto. Un cherubino che intona la sua melodia: un dono che sa raccontare emozioni senza parole." data-en="Poetry, music and scent in a single gesture. A cherub playing its melody: a gift that tells emotions without words.">Poesia, musica e profumo in un solo gesto. Un cherubino che intona la sua melodia: un dono che sa raccontare emozioni senza parole.</div>
+          <div class="sa-card__meta" data-it="Set regalo · 2 x 100 g" data-en="Gift set · 2 x 100 g">Set regalo · 2 x 100 g</div>
+        </div>
+      </a>
+
+      <!-- 06 PRIMO BACIO -->
+      <a class="sa-card" href="prodotto-saponi.html?id=primo-bacio" data-reveal style="--d:180ms">
+        <div class="sa-card__frame">
+          <span class="sa-card__num">06</span>
+          <!-- SOSTITUIRE: foto Primo Bacio -->
+          <img class="sa-card__img" src="../immagini/saponi/cards/primo-bacio.webp" alt="Primo Bacio, saponi artistici scolpiti e confezione" data-alt-it="Primo Bacio, saponi artistici scolpiti e confezione" data-alt-en="Primo Bacio, carved artistic soaps and box" loading="lazy">
+        </div>
+        <div class="sa-card__body">
+          <div class="sa-card__name">Primo Bacio</div>
+          <div class="sa-card__art" data-it="Un ricordo prezioso, da donare in prima battuta. Profumato, artigianale, unico: il regalo pensato per i momenti che restano impressi." data-en="A precious memory, to give first. Scented, handcrafted, unique: the gift made for the moments that stay etched in memory.">Un ricordo prezioso, da donare in prima battuta. Profumato, artigianale, unico: il regalo pensato per i momenti che restano impressi.</div>
+          <div class="sa-card__meta" data-it="Set regalo · 2 x 100 g" data-en="Gift set · 2 x 100 g">Set regalo · 2 x 100 g</div>
+        </div>
+      </a>
+
+      <!-- 07 CUPIDO -->
+      <a class="sa-card" href="prodotto-saponi.html?id=cupido" data-reveal style="--d:240ms">
+        <div class="sa-card__frame">
+          <span class="sa-card__num">07</span>
+          <!-- SOSTITUIRE: foto Cupido -->
+          <img class="sa-card__img" src="../immagini/saponi/cards/cupido.webp" alt="Cupido, saponi artistici scolpiti e confezione" data-alt-it="Cupido, saponi artistici scolpiti e confezione" data-alt-en="Cupido, carved artistic soaps and box" loading="lazy">
+        </div>
+        <div class="sa-card__body">
+          <div class="sa-card__name">Cupido</div>
+          <div class="sa-card__art" data-it="Simbolo d'amore e armonia. Tre saponi per i momenti speciali, un tocco romantico da condividere con chi conta davvero." data-en="A symbol of love and harmony. Three soaps for special moments, a romantic touch to share with those who truly matter.">Simbolo d'amore e armonia. Tre saponi per i momenti speciali, un tocco romantico da condividere con chi conta davvero.</div>
+          <div class="sa-card__meta" data-it="Set regalo · 3 x 100 g" data-en="Gift set · 3 x 100 g">Set regalo · 3 x 100 g</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── L'ARTE DELLA SCULTURA (full-bleed) ────────────────────── -->
+<section class="sa-craft">
+  <div class="sa-craft__visual" data-reveal>
+    <!-- SOSTITUIRE: foto/dettaglio della lavorazione, lo stampo, l'intaglio del bassorilievo (full-bleed) -->
+    <div class="sa-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg><span class="sa-ph__label" data-it="Foto · La lavorazione" data-en="Photo · The craft">Foto · La lavorazione</span></div>
+  </div>
+  <div class="sa-craft__text" data-reveal style="--d:120ms">
+    <div class="sa-craft__eyebrow" data-it="Il saper fare" data-en="The craft">Il saper fare</div>
+    <h2 class="sa-craft__title" data-it="Scolpiti come si <em>faceva una volta.</em>" data-en="Carved the way it <em>was once done.</em>">Scolpiti come si <em>faceva una volta.</em></h2>
+    <p class="sa-craft__body" data-it="Ogni sapone nasce da uno stampo inciso e da una mano che lo rifinisce, pezzo dopo pezzo. Il bianco puro del bassorilievo è ciò che resta quando l'arte incontra la materia più semplice. È così che Athena's ha iniziato, nel 1969, ed è così che continuiamo a farlo." data-en="Every soap is born from an engraved mould and a hand that finishes it, piece by piece. The pure white of the bas-relief is what remains when art meets the simplest of materials. This is how Athena's began, in 1969, and this is how we still do it.">Ogni sapone nasce da uno stampo inciso e da una mano che lo rifinisce, pezzo dopo pezzo. Il bianco puro del bassorilievo è ciò che resta quando l'arte incontra la materia più semplice. È così che Athena's ha iniziato, nel 1969, ed è così che continuiamo a farlo.</p>
+  </div>
+</section>
+
+<!-- ── CTA (placeholder · destinazione da definire) ──────────── -->
+<section class="sa-cta">
+  <div class="sa-container">
+    <h2 class="sa-cta__title" data-it="Un dono che <em>resta</em>." data-en="A gift that <em>lasts</em>.">Un dono che <em>resta</em>.</h2>
+    <p class="sa-cta__sub" data-it="Si regala un sapone, si dona un'emozione." data-en="You give a soap, you offer an emotion.">Si regala un sapone, si dona un'emozione.</p>
+    <p class="sa-cta__body" data-it="Profuma un cassetto, accoglie gli ospiti, custodisce un ricordo: un pensiero che resta molto dopo il momento del dono." data-en="It scents a drawer, welcomes guests, keeps a memory: a thought that lingers long after the moment of giving.">Profuma un cassetto, accoglie gli ospiti, custodisce un ricordo: un pensiero che resta molto dopo il momento del dono.</p>
+    <!-- SOSTITUIRE/DECIDERE CTA: contatto oppure link a erboristica.com -->
+    <a class="sa-cta__btn" href="../contatti.html" data-it="Scrivici" data-en="Get in touch">Scrivici</a>
+  </div>
+</section>
+
+<script src="../assets/vendor/lenis.min.js" defer></script>
+<script src="../assets/data.js"></script>
+<script src="../assets/search-data.js" defer></script>
+<script src="../assets/app.js?v=14"></script>
+<script>
+initAthenas('brands');
+</script>
+</body>
+</html>
