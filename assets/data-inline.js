@@ -148,7 +148,7 @@ window.ATH_DATA_JSON = {
     "zero-petrochem": {
       "name_it": "0% Petrolchimici",
       "name_en": "0% Petrochemicals",
-      "desc_it": "0% derivati petrolchimici, parabeni, siliconi, coloranti sintetici.",
+      "desc_it": "0% derivati petrolchimici e siliconi.",
       "authority": "Standard formulativo Athena's",
       "third_party": false
     }
@@ -220,7 +220,7 @@ window.ATH_DATA_JSON = {
       "name_it": "Purysens — Pelle Mista e Impura",
       "name_en": "Purysens — Combination & Impure Skin",
       "brand": "erboristica",
-      "tagline_it": "Hypoallergenico, parfum free, testato dermatologicamente",
+      "tagline_it": "Hypoallergenico, testato dermatologicamente",
       "palette": "purysens",
       "sort_order": 6
     },
@@ -228,7 +228,7 @@ window.ATH_DATA_JSON = {
       "name_it": "Illumià",
       "name_en": "Illumià",
       "brand": "erboristica",
-      "tagline_it": "Niacinamide e vitamina C liposomiale per macchie e luminosità",
+      "tagline_it": "Niacinamide e vitamina C stabilizzata per macchie e luminosità",
       "palette": "illumia",
       "sort_order": 7
     },
@@ -307,10 +307,10 @@ window.ATH_DATA_JSON = {
       "name_it": "CONTORNO OCCHI",
       "name_en": "EYE CONTOUR",
       "url": "https://www.erboristica.com/antieta-globale/contorno-occhi/",
-      "subtitle_it": "Crema contorno occhi antirughe senza profumo, adatta a tutti i tipi di pelle.",
-      "subtitle_en": "Anti-wrinkle, fragrance-free eye contour cream, suitable for all skin types.",
-      "description_it": "Restituisce giovinezza allo sguardo con un’azione ridensificante e rassodante. Acido Ialuronico, Caffeina e un peptide specifico migliorano compattezza, borse e occhiaie.",
-      "description_en": "Restores youth to the eyes with a redensifying, firming action. Hyaluronic Acid, Caffeine and a specific peptide improve firmness, bags and dark circles.",
+      "subtitle_it": "Crema contorno occhi antirughe ridensificante, adatta a tutti i tipi di pelle.",
+      "subtitle_en": "Redensifying anti-wrinkle eye contour cream, suitable for all skin types.",
+      "description_it": "Restituisce giovinezza allo sguardo con un’azione ridensificante e rassodante. Argireline, Collagene Vegetale e Acido Ialuronico migliorano compattezza, borse e occhiaie.",
+      "description_en": "Restores youth to the eyes with a redensifying, firming action. Argireline, Plant Collagen and Hyaluronic Acid improve firmness, bags and dark circles.",
       "usage_it": "Mattino e sera sull’intera zona perioculare detersa, applicare una piccola quantità di prodotto con leggere pressioni e massaggi circolari.",
       "usage_en": "Morning and evening, on the cleansed eye area, apply a small amount with light pressure and circular massage.",
       "inci": "Aqua [Water], Hydrolyzed soy extract, Cetearyl alcohol, Glyceryl stearate, Glycerin, Olus oil [Vegetable (Olus) oil], Betaine, Butyrospermum parkii (Shea) butter, Coco-caprylate, Macadamia ternifolia seed oil, Ethylhexyl palmitate, Behenyl alcohol, Acetyl hexapeptide-8, Bakuchiol, Zanthoxylum bungeanum fruit extract, Sodium hyaluronate, Pullulan, Zinc PCA, Tocopherol, Beta-sitosterol, Sodium lauroyl glutamate, Squalene, Sodium stearoyl lactylate, Zinc ricinoleate, Natto gum, Sodium benzoate, Oleyl alcohol, Xanthan gum, Alcohol, Sodium gluconate, Parfum [Fragrance], Hexamethylindanopyran, Ethylhexylglycerin, Phenoxyethanol.",
@@ -331,7 +331,8 @@ window.ATH_DATA_JSON = {
         "detail_2": "immagini/antieta/contorno-occhi/det-02.webp"
       },
       "actives_main": [
-        "Peptide Eye-Care",
+        "Argireline Amplified (Acetyl Hexapeptide-8)",
+        "Collagene Vegetale",
         "Acido Ialuronico"
       ]
     },
@@ -386,7 +387,7 @@ window.ATH_DATA_JSON = {
       "url": "https://www.erboristica.com/detergenti/detergente-viso/",
       "subtitle_it": "Detergente struccante delicato, vellutato come un latte, per viso, occhi e labbra.",
       "subtitle_en": "Gentle make-up removing cleanser, velvety as a milk, for face, eyes and lips.",
-      "description_it": "Rimuove completamente il make-up lasciando la pelle idratata e morbida. Con Aloe Vera, Bisabololo e tensioattivi vegetali dolci, deterge senza aggredire.",
+      "description_it": "Rimuove completamente il make-up lasciando la pelle idratata e morbida. Con Aloe Vera, Bisabololo e tensioattivi vegetali delicati, deterge senza aggredire.",
       "description_en": "Completely removes make-up while leaving the skin hydrated and soft. With Aloe Vera, Bisabolol and gentle plant surfactants, it cleanses without stripping.",
       "usage_it": "Applicare con leggeri movimenti circolari e risciacquare con acqua, oppure rimuovere con dischetto di cotone. Non schiumogeno",
       "usage_en": "Apply with light circular movements and rinse with water, or remove with a cotton pad. Non-foaming.",
@@ -410,7 +411,7 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Aloe Vera",
-        "Tensioattivi vegetali dolci"
+        "Tensioattivi vegetali delicati"
       ]
     },
     {
@@ -424,8 +425,8 @@ window.ATH_DATA_JSON = {
       "url": "https://www.erboristica.com/antieta-globale/fiale-concentrato-rimpolpante/",
       "subtitle_it": "Trattamento d’urto rimpolpante in 21 giorni, pro-giovinezza e intensivo.",
       "subtitle_en": "Intensive 21-day plumping shock treatment, pro-youth and intensive.",
-      "description_it": "Un ciclo intensivo che ridona compattezza e luminosità alla pelle. Acido Ialuronico a diverso peso molecolare, Collagene marino idrolizzato e Vitamina C rimpolpano e illuminano.",
-      "description_en": "An intensive cycle that restores firmness and radiance to the skin. Hyaluronic Acid of different molecular weights, hydrolysed marine Collagen and Vitamin C plump and brighten.",
+      "description_it": "Un ciclo intensivo che ridona compattezza e luminosità alla pelle. Estratto di Mirtillo, Zafferano e Omega 3 e 6 nutrono, illuminano e proteggono dallo stress ossidativo.",
+      "description_en": "An intensive cycle that restores firmness and radiance to the skin. Bilberry extract, Saffron and Omega 3 and 6 nourish, brighten and protect from oxidative stress.",
       "usage_it": "1 fiala permette fino a 3 applicazioni. Applicare mattina e sera, su viso e décolleté ben detersi e proseguire con la skincare routine abituale. 7 fiale per 21 giorni consecutivi di trattamento.",
       "usage_en": "1 vial allows up to 3 applications. Apply morning and evening to cleansed face and décolleté, then continue with your usual skincare routine. 7 vials for 21 consecutive days of treatment.",
       "inci": "GLYCINE SOJA (SOYBEAN) OIL (*), HYDROGENATED FARNESENE, AVENA SATIVA (OAT) KERNEL EXTRACT, RETINYL PALMITATE, ASCORBYL ISOSTEARATE, TOCOPHEROL, VACCINIUM MYRTILLUS (MYRTLE) SEED OIL, BAKUCHIOL, CROCUS SATIVUS STIGMA EXTRACT (*), TOCOPHERYL ACETATE, CAMELINA SATIVA SEED OIL, HELIANTHUS ANNUUS (SUNFLOWER) SEED OIL, PARFUM [FRAGRANCE], OLUS OIL [VEGETABLE (OLUS) OIL], LINALOOL, LIMONENE, CITRONELLOL, GERANIOL, ALPHA-ISOMETHYL IONONE, COUMARIN.",
@@ -447,9 +448,9 @@ window.ATH_DATA_JSON = {
         "detail_2": "immagini/antieta/fiale-concentrato-rimpolpante/det-02.webp"
       },
       "actives_main": [
-        "Retinolo",
-        "Vitamina C",
-        "Bakuchiol"
+        "Estratto di Mirtillo",
+        "Zafferano",
+        "Omega 3 e 6"
       ]
     },
     {
@@ -463,8 +464,8 @@ window.ATH_DATA_JSON = {
       "url": "https://www.erboristica.com/antieta-globale/siero-viso-acido-ialuronico/",
       "subtitle_it": "Siero viso antietà all’Acido Ialuronico, per tutti i tipi di pelle.",
       "subtitle_en": "Anti-ageing Hyaluronic Acid face serum, for all skin types.",
-      "description_it": "Regala freschezza e vitalità in profondità in qualsiasi momento della giornata. L’Acido Ialuronico a basso e alto peso molecolare e la Niacinamide idratano i tessuti e uniformano la pelle.",
-      "description_en": "Delivers deep freshness and vitality at any time of day. Low and high molecular weight Hyaluronic Acid and Niacinamide hydrate the tissues and even the skin tone.",
+      "description_it": "Regala freschezza e vitalità in profondità in qualsiasi momento della giornata. L’Acido Ialuronico a basso e alto peso molecolare idrata i tessuti e uniforma la pelle.",
+      "description_en": "Delivers deep freshness and vitality at any time of day. Low and high molecular weight Hyaluronic Acid hydrates the tissues and evens the skin tone.",
       "usage_it": "Perfetto da solo in ogni momento della giornata su viso e dècolleté. La miscelazione di alcune gocce ai Trattamenti viso Antietà Globale ne potenzia l’effetto.",
       "usage_en": "Perfect on its own at any time of day on face and décolleté. Mixing a few drops into the Global Anti-Ageing face treatments boosts their effect.",
       "inci": "Aqua [Water], Glycerin, Tremella fuciformis sporocarp extract, Sodium gluconate, Benzoic acid, Dehydroacetic acid, Ethylhexylglycerin, Phenoxyethanol.",
@@ -500,8 +501,8 @@ window.ATH_DATA_JSON = {
       "url": "https://www.erboristica.com/antieta-globale/siero-viso-collagene-vegetale/",
       "subtitle_it": "Siero viso al Collagene vegetale, rassodante e ridensificante.",
       "subtitle_en": "Plant Collagen face serum, firming and redensifying.",
-      "description_it": "Ripara e rinforza in modo naturale le fibre di sostegno della pelle, ridonando compattezza. Collagene vegetale da bio-fermentazione, Tripeptide-1 e Aloe Vera tonificano e leniscono.",
-      "description_en": "Naturally repairs and strengthens the skin's support fibres, restoring firmness. Plant Collagen from bio-fermentation, Tripeptide-1 and Aloe Vera tone and soothe.",
+      "description_it": "Ripara e rinforza in modo naturale le fibre di sostegno della pelle, ridonando compattezza. Collagene vegetale da bio-fermentazione e Cellule Staminali di Stella Alpina tonificano e proteggono.",
+      "description_en": "Naturally repairs and strengthens the skin's support fibres, restoring firmness. Plant Collagen from bio-fermentation and Edelweiss Stem Cells tone and protect.",
       "usage_it": "Perfetto da solo in ogni momento della giornata su viso e dècolleté. La miscelazione di alcune gocce ai Trattamenti viso Antietà Globale ne potenzia l’effetto.",
       "usage_en": "Perfect on its own at any time of day on face and décolleté. Mixing a few drops into the Global Anti-Ageing face treatments boosts their effect.",
       "inci": "Aqua [Water], Glycerin, Sclerotium gum, Natto gum, Leontopodium alpinum callus culture extract, Sodium cocoyl barley amino acids, Glyceryl oleate, Coco-glucoside, Citric acid, Sodium gluconate, Parfum [Fragrance], Ethylhexylglycerin, Alcohol, Hexyl cinnamal, Phenoxyethanol.",
@@ -1295,8 +1296,8 @@ window.ATH_DATA_JSON = {
       "url": "https://www.erboristica.com/estratti-botanici/mousse-doccia-te-verde/",
       "subtitle_it": "Mousse doccia al Tè Verde e Neroli, ideale per pelli delicate e sensibili.",
       "subtitle_en": "Green Tea and Neroli shower mousse, ideal for delicate and sensitive skin.",
-      "description_it": "Tonifica, idrata e protegge con una fragranza fresca e frizzante. Estratto di Tè Verde, Aloe Vera e tensioattivi vegetali dolci rivitalizzano la pelle.",
-      "description_en": "Tones, hydrates and protects with a fresh, sparkling fragrance. Green Tea Extract, Aloe Vera and gentle plant surfactants revitalise the skin.",
+      "description_it": "Tonifica, idrata e protegge con una fragranza fresca e frizzante. Il succo di Aloe Vera e le Proteine del Riso idratano e proteggono, con note di Tè Verde e Neroli.",
+      "description_en": "Tones, hydrates and protects with a fresh, sparkling fragrance. Aloe Vera juice and Rice Proteins hydrate and protect, with Green Tea and Neroli notes.",
       "usage_it": "Su pelle bagnata, sotto la doccia o in vasca, massaggiare il corpo con una generosa quantità di mousse per qualche minuto. Risciacquare con cura. Completare il trattamento utilizzando, prima della mousse doccia, due volte a settimana, lo scrub corpo ai granuli di albicocca.",
       "usage_en": "On wet skin, in the shower or bath, massage the body with a generous amount of mousse for a few minutes. Rinse thoroughly. Complete the treatment by using the apricot-granule body scrub before the shower mousse, twice a week.",
       "inci": "Aqua [Water], Sodium coceth sulfate, Cocamidopropyl betaine, Aloe barbadensis leaf juice (*), Lauryl glucoside, Parfum [Fragrance], Panthenol, Hydrolyzed rice protein, Citric acid, Sodium gluconate, Ethylhexylglycerin, Phenoxyethanol, Limonene, Linalool, Hexyl cinnamal, Geraniol, Citronellol, Linalyl acetate, Pinene.",
@@ -1318,8 +1319,9 @@ window.ATH_DATA_JSON = {
         "detail_2": "immagini/estratti/bagno-doccia-tè-verde/det-02.webp"
       },
       "actives_main": [
-        "Tensioattivi vegetali dolci",
-        "Aloe Vera"
+        "Aloe Vera",
+        "Proteine del Riso",
+        "Tensioattivi vegetali dolci"
       ]
     },
     {
@@ -1333,8 +1335,8 @@ window.ATH_DATA_JSON = {
       "url": "https://www.erboristica.com/estratti-botanici/burro-di-karite-vitamina-e/",
       "subtitle_it": "Burro di Karité per viso, mani e corpo, senza profumo né allergeni.",
       "subtitle_en": "Shea Butter for face, hands and body, fragrance-free and allergen-free.",
-      "description_it": "Nutriente e protettivo, è ideale per irritazioni e pelle provata dal freddo. Burro di Karité da spremitura a freddo, Vitamina E e Olio di Mandorle Dolci leniscono e ammorbidiscono.",
-      "description_en": "Nourishing and protective, it is ideal for irritation and skin stressed by the cold. Cold-pressed Shea Butter, Vitamin E and Sweet Almond Oil soothe and soften.",
+      "description_it": "Nutriente e protettivo, è ideale per irritazioni e pelle provata dal freddo. Burro di Karité da spremitura a freddo e Vitamina E leniscono e ammorbidiscono.",
+      "description_en": "Nourishing and protective, it is ideal for irritation and skin stressed by the cold. Cold-pressed Shea Butter and Vitamin E soothe and soften.",
       "usage_it": "Dalla consistenza solida, si scioglie perfettamente con il semplice calore del palmo della mano. Su pelle detersa, applicare nella parte interessata con un leggero massaggio fino a completo assorbimento. Una variazione della consistenza del prodotto può essere legata alla temperatura, senza pregiudicarne la qualità e le proprietà .",
       "usage_en": "With its solid consistency, it melts perfectly with the simple warmth of the palm. On cleansed skin, apply to the affected area with a light massage until fully absorbed. A change in the product's consistency may be linked to temperature, without affecting its quality and properties.",
       "inci": "Butyrospermum parkii (Shea butter) (99,5%), Tocopheryl acetate, Tocopherol.",
@@ -1371,8 +1373,8 @@ window.ATH_DATA_JSON = {
       "url": "https://www.erboristica.com/estratti-botanici/crema-corpo-rosa-essenziale/",
       "subtitle_it": "Crema corpo rivitalizzante all’Olio Essenziale di Rosa Damascena.",
       "subtitle_en": "Revitalising body cream with Damask Rose Essential Oil.",
-      "description_it": "Soffice e setosa, armonizza la pelle con il lusso naturale della rosa. Olio Essenziale di Rosa, Burro di Karité e Vitamina E nutrono e rivitalizzano.",
-      "description_en": "Soft and silky, it harmonises the skin with the natural luxury of rose. Rose Essential Oil, Shea Butter and Vitamin E nourish and revitalise.",
+      "description_it": "Soffice e setosa, armonizza la pelle con il lusso naturale della rosa. Acqua e Olio di Rosa Damascena, Burro di Karité e Vitamina E nutrono e rivitalizzano.",
+      "description_en": "Soft and silky, it harmonises the skin with the natural luxury of rose. Damask Rose water and oil, Shea Butter and Vitamin E nourish and revitalise.",
       "usage_it": "Applica la crema corpo tutti i giorni dopo la doccia, e se vuoi un trattamento ancora più completo utilizza l’ OLIO CORPO ARMONIZZANTE",
       "usage_en": "Apply the body cream every day after the shower, and for an even more complete treatment use the HARMONISING BODY OIL.",
       "inci": "Aqua [Water], Ethylhexyl palmitate, Cetyl alcohol, Butyrospermum parkii (Shea) butter, Glycerin, Glycine soja (Soybean) oil (*), Polyglyceryl-3 stearate, Prunus amygdalus dulcis (Sweet almond) oil, Sodium stearoyl lactylate, Rosa damascena flower oil, Tocopherol, Rosa damascena flower water, Beta-sitosterol, Squalene, Punica granatum fruit extract (*), Ethylhexyl stearate, Xanthan gum, Sodium gluconate, Parfum [Fragrance], Citronellol, Eugenol, Turpentine, Terpinolene, Terpineol, Trideceth-6, Sodium polyacrylate, Benzoic acid, Dehydroacetic acid, Ethylhexylglycerin, Phenoxyethanol.",
@@ -1394,7 +1396,7 @@ window.ATH_DATA_JSON = {
         "detail_2": "immagini/estratti/crema-corpo-rosa-essenziale/det-02.webp"
       },
       "actives_main": [
-        "Olio Essenziale di Rosa",
+        "Acqua e Olio di Rosa Damascena",
         "Burro di Karité",
         "Vitamina E"
       ]
@@ -1410,8 +1412,8 @@ window.ATH_DATA_JSON = {
       "url": "https://www.erboristica.com/estratti-botanici/crema-mani-unghie-allolio-di-cotone/",
       "subtitle_it": "Crema mani e unghie all’Olio di Cotone, a rapido assorbimento e non unge.",
       "subtitle_en": "Cotton Oil hand and nail cream, fast-absorbing and non-greasy.",
-      "description_it": "Protegge dalle aggressioni esterne donando un piacevole effetto vellutato. Olio di Semi di Cotone, Cheratina idrolizzata e Vitamina E rinforzano pelle e unghie.",
-      "description_en": "Protects from external aggressions while giving a pleasant velvety effect. Cottonseed Oil, hydrolysed Keratin and Vitamin E strengthen skin and nails.",
+      "description_it": "Protegge dalle aggressioni esterne donando un piacevole effetto vellutato. Olio di Semi di Cotone e Vitamina E rinforzano pelle e unghie.",
+      "description_en": "Protects from external aggressions while giving a pleasant velvety effect. Cottonseed Oil and Vitamin E strengthen skin and nails.",
       "usage_it": "L’uso quotidiano, anche più volte al giorno, garantisce mani protette e luminose.",
       "usage_en": "Daily use, even several times a day, ensures protected and radiant hands.",
       "inci": "Aqua [Water], Glycerin, Stearic acid, Dicaprylyl carbonate, Aluminum starch octenylsuccinate, Butyrospermum parkii (Shea butter), Gossypium herbaceum (Cotton) seed oil, Polyglyceryl-3 stearate, Cetearyl alcohol, Ethylhexyl palmitate, Olea europaea (Olive) oil unsaponifiables, Sodium stearoyl lactylate, Panthenol, Simmondsia chinensis (Jojoba) seed oil (*), Tocopheryl acetate, Hydrolyzed wheat protein, Lysine, Zinc PCA, Glycine soja (Soybean) oil (*), Beta-sitosterol, Squalene, Allantoin, Diglycerin, Sodium PCA, Tocopherol, Hydrolyzed rice protein, Sodium gluconate, Sorbitol, Lactic acid, PCA, Urea, Ethylhexyl stearate, Xanthan gum, Phenoxyethanol, Parfum [Fragrance], Sodium polyacrylate, Benzoic acid, Hexyl cinnamal, Dehydroacetic acid, Trideceth-6, Ethylhexylglycerin, Linalool, Citronellol, Limonene, Geraniol.",
@@ -1434,7 +1436,6 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Olio di Semi di Cotone",
-        "Cheratina idrolizzata",
         "Vitamina E"
       ]
     },
@@ -1447,13 +1448,13 @@ window.ATH_DATA_JSON = {
       "name_it": "DOCCIA SCHIUMA CAMELIA JAPONICA",
       "name_en": "CAMELLIA JAPONICA SHOWER FOAM",
       "url": "https://www.erboristica.com/estratti-botanici/doccia-schiuma-camelia-japonica/",
-      "subtitle_it": "Doccia schiuma all’Olio di Camelia Japonica, setificante e rivitalizzante.",
-      "subtitle_en": "Camellia Japonica Oil shower foam, silkening and revitalising.",
-      "description_it": "La fragranza dolce e fiorita accompagna una detersione che idrata e nutre. Estratto e Olio di Camelia Japonica, con tensioattivi vegetali, risanano tono e morbidezza.",
-      "description_en": "The sweet, floral fragrance accompanies a cleanse that hydrates and nourishes. Camellia Japonica Extract and Oil, with plant surfactants, restore tone and softness.",
+      "subtitle_it": "Doccia schiuma Camelia Japonica, setificante e rivitalizzante.",
+      "subtitle_en": "Camellia Japonica shower foam, silkening and revitalising.",
+      "description_it": "La fragranza dolce e fiorita accompagna una detersione che idrata e nutre. Le Proteine del Riso e il succo di Aloe Vera risanano tono e morbidezza.",
+      "description_en": "The sweet, floral fragrance accompanies a cleanse that hydrates and nourishes. Rice Proteins and Aloe Vera juice restore tone and softness.",
       "usage_it": "Distribuisci il prodotto direttamente sulla pelle bagnata, massaggia delicatamente e risciacqua.",
       "usage_en": "Apply the product directly to wet skin, massage gently and rinse.",
-      "inci": "Aqua [Water], Sodium coceth sulfate, Cocamidopropyl betaine, Aloe barbadensis leaf juice (*), Lauryl glucoside, Parfum [Fragrance], PEG-40 hydrogenated castor oil, Hydrolyzed rice protein, Panthenol, Citric acid, Sodium gluconate, Ethylhexylglycerin, Phenoxyethanol, PEG-200 hydrogenated glyceryl palmate, Tetramethyl acetyloctahydronaphthalenesHexyl cinnamal, Vanillin, Pogostemon cablin oil, Citrus aurantium peel oil, Limonene, Coumarin, Linalyl acetate Linalool, PEG-7 glyceryl cocoate.",
+      "inci": "Aqua [Water], Sodium coceth sulfate, Cocamidopropyl betaine, Aloe barbadensis leaf juice (*), Lauryl glucoside, Parfum [Fragrance], PEG-40 hydrogenated castor oil, Hydrolyzed rice protein, Panthenol, Citric acid, Sodium gluconate, Ethylhexylglycerin, Phenoxyethanol, PEG-200 hydrogenated glyceryl palmate, Tetramethyl acetyloctahydronaphthalenes, Hexyl cinnamal, Vanillin, Pogostemon cablin oil, Citrus aurantium peel oil, Limonene, Coumarin, Linalyl acetate, Linalool, PEG-7 glyceryl cocoate.",
       "natural_pct": 99,
       "certifications": [
         "zero-petrochem",
@@ -1472,8 +1473,8 @@ window.ATH_DATA_JSON = {
         "detail_2": "immagini/estratti/doccia-schiuma-camelia-japonica/det-02.webp"
       },
       "actives_main": [
-        "Estratto di Camelia Japonica",
-        "Olio di Camelia",
+        "Proteine del Riso",
+        "Aloe Vera",
         "Tensioattivi vegetali delicati"
       ]
     },
@@ -1526,8 +1527,8 @@ window.ATH_DATA_JSON = {
       "url": "https://www.erboristica.com/estratti-botanici/maschera-per-capelli-semi-di-lino-e-karite/",
       "subtitle_it": "Maschera capelli ai Semi di Lino e Burro di Karité, anti-crespo e nutriente.",
       "subtitle_en": "Flaxseed and Shea Butter hair mask, anti-frizz and nourishing.",
-      "description_it": "Nutre, ripara e fortifica in profondità i capelli sfibrati e devitalizzati. Olio di Semi di Lino, Burro di Karité e Cheratina vegetale donano brillantezza e disciplina.",
-      "description_en": "Deeply nourishes, repairs and fortifies weakened, devitalised hair. Flaxseed Oil, Shea Butter and plant Keratin give shine and control.",
+      "description_it": "Nutre, ripara e fortifica in profondità i capelli sfibrati e devitalizzati. Olio di Semi di Lino e Burro di Karité donano brillantezza e disciplina.",
+      "description_en": "Deeply nourishes, repairs and fortifies weakened, devitalised hair. Flaxseed Oil and Shea Butter give shine and control.",
       "usage_it": "Dopo lo shampoo riparatore ai semi di lino e burro di Karitè, distribuire sui capelli umidi e ben strizzati, una generosa quantità di maschera su tutta la lungezza dei capelli, avendo cura particolarmente delle punte. Lasciare agire per 10 minuti, poi procedere al normale risciacquo.",
       "usage_en": "After the flaxseed and Shea Butter repairing shampoo, apply a generous amount of mask along the full length of damp, well-wrung hair, paying particular attention to the ends. Leave on for 10 minutes, then rinse as usual.",
       "inci": "Aqua [Water], Myristyl alcohol, Linum usitatissimum (Linseed) seed oil (*), Behenamidopropyl dimethylamine, Behentrimonium chloride, Glycine soja (Soybean) oil (*), Behenyl alcohol, Polyamino sugar condensate, Butyrospermum parkii (Shea) butter, Cetrimonium chloride, Squalene, Hydrolyzed rice protein, Beta-sitosterol, Tocopherol, Lactic acid, Guar hydroxypropyltrimonium chloride, Parfum [Fragrance], Sodium gluconate, Linalyl acetate, Linalool, Coumarin, PEG-40 hydrogenated castor oil, Hexyl cinnamal, Limonene, Benzyl salicylate, Benzoic acid, Dehydroacetic acid, Phenoxyethanol.",
@@ -1550,8 +1551,7 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Olio di Semi di Lino",
-        "Burro di Karité",
-        "Cheratina vegetale"
+        "Burro di Karité"
       ]
     },
     {
@@ -1680,8 +1680,8 @@ window.ATH_DATA_JSON = {
       "url": "https://www.erboristica.com/estratti-botanici/sapone-vegetale-allamido-riso/",
       "subtitle_it": "Sapone vegetale all’Amido di Riso, lenitivo e disarrossante.",
       "subtitle_en": "Rice Starch plant soap, soothing and redness-reducing.",
-      "description_it": "Purifica dolcemente viso e corpo, ideale anche per le pelli sensibili dei bambini. Con Amido di Riso, Olio di Riso e glicerina naturale, deterge con delicatezza.",
-      "description_en": "Gently purifies face and body, ideal even for children's sensitive skin. With Rice Starch, Rice Oil and natural glycerin, it cleanses with delicacy.",
+      "description_it": "Purifica dolcemente viso e corpo, ideale anche per le pelli sensibili dei bambini. Con Amido di Riso e glicerina naturale, deterge con delicatezza.",
+      "description_en": "Gently purifies face and body, ideal even for children's sensitive skin. With Rice Starch and natural glycerin, it cleanses with delicacy.",
       "usage_it": "Insapona le mani bagnate e risciacqua.",
       "usage_en": "Lather on wet hands and rinse.",
       "inci": "Sodium palmate, Sodium palm kernelate, Aqua [Water], Parfum [Fragrance], Oryza sativa (Rice) starch, Glycerin, Palm kernel acid, Sodium chloride, Titanium dioxide, Terpineol, Tetramethyl acetyloctahydronaphthalenes, Tetrasodium EDTA, Tetrasodium etidronate, Dimethyl phenethyl acetate.",
@@ -1704,7 +1704,6 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Amido di Riso",
-        "Olio di Riso",
         "Glicerina naturale"
       ]
     },
@@ -1719,8 +1718,8 @@ window.ATH_DATA_JSON = {
       "url": "https://www.erboristica.com/estratti-botanici/sapone-vegetale-allolio-di-oliva/",
       "subtitle_it": "Sapone vegetale all’Olio Extravergine di Oliva, idratante e protettivo.",
       "subtitle_en": "Extra-virgin Olive Oil plant soap, hydrating and protective.",
-      "description_it": "Nutre la pelle con un tocco morbido e vellutato, ideale anche per le pelli sensibili. Olio di Oliva, Squalene naturale e Glicerina proteggono e ammorbidiscono.",
-      "description_en": "Nourishes the skin with a soft, velvety touch, ideal even for sensitive skin. Olive Oil, natural Squalene and Glycerin protect and soften.",
+      "description_it": "Nutre la pelle con un tocco morbido e vellutato, ideale anche per le pelli sensibili. Olio Extravergine di Oliva e Glicerina proteggono e ammorbidiscono.",
+      "description_en": "Nourishes the skin with a soft, velvety touch, ideal even for sensitive skin. Extra Virgin Olive Oil and Glycerin protect and soften.",
       "usage_it": "(Non riportato in scheda)",
       "usage_en": "Lather on wet hands and rinse.",
       "inci": "Sodium palmate, Sodium palm kernelate, Aqua [Water], Olea europaea (Olive) fruit oil (*), Parfum [Fragrance], Juniperus virginiana oil, Glycerin, Sodium chloride, Benzyl salicylate, Alpha-isomethyl ionone, Amyl salicylate, Linalyl acetate, Linalool, Terpineol, Tetrasodium EDTA, Tetrasodium etidronate, Eugenol, Citronellol.",
@@ -1743,7 +1742,6 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Olio di Oliva",
-        "Squalene naturale",
         "Glicerina"
       ]
     },
@@ -1758,8 +1756,8 @@ window.ATH_DATA_JSON = {
       "url": "https://www.erboristica.com/estratti-botanici/sapone-vegetale-di-marsiglia/",
       "subtitle_it": "Sapone vegetale di Marsiglia, idratante e restitutivo.",
       "subtitle_en": "Marseille plant soap, hydrating and restorative.",
-      "description_it": "Dalle proprietà emollienti, è ideale per una detergenza delicata di viso e corpo. Olio di Oliva e Olio di Palma sostenibile saponificati, con glicerina, nutrono la pelle.",
-      "description_en": "With emollient properties, it is ideal for a gentle cleanse of face and body. Saponified Olive Oil and sustainable Palm Oil, with glycerin, nourish the skin.",
+      "description_it": "Grazie all’Olio Extravergine di Oliva ha proprietà emollienti e deterge con dolcezza, rispettando anche le pelli più sensibili e secche. Una schiuma soffice lascia la pelle morbida, idratata e profumata.",
+      "description_en": "Thanks to Extra Virgin Olive Oil it has emollient properties and cleanses gently, respecting even the most sensitive and dry skin. A soft foam leaves the skin supple, hydrated and scented.",
       "usage_it": "Insapona le mani bagnate e risciacqua.",
       "usage_en": "Lather on wet hands and rinse.",
       "inci": "Sodium palmate, Sodium palm kernelate, Aqua [Water], Parfum [Fragrance], Olea europaea (Olive) fruit oil (*), Glycerin, Sodium chloride, Tetrasodium EDTA, Tetrasodium etidronate, Hexyl cinnamal, Citronellol, Geraniol, Linalyl acetate, Eugenol, Coumarin, Alpha-isomethyl ionone.",
@@ -2414,8 +2412,8 @@ window.ATH_DATA_JSON = {
       "url": "https://www.erboristica.com/olio-di-argan/esfoliante-viso-argan/",
       "subtitle_it": "Esfoliante viso delicato che libera la pelle da impurità e cellule morte.",
       "subtitle_en": "Gentle face exfoliant that frees the skin from impurities and dead cells.",
-      "description_it": "Il peeling rende la pelle più luminosa e rivitalizzata, con un effetto seta. Olio di Argan, micro-granuli di Jojoba e Aloe Vera levigano senza aggredire.",
-      "description_en": "The peeling makes the skin more radiant and revitalised, with a silk effect. Argan Oil, Jojoba micro-granules and Aloe Vera smooth without stripping.",
+      "description_it": "Il peeling rende la pelle più luminosa e rivitalizzata, con un effetto seta. Olio di Argan e micro-granuli di Oliva levigano senza aggredire.",
+      "description_en": "The peeling makes the skin more radiant and revitalised, with a silk effect. Argan Oil and Olive micro-granules smooth without stripping.",
       "usage_it": "Una-due volte a settimana, applicare una moderata quantità su viso e collo massaggiando delicatamente. Risciacquare con acqua tiepida. Per le pelli particolarmente delicate se ne sconsiglia l’uso nella zona perioculare.",
       "usage_en": "Once or twice a week, apply a moderate amount to face and neck, massaging gently. Rinse with lukewarm water. For particularly delicate skin, use on the eye area is not recommended.",
       "inci": "Aqua [Water], Caprylic/capric triglyceride, Glycine soja (Soybean) oil (*), Glyceryl stearate, Decyl oleate, Erythritol, Cetearyl alcohol, Olea europaea (Olive) seed powder, Benzyl alcohol, Magnesium aluminum silicate, Sodium lauroyl glutamate, Sodium stearoyl lactylate, Argania spinosa kernel oil (*), Sodium hyaluronate, Panthenol, Olea europaea (Olive) fruit oil (*), Tocopherol, Punica granatum fruit extract (*), Squalene, Beta-sitosterol, Sodium gluconate, Citric acid, Xanthan gum, Parfum [Fragrance], Pogostemon cablin oil, Tetramethyl acetyloctahydronaphthalenes, Linalyl acetate, Linalool, Hexyl cinnamal, Ethylhexylglycerin.",
@@ -2642,8 +2640,8 @@ window.ATH_DATA_JSON = {
       "url": "https://www.erboristica.com/olio-di-mandorle-dolci/crema-mani-unghie-mandorle-dolci/",
       "subtitle_it": "Crema mani e unghie all’Olio di Mandorle Dolci, ad assorbimento rapido.",
       "subtitle_en": "Sweet Almond Oil hand and nail cream, fast-absorbing.",
-      "description_it": "Non unge ma nutre e ripara, rendendo le mani morbide e setose. Olio di Mandorle Dolci, Cheratina idrolizzata e Vitamina E proteggono pelle e unghie.",
-      "description_en": "Non-greasy yet nourishing and repairing, it makes hands soft and silky. Sweet Almond Oil, hydrolysed Keratin and Vitamin E protect skin and nails.",
+      "description_it": "Non unge ma nutre e ripara, rendendo le mani morbide e setose. Olio di Mandorle Dolci e Vitamina E proteggono pelle e unghie.",
+      "description_en": "Non-greasy yet nourishing and repairing, it makes hands soft and silky. Sweet Almond Oil and Vitamin E protect skin and nails.",
       "usage_it": "L’uso quotidiano, anche più volte al giorno, garantisce mani protette, luminose e setose.",
       "usage_en": "Daily use, even several times a day, ensures protected, radiant and silky hands.",
       "inci": "Aqua [Water], Glycerin, Coco-caprylate, Stearic acid, Aluminum starch octenylsuccinate, Butyrospermum parkii (Shea butter), Olea europaea (Olive) oil unsaponifiables, Avena sativa (Oat) kernel extract, Cetearyl alcohol, Ethylhexyl palmitate, Polyglyceryl-3 stearate, Prunus amygdalus dulcis (Sweet almond) oil, Sodium stearoyl lactylate, Simmondsia chinensis (Jojoba) seed oil (*), Beta-sitosterol, Squalene, Glycine soja (Soybean) oil (*), Lysine, Hydrolyzed wheat protein, Tocopheryl acetate, Zinc PCA, Sorbitol, Panthenol, Tocopherol, Hydrolyzed rice protein, Allantoin, Lactic acid, PCA, Diglycerin, Ethylhexyl stearate, Urea, Sodium PCA, Citric acid, Xanthan gum, Phenoxyethanol, Sodium polyacrylate, Parfum [Fragrance], Sodium gluconate, Terpineol, Coumarin, Benzoic acid, Trideceth-6, Dehydroacetic acid, Ethylhexylglycerin.",
@@ -2666,7 +2664,6 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Olio di Mandorle Dolci",
-        "Cheratina idrolizzata",
         "Vitamina E"
       ]
     },
@@ -2783,8 +2780,7 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Olio di Mandorle Dolci Virgin",
-        "Vitamina E naturale",
-        "Acidi grassi Omega-9"
+        "Vitamina E naturale"
       ]
     },
     {
@@ -2949,8 +2945,8 @@ window.ATH_DATA_JSON = {
       "url": "https://www.erboristica.com/purysens/crema-viso-purificante/",
       "subtitle_it": "Crema viso purificante e opacizzante per pelli miste e impure.",
       "subtitle_en": "Purifying, mattifying face cream for combination and impure skin.",
-      "description_it": "Idrata e normalizza migliorando le imperfezioni con effetto anti-età. Estratto di Tè Verde, Acido Salicilico e Zinco PCA purificano e riequilibrano la pelle.",
-      "description_en": "Hydrates and normalises while improving imperfections with an anti-ageing effect. Green Tea Extract, Salicylic Acid and Zinc PCA purify and rebalance the skin.",
+      "description_it": "Idrata e normalizza migliorando le imperfezioni con effetto anti-età. Estratti di Betulla ed Edera, Acido Salicilico e Zinco PCA purificano e riequilibrano la pelle.",
+      "description_en": "Hydrates and normalises while improving imperfections with an anti-ageing effect. Birch and Ivy extracts, Salicylic Acid and Zinc PCA purify and rebalance the skin.",
       "usage_it": "Applicare su viso e collo perfettamente detersi. È sufficiente utilizzare una ridotta quantità di crema applicandola con un leggero massaggio. Per potenziare l’effetto della crema viso si consiglia una pulizia approfondita con l’Emulsione Detergente.",
       "usage_en": "Apply to perfectly cleansed face and neck. A small amount of cream applied with a light massage is enough. To enhance the cream's effect, a thorough cleanse with the Cleansing Emulsion is recommended.",
       "inci": "AQUA [WATER], GLYCERIN, COCO-CAPRYLATE, AZELAMIDE MEA, NIACINAMIDE, HYDROLYZED SOY EXTRACT, ETHYLHEXYL PALMITATE, ACRYLATES/C10-30 ALKYL ACRYLATE CROSSPOLYMER, BUTYROSPERMUM PARKII (SHEA BUTTER), BAKUCHIOL, ZANTHOXYLUM BUNGEANUM FRUIT EXTRACT, BETULA ALBA LEAF EXTRACT, ZINC PCA, HEDERA HELIX (IVY) LEAF/STEM EXTRACT, MACADAMIA TERNIFOLIA SEED OIL, SODIUM SALICYLATE, SULFUR, CAMELINA SATIVA SEED OIL, ARCTIUM LAPPA ROOT EXTRACT, ZINC RICINOLEATE, TOCOPHEROL, PARFUM [FRAGRANCE], OLEYL ALCOHOL, OLUS OIL [OLUS], ETHYLHEXYLGLYCERIN, SODIUM GLUCONATE, LIMONENE, ALUMINUM STARCH OCTENYLSUCCINATE, PEG-40 HYDROGENATED CASTOR OIL, PHENOXYETHANOL, LINALOOL, CITRAL, EUGENOL.",
@@ -2972,6 +2968,8 @@ window.ATH_DATA_JSON = {
         "detail_2": "immagini/purysens/crema-viso-purificante/det-02.webp"
       },
       "actives_main": [
+        "Estratto di Betulla",
+        "Estratto di Edera",
         "Acido Salicilico",
         "Zinco PCA"
       ]
@@ -2987,8 +2985,8 @@ window.ATH_DATA_JSON = {
       "url": "https://www.erboristica.com/detergenti/emulsione-detergente-viso/",
       "subtitle_it": "Detergente viso dermopurificante e lenitivo per pelli miste e impure.",
       "subtitle_en": "Dermo-purifying, soothing face cleanser for combination and impure skin.",
-      "description_it": "Deterge in profondità trattando quotidianamente la T-zone. Aloe Vera, Camomilla e tensioattivi vegetali dolci purificano, riequilibrano il sebo e leniscono.",
-      "description_en": "Cleanses deeply while treating the T-zone daily. Aloe Vera, Chamomile and gentle plant surfactants purify, rebalance sebum and soothe.",
+      "description_it": "Deterge in profondità trattando quotidianamente la T-zone. Estratti di Betulla ed Edera e tensioattivi vegetali dolci purificano, riequilibrano il sebo e leniscono.",
+      "description_en": "Cleanses deeply while treating the T-zone daily. Birch and Ivy extracts and gentle plant surfactants purify, rebalance sebum and soothe.",
       "usage_it": "Applicare una piccola quantità su pelle umida di viso e collo, massaggiare bene e sciacquare con acqua tiepida.",
       "usage_en": "Apply a small amount to the damp skin of face and neck, massage well and rinse with lukewarm water.",
       "inci": "Aqua [Water], Glycerin, Cetearyl alcohol, Glyceryl stearate, Cocamidopropyl betaine, Coco-caprylate, Magnesium aluminum silicate, Undecylenamidopropyl betaine, Lauryl glucoside, Butyrospermum parkii (Shea butter), Ethylhexyl palmitate, Xanthan gum, Dicaprylyl ether, Zinc PCA, Hedera helix (Ivy) leaf/stem extract, Betula alba leaf extract, Arctium lappa root extract, Sodium lauroyl glutamate, Tocopherol, Sodium stearoyl lactylate, Parfum [Fragrance], Ethylhexylglycerin, Sodium gluconate, Limonene, Linalool, Phenoxyethanol.",
@@ -3024,8 +3022,8 @@ window.ATH_DATA_JSON = {
       "url": "https://www.erboristica.com/purysens/maschera-viso-argilla-rosa/",
       "subtitle_it": "Maschera viso all’Argilla Rosa, purificante e levigante.",
       "subtitle_en": "Pink Clay face mask, purifying and smoothing.",
-      "description_it": "Elimina impurità e punti neri senza irritare, restringe i pori e riduce le imperfezioni. Argilla Rosa, Kaolino ed Estratto di Tè Verde purificano e opacizzano la pelle.",
-      "description_en": "Removes impurities and blackheads without irritating, tightens pores and reduces imperfections. Pink Clay, Kaolin and Green Tea Extract purify and mattify the skin.",
+      "description_it": "Elimina impurità e punti neri senza irritare, restringe i pori e riduce le imperfezioni. Argilla Rosa, Kaolino e Zolfo purificano e opacizzano la pelle.",
+      "description_en": "Removes impurities and blackheads without irritating, tightens pores and reduces imperfections. Pink Clay, Kaolin and Sulphur purify and mattify the skin.",
       "usage_it": "Applicare 2 o 3 volte a settimana sulla pelle pulita e asciutta. Lasciare in posa da 10 a 20 minuti su viso. La texture cremosa, molto gradevole all’applicazione, non si asciuga. Rimuovere il prodotto con acqua tiepida.",
       "usage_en": "Apply 2 or 3 times a week to clean, dry skin. Leave on the face for 10 to 20 minutes. The creamy texture, very pleasant on application, does not dry out. Remove the product with lukewarm water.",
       "inci": "Aqua [Water], Aloe barbadensis leaf juice (*), Calamine, Glycerin, Oryza sativa (Rice) starch, Cetearyl alcohol, Glyceryl stearate, Ethylhexyl palmitate, Betaine, Butyrospermum parkii (Shea butter), Olus oil [Olus], Azelamide MEA, Helianthus annuus (Sunflower) seed oil, Linum usitatissimum (Linseed) seed oil, Inulin, Macadamia ternifolia seed oil, Sulfur, Betula alba leaf extract, Calendula officinalis flower extract, Sodium salicylate, Hedera helix (Ivy) leaf/stem extract, Tocopherol, Zinc PCA, Sodium lauroyl glutamate, Sodium stearoyl lactylate, Arctium lappa root extract, Beta-sitosterol, Squalene, Xanthan gum, Magnesium aluminum silicate, Parfum [Fragrance], Ethylhexylglycerin, Sodium gluconate, Phenoxyethanol, Citric acid, Linalool, Citronellol, Linalyl acetate, Lavandula oil/extract, Camphor,Geraniol.",
@@ -3048,7 +3046,8 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Argilla Rosa",
-        "Kaolino"
+        "Kaolino",
+        "Zolfo"
       ]
     },
     {
@@ -3101,8 +3100,8 @@ window.ATH_DATA_JSON = {
       "url": "https://www.erboristica.com/uomo/balsamo-dopobarba-uomo-active/",
       "subtitle_it": "Balsamo dopobarba active senza alcool, fresco e rivitalizzante.",
       "subtitle_en": "Alcohol-free active aftershave balm, fresh and revitalising.",
-      "description_it": "Lenisce e protegge la pelle dopo la rasatura con una piacevole sensazione di freschezza. Aloe Vera, Menta Piperita e Tea Tree rinfrescano e purificano.",
-      "description_en": "Soothes and protects the skin after shaving with a pleasant sensation of freshness. Aloe Vera, Peppermint and Tea Tree refresh and purify.",
+      "description_it": "Lenisce e protegge la pelle dopo la rasatura con una piacevole sensazione di freschezza. Aloe Vera, Menta Piperita e Pepe di Sichuan rinfrescano e purificano.",
+      "description_en": "Soothes and protects the skin after shaving with a pleasant sensation of freshness. Aloe Vera, Peppermint and Sichuan Pepper refresh and purify.",
       "usage_it": "Applicare su viso e collo dopo la rasatura",
       "usage_en": "Apply to face and neck after shaving.",
       "inci": "Aqua [Water], Coco-caprylate, Glycerin, Betaine, Olus oil [Vegetable (Olus) oil], Aloe barbadensis leaf juice (*), Simmondsia chinensis (Jojoba) seed oil (*), Zanthoxylum bungeanum fruit extract, Niacinamide, Calcium pantothenate, Sodium ascorbyl phosphate, Tocopheryl acetate, Pyridoxine, Bisabolol, Panthenol, Saccharomyces ferment lysate filtrate, Calendula officinalis flower extract, Helianthus annuus (Sunflower) seed oil, Hydrolyzed wheat protein, Sodium starch octenylsuccinate, Sorbitol, Lysine, Oleyl alcohol, Lactic acid, Sodium PCA, Allantoin, Parfum [Fragrance], Sodium gluconate, Urea, Silica, Maltodextrin, Limonene, Coumarin, Linalool, Tetramethyl acetyloctahydronaphthalenes, Hexamethylindanopyran, Pogostemon cablin oil, Linalyl acetate, Citrus limon peel oil [Citrus medica limonum (Lemon) peel oil], Pinene, Dehydroacetic acid, Benzoic acid, Ethylhexylglycerin, Acrylates/C10-30 alkyl acrylate crosspolymer, PEG-40 hydrogenated castor oil, Phenoxyethanol.",
@@ -3139,8 +3138,8 @@ window.ATH_DATA_JSON = {
       "url": "https://www.erboristica.com/novita/contorno-occhi-uomo-anti-eta/",
       "subtitle_it": "Contorno occhi uomo anti-età che riduce borse e occhiaie.",
       "subtitle_en": "Men's anti-age eye contour that reduces bags and dark circles.",
-      "description_it": "Idrata, leviga e dona uno sguardo più fresco e riposato. Caffeina, Acido Ialuronico, peptidi e Bakuchiol contrastano gonfiori e primi segni del tempo.",
-      "description_en": "Hydrates, smooths and gives a fresher, more rested look. Caffeine, Hyaluronic Acid, peptides and Bakuchiol counter puffiness and the first signs of time.",
+      "description_it": "Idrata, leviga e dona uno sguardo più fresco e riposato. Argireline Amplified (Acetyl Hexapeptide-8), Acido Ialuronico e Bakuchiol contrastano gonfiori e primi segni del tempo.",
+      "description_en": "Hydrates, smooths and gives a fresher, more rested look. Argireline Amplified (Acetyl Hexapeptide-8), Hyaluronic Acid and Bakuchiol counter puffiness and the first signs of time.",
       "usage_it": "Applicare una piccola quantità di prodotto sul contorno occhi, mattina e sera, picchiettando delicatamente fino a completo assorbimento.",
       "usage_en": "Apply a small amount of product to the eye contour, morning and evening, gently patting until fully absorbed.",
       "inci": "Aqua [Water], Hydrolyzed soy extract, Cetearyl alcohol, Glyceryl stearate, Glycerin, Olus oil [Vegetable (Olus) oil], Betaine, Butyrospermum parkii (Shea) butter, Coco-caprylate, Macadamia ternifolia seed oil, Ethylhexyl palmitate, Behenyl alcohol, Acetyl hexapeptide-8, Bakuchiol, Zanthoxylum bungeanum fruit extract, Sodium hyaluronate, Pullulan, Zinc PCA, Tocopherol, Beta-sitosterol, Sodium lauroyl glutamate, Squalene, Sodium stearoyl lactylate, Zinc ricinoleate, Natto gum, Sodium benzoate, Oleyl alcohol, Xanthan gum, Alcohol, Sodium gluconate, Parfum [Fragrance], Hexamethylindanopyran, Ethylhexylglycerin, Phenoxyethanol.",
@@ -3155,7 +3154,7 @@ window.ATH_DATA_JSON = {
         "detail_2": "immagini/uomo/contorno-occhi-uomo-anti-età/det-02.webp"
       },
       "actives_main": [
-        "Peptidi anti-rughe",
+        "Argireline Amplified (Acetyl Hexapeptide-8)",
         "Acido Ialuronico",
         "Bakuchiol"
       ]
@@ -3171,8 +3170,8 @@ window.ATH_DATA_JSON = {
       "url": "https://www.erboristica.com/uomo/crema-viso-idratante-antirughe-uomo/",
       "subtitle_it": "Crema viso idratante e antirughe da uomo, priva di alcol e non grassa.",
       "subtitle_en": "Men's hydrating, anti-wrinkle face cream, alcohol-free and non-greasy.",
-      "description_it": "Restituisce al viso un aspetto meno stanco, tonico e rivitalizzato. Acido Ialuronico, Collagene vegetale, Vitamina E ed Estratto di Bambù idratano e distendono le rughe.",
-      "description_en": "Gives the face a less tired, toned and revitalised appearance. Hyaluronic Acid, plant Collagen, Vitamin E and Bamboo Extract hydrate and smooth wrinkles.",
+      "description_it": "Restituisce al viso un aspetto meno stanco, tonico e rivitalizzato. Acido Ialuronico, Ginkgo Biloba e Vitamina E idratano e distendono le rughe.",
+      "description_en": "Gives the face a less tired, toned and revitalised appearance. Hyaluronic Acid, Ginkgo Biloba and Vitamin E hydrate and smooth wrinkles.",
       "usage_it": "Su viso e collo ben detersi e asciutti, applicare mattino e sera, una generosa quantità di crema massaggiando delicatamente",
       "usage_en": "On well-cleansed and dry face and neck, apply a generous amount of cream morning and evening, massaging gently.",
       "inci": "Aloe barbadensis leaf juice (*), Aqua [Water], Glycerin, Coco-caprylate, Betaine, Ethylhexyl palmitate, Butyrospermum parkii (Shea butter), Simmondsia chinensis (Jojoba) seed oil (*), Ginkgo biloba leaf extract (*), Sodium hyaluronate, Panthenol, Carrageenan, Fucus vesiculosus extract, Hydrolyzed soy extract, Camelina sativa seed oil, Hydrolyzed olea europaea (olive) fruit (*), Tocopheryl acetate, Tocopherol, Beta-sitosterol, Squalene, Olus oil [Olus], Acrylates/C10-30 alkyl acrylate crosspolymer, Phenoxyethanol, Parfum [Fragrance], Benzoic acid, Sodium gluconate, Dehydroacetic acid, Ethylhexylglycerin, Limonene,Coumarin, Alpha-isomethyl ionone, Hexamethylindanopyran, Citrus aurantium peel oil, Vanillin, Pinene, Hydroxycitronellal.",
@@ -3195,7 +3194,7 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Acido Ialuronico",
-        "Collagene vegetale",
+        "Ginkgo Biloba",
         "Vitamina E"
       ]
     },
@@ -3210,8 +3209,8 @@ window.ATH_DATA_JSON = {
       "url": "https://www.erboristica.com/uomo/crema-viso-uomo-active/",
       "subtitle_it": "Crema viso uomo active rivitalizzante e protettiva.",
       "subtitle_en": "Men's active face cream, revitalising and protective.",
-      "description_it": "Un booster di vitalità per la pelle spenta e stressata che favorisce il rinnovamento cellulare. Estratto di Tè Verde, Niacinamide e Caffeina proteggono e rivitalizzano.",
-      "description_en": "A vitality booster for dull, stressed skin that promotes cell renewal. Green Tea Extract, Niacinamide and Caffeine protect and revitalise.",
+      "description_it": "Un booster di vitalità per la pelle spenta e stressata che favorisce il rinnovamento cellulare. Estratto di Caffè Verde, Niacinamide e Caffeina proteggono e rivitalizzano.",
+      "description_en": "A vitality booster for dull, stressed skin that promotes cell renewal. Green Coffee Extract, Niacinamide and Caffeine protect and revitalise.",
       "usage_it": "Stendere su viso e collo mattina e/o sera su pelle asciutta e pulita e massaggiare delicatamente.",
       "usage_en": "Spread over face and neck morning and/or evening on dry, clean skin and massage gently.",
       "inci": "Aloe barbadensis leaf juice (*), Aqua [Water], Betaine, Coco-caprylate, Glycerin, Shea butter ethyl esters, Niacinamide, Butyrospermum parkii (Shea) butter, Coffea arabica (Coffee) seed extract, Sodium hyaluronate, Calcium pantothenate, Sodium ascorbyl phosphate, Caffeine, Camelina sativa seed oil, Tocopherol, Squalene, Pyridoxine, Tocopheryl acetate, Glycine soja (Soybean) oil (*), Beta-sitosterol, Sodium starch octenylsuccinate, Lecithin, Olus oil [Vegetable (Olus) oil], Sodium gluconate, Silica, Maltodextrin, Parfum [Fragrance], Limonene, Linalool, Coumarin, Tetramethyl acetyloctahydronaphthalenes, Hexamethylindanopyran, Pogostemon cablin oil, Linalyl acetate, Citrus limon peel oil [Citrus medica limonum (Lemon) peel oil], Pinene, Dehydroacetic acid, Benzoic acid, Ethylhexylglycerin, Acrylates/C10-30 alkyl acrylate crosspolymer, Phenoxyethanol.",
@@ -3248,8 +3247,8 @@ window.ATH_DATA_JSON = {
       "url": "https://www.erboristica.com/uomo/deodorante-spray-uomo/",
       "subtitle_it": "Deodorante spray no gas da uomo, protezione anti-odore fino a 24 ore.",
       "subtitle_en": "Men's no-gas spray deodorant, anti-odour protection up to 24 hours.",
-      "description_it": "Efficace e antibatterico, non irrita la pelle grazie agli attivi naturali. Zinco Ricinoleato, Tea Tree Oil e Aloe Vera garantiscono freschezza e comfort.",
-      "description_en": "Effective and antibacterial, it does not irritate the skin thanks to its natural actives. Zinc Ricinoleate, Tea Tree Oil and Aloe Vera ensure freshness and comfort.",
+      "description_it": "Efficace e antibatterico, non irrita la pelle grazie agli attivi naturali. Zinco PCA ed Estratto di Ginkgo Biloba garantiscono freschezza e comfort.",
+      "description_en": "Effective and antibacterial, it does not irritate the skin thanks to its natural actives. Zinc PCA and Ginkgo Biloba extract ensure freshness and comfort.",
       "usage_it": "Dopo la doccia, su pelle asciutta, spruzzare il deodorante su corpo e ascelle. Essendo NO GAS lasciar asciugare per qualche secondo.",
       "usage_en": "After showering, on dry skin, spray the deodorant onto body and underarms. Being NO GAS, let it dry for a few seconds.",
       "inci": "Aqua [Water], Alcohol denat., Aluminum chlorohydrate, PEG-40 hydrogenated castor oil, Triethyl citrate, Betaine, Parfum [Fragrance], Panthenol, Ginkgo biloba leaf extract, Zinc PCA, Tocopheryl acetate, Glycerin, Ethylhexylglycerin, Sodium gluconate, Citric acid, Limonene, Coumarin, Alpha-isomethyl ionone, Hydroxycitronellal, Hexamethylindanopyran, Citrus aurantium peel oil, Vanillin, Pinene, Linalyl acetate, Lavandula oil/extract, Linalool, Cinnamal.",
@@ -3271,9 +3270,8 @@ window.ATH_DATA_JSON = {
         "detail_2": "immagini/uomo/deodorante-spray-uomo/det-02.webp"
       },
       "actives_main": [
-        "Zinco Ricinoleato",
-        "Tea Tree Oil",
-        "Aloe Vera"
+        "Zinco PCA",
+        "Estratto di Ginkgo Biloba"
       ]
     },
     {
@@ -3327,8 +3325,8 @@ window.ATH_DATA_JSON = {
       "url": "https://www.erboristica.com/uomo/fluido-idratante-viso-e-barba-uomo/",
       "subtitle_it": "Fluido idratante viso e barba, fresco e non untuoso.",
       "subtitle_en": "Hydrating face and beard fluid, fresh and non-greasy.",
-      "description_it": "Dona morbidezza anche alle barbe più dure e ribelli con una texture leggera. Olio di Argan, Acido Ialuronico, Vitamina E e Aloe Vera idratano viso e barba.",
-      "description_en": "Gives softness even to the toughest, most unruly beards with a light texture. Argan Oil, Hyaluronic Acid, Vitamin E and Aloe Vera hydrate face and beard.",
+      "description_it": "Dona morbidezza anche alle barbe più dure e ribelli con una texture leggera. Estratto di Ginseng, Acido Ialuronico, Vitamina E e Aloe Vera idratano viso e barba.",
+      "description_en": "Gives softness even to the toughest, most unruly beards with a light texture. Ginseng extract, Hyaluronic Acid, Vitamin E and Aloe Vera hydrate face and beard.",
       "usage_it": "Applicare mattino e/o sera su viso e barba perfettamente detersi e asciutti e procedere con un leggero massaggio. Senza risciacquo.",
       "usage_en": "Apply morning and/or evening to perfectly cleansed and dry face and beard and massage in gently. No rinsing.",
       "inci": "Aqua [Water], Aloe barbadensis leaf juice (*), Coco-caprylate, Glycerin, Betaine, Vegetable (Olus) oil, Macadamia ternifolia seed oil, Panthenol, Acrylates/C10-30 alkyl acrylate crosspolymer, Tocopheryl acetate, Sodium hyaluronate, Bisabolol, Sorbitol, Allantoin, Lysine, Sodium salicylate, Hydrolyzed wheat protein, Sodium PCA, Panax ginseng root extract, Lactic acid, Ginkgo biloba leaf extract, Beta-sitosterol, Squalene, Urea, Sodium gluconate, Parfum [Fragrance], Benzoic acid, Phenoxyethanol, Dehydroacetic acid, Limonene, Ethylhexylglycerin, Coumarin, Hexamethylindanopyran, Citrus aurantium peel oil, Vanillin, Pinene, Linalyl acetate, Alpha-isomethyl ionone, Hydroxycitronellal, PEG-40 hydrogenated castor oil, Linalool, Cinnamal.",
@@ -3360,8 +3358,8 @@ window.ATH_DATA_JSON = {
       "url": "https://www.erboristica.com/uomo/olio-da-barba-uomo/",
       "subtitle_it": "Olio da barba 100% naturale e vegano, ammorbidente e protettivo.",
       "subtitle_en": "100% natural and vegan beard oil, softening and protective.",
-      "description_it": "Un mix di sette oli vegetali rafforza il bulbo e dona alla barba morbidezza e lucentezza. Olio di Jojoba, Olio di Argan e Vitamina E nutrono pelle e peli.",
-      "description_en": "A blend of seven plant oils strengthens the follicle and gives the beard softness and shine. Jojoba Oil, Argan Oil and Vitamin E nourish skin and hair.",
+      "description_it": "Un mix di sette oli vegetali rafforza il bulbo e dona alla barba morbidezza e lucentezza. Olio di Jojoba, Olio di Camelina e Vitamina E nutrono pelle e peli.",
+      "description_en": "A blend of seven plant oils strengthens the follicle and gives the beard softness and shine. Jojoba Oil, Camelina oil and Vitamin E nourish skin and hair.",
       "usage_it": "Applicare alcune gocce sulle mani e procedere con un leggero massaggio partendo dalla base del pelo fino alla punta.",
       "usage_en": "Apply a few drops to the hands and massage in gently, starting from the base of the hair up to the tip.",
       "inci": "Glycine soja (Soybean) oil (*), Dicaprylyl ether, Oryza sativa (Rice) bran oil, Shea butter ethyl esters, Macadamia ternifolia seed oil, Simmondsia chinensis (Jojoba) seed oil (*), Parfum [Fragrance], Butyrospermum parkii (Shea butter) butter, Linum usitatissimum (Linseed) seed oil, Camelina sativa seed oil, Tocopherol, Beta-sitosterol, Squalene, Vegetable (Olus) oil, Limonene, Coumarin, Alpha-isomethyl ionone, Hydroxycitronellal, Linalool, Cinnamal, Hexamethylindanopyran, Citrus aurantium peel oil, Vanillin, Pinene, Linalyl acetate, Lavandula oil/extract.",
@@ -3500,7 +3498,7 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Menta Piperita",
-        "Estratto di Agrumi",
+        "Complesso vitaminico",
         "Tensioattivi vegetali"
       ]
     },
@@ -3515,8 +3513,8 @@ window.ATH_DATA_JSON = {
       "url": "https://www.erboristica.com/uomo/siero-viso-uomo-acido-ialuronico/",
       "subtitle_it": "Siero viso uomo ad effetto lifting con Acido Ialuronico concentrato.",
       "subtitle_en": "Men's lifting-effect face serum with concentrated Hyaluronic Acid.",
-      "description_it": "Trattamento intensivo, promuove un'azione idratante e ristrutturante antiage per una pelle più fresca e vitale. Giorno dopo giorno minimizza le rughe sottili e migliora visibilmente l'aspetto del viso, che appare levigato e compatto grazie alla sua mirata azione liftante. Leggero e privo di profumo e alcol, si assorbe facilmente.",
-      "description_en": "An intensive treatment that delivers a moisturising, restructuring anti-age action for fresher, more vital skin. Day after day it minimises fine lines and visibly improves the look of the face, which appears smoother and firmer thanks to its targeted lifting action. Lightweight and free from fragrance and alcohol, it absorbs easily.",
+      "description_it": "Trattamento intensivo con Acido Ialuronico di origine naturale dalla Tremella fuciformis, promuove un'azione idratante e ristrutturante antiage per una pelle più fresca e vitale. Giorno dopo giorno minimizza le rughe sottili e migliora visibilmente l'aspetto del viso, che appare levigato e compatto grazie alla sua mirata azione liftante. Leggero e privo di profumo e alcol, si assorbe facilmente.",
+      "description_en": "An intensive treatment with naturally derived Hyaluronic Acid from Tremella fuciformis, delivering a moisturising, restructuring anti-age action for fresher, more vital skin. Day after day it minimises fine lines and visibly improves the look of the face, which appears smoother and firmer thanks to its targeted lifting action. Lightweight and free from fragrance and alcohol, it absorbs easily.",
       "usage_it": "Applicare il siero sul viso deterso.",
       "usage_en": "Apply the serum to the cleansed face.",
       "inci": "Aqua [Water], Glycerin, Tremella fuciformis sporocarp extract, Sodium gluconate, Benzoic acid, Dehydroacetic acid, Ethylhexylglycerin, Phenoxyethanol.",
@@ -3537,7 +3535,7 @@ window.ATH_DATA_JSON = {
         "detail_2": "immagini/uomo/siero-viso-uomo/det-02.webp"
       },
       "actives_main": [
-        "Acido Ialuronico"
+        "Acido Ialuronico (da Tremella fuciformis)"
       ]
     },
     {
