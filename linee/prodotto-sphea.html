@@ -500,6 +500,11 @@ body.sp-modal-open { overflow: hidden; }
   display: none; margin-top: 20px;
   font-family: var(--serif); font-size: 14px; line-height: 1.95; color: rgba(26,26,26,.35);
 }
+.sp-inci-disclaimer {
+  margin-top: 16px;
+  font-size: 13px; line-height: 1.6; font-style: italic;
+  color: rgba(26,26,26,.45);
+}
 .sp-certs {
   display: flex; flex-wrap: wrap; align-items: center;
   gap: clamp(20px,2.6vw,38px);
@@ -1094,8 +1099,8 @@ const SPHEA_DATA = {
   'eyelift-perfector': {
     name: 'Eyelift Perfector',
     cat: 'Siero Contorno Occhi · Lifting',
-    claim: 'Riduce le rughe espressive, tende le palpebre cadenti e cancella le borse. Occhi da 20 anni.',
-    intro: '<span class="sp-prod__hl">Argireline® Amplified</span> rilassa i micromovimenti che incidono le rughe d\'espressione attorno agli occhi, con un <span class="sp-prod__hl">effetto botox-like</span>.<br><br><span class="sp-prod__hl">Uplevity® E-Lift</span> tende la palpebra e attenua le borse, restituendo uno sguardo aperto e riposato. Nelle perle, Resveratrolo e olio di lampone proteggono dai radicali liberi e nutrono la delicata pelle del contorno occhi. Bastano <span class="sp-prod__hl">due gocce</span>: la formula è altamente concentrata e a rilascio progressivo.',
+    claim: 'Riduce le rughe espressive, tende le palpebre cadenti e cancella le borse. Lo sguardo, visibilmente più giovane.',
+    intro: '<span class="sp-prod__hl">Argireline® Amplified</span> rilassa i micromovimenti che incidono sulle rughe d\'espressione attorno agli occhi, con un <span class="sp-prod__hl">effetto botox-like</span>.<br><br><span class="sp-prod__hl">Uplevity® E-Lift</span> tende la palpebra e attenua le borse, restituendo uno sguardo aperto e riposato. Nelle perle, Resveratrolo e olio di lampone proteggono dai radicali liberi e nutrono la delicata pelle del contorno occhi. Bastano <span class="sp-prod__hl">due gocce</span>: la formula è altamente concentrata e a rilascio progressivo.',
     format: '15 ml',
     zone: 'Contorno occhi · Palpebre',
     cosmoprof: false,
@@ -1237,10 +1242,10 @@ const ACTIVES_LIB = {
     claims: ['-12.3% rughe in 5 gg (conc. 5%)', '-20% rughe in 28 gg', '+53.7% sintesi collagene in vitro', '+8 sett. prolungamento Botox (2025)'],
   },
   'vitamin-c': {
-    name: 'Vitamina C 10% stabilizzata',
+    name: 'Vitamina C stabilizzata',
     tag: 'Antiossidante · Uniformante · Anti-macchia',
     mechanism: 'La Vitamina C (acido ascorbico) è il più potente antiossidante idrosolubile prodotto dalla natura. Nella formulazione Sphea viene impiegata in forma stabilizzata, che ne aumenta la stabilità ossidativa (problema classico dell\'acido ascorbico puro) e la penetrazione trans-epidermica rispetto alla forma libera. Agisce su tre livelli: inibizione della tirosinasi (anti-macchia), neutralizzazione dei radicali liberi e stimolazione della sintesi di collagene (co-fattore enzimatico).',
-    efficacy: 'Concentrazione 10%: +45% luminosità cutanea in 8 settimane. -38% intensità delle macchie solari. +22% sintesi di pro-collagene in cultura di fibroblasti. La forma stabilizzata mantiene l\'80% di attività biologica dopo 18 mesi a temperatura ambiente vs il 12% dell\'acido ascorbico puro.',
+    efficacy: '+45% luminosità cutanea in 8 settimane. -38% intensità delle macchie solari. +22% sintesi di pro-collagene in cultura di fibroblasti. La forma stabilizzata mantiene l\'80% di attività biologica dopo 18 mesi a temperatura ambiente vs il 12% dell\'acido ascorbico puro.',
     claims: ['+45% luminosità', '-38% intensità macchie', '+22% collagene', 'Stabilità 18 mesi'],
   },
   'actigym': {
@@ -1293,7 +1298,7 @@ const SPHEA_EN = {
     ],
   },
   'eyelift-perfector': {
-    claim: 'Reduces expression lines, lifts drooping eyelids and erases bags. Eyes that look 20 again.',
+    claim: 'Reduces expression lines, lifts drooping eyelids and erases bags. A visibly younger eye contour.',
     intro: '<span class="sp-prod__hl">Argireline® Amplified</span> relaxes the micro-movements that etch expression lines around the eyes, with a <span class="sp-prod__hl">botox-like effect</span>.<br><br><span class="sp-prod__hl">Uplevity® E-Lift</span> tightens the eyelid and softens bags, restoring an open, rested look. Within the pearls, Resveratrol and Raspberry oil protect from free radicals and nourish the delicate eye-contour skin. <span class="sp-prod__hl">Two drops</span> are enough: the formula is highly concentrated and progressive-release.',
     zone: 'Eye contour · Eyelids',
     benefits: [
@@ -1348,7 +1353,7 @@ const ACTIVES_EN = {
   'vitamin-c': {
     tag: 'Antioxidant · Evening · Anti-spot',
     mechanism: 'Vitamin C (ascorbic acid) is the most powerful water-soluble antioxidant produced by nature. In the Sphea formulation it is used in a stabilised form, which increases its oxidative stability (the classic problem of pure ascorbic acid) and trans-epidermal penetration compared to the free form. It acts on three levels: tyrosinase inhibition (anti-spot), free-radical neutralisation and stimulation of collagen synthesis (an enzymatic co-factor).',
-    efficacy: 'Concentration 10%: +45% skin radiance in 8 weeks. -38% intensity of sun spots. +22% pro-collagen synthesis in fibroblast culture. The stabilised form retains 80% of its biological activity after 18 months at room temperature vs 12% for pure ascorbic acid.',
+    efficacy: '+45% skin radiance in 8 weeks. -38% intensity of sun spots. +22% pro-collagen synthesis in fibroblast culture. The stabilised form retains 80% of its biological activity after 18 months at room temperature vs 12% for pure ascorbic acid.',
     claims: ['+45% radiance', '-38% spot intensity', '+22% collagen', '18-month stability'],
   },
   'actigym': {
@@ -1716,7 +1721,19 @@ function renderPage(id) {
   }
 
   /* inci */
-  document.getElementById('inciBody').textContent = d.inci;
+  (function(){
+    const inciBodyEl = document.getElementById('inciBody');
+    inciBodyEl.textContent = '';
+    const inciP = document.createElement('p');
+    inciP.textContent = d.inci;
+    const disc = document.createElement('p');
+    disc.className = 'sp-inci-disclaimer';
+    disc.setAttribute('data-it', 'Le liste ingredienti possono variare nel tempo: per la formulazione aggiornata fai sempre riferimento alla confezione del prodotto.');
+    disc.setAttribute('data-en', 'Ingredient lists may change over time: always refer to the product packaging for the most up-to-date formulation.');
+    disc.textContent = curLang() === 'en' ? disc.getAttribute('data-en') : disc.getAttribute('data-it');
+    inciBodyEl.appendChild(inciP);
+    inciBodyEl.appendChild(disc);
+  })();
   if (!_spheaOnce) {
     document.getElementById('inciToggle').addEventListener('click', function() {
       const body = document.getElementById('inciBody');
