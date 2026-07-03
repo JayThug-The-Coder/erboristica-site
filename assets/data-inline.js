@@ -1715,8 +1715,8 @@ window.ATH_DATA_JSON = {
       "url": "https://www.erboristica.com/estratti-botanici/sapone-vegetale-allolio-di-oliva/",
       "subtitle_it": "Sapone vegetale all’Olio Extravergine di Oliva, idratante e protettivo.",
       "subtitle_en": "Extra-virgin Olive Oil plant soap, hydrating and protective.",
-      "description_it": "Nutre la pelle con un tocco morbido e vellutato, ideale anche per le pelli sensibili. Olio Extravergine di Oliva non saponificato protegge e ammorbidisce.",
-      "description_en": "Nourishes the skin with a soft, velvety touch, ideal even for sensitive skin. Unsaponified Extra Virgin Olive Oil protects and softens.",
+      "description_it": "Nutre la pelle con un tocco morbido e vellutato, ideale anche per le pelli sensibili. Olio Extravergine di Oliva e Glicerina proteggono e ammorbidiscono.",
+      "description_en": "Nourishes the skin with a soft, velvety touch, ideal even for sensitive skin. Extra Virgin Olive Oil and Glycerin protect and soften.",
       "usage_it": "(Non riportato in scheda)",
       "usage_en": "Lather on wet hands and rinse.",
       "inci": "Sodium palmate, Sodium palm kernelate, Aqua [Water], Olea europaea (Olive) fruit oil (*), Parfum [Fragrance], Juniperus virginiana oil, Glycerin, Sodium chloride, Benzyl salicylate, Alpha-isomethyl ionone, Amyl salicylate, Linalyl acetate, Linalool, Terpineol, Tetrasodium EDTA, Tetrasodium etidronate, Eugenol, Citronellol.",
@@ -1738,7 +1738,8 @@ window.ATH_DATA_JSON = {
         "detail_2": "immagini/estratti/sapone-vegetale-allolio-di-oliva/det-02.webp"
       },
       "actives_main": [
-        "Olio di Oliva (non saponificato)"
+        "Olio di Oliva",
+        "Glicerina"
       ]
     },
     {

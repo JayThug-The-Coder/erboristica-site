@@ -55,12 +55,16 @@ img { display: block; max-width: 100%; }
 }
 .sa-hero__bg {
   position: absolute; inset: 0; z-index: 0;
-  background:
-    radial-gradient(ellipse 54% 60% at 76% 26%, rgba(201,169,110,.40) 0%, transparent 60%),
-    radial-gradient(ellipse 70% 80% at 20% 92%, rgba(0,0,0,.42) 0%, transparent 60%),
-    linear-gradient(158deg, #2a231a 0%, #3c3020 46%, #5a4526 78%, #6b521f 100%);
+  background-image:
+    linear-gradient(100deg, rgba(20,14,8,.85) 0%, rgba(20,14,8,.55) 30%, rgba(20,14,8,.12) 58%, rgba(20,14,8,0) 100%),
+    linear-gradient(to top, rgba(20,14,8,.62) 0%, rgba(20,14,8,0) 44%),
+    url(../immagini/saponi/hero.webp);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .sa-hero__mono {
+  display: none;
   position: absolute; z-index: 0;
   top: 50%; right: clamp(-40px,2vw,80px); transform: translateY(-50%);
   font-family: var(--display); font-weight: 200;
@@ -209,7 +213,6 @@ img { display: block; max-width: 100%; }
 <section class="sa-hero">
   <div class="sa-hero__bg"></div>
   <div class="sa-hero__mono" aria-hidden="true">S</div>
-  <!-- SOSTITUIRE: foto hero del bassorilievo scolpito / mano dell'artigiano, su fondo scuro caldo -->
   <div class="sa-hero__content">
     <div class="sa-eyebrow" data-it="Athena's · dal 1969" data-en="Athena's · since 1969">Athena's · dal 1969</div>
     <h1 class="sa-hero__title" data-it="Saponi <em>Artistici</em>" data-en="Artistic <em>Soaps</em>">Saponi <em>Artistici</em></h1>
