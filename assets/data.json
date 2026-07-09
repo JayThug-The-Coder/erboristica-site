@@ -684,7 +684,7 @@
     },
     {
       "id": "cocco-olio-corpo-e-capelli-cocco-e-monoi",
-      "sku": "7064",
+      "sku": "1007064",
       "format": "200 ml",
       "line": "cocco",
       "brand": "erboristica",
@@ -1783,7 +1783,7 @@
     },
     {
       "id": "estratti-sapone-vegetale-monoi-di-tahiti",
-      "sku": "7064",
+      "sku": "4007064",
       "format": "100 g",
       "line": "estratti",
       "brand": "erboristica",
@@ -3288,7 +3288,7 @@
       "description_en": "Magnetic and enveloping, it opens with citrus accords of bergamot and mandarin. A heart of Pink Pepper and cinnamon settles on a base of Cedar and Patchouli.",
       "usage_it": "Spruzza l’eau de toilette direttamente sulla pelle, su polsi e collo. Tenere fuori dalla portata dei bambini. Liquido infiammabile.",
       "usage_en": "Spray the eau de toilette directly onto the skin, on wrists and neck. Keep out of the reach of children. Flammable liquid.",
-      "inci": "",
+      "inci": "Alcohol denat., Aqua [Water], Parfum [Fragrance], Hexamethylindanopyran, Tocopheryl acetate, Limonene, Coumarin, Citrus aurantium peel oil, Alpha-isomethyl ionone, Hydroxycitronellal, Vanillin, Pinene, Cinnamal, Linalyl acetate, Linalool, Lavandula oil/extract, Citral, Eugenol, Beta-caryophyllene, Camphor.",
       "natural_pct": null,
       "certifications": [
         "zero-petrochem",
@@ -3538,7 +3538,7 @@
     },
     {
       "id": "sphea-anti-pollution",
-      "sku": "[da verificare]",
+      "sku": "5100",
       "line": "sphea",
       "brand": "sphea",
       "name_it": "Anti Pollution Face Serum",
@@ -3565,7 +3565,7 @@
     },
     {
       "id": "sphea-radiant-up-lift",
-      "sku": "[da verificare]",
+      "sku": "5101",
       "line": "sphea",
       "brand": "sphea",
       "name_it": "Radiant Up-Lift",
@@ -3592,7 +3592,7 @@
     },
     {
       "id": "sphea-eyelift-perfector",
-      "sku": "[da verificare]",
+      "sku": "5102",
       "ean": "8002842151027",
       "line": "sphea",
       "brand": "sphea",
@@ -3622,7 +3622,7 @@
     },
     {
       "id": "sphea-sculpt-firm",
-      "sku": "[da verificare]",
+      "sku": "5104",
       "line": "sphea",
       "brand": "sphea",
       "name_it": "Sculpt & Firm Body Serum",
@@ -3655,7 +3655,7 @@
     },
     {
       "id": "sphea-slim-silhouette",
-      "sku": "[da verificare]",
+      "sku": "5103",
       "line": "sphea",
       "brand": "sphea",
       "name_it": "Slim Silhouette Body Serum",

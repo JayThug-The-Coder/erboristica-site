@@ -73,7 +73,18 @@
     { type: 'brand', title: "l'Erboristica", title_en: "l'Erboristica", url: '/linee/erboristica.html', desc: "Il brand storico Athena's, cosmetica naturale, 10 linee", desc_en: "Athena's historic brand, natural cosmetics, 10 lines", tags: ['erboristica', 'naturale', 'erbe'] },
     { type: 'brand', title: 'Everby', title_en: 'Everby', url: '/linee/everby.html', desc: 'K-beauty contemporanea Gen Z, texture innovative', desc_en: 'Contemporary Gen Z K-beauty, innovative textures', tags: ['everby', 'k-beauty', 'gen z', 'glass skin'] },
     { type: 'brand', title: 'Kaley', title_en: 'Kaley', url: '/linee/kaley.html', desc: 'Profumi roll-on in olio concentrato, senza alcol', desc_en: 'Roll-on concentrated oil perfumes, alcohol-free', tags: ['kaley', 'profumo', 'fragranza', 'roll-on'] },
-    { type: 'brand', title: 'Sphea', title_en: 'Sphea', url: '/linee/sphea.html', desc: 'Alta gamma, perle di biopolimeri marini, peptidi brevettati', desc_en: 'Premium, marine biopolymer pearls, patented peptides', tags: ['sphea', 'premium', 'perle', 'biopolimeri'] }
+    { type: 'brand', title: 'Sphea', title_en: 'Sphea', url: '/linee/sphea.html', desc: 'Alta gamma, perle di biopolimeri marini, peptidi brevettati', desc_en: 'Premium, marine biopolymer pearls, patented peptides', tags: ['sphea', 'premium', 'perle', 'biopolimeri'] },
+    { type: 'brand', title: 'Saponi Artistici', title_en: 'Artistic Soaps', url: '/linee/saponi.html', desc: "Dal 1969, saponi decorativi il cui rilievo nasce da uno stampo scolpito a mano", desc_en: 'Since 1969, decorative soaps whose relief begins with a hand-carved mold', tags: ['saponi', 'saponi artistici', 'bassorilievo', 'botticelli', 'cameo', 'cupido', 'amorini'] }
+  ];
+
+  const SAPONI_PRODUCTS = [
+    { type: 'product', title: 'Botticelli', title_en: 'Botticelli', url: '/linee/prodotto-saponi.html?id=botticelli', desc: 'Il volto della Primavera di Botticelli, scolpito in un bassorilievo bianco. Ispirazione Rinascimento, 100 g.', desc_en: "The face of Botticelli's Primavera, carved into a white bas-relief. Renaissance inspiration, 100 g.", tags: ['botticelli', 'primavera', 'rinascimento', 'uffizi', 'sapone artistico'] },
+    { type: 'product', title: 'Il Sogno', title_en: 'Il Sogno', url: '/linee/prodotto-saponi.html?id=i-sogni', desc: 'Due amorini ispirati a Diana ed Endimione di Annibale Carracci, in un bassorilievo bianco profumato.', desc_en: "Two cherubs inspired by Annibale Carracci's Diana and Endymion, in a scented white bas-relief.", tags: ['il sogno', 'i sogni', 'carracci', 'endimione', 'diana', 'sapone artistico'] },
+    { type: 'product', title: 'Cameo', title_en: 'Cameo', url: '/linee/prodotto-saponi.html?id=cameo', desc: 'Un profilo Art Nouveau ispirato a Primula di Alfons Mucha, scolpito come un cammeo.', desc_en: "An Art Nouveau profile inspired by Alfons Mucha's Cowslip, carved like a cameo.", tags: ['cameo', 'mucha', 'primula', 'cowslip', 'art nouveau', 'sapone artistico'] },
+    { type: 'product', title: 'Amorini', title_en: 'Amorini', url: '/linee/prodotto-saponi.html?id=amorini', desc: 'I due cherubini della Madonna Sistina di Raffaello, in un set di due bassorilievi bianchi.', desc_en: "The two cherubs from Raphael's Sistine Madonna, in a set of two white bas-reliefs.", tags: ['amorini', 'raffaello', 'madonna sistina', 'cherubini', 'sapone artistico'] },
+    { type: 'product', title: 'Serenata', title_en: 'Serenata', url: '/linee/prodotto-saponi.html?id=serenata', desc: 'Un cherubino musicante in un set regalo di due saponi scolpiti, poesia e profumo.', desc_en: 'A musician cherub in a gift set of two carved soaps, poetry and scent.', tags: ['serenata', 'cherubino', 'musica', 'sapone artistico'] },
+    { type: 'product', title: 'Primo Bacio', title_en: 'Primo Bacio', url: '/linee/prodotto-saponi.html?id=primo-bacio', desc: 'Due cherubini ispirati a Il Primo Bacio di William-Adolphe Bouguereau, un set regalo delicato.', desc_en: "Two cherubs inspired by William-Adolphe Bouguereau's The First Kiss, a delicate gift set.", tags: ['primo bacio', 'bouguereau', 'first kiss', 'sapone artistico'] },
+    { type: 'product', title: 'Cupido', title_en: 'Cupido', url: '/linee/prodotto-saponi.html?id=cupido', desc: 'Tre arcieri ispirati al Trionfo di Galatea di Raffaello, set regalo da 3 saponi.', desc_en: "Three archers inspired by Raphael's Triumph of Galatea, a gift set of 3 soaps.", tags: ['cupido', 'raffaello', 'galatea', 'arcieri', 'sapone artistico'] }
   ];
 
   const LINES = [
@@ -135,7 +146,7 @@
     const en = !!(typeof window !== 'undefined' && window.ATH && window.ATH.lang === 'en');
     // Pagine/brand/linee: risolvi titolo+descrizione nella lingua attiva, ma mantieni
     // entrambe le lingue in `alt` così la ricerca trova sia in IT che in EN.
-    const idx = [].concat(PAGES, BRANDS, LINES).map(d => {
+    const idx = [].concat(PAGES, BRANDS, LINES, SAPONI_PRODUCTS).map(d => {
       const title = (en && d.title_en) ? d.title_en : d.title;
       const desc  = (en && d.desc_en)  ? d.desc_en  : d.desc;
       const alt   = [d.title, d.title_en, d.desc, d.desc_en].filter(Boolean).join(' ');

@@ -6,6 +6,23 @@
 
 ---
 
+# 🛠️ Sessione 9 Luglio 2026 — Saponi Artistici: foto opere d'arte reali, sezioni "L'opera d'arte"/"Lo Stampo", audit SEO+ricerca
+
+**Vedi `HANDOFF.md` (blocco "SESSIONE 09 lug 2026") per il dettaglio completo. Verificato in preview :8088, 0 errori console.**
+
+- **Foto**: nuova foto hero+card collezione (`immagini/saponi/hero.webp`, `linea.webp`); confezione di 5 prodotti ricollegata all'opera pittorica reale d'ispirazione (Cupido→Trionfo di Galatea, Amorini→Madonna Sistina, Il Sogno→Diana ed Endimione di Carracci, Cameo→Primula/Cowslip di Mucha, Primo Bacio→Bouguereau); macro "Lo Stampo" mancante generata per Cupido (GPT Image 2); fix rapporto 3:2 su Serenata/Botticelli. **Rifiutata la generazione AI del dipinto originale di Bouguereau** (nudità infantile esplicita) — usato solo un ritaglio fornito dall'utente senza area genitale visibile.
+- **Rinominato** "I Sogni" → "Il Sogno" ovunque (card, scheda, ricerca).
+- **Ristrutturata `linee/prodotto-saponi.html`**: sezione "L'ispirazione"→**"L'opera d'arte"** (racconto lungo e accurato del dipinto reale, spostata subito dopo l'hero) + nuova sezione **"Lo Stampo"** (era "L'arte della confezione") che corregge il claim di produzione: non più "sapone fatto/scolpito a mano" ma **"lo stampo è scolpito a mano da uno scultore"** (stessa correzione su `linee/saponi.html` e `linee.html`).
+- **Fix**: header topbar chiaro su `linee/saponi.html` (mancava `{light:true}`, testo nero invisibile su hero scura); numerazione card collezione uniformata "0X / 07".
+- **SEO** (mancava del tutto su queste 2 pagine): aggiunti canonical/robots/Open Graph/Twitter Card/BreadcrumbList JSON-LD; `sitemap.xml` aggiornata con `linee/saponi.html`.
+- **Ricerca interna**: aggiunto brand "Saponi Artistici" + i 7 prodotti singoli in `assets/search-data.js` (prima non erano cercabili).
+
+**Se voglio cambiare X → Y:** vedi blocco dedicato in `HANDOFF.md` (oggetto `S` in `prodotto-saponi.html`, mappe `BOX`/`INTAGLIO`, `SAPONI_PRODUCTS` in `search-data.js`).
+
+**Aperto:** Cameo/Serenata/Primo-Bacio senza foto "Lo Stampo" dedicata (riusano macro esistenti); profili olfattivi/INCI/prezzi Saponi Artistici ancora da fare.
+
+---
+
 # 🛠️ Sessione 4 Giugno 2026 (4ª parte) — Ricerca "siero" incompleta/incoerente — FIX recall + rumore
 
 **Verificato in preview :8088 via DOM. NON pushato.** L'utente: cercando "siero" comparivano solo 2 dei 5 sieri Sphea, più risultati incoerenti (Kaley, Olio Corpo).

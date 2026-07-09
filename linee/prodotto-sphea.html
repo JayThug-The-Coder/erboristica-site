@@ -1728,8 +1728,8 @@ function renderPage(id) {
     inciP.textContent = d.inci;
     const disc = document.createElement('p');
     disc.className = 'sp-inci-disclaimer';
-    disc.setAttribute('data-it', 'Le liste ingredienti possono variare nel tempo: per la formulazione aggiornata fai sempre riferimento alla confezione del prodotto.');
-    disc.setAttribute('data-en', 'Ingredient lists may change over time: always refer to the product packaging for the most up-to-date formulation.');
+    disc.setAttribute('data-it', 'La lista di ingredienti può subire dei cambiamenti, il consumatore deve far riferimento al packaging del prodotto per la lista ingredienti più aggiornata.');
+    disc.setAttribute('data-en', 'The ingredient list may be subject to change; consumers should refer to the product packaging for the most up-to-date ingredient list.');
     disc.textContent = curLang() === 'en' ? disc.getAttribute('data-en') : disc.getAttribute('data-it');
     inciBodyEl.appendChild(inciP);
     inciBodyEl.appendChild(disc);
