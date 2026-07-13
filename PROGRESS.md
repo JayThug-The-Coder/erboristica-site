@@ -23,6 +23,8 @@
 
 **Agg. stessa sessione (2ª tranche) — round di copy Saponi Artistici + Terzisti:** vedi `HANDOFF.md` per il dettaglio completo. Sintesi: `linee.html` (tag "100% Made in Italy" spostato sotto il titolo, testo card riscritto con "sapone in pasta"); `linee/saponi.html` (hero "Il Profumo e l'Arte.", manifesto arricchito, rimossa sezione "Il saper fare", nuovo invito finale in CTA con `mailto:info@athenas.it`); quantità corrette **Amorini 3×100g** (racconto opera d'arte resta sui "due angeli" per scelta cliente), **Serenata sapone unico 100g**, **Cupido 3×30g**; Primo Bacio "perfetto come primo regalo importante"; Botticelli "racchiusa in"; "sulla biancheria"→"nella biancheria" (sezione Il profumo). `terzisti.html`: card R&S include "saponi solidi e saponi artistici"; nuovo paragrafo claim medico-scientifico sotto l'H2 "Tutto quello che serve...", **stile pull-quote** (testo grande corsivo, bordo oro, `<em>` oro su "alta valenza medico-scientifica") su richiesta esplicita di maggior rilevanza visiva.
 
+**Agg. (3ª tranche):** pull-quote R&S (`terzisti.html` `.tz-cap__intro`) andava su 4 righe → richiesto 2 righe. Fix: `max-width` 42ch→74ch + font-size ridotto (clamp 19-25px). Verificato 2 righe esatte IT+EN.
+
 ---
 
 # 🛠️ Sessione 4 Giugno 2026 (4ª parte) — Ricerca "siero" incompleta/incoerente — FIX recall + rumore
