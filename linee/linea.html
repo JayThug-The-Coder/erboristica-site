@@ -856,6 +856,7 @@ body.theme-line-antieta {
       brand: p.brand,
       code: p.sku,
       size: p.format || p.size || '',
+      areas: p.areas || null,
       category: p.subtitle_it || '',
       url: p.url || '',
       inci: p.inci,
@@ -1067,7 +1068,18 @@ body.theme-line-antieta {
     document.addEventListener('lang-change', fill);
 
     // Prodotti — i prodotti "Active" vanno come prime card
-    const products = PRODUCTS.filter(p => p.line === lineId);
+    let products = PRODUCTS.filter(p => p.line === lineId);
+
+    // Filtro per parte del corpo (?cat=viso|capelli|corpo), passato dal mega-menu
+    // di erboristica.html. Si applica solo se ci sono prodotti con quella
+    // categorizzazione: se nessuno la corrisponde (dato mancante o gap di
+    // catalogo) si mostra comunque la linea intera invece di una griglia vuota.
+    const catParam = params.get('cat') || '';
+    if (catParam) {
+      const filtered = products.filter(p => Array.isArray(p.areas) && p.areas.includes(catParam));
+      if (filtered.length) products = filtered;
+    }
+
     products.sort((a, b) => (/-active$/.test(a.id) ? 0 : 1) - (/-active$/.test(b.id) ? 0 : 1));
 
     // Estratti Botanici: raggruppa per categoria funzionale con intestazioni

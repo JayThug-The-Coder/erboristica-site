@@ -602,6 +602,9 @@
       "actives_main": [
         "Olio di Cocco",
         "Glicerina"
+      ],
+      "areas": [
+        "corpo"
       ]
     },
     {
@@ -641,6 +644,9 @@
         "Olio di Cocco Virgin",
         "Vitamina E",
         "Monoï di Tahiti"
+      ],
+      "areas": [
+        "capelli"
       ]
     },
     {
@@ -680,6 +686,9 @@
         "Olio di Cocco",
         "Aloe Vera",
         "Tensioattivi vegetali delicati"
+      ],
+      "areas": [
+        "corpo"
       ]
     },
     {
@@ -719,6 +728,10 @@
         "Olio di Cocco Virgin",
         "Vitamina E",
         "Monoï di Tahiti"
+      ],
+      "areas": [
+        "corpo",
+        "capelli"
       ]
     },
     {
@@ -751,6 +764,10 @@
         "Olio di Mandorle Dolci",
         "Olio di Cocco",
         "Vitamina E"
+      ],
+      "areas": [
+        "corpo",
+        "capelli"
       ]
     },
     {
@@ -790,6 +807,9 @@
         "Granuli di Albicocca",
         "Olio di Cocco",
         "Burro di Karité"
+      ],
+      "areas": [
+        "corpo"
       ]
     },
     {
@@ -828,6 +848,9 @@
       "actives_main": [
         "Olio di Cocco",
         "Pantenolo"
+      ],
+      "areas": [
+        "capelli"
       ]
     },
     {
@@ -867,6 +890,11 @@
         "Olio di Cocco",
         "Aloe Vera",
         "Glicerina"
+      ],
+      "areas": [
+        "viso",
+        "corpo",
+        "capelli"
       ]
     },
     {
@@ -877,8 +905,8 @@
       "brand": "everby",
       "name_it": "CICA CLOUD HYDRA-MOUSSE DETERGENTE VISO DELICATA",
       "name_en": "CICA CLOUD HYDRA-MOUSSE GENTLE FACE CLEANSER",
-"short_it": "Cica Cloud",
-"short_en": "Cica Cloud",
+      "short_it": "Cica Cloud",
+      "short_en": "Cica Cloud",
       "url": "https://www.erboristica.com/everby/cica-cloud-hydra-mousse-detergente-viso-delicata-everby/",
       "subtitle_it": "Mousse detergente ultra-delicata che pulisce, lenisce e illumina, ideale anche per pelli sensibili.",
       "subtitle_en": "Ultra-gentle cleansing mousse that cleanses, soothes and brightens, ideal even for sensitive skin.",
@@ -919,8 +947,8 @@
       "brand": "everby",
       "name_it": "CONTORNO OCCHI DON’T CALL ME PANDA",
       "name_en": "EYE CONTOUR DON'T CALL ME PANDA",
-"short_it": "Don't Call Me Panda",
-"short_en": "Don't Call Me Panda",
+      "short_it": "Don't Call Me Panda",
+      "short_en": "Don't Call Me Panda",
       "url": "https://www.erboristica.com/everby/contorno-occhi-dont-call-me-panda/",
       "subtitle_it": "Contorno occhi che illumina e corregge borse e occhiaie sin dalla prima applicazione.",
       "subtitle_en": "Eye contour that brightens and corrects bags and dark circles from the very first application.",
@@ -960,8 +988,8 @@
       "brand": "everby",
       "name_it": "GEL BURRO STRUCCANTE FEEL BUTTER",
       "name_en": "CLEANSING BALM-GEL FEEL BUTTER",
-"short_it": "Feel Butter",
-"short_en": "Feel Butter",
+      "short_it": "Feel Butter",
+      "short_en": "Feel Butter",
       "url": "https://www.erboristica.com/everby/gel-burro-struccante-feel-butter/",
       "subtitle_it": "Gel-burro struccante 3 in 1 che deterge, scioglie anche il make-up più resistente e idrata, senza lasciare residui oleosi.",
       "subtitle_en": "3-in-1 cleansing balm-gel that cleanses, melts away even the most stubborn make-up and hydrates, with no oily residue.",
@@ -1003,8 +1031,8 @@
       "brand": "everby",
       "name_it": "GOCCE ILLUMINANTI VISO YES I GLOW",
       "name_en": "ILLUMINATING FACE DROPS YES I GLOW",
-"short_it": "Yes I Glow",
-"short_en": "Yes I Glow",
+      "short_it": "Yes I Glow",
+      "short_en": "Yes I Glow",
       "url": "https://www.erboristica.com/everby/gocce-illuminanti-viso-yes-i-glow/",
       "subtitle_it": "Gocce illuminanti viso che donano un effetto glow naturale, da sole o mixate al fondotinta.",
       "subtitle_en": "Illuminating face drops that give a natural glow effect, alone or mixed into foundation.",
@@ -1044,8 +1072,8 @@
       "brand": "everby",
       "name_it": "MILKY RICE HYDRATING MILKY TONER",
       "name_en": "MILKY RICE HYDRATING MILKY TONER",
-"short_it": "Milky Rice",
-"short_en": "Milky Rice",
+      "short_it": "Milky Rice",
+      "short_en": "Milky Rice",
       "url": "https://www.erboristica.com/everby/milky-rice-hydrating-milky-toner/",
       "subtitle_it": "Tonico viso lattiginoso idratante per un effetto glass skin immediato.",
       "subtitle_en": "Hydrating milky face toner for an immediate glass-skin effect.",
@@ -1125,8 +1153,8 @@
       "brand": "everby",
       "name_it": "PEPTI BOOM LIP FILLER VOLUMIZZANTE LABBRA",
       "name_en": "PEPTI BOOM VOLUMIZING LIP FILLER",
-"short_it": "Pepti Boom",
-"short_en": "Pepti Boom",
+      "short_it": "Pepti Boom",
+      "short_en": "Pepti Boom",
       "url": "https://www.erboristica.com/everby/pepti-boom-lip-filler-volumizzante-labbra/",
       "subtitle_it": "Trattamento labbra volumizzante con effetto gloss naturale, da solo o come primer.",
       "subtitle_en": "Volumizing lip treatment with a natural gloss effect, alone or as a primer.",
@@ -1165,8 +1193,8 @@
       "brand": "everby",
       "name_it": "SIERO CIGLIA E SOPRACCIGLIA LASH ME",
       "name_en": "LASH & BROW SERUM LASH ME",
-"short_it": "Lash Me",
-"short_en": "Lash Me",
+      "short_it": "Lash Me",
+      "short_en": "Lash Me",
       "url": "https://www.erboristica.com/everby/siero-ciglia-e-sopracciglia-lash-me/",
       "subtitle_it": "Siero ciglia e sopracciglia che nutre, rinforza e stimola la crescita in 8 settimane.",
       "subtitle_en": "Lash and brow serum that nourishes, strengthens and stimulates growth in 8 weeks.",
@@ -1208,8 +1236,8 @@
       "brand": "everby",
       "name_it": "SIERO VISO RIMPOLPANTE PUMP & PLUMP",
       "name_en": "PLUMPING FACE SERUM PUMP & PLUMP",
-"short_it": "Pump & Plump",
-"short_en": "Pump & Plump",
+      "short_it": "Pump & Plump",
+      "short_en": "Pump & Plump",
       "url": "https://www.erboristica.com/everby/siero-viso-rimpolpante-pump-plump/",
       "subtitle_it": "Siero viso rimpolpante, un vero booster di idratazione per una pelle fresca e levigata.",
       "subtitle_en": "Plumping face serum, a true hydration booster for fresh, smooth skin.",
@@ -1249,8 +1277,8 @@
       "brand": "everby",
       "name_it": "TRATTAMENTO VISO PERFEZIONATORE PORI DILATATI STAY POREFECT",
       "name_en": "PORE-PERFECTING FACE TREATMENT STAY POREFECT",
-"short_it": "Stay Porefect",
-"short_en": "Stay Porefect",
+      "short_it": "Stay Porefect",
+      "short_en": "Stay Porefect",
       "url": "https://www.erboristica.com/everby/siero-viso-perfezionatore-stay-porefect/",
       "subtitle_it": "Trattamento perfezionatore in gel che opacizza e affina i pori, ottimo come base trucco.",
       "subtitle_en": "Pore-perfecting gel treatment that mattifies and refines pores, great as a make-up base.",
@@ -1320,6 +1348,9 @@
         "Aloe Vera",
         "Proteine del Riso",
         "Tensioattivi vegetali dolci"
+      ],
+      "areas": [
+        "corpo"
       ]
     },
     {
@@ -1358,6 +1389,10 @@
       "actives_main": [
         "Burro di Karité",
         "Vitamina E"
+      ],
+      "areas": [
+        "viso",
+        "corpo"
       ]
     },
     {
@@ -1397,6 +1432,9 @@
         "Acqua e Olio di Rosa Damascena",
         "Burro di Karité",
         "Vitamina E"
+      ],
+      "areas": [
+        "corpo"
       ]
     },
     {
@@ -1435,6 +1473,9 @@
       "actives_main": [
         "Olio di Semi di Cotone",
         "Vitamina E"
+      ],
+      "areas": [
+        "corpo"
       ]
     },
     {
@@ -1474,6 +1515,9 @@
         "Proteine del Riso",
         "Aloe Vera",
         "Tensioattivi vegetali delicati"
+      ],
+      "areas": [
+        "corpo"
       ]
     },
     {
@@ -1511,6 +1555,9 @@
       },
       "actives_main": [
         "Tensioattivi vegetali"
+      ],
+      "areas": [
+        "corpo"
       ]
     },
     {
@@ -1549,6 +1596,9 @@
       "actives_main": [
         "Olio di Semi di Lino",
         "Burro di Karité"
+      ],
+      "areas": [
+        "capelli"
       ]
     },
     {
@@ -1588,6 +1638,9 @@
         "Olio Essenziale di Bergamotto",
         "Olio Essenziale di Abete Bianco",
         "Tensioattivi vegetali dolci"
+      ],
+      "areas": [
+        "corpo"
       ]
     },
     {
@@ -1626,6 +1679,9 @@
       "actives_main": [
         "Olio Essenziale di Rosa",
         "Vitamina E"
+      ],
+      "areas": [
+        "corpo"
       ]
     },
     {
@@ -1664,6 +1720,9 @@
       "actives_main": [
         "Burro di Karité",
         "Glicerina naturale di processo"
+      ],
+      "areas": [
+        "corpo"
       ]
     },
     {
@@ -1702,6 +1761,9 @@
       "actives_main": [
         "Amido di Riso",
         "Glicerina naturale"
+      ],
+      "areas": [
+        "corpo"
       ]
     },
     {
@@ -1740,6 +1802,9 @@
       "actives_main": [
         "Olio di Oliva",
         "Glicerina"
+      ],
+      "areas": [
+        "corpo"
       ]
     },
     {
@@ -1779,6 +1844,9 @@
         "Olio di Oliva saponificato",
         "Olio di Palma sostenibile saponificato",
         "Glicerina"
+      ],
+      "areas": [
+        "corpo"
       ]
     },
     {
@@ -1815,6 +1883,9 @@
         "Olio di Monoi di Tahiti",
         "Olio di Cocco",
         "Glicerina"
+      ],
+      "areas": [
+        "corpo"
       ]
     },
     {
@@ -1853,6 +1924,9 @@
       "actives_main": [
         "Estratto di Betulla",
         "Menta Piperita"
+      ],
+      "areas": [
+        "capelli"
       ]
     },
     {
@@ -1892,6 +1966,9 @@
         "Olio di Semi di Lino",
         "Burro di Karité",
         "Pantenolo"
+      ],
+      "areas": [
+        "capelli"
       ]
     },
     {
@@ -2397,6 +2474,9 @@
         "Olio di Argan biologico",
         "Glicerina",
         "Burro di Karité"
+      ],
+      "areas": [
+        "corpo"
       ]
     },
     {
@@ -2435,6 +2515,9 @@
       "actives_main": [
         "Olio di Argan",
         "Micro-granuli di Oliva"
+      ],
+      "areas": [
+        "viso"
       ]
     },
     {
@@ -2473,6 +2556,9 @@
       "actives_main": [
         "Olio di Argan biologico",
         "Tensioattivi vegetali"
+      ],
+      "areas": [
+        "corpo"
       ]
     },
     {
@@ -2511,6 +2597,9 @@
       "actives_main": [
         "Olio di Argan Virgin 100%",
         "Vitamina E naturale (Tocoferoli)"
+      ],
+      "areas": [
+        "corpo"
       ]
     },
     {
@@ -2549,6 +2638,10 @@
       "actives_main": [
         "Olio di Argan",
         "Glicerina naturale di processo"
+      ],
+      "areas": [
+        "viso",
+        "corpo"
       ]
     },
     {
@@ -2587,6 +2680,9 @@
       "actives_main": [
         "Olio di Argan",
         "Acido Ialuronico"
+      ],
+      "areas": [
+        "viso"
       ]
     },
     {
@@ -2626,6 +2722,9 @@
         "Olio di Mandorle Dolci",
         "Glicerina",
         "Ceramidi (da Avena)"
+      ],
+      "areas": [
+        "corpo"
       ]
     },
     {
@@ -2664,6 +2763,9 @@
       "actives_main": [
         "Olio di Mandorle Dolci",
         "Vitamina E"
+      ],
+      "areas": [
+        "corpo"
       ]
     },
     {
@@ -2703,6 +2805,9 @@
         "Olio di Mandorle Dolci",
         "Acido Ialuronico",
         "Vitamina E"
+      ],
+      "areas": [
+        "viso"
       ]
     },
     {
@@ -2742,6 +2847,9 @@
         "Olio di Mandorle Dolci",
         "Tensioattivi vegetali delicati",
         "Aloe Vera"
+      ],
+      "areas": [
+        "corpo"
       ]
     },
     {
@@ -2780,6 +2888,10 @@
       "actives_main": [
         "Olio di Mandorle Dolci Virgin",
         "Vitamina E naturale"
+      ],
+      "areas": [
+        "viso",
+        "corpo"
       ]
     },
     {
@@ -2817,6 +2929,9 @@
       "actives_main": [
         "Olio di Mandorle Dolci",
         "Glicerina naturale"
+      ],
+      "areas": [
+        "corpo"
       ]
     },
     {
