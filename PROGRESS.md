@@ -6,6 +6,18 @@
 
 ---
 
+# 🛠️ Sessione 15 Luglio 2026 — Fix bug encoding Netlify + round correzioni cliente
+
+**Verificato in preview locale :8088, 0 errori console. NON ancora pushato (in attesa di conferma). Vedi `HANDOFF.md` (blocco "SESSIONE 15 lug 2026") per il dettaglio completo.**
+
+Sintesi: `netlify.toml` (disattivato post-processing/asset optimization, probabile causa del mojibake+foto rotte visti solo su Netlify, mai su athenas.it/Apache — da riconfermare dopo deploy); 4 prodotti "doccia" rinominati in "Bagno Doccia X" dopo verifica etichetta reale su foto (Camelia Japonica, Patchouli e Neroli, Mandorle Dolci, Bergamotto & Abete Bianco); rimosso "Olio Essenziale di Neroli" (ghost ingredient) da Bagno Doccia Patchouli; "Acido Poliglutammico"→"Collagene vegetale: Natto Gum" in 3 prodotti Antietà dove l'INCI lo conferma (Crema Viso Giorno lasciata invariata, INCI senza Natto gum); tolto "100% naturale" da Olio Mandorle Dolci e Olio da Barba Uomo; Sphea Nocturshape "fermezza"→"tono e compattezza"; Everby Feel Butter attivo esteso; Kaley: rimosso claim/bollino Vegan da tutte le fragranze (template unico), aggiunta foto mancante Spring Symphony (`ambient-2.webp`).
+
+**Rimandato su richiesta cliente**: fix filtro Capelli/Viso/Corpo nel menu Linee (bug strutturale, serve categoria prodotto in data.json, non esiste ancora).
+
+**Se voglio cambiare X → Y**: vedi `HANDOFF.md` blocco dedicato.
+
+---
+
 # 🛠️ Sessione 9 Luglio 2026 — Saponi Artistici: foto opere d'arte reali, sezioni "L'opera d'arte"/"Lo Stampo", audit SEO+ricerca
 
 **Vedi `HANDOFF.md` (blocco "SESSIONE 09 lug 2026") per il dettaglio completo. Verificato in preview :8088, 0 errori console.**

@@ -332,7 +332,7 @@
       },
       "actives_main": [
         "Argireline Amplified (Acetyl Hexapeptide-8)",
-        "Collagene Vegetale",
+        "Collagene Vegetale: Natto Gum",
         "Acido Ialuronico"
       ]
     },
@@ -524,7 +524,7 @@
         "detail_2": "immagini/antieta/siero-viso-collagene-vegetale/det-02.webp"
       },
       "actives_main": [
-        "Collagene vegetale idrolizzato",
+        "Collagene vegetale: Natto Gum",
         "Cellule Staminali di Stella Alpina"
       ]
     },
@@ -539,8 +539,8 @@
       "url": "https://www.erboristica.com/antieta-globale/trattamento-viso/",
       "subtitle_it": "Crema viso antirughe intensiva dalla texture fondente, che rimodella l’ovale.",
       "subtitle_en": "Intensive anti-wrinkle face cream with a melting texture that reshapes the contours.",
-      "description_it": "Ricompatta la pelle e restituisce giovinezza ai tratti del viso. Olio di Camelina ricco di Omega 3 e 6, Acido Poliglutammico e Vitamina E levigano le rughe e nutrono in profondità.",
-      "description_en": "Re-firms the skin and restores youth to the facial features. Camelina Oil rich in Omega 3 and 6, Polyglutamic Acid and Vitamin E smooth wrinkles and nourish deeply.",
+      "description_it": "Ricompatta la pelle e restituisce giovinezza ai tratti del viso. Olio di Camelina ricco di Omega 3 e 6, Collagene vegetale (Natto Gum) e Vitamina E levigano le rughe e nutrono in profondità.",
+      "description_en": "Re-firms the skin and restores youth to the facial features. Camelina Oil rich in Omega 3 and 6, plant Collagen (Natto Gum) and Vitamin E smooth wrinkles and nourish deeply.",
       "usage_it": "Applicare su viso e dècolleté ben detersi. Per un effetto potenziato, associare il Siero Viso Concentrato Antietà Globale.",
       "usage_en": "Apply to cleansed face and décolleté. For an enhanced effect, pair with the Global Anti-Ageing Concentrated Face Serum.",
       "inci": "Aqua [Water], Aloe barbadensis leaf juice (*), Vegetable (Olus) oil, Ethylhexyl palmitate, Coco-caprylate, Glycerin, Betaine, Butyrospermum parkii (Shea) butter, Macadamia ternifolia seed oil, Polyglyceryl-3 stearate, Cetearyl alcohol, Glyceryl stearate, Sodium stearoyl lactylate, Hydrolyzed glycosaminoglycans, Natto gum, Sodium hyaluronate, Camelina sativa seed oil, Zinc PCA, Tocopherol, Beta-sitosterol, Squalene,Behenyl alcohol, Xanthan gum, Magnesium aluminum silicate, Parfum [Fragrance], Ethylhexylglycerin, Sodium gluconate, Alcohol, Tetramethyl acetyloctahydronaphthalenes, Hexyl cinnamal, Vanillin, Pogostemon cablin oil, Citrus aurantium peel oil, Limonene, Coumarin, Phenoxyethanol.",
@@ -562,7 +562,7 @@
         "detail_2": "immagini/antieta/trattamento-viso/det-02.webp"
       },
       "actives_main": [
-        "Natto Gum (Acido Poliglutammico)",
+        "Collagene vegetale: Natto Gum",
         "Vitamina E"
       ]
     },
@@ -991,7 +991,8 @@
       "actives_main": [
         "Burri Vegetali",
         "Vitamina A-C-E",
-        "Fitosteroli"
+        "Fitosteroli",
+        "Esteri dello zucchero di origine vegetale: idratanti, setificanti"
       ]
     },
     {
@@ -1442,11 +1443,11 @@
       "format": "400 ml",
       "line": "estratti",
       "brand": "erboristica",
-      "name_it": "DOCCIA SCHIUMA CAMELIA JAPONICA",
-      "name_en": "CAMELLIA JAPONICA SHOWER FOAM",
+      "name_it": "BAGNO DOCCIA CAMELIA JAPONICA",
+      "name_en": "CAMELLIA JAPONICA SHOWER BATH",
       "url": "https://www.erboristica.com/estratti-botanici/doccia-schiuma-camelia-japonica/",
-      "subtitle_it": "Doccia schiuma Camelia Japonica, setificante e rivitalizzante.",
-      "subtitle_en": "Camellia Japonica shower foam, silkening and revitalising.",
+      "subtitle_it": "Bagno doccia Camelia Japonica, setificante e rivitalizzante.",
+      "subtitle_en": "Camellia Japonica shower bath, silkening and revitalising.",
       "description_it": "La fragranza dolce e fiorita accompagna una detersione che idrata e nutre. Le Proteine del Riso e il succo di Aloe Vera risanano tono e morbidezza.",
       "description_en": "The sweet, floral fragrance accompanies a cleanse that hydrates and nourishes. Rice Proteins and Aloe Vera juice restore tone and softness.",
       "usage_it": "Distribuisci il prodotto direttamente sulla pelle bagnata, massaggia delicatamente e risciacqua.",
@@ -1481,11 +1482,11 @@
       "format": "400 ml",
       "line": "estratti",
       "brand": "erboristica",
-      "name_it": "DOCCIA SCHIUMA PATCHOULI E NEROLI",
-      "name_en": "PATCHOULI & NEROLI SHOWER FOAM",
+      "name_it": "BAGNO DOCCIA PATCHOULI E NEROLI",
+      "name_en": "PATCHOULI & NEROLI SHOWER BATH",
       "url": "https://www.erboristica.com/estratti-botanici/doccia-schiuma-patchouli-e-neroli/",
-      "subtitle_it": "Doccia schiuma al Patchouli e Neroli dalla fragranza esotica-orientale.",
-      "subtitle_en": "Patchouli and Neroli shower foam with an exotic-oriental fragrance.",
+      "subtitle_it": "Bagno doccia al Patchouli e Neroli dalla fragranza esotica-orientale.",
+      "subtitle_en": "Patchouli and Neroli shower bath with an exotic-oriental fragrance.",
       "description_it": "100% naturale, rende la pelle tonica e vellutata con un’azione riequilibrante. Le note di Patchouli e Neroli avvolgono la pelle in una fragranza esotica-orientale.",
       "description_en": "100% natural, it makes the skin toned and velvety with a rebalancing action. Patchouli and Neroli notes wrap the skin in an exotic-oriental fragrance.",
       "usage_it": "Distribuisci il prodotto direttamente sulla pelle bagnata, massaggia delicatamente e risciacqua.",
@@ -1509,7 +1510,6 @@
         "detail_2": "immagini/estratti/doccia-schiuma-patchouli-e-neroli/det-02.webp"
       },
       "actives_main": [
-        "Olio Essenziale di Neroli",
         "Tensioattivi vegetali"
       ]
     },
@@ -1557,11 +1557,11 @@
       "format": "400 ml",
       "line": "estratti",
       "brand": "erboristica",
-      "name_it": "MOUSSE DOCCIA BERGAMOTTO & ABETE BIANCO",
-      "name_en": "BERGAMOT & SILVER FIR SHOWER MOUSSE",
+      "name_it": "BAGNO DOCCIA BERGAMOTTO & ABETE BIANCO",
+      "name_en": "BERGAMOT & SILVER FIR SHOWER BATH",
       "url": "https://www.erboristica.com/estratti-botanici/mousse-doccia-bergamotto-abete-bianco/",
-      "subtitle_it": "Mousse doccia al Bergamotto e Abete Bianco, fresca e agrumata.",
-      "subtitle_en": "Bergamot and Silver Fir shower mousse, fresh and citrusy.",
+      "subtitle_it": "Bagno doccia al Bergamotto e Abete Bianco, fresca e agrumata.",
+      "subtitle_en": "Bergamot and Silver Fir shower bath, fresh and citrusy.",
       "description_it": "Detergente vegetale idratante che stimola la circolazione donando benessere e relax. Oli essenziali di Bergamotto e Abete Bianco rivitalizzano la pelle.",
       "description_en": "A hydrating plant cleanser that stimulates circulation, bringing wellbeing and relaxation. Bergamot and Silver Fir essential oils revitalise the skin.",
       "usage_it": "Su pelle bagnata, sotto la doccia o in vasca, massaggiare il corpo con una generosa quantità di mousse per qualche minuto. Risciacquare con cura. Completare il trattamento utilizzando, prima della mousse doccia, due volte a settimana, lo scrub corpo ai granuli di albicocca.",
@@ -2711,11 +2711,11 @@
       "format": "400 ml",
       "line": "mandorle",
       "brand": "erboristica",
-      "name_it": "MOUSSE DOCCIA MANDORLE DOLCI",
-      "name_en": "SWEET ALMOND SHOWER MOUSSE",
+      "name_it": "BAGNO DOCCIA MANDORLE DOLCI",
+      "name_en": "SWEET ALMOND SHOWER BATH",
       "url": "https://www.erboristica.com/olio-di-mandorle-dolci/mousse-doccia-mandorle-dolci/",
-      "subtitle_it": "Mousse doccia all’Olio di Mandorle Dolci, straordinariamente delicata.",
-      "subtitle_en": "Sweet Almond Oil shower mousse, extraordinarily gentle.",
+      "subtitle_it": "Bagno doccia all’Olio di Mandorle Dolci, straordinariamente delicata.",
+      "subtitle_en": "Sweet Almond Oil shower bath, extraordinarily gentle.",
       "description_it": "Formulata solo con tensioattivi vegetali, nutre e idrata le pelli atoniche e disidratate. Olio di Mandorle Dolci e Aloe Vera donano comfort e una profumazione morbida e fiorita.",
       "description_en": "Formulated only with plant surfactants, it nourishes and hydrates atonic, dehydrated skin. Sweet Almond Oil and Aloe Vera give comfort and a soft, floral scent.",
       "usage_it": "Distribuisci il prodotto direttamente sulla pelle bagnata, massaggia delicatamente e risciacqua.",
@@ -2750,11 +2750,11 @@
       "format": "200 ml",
       "line": "mandorle",
       "brand": "erboristica",
-      "name_it": "OLIO MANDORLE DOLCI 100% NATURALE",
-      "name_en": "SWEET ALMOND OIL 100% NATURAL",
+      "name_it": "OLIO MANDORLE DOLCI",
+      "name_en": "SWEET ALMOND OIL",
       "url": "https://www.erboristica.com/olio-di-mandorle-dolci/olio-mandorle-dolci-100-naturale/",
-      "subtitle_it": "Olio di Mandorle Dolci 100% naturale per viso e corpo, ricco di Vitamina E.",
-      "subtitle_en": "100% natural Sweet Almond Oil for face and body, rich in Vitamin E.",
+      "subtitle_it": "Olio di Mandorle Dolci per viso e corpo, ricco di Vitamina E.",
+      "subtitle_en": "Sweet Almond Oil for face and body, rich in Vitamin E.",
       "description_it": "Dalle proprietà emollienti ed elasticizzanti, è ideale anche sotto la doccia. Olio di Mandorle Dolci e Vitamina E combattono i radicali liberi e ammorbidiscono la pelle.",
       "description_en": "With emollient and elasticising properties, it is ideal even in the shower. Sweet Almond Oil and Vitamin E fight free radicals and soften the skin.",
       "usage_it": "Ideale sotto la doccia sulla pelle bagnata e detersa, applicare una piccola quantità di olio e massaggiare delicatamente. Risciacquare per eliminare l’olio in eccesso. Asciugare tamponando per un effetto vellutato. Su pelle asciutta, applicare su pelle detersa una generosa quantità su viso, décolleté e corpo e massaggiare a lungo per favorirne la penetrazione. La variazione della nota olfattiva e/o dell’aspetto del prodotto sono dovuti esclusivamente alla sua naturalità e non ne alterano in alcun modo qualità e proprietà.",
@@ -3355,8 +3355,8 @@
       "name_it": "OLIO DA BARBA UOMO",
       "name_en": "MEN'S BEARD OIL",
       "url": "https://www.erboristica.com/uomo/olio-da-barba-uomo/",
-      "subtitle_it": "Olio da barba 100% naturale e vegano, ammorbidente e protettivo.",
-      "subtitle_en": "100% natural and vegan beard oil, softening and protective.",
+      "subtitle_it": "Olio da barba vegano, ammorbidente e protettivo.",
+      "subtitle_en": "Vegan beard oil, softening and protective.",
       "description_it": "Un mix di sette oli vegetali rafforza il bulbo e dona alla barba morbidezza e lucentezza. Olio di Jojoba, Olio di Camelina e Vitamina E nutrono pelle e peli.",
       "description_en": "A blend of seven plant oils strengthens the follicle and gives the beard softness and shine. Jojoba Oil, Camelina oil and Vitamin E nourish skin and hair.",
       "usage_it": "Applicare alcune gocce sulle mani e procedere con un leggero massaggio partendo dalla base del pelo fino alla punta.",

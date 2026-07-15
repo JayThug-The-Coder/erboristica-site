@@ -8,6 +8,29 @@
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
 
 [[headers]]
+  for = "*.json"
+  [headers.values]
+    Content-Type = "application/json; charset=utf-8"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Disattiva il post-processing di Netlify (bundle/minify HTML-CSS-JS,
+# compressione immagini): storicamente corrompe caratteri UTF-8 multi-byte
+# (accenti) nei file JS/HTML durante la minificazione. Il sito e' gia'
+# statico e non ne ha bisogno.
+[build.processing]
+  skip_processing = true
+[build.processing.css]
+  bundle = false
+  minify = false
+[build.processing.js]
+  bundle = false
+  minify = false
+[build.processing.html]
+  pretty_urls = true
+[build.processing.images]
+  compress = false
+
+[[headers]]
   for = "*.css"
   [headers.values]
     Content-Type = "text/css; charset=utf-8"
