@@ -178,6 +178,23 @@ img { display: block; max-width: 100%; }
 .sa-craft__title { font-family: var(--display); font-weight: 200; font-size: clamp(28px,3.8vw,50px); line-height: 1.08; }
 .sa-craft__title em { font-style: italic; color: var(--gold-deep); }
 .sa-craft__body { font-family: var(--serif); font-size: clamp(17px,1.5vw,20px); line-height: 1.7; opacity: .8; margin-top: 22px; max-width: 46ch; }
+.sa-craft__img { width: 100%; height: 100%; object-fit: cover; object-position: center bottom; display: block; }
+.sa-craft__btn {
+  display: inline-block; position: relative; margin-top: 30px; padding-bottom: 11px; width: fit-content;
+  font-family: var(--serif); font-style: italic; font-size: clamp(17px,1.5vw,20px);
+  color: var(--gold-deep); text-decoration: none;
+}
+.sa-craft__btn::after {
+  content: ''; position: absolute; left: 0; bottom: 6px; height: 1px; width: 0;
+  background: var(--gold-deep); transition: width .42s var(--ease);
+}
+.sa-craft__btn:hover::after { width: 100%; }
+.sa-craft__btn::before {
+  content: ''; position: absolute; right: -1px; bottom: 3.5px;
+  width: 6px; height: 6px; border-top: 1px solid var(--gold-deep); border-right: 1px solid var(--gold-deep);
+  transform: rotate(45deg); opacity: 0; transition: opacity .2s var(--ease) .34s;
+}
+.sa-craft__btn:hover::before { opacity: 1; }
 
 /* ── CTA (placeholder, in attesa di decisione) ────────────── */
 .sa-cta { padding: clamp(54px,7vw,90px) 0; background: #f4f2ec; color: var(--ink); text-align: center; }
@@ -386,6 +403,19 @@ img { display: block; max-width: 100%; }
         </div>
       </a>
     </div>
+  </div>
+</section>
+
+<!-- ── PURO · teaser verso la nuova linea di saponi bianchi compatti ─ -->
+<section class="sa-craft">
+  <div class="sa-craft__visual" data-reveal>
+    <img class="sa-craft__img" src="../immagini/saponi-puro/gruppo-3.webp" alt="Puro, saponi bianchi compatti Athena's" data-alt-it="Puro, saponi bianchi compatti Athena's" data-alt-en="Puro, Athena's compact white soaps" loading="lazy">
+  </div>
+  <div class="sa-craft__text" data-reveal style="--d:120ms">
+    <div class="sa-craft__eyebrow" data-it="Anche da Athena's" data-en="Also from Athena's">Anche da Athena's</div>
+    <h2 class="sa-craft__title" data-it="La materia, <em>senza decorazione.</em>" data-en="The material, <em>undecorated.</em>">La materia, <em>senza decorazione.</em></h2>
+    <p class="sa-craft__body" data-it="Accanto alle nostre opere d'arte scolpite, produciamo anche <strong>Puro</strong>: una linea di saponi pieni e compatti, dal peso importante e dal bianco assoluto, senza illustrazioni né colori. Base 100% vegetale, senza olio di palma né di cocco." data-en="Alongside our carved works of art, we also produce <strong>Puro</strong>: a line of solid, compact soaps with real weight and absolute white, with no illustrations or colour. 100% plant-based, with no palm oil and no coconut oil.">Accanto alle nostre opere d'arte scolpite, produciamo anche <strong>Puro</strong>: una linea di saponi pieni e compatti, dal peso importante e dal bianco assoluto, senza illustrazioni né colori. Base 100% vegetale, senza olio di palma né di cocco.</p>
+    <a class="sa-craft__btn" href="puro.html" data-it="Scopri la collezione Puro" data-en="Discover the Puro collection">Scopri la collezione Puro</a>
   </div>
 </section>
 
