@@ -864,8 +864,8 @@
       "url": "https://www.erboristica.com/cocco/spray-cocco-aloe-vera/",
       "subtitle_it": "Spray idratante multifunzione per viso, corpo e capelli, senza alcool.",
       "subtitle_en": "Multifunction hydrating spray for face, body and hair, alcohol-free.",
-      "description_it": "Idrata e rinfresca all’istante con un gesto pratico e leggero. Olio di Cocco, Aloe Vera e Glicerina donano idratazione immediata senza ungere.",
-      "description_en": "Hydrates and refreshes instantly with a practical, light gesture. Coconut Oil, Aloe Vera and Glycerin give immediate hydration without a greasy feel.",
+      "description_it": "Idrata e rinfresca all’istante con un gesto pratico e leggero. Acqua di Cocco, Aloe Vera e Glicerina donano idratazione immediata senza ungere.",
+      "description_en": "Hydrates and refreshes instantly with a practical, light gesture. Coconut Water, Aloe Vera and Glycerin give immediate hydration without a greasy feel.",
       "usage_it": "Vaporizzare uniformemente su viso, corpo e/o capelli e massaggiare fino a completo assorbimento. EVITARE IL CONTATTO CON GLI OCCHI. SOLO PER USO ESTERNO.",
       "usage_en": "Spray evenly over face, body and/or hair and massage until fully absorbed. AVOID CONTACT WITH THE EYES. FOR EXTERNAL USE ONLY.",
       "inci": "Aloe barbadensis leaf juice (*), Aqua [Water], PEG-40 hydrogenated castor oil, Cocos nucifera (Coconut) fruit/fruit juice extract (*), Tocopherol, Sodium gluconate, Parfum [Fragrance], Beta-sitosterol, Squalene, Benzoic acid, Dehydroacetic acid, Benzyl alcohol, Phenoxyethanol, Ethylhexylglycerin, Coumarin, Vanillin.",
@@ -887,7 +887,7 @@
         "detail_2": "immagini/cocco/spray-cocco-e-aloe-vera/det-02.webp"
       },
       "actives_main": [
-        "Olio di Cocco",
+        "Acqua di Cocco",
         "Aloe Vera",
         "Glicerina"
       ],
@@ -1222,7 +1222,7 @@
       },
       "cert_note": "Certificazioni allineate L'Erboristica (PARTE N docx, rilettura 01/05/2026)",
       "actives_main": [
-        "Capixyl® (Peptide biomimetico)",
+        "Capixyl® (Peptide Biomimetico)",
         "Capilia Longa (Curcuma Longa)",
         "Cellule Meristematiche di Vite Rossa",
         "Acido Ialuronico"
