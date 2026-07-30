@@ -1467,6 +1467,7 @@ if (certsEl2) {
 // ── ACTIVES LIBRARY ──────────────────────────────────────────────
 const ACTIVES_LIB = {
   'acido-ialuronico': { name: 'Acido Ialuronico', role: 'Idratante · Volumizzante', origine: 'Biotecnologico, di origine non animale. Identico all\'acido ialuronico endogeno.', meccanismo: 'Glicosaminoglicano igroscopico: lega fino a 1.000× il suo peso in acqua. A basso PM penetra negli strati profondi, ad alto PM forma un film idratante in superficie.', efficacia: 'Studio clinico (n=34): riduzione profondità rughe del 27% in 4 settimane. Aumento dell\'idratazione cutanea del 43%.', tags: ['Idratante','Filler naturale','Anti-rughe','Rimpolpante'] },
+  'acido-ialuronico-tremella': { name: 'Acido Ialuronico (da Tremella fuciformis)', role: 'Idratante · Effetto filmogeno', origine: 'Non è acido ialuronico vero: è un estratto del fungo Tremella fuciformis, ricco di polisaccaridi con potere idratante paragonabile all\'acido ialuronico.', meccanismo: 'I polisaccaridi ad alto peso molecolare trattengono acqua e formano un film idratante in superficie, con azione simile (non identica) a quella dell\'acido ialuronico.', efficacia: 'Idratazione immediata e prolungata, texture leggera. Alternativa vegetale all\'acido ialuronico tradizionale.', tags: ['Idratante','Vegetale','Alternativa vegana'] },
   'collagene-vegetale': { name: 'Collagene Vegetale Idrolizzato', role: 'Rassodante · Rimpolpante', origine: 'Derivato dall\'idrolisi di proteine vegetali (grano, avena, soia). Peptidi di basso PM capaci di penetrare la barriera cutanea.', meccanismo: 'I peptidi collagene-simili stimolano la sintesi di collagene endogeno tipo I e III nei fibroblasti. Effetto tensore meccanico immediato.', efficacia: 'Riduzione della lassità cutanea del 19% in 8 settimane (cutometria). Effetto lifting visibile in 30 minuti.', tags: ['Rassodante','Anti-età','Lifting','Stimolante'] },
   'collagene-marino': { name: 'Collagene Marino Idrolizzato', role: 'Rimpolpante · Ristrutturante', origine: 'Estratto da squame di pesce mediante idrolisi enzimatica. PM < 5 kDa per massima biodisponibilità cutanea.', meccanismo: 'Peptidi Gly-Pro-Hyp attivano i fibroblasti dermici aumentando la produzione di collagene e acido ialuronico endogeni.', efficacia: 'Meta-analisi di 11 RCT: riduzione rughe del 23% e aumento elasticità del 22% in 12 settimane.', tags: ['Rimpolpante','Anti-rughe','Ristrutturante','Bioidentico'] },
   'vitamina-c': { name: 'Vitamina C', role: 'Antiossidante · Schiarente', origine: 'Forma stabile della vitamina C idrolizzata dalle α-glucosidasi cutanee rilasciando acido ascorbico puro nel derma.', meccanismo: 'Inibitore competitivo della tirosinasi (IC50 ~0,1 mM). Cofattore per la sintesi di collagene. Potente donatore di elettroni contro i radicali liberi.', efficacia: 'Riduzione dell\'indice di melanina dell\'8% in 4 settimane (concentrazione 2%). Aumento collagene tipo I del 33% in vitro.', tags: ['Antiossidante','Schiarente','Anti-età','Luminosità'] },
@@ -1526,6 +1527,7 @@ const ACTIVES_LIB = {
 // restano invariati, i nomi descrittivi sono tradotti. Fallback a IT per i campi assenti.
 const ACTIVES_EN = {
   'acido-ialuronico': { name: 'Hyaluronic Acid', role: 'Moisturizing · Volumizing', origine: 'Biotechnological, of non-animal origin. Identical to endogenous hyaluronic acid.', meccanismo: 'Hygroscopic glycosaminoglycan: binds up to 1,000× its weight in water. Low MW penetrates the deeper layers, high MW forms a hydrating film on the surface.', efficacia: 'Clinical study (n=34): 27% reduction in wrinkle depth in 4 weeks. 43% increase in skin hydration.' },
+  'acido-ialuronico-tremella': { name: 'Hyaluronic Acid (from Tremella fuciformis)', role: 'Moisturizing · Film-forming', origine: 'Not real hyaluronic acid: an extract of the Tremella fuciformis mushroom, rich in polysaccharides with a moisturizing power comparable to hyaluronic acid.', meccanismo: 'High-molecular-weight polysaccharides retain water and form a hydrating surface film, with an action similar to (not identical to) hyaluronic acid.', efficacia: 'Immediate and long-lasting hydration, light texture. A plant-based alternative to traditional hyaluronic acid.' },
   'collagene-vegetale': { name: 'Hydrolysed Plant Collagen', role: 'Firming · Plumping', origine: 'Derived from the hydrolysis of plant proteins (wheat, oat, soy). Low-MW peptides able to penetrate the skin barrier.', meccanismo: 'The collagen-like peptides stimulate the synthesis of endogenous type I and III collagen in fibroblasts. Immediate mechanical tightening effect.', efficacia: '19% reduction in skin laxity in 8 weeks (cutometry). Visible lifting effect in 30 minutes.' },
   'collagene-marino': { name: 'Hydrolysed Marine Collagen', role: 'Plumping · Restructuring', origine: 'Extracted from fish scales by enzymatic hydrolysis. MW < 5 kDa for maximum skin bioavailability.', meccanismo: 'Gly-Pro-Hyp peptides activate dermal fibroblasts, increasing the production of endogenous collagen and hyaluronic acid.', efficacia: 'Meta-analysis of 11 RCTs: 23% wrinkle reduction and 22% increase in elasticity in 12 weeks.' },
   'vitamina-c': { name: 'Vitamin C', role: 'Antioxidant · Brightening', origine: 'Stable form of vitamin C hydrolysed by skin α-glucosidases, releasing pure ascorbic acid into the dermis.', meccanismo: 'Competitive tyrosinase inhibitor (IC50 ~0.1 mM). Cofactor for collagen synthesis. Powerful electron donor against free radicals.', efficacia: '8% reduction in melanin index in 4 weeks (2% concentration). 33% increase in type I collagen in vitro.' },
@@ -1601,6 +1603,14 @@ function fmtActiveName(name) {
 }
 
 const ING_KEY_MAP = {
+  // Chiave specifica: DEVE precedere quella generica "acido ialuronico" sotto.
+  // Alcuni prodotti (Siero Viso Acido Ialuronico, Trattamento Intensivo Argan)
+  // hanno nell'INCI SOLO Tremella fuciformis, non vero Sodium Hyaluronate:
+  // serve una scheda dedicata onesta, non quella dell'acido ialuronico
+  // biotecnologico reale (altrimenti il pop-up racconta un ingrediente che
+  // il prodotto non contiene).
+  'acido ialuronico (da tremella fuciformis)': 'acido-ialuronico-tremella',
+  'hyaluronic acid (from tremella fuciformis)': 'acido-ialuronico-tremella',
   'acido ialuronico': 'acido-ialuronico','hyaluronic acid': 'acido-ialuronico',
   'sodium hyaluronate': 'acido-ialuronico','hydrolyzed hyaluronic': 'acido-ialuronico','sodium acetylated hyaluronate': 'acido-ialuronico',
   // Chiave piu' specifica del generico "collagene vegetale" qui sotto: deve
@@ -1676,7 +1686,12 @@ const ING_KEY_MAP = {
   'zinco pca': 'zinco-pca','zinc pca': 'zinco-pca','pyrrolidone carboxylate': 'zinco-pca',
   'acido salicilico': 'acido-salicilico','salicylic acid': 'acido-salicilico','sodium salicylate': 'acido-salicilico','salix alba': 'acido-salicilico',
   'olio di girasole': 'micelle-acqua-girasole','sunflower oil': 'micelle-acqua-girasole','omega 3-6': 'micelle-acqua-girasole',
-  'tremella': 'acido-ialuronico','tremella fuciformis': 'acido-ialuronico',
+  // NON verso 'acido-ialuronico' (quello vero): Tremella fuciformis e' un
+  // fungo, non acido ialuronico biotecnologico. Deve puntare alla scheda
+  // dedicata onesta, altrimenti l'integrazione automatica dall'INCI
+  // aggiunge un secondo pill "Acido Ialuronico" col racconto sbagliato
+  // accanto a quello curato corretto.
+  'tremella': 'acido-ialuronico-tremella','tremella fuciformis': 'acido-ialuronico-tremella',
   'natto gum': 'natto-gum','acido poliglutammico': 'natto-gum','polyglutamic acid': 'natto-gum','polyglutamic': 'natto-gum','sodium polyglutamate': 'natto-gum',
 };
 

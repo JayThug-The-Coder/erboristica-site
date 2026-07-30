@@ -464,8 +464,8 @@ window.ATH_DATA_JSON = {
       "url": "https://www.erboristica.com/antieta-globale/siero-viso-acido-ialuronico/",
       "subtitle_it": "Siero viso antietà all’Acido Ialuronico, per tutti i tipi di pelle.",
       "subtitle_en": "Anti-ageing Hyaluronic Acid face serum, for all skin types.",
-      "description_it": "Regala freschezza e vitalità in profondità in qualsiasi momento della giornata. L’Acido Ialuronico a basso e alto peso molecolare idrata i tessuti e uniforma la pelle.",
-      "description_en": "Delivers deep freshness and vitality at any time of day. Low and high molecular weight Hyaluronic Acid hydrates the tissues and evens the skin tone.",
+      "description_it": "Regala freschezza e vitalità in profondità in qualsiasi momento della giornata. L’Acido Ialuronico idrata i tessuti e uniforma la pelle.",
+      "description_en": "Delivers deep freshness and vitality at any time of day. Hyaluronic Acid hydrates the tissues and evens the skin tone.",
       "usage_it": "Perfetto da solo in ogni momento della giornata su viso e dècolleté. La miscelazione di alcune gocce ai Trattamenti viso Antietà Globale ne potenzia l’effetto.",
       "usage_en": "Perfect on its own at any time of day on face and décolleté. Mixing a few drops into the Global Anti-Ageing face treatments boosts their effect.",
       "inci": "Aqua [Water], Glycerin, Tremella fuciformis sporocarp extract, Sodium gluconate, Benzoic acid, Dehydroacetic acid, Ethylhexylglycerin, Phenoxyethanol.",
@@ -486,8 +486,7 @@ window.ATH_DATA_JSON = {
         "detail_2": "immagini/antieta/siero-viso-acido-ialuronico/det-02.webp"
       },
       "actives_main": [
-        "Acido Ialuronico LMW (basso peso molecolare)",
-        "Acido Ialuronico HMW (alto peso molecolare)"
+        "Acido Ialuronico (da Tremella fuciformis)"
       ]
     },
     {
@@ -2655,8 +2654,8 @@ window.ATH_DATA_JSON = {
       "url": "https://www.erboristica.com/olio-di-argan/trattamento-intensivo-riparatore-viso-argan/",
       "subtitle_it": "Crema viso anti-age all’Olio di Argan e Acido Ialuronico, contro i segni del tempo.",
       "subtitle_en": "Anti-age Argan Oil and Hyaluronic Acid face cream, against the signs of time.",
-      "description_it": "Leviga i tratti, ridensifica i tessuti e ridisegna l’ovale, contrastando disidratazione e perdita di tono. Olio di Argan e Acido Ialuronico rimpolpano e illuminano.",
-      "description_en": "Smooths the features, redensifies the tissues and redefines the contours, countering dehydration and loss of tone. Argan Oil and Hyaluronic Acid plump and brighten.",
+      "description_it": "Leviga i tratti, ridensifica i tessuti e ridisegna l’ovale, contrastando disidratazione e perdita di tono. Olio di Argan e Acido Ialuronico (da Tremella fuciformis) rimpolpano e illuminano.",
+      "description_en": "Smooths the features, redensifies the tissues and redefines the contours, countering dehydration and loss of tone. Argan Oil and Hyaluronic Acid (from Tremella fuciformis) plump and brighten.",
       "usage_it": "Mattina e sera, su viso e collo, massaggiare delicatamente la pelle perfettamente detersa.",
       "usage_en": "Morning and evening, on face and neck, gently massage the perfectly cleansed skin.",
       "inci": "Aqua [Water], Ethylhexyl palmitate, Glycerin, Betaine, Butyrospermum parkii (Shea) butter, Caprylic/capric triglyceride, Dicaprylyl carbonate, Cetyl alcohol, Simmondsia chinensis (Jojoba) seed oil (*), Cetearyl alcohol, Polyglyceryl-3 stearate, Sodium stearoyl lactylate, Argania spinosa kernel oil (*), Tremella fuciformis sporocarp extract, Ginkgo biloba leaf extract (*), Camelina sativa seed oil, Hydrolyzed olive fruit (*), Tocopherol, Carrageenan, Fucus vesiculosus extract,Tocopheryl acetate, Panthenol, Hydrolyzed rice protein, Sodium PCA, Urea, Zinc PCA, Hydrolyzed wheat protein, Allantoin, Lysine, Lactic acid, Sorbitol, Beta-sitosterol, Squalene, Vegetable (Olus) oil, Zinc ricinoleate, Xanthan gum, Parfum [Fragrance], Sodium gluconate, Benzoic acid, Dehydroacetic acid, Linalool, Hexyl cinnamal, Benzyl salicylate, Hexamethylindanopyran, Tetramethyl acetyloctahydronaphthalenes, Linalyl acetate, Pogostemon cablin oil, Acetyl cedrene, Phenoxyethanol, Coumarin, Citronellol, Ethylhexylglycerin.",
@@ -2679,7 +2678,7 @@ window.ATH_DATA_JSON = {
       },
       "actives_main": [
         "Olio di Argan",
-        "Acido Ialuronico"
+        "Acido Ialuronico (da Tremella fuciformis)"
       ],
       "areas": [
         "viso"
