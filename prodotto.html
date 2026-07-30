@@ -1382,7 +1382,11 @@ function revealHeroFallback() {
   const HERO_OBJ_POS = { 'inn-kit': 'center 38%' };
   const heroPos = HERO_OBJ_POS[product.id] || HERO_OBJ_POS_LINE[lineId] || 'center 18%';
   place(document.querySelector('.pd-hero__visual'), imgs.hero, loc.name, ['.pd-hero__photo-ph', '#pdMock'], 'cover', heroPos, true, revealHeroFallback, true);
-  place(document.getElementById('pdFig1'), imgs.detail_1, loc.name, ['.pd-photo-ph']);
+  // Override per-prodotto della posizione del crop su detail_1 (default 'center'):
+  // la piramide olfattiva dell'Eau de Toilette Uomo ha il titolo vicino al
+  // bordo superiore, il contenitore 4:5 taglia piu' stretto dell'immagine 3:4.
+  const DETAIL1_OBJ_POS = { 'uomo-eau-de-toilette-uomo': 'center 30%' };
+  place(document.getElementById('pdFig1'), imgs.detail_1, loc.name, ['.pd-photo-ph'], null, DETAIL1_OBJ_POS[product.id] || null);
 
   // Foto ambient (det-02): se manca O non si carica (file inesistente) -> sezione "Cosa non c'è"
   // a tutta larghezza, senza placeholder. Vale per tutte le linee L'Erboristica + Everby + Uomo
