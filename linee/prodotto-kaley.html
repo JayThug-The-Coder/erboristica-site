@@ -22,7 +22,7 @@
 <link rel="preload" href="../assets/fonts/fraunces-300-italic-latin.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="preload" href="../assets/fonts/cormorant-garamond-400-italic-latin.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="stylesheet" href="../assets/fonts.css"/>
-<link rel="stylesheet" href="../assets/tokens.css"/>
+<link rel="stylesheet" href="../assets/tokens.css?v=2"/>
 <link rel="stylesheet" href="../assets/cert-masks.css"/>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -558,9 +558,9 @@ body { background: var(--pg, #0e0a06); color: #e8d8c0; font-family: var(--sans);
 
 <div id="footer"></div>
 
-<script src="../assets/vendor/lenis.min.js"></script><script src="../assets/data.js"></script>
-<script src="../assets/search-data.js" defer></script>
-<script src="../assets/app.js?v=14"></script>
+<script src="../assets/vendor/lenis.min.js"></script><script src="../assets/data.js?v=8"></script>
+<script src="../assets/search-data.js?v=2" defer></script>
+<script src="../assets/app.js?v=15"></script>
 <script>
 initAthenas('brands');
 
@@ -751,6 +751,7 @@ const id = params.get('id') || 'crystal-rouge';
 const data = KALEY_DATA[id]; // base IT (nome/INCI/foto lang-independent); testi tradotti in paintKaley()
 
 if (!data) {
+  ATH.setSeo({ noindex: true });
   document.body.innerHTML = '<div style="padding:120px 40px;text-align:center;opacity:.4">Fragranza non trovata.</div>';
   throw new Error('not found');
 }
@@ -923,7 +924,13 @@ toggle.addEventListener('click', () => {
 const obs = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); } }); }, { threshold: 0.08 });
 document.querySelectorAll('[data-reveal]').forEach(el => obs.observe(el));
 
-document.title = `${data.name} · Kaley · Athena's`;
+ATH.setSeo({
+  title: `${data.name} · Kaley · Athena's`,
+  description: `${data.name}, profumo roll-on Kaley in olio concentrato, senza alcol, 10 ml. ${data.desc}`,
+  path: 'linee/prodotto-kaley.html?id=' + encodeURIComponent(id),
+  image: `immagini/kaley/${slug}/pack-gradiente.webp`,
+  product: { name: data.name, brand: 'Kaley', description: data.desc, category: data.family }
+});
 </script>
 </body>
 </html>

@@ -6,6 +6,30 @@
 
 ---
 
+# Sessione 8 Ottobre 2026 — Audit completo del sito live + fix SEO schede, CityProof 365, versioning asset
+
+**Stato: tutto SOLO LOCALE, nessun commit/push. Verificato in preview :8088 (110 URL `?id=` testati via iframe: title, description, canonical, schema, nessun noindex errato). Il confronto file-per-file con www.athenas.it del 8 ott mostrava il repo identico al live (tranne `contatti.html`), quindi la nota "15 lug NON ancora pushato" qui sotto è superata.**
+
+**Bug/lacune trovati nell'audit e risolti:**
+- **Schede prodotto invisibili ai motori**: tutte le pagine `prodotto*.html?id=` / `linea.html?id=` avevano title generico, nessuna description/canonical (Kaley/Erboristica) o canonical fisso SENZA `?id=` (Sphea, Saponi, linea: tutte le schede si dichiaravano duplicato dello stesso URL). Fix: nuova funzione condivisa **`ATH.setSeo()`** in `assets/app.js` (title, description <=160, canonical con id, og/twitter, schema `Product` senza prezzo, `noindex` per id inesistenti). Chiamata da `prodotto.html`, `linee/prodotto-sphea.html`, `linee/prodotto-kaley.html`, `linee/prodotto-saponi.html`, `linee/linea.html`. Sempre in italiano (lingua dei crawler); in EN cambia solo il title.
+- **Sitemap**: aggiunte 110 URL (70 schede Erboristica + 11 Everby con CityProof + 5 Sphea + 7 Kaley + 7 Saponi + 10 linee; totale sitemap 122). `puro.html` NON aggiunta (contenuto non finale).
+- **CityProof 365 mancava** dal dataset (la routine Everby la nominava senza scheda). Aggiunta in `assets/data.json` + `assets/data-inline.js` (sku 7746, 40 ml, INCI da everby.it, testi dal brochure `_docs/everby_text.txt`, **nessun claim quantitativo nuovo**, `natural_pct` 93 non mostrato a schermo), foto in `immagini/everby/cityproof-365-crema-viso-idratante-anti-inquinamento/` (hero ritagliato 2:3 da foto everby.it, det-01 = tubo+astuccio), card in `linee/everby.html`, contatore Everby 10->11 in `linee.html`. **Senza campo `url`: il bottone "Acquista" non compare** (gli altri Everby puntano a erboristica.com; decidere se mettere everby.it/products/cityproof-365).
+- **Cache 1 anno su JS/CSS/data.json** (l'host ignora l'Expires di .htaccess): senza `?v=` i visitatori ricorrenti non vedevano gli aggiornamenti. Ora: `app.js?v=15`, `data.js?v=8`, `data-inline.js?v=8`, `datastore.js?v=10`, `search-data.js?v=2`, `tokens.css?v=2`, e `data.json?v=8` nei due fetch (`datastore.js`, `search-data.js`). **Regola: quando cambi uno di questi file, bump del suo numero in TUTTE le pagine** (script Python con regex `src="(../)?assets/NOME.js(?v=N)?"`; `data.json` va bumpato anche dentro `datastore.js` e `search-data.js`).
+- **Testi**: `terzisti.html` risposta "24 ore"->"48 ore lavorative" (IT+EN, allineato a contatti); `sostenibilita.html` "Da 55 anni"->"Da oltre cinquantacinque anni" (IT+EN); `index.html` refuso "delokalizziamo"->"delocalizziamo".
+- **Accessibilità**: contrasto link "Indietro" (opacity .55->.72) e pulsante lingua inattivo (.5->.68) in `tokens.css`; menu mobile con `aria-hidden` ma elementi focalizzabili -> aggiunto `inert` (open/close) in `app.js`.
+- **Peso home**: 6 JPG `immagini/azienda/` convertiti in WebP (-520 KB); i JPG restano su disco ma non sono più referenziati.
+- **Altro**: `robots.txt` tolto `Disallow: /assets/data.json` (inutile e rischioso per il rendering); `.htaccess` redirect 301 `www.athenas.it` -> `athenas.it` (canonical e sitemap puntano all'apex); aggiunto `favicon.ico` (il browser lo richiedeva e dava 404).
+
+**Decisioni prese dall'utente (8 ott):** fix SEO "leggero via JS" (non pagine statiche generate; da rivalutare solo se si vuole visibilità sui crawler AI che non eseguono JS); **naturalità resta "95%+"** su athenas.it (everby.it dice minimo 93%: da allineare quando l'azienda conferma); **claim sugli attivi invariati** (+33% fermezza, +87% crescita capello, +100% labbra: dati del fornitore dell'ingrediente, rischio regolatorio accettato); foto team in home: l'utente ha risolto, il segnaposto non si vede.
+
+**Ancora aperto (non toccato di proposito):** form contatti (`BREVO_ENDPOINT='/api/contact'` risponde 404, oggi cade nel fallback `mailto:`) e `contatti.html` ha una modifica non committata (etichette campi extra) -> da chiudere insieme nel push finale; `puro.html` non in sitemap/ricerca; 404 `det-02.webp` noti (fallback gestito); apex `athenas.it` aveva risposto 304 vuoto in audit (intermittente, ora 200: se si ripresenta, svuotare la cache dell'hosting).
+
+**Se voglio cambiare X -> Y:**
+- SEO di una pagina dinamica (title/description/canonical/schema) -> `ATH.setSeo()` in `assets/app.js` + la chiamata nel template (`seoMeta()` in `prodotto.html`; blocco `ATH.setSeo` in fondo/ramo "else" degli altri 4).
+- Aggiungere una scheda Everby/Erboristica -> record in `assets/data.json` **e** `assets/data-inline.js` (stesso JSON, `window.ATH_DATA_JSON = ...;`), poi URL in `sitemap.xml`, bump `data-inline.js`/`data.json`.
+
+---
+
 # 🛠️ Sessione 15 Luglio 2026 — Fix bug encoding Netlify + round correzioni cliente
 
 **Verificato in preview locale :8088, 0 errori console. NON ancora pushato (in attesa di conferma). Vedi `HANDOFF.md` (blocco "SESSIONE 15 lug 2026") per il dettaglio completo.**

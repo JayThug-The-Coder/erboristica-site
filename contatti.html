@@ -13,7 +13,7 @@
 <link rel="preload" href="assets/fonts/cormorant-garamond-400-italic-latin.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="preload" href="assets/fonts/fraunces-200-italic-latin.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="stylesheet" href="assets/fonts.css"/>
-<link rel="stylesheet" href="assets/tokens.css"/>
+<link rel="stylesheet" href="assets/tokens.css?v=2"/>
 
 <style>
 
@@ -494,7 +494,7 @@
 <!-- DOVE TROVARCI + DOVE SIAMO -->
 <section class="loc-banner">
   <div class="loc-banner__bg">
-    <img src="immagini/azienda/stabilimento-esterno.jpg" alt="La sede Athena's a Pianoro, vista frontale dell'edificio con il logo e l'insegna L'Erboristica" data-alt-it="La sede Athena's a Pianoro, vista frontale dell'edificio con il logo e l'insegna L'Erboristica" data-alt-en="The Athena's headquarters in Pianoro, front view of the building with the L'Erboristica logo and sign" class="loc-banner__photo" loading="lazy">
+    <img src="immagini/azienda/stabilimento-esterno.webp" alt="La sede Athena's a Pianoro, vista frontale dell'edificio con il logo e l'insegna L'Erboristica" data-alt-it="La sede Athena's a Pianoro, vista frontale dell'edificio con il logo e l'insegna L'Erboristica" data-alt-en="The Athena's headquarters in Pianoro, front view of the building with the L'Erboristica logo and sign" class="loc-banner__photo" loading="lazy">
   </div>
   <div class="loc-banner__overlay"></div>
   <div class="loc-banner__inner container">
@@ -781,9 +781,9 @@
   </div>
 </section>
 
-<script src="assets/vendor/lenis.min.js" defer></script><script src="assets/data.js"></script>
-<script src="assets/search-data.js" defer></script>
-<script src="assets/app.js?v=14"></script>
+<script src="assets/vendor/lenis.min.js" defer></script><script src="assets/data.js?v=8"></script>
+<script src="assets/search-data.js?v=2" defer></script>
+<script src="assets/app.js?v=15"></script>
 <script>
 initAthenas('contact');
 document.querySelector('.topbar').classList.add('topbar--light');
@@ -884,7 +884,9 @@ document.getElementById('contactForm').addEventListener('submit', async function
   if (activeFs) {
     activeFs.querySelectorAll('input, textarea').forEach(inp => {
       if (!inp.value.trim()) return;
-      extras[inp.name] = inp.value.trim();
+      const lbl = activeFs.querySelector('label[for="' + inp.id + '"]');
+      const key = lbl ? lbl.textContent.trim() : inp.name;
+      extras[key] = inp.value.trim();
     });
   }
 

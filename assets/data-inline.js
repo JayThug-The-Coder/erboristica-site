@@ -1311,6 +1311,45 @@ window.ATH_DATA_JSON = {
       ]
     },
     {
+      "id": "everby-cityproof-365-crema-viso-idratante-anti-inquinamento",
+      "sku": "7746",
+      "format": "40 ml",
+      "line": "everby",
+      "brand": "everby",
+      "name_it": "CITYPROOF 365 CREMA VISO IDRATANTE ANTI-INQUINAMENTO",
+      "name_en": "CITYPROOF 365 MOISTURIZING ANTI-POLLUTION DAILY FACE CREAM",
+      "short_it": "CityProof 365",
+      "short_en": "CityProof 365",
+      "subtitle_it": "Crema viso SPF 50 UVA UVB anti-inquinamento, zero white-cast.",
+      "subtitle_en": "SPF 50 UVA UVB anti-pollution face cream, zero white-cast.",
+      "description_it": "Una crema viso SPF 50 ad ampio spettro che unisce filtri micro-incapsulati di nuova generazione, fotostabili, leggeri e ben tollerati, con un complesso attivo antinquinamento a base di Ectoina e Niacinamide ad azione idratante e uniformante, per una pelle protetta tutto l'anno. Texture ultra-leggera, non unge e non appiccica. Non lascia residui bianchi.",
+      "description_en": "SPF 50 broad-spectrum face cream that combines new-generation, photostable, lightweight and well-tolerated micro-encapsulated UV filters with an active anti-pollution complex based on Ectoin and Niacinamide, for skin protected all year round. Ultra-lightweight, non-greasy and non-sticky texture. Does not leave white residue.",
+      "usage_it": "Applicare quotidianamente su viso e collo. Ottima base per il make-up.",
+      "usage_en": "Apply daily to face and neck. Excellent make-up base.",
+      "inci": "Aqua [Water], Aloe barbadensis leaf juice (*), Glycerin, C15-19 alkane, Glyceryl stearate, Titanium dioxide, Tripelargonin, Niacinamide, C12-15 alkyl benzoate, Ectoin, C9-12 alkane, Potassium cetyl phosphate, Beta-sitosterol, Polyhydroxystearic acid, Tocopherol, Squalene, Lecithin, Propanediol, Zinc stearate, Diethylamino hydroxybenzoyl hexyl benzoate, Ethylhexyl triazone, Silica, Bis-ethylhexyloxyphenol methoxyphenyl triazine, Sodium gluconate, Parfum [Fragrance], Ethylhexylglycerin, Vanillin, Coumarin, Hydroxyacetophenone, Polyacrylate crosspolymer-6, Benzyl salicylate, Terpineol, Phenoxyethanol. (*) da Agricoltura Biologica / from Organic Farming",
+      "natural_pct": 93,
+      "certifications": [
+        "zero-petrochem",
+        "plant-based",
+        "vegan",
+        "dermatologico",
+        "energia-solare",
+        "impatto-zero",
+        "test-metalli",
+        "opimm",
+        "made-in-italy"
+      ],
+      "images": {
+        "hero": "immagini/everby/cityproof-365-crema-viso-idratante-anti-inquinamento/hero.webp",
+        "detail_1": "immagini/everby/cityproof-365-crema-viso-idratante-anti-inquinamento/det-01.webp"
+      },
+      "cert_note": "Certificazioni allineate L'Erboristica (PARTE N docx, rilettura 01/05/2026)",
+      "actives_main": [
+        "Ectoina",
+        "Niacinamide"
+      ]
+    },
+    {
       "id": "estratti-bagno-doccia-tè-verde",
       "sku": "7402",
       "format": "400 ml",

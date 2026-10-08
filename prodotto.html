@@ -22,7 +22,7 @@
 <link rel="preload" href="assets/fonts/fraunces-200-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="preload" href="assets/fonts/fraunces-300-normal-latin.woff2" as="font" type="font/woff2" crossorigin/>
   <link rel="stylesheet" href="assets/fonts.css"/>
-  <link rel="stylesheet" href="assets/tokens.css"/>
+  <link rel="stylesheet" href="assets/tokens.css?v=2"/>
   <link rel="stylesheet" href="assets/cert-masks.css"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -1154,11 +1154,11 @@
 
 <div id="footer"></div>
 
-<script src="assets/vendor/lenis.min.js"></script><script src="assets/data.js?v=7"></script>
-<script src="assets/data-inline.js?v=7"></script>
-<script src="assets/datastore.js?v=9"></script>
-<script src="assets/search-data.js" defer></script>
-<script src="assets/app.js?v=14"></script>
+<script src="assets/vendor/lenis.min.js"></script><script src="assets/data.js?v=8"></script>
+<script src="assets/data-inline.js?v=8"></script>
+<script src="assets/datastore.js?v=10"></script>
+<script src="assets/search-data.js?v=2" defer></script>
+<script src="assets/app.js?v=15"></script>
 <script>
 initAthenas('prodotto');
 const _topbar = document.querySelector('.topbar');
@@ -1169,6 +1169,7 @@ const params    = new URLSearchParams(location.search);
 const productId = params.get('id');
 
 if (!productId) {
+  ATH.setSeo({ noindex: true });
   document.body.innerHTML = '<div style="padding:120px 40px;text-align:center;font-family:sans-serif;opacity:.5">Prodotto non trovato.</div>';
   throw new Error('no product id');
 }
@@ -1216,6 +1217,7 @@ if (!product) {
   ATH_DATA.ready(() => {
     const p = ATH_DATA.product(productId);
     if (!p) {
+      ATH.setSeo({ noindex: true });
       document.body.innerHTML = '<div style="padding:120px 40px;text-align:center;font-family:sans-serif;opacity:.5">Prodotto non trovato.</div>';
       return;
     }
@@ -2178,8 +2180,33 @@ function renderLocalized() {
   renderActives();
   renderRelated();
 
-  document.title = `${loc.name} · Athena's`;
+  document.title = lang === 'en' || !ATH.seoTitle ? `${loc.name} · Athena's` : ATH.seoTitle;
 }
+(function seoMeta() {
+  const it = product.it;
+  const rawName = it.name || '';
+  const small = /^(di|da|e|ed|al|alla|allo|all|del|della|dello|dell|con|in|per|a|il|la|le|lo|un|una)$/;
+  const niceCase = s => s === s.toUpperCase()
+    ? s.toLowerCase().replace(/(^|[\s\-–/])([a-zà-ÿ]+)/g, (m, sep, w, off) => sep + (off > 0 && small.test(w) ? w : w[0].toUpperCase() + w.slice(1)))
+    : s;
+  let name = niceCase(rawName);
+  const brand = product.brand === 'everby' ? 'Everby' : "L'Erboristica";
+  if (name.length + brand.length + 15 > 70 && it.short) name = niceCase(it.short);
+  const sentences = (it.desc || it.sub || '').split(/\.(?:\s|$)/).map(s => s.trim()).filter(Boolean);
+  let desc = '';
+  for (const s of sentences) {
+    if ((desc + s).length > 150) break;
+    desc += (desc ? '. ' : '') + s;
+  }
+  desc = (desc || sentences[0] || '').slice(0, 155).replace(/\.?$/, '.');
+  ATH.setSeo({
+    title: `${name} · ${brand} · Athena's`,
+    description: desc,
+    path: 'prodotto.html?id=' + encodeURIComponent(productId),
+    image: product.images && product.images.hero,
+    product: { name, brand, description: desc, sku: product.code }
+  });
+})();
 renderLocalized();
 document.addEventListener('lang-change', renderLocalized);
 

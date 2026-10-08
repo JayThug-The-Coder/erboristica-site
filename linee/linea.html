@@ -26,7 +26,7 @@
 }catch(e){}})();
 </script>
 <link rel="stylesheet" href="../assets/fonts.css"/>
-<link rel="stylesheet" href="../assets/tokens.css"/>
+<link rel="stylesheet" href="../assets/tokens.css?v=2"/>
 
 <style>
 
@@ -837,11 +837,11 @@ body.theme-line-antieta {
   </div>
 </div>
 
-<script src="../assets/vendor/lenis.min.js" defer></script><script src="../assets/data.js"></script>
-<script src="../assets/data-inline.js"></script>
-<script src="../assets/datastore.js?v=9"></script>
-<script src="../assets/search-data.js" defer></script>
-<script src="../assets/app.js?v=14"></script>
+<script src="../assets/vendor/lenis.min.js" defer></script><script src="../assets/data.js?v=8"></script>
+<script src="../assets/data-inline.js?v=8"></script>
+<script src="../assets/datastore.js?v=10"></script>
+<script src="../assets/search-data.js?v=2" defer></script>
+<script src="../assets/app.js?v=15"></script>
 <script>
   /* Adapter master JSON → formato compatibile data.js (PRODUCTS legacy) */
   function adaptJsonProductForLinea(p) {
@@ -901,11 +901,17 @@ body.theme-line-antieta {
   const line = LINES.find(l => l.id === lineId && l.brand === 'erboristica');
 
   if (!line) {
+    ATH.setSeo({ noindex: true });
     document.title = 'Linea non trovata';
     document.getElementById('lineHero').innerHTML = '<div style="color:#fff;padding:200px 40px;text-align:center;"><h1 style="font-family:var(--display);font-size:60px;">Linea non trovata</h1><p><a href="erboristica.html" style="color:var(--gold);">← Torna a L\'Erboristica</a></p></div>';
   } else {
     // Aggiorna titolo pagina
-    document.title = line.name + ' · L\'Erboristica · Athena\'s';
+    ATH.setSeo({
+      title: line.name + ' · L\'Erboristica · Athena\'s',
+      description: line.it.tagline + '. ' + line.it.benefits,
+      path: 'linee/linea.html?id=' + encodeURIComponent(lineId),
+      image: 'immagini/' + (({ innovation: 'pearls' })[lineId] || lineId) + '/hero.jpg'
+    });
 
     // Palette BG hero
     const palettes = {

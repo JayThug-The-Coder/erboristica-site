@@ -16,7 +16,7 @@
   const DATA_URL = (() => {
     // Permette di usare datastore.js anche da pagine in /linee/
     const inSubfolder = location.pathname.includes('/linee/');
-    return inSubfolder ? '../assets/data.json' : 'assets/data.json';
+    return (inSubfolder ? '../assets/data.json' : 'assets/data.json') + '?v=8';
   })();
 
   let _data = null;

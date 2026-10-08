@@ -466,6 +466,59 @@
       document.querySelectorAll('.lang-switch button').forEach(b => {
         b.classList.toggle('active', b.dataset.lang === this.lang);
       });
+    },
+    // SEO per pagine dinamiche (?id=): i crawler leggono title/meta/canonical/schema dal DOM renderizzato.
+    // Sempre in italiano (lingua di default dei crawler). noindex per id inesistenti.
+    setSeo(o) {
+      const head = document.head;
+      const upsert = (sel, tag, attrs) => {
+        let el = head.querySelector(sel);
+        if (!el) { el = document.createElement(tag); head.appendChild(el); }
+        Object.keys(attrs).forEach(k => el.setAttribute(k, attrs[k]));
+      };
+      if (o.noindex) {
+        upsert('meta[name="robots"]', 'meta', { name: 'robots', content: 'noindex, follow' });
+        return;
+      }
+      const base = 'https://athenas.it/';
+      const url = base + o.path;
+      const img = o.image ? new URL(o.image, base).href : '';
+      if (o.title) {
+        this.seoTitle = o.title;
+        document.title = o.title;
+        upsert('meta[property="og:title"]', 'meta', { property: 'og:title', content: o.title });
+        upsert('meta[name="twitter:title"]', 'meta', { name: 'twitter:title', content: o.title });
+      }
+      if (o.description) {
+        const d = o.description.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+        const desc = d.length > 160 ? d.slice(0, 157).replace(/\s+\S*$/, '') + '…' : d;
+        upsert('meta[name="description"]', 'meta', { name: 'description', content: desc });
+        upsert('meta[property="og:description"]', 'meta', { property: 'og:description', content: desc });
+        upsert('meta[name="twitter:description"]', 'meta', { name: 'twitter:description', content: desc });
+      }
+      upsert('link[rel="canonical"]', 'link', { rel: 'canonical', href: url });
+      upsert('meta[property="og:url"]', 'meta', { property: 'og:url', content: url });
+      if (img) {
+        upsert('meta[property="og:image"]', 'meta', { property: 'og:image', content: img });
+        upsert('meta[name="twitter:image"]', 'meta', { name: 'twitter:image', content: img });
+      }
+      if (o.product) {
+        const p = o.product;
+        const ld = {
+          '@context': 'https://schema.org',
+          '@type': 'Product',
+          name: p.name,
+          url,
+          brand: { '@type': 'Brand', name: p.brand || "Athena's" },
+          manufacturer: { '@type': 'Organization', name: "Athena's s.r.l.", url: 'https://athenas.it/' }
+        };
+        if (p.description) ld.description = p.description;
+        if (img) ld.image = img;
+        if (p.sku) ld.sku = String(p.sku);
+        if (p.category) ld.category = p.category;
+        upsert('script[data-seo="product"]', 'script', { type: 'application/ld+json', 'data-seo': 'product' });
+        head.querySelector('script[data-seo="product"]').textContent = JSON.stringify(ld);
+      }
     }
   };
 
@@ -605,6 +658,7 @@
     drawer.id = 'mobileMenu';
     drawer.className = 'mobile-menu';
     drawer.setAttribute('aria-hidden', 'true');
+    drawer.inert = true;
     drawer.setAttribute('role', 'dialog');
     drawer.setAttribute('aria-modal', 'true');
     drawer.setAttribute('aria-label', 'Menu');
@@ -622,6 +676,7 @@
       el.classList.remove('topbar--menu-open');
       drawer.classList.remove('open');
       drawer.setAttribute('aria-hidden', 'true');
+      drawer.inert = true;
       burger.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
       burger.focus();
@@ -630,6 +685,7 @@
       el.classList.add('topbar--menu-open');
       drawer.classList.add('open');
       drawer.setAttribute('aria-hidden', 'false');
+      drawer.inert = false;
       burger.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
       const firstLink = drawer.querySelector('a, button');
