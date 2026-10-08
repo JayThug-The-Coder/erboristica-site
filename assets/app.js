@@ -305,9 +305,9 @@
   window.gaEvent = gaEvent;
 
   document.addEventListener('DOMContentLoaded', function(){
-    // 1. Click "Acquista su erboristica.com" — conversion tracking B2C
+    // 1. Click "Acquista su erboristica.com / everby.it" — conversion tracking B2C
     document.body.addEventListener('click', function(e){
-      const link = e.target.closest('a[href*="erboristica.com"]');
+      const link = e.target.closest('a[href*="erboristica.com"], a[href*="everby.it"]');
       if (!link) return;
       const card = link.closest('.ev-card, .kf-frag, .mini-card, .tl-slide');
       const productName = (card && (card.querySelector('h3, .mini-card__name, .kf-frag__name') || {}).textContent || '').trim();

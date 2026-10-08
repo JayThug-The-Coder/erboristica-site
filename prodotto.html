@@ -1155,10 +1155,10 @@
 <div id="footer"></div>
 
 <script src="assets/vendor/lenis.min.js"></script><script src="assets/data.js?v=8"></script>
-<script src="assets/data-inline.js?v=8"></script>
-<script src="assets/datastore.js?v=10"></script>
-<script src="assets/search-data.js?v=2" defer></script>
-<script src="assets/app.js?v=15"></script>
+<script src="assets/data-inline.js?v=9"></script>
+<script src="assets/datastore.js?v=11"></script>
+<script src="assets/search-data.js?v=3" defer></script>
+<script src="assets/app.js?v=16"></script>
 <script>
 initAthenas('prodotto');
 const _topbar = document.querySelector('.topbar');
@@ -1181,6 +1181,7 @@ function adaptJsonProduct(p) {
     line: p.line,
     brand: p.brand,
     code: p.sku,
+    url: p.brand === 'everby' ? p.url : undefined,
     size: p.format || p.size || '',
     category: p.subtitle_it ? '' : '',
     inci: p.inci,
@@ -1437,6 +1438,13 @@ const ctaEl = document.getElementById('pdCta');
 if (ctaEl) {
   if (product.url) {
     ctaEl.href = product.url;
+    const shop = /everby\.it/.test(product.url) ? 'everby.it' : 'erboristica.com';
+    const lbl = ctaEl.querySelector('span');
+    if (lbl) {
+      lbl.setAttribute('data-it', 'Acquista su ' + shop);
+      lbl.setAttribute('data-en', 'Buy on ' + shop);
+      lbl.textContent = (document.documentElement.lang === 'en' ? 'Buy on ' : 'Acquista su ') + shop;
+    }
   } else {
     ctaEl.style.display = 'none';
   }

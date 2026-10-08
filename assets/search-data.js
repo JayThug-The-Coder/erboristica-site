@@ -218,7 +218,7 @@
     if (_products) return Promise.resolve(true);
     if (ensureData._p) return ensureData._p;
     var base = /\/linee\//.test(window.location.pathname) ? '../' : '';
-    ensureData._p = fetch(base + 'assets/data.json?v=8')
+    ensureData._p = fetch(base + 'assets/data.json?v=9')
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (j) { if (j && j.products) { _products = j.products; } return !!_products; })
       .catch(function () { return false; });
